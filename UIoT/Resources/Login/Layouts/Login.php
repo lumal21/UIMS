@@ -1,6 +1,6 @@
 <style>
-    @import url('/Login/Stylesheet/Styles.css');
-    @import url('/Login/Stylesheet/Foundation.css');
+    @import url('Login/Stylesheet/Styles.css');
+    @import url('Login/Stylesheet/Foundation.css');
 </style>
 <style type="text/css">
     .bg {
@@ -11,7 +11,7 @@
     }
 
     .bs {
-        background: url(/Login/Images/6.jpg);
+        background: url(Login/Images/6.jpg);
         background-size: cover;
         background-position-y: -40px;
     }
@@ -42,7 +42,7 @@
 </style>
 <body class="bs">
 <div class="bg">
-    <img src="/Login/Images/logo_small_transparent.png" class="jk">
+    <img src="Login/Images/logo_small_transparent.png" class="jk">
 </div>
 <div class="nope obese"></div>
 <div class="nope obese"></div>
@@ -52,7 +52,7 @@
         <div class="panel radius kkk">
             <div class="cdd"></div>
             <div class="nope"></div>
-            <form action="/Login/Post" method="POST"/>
+            <form action="Login/Post" method="POST"/>
             <div class="row">
 
                 <div class="large-6 columns">

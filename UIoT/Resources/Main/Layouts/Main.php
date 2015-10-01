@@ -1,8 +1,8 @@
 <style>
-    @import url('/Main/Stylesheet/Styles.css');
-    @import url('/Main/Stylesheet/Foundation.css');
-    @import url('/Main/Stylesheet/Font-awesome.css');
-    @import url('/Main/Stylesheet/Main.css');
+    @import url('Main/Stylesheet/Styles.css');
+    @import url('Main/Stylesheet/Foundation.css');
+    @import url('Main/Stylesheet/Font-awesome.css');
+    @import url('Main/Stylesheet/Main.css');
 </style>
 <body class="jj">
 <div class="off-canvas-wrap c1"
@@ -80,16 +80,16 @@
     </div>
 </div>
 
-<script src='/Main/Scripts/Vendor/Jquery.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Vendor/Modernizr.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation.min.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.topbar.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.offcanvas.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.reveal.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.joyride.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.dropdown.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.abide.js' type='text/javascript'></script>
-<script src='/Main/Scripts/Foundation/Foundation.alert.js' type='text/javascript'></script>
+<script src='Main/Scripts/Vendor/Jquery.js' type='text/javascript'></script>
+<script src='Main/Scripts/Vendor/Modernizr.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation.min.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.topbar.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.offcanvas.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.reveal.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.joyride.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.dropdown.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.abide.js' type='text/javascript'></script>
+<script src='Main/Scripts/Foundation/Foundation.alert.js' type='text/javascript'></script>
 <script>
     $(document).foundation();
 </script>
