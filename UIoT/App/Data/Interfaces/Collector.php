@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/29/2015
+ * Time: 2:58 PM
+ */
+
+namespace UIoT\App\Data\Interfaces;
+
+/**
+ * Interface Collector
+ * @package UIoT\App\Data\Interfaces
+ */
+interface Collector
+{
+    function __passRequest($a);
+
+    function __passHandler($a);
+}

@@ -1,0 +1,26 @@
+{
+  "config": {
+    "vendor-dir": "UIoT/Vendor"
+  },
+  "name": "claudio.santoro/uiotcms",
+  "description": "UIOT CMS",
+  "type": "project",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Claudio Santoro",
+      "email": "claudio.santoro@redes.unb.br"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "nategood/httpful": "^0.2.19",
+    "filp/whoops": "^1.1"
+  },
+  "autoload": {
+    "classmap": [
+      "UIoT/",
+      "UIoT/App/"
+    ]
+  }
+}

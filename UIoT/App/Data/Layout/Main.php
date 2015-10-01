@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * UIoT CMS
+ * @version dev-alpha
+ *                          88
+ *                          ""              ,d
+ *                                          88
+ *              88       88 88  ,adPPYba, MM88MMM
+ *              88       88 88 a8"     "8a  88
+ *              88       88 88 8b       d8  88
+ *              "8a,   ,a88 88 "8a,   ,a8"  88,
+ *               `"YbbdP'Y8 88  `"YbbdP"'   "Y888
+ *
+ * @project Uniform Internet of Things
+ * @app UIoT Content Management System
+ * @author UIoT
+ * @developer Claudio Santoro
+ * @copyright University of Brasília
+ */
+
+namespace UIoT\Layout;
+
+use UIoT\App\Classes\Resources\Mapper;
+use UIoT\App\Classes\Resources\Pager;
+use UIoT\App\Data\Models\Layout;
+
+/**
+ * Class Main
+ * @package UIoT\Layout
+ */
+class Main extends Layout
+{
+    /**
+     * Set Resources
+     */
+    function __resources()
+    {
+        Mapper::setResourceFolder('None');
+
+        Mapper::addResource('Stylesheet/Styles.css', 'text/css');
+        Mapper::addResource('Stylesheet/Foundation.css', 'text/css');
+        Mapper::addResource('Stylesheet/Font-awesome.css', 'text/css');
+
+        Mapper::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
+
+        Mapper::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
+
+        Mapper::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
+        Mapper::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
+
+        Mapper::addResource('Scripts/Foundation.min.js', 'text/javascript');
+
+        Mapper::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.joyride.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.dropdown.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.abide.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.alert.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');
+        Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');
+
+        Mapper::setResourceFolder('Main');
+        Mapper::addResource('Stylesheet/Main.css', 'text/css');
+    }
+
+    /**
+     * Set Configuration
+     */
+    function __configuration()
+    {
+        Pager::setTitle('PIKAA');
+    }
+
+    /**
+     * Set Templates
+     */
+    function __templates()
+    {
+        Mapper::setTemplateFolder('Main');
+        Mapper::addTemplate('Layouts/Main.php', 'text/html');
+    }
+
+    /**
+     * Return Template Code
+     *
+     * @return null|mixed|string
+     */
+    function __show()
+    {
+        return Mapper::returnTemplate('Layouts/Main.html');
+    }
+}

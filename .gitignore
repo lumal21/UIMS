@@ -1,0 +1,6 @@
+/vendor/*
+/.idea/*
+.idea/*
+/UIoT/Vendor/*
+UIoT/Vendor/*
+!UIoT/Vendor/README.md
