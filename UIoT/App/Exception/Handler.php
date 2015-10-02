@@ -22,7 +22,7 @@
 namespace UIoT\App\Exception;
 
 use ErrorException;
-use UIoT\App\Classes\Helpers\Arrays;
+use UIoT\App\Core\Helpers\Manipulators\Arrays;
 use Whoops\Exception\Formatter;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Util\Misc;

@@ -10511,7 +10511,7 @@
 
 
             /**
-             * Classes that DataTables assigns to the various components and features
+             * Core that DataTables assigns to the various components and features
              * that it adds to the HTML table. This allows classes to be configured
              * during initialisation in addition to through the static
              * {@link DataTable.ext.oStdClasses} object).
@@ -12516,7 +12516,7 @@
             "aaSortingFixed": [],
 
             /**
-             * Classes to use for the striping of a table.
+             * Core to use for the striping of a table.
              * Note that this parameter will be set by the initialisation routine. To
              * set a default use {@link DataTable.defaults}.
              *  @type array

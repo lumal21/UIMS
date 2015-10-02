@@ -42,7 +42,7 @@
 </style>
 <body class="bs">
 <div class="bg">
-    <img src="Login/Images/logo_small_transparent.png" class="jk">
+    <img src="Login/Images/Logo_small_transparent.png" class="jk">
 </div>
 <div class="nope obese"></div>
 <div class="nope obese"></div>

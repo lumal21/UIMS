@@ -40,7 +40,7 @@
 
 namespace UIoT;
 
-use UIoT\App\Classes\Helpers\Constants as C;
+use UIoT\App\Core\Helpers\Manipulators\Constants as C;
 
 /**
  * This file is where you register all Public Constants
@@ -57,12 +57,27 @@ C::__addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
 
 /* resource sub-folders (valid callable folders) */
 C::__addJConstant('RESOURCE_TYPES', [
+        '',
         'Images',
         'Fonts',
         'Less',
         'Scripts',
         'Scss',
         'Stylesheet'
+    ]
+);
+
+/*
+ * @warning it's important register here
+ * Here is register all LAYOUT's names, used by UIoT Router
+ */
+C::__addJConstant('PREDEFINED_LAYOUTS', [
+        '',
+        'Add',
+        'Edit',
+        'Login',
+        'Main',
+        'Remove'
     ]
 );
 
@@ -74,6 +89,9 @@ C::__addConstant('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 
 /* query string */
 C::__addConstant('QUERY_STRING', $_SERVER['QUERY_STRING']);
+
+/* php self */
+C::__addConstant('PHP_SELF', $_SERVER['PHP_SELF']);
 
 /** template constants */
 

@@ -38,15 +38,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace UIoT;
-
 (require_once __DIR__ . '/UIoT/Vendor/autoload.php');
 (require_once __DIR__ . '/UIoT/Settings.php');
 (require_once __DIR__ . '/UIoT/Constants.php');
 (require_once __DIR__ . '/UIoT/Register.php');
 
 /* start environment */
-(new App\Init);
+(new UIoT\App\Init);
 
 /* let's exit */
 exit;

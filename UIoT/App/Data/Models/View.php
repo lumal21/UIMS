@@ -22,7 +22,7 @@
 namespace UIoT\App\Data\Models;
 
 use ReflectionClass;
-use UIoT\App\Classes\Layouts\Indexer as LIndexer;
+use UIoT\App\Core\Layouts\Indexer as LIndexer;
 use UIoT\App\Data\Interfaces\View as InterfaceView;
 
 /**

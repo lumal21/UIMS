@@ -22,7 +22,7 @@
 namespace UIoT\App\Data\Models;
 
 use stdClass;
-use UIoT\App\Classes\Views\Template;
+use UIoT\App\Core\Renders\Template;
 use UIoT\App\Data\Interfaces\IController as InterfaceIController;
 
 /**

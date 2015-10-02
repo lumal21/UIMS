@@ -46,7 +46,7 @@
                     <h5>cms main menu</h5>
                     <ul class="side-nav" id="form_search">
                         <?php
-                        $menu_items = new UIoT\App\Classes\Helpers\Visual\MenuItems();
+                        $menu_items = new UIoT\App\Core\Helpers\Visual\Menu;
                         $menu_items->__addLabel('Home', 'fa fa-home');
                         $menu_items->__addItem('', 'fa fa-suitcase', '', 'Home', 'Home');
                         $menu_items->__addLabel('System', 'fa fa-sitemap');

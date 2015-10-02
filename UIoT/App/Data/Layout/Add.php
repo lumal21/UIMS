@@ -19,14 +19,14 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\Layout;
+namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Classes\Resources\Mapper;
-use UIoT\App\Classes\Resources\Pager;
+use UIoT\App\Core\Resources\Mapper;
+use UIoT\App\Core\Resources\Pager;
 
 /**
  * Class Add
- * @package UIoT\Layout
+ * @package UIoT\App\Data\Layout
  */
 final class Add extends Main
 {

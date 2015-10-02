@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Data\Controllers;
 
-use UIoT\App\Classes\Communication\Routing\Accessor;
+use UIoT\App\Core\Communication\Routing\Accessor;
 use UIoT\App\Data\Models\Controller;
 
 /**

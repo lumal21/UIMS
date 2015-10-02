@@ -40,7 +40,7 @@
 
 namespace UIoT;
 
-use UIoT\App\Classes\Helpers\Constants as C;
+use UIoT\App\Core\Helpers\Manipulators\Constants as C;
 
 /**
  * UIoTcms Settings
@@ -82,7 +82,7 @@ C::__addJConstant('SETTINGS', [
             // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
             'session_handler_salt' => 'uniform-internetofthings',
             // session expire (seconds)
-            'session_time_out' => 360,
+            'session_time_out' => 960,
             // white list ip to access security items and complete exceptions stack trace, debug tools etc.
             'white_ip_list' =>
                 [

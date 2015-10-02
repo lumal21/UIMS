@@ -60,16 +60,16 @@ final class Init
         (new Exception\Register);
 
         /* session register */
-        (new Classes\Communication\Sessions\Starter);
+        (new Core\Communication\Sessions\Starter);
 
         /* start raise */
-        (new Classes\Communication\Requesting\Raise);
+        (new Core\Communication\Requesting\Raise);
 
         /* register handlers,methods of rest */
-        (new Classes\Communication\Parsers\DataManager);
+        (new Core\Communication\Parsers\DataManager);
 
         /* start router */
-        (new Classes\Communication\Routing\Router);
+        (new Core\Communication\Routing\Router);
     }
 
     /**

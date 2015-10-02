@@ -40,8 +40,8 @@
 
 namespace UIoT;
 
-use UIoT\App\Classes\Controllers\Indexer as CIndexer;
-use UIoT\App\Classes\Views\Indexer as VIndexer;
+use UIoT\App\Core\Controllers\Indexer as CIndexer;
+use UIoT\App\Core\Views\Indexer as VIndexer;
 
 /*
  * this file is necessary to register public and static controllers and views.
