@@ -29,6 +29,16 @@ class Arrays
     }
 
     /**
+     * @param $key
+     * @param $value
+     * @param array $array
+     */
+    static function addOnArray($key, $value, &$array = [])
+    {
+        $array[$key] = $value;
+    }
+
+    /**
      * Check if is Instance of Closure
      * (Used on ArrayMap)
      *

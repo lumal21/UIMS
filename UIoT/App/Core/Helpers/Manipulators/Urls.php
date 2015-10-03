@@ -27,9 +27,6 @@ namespace UIoT\App\Core\Helpers\Manipulators;
  */
 final class Urls
 {
-    /**
-     * @var
-     */
     private static $layouts = [], $resources = [], $query_string = [], $url = [];
 
     /**
@@ -45,6 +42,8 @@ final class Urls
     }
 
     /**
+     * Set Resources
+     *
      * @param array $resources
      */
     public static function setResources($resources)
@@ -53,14 +52,24 @@ final class Urls
     }
 
     /**
+     * Makes a Big Check
+     *
      * @return mixed
      */
     static function getResourceControllerInUrl()
     {
-        return ((self::getControllerInUrl() != DEFAULT_CONTROLLER) ? ((!in_array(self::getActionInUrl(), self::getResources())) ? (self::getActionInUrl()) : (self::getControllerInUrl())) : (self::getControllerInUrl()));
+        /* set variables */
+        $c = ((self::getControllerInUrl() == self::getUrlReverseCombination()['layout']) ? (self::getControllerInUrl()) : (self::getUrlReverseCombination()['layout']));
+        $a = self::getActionInUrl();
+
+        /* @todo improve this check */
+        /* giant check */
+        return (($c != DEFAULT_CONTROLLER) ? (((!in_array($a, self::getResources()) && ($a == $c))) ? ($a) : ((($a == $c) || ($a != DEFAULT_VIEW_ACTION)) ? $c : $a)) : ($c));
     }
 
     /**
+     * Get Controller in Url
+     *
      * @return mixed
      */
     static function getControllerInUrl()
@@ -69,6 +78,8 @@ final class Urls
     }
 
     /**
+     * Return Final Url Array
+     *
      * @return array
      */
     static function combineUrl()
@@ -77,6 +88,38 @@ final class Urls
     }
 
     /**
+     * Get Url Reverse Combination
+     *
+     * @return array
+     */
+    static function getUrlReverseCombination()
+    {
+        return ['layout' => reset(self::getLayoutCombination()), 'resource' => reset(self::getResourceCombination())];
+    }
+
+    /**
+     * Get Layout Combination
+     *
+     * @return array
+     */
+    static function getLayoutCombination()
+    {
+        return array_filter(self::combineUrl(), 'self::combinationTest');
+    }
+
+    /**
+     * Get Resource Combination
+     *
+     * @return array
+     */
+    static function getResourceCombination()
+    {
+        return array_filter(self::combineUrl(), 'self::combinationTestTwo');
+    }
+
+    /**
+     * Get Action In the Url
+     *
      * @return mixed
      */
     static function getActionInUrl()
@@ -85,6 +128,8 @@ final class Urls
     }
 
     /**
+     * Get All Resources
+     *
      * @return array
      */
     public static function getResources()
@@ -93,6 +138,25 @@ final class Urls
     }
 
     /**
+     * Return Array without Controller Name
+     *
+     * @return array
+     */
+    static function combineUrlSimple()
+    {
+        /* create array */
+        $a = self::combineUrl();
+
+        /* unset controller */
+        unset($a[0]);
+
+        /* return array */
+        return $a;
+    }
+
+    /**
+     * Get Template Url
+     *
      * @return string
      */
     static function getValidTemplateUrl()
@@ -101,14 +165,18 @@ final class Urls
     }
 
     /**
+     * Set the Query String
+     *
      * @return array
      */
     static function setQueryString()
     {
-        return (self::$query_string = explode('/', json_decode(QUERY_STRING)));
+        return (self::$query_string = json_decode(QUERY_STRING));
     }
 
     /**
+     * Check Combination Validation
+     *
      * @return bool
      */
     static function checkCombination()
@@ -121,6 +189,8 @@ final class Urls
     }
 
     /**
+     * Get Url Combination
+     *
      * @return array
      */
     static function getUrlCombination()
@@ -129,22 +199,8 @@ final class Urls
     }
 
     /**
-     * @return array
-     */
-    static function getLayoutCombination()
-    {
-        return array_filter(self::combineUrl(), 'self::combinationTest');
-    }
-
-    /**
-     * @return array
-     */
-    static function getResourceCombination()
-    {
-        return array_filter(self::combineUrl(), 'self::combinationTestTwo');
-    }
-
-    /**
+     * Get Final Combination
+     *
      * @return string
      */
     static function getFinalCombination()
@@ -153,6 +209,8 @@ final class Urls
     }
 
     /**
+     * Get Resource Final Url
+     *
      * @return string
      */
     static function getValidResourceUrl()
@@ -160,20 +218,19 @@ final class Urls
         return strstr(implode('/', self::combineUrl()), self::getFinalTwoCombination());
     }
 
+    /**
+     * Get Final Resource Combination
+     *
+     * @return mixed
+     */
     static function getFinalTwoCombination()
     {
         return self::getUrlCombination()['resource'];
     }
 
     /**
-     * @return array
-     */
-    static function getUrlReverseCombination()
-    {
-        return ['layout' => reset(self::getLayoutCombination()), 'resource' => reset(self::getResourceCombination())];
-    }
-
-    /**
+     * Get Query String
+     *
      * @return mixed
      */
     public static function getQueryString()
@@ -182,14 +239,18 @@ final class Urls
     }
 
     /**
-     * @param $url
+     * Add Url
+     *
+     * @param $url_string
      */
-    static function addUrl($url = [])
+    static function addUrl($url_string = '')
     {
-        self::$url[] = array_filter($url, 'strlen');
+        self::$url[] = array_filter(explode('/', $url_string), 'strlen');
     }
 
     /**
+     * Set Url
+     *
      * @return array
      */
     static function getUrl()
@@ -198,6 +259,9 @@ final class Urls
     }
 
     /**
+     * Combination test
+     * Phase 1
+     *
      * @param $x
      * @return bool
      */
@@ -207,6 +271,8 @@ final class Urls
     }
 
     /**
+     * Get Layouts
+     *
      * @return mixed
      */
     static function getLayouts()
@@ -215,6 +281,8 @@ final class Urls
     }
 
     /**
+     * Set Layouts
+     *
      * @param mixed $layouts
      */
     static function setLayouts($layouts)
@@ -223,6 +291,9 @@ final class Urls
     }
 
     /**
+     * Combination test
+     * Phase 2
+     *
      * @param $x
      * @return mixed
      */

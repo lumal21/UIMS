@@ -24,13 +24,12 @@ namespace UIoT\App\Core\Renders;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as CIndexer;
+use UIoT\App\Core\Helpers\Manipulators\Urls;
+use UIoT\App\Core\Resources\Mapper;
 use UIoT\App\Core\Views\Indexer;
 
 /**
  * Class Template
- * @property string view_name
- * @property string action_name
- * @property string controller_name
  * @property string template
  * @package UIoT\App\Core\Views
  */
@@ -46,8 +45,8 @@ final class Template
      */
     function __construct($controller, $action)
     {
-        $this->__name($controller, $action);
-        $this->__show();
+        $this->__resources($controller, $action);
+        $this->__show($controller, $action);
     }
 
     /**
@@ -59,23 +58,14 @@ final class Template
     }
 
     /**
-     * Save Controller and Action Name
-     *
-     * @param string $controller
-     * @param string $action
-     */
-    private function __name($controller, $action)
-    {
-        $this->controller_name = $controller;
-        $this->action_name     = $action;
-    }
-
-    /**
      * Start the Controller Commander
+     *
+     * @param $controller
+     * @param $action
      */
-    private function __controller()
+    private function __controller($controller, $action)
     {
-        (new Commander($this->controller_name, $this->action_name))->__action($this->action_name);
+        (new Commander($controller, $action))->__action($action);
     }
 
     /**
@@ -91,31 +81,50 @@ final class Template
     /**
      * Start Abstract Layout (For Abstract Core)
      *
-     * @return mixed|string|null
+     * @param $action
+     * @return mixed|null|string
      */
-    private function __abstractView()
+    private function __abstractView($action)
     {
         /* get layout from the parser */
-        DataHandler::getParserLayout($this->action_name);
+        DataHandler::getParserLayout($action);
 
         /* open the layout */
-        return DataHandler::openParserLayout($this->action_name);
+        return DataHandler::openParserLayout($action);
     }
 
     /**
      * Call View/Layout
+     *
+     * @param $controller
+     * @param $action
      */
-    private function __view()
+    private function __view($controller, $action)
     {
-        $this->template = ((!self::$disable_show_view) ? ((Indexer::viewExists($this->controller_name)) ? Indexer::getView($this->controller_name) : '') : ((!CIndexer::controllerExists($this->controller_name)) ? $this->__abstractView() : $this->__basicView()));
+        $this->template = ((!self::$disable_show_view) ? ((Indexer::viewExists($controller)) ? Indexer::getView($controller) : '') : ((!CIndexer::controllerExists($controller)) ? $this->__abstractView($action) : $this->__basicView()));
     }
 
     /**
      * Call Controller and show View Code
+     *
+     * @param $controller
+     * @param $action
      */
-    private function __show()
+    private function __show($controller, $action)
     {
-        $this->__controller();
-        $this->__view();
+        $this->__controller($controller, $action);
+        $this->__view($controller, $action);
+    }
+
+    /**
+     * Register Resources
+     *
+     * @param $controller
+     * @param $action
+     */
+    private function __resources($controller, $action)
+    {
+        /* register resources */
+        Mapper::registerResources(((in_array($action, Urls::getLayouts())) ? $action : $controller), true);
     }
 }

@@ -116,10 +116,14 @@ final class Mapper
      * Return Layout Resources
      *
      * @param string $layout_name
+     * @param bool $reset_session
      * @return mixed
      */
-    static function registerResources($layout_name)
+    static function registerResources($layout_name, $reset_session = false)
     {
+        /* remove if is needed */
+        if ($reset_session) SIndexer::removeKey('layout');
+
         /* register the layout */
         LIndexer::addLayout($layout_name, strtok($layout_name, '_'));
 
@@ -127,7 +131,7 @@ final class Mapper
         LIndexer::getLayoutResources($layout_name);
 
         /* resource must change */
-        //self::resourceChanges();
+        self::resourceChanges();
     }
 
     /**

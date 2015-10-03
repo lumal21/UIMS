@@ -21,6 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
+use UIoT\App\Core\Helpers\Manipulators\Arrays;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
 use UIoT\App\Core\Renders\Resource;
 use UIoT\App\Core\Renders\Template;
@@ -35,6 +36,7 @@ use UIoT\App\Core\Renders\Template;
  * @property string request_bas
  * @property array request_urs
  * @property string resource_url
+ * @property array query_array
  * @package UIoT\App\Core\Communication\Routing
  */
 final class Router
@@ -70,20 +72,13 @@ final class Router
      */
     private function __map()
     {
-        /** request url area */
-
-        /* @todo improve these code */
-        /* @todo make the code dynamic */
-
         /* register layouts and resources */
         Urls::registerItems();
 
-        /* set query string */
-        Urls::setQueryString();
-
         /* add urls */
-        Urls::addUrl(explode('/', REQUEST_URL));
-        Urls::addUrl(explode('/', PHP_SELF));
+        Urls::addUrl(REQUEST_URL);
+        Urls::addUrl(PHP_SELF);
+        Urls::addUrl(Urls::setQueryString());
     }
 
     /**
@@ -91,9 +86,6 @@ final class Router
      */
     private function __applyResource()
     {
-        /* @todo improve these code */
-        /* @todo make the code dynamic */
-
         /* get controller name (layout) */
         $this->controller   = Urls::getResourceControllerInUrl();
         $this->resource_url = Urls::getValidResourceUrl();
@@ -106,42 +98,16 @@ final class Router
      */
     private function __applyTemplate()
     {
-        /* @todo improve these code */
-        /* @todo make the code dynamic */
-
         /* apply controller and action */
         $this->controller = Urls::getControllerInUrl();
         $this->action     = Urls::getActionInUrl();
 
-        /* add query string as url */
-        Urls::addUrl(Urls::getQueryString());
-
-        /* set query string as combine url */
-        $this->query_string = Urls::combineUrl();
-
-        /* check existence of query_string */
-        $aka = ($this->query_string[sizeof($this->query_string) - 1]);
-
-        /* foreach query string */
-        if (strpos($aka, '?') !== false):
-            $c = explode('?', $aka);
-            unset($c[0]);
-            $this->query_string[sizeof($this->query_string) - 1] = $c[0];
-            $this->query_string[]                                = implode('&', $c);
-        endif;
-
-        /* unset first item */
-        unset($this->query_string[0]);
-
-        /* if errors happens */
+        /* first $last need be empty */
         $last = '';
 
         /* put query string into $GET */
-        foreach ($this->query_string as $key => $value)
-            if (($key % 2) != 0)
-                $_GET[$last = $value] = '';
-            else
-                $_GET[$last] = urldecode($value);
+        foreach (Urls::combineUrlSimple() as $key => $value)
+            ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $_GET)) : Arrays::addOnArray($last, urldecode($value), $_GET));
 
         return true;
     }
