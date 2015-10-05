@@ -82,16 +82,16 @@ C::__addJConstant('PREDEFINED_LAYOUTS', [
 );
 
 /* request url */
-C::__addConstant('REQUEST_URL', $_SERVER['REQUEST_URI']);
+C::__addConstant('REQUEST_URL', @$_SERVER['REQUEST_URI']);
 
 /* script name */
-C::__addConstant('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
+C::__addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
 
 /* query string */
-C::__addConstant('QUERY_STRING', $_SERVER['QUERY_STRING']);
+C::__addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
 
 /* php self */
-C::__addConstant('PHP_SELF', $_SERVER['PHP_SELF']);
+C::__addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
 
 /** template constants */
 

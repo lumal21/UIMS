@@ -91,7 +91,6 @@ class Arrays
      * (Only for Public - non-static - methods)
      *
      * @param string $controller_name
-     * @internal param array $a
      * @return array
      */
     static function staticToArray($controller_name = '')
