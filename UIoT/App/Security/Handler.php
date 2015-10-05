@@ -27,5 +27,15 @@ namespace UIoT\App\Security;
  */
 final class Handler
 {
-
+    /**
+     * @todo start the security class handler,
+     * this class will use security helpers
+     * like:
+     *  - string cleaning
+     *  - ip verification
+     *  - xss verification
+     *  - filter all $_REQUESTS
+     *  - handle white list-ip system
+     *  - and more
+     */
 }

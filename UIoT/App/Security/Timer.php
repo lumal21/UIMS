@@ -132,10 +132,11 @@ final class Timer
      * Set Execution Time
      *
      * @param int|float $execution_time
+     * @return float|int
      */
     static function setExecutionTime($execution_time)
     {
-        self::$execution_time = $execution_time;
+        return (self::$execution_time = $execution_time);
     }
 
     /**

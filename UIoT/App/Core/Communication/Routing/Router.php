@@ -21,6 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
+use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
 use UIoT\App\Core\Renders\Resource;
@@ -78,7 +79,7 @@ final class Router
         /* add urls */
         Urls::addUrl(REQUEST_URL);
         Urls::addUrl(PHP_SELF);
-        Urls::addUrl(Urls::setQueryString());
+        Urls::addUrl(QUERY_STRING);
     }
 
     /**
@@ -87,8 +88,8 @@ final class Router
     private function __applyResource()
     {
         /* get controller name (layout) */
-        $this->controller   = Urls::getResourceControllerInUrl();
-        $this->resource_url = Urls::getValidResourceUrl();
+        $this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getResourceControllerInUrl());
+        $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
 
         return true;
     }
@@ -99,8 +100,8 @@ final class Router
     private function __applyTemplate()
     {
         /* apply controller and action */
-        $this->controller = Urls::getControllerInUrl();
-        $this->action     = Urls::getActionInUrl();
+        $this->controller = Indexer::updateKeyIfNeeded('controller_router', Urls::getControllerInUrl());
+        $this->action     = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
 
         /* first $last need be empty */
         $last = '';

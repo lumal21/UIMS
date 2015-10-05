@@ -48,6 +48,11 @@ class Handler extends PrettyPageHandler
      */
     public function handle()
     {
+        /**
+         * @todo Need to improve this Handler
+         * @todo Because Whoops Handler, is weird and not good coded.
+         */
+
         /* call template helper */
         $helper = new TemplateHelper;
 
