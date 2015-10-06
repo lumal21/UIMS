@@ -33,6 +33,6 @@ final class None extends Controller
     function __actionMain()
     {
         /* redirect to Login view */
-        Accessor::RedirectToController('Login');
+        Accessor::redirectToController('Login');
     }
 }

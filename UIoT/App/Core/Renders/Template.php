@@ -40,32 +40,23 @@ final class Template
     /**
      * Init Template (Layout/Controller/View) Handler
      *
-     * @param string $controller
-     * @param string $action
+     * @param array $arguments
      */
-    function __construct($controller, $action)
+    function __construct($arguments = [])
     {
-        $this->__resources($controller, $action);
-        $this->__show($controller, $action);
-    }
+        $this->controller = $arguments['controller'];
+        $this->action     = $arguments['action'];
 
-    /**
-     * @return string
-     */
-    function __toString()
-    {
-        return $this->template;
+        $this->setResources();
+        $this->setController();
     }
 
     /**
      * Start the Controller Commander
-     *
-     * @param $controller
-     * @param $action
      */
-    private function __controller($controller, $action)
+    private function setController()
     {
-        (new Commander($controller, $action))->__action($action);
+        (new Commander($this->controller, $this->action))->setAction($this->action);
     }
 
     /**
@@ -73,58 +64,36 @@ final class Template
      *
      * @return mixed|string|null
      */
-    private function __basicView()
+    private function bView()
     {
         return (CONTROLLER_CONTENT);
     }
 
     /**
      * Start Abstract Layout (For Abstract Core)
-     *
-     * @param $action
-     * @return mixed|null|string
      */
-    private function __abstractView($action)
+    private function aView()
     {
         /* get layout from the parser */
-        DataHandler::getParserLayout($action);
+        DataHandler::getParserLayout($this->action);
 
         /* open the layout */
-        return DataHandler::openParserLayout($action);
+        return DataHandler::openParserLayout($this->action);
     }
 
     /**
      * Call View/Layout
-     *
-     * @param $controller
-     * @param $action
      */
-    private function __view($controller, $action)
+    function show()
     {
-        $this->template = ((!self::$disable_show_view) ? ((Indexer::viewExists($controller)) ? Indexer::getView($controller) : '') : ((!CIndexer::controllerExists($controller)) ? $this->__abstractView($action) : $this->__basicView()));
-    }
-
-    /**
-     * Call Controller and show View Code
-     *
-     * @param $controller
-     * @param $action
-     */
-    private function __show($controller, $action)
-    {
-        $this->__controller($controller, $action);
-        $this->__view($controller, $action);
+        return ((!self::$disable_show_view) ? ((Indexer::viewExists($this->controller)) ? Indexer::getView($this->controller) : '') : ((!CIndexer::controllerExists($this->controller)) ? $this->aView() : $this->bView()));
     }
 
     /**
      * Register Resources
-     *
-     * @param $controller
-     * @param $action
      */
-    private function __resources($controller, $action)
+    private function setResources()
     {
-        /* register resources */
-        Mapper::registerResources(((in_array($action, Urls::getLayouts())) ? $action : $controller), true);
+        Mapper::registerResources(((in_array($this->action, Urls::getLayouts())) ? $this->action : $this->controller), true);
     }
 }

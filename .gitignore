@@ -3,4 +3,5 @@
 .idea/*
 /UIoT/Vendor/*
 UIoT/Vendor/*
+composer.lock
 !UIoT/Vendor/README.md

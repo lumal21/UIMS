@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use UIoT\App\Core\Communication\Requesting\Rest;
+use UIoT\App\Core\Communication\Requesting\Raise;
 use UIoT\App\Data\Models\Collector;
 use UIoT\App\Data\Models\Handler;
 
@@ -32,6 +32,9 @@ use UIoT\App\Data\Models\Handler;
  */
 class DataCollector
 {
+    /**
+     * @var array
+     */
     private static $collectors;
 
     /**
@@ -73,7 +76,7 @@ class DataCollector
      */
     static function doRequest()
     {
-        return Rest::doRequest(DataManager::getController() . '/');
+        return Raise::doRequest(DataManager::getController() . '/');
     }
 
     /**
@@ -85,7 +88,7 @@ class DataCollector
      */
     static function initCollector(Collector $collector, $handler = '')
     {
-        return ($collector->__passRequest(self::doRequest())->__passHandler($handler));
+        return ($collector->passRequest(self::doRequest())->passHandler($handler));
     }
 
     /**

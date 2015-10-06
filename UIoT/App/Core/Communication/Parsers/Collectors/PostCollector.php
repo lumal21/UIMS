@@ -33,7 +33,7 @@ class PostCollector extends Collector
      * @param $a
      * @return $this
      */
-    function __passRequest($a)
+    function passRequest($a)
     {
         /* save request data */
         $this->request = $a;

@@ -83,4 +83,3 @@ final class Init
         gc_collect_cycles();
     }
 }
-

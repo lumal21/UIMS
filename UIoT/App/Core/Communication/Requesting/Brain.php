@@ -30,6 +30,9 @@ use Httpful\Response;
  */
 class Brain
 {
+    /**
+     * @var Request
+     */
     private static $template;
 
     /**
@@ -37,9 +40,9 @@ class Brain
      *
      * @return mixed
      */
-    static function __getItems()
+    static function getItems()
     {
-        return Rest::doRequest('resource');
+        return Raise::doRequest('resource');
     }
 
     /**
@@ -48,9 +51,9 @@ class Brain
      * @param Http ::string $method_name
      * @param Mime ::string $mime_type
      */
-    static function __setTemplate($method_name, $mime_type)
+    static function setTemplate($method_name, $mime_type)
     {
-        self::__adjustTemplate(self::$template = (Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type)));
+        self::adjustTemplate(self::$template = (Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type)));
     }
 
     /**
@@ -59,9 +62,9 @@ class Brain
      *
      * @param Request $r
      */
-    private static function __adjustTemplate(Request $r)
+    private static function adjustTemplate(Request $r)
     {
-        Rest::setTemplate($r);
+        Raise::setTemplate($r);
     }
 
     /**
@@ -70,9 +73,9 @@ class Brain
      *
      * @param $mime_type
      */
-    static function __setExpects($mime_type)
+    static function setExpectedMimeType($mime_type)
     {
-        self::__adjustTemplate(self::__getTemplate()->expects($mime_type));
+        self::adjustTemplate(self::getTemplate()->expects($mime_type));
     }
 
     /**
@@ -81,9 +84,9 @@ class Brain
      *
      * @param $mime_type
      */
-    static function __setMimeType($mime_type)
+    static function setMimeType($mime_type)
     {
-        self::__adjustTemplate(self::__getTemplate()->mime($mime_type));
+        self::adjustTemplate(self::getTemplate()->mime($mime_type));
     }
 
     /**
@@ -92,9 +95,9 @@ class Brain
      *
      * @param $method_name
      */
-    static function __setMethod($method_name)
+    static function setRequestMethod($method_name)
     {
-        self::__adjustTemplate(self::__getTemplate()->method($method_name));
+        self::adjustTemplate(self::getTemplate()->method($method_name));
     }
 
     /**
@@ -102,23 +105,27 @@ class Brain
      *
      * @param $url
      */
-    static function __setUrl($url)
+    static function setRequestUrl($url)
     {
-        self::__adjustTemplate(self::__getTemplate()->uri($url));
+        self::adjustTemplate(self::getTemplate()->uri($url));
     }
 
     /**
+     * Send Httpful Request
+     *
      * @return Response
      */
-    static function __sendRequest()
+    static function sendRequest()
     {
         return Request::d(null)->send();
     }
 
     /**
+     * Get Httpful Template
+     *
      * @return Request
      */
-    private static function __getTemplate()
+    private static function getTemplate()
     {
         return self::$template;
     }

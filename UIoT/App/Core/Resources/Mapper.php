@@ -98,7 +98,6 @@ final class Mapper
             (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
             self::$the_t_array[$file_name]['file_content'];
         endif;
-        return '';
     }
 
     /**
@@ -200,7 +199,7 @@ final class Mapper
      *
      * @param string $file_name
      * @param bool|true $header
-     * @return null
+     * @return string
      */
     static function returnResource($file_name, $header = true)
     {
@@ -218,7 +217,7 @@ final class Mapper
         endif;
 
         /* if resource doesn't exists, or resource is hotlinked we must show error */
-        return self::__problem();
+        return self::problem();
     }
 
     /**
@@ -227,13 +226,13 @@ final class Mapper
      *
      * @throws \Exception
      */
-    private static function __problem()
+    private static function problem()
     {
         Register::$global->__message(9003,
             "Stop! D'not Hotlinks!",
             'Details: ',
             [
-                'What Happend?' => "You're a bitch, and trying to get resources...",
+                'What Happened?' => "You're a bitch, and trying to get resources...",
                 'Resolution:' => "Stop giving 555xxxx requests!",
                 'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
             ]

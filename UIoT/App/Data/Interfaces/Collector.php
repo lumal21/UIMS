@@ -14,7 +14,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface Collector
 {
-    function __passRequest($a);
+    function passRequest($a);
 
-    function __passHandler($a);
+    function passHandler($a);
 }

@@ -29,15 +29,9 @@ use UIoT\App\Core\Renders\Template;
 
 /**
  * Class Router
- * @property string controller
- * @property string action
- * @property string sub_action
- * @property array $query_string
- * @property array base_folder
- * @property string request_bas
- * @property array request_urs
- * @property string resource_url
- * @property array query_array
+ * @property mixed resource_url
+ * @property mixed controller
+ * @property mixed action
  * @package UIoT\App\Core\Communication\Routing
  */
 final class Router
@@ -47,31 +41,47 @@ final class Router
      */
     function __construct()
     {
-        $this->__map();
-        $this->__chose();
-        $this->__show();
+        /* map section */
+        $this->reach();
+
+        /* routing section */
+        $this->route();
+        $this->query();
+
+        /* show section */
+        $this->open();
     }
 
     /**
-     * Choose Resource or Template
+     * Route the Items
+     *
+     * @return bool
      */
-    private function __chose()
+    private function route()
     {
-        (($this->__check()) ? $this->__applyResource() : $this->__applyTemplate());
+        /* get controller name (layout) */
+        $this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
+        $this->action       = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
+        $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
+
+        //print_r($this->controller);
+        //die();
+
+        return true;
     }
 
     /**
-     * Echoes the Rendered Code
+     * Open the Template or Router
      */
-    private function __show()
+    private function open()
     {
-        echo($this->__router());
+        echo((Urls::checkCombination()) ? Selector::select(Selector::instantiate(new Resource(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new Template(['controller' => $this->controller, 'action' => $this->action]))));
     }
 
     /**
      * Get Requested URL and Script Name, Removing the Repeated Things
      */
-    private function __map()
+    private function reach()
     {
         /* register layouts and resources */
         Urls::registerItems();
@@ -83,26 +93,10 @@ final class Router
     }
 
     /**
-     * Apply Request Url's for Resources
+     * Apply Query String
      */
-    private function __applyResource()
+    private function query()
     {
-        /* get controller name (layout) */
-        $this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getResourceControllerInUrl());
-        $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
-
-        return true;
-    }
-
-    /**
-     * Apply Request Url's for Templates
-     */
-    private function __applyTemplate()
-    {
-        /* apply controller and action */
-        $this->controller = Indexer::updateKeyIfNeeded('controller_router', Urls::getControllerInUrl());
-        $this->action     = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
-
         /* first $last need be empty */
         $last = '';
 
@@ -111,25 +105,5 @@ final class Router
             ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $_GET)) : Arrays::addOnArray($last, urldecode($value), $_GET));
 
         return true;
-    }
-
-    /**
-     * Check if is Resource or Not
-     *
-     * @return bool
-     */
-    private function __check()
-    {
-        return (Urls::checkCombination());
-    }
-
-    /**
-     * Do the Routing
-     *
-     * @return Resource|Template
-     */
-    private function __router()
-    {
-        return (($this->__check()) ? new Resource($this->controller, $this->resource_url) : new Template($this->controller, $this->action));
     }
 }

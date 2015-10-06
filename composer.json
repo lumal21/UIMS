@@ -3,7 +3,7 @@
     "vendor-dir": "UIoT/Vendor"
   },
   "name": "claudio.santoro/uiotcms",
-  "description": "UIOT CMS",
+  "description": "UIoT Application Layer - CMS",
   "type": "project",
   "license": "GPL-3.0+",
   "authors": [

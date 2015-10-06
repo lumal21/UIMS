@@ -85,7 +85,7 @@ final class Controllable extends IControllable
      */
     private function __validate()
     {
-        $this->c_array = (Arrays::toControllerArray((!SIndexer::keyExists('i_data')) ? (SIndexer::updateKeyIfNeeded('i_data', Brain::__getItems())) : (SIndexer::getKeyValue('i_data'))));
+        $this->c_array = (Arrays::toControllerArray((!SIndexer::keyExists('i_data')) ? (SIndexer::updateKeyIfNeeded('i_data', Brain::getItems())) : (SIndexer::getKeyValue('i_data'))));
     }
 
     /**
@@ -110,7 +110,7 @@ final class Controllable extends IControllable
      */
     private function __brain()
     {
-        Brain::__setTemplate(DataHandler::getParserMethod($this->a_name), Mime::JSON);
+        Brain::setTemplate(DataHandler::getParserMethod($this->a_name), Mime::JSON);
     }
 
     /**

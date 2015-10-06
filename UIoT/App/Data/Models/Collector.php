@@ -22,7 +22,7 @@ class Collector implements InterfaceCollector
      * @param $a
      * @return $this
      */
-    function __passRequest($a)
+    function passRequest($a)
     {
         /* save request data */
         $this->request = $a;
@@ -35,7 +35,7 @@ class Collector implements InterfaceCollector
      * @param $a
      * @return $this
      */
-    function __passHandler($a)
+    function passHandler($a)
     {
         /* store request data */
         $b = new $a($this->request);

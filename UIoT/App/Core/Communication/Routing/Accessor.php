@@ -36,20 +36,20 @@ final class Accessor
      * @param string $view
      * @return mixed
      */
-    static function RedirectToView($view)
+    static function redirectToView($view)
     {
-        return VIndexer::getView($view);
+        return (VIndexer::getView($view));
     }
 
     /**
      * Redirect to Another Controller
      *
-     * @param $controller
+     * @param string $controller
      * @param string $controller_action
      * @return Template
      */
-    static function RedirectToController($controller, $controller_action = '')
+    static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
     {
-        return (new Template($controller, ((!empty($controller_action)) ? $controller_action : DEFAULT_VIEW_ACTION)));
+        return Selector::select(Selector::instantiate(new Template(['controller' => $controller, 'action' => $controller_action])));
     }
 }

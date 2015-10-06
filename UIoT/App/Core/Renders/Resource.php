@@ -33,37 +33,25 @@ final class Resource
     /**
      * Init Resource Handler
      *
-     * @param string $controller
-     * @param $file
+     * @param array $arguments
      */
-    function __construct($controller, $file)
+    function __construct($arguments = [])
     {
-        $this->__show($controller, $file);
+        $this->controller = $arguments['controller'];
+        $this->file       = $arguments['file'];
     }
 
     /**
      * Show the Resource
      *
-     * @param string $controller
-     * @param $file
-     * @return null
-     */
-    private function __show($controller, $file)
-    {
-        /* register resources */
-        Mapper::registerResources($controller);
-
-        /* return resource */
-        $this->resource = Mapper::returnResource($file);
-    }
-
-    /**
-     * Return Resource
-     *
      * @return string
      */
-    function __toString()
+    function show()
     {
-        return $this->resource;
+        /* register resources */
+        Mapper::registerResources($this->controller);
+
+        /* return resource */
+        return Mapper::returnResource($this->file);
     }
 }

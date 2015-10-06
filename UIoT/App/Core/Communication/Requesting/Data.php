@@ -21,34 +21,36 @@
 
 namespace UIoT\App\Core\Communication\Requesting;
 
+use Httpful\Response;
+
 /**
  * Class Data
- * @property associative|string $data
  * @package UIoT\App\Core\Communication\Requesting
  */
 final class Data
 {
     /**
-     * @var \Httpful\associative|string
+     * @var Response
      */
     public $data;
 
     /**
      * Do a Request
      *
-     * @param $url
+     * @param string $url
      * @throws \Httpful\Exception\ConnectionErrorException
      */
     function __construct($url)
     {
-        Brain::__setUrl($url);
-        $this->data = Brain::__sendRequest();
+        Brain::setRequestUrl($url);
+        $this->data = Brain::sendRequest();
     }
 
     /**
      * Get HttpFul Request Data
      *
-     * @param $var
+     * @param string $var
+     * @return Response
      */
     function __get($var)
     {
@@ -56,17 +58,17 @@ final class Data
         switch ($var):
             default:
             case 'body':
-                return $this->data->body;
+                return @$this->data->body;
             case 'header':
-                return $this->data->headers;
+                return @$this->data->headers;
         endswitch;
     }
 
     /**
      * Call Abstract Data Validation
      *
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param mixed $arguments
      * @return mixed
      */
     function __call($name, $arguments)

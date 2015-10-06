@@ -46,16 +46,60 @@ use UIoT\App\Core\Helpers\Manipulators\Constants as C;
  * This file is where you register all Public Constants
  */
 
-/* uiot root folder */
+/**
+ * Folders Constants
+ */
+
+/*
+ * UIoTCMS Root Folder
+ * That folder is considered as the folder where is the folder /UIoT
+ * Example: C:\myfolder\apache\htdocs\somefolder\UIoT\ (That is the Application ROOT Folder)
+ */
 C::__addConstant('ROOT_FOLDER', __DIR__);
 
-/* uiot base folder */
+/*
+ * UIoTCMS Base Folder
+ * That folder is considered the base folder where the CMS lives
+ * Example: C:\myfolder\apache\htdocs\somefolder\ (That is the Application BASE folder)
+ * Observation: Base folder it's the same place where Index.php is
+ */
 C::__addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
 
-/* resources base folder */
+/*
+ * UIoTCMS Resources Folder
+ * Here is configured the folder where Resources Alive
+ * You can change the Resource folder if you want
+ * But must set the New Path here.
+ *  Warning: Vendor folder location, CAN'T be changed!
+ */
 C::__addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
 
-/* resource sub-folders (valid callable folders) */
+/**
+ * Registering Constants
+ */
+
+/*
+ * UIoTCMS Resource Types
+ * That namings is to set, what type of sub-resource folders is valid
+ * Example:
+ *  1. Root Resource folder: Resources/
+ *  2. Controller Resource Folder: Resources/Main {is an example,} (the valid name is only Main)
+ *  3. Resource Folder Type: Images/
+ *  4. This will be a valid resource sub-folder, because is listed in this array
+ * Example:
+ *  http://mysite.com:port/cms-folder/controller-name/images/my/file/path/my/file.extension
+ *  That's a valid url, remember the only part that is validated is:
+ *      1. controller-name
+ *      2. images (resource type)
+ *      3. /my/file..../file.extension
+ * Example 2:
+ *  http://mysite.com:port/cms-folder/controller-name/my-ass/my/file/path/my/file.extension
+ *  That's not a valid url, remember the only part that is validated is:
+ *      1. controller-name
+ *      2. my-ass (resource type)
+ *      3. /my/file..../file.extension
+ *  And my-ass is not an resource-type listed here.
+ */
 C::__addJConstant('RESOURCE_TYPES', [
         '',
         'Images',
@@ -70,6 +114,32 @@ C::__addJConstant('RESOURCE_TYPES', [
 /*
  * @warning it's important register here
  * Here is register all LAYOUT's names, used by UIoT Router
+ * Remember: This are the Public Layouts used in the Router.
+ * That not means that every Layout must be added here.
+ *  Explaining:
+ *      1. If you have a Layout called "my-layout"
+ *      2. in the Layout Class is defined the Resource directory as (example) "Edit"
+ *      3. Are added Resource from that Resource Folder like: images,css,etc.
+ *      4. In the Template HTML File will be something like:
+ *      <image src="Edit/Stylesheet/MyCSS.css"/>
+ *      5. That means that The "Edit" Layout Resources are Called, Soo you can extend the Layout and Overwrite.
+ *      6. That is good, because you have the option to not set every Layout as PUBLIC.
+ *      Only the listed Layouts here, his resources are accessible.
+ * Observation:
+ *  If you added Resources in your Layout named "My-Layout", and try to access him
+ *  The page is Called, Remember that the Layout name doesn't need be the same as the Controller Name,
+ *  You can have a controller called "my-controller", and layout called "my-layout",
+ *  You set what Layout the Controller Loads.
+ *  Remember, if the Layout isn't registered in this array,
+ *  the layout resources will not be accessible.
+ *  ANYWAY: the layout is accessible! because the controller need render layout.
+ *  BUT: if you try something like: <image src="My-Layout/Stylesheet/MyCSS.css"/>
+ *  will not work.
+ *  Remember: The RESOURCE FOLDER doesn't need have the same NAME of LAYOUT NAME.
+ *  An RESOURCE folder is only folders where is "stored" resource files.
+ *  Any LAYOUT can call ANY resource folder. And you can add multiple RESOURCE folders.
+ *  But remember: The Layout REGISTER the resources FOLDERS.
+ *  And to the RESOURCES from that LAYOUT be accessible you need REGISTER the LAYOUT in this ARRAY.
  */
 C::__addJConstant('PREDEFINED_LAYOUTS', [
         '',
@@ -81,25 +151,52 @@ C::__addJConstant('PREDEFINED_LAYOUTS', [
     ]
 );
 
-/* request url */
+/**
+ * Server Constants
+ */
+
+/*
+ * Global Variable (Server Variable)
+ * Request URL
+ */
 C::__addConstant('REQUEST_URL', @$_SERVER['REQUEST_URI']);
 
-/* script name */
+/*
+ * Global Variable (Server Variable)
+ * Script Name
+ */
 C::__addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
 
-/* query string */
+/*
+ * Global Variable (Server Variable)
+ * Query String
+ */
 C::__addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
 
-/* php self */
+/*
+ * Global Variable (Server Variable)
+ * PhP Self
+ */
 C::__addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
 
-/** template constants */
+/**
+ * MVC Constants
+ */
 
-/* default view */
+/*
+ * Global MVC Constants
+ * Default View
+ */
 C::__addConstant('DEFAULT_VIEW', 'None');
 
-/* default controller */
+/*
+ * Global MVC Constants
+ * Default Controller
+ */
 C::__addConstant('DEFAULT_CONTROLLER', 'None');
 
-/* default view action */
+/*
+ * Global MVC Constants
+ * Default View Action (Default Layout)
+ */
 C::__addConstant('DEFAULT_VIEW_ACTION', 'Main');

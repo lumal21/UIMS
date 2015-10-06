@@ -70,7 +70,7 @@ final class Commander
      * @param $action_name
      * @return mixed
      */
-    function __action($action_name)
+    function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
         ($this->__actionExists($action_name)) || $this->__problem($action_name);

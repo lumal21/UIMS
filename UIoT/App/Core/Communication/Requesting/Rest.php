@@ -27,12 +27,12 @@ use Httpful\Request;
  * Class Rest
  * @package UIoT\App\Core\Communication\Requesting
  */
-final class Rest
+class Rest
 {
     /**
      * Rest Settings
      *
-     * @var array
+     * @var SETTINGS
      */
     static $rest_data = [];
 

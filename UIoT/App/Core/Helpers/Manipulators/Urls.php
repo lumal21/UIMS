@@ -139,12 +139,99 @@ final class Urls
     }
 
     /**
+     * @return mixed
+     */
+    static function getController()
+    {
+        return ((self::checkCombination()) ? self::getResourceControllerInUrl() : self::getControllerInUrl());
+    }
+
+    /*
+     * Section Setters
+     */
+
+    /**
+     * Check Combination Validation
+     *
+     * @return bool
+     */
+    static function checkCombination()
+    {
+        return (!empty(self::getReversedUrlCombination()['layout']) && !empty(self::getReversedUrlCombination()['resource']));
+    }
+
+    /**
+     * Get Url Reverse Combination
+     *
+     * @return array
+     */
+    static function getReversedUrlCombination()
+    {
+        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset(array_reverse(self::getLayoutCombination())), 'resource' => reset(self::getResourceCombination())])) : (self::getReversedF())));
+    }
+
+    /**
+     * Get Reversed Url Combination
+     *
+     * @return mixed
+     */
+    public static function getReversedF()
+    {
+        return self::$reversed_f;
+    }
+
+    /**
+     * Set Reversed Url Combination
+     *
+     * @param mixed $reversed_f
+     * @return mixed
+     */
+    public static function setReversedF($reversed_f)
+    {
+        return (self::$reversed_f = $reversed_f);
+    }
+
+    /**
+     * Get Layout Combination
+     *
+     * @return array
+     */
+    static function getLayoutCombination()
+    {
+        return @(((!isset(self::getCombinations()['layout'])) && (!is_array(self::getCombinations()['layout']))) ? (self::$combinations['layout'] = (array_filter(self::combineUrl(), 'self::combinationTest'))) : (self::getCombinations()['layout']));
+    }
+
+    /**
+     * Get Combinations
+     *
+     * @return array
+     */
+    public static function getCombinations()
+    {
+        return self::$combinations;
+    }
+
+    /*
+     * Section Get Parts
+     */
+
+    /**
+     * Get Resource Combination
+     *
+     * @return array
+     */
+    static function getResourceCombination()
+    {
+        return @(((!isset(self::getCombinations()['resource'])) && (!is_array(self::getCombinations()['resources']))) ? (self::$combinations['resource'] = (array_filter(self::combineUrl(), 'self::combinationTestTwo'))) : (self::getCombinations()['resource']));
+    }
+
+    /**
      * Makes a Big Check
      * And returns the Valid Controller Name in a Resource Request
      *
      * @return mixed
      */
-    static function getResourceControllerInUrl()
+    private static function getResourceControllerInUrl()
     {
         /* set variables */
         $c = ['controller' => ((self::getControllerInUrl() == self::getUrlCombination()['layout']) ? (self::getControllerInUrl()) : (self::getUrlCombination()['layout'])), 'action' => (self::getActionInUrl())];
@@ -155,7 +242,7 @@ final class Urls
     }
 
     /*
-     * Section Setters
+     * Section Get Urls Combinations
      */
 
     /**
@@ -163,7 +250,7 @@ final class Urls
      *
      * @return mixed
      */
-    static function getControllerInUrl()
+    private static function getControllerInUrl()
     {
         return Indexer::updateKeyIfNeeded('controller_url_router', ((isset(self::combineUrl()[0])) && (!empty(self::combineUrl()[0])) ? (self::combineUrl()[0]) : DEFAULT_CONTROLLER));
     }
@@ -177,6 +264,10 @@ final class Urls
     {
         return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset(self::getLayoutCombination()), 'resource' => reset(self::getResourceCombination())])) : (self::getNormalF())));
     }
+
+    /*
+     * Section Get Parts Combinations
+     */
 
     /**
      * Get Url Combination
@@ -199,42 +290,8 @@ final class Urls
         return (self::$normal_f = $normal_f);
     }
 
-    /**
-     * Get Layout Combination
-     *
-     * @return array
-     */
-    static function getLayoutCombination()
-    {
-        return @(((!isset(self::getCombinations()['layout'])) && (!is_array(self::getCombinations()['layout']))) ? (self::$combinations['layout'] = (array_filter(self::combineUrl(), 'self::combinationTest'))) : (self::getCombinations()['layout']));
-    }
-
     /*
-     * Section Get Parts
-     */
-
-    /**
-     * Get Combinations
-     *
-     * @return array
-     */
-    public static function getCombinations()
-    {
-        return self::$combinations;
-    }
-
-    /**
-     * Get Resource Combination
-     *
-     * @return array
-     */
-    static function getResourceCombination()
-    {
-        return @(((!isset(self::getCombinations()['resource'])) && (!is_array(self::getCombinations()['resources']))) ? (self::$combinations['resource'] = (array_filter(self::combineUrl(), 'self::combinationTestTwo'))) : (self::getCombinations()['resource']));
-    }
-
-    /*
-     * Section Get Urls Combinations
+     * Section Combination Tests
      */
 
     /**
@@ -258,7 +315,7 @@ final class Urls
     }
 
     /*
-     * Section Get Parts Combinations
+     * Section Combine Urls
      */
 
     /**
@@ -269,55 +326,6 @@ final class Urls
     static function getValidResourceUrl()
     {
         return strstr(implode('/', self::combineUrl()), self::getReversedUrlCombination()['resource']);
-    }
-
-    /**
-     * Get Url Reverse Combination
-     *
-     * @return array
-     */
-    static function getReversedUrlCombination()
-    {
-        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset(array_reverse(self::getLayoutCombination())), 'resource' => reset(self::getResourceCombination())])) : (self::getReversedF())));
-    }
-
-    /*
-     * Section Combination Tests
-     */
-
-    /**
-     * Get Reversed Url Combination
-     *
-     * @return mixed
-     */
-    public static function getReversedF()
-    {
-        return self::$reversed_f;
-    }
-
-    /**
-     * Set Reversed Url Combination
-     *
-     * @param mixed $reversed_f
-     * @return mixed
-     */
-    public static function setReversedF($reversed_f)
-    {
-        return (self::$reversed_f = $reversed_f);
-    }
-
-    /*
-     * Section Combine Urls
-     */
-
-    /**
-     * Check Combination Validation
-     *
-     * @return bool
-     */
-    static function checkCombination()
-    {
-        return (!empty(self::getReversedUrlCombination()['layout']) && !empty(self::getReversedUrlCombination()['resource']));
     }
 
     /**

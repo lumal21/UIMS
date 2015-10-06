@@ -34,7 +34,7 @@ final class DataManager
     private static $controller, $action;
 
     /**
-     *
+     * Create the DataManager Instance
      */
     function __construct()
     {
@@ -51,7 +51,7 @@ final class DataManager
      */
     static function prepareTemplate()
     {
-        Brain::__setTemplate(DataHandler::getParserMethod(self::getAction()), Mime::JSON);
+        Brain::setTemplate(DataHandler::getParserMethod(self::getAction()), Mime::JSON);
     }
 
     /**
