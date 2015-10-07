@@ -47,15 +47,8 @@ class Main extends Layout
         Mapper::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation.min.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.joyride.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.dropdown.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.abide.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.alert.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');
+        //Mapper::addResource('Scripts/Foundation/Foundation.joyride.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.dropdown.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.abide.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.alert.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');
         Mapper::setResourceFolder('Main');
         Mapper::addResource('Stylesheet/Main.css', 'text/css');
     }
