@@ -53,7 +53,9 @@ class Handler extends PrettyPageHandler
         $error_code = $this->getInspector()->getException()->getCode();
         $frames     = (($error_code >= 9000) ? [] : $this->getInspector()->getFrames());
 
-        if ($this->getInspector()->getException() instanceof ErrorException) $error_code = Misc::translateErrorCode($this->getInspector()->getException()->getSeverity());
+        if ($this->getInspector()->getException() instanceof ErrorException) {
+            $error_code = Misc::translateErrorCode($this->getInspector()->getException()->getSeverity());
+        }
 
         $vars = [
             'page_title' => $this->getPageTitle(), 'Stylesheet' => file_get_contents($this->getResource('Stylesheet/whoops.base.css')), 'zepto' => file_get_contents($this->getResource('Scripts/zepto.min.js')), 'javascript' => file_get_contents($this->getResource('Scripts/whoops.base.js')), 'header' => $this->getResource('Layouts/header.html.php'), 'frame_list' => $this->getResource('Layouts/frame_list.html.php'), 'frame_code' => $this->getResource('Layouts/frame_code.html.php'), 'env_details' => $this->getResource('Layouts/env_details.html.php'), 'title' => $this->getPageTitle(), 'name' => explode("\\", $this->getInspector()->getExceptionName()), 'message' => $this->getInspector()->getException()->getMessage(), 'code' => (($error_code >= 9000) ? ($error_code - 9000) : $error_code), 'plain_exception' => Formatter::formatExceptionPlain($this->getInspector()), 'frames' => $frames, 'has_frames' => !!count($frames), 'handler' => $this, 'handlers' => $this->getRun()->getHandlers(),

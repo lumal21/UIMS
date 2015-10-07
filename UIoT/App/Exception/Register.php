@@ -107,7 +107,7 @@ final class Register extends Run
      */
     public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
-        if((QUERY_STRING == 'de') && (!$security_error)) {
+        if ((QUERY_STRING == 'de') && (!$security_error)) {
             $code -= 9000;
         }
         if (!$security_error) {
