@@ -190,7 +190,7 @@ class DataHandler
      * Get Parser Collector
      *
      * @param $name
-     * @return null
+     * @return \UIoT\App\Data\Models\Collector
      */
     static function getParserCollector($name)
     {
@@ -236,7 +236,7 @@ class DataHandler
      * Return Layout Instance
      *
      * @param string $name Parser Name
-     * @return Layout|mixed|null (Layout Instance)
+     * @return string|null (Layout Instance)
      */
     static function openParserLayout($name)
     {

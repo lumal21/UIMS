@@ -84,7 +84,7 @@ class DataCollector
      *
      * @param Collector $collector
      * @param string|Handler $handler
-     * @return $this
+     * @return Collector
      */
     static function initCollector(Collector $collector, $handler = '')
     {

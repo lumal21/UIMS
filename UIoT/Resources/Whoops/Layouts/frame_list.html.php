@@ -11,7 +11,7 @@
 
     <span class="frame-file">
       <?php echo ($frame->getFile(true) ?: '<#unknown>') ?><!--
-   --><span class="frame-line"><?php echo (int) $frame->getLine() ?></span>
+   --><span class="frame-line"><?php echo (int)$frame->getLine() ?></span>
     </span>
   </div>
 <?php endforeach ?>

@@ -30,7 +30,7 @@ final class ClientData
     /**
      * Get Real User Ip Address
      *
-     * @return bool|string
+     * @return string|false
      */
     static function getRealClientIpAddress()
     {
@@ -67,7 +67,7 @@ final class ClientData
      * Check Specific IP Combination
      *
      * @param string $key
-     * @return bool|string
+     * @return string|false
      */
     private static function checkIpCombination($key = '')
     {

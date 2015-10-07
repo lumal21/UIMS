@@ -61,7 +61,7 @@ class Rest
     /**
      * Set Options
      *
-     * @param string|array|mixed $options
+     * @param Request $options
      */
     static function setTemplate($options)
     {

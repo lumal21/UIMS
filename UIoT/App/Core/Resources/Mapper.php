@@ -188,7 +188,7 @@ final class Mapper
     /**
      * Update Resource Change
      *
-     * @param $file_name
+     * @param string $file_name
      */
     static function updateResourceChange($file_name)
     {
@@ -199,7 +199,7 @@ final class Mapper
      * Return Resource
      *
      * @param string $file_name
-     * @param bool|true $header
+     * @param boolean $header
      * @return string
      */
     static function returnResource($file_name, $header = true)

@@ -155,8 +155,8 @@ final class Indexer
      * Really Crazy but Works
      * (Is for return a reverse namespace)
      *
-     * @param $view_name_space
-     * @return mixed
+     * @param string $view_name_space
+     * @return string
      */
     static function getViewReverseSpace(&$view_name_space)
     {

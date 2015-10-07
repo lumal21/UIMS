@@ -374,7 +374,7 @@ final class Urls
      * Phase 2
      *
      * @param $x
-     * @return mixed
+     * @return boolean
      */
     private static function combinationTestTwo($x)
     {

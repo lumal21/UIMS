@@ -83,7 +83,7 @@ final class Handler
     /**
      * Check white list Ip Address
      *
-     * @return mixed
+     * @return boolean
      */
     static function checkWhiteListIp()
     {
