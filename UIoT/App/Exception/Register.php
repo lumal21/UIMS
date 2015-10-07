@@ -110,8 +110,9 @@ final class Register extends Run
         /* @todo improve this code because isn't safe */
 
         /* check security things */
-        if ((@$_SERVER['QUERY_STRING'] == 'de') && (!$security_error))
-            SHandler::checkIpAddressAuthority();
+        if ((@$_SERVER['QUERY_STRING'] == 'de') && (!$security_error)) {
+                    SHandler::checkIpAddressAuthority();
+        }
 
         /* check if is a valid message error code */
         $code = (((@$_SERVER['QUERY_STRING'] != 'de') || ($security_error)) ? (($code < 9000) ? (9000 + $code) : $code) : (($code < 9000) ? $code : (9000 - $code)));

@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: claudio.santoro
- * Date: 9/25/2015
- * Time: 4:06 PM
- */
+     * Created by PhpStorm.
+     * User: claudio.santoro
+     * Date: 9/25/2015
+     * Time: 4:06 PM
+     */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
 

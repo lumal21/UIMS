@@ -74,8 +74,9 @@ final class Adapter
      */
     public function secure_query($query = '', $array = [])
     {
-        if ($this->instance instanceof PDO)
-            return $this->instance->prepare($query)->execute($array);
+        if ($this->instance instanceof PDO) {
+                    return $this->instance->prepare($query)->execute($array);
+        }
         return null;
     }
 
@@ -87,8 +88,9 @@ final class Adapter
      */
     public function query($query = '')
     {
-        if ($this->instance instanceof PDO)
-            return $this->instance->query($query);
+        if ($this->instance instanceof PDO) {
+                    return $this->instance->query($query);
+        }
         return null;
     }
 
