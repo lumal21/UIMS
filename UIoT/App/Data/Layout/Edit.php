@@ -21,7 +21,6 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Mapper;
 use UIoT\App\Core\Resources\Pager;
 
 /**

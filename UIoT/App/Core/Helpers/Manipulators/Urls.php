@@ -27,44 +27,11 @@ use UIoT\App\Core\Communication\Sessions\Indexer;
  * Class Urls
  * @package UIoT\App\Core\Helpers\Manipulators
  */
-final class Urls
+final class Urls extends UrlCombinations
 {
-    /**
-     * @var array
-     */
-    private static $layouts = [];
-    /**
-     * @var array
-     */
-    private static $resources = [];
-    /**
-     * @var array
-     */
-    private static $url = [];
-    /**
-     * @var array
-     */
-    private static $combined_url;
-    /**
-     * @var array
-     */
-    private static $combinations;
-    /**
-     * @var array
-     */
-    private static $reversed_f;
-    /**
-     * @var array
-     */
-    private static $normal_f;
-
     /**
      * @observation Code was Rearranged..
      * @observation Because that the Sections are incorrect.
-     */
-
-    /*
-     * Section Register Items
      */
 
     /**
@@ -90,70 +57,6 @@ final class Urls
         self::$url[] = array_filter(explode('/', $url_string), 'strlen');
     }
 
-    /*
-     * Section Getters
-     */
-
-    /**
-     * Return Array without Controller Name
-     * Remove the first item (Controller)
-     *
-     * @return array
-     */
-    public static function combineUrlSimple()
-    {
-        /* create array */
-        $a = self::combineUrl();
-
-        /* unset controller */
-        unset($a[0]);
-
-        /* return array */
-        return $a;
-    }
-
-    /**
-     * Return Final Url Array
-     * (Combining the Items)
-     *
-     * @return array
-     */
-    public static function combineUrl()
-    {
-        return ((!is_array(self::getCombinedUrl())) ? (self::setCombinedUrl(array_values(array_diff_assoc(...self::getUrl())))) : self::getCombinedUrl());
-    }
-
-    /**
-     * Get Combined Url
-     *
-     * @return array
-     */
-    public static function getCombinedUrl()
-    {
-        return self::$combined_url;
-    }
-
-    /**
-     * Set Combined Url
-     *
-     * @param array $combined_url
-     * @return array
-     */
-    public static function setCombinedUrl($combined_url)
-    {
-        return (self::$combined_url = $combined_url);
-    }
-
-    /**
-     * Set Url
-     *
-     * @return array
-     */
-    public static function getUrl()
-    {
-        return self::$url;
-    }
-
     /**
      * @return mixed
      */
@@ -172,10 +75,6 @@ final class Urls
         return (!empty(self::getReversedUrlCombination()['layout']) && !empty(self::getReversedUrlCombination()['resource']));
     }
 
-    /*
-     * Section Setters
-     */
-
     /**
      * Get Url Reverse Combination
      *
@@ -184,6 +83,21 @@ final class Urls
     public static function getReversedUrlCombination()
     {
         return self::getUrlCombination(true);
+    }
+
+    /**
+     * Get Url Combination
+     *
+     * @param bool $reverse
+     * @return array
+     */
+    public static function getUrlCombination($reverse = false)
+    {
+        /* only for pass reference */
+        $i = (($reverse) ? array_reverse(self::getLayoutCombination()) : self::getLayoutCombination());
+        $k = self::getResourceCombination();
+
+        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
     }
 
     /**
@@ -197,13 +111,14 @@ final class Urls
     }
 
     /**
-     * Get Combinations
+     * Return Final Url Array
+     * (Combining the Items)
      *
      * @return array
      */
-    public static function getCombinations()
+    public static function combineUrl()
     {
-        return self::$combinations;
+        return ((!is_array(self::getCombinedUrl())) ? (self::setCombinedUrl(array_values(array_diff_assoc(...self::getUrl())))) : self::getCombinedUrl());
     }
 
     /**
@@ -215,31 +130,6 @@ final class Urls
     {
         return @(((!isset(self::getCombinations()['resource'])) && (!is_array(self::getCombinations()['resources']))) ? (self::$combinations['resource'] = (array_filter(self::combineUrl(), 'self::combinationTestTwo'))) : (self::getCombinations()['resource']));
     }
-
-    /**
-     * Get Reversed Url Combination
-     *
-     * @return mixed
-     */
-    public static function getReversedF()
-    {
-        return self::$reversed_f;
-    }
-
-    /**
-     * Set Reversed Url Combination
-     *
-     * @param mixed $reversed_f
-     * @return mixed
-     */
-    public static function setReversedF($reversed_f)
-    {
-        return (self::$reversed_f = $reversed_f);
-    }
-
-    /*
-     * Section Get Parts
-     */
 
     /**
      * Makes a Big Check
@@ -267,50 +157,6 @@ final class Urls
         return Indexer::updateKeyIfNeeded('controller_url_router', ((isset(self::combineUrl()[0])) && (!empty(self::combineUrl()[0])) ? (self::combineUrl()[0]) : DEFAULT_CONTROLLER));
     }
 
-    /*
-     * Section Get Urls Combinations
-     */
-
-    /**
-     * Get Url Combination
-     *
-     * @param bool $reverse
-     * @return array
-     */
-    public static function getUrlCombination($reverse = false)
-    {
-        /* only for pass reference */
-        $i = (($reverse) ? array_reverse(self::getLayoutCombination()) : self::getLayoutCombination());
-        $k = self::getResourceCombination();
-
-        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
-    }
-
-    /**
-     * Get Url Combination
-     *
-     * @return mixed
-     */
-    public static function getNormalF()
-    {
-        return self::$normal_f;
-    }
-
-    /*
-     * Section Get Parts Combinations
-     */
-
-    /**
-     * Set Url Combination
-     *
-     * @param array $normal_f
-     * @return mixed
-     */
-    public static function setNormalF($normal_f)
-    {
-        return (self::$normal_f = $normal_f);
-    }
-
     /**
      * Get Action In the Url
      *
@@ -320,35 +166,6 @@ final class Urls
     {
         return Indexer::updateKeyIfNeeded('action_url_router', ((isset(self::combineUrl()[1])) && (!empty(self::combineUrl()[1])) ? (self::combineUrl()[1]) : DEFAULT_VIEW_ACTION));
     }
-
-    /*
-     * Section Combination Tests
-     */
-
-    /**
-     * Get All Resources
-     *
-     * @return array
-     */
-    public static function getResources()
-    {
-        return self::$resources;
-    }
-
-    /**
-     * Set Resources
-     *
-     * @param array $resources
-     * @return array
-     */
-    public static function setResources($resources)
-    {
-        return (self::$resources = $resources);
-    }
-
-    /*
-     * Section Combine Urls
-     */
 
     /**
      * Get Resource Final Url
@@ -372,35 +189,6 @@ final class Urls
         return (array_search($x, self::getLayouts()) !== false);
     }
 
-    /*
-     * Section get Resources Urls
-     */
-
-    /**
-     * Get Layouts
-     *
-     * @return mixed
-     */
-    public static function getLayouts()
-    {
-        return self::$layouts;
-    }
-
-    /**
-     * Set Layouts
-     *
-     * @param mixed $layouts
-     * @return mixed
-     */
-    public static function setLayouts($layouts)
-    {
-        return (self::$layouts = $layouts);
-    }
-
-    /*
-     * Section Misc
-     */
-
     /**
      * Combination test
      * Phase 2
@@ -411,5 +199,23 @@ final class Urls
     public static function combinationTestTwo($x)
     {
         return (array_search($x, self::getResources()) !== false);
+    }
+
+    /**
+     * Return Array without Controller Name
+     * Remove the first item (Controller)
+     *
+     * @return array
+     */
+    public static function combineUrlSimple()
+    {
+        /* create array */
+        $a = self::combineUrl();
+
+        /* unset controller */
+        unset($a[0]);
+
+        /* return array */
+        return $a;
     }
 }

@@ -60,13 +60,9 @@ C::__addJConstant('SETTINGS', [
         ],
     'raise' =>
         [
-            // host (ip, dns, etc.) (not url!)
             'host' => 'rest_uiot',
-            // base path (if the api is in sub directory likely host/sub-folder/ (default: empty)
             'base_path' => '',
-            // port, is totally necessary (default: 80)
             'port' => 82,
-            // ssl connection (default: false)
             'ssl' => false,
         ],
     'security' =>

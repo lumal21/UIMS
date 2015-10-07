@@ -27,11 +27,32 @@ use UIoT\App\Core\Helpers\Manipulators\Strings;
 use UIoT\App\Data\Models\IController;
 
 /**
- * @property IController c_data
- * @property array c_s_array
+ * Class IControllable
+ * @package UIoT\App\Core\Controllers
  */
 class IControllable
 {
+    /**
+     * @var string
+     */
+    public $c_name = '';
+    /**
+     * @var string
+     */
+    public $a_name = '';
+    /**
+     * @var array
+     */
+    public $c_s_array = [];
+    /**
+     * @var array
+     */
+    public $c_array = [];
+    /**
+     * @var IController
+     */
+    public $c_data;
+
     /**
      * Enable the Instance
      *

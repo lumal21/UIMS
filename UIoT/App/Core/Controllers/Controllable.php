@@ -31,15 +31,11 @@ use UIoT\App\Exception\Register;
 
 /**
  * Class Controllable
- * @property Brain brain
- * @property array|null c_array
- * @property string c_name
- * @property array|null c_s_array
- * @property string a_name
  * @package UIoT\App\Core\Controllers
  */
 final class Controllable extends IControllable
 {
+
     /**
      * Create an IControllable Instance
      * @param string $controller_name
