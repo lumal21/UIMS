@@ -46,7 +46,6 @@ final class Json
             $v[] = self::createClosure($object);
         }
 
-        /* return the final array */
         return $v;
     }
 

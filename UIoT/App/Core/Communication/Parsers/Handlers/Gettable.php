@@ -29,13 +29,5 @@ use UIoT\App\Data\Models\Handler as Handler;
  */
 class Gettable extends Handler
 {
-    /**
-     * @param $request_content
-     */
-    public function __construct($request_content)
-    {
-        $this->content .= '<pre>';
-        $this->content .= print_r($request_content, true);
-        $this->content .= '</pre>';
-    }
+
 }

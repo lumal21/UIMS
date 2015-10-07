@@ -32,28 +32,10 @@ final class Remove extends Main
 {
     /**
      * Set Configuration
+     * (Delete)
      */
     public function __configuration()
     {
-        Pager::setTitle('Deletchu');
-    }
-
-    /**
-     * Set Template
-     */
-    public function __templates()
-    {
-        Mapper::setTemplateFolder('Main');
-        Mapper::addTemplate('Layouts/Main.php', 'text/html');
-    }
-
-    /**
-     * Return Template
-     *
-     * @return null|string|mixed
-     */
-    public function __show()
-    {
-        return Mapper::returnTemplate('Layouts/Main.html');
+        Pager::setTitle('Delete my Main Chu');
     }
 }

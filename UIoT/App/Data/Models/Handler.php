@@ -36,7 +36,9 @@ class Handler implements InterfaceHandler
      */
     public function __construct($request_content)
     {
-        /* nothing coded */
+        $this->content .= '<pre>';
+        $this->content .= print_r($request_content, true);
+        $this->content .= '</pre>';
     }
 
     /**

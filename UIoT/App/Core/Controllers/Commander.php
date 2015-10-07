@@ -75,7 +75,7 @@ final class Commander
     public function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
-        ($this->checkActionExistence($action_name)) || $this->throwProblem($action_name);
+        ($this->checkActionExistence($action_name)) || $this->throwCommanderProblem($action_name);
 
         /* if not call action */
         ($this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}()));
@@ -110,7 +110,7 @@ final class Commander
      * @param string $action_name
      * @throws \Exception
      */
-    private function throwProblem($action_name)
+    private function throwCommanderProblem($action_name)
     {
         Register::$global->errorMessage(9002,
             "Stop! That Action Doesn't Exists!",

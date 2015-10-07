@@ -32,28 +32,10 @@ final class Add extends Main
 {
     /**
      * Set Configuration
+     * (Add)
      */
     public function __configuration()
     {
-        Pager::setTitle('Addachu');
-    }
-
-    /**
-     * Set Template
-     */
-    public function __templates()
-    {
-        Mapper::setTemplateFolder('Main');
-        Mapper::addTemplate('Layouts/Main.php', 'text/html');
-    }
-
-    /**
-     * Return Template
-     *
-     * @return null|string|mixed
-     */
-    public function __show()
-    {
-        return Mapper::returnTemplate('Layouts/Main.html');
+        Pager::setTitle('Add this Idiot on SHU');
     }
 }

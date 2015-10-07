@@ -52,19 +52,12 @@ C::__addJConstant('SETTINGS', [
     // but you can set and enable cms database connection if you want
     'database' =>
         [
-            // only allowed MySQL connections!
-            // mysql host (not url!, default: localhost)
             'host' => 'localhost',
-            // mysql connection port (default: 3306)
             'port' => 3306,
-            // user name
             'user' => 'root',
-            // user password (not allowed in blank)
             'pass' => 'latitude',
-            // database name
             'name' => 'cms',
         ],
-    // raise settings (uiot's rest api)
     'raise' =>
         [
             // host (ip, dns, etc.) (not url!)
@@ -76,7 +69,6 @@ C::__addJConstant('SETTINGS', [
             // ssl connection (default: false)
             'ssl' => false,
         ],
-    // security settings
     'security' =>
         [
             // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.

@@ -67,7 +67,7 @@ final class Controllable extends IControllable
         (!$this->checkData()) || $this->enableController();
 
         /* if not valid finish */
-        ($this->checkData()) || $this->throwProblem();
+        ($this->checkData()) || $this->throwControllerProblem();
     }
 
     /**
@@ -117,7 +117,7 @@ final class Controllable extends IControllable
      *
      * @throws \Exception
      */
-    private function throwProblem()
+    private function throwControllerProblem()
     {
         Register::$global->errorMessage(9001,
             "Stop! That Controller Doesn't Exists!",

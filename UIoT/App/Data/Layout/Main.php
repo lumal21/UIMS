@@ -33,6 +33,7 @@ class Main extends Layout
 {
     /**
      * Set Resources
+     * (Main)
      */
     public function __resources()
     {

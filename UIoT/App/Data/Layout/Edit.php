@@ -32,28 +32,10 @@ final class Edit extends Main
 {
     /**
      * Set Configuration
+     * (Edit)
      */
     public function __configuration()
     {
-        Pager::setTitle('Editchu');
-    }
-
-    /**
-     * Set Template
-     */
-    public function __templates()
-    {
-        Mapper::setTemplateFolder('Main');
-        Mapper::addTemplate('Layouts/Main.php', 'text/html');
-    }
-
-    /**
-     * Return Template
-     *
-     * @return null|string|mixed
-     */
-    public function __show()
-    {
-        return Mapper::returnTemplate('Layouts/Main.html');
+        Pager::setTitle('Edit that Chuck Norris');
     }
 }

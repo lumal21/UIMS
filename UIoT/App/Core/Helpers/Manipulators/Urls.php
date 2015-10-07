@@ -183,11 +183,7 @@ final class Urls
      */
     public static function getReversedUrlCombination()
     {
-        /* only to refer as reference */
-        $i = array_reverse(self::getLayoutCombination());
-        $k = self::getResourceCombination();
-
-        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getReversedF())));
+        return self::getUrlCombination(true);
     }
 
     /**
@@ -278,12 +274,13 @@ final class Urls
     /**
      * Get Url Combination
      *
+     * @param bool $reverse
      * @return array
      */
-    public static function getUrlCombination()
+    public static function getUrlCombination($reverse = false)
     {
         /* only for pass reference */
-        $i = self::getLayoutCombination();
+        $i = (($reverse) ? array_reverse(self::getLayoutCombination()) : self::getLayoutCombination());
         $k = self::getResourceCombination();
 
         return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
@@ -370,7 +367,7 @@ final class Urls
      * @param $x
      * @return bool
      */
-    private static function combinationTest($x)
+    public static function combinationTest($x)
     {
         return (array_search($x, self::getLayouts()) !== false);
     }
@@ -411,7 +408,7 @@ final class Urls
      * @param array $x
      * @return boolean
      */
-    private static function combinationTestTwo($x)
+    public static function combinationTestTwo($x)
     {
         return (array_search($x, self::getResources()) !== false);
     }
