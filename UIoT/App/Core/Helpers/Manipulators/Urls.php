@@ -44,19 +44,19 @@ final class Urls
     /**
      * @var array
      */
-    private static $combined_url = [];
+    private static $combined_url;
     /**
      * @var array
      */
-    private static $combinations = [];
+    private static $combinations;
     /**
      * @var array
      */
-    private static $reversed_f = [];
+    private static $reversed_f;
     /**
      * @var array
      */
-    private static $normal_f = [];
+    private static $normal_f;
 
     /**
      * @observation Code was Rearranged..
