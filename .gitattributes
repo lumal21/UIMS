@@ -15,3 +15,7 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# UIoT Repo Settings
+*.php linguist-language=PHP
+UIoT/Resources/* linguist-vendored
