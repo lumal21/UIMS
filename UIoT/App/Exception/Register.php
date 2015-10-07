@@ -107,11 +107,11 @@ final class Register extends Run
      */
     public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
+        if((QUERY_STRING == 'de') && (!$security_error)) {
+            $code -= 9000;
+        }
         if (!$security_error) {
             SHandler::checkIpAddressAuthority();
-        }
-        if(QUERY_STRING == 'de') {
-            $code -= 9000;
         }
         self::$handler->addDataTable($message_title, $message);
         $this->handleException(new Exception($title, $code));
