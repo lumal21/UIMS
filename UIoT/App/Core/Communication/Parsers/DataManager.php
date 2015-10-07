@@ -58,7 +58,7 @@ final class DataManager
      * Return DataHandler and DataCollector Instance
      *
      * @param $method
-     * @return $this
+     * @return \UIoT\App\Data\Models\Collector
      */
     static function getInstance($method)
     {
@@ -70,7 +70,7 @@ final class DataManager
      * Because the controller NAME will be lowercase, and the Engine need in Ucfirst!
      * Only for REST need be lowercase.
      *
-     * @return mixed
+     * @return string
      */
     public static function getController()
     {
@@ -89,7 +89,7 @@ final class DataManager
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public static function getAction()
     {
@@ -97,7 +97,7 @@ final class DataManager
     }
 
     /**
-     * @param mixed $action
+     * @param string $action
      * @return string
      */
     public static function setAction($action)

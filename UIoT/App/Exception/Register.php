@@ -60,7 +60,7 @@ final class Register extends Run
      * Pull Down!
      * This function register default Handler configuration
      *
-     * @param $title
+     * @param string $title
      * @return PrettyPageHandler
      */
     private function pull($title)

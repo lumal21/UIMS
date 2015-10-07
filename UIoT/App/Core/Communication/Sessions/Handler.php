@@ -72,7 +72,7 @@ final class Handler extends SessionHandler
     /**
      * Check if Time out is Gotta
      *
-     * @param $id
+     * @param string $id
      * @return bool
      */
     private function check_time_out($id)
@@ -102,7 +102,7 @@ final class Handler extends SessionHandler
     /**
      * Put a Time Out
      *
-     * @param $id
+     * @param string $id
      */
     private function time_out($id)
     {

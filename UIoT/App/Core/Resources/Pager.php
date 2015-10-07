@@ -30,7 +30,7 @@ final class Pager
     /**
      * Set Page Title
      *
-     * @param $page_title
+     * @param string $page_title
      */
     static function setTitle($page_title)
     {

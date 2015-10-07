@@ -43,7 +43,7 @@ final class Constants
      * Define a Constant
      *
      * @param string $a Name
-     * @param mixed $b Value
+     * @param string $b Value
      */
     static function __addConstant($a, $b = '')
     {

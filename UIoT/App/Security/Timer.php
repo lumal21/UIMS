@@ -86,7 +86,7 @@ final class Timer
     /**
      * Add Execution Loop
      *
-     * @param $execution_loops
+     * @param double $execution_loops
      * @return int
      */
     static function addExecutionLoop($execution_loops)
@@ -131,7 +131,7 @@ final class Timer
     /**
      * Set Execution Time
      *
-     * @param int|float $execution_time
+     * @param double $execution_time
      * @return float|int
      */
     static function setExecutionTime($execution_time)

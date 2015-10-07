@@ -103,7 +103,7 @@ class Brain
     /**
      * Set Url to Request
      *
-     * @param $url
+     * @param string $url
      */
     static function setRequestUrl($url)
     {

@@ -93,7 +93,7 @@ final class Indexer
      * Return View Name Space
      *
      * @param string $layout_name
-     * @return mixed
+     * @return string
      */
     static function getLayout($layout_name)
     {
@@ -104,7 +104,7 @@ final class Indexer
      * Return Instance of Layout
      *
      * @param string $layout_name
-     * @return mixed
+     * @return string
      */
     static function openLayout($layout_name)
     {

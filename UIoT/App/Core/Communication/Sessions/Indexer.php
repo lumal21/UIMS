@@ -62,7 +62,7 @@ final class Indexer
     /**
      * Check if is needed to Update a SESSION key
      *
-     * @param $key_name
+     * @param string $key_name
      * @param $key_value
      * @return mixed
      */

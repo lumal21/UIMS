@@ -96,7 +96,7 @@ final class Commander
      * Refine Controller Code
      *
      * @param mixed|string $returned_code
-     * @return bool
+     * @return boolean|null
      */
     function refineControllerData($returned_code)
     {

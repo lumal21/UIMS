@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: claudio.santoro
- * Date: 9/25/2015
- * Time: 4:06 PM
- */
+     * Created by PhpStorm.
+     * User: claudio.santoro
+     * Date: 9/25/2015
+     * Time: 4:06 PM
+     */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
 
@@ -30,7 +30,7 @@ class Arrays
 
     /**
      * @param $key
-     * @param $value
+     * @param string $value
      * @param array $array
      */
     static function addOnArray($key, $value, &$array = [])
@@ -42,7 +42,7 @@ class Arrays
      * Check if is Instance of Closure
      * (Used on ArrayMap)
      *
-     * @param $a
+     * @param string $a
      * @return mixed
      */
     static function isInstanceOfClosure($a)
@@ -55,7 +55,7 @@ class Arrays
      * (Used on ArrayMap)
      *
      * @param $a
-     * @param $b
+     * @param string $b
      * @return mixed
      */
     static function checkIsInstanceOf($a, $b)
