@@ -31,7 +31,7 @@ final class Indexer
      * Add SESSION key
      *
      * @param string $key_name
-     * @param string $key_value
+     * @param mixed|array|object|int|string|null $key_value
      */
     public static function addKey($key_name, $key_value)
     {

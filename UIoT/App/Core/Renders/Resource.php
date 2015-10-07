@@ -33,7 +33,11 @@ final class Resource
     /**
      * @var string
      */
-    private $controller, $file;
+    private $controller;
+    /**
+     * @var
+     */
+    private $file;
 
     /**
      * Init Resource Handler

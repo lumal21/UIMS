@@ -23,6 +23,7 @@ namespace UIoT\App\Core\Communication\Routing;
 
 use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
 use UIoT\App\Core\Renders\Resource;
 use UIoT\App\Core\Renders\Template;
@@ -96,11 +97,15 @@ final class Router
     {
         /* first $last need be empty */
         $last = '';
+        $get  = [];
 
         /* put query string into $GET */
         foreach (Urls::combineUrlSimple() as $key => $value) {
-            ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $_GET)) : Arrays::addOnArray($last, urldecode($value), $_GET));
+            ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $get)) : Arrays::addOnArray($last, urldecode($value), $get));
         }
+
+        /* define super global */
+        Constants::__addJConstant('GET_WEB', $get);
 
         return true;
     }

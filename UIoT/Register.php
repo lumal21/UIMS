@@ -16,13 +16,13 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 /*  License
  *  <UIoT CMS is the default content management system of uiot's
  *  architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Brasília>
+    Copyright (C) <2015>  <University of Brasï¿½lia>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -102,3 +102,6 @@ CIndexer::addController('Login');
 
 /* default page */
 CIndexer::addController('None');
+
+/* garbage */
+//Mapper::addResource('Scripts/Foundation/Foundation.joyride.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.dropdown.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.abide.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.alert.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');

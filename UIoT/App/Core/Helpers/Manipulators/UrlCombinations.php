@@ -101,7 +101,7 @@ class UrlCombinations
     /**
      * Set Layouts
      *
-     * @param mixed $layouts
+     * @param array $layouts
      * @return mixed
      */
     public static function setLayouts($layouts)
@@ -112,7 +112,7 @@ class UrlCombinations
     /**
      * Get Url Combination
      *
-     * @return mixed
+     * @return mixed|array|null
      */
     public static function getNormalF()
     {
@@ -123,17 +123,17 @@ class UrlCombinations
      * Set Url Combination
      *
      * @param array $normal_f
-     * @return mixed
+     * @return array
      */
     public static function setNormalF($normal_f = [])
     {
-        return ((is_array($normal_f)) ? (self::$normal_f = $normal_f) : []);
+        return ((!is_array(self::getNormalF())) ? (self::$normal_f = $normal_f) : []);
     }
 
     /**
      * Get Reversed Url Combination
      *
-     * @return mixed
+     * @return mixed|array|null
      */
     public static function getReversedF()
     {
@@ -144,11 +144,11 @@ class UrlCombinations
      * Set Reversed Url Combination
      *
      * @param array $reversed_f
-     * @return mixed
+     * @return array
      */
     public static function setReversedF($reversed_f = [])
     {
-        return ((is_array($reversed_f)) ? (self::$reversed_f = $reversed_f) : []);
+        return ((!is_array(self::getReversedF())) ? (self::$reversed_f = $reversed_f) : []);
     }
 
     /**

@@ -23,6 +23,7 @@ namespace UIoT\App\Exception;
 
 use Exception;
 use UIoT\App\Security\Handler as SHandler;
+use Whoops\Handler\Handler as WHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -42,7 +43,7 @@ final class Register extends Run
     /**
      * static variable to access the Exception Handler instance
      *
-     * @var Handler
+     * @var PrettyPageHandler
      */
     public static $handler;
 
@@ -61,7 +62,7 @@ final class Register extends Run
      * This function register default Handler configuration
      *
      * @param string $title
-     * @return PrettyPageHandler
+     * @return Handler
      */
     private function pull($title)
     {
@@ -82,10 +83,10 @@ final class Register extends Run
      * Push Up!
      * Register the Handler to the Exception Register
      *
-     * @param PrettyPageHandler $handler
+     * @param WHandler $handler
      * @return $this
      */
-    private function push(PrettyPageHandler $handler)
+    private function push(WHandler $handler)
     {
         /* set static handler instance, and push the handler */
         $this->pushHandler(self::$handler = $handler)->register();
@@ -107,7 +108,7 @@ final class Register extends Run
      */
     public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
-        if((QUERY_STRING == 'de') && (!$security_error)) {
+        if ((QUERY_STRING == 'de') && (!$security_error)) {
             $code -= 9000;
         }
         if (!$security_error) {
