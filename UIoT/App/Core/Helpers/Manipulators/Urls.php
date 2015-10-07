@@ -191,27 +191,6 @@ final class Urls
     }
 
     /**
-     * Get Reversed Url Combination
-     *
-     * @return mixed
-     */
-    public static function getReversedF()
-    {
-        return self::$reversed_f;
-    }
-
-    /**
-     * Set Reversed Url Combination
-     *
-     * @param mixed $reversed_f
-     * @return mixed
-     */
-    public static function setReversedF($reversed_f)
-    {
-        return (self::$reversed_f = $reversed_f);
-    }
-
-    /**
      * Get Layout Combination
      *
      * @return array
@@ -239,6 +218,27 @@ final class Urls
     public static function getResourceCombination()
     {
         return @(((!isset(self::getCombinations()['resource'])) && (!is_array(self::getCombinations()['resources']))) ? (self::$combinations['resource'] = (array_filter(self::combineUrl(), 'self::combinationTestTwo'))) : (self::getCombinations()['resource']));
+    }
+
+    /**
+     * Get Reversed Url Combination
+     *
+     * @return mixed
+     */
+    public static function getReversedF()
+    {
+        return self::$reversed_f;
+    }
+
+    /**
+     * Set Reversed Url Combination
+     *
+     * @param mixed $reversed_f
+     * @return mixed
+     */
+    public static function setReversedF($reversed_f)
+    {
+        return (self::$reversed_f = $reversed_f);
     }
 
     /*

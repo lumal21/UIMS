@@ -168,7 +168,7 @@ class DataHandler
 
         /* index handlers and layouts */
         foreach (self::$names as $method => $name) {
-                    self::$parsers[Strings::toActionName($name)] = ['handler' => self::$handlers[$method], 'collector' => self::$collectors[$method], 'layout' => self::$layouts[$method], 'method' => $method, 'controller' => $controller, 'name' => Strings::toActionName($name)];
+            self::$parsers[Strings::toActionName($name)] = ['handler' => self::$handlers[$method], 'collector' => self::$collectors[$method], 'layout' => self::$layouts[$method], 'method' => $method, 'controller' => $controller, 'name' => Strings::toActionName($name)];
         }
     }
 

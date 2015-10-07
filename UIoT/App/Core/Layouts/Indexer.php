@@ -149,7 +149,7 @@ final class Indexer
     public static function openLayoutResources($layout_name)
     {
         if (!self::layoutExists($layout_name)) {
-                    return;
+            return;
         }
 
         $c = self::getLayoutNameSpace($layout_name);

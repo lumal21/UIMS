@@ -111,7 +111,7 @@ final class Register extends Run
 
         /* check security things */
         if ((@$_SERVER['QUERY_STRING'] == 'de') && (!$security_error)) {
-                    SHandler::checkIpAddressAuthority();
+            SHandler::checkIpAddressAuthority();
         }
 
         /* check if is a valid message error code */

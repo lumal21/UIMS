@@ -44,7 +44,7 @@ final class Indexer
     public static function addView($view_name = '')
     {
         if (self::viewExists($view_name)) {
-                    return;
+            return;
         }
 
         self::$view[$view_name] = [];

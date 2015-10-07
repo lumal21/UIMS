@@ -107,7 +107,7 @@ final class Mapper
     public static function returnTemplate($file_name, $header = true)
     {
         if (!self::checkTemplateExistence($file_name)) {
-                    return;
+            return;
         }
 
         (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
@@ -223,7 +223,7 @@ final class Mapper
     {
         /* if resource doesn't exists, or resource is hotlinked we must show error */
         if (!self::checkResourceExistence($file_name)) {
-                    return self::problem();
+            return self::problem();
         }
 
         /* update the resource change */

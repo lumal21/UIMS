@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/29/2015
-     * Time: 2:22 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/29/2015
+ * Time: 2:22 PM
+ */
 
 namespace UIoT\App\Data\Models;
 
