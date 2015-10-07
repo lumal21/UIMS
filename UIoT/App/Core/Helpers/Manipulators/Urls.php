@@ -134,39 +134,6 @@ final class Urls extends UrlCombinations
         return self::checkResourceInto(['controller' => ((self::getControllerInUrl() == self::getUrlCombination()['layout']) ? (self::getControllerInUrl()) : (self::getUrlCombination()['layout'])), 'action' => (self::getActionInUrl())]);
     }
 
-    /**
-     * Return the Controller Url
-     * For Resource
-     *
-     * @param $c
-     * @return mixed
-     */
-    private static function checkResourceInto($c)
-    {
-        return (($c['controller'] != DEFAULT_CONTROLLER) ? ((self::checkIsResourceAction($c)) ? ($c['action']) : ((self::checkIsDefaultAction($c)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
-    }
-
-    /**
-     * Check if is Resource Action
-     *
-     * @param array $c
-     * @return bool
-     */
-    private static function checkIsResourceAction($c)
-    {
-        return (!in_array($c['action'], self::getResources()) && ($c['action'] == $c['controller']));
-    }
-
-    /**
-     * Check if is Default Action
-     *
-     * @param array $c
-     * @return bool
-     */
-    private static function checkIsDefaultAction($c)
-    {
-        return (($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION));
-    }
 
     /**
      * Get Controller in Url

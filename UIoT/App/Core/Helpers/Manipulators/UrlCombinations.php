@@ -110,27 +110,6 @@ class UrlCombinations
     }
 
     /**
-     * Get All Resources
-     *
-     * @return array
-     */
-    public static function getResources()
-    {
-        return self::$resources;
-    }
-
-    /**
-     * Set Resources
-     *
-     * @param array $resources
-     * @return array
-     */
-    public static function setResources($resources)
-    {
-        return (self::$resources = $resources);
-    }
-
-    /**
      * Get Url Combination
      *
      * @return mixed
@@ -180,5 +159,60 @@ class UrlCombinations
     public static function getUrl()
     {
         return self::$url;
+    }
+
+    /**
+     * Return the Controller Url
+     * For Resource
+     *
+     * @param $c
+     * @return mixed
+     */
+    protected static function checkResourceInto($c)
+    {
+        return (($c['controller'] != DEFAULT_CONTROLLER) ? ((self::checkIsResourceAction($c)) ? ($c['action']) : ((self::checkIsDefaultAction($c)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
+    }
+
+    /**
+     * Check if is Resource Action
+     *
+     * @param array $c
+     * @return bool
+     */
+    protected static function checkIsResourceAction($c)
+    {
+        return (!in_array($c['action'], self::getResources()) && ($c['action'] == $c['controller']));
+    }
+
+    /**
+     * Get All Resources
+     *
+     * @return array
+     */
+    public static function getResources()
+    {
+        return self::$resources;
+    }
+
+    /**
+     * Set Resources
+     *
+     * @param array $resources
+     * @return array
+     */
+    public static function setResources($resources)
+    {
+        return (self::$resources = $resources);
+    }
+
+    /**
+     * Check if is Default Action
+     *
+     * @param array $c
+     * @return bool
+     */
+    protected static function checkIsDefaultAction($c)
+    {
+        return (($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION));
     }
 }
