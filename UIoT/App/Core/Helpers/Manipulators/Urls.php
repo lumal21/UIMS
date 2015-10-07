@@ -30,20 +30,12 @@ use UIoT\App\Core\Communication\Sessions\Indexer;
 final class Urls extends UrlCombinations
 {
     /**
-     * @observation Code was Rearranged..
-     * @observation Because that the Sections are incorrect.
-     */
-
-    /**
      * Register Items Data
      * Including Layouts and Resources
      */
     public static function registerItems()
     {
-        /* set predefined layouts */
         self::setLayouts(json_decode(PREDEFINED_LAYOUTS));
-
-        /* set predefined resource types */
         self::setResources(json_decode(RESOURCE_TYPES));
     }
 
@@ -58,6 +50,8 @@ final class Urls extends UrlCombinations
     }
 
     /**
+     * Get Controller
+     *
      * @return mixed
      */
     public static function getController()
@@ -93,10 +87,8 @@ final class Urls extends UrlCombinations
      */
     public static function getUrlCombination($reverse = false)
     {
-        /* only for pass reference */
         $i = (($reverse) ? array_reverse(self::getLayoutCombination()) : self::getLayoutCombination());
         $k = self::getResourceCombination();
-
         return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
     }
 
@@ -151,7 +143,29 @@ final class Urls extends UrlCombinations
      */
     private static function checkResourceInto($c)
     {
-        return (($c['controller'] != DEFAULT_CONTROLLER) ? (((!in_array($c['action'], self::getResources()) && ($c['action'] == $c['controller']))) ? ($c['action']) : ((($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
+        return (($c['controller'] != DEFAULT_CONTROLLER) ? ((self::checkIsResourceAction($c)) ? ($c['action']) : ((self::checkIsDefaultAction($c)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
+    }
+
+    /**
+     * Check if is Resource Action
+     *
+     * @param array $c
+     * @return bool
+     */
+    private static function checkIsResourceAction($c)
+    {
+        return (!in_array($c['action'], self::getResources()) && ($c['action'] == $c['controller']));
+    }
+
+    /**
+     * Check if is Default Action
+     *
+     * @param array $c
+     * @return bool
+     */
+    private static function checkIsDefaultAction($c)
+    {
+        return (($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION));
     }
 
     /**
@@ -216,13 +230,8 @@ final class Urls extends UrlCombinations
      */
     public static function combineUrlSimple()
     {
-        /* create array */
         $a = self::combineUrl();
-
-        /* unset controller */
         unset($a[0]);
-
-        /* return array */
         return $a;
     }
 }
