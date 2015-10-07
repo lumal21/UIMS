@@ -34,32 +34,10 @@ final class ClientData
      */
     public static function getRealClientIpAddress()
     {
-        /* ip possible headers */
-        $header_checks = [
-            'HTTP_CLIENT_IP',
-            'HTTP_PRAGMA',
-            'HTTP_CONNECTION',
-            'HTTP_CACHE_INFO',
-            'HTTP_PROXY',
-            'HTTP_PROXY_CONNECTION',
-            'HTTP_VIA',
-            'HTTP_X_COMING_FROM',
-            'HTTP_COMING_FROM',
-            'HTTP_X_FORWARDED_FOR',
-            'HTTP_X_FORWARDED',
-            'HTTP_X_CLUSTER_CLIENT_IP',
-            'HTTP_FORWARDED_FOR',
-            'HTTP_FORWARDED',
-            'REMOTE_ADDR'
-        ];
-
-        /* check ip combinations */
-        foreach ($header_checks as $key)
+        foreach (['HTTP_CLIENT_IP', 'HTTP_PRAGMA', 'HTTP_CONNECTION', 'HTTP_CACHE_INFO', 'HTTP_PROXY', 'HTTP_PROXY_CONNECTION', 'HTTP_VIA', 'HTTP_X_COMING_FROM', 'HTTP_COMING_FROM', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'] as $key)
             if (array_key_exists($key, ((array)json_decode(SERVER_WEB))) === true)
                 if (($ip = self::checkIpCombination($key)) !== false)
                     return $ip;
-
-        /* if is nothing above */
         return 'UNKNOWN';
     }
 
@@ -74,7 +52,6 @@ final class ClientData
         foreach (explode(',', $_SERVER[$key]) as $ip)
             if (filter_var($ap = trim($ip), FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false)
                 return $ap;
-
         return false;
     }
 }
