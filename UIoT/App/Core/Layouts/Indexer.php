@@ -64,7 +64,9 @@ final class Indexer
      */
     public static function removeLayout($layout_name)
     {
-        if (self::layoutExists($layout_name)) unset(self::$layout[$layout_name]);
+        if (self::layoutExists($layout_name)) {
+            unset(self::$layout[$layout_name]);
+        }
     }
 
     /**
@@ -146,8 +148,9 @@ final class Indexer
      */
     public static function openLayoutResources($layout_name)
     {
-        if (!self::layoutExists($layout_name))
-            return;
+        if (!self::layoutExists($layout_name)) {
+                    return;
+        }
 
         $c = self::getLayoutNameSpace($layout_name);
         /** @var Layout $c */

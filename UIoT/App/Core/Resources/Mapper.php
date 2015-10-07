@@ -106,8 +106,9 @@ final class Mapper
      */
     public static function returnTemplate($file_name, $header = true)
     {
-        if (!self::checkTemplateExistence($file_name))
-            return;
+        if (!self::checkTemplateExistence($file_name)) {
+                    return;
+        }
 
         (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
         self::$the_t_array[$file_name]['file_content'];
@@ -134,7 +135,9 @@ final class Mapper
     public static function registerResources($layout_name, $reset_session = false)
     {
         /* remove if is needed */
-        if ($reset_session) SIndexer::removeKey('layout');
+        if ($reset_session) {
+            SIndexer::removeKey('layout');
+        }
 
         /* register the layout */
         LIndexer::addLayout($layout_name, strtok($layout_name, '_'));
@@ -172,7 +175,9 @@ final class Mapper
         $resourc_array = (array)array_keys(self::$the_array);
 
         /* if the session doesn't exists, add then */
-        if (!SIndexer::keyExists('layout')) SIndexer::addKey('layout', $resourc_array);
+        if (!SIndexer::keyExists('layout')) {
+            SIndexer::addKey('layout', $resourc_array);
+        }
 
         $session_array = (array)SIndexer::getKeyValue('layout');
 
@@ -217,8 +222,9 @@ final class Mapper
     public static function returnResource($file_name, $header = true)
     {
         /* if resource doesn't exists, or resource is hotlinked we must show error */
-        if (!self::checkResourceExistence($file_name))
-            return self::problem();
+        if (!self::checkResourceExistence($file_name)) {
+                    return self::problem();
+        }
 
         /* update the resource change */
         self::updateResourceChange($file_name);
@@ -252,7 +258,7 @@ final class Mapper
     /**
      * Remove Resource
      *
-     * @param $resource_name
+     * @param string $resource_name
      * @return array
      */
     public static function resourceRemove($resource_name)

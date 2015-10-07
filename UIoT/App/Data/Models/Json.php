@@ -37,7 +37,9 @@ class Json implements InterfaceJson
 
     public function __setArray($array)
     {
-        foreach ($array as $key => $value) $this->$key = $value;
+        foreach ($array as $key => $value) {
+            $this->$key = $value;
+        }
     }
 
     public function __toEncode()

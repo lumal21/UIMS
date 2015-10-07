@@ -98,8 +98,9 @@ final class Router
         $last = '';
 
         /* put query string into $GET */
-        foreach (Urls::combineUrlSimple() as $key => $value)
-            ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $_GET)) : Arrays::addOnArray($last, urldecode($value), $_GET));
+        foreach (Urls::combineUrlSimple() as $key => $value) {
+                    ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $_GET)) : Arrays::addOnArray($last, urldecode($value), $_GET));
+        }
 
         return true;
     }

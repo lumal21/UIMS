@@ -99,7 +99,9 @@ final class Timer
      */
     public static function checkExecutionCrash()
     {
-        if (!self::checkLoopInterval()) self::addExecutionLoop(microtime(true));
+        if (!self::checkLoopInterval()) {
+            self::addExecutionLoop(microtime(true));
+        }
     }
 
     /**

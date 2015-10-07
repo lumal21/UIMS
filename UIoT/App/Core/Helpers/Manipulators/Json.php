@@ -42,7 +42,9 @@ final class Json
         $v = [];
 
         /* foreach every item */
-        foreach ($k as $index => $object) $v[] = self::createClosure($object);
+        foreach ($k as $index => $object) {
+            $v[] = self::createClosure($object);
+        }
 
         /* return the final array */
         return $v;

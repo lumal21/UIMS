@@ -37,7 +37,7 @@ final class Commander
     /**
      * Start Controller Data
      *
-     * @param $controller_name
+     * @param string $controller_name
      * @param $action_name
      */
     public function __construct($controller_name, $action_name = 'main')
@@ -69,7 +69,7 @@ final class Commander
     /**
      * Enable Action
      *
-     * @param $action_name
+     * @param string $action_name
      * @return mixed
      */
     public function setAction($action_name)
