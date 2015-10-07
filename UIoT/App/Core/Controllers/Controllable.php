@@ -52,18 +52,46 @@ final class Controllable extends IControllable
         /* prepare template */
         DataManager::prepareTemplate();
 
+        /* do all data */
+        $this->goData();
+
+        /* go check all */
+        $this->goCheck();
+    }
+
+    /**
+     * Go do All Data Functions
+     */
+    private function goData()
+    {
         /* configure brain to a GET template */
         $this->setBrain();
 
         /* check if is valid the controller */
         $this->validateData();
+    }
 
+    /**
+     * Check all The Steps
+     */
+    private function goCheck()
+    {
         /* if is let's do it */
         (!$this->checkData()) || $this->getResources();
         (!$this->checkData()) || $this->enableController();
 
         /* if not valid finish */
-        ($this->checkData()) || $this->throwControllerProblem();
+        ($this->checkData()) || (Register::$global->errorMessage(9001,
+            "Stop! That Controller Doesn't Exists!",
+            'Details: ',
+            [
+                'What Happened?' => "You're trying to Call an nonexistent Controller",
+                'What Controller?' => "Controller with name: {$this->c_name}",
+                'Resolution:' => "Stop trying to call nonexistent controllers.",
+                'What Controllers can i Call?' => "You can Call UIoT's Abstract Controllers, and the Built-In Controllers",
+                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+            ]
+        ));
     }
 
     /**
@@ -105,26 +133,5 @@ final class Controllable extends IControllable
     private function setBrain()
     {
         Brain::setTemplate(DataHandler::getParserMethod($this->a_name), Mime::JSON);
-    }
-
-    /**
-     * Function Only to be called if something wrong happens
-     * (Something wrong = controller doesn't exists)
-     *
-     * @throws \Exception
-     */
-    private function throwControllerProblem()
-    {
-        Register::$global->errorMessage(9001,
-            "Stop! That Controller Doesn't Exists!",
-            'Details: ',
-            [
-                'What Happened?' => "You're trying to Call an nonexistent Controller",
-                'What Controller?' => "Controller with name: {$this->c_name}",
-                'Resolution:' => "Stop trying to call nonexistent controllers.",
-                'What Controllers can i Call?' => "You can Call UIoT's Abstract Controllers, and the Built-In Controllers",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
     }
 }

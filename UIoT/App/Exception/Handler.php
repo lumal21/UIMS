@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Exception;
@@ -48,11 +48,6 @@ class Handler extends PrettyPageHandler
      */
     public function handle()
     {
-        /**
-         * @todo Need to improve this Handler
-         * @todo Because Whoops Handler, is weird and not good coded.
-         */
-
         /* call template helper */
         $helper = new TemplateHelper;
 
@@ -60,47 +55,18 @@ class Handler extends PrettyPageHandler
         $error_code = $this->getInspector()->getException()->getCode();
 
         /* get error frames */
-        $frames = (($error_code >= 9000) ? [] : $this->getInspector()->getFrames()); // if is message code remove frames
+        $frames = (($error_code >= 9000) ? [] : $this->getInspector()->getFrames());
 
         /* try to get exception error type */
-        if ($this->getInspector()->getException() instanceof ErrorException)
-            $error_code = Misc::translateErrorCode($this->getInspector()->getException()->getSeverity());
+        if ($this->getInspector()->getException() instanceof ErrorException) $error_code = Misc::translateErrorCode($this->getInspector()->getException()->getSeverity());
 
         /* set all variables */
         $vars = [
-            "page_title" => $this->getPageTitle(),
-
-            "Stylesheet" => file_get_contents($this->getResource('Stylesheet/whoops.base.css')),
-            "zepto" => file_get_contents($this->getResource('Scripts/zepto.min.js')),
-            "javascript" => file_get_contents($this->getResource('Scripts/whoops.base.js')),
-
-            "header" => $this->getResource('Layouts/header.html.php'),
-            "frame_list" => $this->getResource('Layouts/frame_list.html.php'),
-            "frame_code" => $this->getResource('Layouts/frame_code.html.php'),
-            "env_details" => $this->getResource('Layouts/env_details.html.php'),
-
-            "title" => $this->getPageTitle(),
-            "name" => explode("\\", $this->getInspector()->getExceptionName()),
-            "message" => $this->getInspector()->getException()->getMessage(),
-            "code" => $error_code,
-            "plain_exception" => Formatter::formatExceptionPlain($this->getInspector()),
-            "frames" => $frames,
-            "has_frames" => !!count($frames),
-            "handler" => $this,
-            "handlers" => $this->getRun()->getHandlers(),
-
-            "tables" => [
-                "GET Data" => $_GET,
-                "POST Data" => $_POST,
-                "Files" => $_FILES,
-                "Cookies" => $_COOKIE,
-                "Session" => isset($_SESSION) ? $_SESSION : [],
-                "Server/Request Data" => $_SERVER,
-                "Environment Variables" => $_ENV,
+            'page_title' => $this->getPageTitle(), 'Stylesheet' => file_get_contents($this->getResource('Stylesheet/whoops.base.css')), 'zepto' => file_get_contents($this->getResource('Scripts/zepto.min.js')), 'javascript' => file_get_contents($this->getResource('Scripts/whoops.base.js')), 'header' => $this->getResource('Layouts/header.html.php'), 'frame_list' => $this->getResource('Layouts/frame_list.html.php'), 'frame_code' => $this->getResource('Layouts/frame_code.html.php'), 'env_details' => $this->getResource('Layouts/env_details.html.php'), 'title' => $this->getPageTitle(), 'name' => explode("\\", $this->getInspector()->getExceptionName()), 'message' => $this->getInspector()->getException()->getMessage(), 'code' => $error_code, 'plain_exception' => Formatter::formatExceptionPlain($this->getInspector()), 'frames' => $frames, 'has_frames' => !!count($frames), 'handler' => $this, 'handlers' => $this->getRun()->getHandlers(),
+            'tables' => ['GET Data' => $_GET, 'POST Data' => $_POST, 'Files' => $_FILES, 'Cookies' => $_COOKIE, 'Session' => isset($_SESSION) ? $_SESSION : [], 'Server/Request Data' => $_SERVER, 'Environment Variables' => $_ENV,
             ],
         ];
 
-        /* erase some items if is message exception */
         if ($error_code >= 9000):
             $vars['tables'] = [];
             $vars['code'] -= 9000;
@@ -113,7 +79,6 @@ class Handler extends PrettyPageHandler
         $helper->setVariables($vars);
         $helper->render($this->getResource('Layouts/layout.html.php'));
 
-        /* finish handling */
         return Handler::QUIT;
     }
 

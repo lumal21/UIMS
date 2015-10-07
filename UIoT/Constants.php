@@ -16,13 +16,13 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 /*  License
  *  <UIoT CMS is the default content management system of uiot's
  *  architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Brasília>
+    Copyright (C) <2015>  <University of Brasï¿½lia>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -178,6 +178,12 @@ C::__addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
  * PhP Self
  */
 C::__addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
+
+/*
+ * Global Variable (Server Variable)
+ * Server
+ */
+C::__addJConstant('SERVER_WEB', @$_SERVER);
 
 /**
  * MVC Constants

@@ -42,28 +42,20 @@ final class Commander
      */
     public function __construct($controller_name, $action_name = 'main')
     {
+        /* non abstract controller */
         if (Indexer::controllerExists($controller_name)):
-            /* controller data */
-            $this->controller = (Indexer::getController($controller_name));
-
-            /* controller actions of existent controller */
+            $this->controller         = (Indexer::getController($controller_name));
             $this->controller_actions = (Arrays::staticToArray($controller_name));
-
-            /* controller name */
-            $this->controller_name = $controller_name;
-        else:
-            /* abstract controller */
-            $c = (new Controllable($controller_name, $action_name));
-
-            /* controller data */
-            $this->controller = $c->c_data;
-
-            /* controller actions */
-            $this->controller_actions = (Arrays::abstractToArray($c->c_s_array));
-
-            /* controller name */
-            $this->controller_name = (Strings::toControllerName($controller_name));
+            $this->controller_name    = $controller_name;
+            return;
         endif;
+
+        /* abstract  controller */
+        $c                        = (new Controllable($controller_name, $action_name));
+        $this->controller         = $c->c_data;
+        $this->controller_actions = (Arrays::abstractToArray($c->c_s_array));
+        $this->controller_name    = (Strings::toControllerName($controller_name));
+        return;
     }
 
     /**
@@ -75,7 +67,18 @@ final class Commander
     public function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
-        ($this->checkActionExistence($action_name)) || $this->throwCommanderProblem($action_name);
+        ($this->checkActionExistence($action_name)) || (Register::$global->errorMessage(9002,
+            "Stop! That Action Doesn't Exists!",
+            'Details: ',
+            [
+                'What Happened?' => "You're trying to Call an nonexistent Action",
+                'What Action?' => "Action with name: {$action_name}",
+                'From the Controller:' => "{$this->controller_name}",
+                'Resolution:' => "Stop trying to call nonexistent actions.",
+                'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
+                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+            ]
+        ));
 
         /* if not call action */
         ($this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}()));
@@ -101,28 +104,5 @@ final class Commander
     public function refineControllerData($returned_code)
     {
         defined('CONTROLLER_CONTENT') || define('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
-    }
-
-    /**
-     * Function Only to be called if something wrong happens
-     * (Something wrong = action doesn't exists)
-     *
-     * @param string $action_name
-     * @throws \Exception
-     */
-    private function throwCommanderProblem($action_name)
-    {
-        Register::$global->errorMessage(9002,
-            "Stop! That Action Doesn't Exists!",
-            'Details: ',
-            [
-                'What Happened?' => "You're trying to Call an nonexistent Action",
-                'What Action?' => "Action with name: {$action_name}",
-                'From the Controller:' => "{$this->controller_name}",
-                'Resolution:' => "Stop trying to call nonexistent actions.",
-                'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
     }
 }

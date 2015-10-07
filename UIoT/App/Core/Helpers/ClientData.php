@@ -55,7 +55,7 @@ final class ClientData
 
         /* check ip combinations */
         foreach ($header_checks as $key)
-            if (array_key_exists($key, $_SERVER) === true)
+            if (array_key_exists($key, ((array)json_decode(SERVER_WEB))) === true)
                 if (($ip = self::checkIpCombination($key)) !== false)
                     return $ip;
 

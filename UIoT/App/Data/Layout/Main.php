@@ -38,20 +38,14 @@ class Main extends Layout
     public function __resources()
     {
         Mapper::setResourceFolder('None');
-
         Mapper::addResource('Stylesheet/Styles.css', 'text/css');
         Mapper::addResource('Stylesheet/Foundation.css', 'text/css');
         Mapper::addResource('Stylesheet/Font-awesome.css', 'text/css');
-
         Mapper::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
-
         Mapper::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
-
         Mapper::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
         Mapper::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
-
         Mapper::addResource('Scripts/Foundation.min.js', 'text/javascript');
-
         Mapper::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
@@ -62,7 +56,6 @@ class Main extends Layout
         Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');
         Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');
-
         Mapper::setResourceFolder('Main');
         Mapper::addResource('Stylesheet/Main.css', 'text/css');
     }
