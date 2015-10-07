@@ -99,12 +99,7 @@ final class Timer
      */
     public static function checkExecutionCrash()
     {
-        if (!self::checkLoopInterval())
-            self::addExecutionLoop(microtime(true));
-
-        //else
-        ///** @todo make a whoops error display message */
-        //die('wrong: ' . (self::getExecutionTime() - array_sum(self::getExecutionLoops())));
+        if (!self::checkLoopInterval()) self::addExecutionLoop(microtime(true));
     }
 
     /**

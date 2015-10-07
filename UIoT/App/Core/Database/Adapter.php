@@ -31,7 +31,7 @@ use PDOStatement;
 final class Adapter
 {
     /**
-     * @var PDO
+     * @var Handler
      */
     private $instance;
 

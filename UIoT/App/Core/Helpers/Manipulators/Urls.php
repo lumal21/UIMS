@@ -183,7 +183,11 @@ final class Urls
      */
     public static function getReversedUrlCombination()
     {
-        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset($i = array_reverse(self::getLayoutCombination())), 'resource' => reset($k = self::getResourceCombination())])) : (self::getReversedF())));
+        /* only to refer as reference */
+        $i = array_reverse(self::getLayoutCombination());
+        $k = self::getResourceCombination();
+
+        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getReversedF())));
     }
 
     /**
@@ -278,7 +282,11 @@ final class Urls
      */
     public static function getUrlCombination()
     {
-        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i = self::getLayoutCombination()), 'resource' => reset($k = self::getResourceCombination())])) : (self::getNormalF())));
+        /* only for pass reference */
+        $i = self::getLayoutCombination();
+        $k = self::getResourceCombination();
+
+        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
     }
 
     /**
@@ -298,7 +306,7 @@ final class Urls
     /**
      * Set Url Combination
      *
-     * @param mixed $normal_f
+     * @param array $normal_f
      * @return mixed
      */
     public static function setNormalF($normal_f)
