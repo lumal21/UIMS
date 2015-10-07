@@ -36,20 +36,20 @@ class IControllable
      *
      * @param array $array
      */
-    protected function __enable($array = [])
+    protected function enableController($array = [])
     {
         /* store array */
         $this->c_s_array = $array;
 
         /* call methods */
-        $this->__addInstance();
-        $this->__addMethods();
+        $this->addInstance();
+        $this->addMethods();
     }
 
     /**
      * Create Controller Instance
      */
-    private function __addInstance()
+    private function addInstance()
     {
         $this->c_data = (new IController);
     }
@@ -57,7 +57,7 @@ class IControllable
     /**
      * Add Controller Abstract Methods
      */
-    private function __addMethods()
+    private function addMethods()
     {
         foreach ($this->c_s_array as $method => $request):
             $this->c_data->{Strings::toActionMethodName($method)} = function () use ($method) {

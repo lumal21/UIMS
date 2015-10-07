@@ -7,6 +7,7 @@
  */
 
 namespace UIoT\App\Core\Communication\Routing;
+
 use UIoT\App\Core\Renders\Template;
 
 /**

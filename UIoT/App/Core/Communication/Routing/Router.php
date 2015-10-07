@@ -64,9 +64,6 @@ final class Router
         $this->action       = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
         $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
 
-        //print_r($this->controller);
-        //die();
-
         return true;
     }
 

@@ -43,6 +43,7 @@ final class Data
     function __construct($url)
     {
         Brain::setRequestUrl($url);
+
         $this->data = Brain::sendRequest();
     }
 

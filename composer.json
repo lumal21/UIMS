@@ -15,7 +15,9 @@
   "minimum-stability": "stable",
   "require": {
     "nategood/httpful": "^0.2.19",
-    "filp/whoops": "^1.1"
+    "filp/whoops": "^1.1",
+    "jalle19/php-whitelist-check": "^1.0",
+    "pfbc/pfbc": "^3.1"
   },
   "autoload": {
     "classmap": [

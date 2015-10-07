@@ -43,10 +43,11 @@ final class Indexer
      */
     static function addView($view_name = '')
     {
-        if (!self::viewExists($view_name)):
-            self::$view[$view_name] = [];
-            self::addViewAction($view_name, 'Main');
-        endif;
+        if (self::viewExists($view_name))
+            return;
+
+        self::$view[$view_name] = [];
+        self::addViewAction($view_name, 'Main');
     }
 
     /**
@@ -148,9 +149,6 @@ final class Indexer
     {
         /* if view exists enable it */
         if (self::viewExists(self::getViewReverseSpace($view_name))) new $view_name;
-
-        /* must return a string sadly */
-        return '';
     }
 
     /**

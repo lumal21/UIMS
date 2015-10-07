@@ -94,10 +94,11 @@ final class Mapper
      */
     static function returnTemplate($file_name, $header = true)
     {
-        if (self::checkTemplateExistence($file_name)):
-            (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
-            self::$the_t_array[$file_name]['file_content'];
-        endif;
+        if (!self::checkTemplateExistence($file_name))
+            return;
+
+        (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
+        self::$the_t_array[$file_name]['file_content'];
     }
 
     /**
@@ -203,21 +204,18 @@ final class Mapper
      */
     static function returnResource($file_name, $header = true)
     {
-        /* if resource exists, or isn't hotlinked everything is right */
-        if (self::checkResourceExistence($file_name)):
-
-            /* update the resource change */
-            self::updateResourceChange($file_name);
-
-            /* add header (mime-type) */
-            (!$header) || (header('Content-Type: ' . (self::$the_array[$file_name]['mime_type'])));
-
-            /* return content */
-            return self::$the_array[$file_name]['file_content'];
-        endif;
-
         /* if resource doesn't exists, or resource is hotlinked we must show error */
-        return self::problem();
+        if (!self::checkResourceExistence($file_name))
+            return self::problem();
+
+        /* update the resource change */
+        self::updateResourceChange($file_name);
+
+        /* add header (mime-type) */
+        (!$header) || (header('Content-Type: ' . (self::$the_array[$file_name]['mime_type'])));
+
+        /* return content */
+        return self::$the_array[$file_name]['file_content'];
     }
 
     /**
@@ -228,7 +226,7 @@ final class Mapper
      */
     private static function problem()
     {
-        Register::$global->__message(9003,
+        Register::$global->errorMessage(9003,
             "Stop! D'not Hotlinks!",
             'Details: ',
             [

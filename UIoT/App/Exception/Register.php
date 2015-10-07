@@ -22,6 +22,7 @@
 namespace UIoT\App\Exception;
 
 use Exception;
+use UIoT\App\Security\Handler as SHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -52,7 +53,7 @@ final class Register extends Run
      */
     function __construct()
     {
-        self::$global = $this->__push($this->__pull('Houston, we have a problem!'));
+        self::$global = $this->push($this->pull('Houston, we have a problem!'));
     }
 
     /**
@@ -62,7 +63,7 @@ final class Register extends Run
      * @param $title
      * @return PrettyPageHandler
      */
-    private function __pull($title)
+    private function pull($title)
     {
         /* Is a Edited Exception Handler based on PrettyHandler */
         $handler = new Handler;
@@ -84,7 +85,7 @@ final class Register extends Run
      * @param PrettyPageHandler $handler
      * @return $this
      */
-    private function __push(PrettyPageHandler $handler)
+    private function push(PrettyPageHandler $handler)
     {
         /* set static handler instance, and push the handler */
         $this->pushHandler(self::$handler = $handler)->register();
@@ -101,20 +102,24 @@ final class Register extends Run
      * @param string $title
      * @param string $message_title
      * @param array $message
-     * @throws \Exception
+     * @param bool $security_error
+     * @throws Exception
      */
-    function __message($code = 9000, $title = '', $message_title = '', $message = [])
+    function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
         /* @todo improve this code because isn't safe */
-        /* @todo put white-list-ip verification */
+
+        /* check security things */
+        if ((@$_SERVER['QUERY_STRING'] == 'de') && (!$security_error))
+            SHandler::checkIpAddressAuthority();
 
         /* check if is a valid message error code */
-        $code = ((@$_SERVER["QUERY_STRING"] != 'de') ? (($code < 9000) ? (9000 + $code) : $code) : (($code < 9000) ? $code : (9000 - $code)));
+        $code = (((@$_SERVER['QUERY_STRING'] != 'de') || ($security_error)) ? (($code < 9000) ? (9000 + $code) : $code) : (($code < 9000) ? $code : (9000 - $code)));
 
         /* add data table */
         self::$handler->addDataTable($message_title, $message);
 
         /* throw a new exception */
-        throw new Exception($title, $code);
+        $this->handleException(new Exception($title, $code));
     }
 }

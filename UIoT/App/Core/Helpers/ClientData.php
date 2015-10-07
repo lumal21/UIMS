@@ -25,7 +25,56 @@ namespace UIoT\App\Core\Helpers;
  * Class ClientData
  * @package UIoT\App\Core\Helpers
  */
-class ClientData
+final class ClientData
 {
+    /**
+     * Get Real User Ip Address
+     *
+     * @return bool|string
+     */
+    static function getRealClientIpAddress()
+    {
+        /* ip possible headers */
+        $header_checks = [
+            'HTTP_CLIENT_IP',
+            'HTTP_PRAGMA',
+            'HTTP_CONNECTION',
+            'HTTP_CACHE_INFO',
+            'HTTP_PROXY',
+            'HTTP_PROXY_CONNECTION',
+            'HTTP_VIA',
+            'HTTP_X_COMING_FROM',
+            'HTTP_COMING_FROM',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_FORWARDED',
+            'HTTP_X_CLUSTER_CLIENT_IP',
+            'HTTP_FORWARDED_FOR',
+            'HTTP_FORWARDED',
+            'REMOTE_ADDR'
+        ];
 
+        /* check ip combinations */
+        foreach ($header_checks as $key)
+            if (array_key_exists($key, $_SERVER) === true)
+                if (($ip = self::checkIpCombination($key)) !== false)
+                    return $ip;
+
+        /* if is nothing above */
+        return false;
+    }
+
+    /**
+     * Check Specific IP Combination
+     *
+     * @param string $key
+     * @return bool|string
+     */
+    private static function checkIpCombination($key = '')
+    {
+        foreach (explode(',', $_SERVER[$key]) as $ip)
+            if (filter_var($ap = trim($ip), FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false)
+                return $ap;
+
+        return false;
+    }
 }

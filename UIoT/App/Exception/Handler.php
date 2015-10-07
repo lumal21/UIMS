@@ -56,17 +56,15 @@ class Handler extends PrettyPageHandler
         /* call template helper */
         $helper = new TemplateHelper;
 
-        /* get template (error) inspector */
-        $inspector = $this->getInspector();
-
         /* get error code */
-        $error_code = $inspector->getException()->getCode();
+        $error_code = $this->getInspector()->getException()->getCode();
 
         /* get error frames */
-        $frames = (($error_code >= 9000) ? [] : $inspector->getFrames()); // if is message code remove frames
+        $frames = (($error_code >= 9000) ? [] : $this->getInspector()->getFrames()); // if is message code remove frames
 
         /* try to get exception error type */
-        if ($inspector->getException() instanceof ErrorException) $error_code = Misc::translateErrorCode($inspector->getException()->getSeverity());
+        if ($this->getInspector()->getException() instanceof ErrorException)
+            $error_code = Misc::translateErrorCode($this->getInspector()->getException()->getSeverity());
 
         /* set all variables */
         $vars = [
@@ -82,10 +80,10 @@ class Handler extends PrettyPageHandler
             "env_details" => $this->getResource('Layouts/env_details.html.php'),
 
             "title" => $this->getPageTitle(),
-            "name" => explode("\\", $inspector->getExceptionName()),
-            "message" => $inspector->getException()->getMessage(),
+            "name" => explode("\\", $this->getInspector()->getExceptionName()),
+            "message" => $this->getInspector()->getException()->getMessage(),
             "code" => $error_code,
-            "plain_exception" => Formatter::formatExceptionPlain($inspector),
+            "plain_exception" => Formatter::formatExceptionPlain($this->getInspector()),
             "frames" => $frames,
             "has_frames" => !!count($frames),
             "handler" => $this,

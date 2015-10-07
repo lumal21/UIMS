@@ -48,6 +48,6 @@ final class Pager
         Mapper::addResource($script_name, 'script/javascript');
 
         /* so echo the script */
-        echo '<script type="text/javascript">' . (Mapper::returnResource($script_name, false)) . '</script>';
+        echo sprintf('<script type="text/javascript">%s</script>', Mapper::returnResource($script_name, false));
     }
 }

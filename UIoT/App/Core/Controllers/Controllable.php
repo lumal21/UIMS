@@ -59,23 +59,23 @@ final class Controllable extends IControllable
         DataManager::prepareTemplate();
 
         /* configure brain to a GET template */
-        $this->__brain();
+        $this->setBrain();
 
         /* check if is valid the controller */
-        $this->__validate();
+        $this->validateData();
 
         /* if is let's do it */
-        (!$this->__check()) || $this->__items();
-        (!$this->__check()) || $this->__enable();
+        (!$this->checkData()) || $this->getResources();
+        (!$this->checkData()) || $this->enableController();
 
         /* if not valid finish */
-        ($this->__check()) || $this->__problem();
+        ($this->checkData()) || $this->throwProblem();
     }
 
     /**
      * Get IController Actions (Methods)
      */
-    private function __items()
+    private function getResources()
     {
         $this->c_s_array = DataHandler::getParserArray();
     }
@@ -83,7 +83,7 @@ final class Controllable extends IControllable
     /**
      * Get Possible IControllers
      */
-    private function __validate()
+    private function validateData()
     {
         $this->c_array = (Arrays::toControllerArray((!SIndexer::keyExists('i_data')) ? (SIndexer::updateKeyIfNeeded('i_data', Brain::getItems())) : (SIndexer::getKeyValue('i_data'))));
     }
@@ -92,7 +92,7 @@ final class Controllable extends IControllable
      * Check if is in Array
      * That means, check if the Controller Name exists on IController Array
      */
-    private function __check()
+    private function checkData()
     {
         return (in_array($this->c_name, $this->c_array));
     }
@@ -100,15 +100,15 @@ final class Controllable extends IControllable
     /**
      * Call the IController And Create his Instance
      */
-    protected function __enable()
+    protected function enableController()
     {
-        parent::__enable($this->c_s_array);
+        parent::enableController($this->c_s_array);
     }
 
     /**
      * Set Brain Template Type
      */
-    private function __brain()
+    private function setBrain()
     {
         Brain::setTemplate(DataHandler::getParserMethod($this->a_name), Mime::JSON);
     }
@@ -119,9 +119,9 @@ final class Controllable extends IControllable
      *
      * @throws \Exception
      */
-    private function __problem()
+    private function throwProblem()
     {
-        Register::$global->__message(9001,
+        Register::$global->errorMessage(9001,
             "Stop! That Controller Doesn't Exists!",
             'Details: ',
             [

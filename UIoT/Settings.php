@@ -86,8 +86,7 @@ C::__addJConstant('SETTINGS', [
             // white list ip to access security items and complete exceptions stack trace, debug tools etc.
             'white_ip_list' =>
                 [
-                    '127.0.0.1',
-                    'localhost'
+
                 ],
         ]
 ], JSON_FORCE_OBJECT);

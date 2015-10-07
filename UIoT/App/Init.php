@@ -59,6 +59,9 @@ final class Init
         /* start exception handler */
         (new Exception\Register);
 
+        /* start security handler */
+        (new Security\Handler);
+
         /* session register */
         (new Core\Communication\Sessions\Starter);
 

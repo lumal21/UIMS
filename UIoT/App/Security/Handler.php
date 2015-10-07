@@ -21,6 +21,10 @@
 
 namespace UIoT\App\Security;
 
+use UIoT\App\Core\Helpers\ClientData;
+use UIoT\App\Exception\Register;
+use Whitelist\Check;
+
 /**
  * Class Handler
  * @package UIoT\App\Security
@@ -37,5 +41,84 @@ final class Handler
      *  - filter all $_REQUESTS
      *  - handle white list-ip system
      *  - and more
+     * @param array $arguments
      */
+
+    /**
+     * @var Check
+     */
+    private static $white_list;
+
+    /**
+     * Start Security Handler
+     */
+    function __construct()
+    {
+        /* start white list checker */
+        $this->startWhiteList();
+    }
+
+    /**
+     * Start White List Ip
+     */
+    private function startWhiteList()
+    {
+        /* start white list checker */
+        self::$white_list = new Check;
+
+        /* load white list ip */
+        self::loadIpWhiteList((array)(json_decode(SETTINGS)->security->white_ip_list));
+    }
+
+    /**
+     * Create White List Parameters
+     *
+     * @param array $arguments
+     */
+    static function loadIpWhiteList($arguments = [])
+    {
+        self::$white_list->whitelist($arguments);
+    }
+
+    /**
+     * Check white list Ip Address
+     *
+     * @return mixed
+     */
+    static function checkWhiteListIp()
+    {
+        return self::$white_list->check(ClientData::getRealClientIpAddress());
+    }
+
+    /**
+     * Check if Ip Address is valid to Security Access
+     *
+     * @return null|void
+     */
+    static function checkIpAddressAuthority()
+    {
+        return ((!self::checkWhiteListIp()) ? self::securityProblem(
+            "You Don't have Permissions",
+            "You Don't have authorization to get Exception Stack from the Server.
+            That Happens because your IP address isn't in the white list."
+        ) : null);
+    }
+
+    /**
+     * Security Problem
+     *
+     * @param string $title
+     * @param string $message
+     * @throws \Exception
+     */
+    static function securityProblem($title = '', $message = '')
+    {
+        Register::$global->errorMessage(9004,
+            "Stop! {$title}!",
+            'Details: ',
+            [
+                'What Happened?' => $message,
+            ], true
+        );
+    }
 }

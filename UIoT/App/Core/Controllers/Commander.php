@@ -28,6 +28,8 @@ use UIoT\App\Exception\Register;
 /**
  * Class Commander
  * @property array controller_actions
+ * @property string controller_name
+ * @property \UIoT\App\Data\Models\IController controller
  * @package UIoT\App\Core\Controllers
  */
 final class Commander
@@ -73,10 +75,10 @@ final class Commander
     function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
-        ($this->__actionExists($action_name)) || $this->__problem($action_name);
+        ($this->checkActionExistence($action_name)) || $this->throwProblem($action_name);
 
         /* if not call action */
-        ($this->__refine($this->controller->{Strings::toActionMethodName($action_name)}()));
+        ($this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}()));
     }
 
     /**
@@ -85,7 +87,7 @@ final class Commander
      * @param $action_name
      * @return bool
      */
-    function __actionExists($action_name)
+    function checkActionExistence($action_name)
     {
         return (in_array((Strings::toActionName($action_name)), $this->controller_actions));
     }
@@ -96,7 +98,7 @@ final class Commander
      * @param mixed|string $returned_code
      * @return bool
      */
-    function __refine($returned_code)
+    function refineControllerData($returned_code)
     {
         defined('CONTROLLER_CONTENT') || define('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
     }
@@ -108,9 +110,9 @@ final class Commander
      * @param $action_name
      * @throws \Exception
      */
-    private function __problem($action_name)
+    private function throwProblem($action_name)
     {
-        Register::$global->__message(9002,
+        Register::$global->errorMessage(9002,
             "Stop! That Action Doesn't Exists!",
             'Details: ',
             [

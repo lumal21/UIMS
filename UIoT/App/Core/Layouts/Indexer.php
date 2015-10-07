@@ -146,11 +146,12 @@ final class Indexer
      */
     static function openLayoutResources($layout_name)
     {
-        if (self::layoutExists($layout_name)):
-            $c = self::getLayoutNameSpace($layout_name);
-            /** @var Layout $c */
-            $c::__resources();
-        endif;
-        return '';
+        if (!self::layoutExists($layout_name))
+            return;
+
+        $c = self::getLayoutNameSpace($layout_name);
+        /** @var Layout $c */
+        $c::__resources();
+
     }
 }
