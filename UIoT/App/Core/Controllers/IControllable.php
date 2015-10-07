@@ -87,7 +87,7 @@ class IControllable
     private function addMethods()
     {
         foreach ($this->c_s_array as $method => $request):
-            $this->c_data->{Strings::toActionMethodName($method)} = function() use ($method) {
+            $this->c_data->{Strings::toActionMethodName($method)} = function () use ($method) {
                 return DataManager::getInstance($method);
             };
         endforeach;
