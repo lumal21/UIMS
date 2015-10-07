@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Security;
@@ -52,7 +52,7 @@ final class Handler
     /**
      * Start Security Handler
      */
-    function __construct()
+    public function __construct()
     {
         /* start white list checker */
         $this->startWhiteList();
@@ -75,7 +75,7 @@ final class Handler
      *
      * @param array $arguments
      */
-    static function loadIpWhiteList($arguments = [])
+    public static function loadIpWhiteList($arguments = [])
     {
         self::$white_list->whitelist($arguments);
     }
@@ -85,7 +85,7 @@ final class Handler
      *
      * @return boolean
      */
-    static function checkWhiteListIp()
+    public static function checkWhiteListIp()
     {
         return self::$white_list->check(ClientData::getRealClientIpAddress());
     }
@@ -95,7 +95,7 @@ final class Handler
      *
      * @return null|void
      */
-    static function checkIpAddressAuthority()
+    public static function checkIpAddressAuthority()
     {
         return ((!self::checkWhiteListIp()) ? self::securityProblem(
             "You Don't have Permissions",
@@ -111,7 +111,7 @@ final class Handler
      * @param string $message
      * @throws \Exception
      */
-    static function securityProblem($title = '', $message = '')
+    public static function securityProblem($title = '', $message = '')
     {
         Register::$global->errorMessage(9004,
             "Stop! {$title}!",

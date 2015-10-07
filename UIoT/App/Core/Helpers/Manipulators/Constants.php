@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
@@ -34,7 +34,7 @@ final class Constants
      * @param mixed $b Value
      * @param int $c jSON Options
      */
-    static function __addJConstant($a, $b = '', $c = 0)
+    public static function __addJConstant($a, $b = '', $c = 0)
     {
         self::__addConstant($a, json_encode($b, $c));
     }
@@ -45,7 +45,7 @@ final class Constants
      * @param string $a Name
      * @param string $b Value
      */
-    static function __addConstant($a, $b = '')
+    public static function __addConstant($a, $b = '')
     {
         defined($a) || define($a, $b);
     }

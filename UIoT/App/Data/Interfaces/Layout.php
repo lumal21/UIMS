@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Interfaces;
@@ -27,13 +27,13 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface Layout
 {
-    function __construct();
+    public function __construct();
 
-    function __resources();
+    public function __resources();
 
-    function __configuration();
+    public function __configuration();
 
-    function __templates();
+    public function __templates();
 
-    function __show();
+    public function __show();
 }

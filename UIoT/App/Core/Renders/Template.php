@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Renders;
@@ -35,14 +35,14 @@ use UIoT\App\Core\Views\Indexer;
  */
 final class Template
 {
-    static $disable_show_view = false, $enable_default_action = false;
+    public static $disable_show_view = false, $enable_default_action = false;
 
     /**
      * Init Template (Layout/Controller/View) Handler
      *
      * @param array $arguments
      */
-    function __construct($arguments = [])
+    public function __construct($arguments = [])
     {
         $this->controller = $arguments['controller'];
         $this->action     = $arguments['action'];
@@ -84,7 +84,7 @@ final class Template
     /**
      * Call View/Layout
      */
-    function show()
+    public function show()
     {
         return ((!self::$disable_show_view) ? ((Indexer::viewExists($this->controller)) ? Indexer::getView($this->controller) : '') : ((!CIndexer::controllerExists($this->controller)) ? $this->aView() : $this->bView()));
     }

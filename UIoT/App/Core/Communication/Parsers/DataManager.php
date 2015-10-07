@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Parsers;
@@ -36,7 +36,7 @@ final class DataManager
     /**
      * Create the DataManager Instance
      */
-    function __construct()
+    public function __construct()
     {
         /* start collectors and handlers */
         (new DataCollector);
@@ -49,7 +49,7 @@ final class DataManager
     /**
      * Prepare Brain Template
      */
-    static function prepareTemplate()
+    public static function prepareTemplate()
     {
         Brain::setTemplate(DataHandler::getParserMethod(self::getAction()), Mime::JSON);
     }
@@ -60,7 +60,7 @@ final class DataManager
      * @param $method
      * @return \UIoT\App\Data\Models\Collector
      */
-    static function getInstance($method)
+    public static function getInstance($method)
     {
         return DataCollector::initCollector(DataHandler::getParserCollector($method), DataHandler::getParserHandler($method));
     }

@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Routing;
@@ -36,7 +36,7 @@ final class Accessor
      * @param string $view
      * @return mixed
      */
-    static function redirectToView($view)
+    public static function redirectToView($view)
     {
         return (VIndexer::getView($view));
     }
@@ -48,7 +48,7 @@ final class Accessor
      * @param string $controller_action
      * @return Template
      */
-    static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
+    public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
     {
         return Selector::select(Selector::instantiate(new Template(['controller' => $controller, 'action' => $controller_action])));
     }

@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/25/2015
-     * Time: 4:06 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/25/2015
+ * Time: 4:06 PM
+ */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
 
@@ -23,7 +23,7 @@ class Arrays
      * @param $x
      * @return string
      */
-    static function toActionName($x)
+    public static function toActionName($x)
     {
         return (Strings::toActionName(((stripos($x, '__action') !== false) ? (str_ireplace('__action', '', $x)) : $x)));
     }
@@ -33,7 +33,7 @@ class Arrays
      * @param string $value
      * @param array $array
      */
-    static function addOnArray($key, $value, &$array = [])
+    public static function addOnArray($key, $value, &$array = [])
     {
         $array[$key] = $value;
     }
@@ -45,7 +45,7 @@ class Arrays
      * @param string $a
      * @return mixed
      */
-    static function isInstanceOfClosure($a)
+    public static function isInstanceOfClosure($a)
     {
         return self::checkIsInstanceOf($a, 'Closure');
     }
@@ -58,7 +58,7 @@ class Arrays
      * @param string $b
      * @return mixed
      */
-    static function checkIsInstanceOf($a, $b)
+    public static function checkIsInstanceOf($a, $b)
     {
         return (($a instanceof $b) ? $a() : $a);
     }
@@ -70,7 +70,7 @@ class Arrays
      * @param $x
      * @return string
      */
-    static function toControllerName($x)
+    public static function toControllerName($x)
     {
         return (Strings::toControllerName($x));
     }
@@ -81,7 +81,7 @@ class Arrays
      * @param array $a
      * @return array
      */
-    static function toControllerArray($a = [])
+    public static function toControllerArray($a = [])
     {
         return (array_map('self::toControllerName', $a));
     }
@@ -93,7 +93,7 @@ class Arrays
      * @param string $controller_name
      * @return array
      */
-    static function staticToArray($controller_name = '')
+    public static function staticToArray($controller_name = '')
     {
         return (array_map('self::toActionName', get_class_methods(Indexer::getControllerNameSpace($controller_name))));
     }
@@ -104,7 +104,7 @@ class Arrays
      * @param array $array
      * @return array
      */
-    static function removeBlank($array = [])
+    public static function removeBlank($array = [])
     {
         return array_values(array_diff($array, ['']));
     }
@@ -116,7 +116,7 @@ class Arrays
      * @param array $a
      * @return array
      */
-    static function abstractToArray($a = [])
+    public static function abstractToArray($a = [])
     {
         return (array_map('self::toActionName', array_keys((array)$a)));
     }

@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Parsers;
@@ -25,7 +25,6 @@ use Httpful\Http;
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
 use UIoT\App\Core\Helpers\Manipulators\Strings;
 use UIoT\App\Core\Layouts\Indexer;
-use UIoT\App\Data\Models\Layout;
 
 /**
  * Class DataHandler
@@ -39,7 +38,7 @@ class DataHandler
     /**
      * Start the Handler
      */
-    function __construct()
+    public function __construct()
     {
         $this->startHandler();
     }
@@ -116,7 +115,7 @@ class DataHandler
      *
      * @return array
      */
-    static function getParserArray()
+    public static function getParserArray()
     {
         return Arrays::toControllerArray(array_flip(Arrays::toControllerArray(self::$names)));
     }
@@ -125,7 +124,7 @@ class DataHandler
      * Start Indexing all Handlers and Layouts
      * Start the Handler, and register everything
      */
-    static function startHandler()
+    public static function startHandler()
     {
         /* register names */
         self::registerNames();
@@ -140,7 +139,7 @@ class DataHandler
     /**
      * Store Handler Information
      */
-    static function storeHandler()
+    public static function storeHandler()
     {
         /* get collectors */
         self::$collectors = DataCollector::getCollectors();
@@ -159,7 +158,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return bool
      */
-    static function parserExists($name)
+    public static function parserExists($name)
     {
         return (array_key_exists($name, self::$parsers));
     }
@@ -170,7 +169,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return mixed
      */
-    static function getParser($name)
+    public static function getParser($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]) : null);
     }
@@ -181,7 +180,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return mixed
      */
-    static function getParserMethod($name)
+    public static function getParserMethod($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]['method']) : null);
     }
@@ -192,7 +191,7 @@ class DataHandler
      * @param $name
      * @return \UIoT\App\Data\Models\Collector
      */
-    static function getParserCollector($name)
+    public static function getParserCollector($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]['collector']) : null);
     }
@@ -203,7 +202,7 @@ class DataHandler
      * @param $name
      * @return null
      */
-    static function getParserController($name)
+    public static function getParserController($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]['controller']) : null);
     }
@@ -214,7 +213,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return mixed
      */
-    static function getParserHandler($name)
+    public static function getParserHandler($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]['handler']) : null);
     }
@@ -226,7 +225,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return mixed
      */
-    static function getParserLayout($name)
+    public static function getParserLayout($name)
     {
         return ((self::parserExists($name)) ? (self::$parsers[$name]['layout']) : null);
     }
@@ -238,7 +237,7 @@ class DataHandler
      * @param string $name Parser Name
      * @return string|null (Layout Instance)
      */
-    static function openParserLayout($name)
+    public static function openParserLayout($name)
     {
         return ((self::parserExists($name)) ? (Indexer::getLayout(Strings::toControllerName($name))) : null);
     }

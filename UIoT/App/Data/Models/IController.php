@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -34,7 +34,7 @@ class IController extends stdClass implements InterfaceIController
     /**
      * Init Abstract Controller
      */
-    function __construct()
+    public function __construct()
     {
         Template::$disable_show_view = true;
     }
@@ -46,7 +46,7 @@ class IController extends stdClass implements InterfaceIController
      * @param $params
      * @return mixed
      */
-    function __call($key, $params)
+    public function __call($key, $params)
     {
         return (call_user_func_array($this->{$key}, $params));
     }

@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 10/6/2015
-     * Time: 11:51 AM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 10/6/2015
+ * Time: 11:51 AM
+ */
 
 namespace UIoT\App\Core\Communication\Routing;
 
@@ -20,7 +20,7 @@ final class Selector
      * @param Resource|Template $instance
      * @return mixed
      */
-    static function select($instance)
+    public static function select($instance)
     {
         return $instance->show();
     }
@@ -29,7 +29,7 @@ final class Selector
      * @param $render
      * @return Resource|Template
      */
-    static function instantiate($render)
+    public static function instantiate($render)
     {
         return $render;
     }

@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Controllers;
@@ -35,7 +35,7 @@ final class Login extends Controller
      *
      * @return string
      */
-    function __actionMain()
+    public function __actionMain()
     {
         $c
             = "<div class=\"row\">
@@ -62,7 +62,7 @@ final class Login extends Controller
      *
      * @return string
      */
-    function __actionPost()
+    public function __actionPost()
     {
         $message['text'] = 'Hello! testing message system ;)';
         $c

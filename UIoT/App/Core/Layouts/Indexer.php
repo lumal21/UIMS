@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Layouts;
@@ -33,7 +33,7 @@ final class Indexer
     /**
      * @var array
      */
-    static $layout = [];
+    public static $layout = [];
 
     /**
      * Add a Layout
@@ -41,7 +41,7 @@ final class Indexer
      * @param string $layout_name
      * @param string $view_name
      */
-    static function addLayout($layout_name, $view_name = '')
+    public static function addLayout($layout_name, $view_name = '')
     {
         (self::layoutExists($layout_name)) || (self::$layout[$layout_name] = ((!empty($view_name)) ? $view_name : $layout_name));
     }
@@ -52,7 +52,7 @@ final class Indexer
      * @param string $layout_name
      * @return bool
      */
-    static function layoutExists($layout_name)
+    public static function layoutExists($layout_name)
     {
         return array_key_exists($layout_name, self::$layout);
     }
@@ -62,7 +62,7 @@ final class Indexer
      *
      * @param string $layout_name
      */
-    static function removeLayout($layout_name)
+    public static function removeLayout($layout_name)
     {
         if (self::layoutExists($layout_name)) unset(self::$layout[$layout_name]);
     }
@@ -73,7 +73,7 @@ final class Indexer
      * @param string $view_name
      * @return mixed|array
      */
-    static function getLayoutName($view_name)
+    public static function getLayoutName($view_name)
     {
         return array_keys($view_name, self::$layout);
     }
@@ -84,7 +84,7 @@ final class Indexer
      * @param string $layout_name
      * @return mixed|string
      */
-    static function getLayoutView($layout_name)
+    public static function getLayoutView($layout_name)
     {
         return ((self::layoutExists($layout_name)) ? self::$layout[$layout_name] : '');
     }
@@ -95,7 +95,7 @@ final class Indexer
      * @param string $layout_name
      * @return string
      */
-    static function getLayout($layout_name)
+    public static function getLayout($layout_name)
     {
         return ((self::layoutExists($layout_name)) ? self::openLayout($layout_name) : '');
     }
@@ -106,7 +106,7 @@ final class Indexer
      * @param string $layout_name
      * @return string
      */
-    static function openLayout($layout_name)
+    public static function openLayout($layout_name)
     {
         if (self::layoutExists($layout_name)):
             /** @var Layout $c */
@@ -122,7 +122,7 @@ final class Indexer
      * @param string $layout_name
      * @return string
      */
-    static function getLayoutNameSpace($layout_name)
+    public static function getLayoutNameSpace($layout_name)
     {
         return (Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\'));
     }
@@ -133,7 +133,7 @@ final class Indexer
      * @param string $layout_name
      * @return mixed|null
      */
-    static function getLayoutResources($layout_name)
+    public static function getLayoutResources($layout_name)
     {
         return ((self::layoutExists($layout_name)) ? self::openLayoutResources($layout_name) : '');
     }
@@ -144,7 +144,7 @@ final class Indexer
      * @param string $layout_name
      * @return mixed
      */
-    static function openLayoutResources($layout_name)
+    public static function openLayoutResources($layout_name)
     {
         if (!self::layoutExists($layout_name))
             return;
@@ -152,6 +152,5 @@ final class Indexer
         $c = self::getLayoutNameSpace($layout_name);
         /** @var Layout $c */
         $c::__resources();
-
     }
 }

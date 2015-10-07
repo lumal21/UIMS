@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -40,7 +40,7 @@ class Brain
      *
      * @return mixed
      */
-    static function getItems()
+    public static function getItems()
     {
         return Raise::doRequest('resource');
     }
@@ -51,7 +51,7 @@ class Brain
      * @param Http ::string $method_name
      * @param Mime ::string $mime_type
      */
-    static function setTemplate($method_name, $mime_type)
+    public static function setTemplate($method_name, $mime_type)
     {
         self::adjustTemplate(self::$template = (Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type)));
     }
@@ -73,7 +73,7 @@ class Brain
      *
      * @param $mime_type
      */
-    static function setExpectedMimeType($mime_type)
+    public static function setExpectedMimeType($mime_type)
     {
         self::adjustTemplate(self::getTemplate()->expects($mime_type));
     }
@@ -84,7 +84,7 @@ class Brain
      *
      * @param $mime_type
      */
-    static function setMimeType($mime_type)
+    public static function setMimeType($mime_type)
     {
         self::adjustTemplate(self::getTemplate()->mime($mime_type));
     }
@@ -95,7 +95,7 @@ class Brain
      *
      * @param $method_name
      */
-    static function setRequestMethod($method_name)
+    public static function setRequestMethod($method_name)
     {
         self::adjustTemplate(self::getTemplate()->method($method_name));
     }
@@ -105,7 +105,7 @@ class Brain
      *
      * @param string $url
      */
-    static function setRequestUrl($url)
+    public static function setRequestUrl($url)
     {
         self::adjustTemplate(self::getTemplate()->uri($url));
     }
@@ -115,7 +115,7 @@ class Brain
      *
      * @return Response
      */
-    static function sendRequest()
+    public static function sendRequest()
     {
         return Request::d(null)->send();
     }

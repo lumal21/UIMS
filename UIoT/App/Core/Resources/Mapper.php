@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Resources;
@@ -34,14 +34,14 @@ final class Mapper
     /**
      * @var array
      */
-    static $the_array = [], $the_t_array = [], $folder = '', $t_folder = '';
+    public static $the_array = [], $the_t_array = [], $folder = '', $t_folder = '';
 
     /**
      * Set Resource Folder
      *
      * @param string $f
      */
-    static function setResourceFolder($f)
+    public static function setResourceFolder($f)
     {
         self::$folder = (RESOURCE_FOLDER . $f . '/');
     }
@@ -51,7 +51,7 @@ final class Mapper
      *
      * @param string $f
      */
-    static function setTemplateFolder($f)
+    public static function setTemplateFolder($f)
     {
         self::$t_folder = (RESOURCE_FOLDER . $f . '/');
     }
@@ -62,7 +62,7 @@ final class Mapper
      * @param string $file_name
      * @param string $mime_type
      */
-    static function addResource($file_name, $mime_type)
+    public static function addResource($file_name, $mime_type)
     {
         self::$the_array[$file_name] = [
             'mime_type' => $mime_type,
@@ -76,7 +76,7 @@ final class Mapper
      * @param string $file_name
      * @param string $mime_type
      */
-    static function addTemplate($file_name, $mime_type)
+    public static function addTemplate($file_name, $mime_type)
     {
         /** @noinspection PhpIncludeInspection */
         self::$the_t_array[$file_name] = [
@@ -92,7 +92,7 @@ final class Mapper
      * @param bool|true $header
      * @return null
      */
-    static function returnTemplate($file_name, $header = true)
+    public static function returnTemplate($file_name, $header = true)
     {
         if (!self::checkTemplateExistence($file_name))
             return;
@@ -107,7 +107,7 @@ final class Mapper
      * @param string $file_name
      * @return bool
      */
-    static function checkTemplateExistence($file_name)
+    public static function checkTemplateExistence($file_name)
     {
         return array_key_exists($file_name, self::$the_t_array);
     }
@@ -119,7 +119,7 @@ final class Mapper
      * @param bool $reset_session
      * @return mixed
      */
-    static function registerResources($layout_name, $reset_session = false)
+    public static function registerResources($layout_name, $reset_session = false)
     {
         /* remove if is needed */
         if ($reset_session) SIndexer::removeKey('layout');
@@ -137,7 +137,7 @@ final class Mapper
     /**
      * Update Resources from Layout
      */
-    static function resourceChanges()
+    public static function resourceChanges()
     {
         self::calculateResourceChanges();
     }
@@ -154,7 +154,7 @@ final class Mapper
      * The reason of these algorithm is only the page-side resources must be loaded.
      * to protect XSS, and hot-links.
      */
-    static function calculateResourceChanges()
+    public static function calculateResourceChanges()
     {
         // get array values
         $resourc_array = (array)array_keys(self::$the_array);
@@ -180,7 +180,7 @@ final class Mapper
      *
      * @return array
      */
-    static function getResourcesArray()
+    public static function getResourcesArray()
     {
         return ((SIndexer::keyExists('layout')) ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::$the_array));
     }
@@ -190,7 +190,7 @@ final class Mapper
      *
      * @param string $file_name
      */
-    static function updateResourceChange($file_name)
+    public static function updateResourceChange($file_name)
     {
         SIndexer::updateKey('layout', self::resourceRemove($file_name));
     }
@@ -202,7 +202,7 @@ final class Mapper
      * @param boolean $header
      * @return string
      */
-    static function returnResource($file_name, $header = true)
+    public static function returnResource($file_name, $header = true)
     {
         /* if resource doesn't exists, or resource is hotlinked we must show error */
         if (!self::checkResourceExistence($file_name))
@@ -243,7 +243,7 @@ final class Mapper
      * @param $resource_name
      * @return array
      */
-    static function resourceRemove($resource_name)
+    public static function resourceRemove($resource_name)
     {
         return array_diff(array_keys(self::$the_array), [$resource_name]);
     }
@@ -254,7 +254,7 @@ final class Mapper
      * @param string $file_name
      * @return bool
      */
-    static function checkResourceExistence($file_name)
+    public static function checkResourceExistence($file_name)
     {
         return in_array($file_name, self::getResourcesArray());
     }

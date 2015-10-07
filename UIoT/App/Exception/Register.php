@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Exception;
@@ -37,21 +37,21 @@ final class Register extends Run
      *
      * @var Register
      */
-    static $global;
+    public static $global;
 
     /**
      * static variable to access the Exception Handler instance
      *
      * @var Handler
      */
-    static $handler;
+    public static $handler;
 
     /**
      * Registers Filp's Whoop's Error Handler
      *
      * @author Claudio Santoro
      */
-    function __construct()
+    public function __construct()
     {
         self::$global = $this->push($this->pull('Houston, we have a problem!'));
     }
@@ -105,7 +105,7 @@ final class Register extends Run
      * @param bool $security_error
      * @throws Exception
      */
-    function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
+    public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
         /* @todo improve this code because isn't safe */
 

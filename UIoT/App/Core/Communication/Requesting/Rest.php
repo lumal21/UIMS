@@ -34,26 +34,26 @@ class Rest
      *
      * @var SETTINGS
      */
-    static $rest_data = [];
+    public static $rest_data = [];
 
     /**
      * Rest Handler
      *
      * @var Request
      */
-    static $handler;
+    public static $handler;
 
     /**
      * Default Url
      *
      * @var string
      */
-    static $raise_base_uri = 'http://localhost:80/';
+    public static $raise_base_uri = 'http://localhost:80/';
 
     /**
      * Set Raise Settings
      */
-    static function setSettings()
+    public static function setSettings()
     {
         self::$rest_data = (json_decode(SETTINGS)->raise);
     }
@@ -63,7 +63,7 @@ class Rest
      *
      * @param Request $options
      */
-    static function setTemplate($options)
+    public static function setTemplate($options)
     {
         Request::ini($options);
     }
@@ -71,7 +71,7 @@ class Rest
     /**
      * Set Raise Host (Base Url)
      */
-    static function setHost()
+    public static function setHost()
     {
         self::$raise_base_uri = (((self::$rest_data->ssl === true) ? 'https' : 'http') . '://' . self::$rest_data->host . ':' . self::$rest_data->port . '/' . ((!empty(self::$rest_data->base_path)) ? (self::$rest_data->base_path . '/') : ''));
     }
@@ -82,7 +82,7 @@ class Rest
      * @param string $url
      * @return mixed|string|array|null|object
      */
-    static function doRequest($url)
+    public static function doRequest($url)
     {
         return (new Data(self::$raise_base_uri . $url))->get_data('body');
     }

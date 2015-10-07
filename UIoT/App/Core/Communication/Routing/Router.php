@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Routing;
@@ -39,7 +39,7 @@ final class Router
     /**
      * Start's Router Procedure
      */
-    function __construct()
+    public function __construct()
     {
         /* map section */
         $this->reach();

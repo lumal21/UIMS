@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
@@ -36,7 +36,7 @@ final class Json
      * @param array $k
      * @return array
      */
-    static function valueArrayObjectToClosure(array $k = [])
+    public static function valueArrayObjectToClosure(array $k = [])
     {
         /* create the garbage array */
         $v = [];
@@ -54,7 +54,7 @@ final class Json
      * @param stdClass $object
      * @return RequestData
      */
-    static function createClosure(stdClass $object)
+    public static function createClosure(stdClass $object)
     {
         return new RequestData($object);
     }

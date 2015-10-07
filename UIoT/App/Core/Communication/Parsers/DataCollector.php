@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Parsers;
@@ -40,7 +40,7 @@ class DataCollector
     /**
      * Start the Handler
      */
-    function __construct()
+    public function __construct()
     {
         $this->startCollectors();
     }
@@ -64,7 +64,7 @@ class DataCollector
      * Start Indexing all Collectors
      * Start the Handler, and register everything
      */
-    static function startCollectors()
+    public static function startCollectors()
     {
         self::registerCollectors();
     }
@@ -74,7 +74,7 @@ class DataCollector
      *
      * @return array|mixed|null|object|string
      */
-    static function doRequest()
+    public static function doRequest()
     {
         return Raise::doRequest(DataManager::getController() . '/');
     }
@@ -86,7 +86,7 @@ class DataCollector
      * @param string|Handler $handler
      * @return Collector
      */
-    static function initCollector(Collector $collector, $handler = '')
+    public static function initCollector(Collector $collector, $handler = '')
     {
         return ($collector->passRequest(self::doRequest())->passHandler($handler));
     }

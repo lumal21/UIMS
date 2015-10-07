@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Controllers;
@@ -40,7 +40,7 @@ final class Commander
      * @param $controller_name
      * @param $action_name
      */
-    function __construct($controller_name, $action_name = 'main')
+    public function __construct($controller_name, $action_name = 'main')
     {
         if (Indexer::controllerExists($controller_name)):
             /* controller data */
@@ -72,7 +72,7 @@ final class Commander
      * @param $action_name
      * @return mixed
      */
-    function setAction($action_name)
+    public function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
         ($this->checkActionExistence($action_name)) || $this->throwProblem($action_name);
@@ -87,7 +87,7 @@ final class Commander
      * @param $action_name
      * @return bool
      */
-    function checkActionExistence($action_name)
+    public function checkActionExistence($action_name)
     {
         return (in_array((Strings::toActionName($action_name)), $this->controller_actions));
     }
@@ -98,7 +98,7 @@ final class Commander
      * @param mixed|string $returned_code
      * @return boolean|null
      */
-    function refineControllerData($returned_code)
+    public function refineControllerData($returned_code)
     {
         defined('CONTROLLER_CONTENT') || define('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
     }

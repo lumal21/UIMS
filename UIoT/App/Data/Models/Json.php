@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -30,27 +30,27 @@ use UIoT\App\Data\Interfaces\Json as InterfaceJson;
  */
 class Json implements InterfaceJson
 {
-    function __construct($params)
+    public function __construct($params)
     {
         $this->__setArray($params);
     }
 
-    function __setArray($array)
+    public function __setArray($array)
     {
         foreach ($array as $key => $value) $this->$key = $value;
     }
 
-    function __toEncode()
+    public function __toEncode()
     {
         return json_encode($this, [JSON_FORCE_OBJECT, JSON_NUMERIC_CHECK]);
     }
 
-    function __get($var)
+    public function __get($var)
     {
         return $this->$var;
     }
 
-    function __set($var, $value)
+    public function __set($var, $value)
     {
         $this->$var = $value;
     }

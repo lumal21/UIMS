@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
@@ -32,7 +32,7 @@ class Puttable extends Handler
     /**
      * @param $request_content
      */
-    function __construct($request_content)
+    public function __construct($request_content)
     {
         $this->content .= '<pre>';
         $this->content .= print_r($request_content, true);

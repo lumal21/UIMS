@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Layout;
@@ -33,7 +33,7 @@ final class Remove extends Main
     /**
      * Set Configuration
      */
-    function __configuration()
+    public function __configuration()
     {
         Pager::setTitle('Deletchu');
     }
@@ -41,7 +41,7 @@ final class Remove extends Main
     /**
      * Set Template
      */
-    function __templates()
+    public function __templates()
     {
         Mapper::setTemplateFolder('Main');
         Mapper::addTemplate('Layouts/Main.php', 'text/html');
@@ -52,7 +52,7 @@ final class Remove extends Main
      *
      * @return null|string|mixed
      */
-    function __show()
+    public function __show()
     {
         return Mapper::returnTemplate('Layouts/Main.html');
     }

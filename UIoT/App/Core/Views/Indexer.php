@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Views;
@@ -34,14 +34,14 @@ final class Indexer
      *
      * @var array
      */
-    static $view = [];
+    public static $view = [];
 
     /**
      * Add a View
      *
      * @param string $view_name
      */
-    static function addView($view_name = '')
+    public static function addView($view_name = '')
     {
         if (self::viewExists($view_name))
             return;
@@ -56,7 +56,7 @@ final class Indexer
      * @param string $view_name
      * @return bool
      */
-    static function viewExists($view_name = '')
+    public static function viewExists($view_name = '')
     {
         return (array_key_exists($view_name, self::$view));
     }
@@ -67,7 +67,7 @@ final class Indexer
      * @param string $view_name
      * @param string $action_name
      */
-    static function addViewAction($view_name, $action_name)
+    public static function addViewAction($view_name, $action_name)
     {
         ((!self::viewExists($view_name)) && (self::actionExists($view_name, $action_name))) || array_push(self::$view[$view_name], $action_name);
     }
@@ -79,7 +79,7 @@ final class Indexer
      * @param string $action_name
      * @return bool
      */
-    static function actionExists($view_name, $action_name)
+    public static function actionExists($view_name, $action_name)
     {
         return array_key_exists($action_name, self::$view[$view_name]);
     }
@@ -90,7 +90,7 @@ final class Indexer
      * @param string $view_name
      * @param string $action_name
      */
-    static function removeViewAction($view_name, $action_name)
+    public static function removeViewAction($view_name, $action_name)
     {
         if ((self::viewExists($view_name)) && (self::actionExists($view_name, $action_name))) unset(self::$view[$view_name][$action_name]);
     }
@@ -100,7 +100,7 @@ final class Indexer
      *
      * @param string $view_name
      */
-    static function removeView($view_name)
+    public static function removeView($view_name)
     {
         if (self::viewExists($view_name)) unset(self::$view[$view_name]);
     }
@@ -112,7 +112,7 @@ final class Indexer
      * @param string $action_name
      * @return mixed|array
      */
-    static function getViewName($action_name)
+    public static function getViewName($action_name)
     {
         return array_keys($action_name, self::$view);
     }
@@ -123,7 +123,7 @@ final class Indexer
      * @param string $view_name
      * @return mixed|array
      */
-    static function getViewAction($view_name)
+    public static function getViewAction($view_name)
     {
         return ((self::viewExists($view_name)) ? self::$view[$view_name] : []);
     }
@@ -134,7 +134,7 @@ final class Indexer
      * @param string $view_name
      * @return mixed
      */
-    static function getView($view_name)
+    public static function getView($view_name)
     {
         return ((self::viewExists($view_name)) ? (self::openView($view_name)) : '');
     }
@@ -145,7 +145,7 @@ final class Indexer
      * @param string $view_name
      * @return mixed
      */
-    static function openView($view_name)
+    public static function openView($view_name)
     {
         /* if view exists enable it */
         if (self::viewExists(self::getViewReverseSpace($view_name))) new $view_name;
@@ -158,7 +158,7 @@ final class Indexer
      * @param string $view_name_space
      * @return string
      */
-    static function getViewReverseSpace(&$view_name_space)
+    public static function getViewReverseSpace(&$view_name_space)
     {
         /* get view name space and returns */
         $view_name_space = self::getViewNameSpace($view_name = $view_name_space);
@@ -173,7 +173,7 @@ final class Indexer
      * @param string $view_name
      * @return string
      */
-    static function getViewNameSpace($view_name)
+    public static function getViewNameSpace($view_name)
     {
         return ((self::viewExists($view_name)) ? (Strings::toNameSpace($view_name, 'UIoT\\App\\Data\\Views\\')) : '');
     }

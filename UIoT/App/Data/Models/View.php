@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -36,7 +36,7 @@ class View implements InterfaceView
     /**
      * Start View
      */
-    function __construct()
+    public function __construct()
     {
         $this->__name();
         $this->__layout();
@@ -46,7 +46,7 @@ class View implements InterfaceView
     /**
      * Set Abstract Name
      */
-    function __name()
+    public function __name()
     {
         $this->vname = (new ReflectionClass(self::class))->getShortName();
     }
@@ -54,7 +54,7 @@ class View implements InterfaceView
     /**
      * Set Layout
      */
-    function __layout()
+    public function __layout()
     {
         LIndexer::addLayout($this->vname, $this->vname);
     }
@@ -62,7 +62,7 @@ class View implements InterfaceView
     /**
      * Show Layout
      */
-    function __show()
+    public function __show()
     {
         LIndexer::getLayout($this->vname);
     }

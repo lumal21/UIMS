@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Interfaces;
@@ -29,9 +29,9 @@ use stdClass;
  */
 interface RequestData
 {
-    function __construct(stdClass $a);
+    public function __construct(stdClass $a);
 
-    function __get($a);
+    public function __get($a);
 
-    function __set($a, $b);
+    public function __set($a, $b);
 }

@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -32,7 +32,7 @@ class Controller implements InterfaceController
     /**
      * Init Controller
      */
-    function __construct()
+    public function __construct()
     {
         /* nothing to do */
     }
@@ -40,7 +40,7 @@ class Controller implements InterfaceController
     /**
      * Default Action
      */
-    function __actionMain()
+    public function __actionMain()
     {
         /* nothing to do */
     }

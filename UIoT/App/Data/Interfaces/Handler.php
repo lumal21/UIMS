@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Interfaces;
@@ -27,7 +27,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface Handler
 {
-    function __construct($a);
+    public function __construct($a);
 
-    function __toString();
+    public function __toString();
 }

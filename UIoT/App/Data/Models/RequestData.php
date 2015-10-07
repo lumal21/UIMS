@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/29/2015
-     * Time: 2:22 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/29/2015
+ * Time: 2:22 PM
+ */
 
 namespace UIoT\App\Data\Models;
 
@@ -23,11 +23,11 @@ class RequestData extends stdClass implements InterfaceRequestData
      *
      * @param stdClass $k
      */
-    function __construct(stdClass $k)
+    public function __construct(stdClass $k)
     {
         /* set object vars */
         foreach (get_object_vars($k) as $name => $value) {
-                    $this->{$name} = $value;
+            $this->{$name} = $value;
         }
     }
 
@@ -36,7 +36,7 @@ class RequestData extends stdClass implements InterfaceRequestData
      *
      * @param $a
      */
-    function __get($a)
+    public function __get($a)
     {
         return $a;
     }
@@ -47,7 +47,7 @@ class RequestData extends stdClass implements InterfaceRequestData
      * @param $a
      * @param $b
      */
-    function __set($a, $b)
+    public function __set($a, $b)
     {
         $this->{$a} = $b;
     }

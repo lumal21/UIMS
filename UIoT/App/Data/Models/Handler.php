@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -34,7 +34,7 @@ class Handler implements InterfaceHandler
     /**
      * @param $request_content
      */
-    function __construct($request_content)
+    public function __construct($request_content)
     {
         /* nothing coded */
     }
@@ -42,7 +42,7 @@ class Handler implements InterfaceHandler
     /**
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
         return $this->content;
     }

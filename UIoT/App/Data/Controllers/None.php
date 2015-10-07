@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Controllers;
@@ -30,7 +30,7 @@ use UIoT\App\Data\Models\Controller;
  */
 final class None extends Controller
 {
-    function __actionMain()
+    public function __actionMain()
     {
         /* redirect to Login view */
         Accessor::redirectToController('Login');

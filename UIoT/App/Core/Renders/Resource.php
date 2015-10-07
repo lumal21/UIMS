@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Renders;
@@ -35,7 +35,7 @@ final class Resource
      *
      * @param array $arguments
      */
-    function __construct($arguments = [])
+    public function __construct($arguments = [])
     {
         $this->controller = $arguments['controller'];
         $this->file       = $arguments['file'];
@@ -46,7 +46,7 @@ final class Resource
      *
      * @return string
      */
-    function show()
+    public function show()
     {
         /* register resources */
         Mapper::registerResources($this->controller);

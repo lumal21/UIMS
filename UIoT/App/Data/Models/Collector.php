@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/29/2015
-     * Time: 3:00 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/29/2015
+ * Time: 3:00 PM
+ */
 
 namespace UIoT\App\Data\Models;
 
@@ -22,7 +22,7 @@ class Collector implements InterfaceCollector
      * @param $a
      * @return $this
      */
-    function passRequest($a)
+    public function passRequest($a)
     {
         /* save request data */
         $this->request = $a;
@@ -35,7 +35,7 @@ class Collector implements InterfaceCollector
      * @param $a
      * @return $this
      */
-    function passHandler($a)
+    public function passHandler($a)
     {
         /* store request data */
         $b = new $a($this->request);

@@ -45,7 +45,7 @@ final class Controllable extends IControllable
      * @param $controller_name
      * @param string $action_name
      */
-    function __construct($controller_name, $action_name = 'main')
+    public function __construct($controller_name, $action_name = 'main')
     {
         /* put abstract controller name */
         $this->c_name = (DataManager::setController($controller_name));

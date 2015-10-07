@@ -32,7 +32,7 @@ final class ClientData
      *
      * @return string|false
      */
-    static function getRealClientIpAddress()
+    public static function getRealClientIpAddress()
     {
         /* ip possible headers */
         $header_checks = [

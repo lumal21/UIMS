@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Sessions;
@@ -33,7 +33,7 @@ final class Indexer
      * @param string $key_name
      * @param string $key_value
      */
-    static function addKey($key_name, $key_value)
+    public static function addKey($key_name, $key_value)
     {
         (self::keyExists($key_name)) || ($_SESSION[$key_name] = $key_value);
     }
@@ -44,7 +44,7 @@ final class Indexer
      * @param string $key_name
      * @return bool
      */
-    static function keyExists($key_name)
+    public static function keyExists($key_name)
     {
         return array_key_exists($key_name, $_SESSION);
     }
@@ -54,7 +54,7 @@ final class Indexer
      *
      * @param string $key_name
      */
-    static function removeKey($key_name)
+    public static function removeKey($key_name)
     {
         if (self::keyExists($key_name)) unset($_SESSION[$key_name]);
     }
@@ -66,7 +66,7 @@ final class Indexer
      * @param $key_value
      * @return mixed
      */
-    static function updateKeyIfNeeded($key_name, $key_value)
+    public static function updateKeyIfNeeded($key_name, $key_value)
     {
         /* first check if exists, and if exists, check if value is different, if is, update value, else, do nothing */
         (!self::keyExists($key_name)) || (((self::getKeyValue($key_name)) != $key_value) ? (self::updateKey($key_name, $key_value)) : null);
@@ -82,7 +82,7 @@ final class Indexer
      * @param string $key_name
      * @return mixed
      */
-    static function getKeyValue($key_name)
+    public static function getKeyValue($key_name)
     {
         return ((self::keyExists($key_name)) ? $_SESSION[$key_name] : '');
     }
@@ -93,7 +93,7 @@ final class Indexer
      * @param $key_name
      * @param $key_value
      */
-    static function updateKey($key_name, $key_value)
+    public static function updateKey($key_name, $key_value)
     {
         ($_SESSION[$key_name] = $key_value);
     }

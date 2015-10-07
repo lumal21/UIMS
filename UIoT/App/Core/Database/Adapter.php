@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Database;
@@ -34,7 +34,7 @@ final class Adapter
     /**
      * creates MySQL Connection
      */
-    function __construct()
+    public function __construct()
     {
         $this->instance = (new Handler(json_decode(SETTINGS)->database));
     }
@@ -45,7 +45,7 @@ final class Adapter
      * @param PDOStatement $query
      * @return array
      */
-    function fetch_array(PDOStatement $query)
+    public function fetch_array(PDOStatement $query)
     {
         return $query->fetch(PDO::FETCH_ASSOC);
     }
@@ -56,7 +56,7 @@ final class Adapter
      * @param PDOStatement $query
      * @return object
      */
-    function fetch_object(PDOStatement $query)
+    public function fetch_object(PDOStatement $query)
     {
         return $query->fetch(PDO::FETCH_OBJ);
     }
@@ -68,7 +68,7 @@ final class Adapter
      * @param array $array
      * @return PDOStatement
      */
-    function secure_query($query = '', $array = [])
+    public function secure_query($query = '', $array = [])
     {
         return $this->instance->prepare($query)->execute($array);
     }
@@ -79,7 +79,7 @@ final class Adapter
      * @param string $query
      * @return PDOStatement
      */
-    function query($query = '')
+    public function query($query = '')
     {
         return $this->instance->query($query);
     }
@@ -90,7 +90,7 @@ final class Adapter
      * @param PDOStatement $query
      * @return int
      */
-    function row_count(PDOStatement $query)
+    public function row_count(PDOStatement $query)
     {
         return $query->rowCount();
     }

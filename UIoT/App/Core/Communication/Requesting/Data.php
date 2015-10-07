@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -40,7 +40,7 @@ final class Data
      * @param string $url
      * @throws \Httpful\Exception\ConnectionErrorException
      */
-    function __construct($url)
+    public function __construct($url)
     {
         Brain::setRequestUrl($url);
 
@@ -53,7 +53,7 @@ final class Data
      * @param string $var
      * @return Response
      */
-    function __get($var)
+    public function __get($var)
     {
         /* this switch is for closure calls (get abstract variables) */
         switch ($var):
@@ -72,7 +72,7 @@ final class Data
      * @param mixed $arguments
      * @return mixed
      */
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         /* this switch is for closure calls (get abstract methods) */
         switch ($name):

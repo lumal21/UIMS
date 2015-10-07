@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Layout;
@@ -34,7 +34,7 @@ class Main extends Layout
     /**
      * Set Resources
      */
-    function __resources()
+    public function __resources()
     {
         Mapper::setResourceFolder('None');
 
@@ -69,7 +69,7 @@ class Main extends Layout
     /**
      * Set Configuration
      */
-    function __configuration()
+    public function __configuration()
     {
         Pager::setTitle('PIKAA');
     }
@@ -77,7 +77,7 @@ class Main extends Layout
     /**
      * Set Templates
      */
-    function __templates()
+    public function __templates()
     {
         Mapper::setTemplateFolder('Main');
         Mapper::addTemplate('Layouts/Main.php', 'text/html');
@@ -88,7 +88,7 @@ class Main extends Layout
      *
      * @return null|mixed|string
      */
-    function __show()
+    public function __show()
     {
         return Mapper::returnTemplate('Layouts/Main.html');
     }

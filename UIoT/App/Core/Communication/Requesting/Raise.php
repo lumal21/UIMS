@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -30,7 +30,7 @@ final class Raise extends Rest
     /**
      * Start Raise
      */
-    function __construct()
+    public function __construct()
     {
         parent::setSettings();
         parent::setHost();

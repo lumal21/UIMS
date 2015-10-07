@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Controllers;
@@ -33,14 +33,14 @@ final class Indexer
     /**
      * @var array
      */
-    static $controller = [];
+    public static $controller = [];
 
     /**
      * Add a Controller
      *
      * @param string $controller_name
      */
-    static function addController($controller_name)
+    public static function addController($controller_name)
     {
         (self::controllerExists($controller_name)) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
     }
@@ -51,7 +51,7 @@ final class Indexer
      * @param string $controller_name
      * @return bool
      */
-    static function controllerExists($controller_name)
+    public static function controllerExists($controller_name)
     {
         return array_key_exists($controller_name, self::$controller);
     }
@@ -62,7 +62,7 @@ final class Indexer
      * @param string $controller_name
      * @return array|mixed|null
      */
-    static function getControllerActions($controller_name)
+    public static function getControllerActions($controller_name)
     {
         return ((self::controllerExists($controller_name)) ? VIndexer::getViewAction($controller_name) : null);
     }
@@ -73,7 +73,7 @@ final class Indexer
      * @param string $controller_name
      * @return null
      */
-    static function getController($controller_name)
+    public static function getController($controller_name)
     {
         return ((self::controllerExists($controller_name)) ? self::activeController($controller_name) : null);
     }
@@ -84,7 +84,7 @@ final class Indexer
      * @param string $controller_name
      * @return mixed
      */
-    static function activeController($controller_name)
+    public static function activeController($controller_name)
     {
         /* try to get controller, without check if exists */
         $c = self::getControllerNameSpace($controller_name);
@@ -99,7 +99,7 @@ final class Indexer
      * @param string $controller_name
      * @return string
      */
-    static function getControllerNameSpace($controller_name)
+    public static function getControllerNameSpace($controller_name)
     {
         return (Strings::toNameSpace($controller_name, 'UIoT\\App\\Data\\Controllers\\'));
     }

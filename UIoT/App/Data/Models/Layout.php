@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Models;
@@ -32,7 +32,7 @@ class Layout implements InterfaceLayout
     /**
      * Start Layout
      */
-    function __construct()
+    public function __construct()
     {
         $this->__resources();
         $this->__templates();
@@ -43,7 +43,7 @@ class Layout implements InterfaceLayout
     /**
      * Define Resources
      */
-    function __resources()
+    public function __resources()
     {
         /* not implemented */
     }
@@ -51,7 +51,7 @@ class Layout implements InterfaceLayout
     /**
      * Define Templates
      */
-    function __templates()
+    public function __templates()
     {
         /* not implemented */
     }
@@ -59,7 +59,7 @@ class Layout implements InterfaceLayout
     /**
      * Define Settings
      */
-    function __configuration()
+    public function __configuration()
     {
         /* not implemented */
     }
@@ -67,7 +67,7 @@ class Layout implements InterfaceLayout
     /**
      * Return Layout Code
      */
-    function __show()
+    public function __show()
     {
         /* not implemented */
     }

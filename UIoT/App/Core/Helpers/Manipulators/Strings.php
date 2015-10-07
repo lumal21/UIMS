@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/25/2015
-     * Time: 4:06 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/25/2015
+ * Time: 4:06 PM
+ */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
 
@@ -21,7 +21,7 @@ class Strings
      * @param string $namespace
      * @return string|false
      */
-    static function toNameSpace($class = '', $namespace = '')
+    public static function toNameSpace($class = '', $namespace = '')
     {
         return ((class_exists($namespace . ($class = self::toControllerName($class))) ? ($namespace . $class) : false));
     }
@@ -32,7 +32,7 @@ class Strings
      * @param string $string
      * @return string
      */
-    static function toControllerName($string = '')
+    public static function toControllerName($string = '')
     {
         return (self::toActionName($string));
     }
@@ -43,7 +43,7 @@ class Strings
      * @param $string
      * @return string
      */
-    static function toActionName($string = '')
+    public static function toActionName($string = '')
     {
         return (ucfirst(strtolower($string)));
     }
@@ -54,7 +54,7 @@ class Strings
      * @param string $string
      * @return string
      */
-    static function toRestUrlName($string = '')
+    public static function toRestUrlName($string = '')
     {
         return (strtolower($string));
     }
@@ -65,7 +65,7 @@ class Strings
      * @param $string
      * @return string
      */
-    static function toActionMethodName($string = '')
+    public static function toActionMethodName($string = '')
     {
         return ('__action' . self::toActionName($string));
     }
@@ -76,7 +76,7 @@ class Strings
      * @param string $string
      * @return string
      */
-    static function removeMethodName($string = '')
+    public static function removeMethodName($string = '')
     {
         return ((stripos($string, '__action') !== false) ? (self::toActionName(str_ireplace('__action', '', $string))) : (self::toActionName($string)));
     }

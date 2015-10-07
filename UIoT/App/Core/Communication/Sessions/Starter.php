@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Sessions;
@@ -38,7 +38,7 @@ final class Starter
     /**
      * Init session Handler
      */
-    function __construct()
+    public function __construct()
     {
         $this->__settings();
         $this->__security();
@@ -82,7 +82,7 @@ final class Starter
     /**
      * Start Session
      */
-    static function __start()
+    public static function __start()
     {
         session_start();
     }
@@ -90,7 +90,7 @@ final class Starter
     /**
      * Unset all Sessions
      */
-    static function __erase()
+    public static function __erase()
     {
         session_unset();
     }
@@ -98,7 +98,7 @@ final class Starter
     /**
      * Stop Session Handler
      */
-    static function __stop()
+    public static function __stop()
     {
         session_destroy();
     }

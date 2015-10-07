@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
@@ -33,7 +33,7 @@ class DeleteCollector extends Collector
      * @param $a
      * @return $this
      */
-    function passRequest($a)
+    public function passRequest($a)
     {
         /* save request data */
         $this->request = $a;

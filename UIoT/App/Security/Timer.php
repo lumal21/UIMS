@@ -16,13 +16,13 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 /*  License
  *  <UIoT CMS is the default content management system of uiot's
  *  architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Brasília>
+    Copyright (C) <2015>  <University of Brasï¿½lia>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ final class Timer
     /**
      * Set UIoT Execution
      */
-    function __construct()
+    public function __construct()
     {
         self::setExecutionTime(microtime(true));
         self::addExecutionLoop(microtime(true));
@@ -89,7 +89,7 @@ final class Timer
      * @param double $execution_loops
      * @return int
      */
-    static function addExecutionLoop($execution_loops)
+    public static function addExecutionLoop($execution_loops)
     {
         self::$execution_loops[] = $execution_loops;
     }
@@ -97,7 +97,7 @@ final class Timer
     /**
      * Check if Execution Time is Spending a lot of time
      */
-    static function checkExecutionCrash()
+    public static function checkExecutionCrash()
     {
         if (!self::checkLoopInterval())
             self::addExecutionLoop(microtime(true));
@@ -112,7 +112,7 @@ final class Timer
      *
      * @return bool
      */
-    static function checkLoopInterval()
+    public static function checkLoopInterval()
     {
         /* check if execution time is bigger than average */
         return (((self::getExecutionTime() / count(self::getExecutionLoops())) + (self::getExecutionTime() - array_sum(self::getExecutionLoops()))) > (array_sum(self::getExecutionLoops()) / count(self::getExecutionLoops())));
@@ -123,7 +123,7 @@ final class Timer
      *
      * @return int|float
      */
-    static function getExecutionTime()
+    public static function getExecutionTime()
     {
         return self::$execution_time;
     }
@@ -134,7 +134,7 @@ final class Timer
      * @param double $execution_time
      * @return float|int
      */
-    static function setExecutionTime($execution_time)
+    public static function setExecutionTime($execution_time)
     {
         return (self::$execution_time = $execution_time);
     }
@@ -144,7 +144,7 @@ final class Timer
      *
      * @return array
      */
-    static function getExecutionLoops()
+    public static function getExecutionLoops()
     {
         return self::$execution_loops;
     }
@@ -154,7 +154,7 @@ final class Timer
      *
      * @param array $execution_loops
      */
-    static function setExecutionLoops($execution_loops)
+    public static function setExecutionLoops($execution_loops)
     {
         self::$execution_loops = $execution_loops;
     }
@@ -162,7 +162,7 @@ final class Timer
     /**
      * Update Execution Time
      */
-    static function updateTime()
+    public static function updateTime()
     {
         self::setExecutionTime(microtime(true));
     }

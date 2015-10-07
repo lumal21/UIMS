@@ -1,10 +1,10 @@
 <?php
 /**
-     * Created by PhpStorm.
-     * User: claudio.santoro
-     * Date: 9/29/2015
-     * Time: 2:58 PM
-     */
+ * Created by PhpStorm.
+ * User: claudio.santoro
+ * Date: 9/29/2015
+ * Time: 2:58 PM
+ */
 
 namespace UIoT\App\Data\Interfaces;
 
@@ -14,7 +14,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface Collector
 {
-    function passRequest($a);
+    public function passRequest($a);
 
-    function passHandler($a);
+    public function passHandler($a);
 }

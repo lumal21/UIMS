@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Database;
@@ -36,7 +36,7 @@ final class Handler
      *
      * @param stdClass $c Connection Details
      */
-    function __construct(stdClass $c)
+    public function __construct(stdClass $c)
     {
         return (new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass)));
     }

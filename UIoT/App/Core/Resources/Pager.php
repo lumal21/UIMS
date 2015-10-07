@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Resources;
@@ -32,7 +32,7 @@ final class Pager
      *
      * @param string $page_title
      */
-    static function setTitle($page_title)
+    public static function setTitle($page_title)
     {
         echo "<title>{$page_title}</title>";
     }
@@ -42,7 +42,7 @@ final class Pager
      *
      * @param $script_name
      */
-    static function addEmbedScript($script_name)
+    public static function addEmbedScript($script_name)
     {
         /* first add resource */
         Mapper::addResource($script_name, 'script/javascript');
