@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Helpers\Visual;
@@ -43,7 +43,7 @@ final class Menu
      * @param string $text
      * @param string $ref_label
      */
-    function __addItem($url = '', $div_class = '', $div_id = '', $text = '', $ref_label = '')
+    public function __addItem($url = '', $div_class = '', $div_id = '', $text = '', $ref_label = '')
     {
         $this->content .= '<li class="' . $ref_label . '"><a href="' . $url . '" ><i class="' . $div_class . '" id="' . $div_id . '"></i > ' . $text . '</a ></li >';
     }
@@ -54,7 +54,7 @@ final class Menu
      * @param string $text
      * @param string $icon
      */
-    function __addLabel($text = '', $icon = '')
+    public function __addLabel($text = '', $icon = '')
     {
         $this->content .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
     }
@@ -62,7 +62,7 @@ final class Menu
     /**
      * Return Content
      */
-    function __returnItems()
+    public function __returnItems()
     {
         echo $this->content;
     }

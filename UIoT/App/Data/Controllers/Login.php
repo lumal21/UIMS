@@ -64,6 +64,7 @@ final class Login extends Controller
      */
     public function __actionPost()
     {
+        $message         = [];
         $message['text'] = 'Hello! testing message system ;)';
         $c
                          = "<div class=\"row\">

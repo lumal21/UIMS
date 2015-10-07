@@ -31,7 +31,14 @@ use UIoT\App\Core\Helpers\Manipulators\Strings;
  */
 final class DataManager
 {
-    private static $controller, $action;
+    /**
+     * @var string
+     */
+    private static $controller;
+    /**
+     * @var string
+     */
+    private static $action;
 
     /**
      * Create the DataManager Instance

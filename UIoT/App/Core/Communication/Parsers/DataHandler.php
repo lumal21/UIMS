@@ -33,7 +33,26 @@ use UIoT\App\Core\Layouts\Indexer;
 class DataHandler
 {
 
-    private static $handlers = [], $layouts = [], $parsers = [], $names = [], $collectors = [];
+    /**
+     * @var array
+     */
+    private static $handlers = [];
+    /**
+     * @var array
+     */
+    private static $layouts = [];
+    /**
+     * @var array
+     */
+    private static $parsers = [];
+    /**
+     * @var array
+     */
+    private static $names = [];
+    /**
+     * @var array
+     */
+    private static $collectors = [];
 
     /**
      * Start the Handler

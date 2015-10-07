@@ -38,6 +38,6 @@ final class Handler
      */
     public function __construct(stdClass $c)
     {
-        return (new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass)));
+        new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass));
     }
 }

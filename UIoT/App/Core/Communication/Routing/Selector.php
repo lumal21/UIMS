@@ -8,6 +8,7 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
+use UIoT\App\Core\Renders\Resource;
 use UIoT\App\Core\Renders\Template;
 
 /**
@@ -17,15 +18,24 @@ use UIoT\App\Core\Renders\Template;
 final class Selector
 {
     /**
-     * @param Resource|Template $instance
-     * @return mixed
+     * Show the Render
+     *
+     * @param $instance
+     * @return mixed|null|string
      */
     public static function select($instance)
     {
-        return $instance->show();
+        if ($instance instanceof Resource)
+            return $instance->show();
+        else if ($instance instanceof Template)
+            return $instance->show();
+        else
+            return null;
     }
 
     /**
+     * Get Render Instance
+     *
      * @param $render
      * @return Resource|Template
      */

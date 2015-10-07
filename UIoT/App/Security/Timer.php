@@ -101,9 +101,10 @@ final class Timer
     {
         if (!self::checkLoopInterval())
             self::addExecutionLoop(microtime(true));
-        else
-            /** @todo make a whoops error display message */
-            die('wrong: ' . (self::getExecutionTime() - array_sum(self::getExecutionLoops())));
+
+        //else
+        ///** @todo make a whoops error display message */
+        //die('wrong: ' . (self::getExecutionTime() - array_sum(self::getExecutionLoops())));
     }
 
     /**

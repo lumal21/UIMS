@@ -106,7 +106,7 @@ class Arrays
      */
     public static function removeBlank($array = [])
     {
-        return array_values(array_diff($array, ['']));
+        return ((is_array($array)) ? array_values(array_diff($array, [''])) : []);
     }
 
     /**
@@ -118,6 +118,6 @@ class Arrays
      */
     public static function abstractToArray($a = [])
     {
-        return (array_map('self::toActionName', array_keys((array)$a)));
+        return ((is_array($a)) ? (array_map('self::toActionName', array_keys((array)$a))) : []);
     }
 }

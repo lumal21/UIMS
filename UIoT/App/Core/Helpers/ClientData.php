@@ -60,7 +60,7 @@ final class ClientData
                     return $ip;
 
         /* if is nothing above */
-        return false;
+        return 'UNKNOWN';
     }
 
     /**

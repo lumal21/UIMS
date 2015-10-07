@@ -35,7 +35,22 @@ use UIoT\App\Core\Views\Indexer;
  */
 final class Template
 {
-    public static $disable_show_view = false, $enable_default_action = false;
+    /**
+     * @var bool
+     */
+    public static $disable_show_view = false;
+    /**
+     * @var bool
+     */
+    public static $enable_default_action = false;
+    /**
+     * @var string
+     */
+    private $controller;
+    /**
+     * @var string
+     */
+    private $action;
 
     /**
      * Init Template (Layout/Controller/View) Handler

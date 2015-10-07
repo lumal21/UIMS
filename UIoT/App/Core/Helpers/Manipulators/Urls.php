@@ -29,7 +29,34 @@ use UIoT\App\Core\Communication\Sessions\Indexer;
  */
 final class Urls
 {
-    private static $layouts = [], $resources = [], $url = [], $combined_url, $combinations, $reversed_f, $normal_f;
+    /**
+     * @var array
+     */
+    private static $layouts = [];
+    /**
+     * @var array
+     */
+    private static $resources = [];
+    /**
+     * @var array
+     */
+    private static $url = [];
+    /**
+     * @var array
+     */
+    private static $combined_url = [];
+    /**
+     * @var array
+     */
+    private static $combinations = [];
+    /**
+     * @var array
+     */
+    private static $reversed_f = [];
+    /**
+     * @var array
+     */
+    private static $normal_f = [];
 
     /**
      * @observation Code was Rearranged..
@@ -54,21 +81,6 @@ final class Urls
     }
 
     /**
-     * Set Resources
-     *
-     * @param array $resources
-     * @return array
-     */
-    public static function setResources($resources)
-    {
-        return (self::$resources = $resources);
-    }
-
-    /*
-     * Section Getters
-     */
-
-    /**
      * Add Url
      *
      * @param $url_string
@@ -77,6 +89,10 @@ final class Urls
     {
         self::$url[] = array_filter(explode('/', $url_string), 'strlen');
     }
+
+    /*
+     * Section Getters
+     */
 
     /**
      * Return Array without Controller Name
@@ -146,10 +162,6 @@ final class Urls
         return ((self::checkCombination()) ? self::getResourceControllerInUrl() : self::getControllerInUrl());
     }
 
-    /*
-     * Section Setters
-     */
-
     /**
      * Check Combination Validation
      *
@@ -160,6 +172,10 @@ final class Urls
         return (!empty(self::getReversedUrlCombination()['layout']) && !empty(self::getReversedUrlCombination()['resource']));
     }
 
+    /*
+     * Section Setters
+     */
+
     /**
      * Get Url Reverse Combination
      *
@@ -167,7 +183,7 @@ final class Urls
      */
     public static function getReversedUrlCombination()
     {
-        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset(array_reverse(self::getLayoutCombination())), 'resource' => reset(self::getResourceCombination())])) : (self::getReversedF())));
+        return Indexer::updateKeyIfNeeded('reverse_combination_url_router', ((!is_array(self::getReversedF())) ? (self::setReversedF(['layout' => reset($i = array_reverse(self::getLayoutCombination())), 'resource' => reset($k = self::getResourceCombination())])) : (self::getReversedF())));
     }
 
     /**
@@ -211,10 +227,6 @@ final class Urls
         return self::$combinations;
     }
 
-    /*
-     * Section Get Parts
-     */
-
     /**
      * Get Resource Combination
      *
@@ -224,6 +236,10 @@ final class Urls
     {
         return @(((!isset(self::getCombinations()['resource'])) && (!is_array(self::getCombinations()['resources']))) ? (self::$combinations['resource'] = (array_filter(self::combineUrl(), 'self::combinationTestTwo'))) : (self::getCombinations()['resource']));
     }
+
+    /*
+     * Section Get Parts
+     */
 
     /**
      * Makes a Big Check
@@ -241,10 +257,6 @@ final class Urls
         return (($c['controller'] != DEFAULT_CONTROLLER) ? (((!in_array($c['action'], self::getResources()) && ($c['action'] == $c['controller']))) ? ($c['action']) : ((($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
     }
 
-    /*
-     * Section Get Urls Combinations
-     */
-
     /**
      * Get Controller in Url
      *
@@ -255,6 +267,10 @@ final class Urls
         return Indexer::updateKeyIfNeeded('controller_url_router', ((isset(self::combineUrl()[0])) && (!empty(self::combineUrl()[0])) ? (self::combineUrl()[0]) : DEFAULT_CONTROLLER));
     }
 
+    /*
+     * Section Get Urls Combinations
+     */
+
     /**
      * Get Url Combination
      *
@@ -262,12 +278,8 @@ final class Urls
      */
     public static function getUrlCombination()
     {
-        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset(self::getLayoutCombination()), 'resource' => reset(self::getResourceCombination())])) : (self::getNormalF())));
+        return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i = self::getLayoutCombination()), 'resource' => reset($k = self::getResourceCombination())])) : (self::getNormalF())));
     }
-
-    /*
-     * Section Get Parts Combinations
-     */
 
     /**
      * Get Url Combination
@@ -278,6 +290,10 @@ final class Urls
     {
         return self::$normal_f;
     }
+
+    /*
+     * Section Get Parts Combinations
+     */
 
     /**
      * Set Url Combination
@@ -290,10 +306,6 @@ final class Urls
         return (self::$normal_f = $normal_f);
     }
 
-    /*
-     * Section Combination Tests
-     */
-
     /**
      * Get Action In the Url
      *
@@ -304,6 +316,10 @@ final class Urls
         return Indexer::updateKeyIfNeeded('action_url_router', ((isset(self::combineUrl()[1])) && (!empty(self::combineUrl()[1])) ? (self::combineUrl()[1]) : DEFAULT_VIEW_ACTION));
     }
 
+    /*
+     * Section Combination Tests
+     */
+
     /**
      * Get All Resources
      *
@@ -312,6 +328,17 @@ final class Urls
     public static function getResources()
     {
         return self::$resources;
+    }
+
+    /**
+     * Set Resources
+     *
+     * @param array $resources
+     * @return array
+     */
+    public static function setResources($resources)
+    {
+        return (self::$resources = $resources);
     }
 
     /*
@@ -373,7 +400,7 @@ final class Urls
      * Combination test
      * Phase 2
      *
-     * @param $x
+     * @param array $x
      * @return boolean
      */
     private static function combinationTestTwo($x)

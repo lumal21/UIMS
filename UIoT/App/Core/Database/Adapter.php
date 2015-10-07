@@ -26,11 +26,15 @@ use PDOStatement;
 
 /**
  * Class Adapter
- * @property PDO instance
  * @package UIoT\App\Core\Database
  */
 final class Adapter
 {
+    /**
+     * @var PDO
+     */
+    private $instance;
+
     /**
      * creates MySQL Connection
      */
@@ -70,7 +74,9 @@ final class Adapter
      */
     public function secure_query($query = '', $array = [])
     {
-        return $this->instance->prepare($query)->execute($array);
+        if ($this->instance instanceof PDO)
+            return $this->instance->prepare($query)->execute($array);
+        return null;
     }
 
     /**
@@ -81,7 +87,9 @@ final class Adapter
      */
     public function query($query = '')
     {
-        return $this->instance->query($query);
+        if ($this->instance instanceof PDO)
+            return $this->instance->query($query);
+        return null;
     }
 
     /**

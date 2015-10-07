@@ -34,7 +34,19 @@ final class Mapper
     /**
      * @var array
      */
-    public static $the_array = [], $the_t_array = [], $folder = '', $t_folder = '';
+    public static $the_array = [];
+    /**
+     * @var array
+     */
+    public static $the_t_array = [];
+    /**
+     * @var string
+     */
+    public static $folder = '';
+    /**
+     * @var string
+     */
+    public static $t_folder = '';
 
     /**
      * Set Resource Folder

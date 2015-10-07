@@ -31,6 +31,11 @@ use UIoT\App\Core\Resources\Mapper;
 final class Resource
 {
     /**
+     * @var string
+     */
+    private $controller, $file;
+
+    /**
      * Init Resource Handler
      *
      * @param array $arguments

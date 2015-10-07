@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Data\Views;
@@ -31,7 +31,7 @@ use UIoT\App\Data\Models\View;
  */
 final class Login extends View
 {
-    function __name()
+    public function __name()
     {
         $this->vname = (new ReflectionClass(self::class))->getShortName();
     }

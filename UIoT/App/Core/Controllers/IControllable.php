@@ -16,11 +16,12 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Controllers;
 
+use RuntimeException;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Helpers\Manipulators\Strings;
 use UIoT\App\Data\Models\IController;
@@ -38,6 +39,10 @@ class IControllable
      */
     protected function enableController($array = [])
     {
+        /* if is not array we have problem */
+        if (!is_array($array))
+            throw new RuntimeException('Fail! The IController Array is empty!');
+
         /* store array */
         $this->c_s_array = $array;
 

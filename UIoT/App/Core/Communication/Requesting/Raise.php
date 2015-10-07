@@ -32,7 +32,7 @@ final class Raise extends Rest
      */
     public function __construct()
     {
-        parent::setSettings();
-        parent::setHost();
+        self::setSettings();
+        self::setHost();
     }
 }
