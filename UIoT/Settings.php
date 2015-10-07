@@ -16,13 +16,13 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 /*  License
  *  <UIoT CMS is the default content management system of uiot's
  *  architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Brasília>
+    Copyright (C) <2015>  <University of Brasï¿½lia>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -86,7 +86,8 @@ C::__addJConstant('SETTINGS', [
             // white list ip to access security items and complete exceptions stack trace, debug tools etc.
             'white_ip_list' =>
                 [
-
+                    '127.0.0.1',
+                    'localhost'
                 ],
         ]
 ], JSON_FORCE_OBJECT);
