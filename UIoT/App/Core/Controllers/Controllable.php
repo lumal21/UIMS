@@ -42,7 +42,7 @@ final class Controllable extends IControllable
 {
     /**
      * Create an IControllable Instance
-     * @param $controller_name
+     * @param string $controller_name
      * @param string $action_name
      */
     public function __construct($controller_name, $action_name = 'main')

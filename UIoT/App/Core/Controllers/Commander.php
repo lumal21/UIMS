@@ -84,7 +84,7 @@ final class Commander
     /**
      * Check if Action Exists
      *
-     * @param $action_name
+     * @param string $action_name
      * @return bool
      */
     public function checkActionExistence($action_name)
@@ -107,7 +107,7 @@ final class Commander
      * Function Only to be called if something wrong happens
      * (Something wrong = action doesn't exists)
      *
-     * @param $action_name
+     * @param string $action_name
      * @throws \Exception
      */
     private function throwProblem($action_name)
