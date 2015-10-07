@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -73,7 +73,7 @@ class Rest
      */
     static function setHost()
     {
-        self::$raise_base_uri = (((self::$rest_data->ssl == true) ? 'https' : 'http') . '://' . self::$rest_data->host . ':' . self::$rest_data->port . '/' . ((!empty(self::$rest_data->base_path)) ? (self::$rest_data->base_path . '/') : ''));
+        self::$raise_base_uri = (((self::$rest_data->ssl === true) ? 'https' : 'http') . '://' . self::$rest_data->host . ':' . self::$rest_data->port . '/' . ((!empty(self::$rest_data->base_path)) ? (self::$rest_data->base_path . '/') : ''));
     }
 
     /**

@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Controllers;
@@ -27,7 +27,6 @@ use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
-use UIoT\App\Data\Models\IController;
 use UIoT\App\Exception\Register;
 
 /**
@@ -36,7 +35,6 @@ use UIoT\App\Exception\Register;
  * @property array|null c_array
  * @property string c_name
  * @property array|null c_s_array
- * @property IController c_data
  * @property string a_name
  * @package UIoT\App\Core\Controllers
  */

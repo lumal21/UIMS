@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Helpers\Manipulators;
@@ -337,7 +337,7 @@ final class Urls
      */
     private static function combinationTest($x)
     {
-        return (array_search($x, self::getLayouts()) != false);
+        return (array_search($x, self::getLayouts()) !== false);
     }
 
     /*
@@ -378,6 +378,6 @@ final class Urls
      */
     private static function combinationTestTwo($x)
     {
-        return (array_search($x, self::getResources()) != false);
+        return (array_search($x, self::getResources()) !== false);
     }
 }
