@@ -2,8 +2,8 @@
   "config": {
     "vendor-dir": "UIoT/Vendor"
   },
-  "name": "claudio.santoro/uiotcms",
-  "description": "UIoT Application Layer - CMS",
+  "name": "uiot/middleware_mc_srvcl_cms",
+  "description": "middleware_mc_srvcl_cms",
   "type": "project",
   "license": "GPL-3.0+",
   "authors": [
