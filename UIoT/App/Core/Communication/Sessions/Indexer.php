@@ -56,9 +56,8 @@ final class Indexer
      */
     public static function removeKey($key_name)
     {
-        if (self::keyExists($key_name)) {
+        if (self::keyExists($key_name))
             unset($_SESSION[$key_name]);
-        }
     }
 
     /**

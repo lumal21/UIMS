@@ -40,8 +40,8 @@
 
 namespace UIoT;
 
-use UIoT\App\Core\Controllers\Indexer as CIndexer;
-use UIoT\App\Core\Views\Indexer as VIndexer;
+use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
+use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /*
  * this file is necessary to register public and static controllers and views.
@@ -91,17 +91,23 @@ use UIoT\App\Core\Views\Indexer as VIndexer;
  */
 
 /* login page */
-VIndexer::addView('Login');
+ViewIndexer::addView('Login');
+
+/* test page */
+ViewIndexer::addView('Test');
 
 /**
  * Register Controllers
  */
 
 /* login page */
-CIndexer::addController('Login');
+ControllerIndexer::addController('Login');
+
+/* test page */
+ControllerIndexer::addController('Test');
 
 /* default page */
-CIndexer::addController('None');
+ControllerIndexer::addController('None');
 
 /* garbage */
 //Mapper::addResource('Scripts/Foundation/Foundation.joyride.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.reveal.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.dropdown.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.abide.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.alert.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.equalizer.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tooltip.js', 'text/javascript');Mapper::addResource('Scripts/Foundation/Foundation.tab.js', 'text/javascript');

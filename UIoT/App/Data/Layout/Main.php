@@ -35,7 +35,7 @@ class Main extends Layout
      * Set Resources
      * (Main)
      */
-    public function __resources()
+    public static function __resources()
     {
         Mapper::setResourceFolder('None');
         Mapper::addResource('Stylesheet/Styles.css', 'text/css');

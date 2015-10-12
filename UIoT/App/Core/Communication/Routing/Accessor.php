@@ -46,7 +46,7 @@ final class Accessor
      *
      * @param string $controller
      * @param string $controller_action
-     * @return Template
+     * @return string
      */
     public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
     {

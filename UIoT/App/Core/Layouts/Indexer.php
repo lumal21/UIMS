@@ -33,7 +33,7 @@ final class Indexer
     /**
      * @var array
      */
-    public static $layout = [];
+    private static $layout = [];
 
     /**
      * Add a Layout
@@ -64,9 +64,8 @@ final class Indexer
      */
     public static function removeLayout($layout_name)
     {
-        if (self::layoutExists($layout_name)) {
+        if (self::layoutExists($layout_name))
             unset(self::$layout[$layout_name]);
-        }
     }
 
     /**
@@ -110,23 +109,34 @@ final class Indexer
      */
     public static function openLayout($layout_name)
     {
-        if (self::layoutExists($layout_name)):
-            /** @var Layout $c */
-            $c = self::getLayoutNameSpace($layout_name);
-            new $c();
-        endif;
-        return '';
+        return ((self::layoutExists(self::getLayoutReverseNameSpace($layout_name))) ? (new $layout_name)->__show() : '');
+    }
+
+    /**
+     * Really Crazy but Works
+     * (Is for return a reverse namespace)
+     *
+     * @param string $layout_name_space
+     * @return string
+     */
+    public static function getLayoutReverseNameSpace(&$layout_name_space)
+    {
+        /* get layout name space and returns */
+        $layout_name_space = self::getLayoutNameSpace($layout_name = $layout_name_space);
+
+        /* return normal layout name */
+        return $layout_name;
     }
 
     /**
      * Return the Namespace form the Layout
      *
      * @param string $layout_name
-     * @return string
+     * @return Layout|string
      */
     public static function getLayoutNameSpace($layout_name)
     {
-        return (Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\'));
+        return ((self::layoutExists($layout_name)) ? (Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\')) : '');
     }
 
     /**
@@ -148,12 +158,6 @@ final class Indexer
      */
     public static function openLayoutResources($layout_name)
     {
-        if (!self::layoutExists($layout_name)) {
-            return;
-        }
-
-        $c = self::getLayoutNameSpace($layout_name);
-        /** @var Layout $c */
-        $c::__resources();
+        return ((self::layoutExists(self::getLayoutReverseNameSpace($layout_name))) ? $layout_name::__resources() : '');
     }
 }

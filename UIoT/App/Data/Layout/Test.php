@@ -19,50 +19,50 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Layout;
 
-use ReflectionClass;
-use UIoT\App\Core\Layouts\Indexer as LIndexer;
-use UIoT\App\Data\Interfaces\View as InterfaceView;
+use UIoT\App\Core\Resources\Mapper;
+use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Data\Models\Layout;
 
 /**
- * Class View
- * @property string view
- * @property string vname
- * @package UIoT\App\Data\Models\Types
+ * Class Test
+ * @package UIoT\App\Data\Layout
  */
-class View implements InterfaceView
+class Test extends Layout
 {
     /**
-     * Start View
+     * Set Resources
      */
-    public function __construct()
+    public static function __resources()
     {
-        $this->__name();
-        $this->__layout();
+        Mapper::setResourceFolder('None');
     }
 
     /**
-     * Set Abstract Name
+     * Set Configuration
      */
-    public function __name()
+    public function __configuration()
     {
-        $this->vname = (new ReflectionClass(self::class))->getShortName();
+        Pager::setTitle('Hello World');
     }
 
     /**
-     * Set Layout
+     * Set Templates
      */
-    public function __layout()
+    public function __templates()
     {
-        LIndexer::addLayout($this->vname, $this->vname);
+        Mapper::setTemplateFolder('Test');
+        Mapper::addTemplate('Layouts/Test.php', 'text/html');
     }
 
     /**
-     * Show Layout
+     * Return Template
+     *
+     * @return null|mixed|string
      */
     public function __show()
     {
-        return LIndexer::getLayout($this->vname);
+        return Mapper::returnTemplate('Layouts/Test.php');
     }
 }

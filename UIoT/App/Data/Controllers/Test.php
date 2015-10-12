@@ -19,34 +19,25 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Data\Controllers;
+
+use PFBC;
+use UIoT\App\Data\Models\Controller;
 
 /**
- * Class Constants
- * @package UIoT\App\Core\Helpers\Manipulators
+ * Class Test
+ * @package UIoT\App\Data\Controllers
  */
-final class Constants
+final class Test extends Controller
 {
     /**
-     * Define a Constant with jSON
+     * @todo Make this beauty
+     * This is an Example and Beta Code!
      *
-     * @param string $a Name
-     * @param mixed $b Value
-     * @param int $c jSON Options
+     * @return string
      */
-    public static function addJsonConstant($a, $b = '', $c = 0)
+    public function __actionMain()
     {
-        self::addConstant($a, json_encode($b, $c));
-    }
 
-    /**
-     * Define a Constant
-     *
-     * @param string $a Name
-     * @param string $b Value
-     */
-    public static function addConstant($a, $b = '')
-    {
-        defined($a) || define($a, $b);
     }
 }

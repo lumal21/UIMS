@@ -78,7 +78,7 @@ final class Mapper
     {
         self::$the_array[$file_name] = [
             'mime_type' => $mime_type,
-            'file_content' => file_get_contents(self::$folder . $file_name)
+            'file_content' => self::parseResourceFile(self::$folder . $file_name)
         ];
     }
 
@@ -90,10 +90,9 @@ final class Mapper
      */
     public static function addTemplate($file_name, $mime_type)
     {
-        /** @noinspection PhpIncludeInspection */
         self::$the_t_array[$file_name] = [
             'mime_type' => $mime_type,
-            'file_content' => @include_once(self::$t_folder . $file_name)
+            'file_content' => self::parseTemplateFile(self::$t_folder . $file_name)
         ];
     }
 
@@ -101,17 +100,11 @@ final class Mapper
      * Return Template
      *
      * @param string $file_name
-     * @param bool|true $header
-     * @return null
+     * @return string
      */
-    public static function returnTemplate($file_name, $header = true)
+    public static function returnTemplate($file_name)
     {
-        if (!self::checkTemplateExistence($file_name)) {
-            return;
-        }
-
-        (!$header) || (header('Content-Type: ' . (self::$the_t_array[$file_name]['mime_type'])));
-        self::$the_t_array[$file_name]['file_content'];
+        return ((self::checkTemplateExistence($file_name)) ? (self::$the_t_array[$file_name]['file_content']) : '');
     }
 
     /**
@@ -135,9 +128,7 @@ final class Mapper
     public static function registerResources($layout_name, $reset_session = false)
     {
         /* remove if is needed */
-        if ($reset_session) {
-            SIndexer::removeKey('layout');
-        }
+        (!$reset_session) || SIndexer::removeKey('layout');
 
         /* register the layout */
         LIndexer::addLayout($layout_name, strtok($layout_name, '_'));
@@ -146,14 +137,6 @@ final class Mapper
         LIndexer::getLayoutResources($layout_name);
 
         /* resource must change */
-        self::resourceChanges();
-    }
-
-    /**
-     * Update Resources from Layout
-     */
-    public static function resourceChanges()
-    {
         self::calculateResourceChanges();
     }
 
@@ -175,9 +158,7 @@ final class Mapper
         $resourc_array = (array)array_keys(self::$the_array);
 
         /* if the session doesn't exists, add then */
-        if (!SIndexer::keyExists('layout')) {
-            SIndexer::addKey('layout', $resourc_array);
-        }
+        (SIndexer::keyExists('layout')) || SIndexer::addKey('layout', $resourc_array);
 
         $session_array = (array)SIndexer::getKeyValue('layout');
 
@@ -222,9 +203,15 @@ final class Mapper
     public static function returnResource($file_name, $header = true)
     {
         /* if resource doesn't exists, or resource is hotlinked we must show error */
-        if (!self::checkResourceExistence($file_name)) {
-            return self::problem();
-        }
+        (self::checkResourceExistence($file_name)) || (Register::$global->errorMessage(9003,
+            "Stop! D'not Hotlinks!",
+            'Details: ',
+            [
+                'What Happened?' => "You're a bitch, and trying to get resources...",
+                'Resolution:' => "Stop giving 555xxxx requests!",
+                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+            ]
+        ));
 
         /* update the resource change */
         self::updateResourceChange($file_name);
@@ -237,25 +224,6 @@ final class Mapper
     }
 
     /**
-     * Function Only to be called if something wrong happens
-     * (Something wrong = Hotlink)
-     *
-     * @throws \Exception
-     */
-    private static function problem()
-    {
-        Register::$global->errorMessage(9003,
-            "Stop! D'not Hotlinks!",
-            'Details: ',
-            [
-                'What Happened?' => "You're a bitch, and trying to get resources...",
-                'Resolution:' => "Stop giving 555xxxx requests!",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
-    }
-
-    /**
      * Remove Resource
      *
      * @param string $resource_name
@@ -264,6 +232,32 @@ final class Mapper
     public static function resourceRemove($resource_name)
     {
         return array_diff(array_keys(self::$the_array), [$resource_name]);
+    }
+
+    /**
+     * Parse Template File
+     *
+     * @param string $file_name
+     * @return string
+     */
+    public static function parseTemplateFile($file_name = '')
+    {
+        ob_start();
+        include_once $file_name;
+        $template = ob_get_contents();
+        ob_end_clean();
+        return $template;
+    }
+
+    /**
+     * Parse Resource File
+     *
+     * @param string $file_name
+     * @return string
+     */
+    public static function parseResourceFile($file_name = '')
+    {
+        return file_get_contents($file_name);
     }
 
     /**

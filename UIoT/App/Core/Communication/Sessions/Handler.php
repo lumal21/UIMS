@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Communication\Sessions;
@@ -63,7 +63,7 @@ final class Handler extends SessionHandler
         $data = parent::read($id);
 
         /* check if session timed-out, if yes, erase session */
-        if (self::check_time_out($id)) Indexer::removeKey($id);
+        (!self::check_time_out($id)) || Indexer::removeKey($id);
 
         /* return session data */
         return mcrypt_decrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);

@@ -20,8 +20,8 @@
  */
 
 /*  License
- *  <UIoT CMS is the default content management system of uiot's
- *  architecture and environment of the client-side.>
+    <UIoT CMS is the default content management system of uiot's
+    architecture and environment of the client-side.>
     Copyright (C) <2015>  <University of Brasília>
 
     This program is free software: you can redistribute it and/or modify

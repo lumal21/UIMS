@@ -61,9 +61,7 @@ class IControllable
     protected function enableController($array = [])
     {
         /* if is not array we have problem */
-        if (!is_array($array)) {
-            throw new RuntimeException('Fail! The IController Array is empty!');
-        }
+        (is_array($array)) || new RuntimeException('Fail! The IController Array is empty!');
 
         /* store array */
         $this->c_s_array = $array;
@@ -86,10 +84,9 @@ class IControllable
      */
     private function addMethods()
     {
-        foreach ($this->c_s_array as $method => $request):
+        foreach ($this->c_s_array as $method => $request)
             $this->c_data->{Strings::toActionMethodName($method)} = function () use ($method) {
                 return DataManager::getInstance($method);
             };
-        endforeach;
     }
 }

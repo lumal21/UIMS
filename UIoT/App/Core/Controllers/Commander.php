@@ -22,6 +22,7 @@
 namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Strings;
 use UIoT\App\Exception\Register;
 
@@ -42,20 +43,17 @@ final class Commander
      */
     public function __construct($controller_name, $action_name = 'main')
     {
-        /* non abstract controller */
+        /* if is non abstract controller or is an abstract controller */
         if (Indexer::controllerExists($controller_name)):
             $this->controller         = (Indexer::getController($controller_name));
             $this->controller_actions = (Arrays::staticToArray($controller_name));
             $this->controller_name    = $controller_name;
-            return;
+        else:
+            $c                        = (new Controllable($controller_name, $action_name));
+            $this->controller         = $c->c_data;
+            $this->controller_actions = (Arrays::abstractToArray($c->c_s_array));
+            $this->controller_name    = (Strings::toControllerName($controller_name));
         endif;
-
-        /* abstract  controller */
-        $c                        = (new Controllable($controller_name, $action_name));
-        $this->controller         = $c->c_data;
-        $this->controller_actions = (Arrays::abstractToArray($c->c_s_array));
-        $this->controller_name    = (Strings::toControllerName($controller_name));
-        return;
     }
 
     /**
@@ -99,10 +97,9 @@ final class Commander
      * Refine Controller Code
      *
      * @param mixed|string $returned_code
-     * @return boolean|null
      */
     public function refineControllerData($returned_code)
     {
-        defined('CONTROLLER_CONTENT') || define('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
+        Constants::addConstant('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
     }
 }

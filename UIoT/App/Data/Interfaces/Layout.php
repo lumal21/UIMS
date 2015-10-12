@@ -29,7 +29,7 @@ interface Layout
 {
     public function __construct();
 
-    public function __resources();
+    public static function __resources();
 
     public function __configuration();
 

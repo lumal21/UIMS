@@ -108,13 +108,16 @@ final class Register extends Run
      */
     public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
     {
-        if ((QUERY_STRING == 'de') && (!$security_error)) {
-            $code -= 9000;
-        }
-        if (!$security_error) {
-            SHandler::checkIpAddressAuthority();
-        }
+        /* check if is not in security mode and if enabled developer details */
+        ((QUERY_STRING != 'de') || (($security_error) || ($code -= 9000)));
+
+        /* check if you have valid access */
+        ($security_error) || SHandler::checkIpAddressAuthority();
+
+        /* add data table */
         self::$handler->addDataTable($message_title, $message);
+
+        /* handle exception */
         $this->handleException(new Exception($title, $code));
     }
 }

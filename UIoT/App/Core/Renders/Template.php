@@ -89,9 +89,6 @@ final class Template
      */
     private function aView()
     {
-        /* get layout from the parser */
-        DataHandler::getParserLayout($this->action);
-
         /* open the layout */
         return DataHandler::openParserLayout($this->action);
     }

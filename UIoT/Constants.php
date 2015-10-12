@@ -53,9 +53,9 @@ use UIoT\App\Core\Helpers\Manipulators\Constants as C;
 /*
  * UIoTCMS Root Folder
  * That folder is considered as the folder where is the folder /UIoT
- * Example: C:\myfolder\apache\htdocs\somefolder\UIoT\ (That is the Application ROOT Folder)
+ * Example: C:\my folder\apache\htdocs\some folder\UIoT\ (That is the Application ROOT Folder)
  */
-C::__addConstant('ROOT_FOLDER', __DIR__);
+C::addConstant('ROOT_FOLDER', __DIR__);
 
 /*
  * UIoTCMS Base Folder
@@ -63,7 +63,7 @@ C::__addConstant('ROOT_FOLDER', __DIR__);
  * Example: C:\myfolder\apache\htdocs\somefolder\ (That is the Application BASE folder)
  * Observation: Base folder it's the same place where Index.php is
  */
-C::__addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
+C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
 
 /*
  * UIoTCMS Resources Folder
@@ -72,7 +72,7 @@ C::__addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
  * But must set the New Path here.
  *  Warning: Vendor folder location, CAN'T be changed!
  */
-C::__addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
+C::addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
 
 /**
  * Registering Constants
@@ -100,7 +100,7 @@ C::__addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
  *      3. /my/file..../file.extension
  *  And my-ass is not an resource-type listed here.
  */
-C::__addJConstant('RESOURCE_TYPES', [
+C::addJsonConstant('RESOURCE_TYPES', [
         '',
         'Images',
         'Fonts',
@@ -141,7 +141,7 @@ C::__addJConstant('RESOURCE_TYPES', [
  *  But remember: The Layout REGISTER the resources FOLDERS.
  *  And to the RESOURCES from that LAYOUT be accessible you need REGISTER the LAYOUT in this ARRAY.
  */
-C::__addJConstant('PREDEFINED_LAYOUTS', [
+C::addJsonConstant('PREDEFINED_LAYOUTS', [
         '',
         'Add',
         'Edit',
@@ -159,31 +159,31 @@ C::__addJConstant('PREDEFINED_LAYOUTS', [
  * Global Variable (Server Variable)
  * Request URL
  */
-C::__addConstant('REQUEST_URL', @$_SERVER['REQUEST_URI']);
+C::addConstant('REQUEST_URL', @$_SERVER['REQUEST_URI']);
 
 /*
  * Global Variable (Server Variable)
  * Script Name
  */
-C::__addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
+C::addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
 
 /*
  * Global Variable (Server Variable)
  * Query String
  */
-C::__addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
+C::addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
 
 /*
  * Global Variable (Server Variable)
  * PhP Self
  */
-C::__addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
+C::addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
 
 /*
  * Global Variable (Server Variable)
  * Server
  */
-C::__addJConstant('SERVER_WEB', @$_SERVER);
+C::addJsonConstant('SERVER_WEB', @$_SERVER);
 
 /**
  * MVC Constants
@@ -193,16 +193,16 @@ C::__addJConstant('SERVER_WEB', @$_SERVER);
  * Global MVC Constants
  * Default View
  */
-C::__addConstant('DEFAULT_VIEW', 'None');
+C::addConstant('DEFAULT_VIEW', 'None');
 
 /*
  * Global MVC Constants
  * Default Controller
  */
-C::__addConstant('DEFAULT_CONTROLLER', 'None');
+C::addConstant('DEFAULT_CONTROLLER', 'None');
 
 /*
  * Global MVC Constants
  * Default View Action (Default Layout)
  */
-C::__addConstant('DEFAULT_VIEW_ACTION', 'Main');
+C::addConstant('DEFAULT_VIEW_ACTION', 'Main');

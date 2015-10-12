@@ -38,13 +38,11 @@ final class Selector
      */
     public static function select($instance)
     {
-        if ($instance instanceof Resource) {
+        if ($instance instanceof Resource)
             return $instance->show();
-        } else if ($instance instanceof Template) {
+        else if ($instance instanceof Template)
             return $instance->show();
-        } else {
-            return null;
-        }
+        return null;
     }
 
     /**

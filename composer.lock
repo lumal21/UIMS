@@ -4,9 +4,107 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "838061c5106a5f018b4b0346c517dfef",
-    "content-hash": "6607db64571b4171241f95183d365e0e",
+    "hash": "ac0a658245b9c37334c14e3e39f5f336",
+    "content-hash": "5a0620ec8d09b326ad65aedd244fc115",
     "packages": [
+        {
+            "name": "easyframework/collections",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/italolelis/collections.git",
+                "reference": "a52977ec463b25d958b9897f56681f19eb6540fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/italolelis/collections/zipball/a52977ec463b25d958b9897f56681f19eb6540fd",
+                "reference": "a52977ec463b25d958b9897f56681f19eb6540fd",
+                "shasum": ""
+            },
+            "require": {
+                "easyframework/generics": "~2.0",
+                "symfony/property-access": "~2.6"
+            },
+            "require-dev": {
+                "php": ">=5.4.0",
+                "phpunit/phpunit": "~4.5",
+                "symfony/var-dumper": "~2.6."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collections\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ítalo Lelis de Vietro",
+                    "email": "italolelis@lellysinformatica.com"
+                }
+            ],
+            "description": "Easy Framework Collection Component",
+            "homepage": "https://github.com/LellysInformatica/collections",
+            "keywords": [
+                "collection",
+                "easy",
+                "framework",
+                "generics"
+            ],
+            "time": "2015-07-03 15:17:00"
+        },
+        {
+            "name": "easyframework/generics",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/italolelis/generics.git",
+                "reference": "f7e8322195d6b5a6c77095afe5943b783bcbe851"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/italolelis/generics/zipball/f7e8322195d6b5a6c77095afe5943b783bcbe851",
+                "reference": "f7e8322195d6b5a6c77095afe5943b783bcbe851",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ítalo Lelis de Vietro",
+                    "email": "italolelis@lellysinformatica.com"
+                }
+            ],
+            "description": "Easy Framework Generics Component",
+            "homepage": "http://easyframework.net/",
+            "keywords": [
+                "easy",
+                "framework",
+                "generics"
+            ],
+            "time": "2014-08-26 19:03:28"
+        },
         {
             "name": "filp/whoops",
             "version": "1.1.7",
@@ -64,6 +162,55 @@
                 "zf2"
             ],
             "time": "2015-06-29 05:42:04"
+        },
+        {
+            "name": "italolelis/datatables",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/italolelis/datatables.git",
+                "reference": "c16caea6e0c11536a7c3440d9d288999cd95d0c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/italolelis/datatables/zipball/c16caea6e0c11536a7c3440d9d288999cd95d0c2",
+                "reference": "c16caea6e0c11536a7c3440d9d288999cd95d0c2",
+                "shasum": ""
+            },
+            "require": {
+                "easyframework/collections": "~4.1",
+                "symfony/event-dispatcher": "~2.6",
+                "symfony/property-access": "~2.6"
+            },
+            "require-dev": {
+                "php": ">=5.4.0",
+                "phpunit/phpunit": "~4.5",
+                "symfony/var-dumper": "~2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datatable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ítalo Lelis de Vietro",
+                    "email": "italolelis@gmail.com"
+                }
+            ],
+            "description": "A PHP wrapper for DataTables (http://www.datatables.net) plugin for jQuery.",
+            "homepage": "https://github.com/italolelis/datatables",
+            "keywords": [
+                "datatables",
+                "grid",
+                "wrapper"
+            ],
+            "time": "2015-08-26 18:19:53"
         },
         {
             "name": "jalle19/php-whitelist-check",
@@ -158,50 +305,122 @@
             "time": "2015-03-08 15:22:23"
         },
         {
-            "name": "pfbc/pfbc",
-            "version": "3.1",
+            "name": "symfony/event-dispatcher",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lkorth/php-form-builder-class.git",
-                "reference": "e1f9c25b71ee82c60a62a61de63a5926f9d8fc17"
+                "url": "https://github.com/symfony/event-dispatcher.git",
+                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lkorth/php-form-builder-class/zipball/e1f9c25b71ee82c60a62a61de63a5926f9d8fc17",
-                "reference": "e1f9c25b71ee82c60a62a61de63a5926f9d8fc17",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
+                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.0,>=2.0.5",
+                "symfony/dependency-injection": "~2.6",
+                "symfony/expression-language": "~2.6",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/stopwatch": "~2.3"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "PFBC": "."
+                "psr-4": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GNU GPL v3"
+                "MIT"
             ],
             "authors": [
                 {
-                    "email": "ajporterfield@gmail.com",
-                    "role": "Owner"
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 },
                 {
-                    "email": "moncojhr@gmail.com",
-                    "role": "Committer"
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Rapid form bulding in PHP",
-            "homepage": "http://code.google.com/p/php-form-builder-class/",
-            "keywords": [
-                "form",
-                "html",
-                "php"
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-09-22 13:49:29"
+        },
+        {
+            "name": "symfony/property-access",
+            "version": "v2.7.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/property-access.git",
+                "reference": "f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c",
+                "reference": "f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\PropertyAccess\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
             ],
-            "time": "2014-03-14 04:14:24"
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony PropertyAccess Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "access",
+                "array",
+                "extraction",
+                "index",
+                "injection",
+                "object",
+                "property",
+                "property path",
+                "reflection"
+            ],
+            "time": "2015-08-24 07:13:45"
         },
         {
             "name": "xrstf/ip-utils",

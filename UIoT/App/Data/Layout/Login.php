@@ -34,7 +34,7 @@ class Login extends Layout
     /**
      * Set Resources
      */
-    public function __resources()
+    public static function __resources()
     {
         Mapper::setResourceFolder('None');
         Mapper::addResource('Images/6.jpg', 'image/jpg');
@@ -67,6 +67,6 @@ class Login extends Layout
      */
     public function __show()
     {
-        return Mapper::returnTemplate('Layouts/Login.html');
+        return Mapper::returnTemplate('Layouts/Login.php');
     }
 }

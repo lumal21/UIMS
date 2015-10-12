@@ -100,12 +100,11 @@ final class Router
         $get  = [];
 
         /* put query string into $GET */
-        foreach (Urls::combineUrlSimple() as $key => $value) {
+        foreach (Urls::combineUrlSimple() as $key => $value)
             ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $get)) : Arrays::addOnArray($last, urldecode($value), $get));
-        }
 
         /* define super global */
-        Constants::__addJConstant('GET_WEB', $get);
+        Constants::addJsonConstant('GET_WEB', $get);
 
         return true;
     }

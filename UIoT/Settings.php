@@ -47,7 +47,7 @@ use UIoT\App\Core\Helpers\Manipulators\Constants as C;
  * Please be Careful at configuring the settings
  */
 
-C::__addJConstant('SETTINGS', [
+C::addJsonConstant('SETTINGS', [
     // database settings (not really necessary, because the cms doesn't uses database connection
     // but you can set and enable cms database connection if you want
     'database' =>

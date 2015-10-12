@@ -19,50 +19,20 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Views;
+
 
 use ReflectionClass;
-use UIoT\App\Core\Layouts\Indexer as LIndexer;
-use UIoT\App\Data\Interfaces\View as InterfaceView;
+use UIoT\App\Data\Models\View;
 
 /**
- * Class View
- * @property string view
- * @property string vname
- * @package UIoT\App\Data\Models\Types
+ * Class Test
+ * @package UIoT\App\Data\Views
  */
-class View implements InterfaceView
+final class Test extends View
 {
-    /**
-     * Start View
-     */
-    public function __construct()
-    {
-        $this->__name();
-        $this->__layout();
-    }
-
-    /**
-     * Set Abstract Name
-     */
     public function __name()
     {
         $this->vname = (new ReflectionClass(self::class))->getShortName();
-    }
-
-    /**
-     * Set Layout
-     */
-    public function __layout()
-    {
-        LIndexer::addLayout($this->vname, $this->vname);
-    }
-
-    /**
-     * Show Layout
-     */
-    public function __show()
-    {
-        return LIndexer::getLayout($this->vname);
     }
 }

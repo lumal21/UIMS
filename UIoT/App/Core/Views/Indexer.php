@@ -34,7 +34,7 @@ final class Indexer
      *
      * @var array
      */
-    public static $view = [];
+    private static $view = [];
 
     /**
      * Add a View
@@ -43,9 +43,8 @@ final class Indexer
      */
     public static function addView($view_name = '')
     {
-        if (self::viewExists($view_name)) {
+        if (self::viewExists($view_name))
             return;
-        }
 
         self::$view[$view_name] = [];
         self::addViewAction($view_name, 'Main');
@@ -93,9 +92,8 @@ final class Indexer
      */
     public static function removeViewAction($view_name, $action_name)
     {
-        if ((self::viewExists($view_name)) && (self::actionExists($view_name, $action_name))) {
+        if ((self::viewExists($view_name)) && (self::actionExists($view_name, $action_name)))
             unset(self::$view[$view_name][$action_name]);
-        }
     }
 
     /**
@@ -105,9 +103,8 @@ final class Indexer
      */
     public static function removeView($view_name)
     {
-        if (self::viewExists($view_name)) {
+        if (self::viewExists($view_name))
             unset(self::$view[$view_name]);
-        }
     }
 
     /**
@@ -152,10 +149,7 @@ final class Indexer
      */
     public static function openView($view_name)
     {
-        /* if view exists enable it */
-        if (self::viewExists(self::getViewReverseSpace($view_name))) {
-            new $view_name;
-        }
+        return ((self::viewExists(self::getViewReverseSpace($view_name))) ? (new $view_name)->__show() : '');
     }
 
     /**
@@ -182,6 +176,6 @@ final class Indexer
      */
     public static function getViewNameSpace($view_name)
     {
-        return ((self::viewExists($view_name)) ? (Strings::toNameSpace($view_name, 'UIoT\\App\\Data\\Views\\')) : '');
+        return ((self::viewExists($view_name)) ? (Strings::toNameSpace($view_name, 'UIoT\App\Data\Views\\')) : '');
     }
 }

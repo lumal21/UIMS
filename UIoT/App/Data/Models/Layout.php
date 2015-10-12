@@ -37,13 +37,12 @@ class Layout implements InterfaceLayout
         $this->__resources();
         $this->__templates();
         $this->__configuration();
-        $this->__show();
     }
 
     /**
      * Define Resources
      */
-    public function __resources()
+    public static function __resources()
     {
         /* not implemented */
     }

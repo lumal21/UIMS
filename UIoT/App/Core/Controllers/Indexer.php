@@ -86,11 +86,23 @@ final class Indexer
      */
     public static function activeController($controller_name)
     {
-        /* try to get controller, without check if exists */
-        $c = self::getControllerNameSpace($controller_name);
+        return ((self::controllerExists(self::getControllerReverseNameSpace($controller_name))) ? (new $controller_name) : '');
+    }
 
-        /* return controller */
-        return new $c();
+    /**
+     * Really Crazy but Works
+     * (Is for return a reverse namespace)
+     *
+     * @param string $controller_name_space
+     * @return string
+     */
+    public static function getControllerReverseNameSpace(&$controller_name_space)
+    {
+        /* get layout name space and returns */
+        $controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
+
+        /* return normal layout name */
+        return $controller_name;
     }
 
     /**
@@ -101,6 +113,6 @@ final class Indexer
      */
     public static function getControllerNameSpace($controller_name)
     {
-        return (Strings::toNameSpace($controller_name, 'UIoT\\App\\Data\\Controllers\\'));
+        return ((self::controllerExists($controller_name)) ? (Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\')) : '');
     }
 }
