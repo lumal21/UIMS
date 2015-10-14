@@ -19,13 +19,15 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Resources;
+namespace UIoT\App\Core\Helpers\Visual;
+
+use UIoT\App\Core\Resources\Indexer;
 
 /**
- * Class Pager
- * @package UIoT\App\Core\Resources
+ * Class Pages
+ * @package UIoT\App\Core\Helpers\Visual
  */
-final class Pager
+final class Pages
 {
     /**
      * Set Page Title
@@ -34,7 +36,7 @@ final class Pager
      */
     public static function setTitle($page_title)
     {
-        echo "<title>{$page_title}</title>";
+        Html::add("<title>{$page_title}</title>");
     }
 
     /**
@@ -45,9 +47,9 @@ final class Pager
     public static function addEmbedScript($script_name)
     {
         /* first add resource */
-        Mapper::addResource($script_name, 'script/javascript');
+        Indexer::addResource($script_name, 'script/javascript');
 
         /* so echo the script */
-        echo sprintf('<script type="text/javascript">%s</script>', Mapper::returnResource($script_name, false));
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name, false)));
     }
 }

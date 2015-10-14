@@ -26,27 +26,20 @@ use UIoT\App\Core\Layouts\Indexer as LIndexer;
 use UIoT\App\Exception\Register;
 
 /**
- * Class Mapper
+ * Class Indexer
  * @package UIoT\App\Core\Resources
  */
-final class Mapper
+final class Indexer
 {
     /**
      * @var array
      */
-    public static $the_array = [];
-    /**
-     * @var array
-     */
-    public static $the_t_array = [];
+    public static $array = [];
+
     /**
      * @var string
      */
     public static $folder = '';
-    /**
-     * @var string
-     */
-    public static $t_folder = '';
 
     /**
      * Set Resource Folder
@@ -59,16 +52,6 @@ final class Mapper
     }
 
     /**
-     * Set Template Folder
-     *
-     * @param string $f
-     */
-    public static function setTemplateFolder($f)
-    {
-        self::$t_folder = (RESOURCE_FOLDER . $f . '/');
-    }
-
-    /**
      * Add Resource
      *
      * @param string $file_name
@@ -76,46 +59,10 @@ final class Mapper
      */
     public static function addResource($file_name, $mime_type)
     {
-        self::$the_array[$file_name] = [
+        self::$array[$file_name] = [
             'mime_type' => $mime_type,
             'file_content' => self::parseResourceFile(self::$folder . $file_name)
         ];
-    }
-
-    /**
-     * Add Template
-     *
-     * @param string $file_name
-     * @param string $mime_type
-     */
-    public static function addTemplate($file_name, $mime_type)
-    {
-        self::$the_t_array[$file_name] = [
-            'mime_type' => $mime_type,
-            'file_content' => self::parseTemplateFile(self::$t_folder . $file_name)
-        ];
-    }
-
-    /**
-     * Return Template
-     *
-     * @param string $file_name
-     * @return string
-     */
-    public static function returnTemplate($file_name)
-    {
-        return ((self::checkTemplateExistence($file_name)) ? (self::$the_t_array[$file_name]['file_content']) : '');
-    }
-
-    /**
-     * Check if Template Exists
-     *
-     * @param string $file_name
-     * @return bool
-     */
-    public static function checkTemplateExistence($file_name)
-    {
-        return array_key_exists($file_name, self::$the_t_array);
     }
 
     /**
@@ -155,7 +102,7 @@ final class Mapper
     public static function calculateResourceChanges()
     {
         // get array values
-        $resourc_array = (array)array_keys(self::$the_array);
+        $resourc_array = (array)array_keys(self::$array);
 
         /* if the session doesn't exists, add then */
         (SIndexer::keyExists('layout')) || SIndexer::addKey('layout', $resourc_array);
@@ -180,7 +127,7 @@ final class Mapper
      */
     public static function getResourcesArray()
     {
-        return ((SIndexer::keyExists('layout')) ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::$the_array));
+        return ((SIndexer::keyExists('layout')) ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::$array));
     }
 
     /**
@@ -217,10 +164,10 @@ final class Mapper
         self::updateResourceChange($file_name);
 
         /* add header (mime-type) */
-        (!$header) || (header('Content-Type: ' . (self::$the_array[$file_name]['mime_type'])));
+        (!$header) || (header('Content-Type: ' . (self::$array[$file_name]['mime_type'])));
 
         /* return content */
-        return self::$the_array[$file_name]['file_content'];
+        return self::$array[$file_name]['file_content'];
     }
 
     /**
@@ -231,22 +178,7 @@ final class Mapper
      */
     public static function resourceRemove($resource_name)
     {
-        return array_diff(array_keys(self::$the_array), [$resource_name]);
-    }
-
-    /**
-     * Parse Template File
-     *
-     * @param string $file_name
-     * @return string
-     */
-    public static function parseTemplateFile($file_name = '')
-    {
-        ob_start();
-        include_once $file_name;
-        $template = ob_get_contents();
-        ob_end_clean();
-        return $template;
+        return array_diff(array_keys(self::$array), [$resource_name]);
     }
 
     /**

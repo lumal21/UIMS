@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Core\Helpers\Visual\Pages;
 
 /**
  * Class Edit
@@ -35,6 +35,6 @@ final class Edit extends Main
      */
     public function __configuration()
     {
-        Pager::setTitle('Edit that Chuck Norris');
+        Pages::setTitle('Edit that Chuck Norris');
     }
 }

@@ -38,6 +38,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+error_reporting(E_ERROR | E_PARSE | E_CORE_ERROR);
+
 (require_once __DIR__ . '/UIoT/Vendor/autoload.php');
 (require_once __DIR__ . '/UIoT/Settings.php');
 (require_once __DIR__ . '/UIoT/Constants.php');

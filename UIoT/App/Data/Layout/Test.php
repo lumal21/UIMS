@@ -21,8 +21,9 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Mapper;
-use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Core\Helpers\Visual\Pages;
+use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
+use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Models\Layout;
 
 /**
@@ -36,7 +37,7 @@ class Test extends Layout
      */
     public static function __resources()
     {
-        Mapper::setResourceFolder('None');
+        ResourceIndexer::setResourceFolder('None');
     }
 
     /**
@@ -44,7 +45,7 @@ class Test extends Layout
      */
     public function __configuration()
     {
-        Pager::setTitle('Hello World');
+        Pages::setTitle('Hello World');
     }
 
     /**
@@ -52,8 +53,8 @@ class Test extends Layout
      */
     public function __templates()
     {
-        Mapper::setTemplateFolder('Test');
-        Mapper::addTemplate('Layouts/Test.php', 'text/html');
+        TemplateIndexer::setTemplateFolder('Test');
+        TemplateIndexer::addTemplate('Layouts/Test.php');
     }
 
     /**
@@ -63,6 +64,6 @@ class Test extends Layout
      */
     public function __show()
     {
-        return Mapper::returnTemplate('Layouts/Test.php');
+        return TemplateIndexer::returnTemplates();
     }
 }

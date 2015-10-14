@@ -39,9 +39,8 @@ class RequestData extends stdClass implements InterfaceRequestData
     public function __construct(stdClass $k)
     {
         /* set object vars */
-        foreach (get_object_vars($k) as $name => $value) {
+        foreach (get_object_vars($k) as $name => $value)
             $this->{$name} = $value;
-        }
     }
 
     /**

@@ -42,7 +42,7 @@
 </style>
 <body class="bs">
 <div class="bg">
-    <img src="Login/Images/Logo_small_transparent.png" class="jk">
+    <img src="Login/Images/Logo_small_transparent.png" class="jk"/>
 </div>
 <div class="nope obese"></div>
 <div class="nope obese"></div>
@@ -52,23 +52,21 @@
         <div class="panel radius kkk">
             <div class="cdd"></div>
             <div class="nope"></div>
-            <form action="Login/Post" method="POST"/>
-            <div class="row">
-
-                <div class="large-6 columns">
-                    <h5>Login</h5>
-                    <?= CONTROLLER_CONTENT; ?>
-                </div>
-                <div class="large-6 columns">
-                    <p>Welcome to UIoT administration panel.<br/> This section is restricted to registered
-                        users. </p>
-                    <input class="button secondary small radius" type="submit" name="submit"
-                           value="Login"/>
-                </div>
-                </form>
-            </div>
+            <form action="Login/Post" method="POST">
+                <div class="row">
+                    <div class="large-6 columns">
+                        <h5>Login</h5>
+                        <?= CONTROLLER_CONTENT; ?>
+                    </div>
+                    <div class="large-6 columns">
+                        <p>Welcome to UIoT administration panel.<br/> This section is restricted to registered users.
+                        </p>
+                        <input class="button secondary small radius" type="submit" name="submit" value="Login"/>
+                    </div>
+            </form>
         </div>
     </div>
-    <div class="large-3 columns"><br/></div>
+</div>
+<div class="large-3 columns"><br/></div>
 </div>
 </body>

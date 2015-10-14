@@ -35,8 +35,8 @@ class Layout implements InterfaceLayout
     public function __construct()
     {
         $this->__resources();
-        $this->__templates();
         $this->__configuration();
+        $this->__templates();
     }
 
     /**
@@ -48,17 +48,17 @@ class Layout implements InterfaceLayout
     }
 
     /**
-     * Define Templates
+     * Define Settings
      */
-    public function __templates()
+    public function __configuration()
     {
         /* not implemented */
     }
 
     /**
-     * Define Settings
+     * Define Templates
      */
-    public function __configuration()
+    public function __templates()
     {
         /* not implemented */
     }

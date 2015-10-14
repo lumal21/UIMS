@@ -19,16 +19,13 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Renders;
-
-use UIoT\App\Core\Resources\Mapper;
+namespace UIoT\App\Core\Resources;
 
 /**
- * Class Resource
- * @property string resource
- * @package UIoT\App\Core\Views
+ * Class Render
+ * @package UIoT\App\Core\Resources
  */
-final class Resource
+final class Render
 {
     /**
      * @var string
@@ -58,9 +55,9 @@ final class Resource
     public function show()
     {
         /* register resources */
-        Mapper::registerResources($this->controller);
+        Indexer::registerResources($this->controller);
 
         /* return resource */
-        return Mapper::returnResource($this->file);
+        return Indexer::returnResource($this->file);
     }
 }

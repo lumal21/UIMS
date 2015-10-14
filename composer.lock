@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ac0a658245b9c37334c14e3e39f5f336",
-    "content-hash": "5a0620ec8d09b326ad65aedd244fc115",
+    "hash": "2c7dff958949e6cc694ff94d24080405",
+    "content-hash": "87feff77865789abe0f5e514855d9a62",
     "packages": [
         {
             "name": "easyframework/collections",
-            "version": "v4.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/collections.git",
@@ -63,7 +63,7 @@
         },
         {
             "name": "easyframework/generics",
-            "version": "v2.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/generics.git",
@@ -107,16 +107,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "1.1.7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7"
+                "reference": "cfe9ce209d2705fece1743f0af45f58fec840458"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/72538eeb70bbfb11964412a3d098d109efd012f7",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/cfe9ce209d2705fece1743f0af45f58fec840458",
+                "reference": "cfe9ce209d2705fece1743f0af45f58fec840458",
                 "shasum": ""
             },
             "require": {
@@ -161,7 +161,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-06-29 05:42:04"
+            "time": "2015-07-23 15:48:15"
         },
         {
             "name": "italolelis/datatables",
@@ -255,6 +255,52 @@
             "time": "2015-10-02 07:32:28"
         },
         {
+            "name": "mihaeu/html-formatter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mihaeu/html-formatter.git",
+                "reference": "9fd72547984643be9233580ac577625e74d33134"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/9fd72547984643be9233580ac577625e74d33134",
+                "reference": "9fd72547984643be9233580ac577625e74d33134",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mihaeu\\": [
+                        "src/",
+                        "tests/unit/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Haeuslmann",
+                    "email": "haeuslmann@gmail.com"
+                }
+            ],
+            "description": "HTML Formatter pritifies HTML content by applying proper intendation (no tidy, purification, etc.).",
+            "homepage": "https://github.com/mihaeu/html-formatter",
+            "keywords": [
+                "clean",
+                "formatter",
+                "html",
+                "pretty"
+            ],
+            "time": "2015-04-02 16:41:13"
+        },
+        {
             "name": "nategood/httpful",
             "version": "0.2.19",
             "source": {
@@ -306,16 +352,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.7.5",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9"
+                "reference": "41899a21d196332ab23e40f76e1276f2b7aa4d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
-                "reference": "ae4dcc2a8d3de98bd794167a3ccda1311597c5d9",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/41899a21d196332ab23e40f76e1276f2b7aa4d0d",
+                "reference": "41899a21d196332ab23e40f76e1276f2b7aa4d0d",
                 "shasum": ""
             },
             "require": {
@@ -323,11 +369,10 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.0,>=2.0.5",
-                "symfony/dependency-injection": "~2.6",
-                "symfony/expression-language": "~2.6",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/stopwatch": "~2.3"
+                "symfony/config": "~2.0,>=2.0.5|~3.0.0",
+                "symfony/dependency-injection": "~2.6|~3.0.0",
+                "symfony/expression-language": "~2.6|~3.0.0",
+                "symfony/stopwatch": "~2.3|~3.0.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -336,7 +381,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -360,32 +405,29 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-22 13:49:29"
+            "time": "2015-10-12 10:13:39"
         },
         {
             "name": "symfony/property-access",
-            "version": "v2.7.5",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c"
+                "reference": "23072538854a83e964e23afbf472eca971997dbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c",
-                "reference": "f8ea7aa472f0e3f8cdf43287caa72a70ff5c088c",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/23072538854a83e964e23afbf472eca971997dbc",
+                "reference": "23072538854a83e964e23afbf472eca971997dbc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -420,20 +462,20 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2015-08-24 07:13:45"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "xrstf/ip-utils",
-            "version": "v1.1.0",
+            "version": "dev-default",
             "source": {
                 "type": "hg",
                 "url": "https://bitbucket.org/xrstf/ip-utils",
-                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f"
+                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/xrstf/ip-utils/get/77208641fa9e6063ccb00c8899d157818ad2474f.zip",
-                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f",
+                "url": "https://bitbucket.org/xrstf/ip-utils/get/6a4a617d608464c29d6e8ba3cdcfa0fb43266d57.zip",
+                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57",
                 "shasum": ""
             },
             "require": {
@@ -468,15 +510,17 @@
                 "matching",
                 "subnet"
             ],
-            "time": "2013-12-04 01:57:13"
+            "time": "2013-12-04 01:59:28"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.6.0"
+    },
     "platform-dev": []
 }

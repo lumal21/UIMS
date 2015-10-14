@@ -93,4 +93,15 @@ class Strings
     {
         return ((stripos($string, '__action') !== false) ? (self::toActionName(str_ireplace('__action', '', $string))) : (self::toActionName($string)));
     }
+
+    /**
+     * Remove Empty HTML Lines
+     *
+     * @param string $string
+     * @return mixed
+     */
+    public static function removeEmptyLines($string = '')
+    {
+        return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string);
+    }
 }

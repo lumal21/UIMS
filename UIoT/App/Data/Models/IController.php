@@ -22,7 +22,7 @@
 namespace UIoT\App\Data\Models;
 
 use stdClass;
-use UIoT\App\Core\Renders\Template;
+use UIoT\App\Core\Templates\Render as TemplateRender;
 use UIoT\App\Data\Interfaces\IController as InterfaceIController;
 
 /**
@@ -36,7 +36,7 @@ class IController extends stdClass implements InterfaceIController
      */
     public function __construct()
     {
-        Template::$disable_show_view = true;
+        TemplateRender::$disable_show_view = true;
     }
 
     /**

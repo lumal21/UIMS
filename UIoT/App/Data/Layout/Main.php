@@ -21,8 +21,9 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Mapper;
-use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Core\Helpers\Visual\Pages;
+use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
+use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Models\Layout;
 
 /**
@@ -37,19 +38,19 @@ class Main extends Layout
      */
     public static function __resources()
     {
-        Mapper::setResourceFolder('None');
-        Mapper::addResource('Stylesheet/Styles.css', 'text/css');
-        Mapper::addResource('Stylesheet/Foundation.css', 'text/css');
-        Mapper::addResource('Stylesheet/Font-awesome.css', 'text/css');
-        Mapper::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
-        Mapper::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
-        Mapper::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
-        Mapper::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation.min.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
-        Mapper::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
-        Mapper::setResourceFolder('Main');
-        Mapper::addResource('Stylesheet/Main.css', 'text/css');
+        ResourceIndexer::setResourceFolder('None');
+        ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
+        ResourceIndexer::addResource('Stylesheet/Foundation.css', 'text/css');
+        ResourceIndexer::addResource('Stylesheet/Font-awesome.css', 'text/css');
+        ResourceIndexer::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
+        ResourceIndexer::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
+        ResourceIndexer::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
+        ResourceIndexer::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
+        ResourceIndexer::addResource('Scripts/Foundation.min.js', 'text/javascript');
+        ResourceIndexer::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
+        ResourceIndexer::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
+        ResourceIndexer::setResourceFolder('Main');
+        ResourceIndexer::addResource('Stylesheet/Main.css', 'text/css');
     }
 
     /**
@@ -57,7 +58,7 @@ class Main extends Layout
      */
     public function __configuration()
     {
-        Pager::setTitle('PIKAA');
+        Pages::setTitle('PIKAA');
     }
 
     /**
@@ -65,8 +66,8 @@ class Main extends Layout
      */
     public function __templates()
     {
-        Mapper::setTemplateFolder('Main');
-        Mapper::addTemplate('Layouts/Main.php', 'text/html');
+        TemplateIndexer::setTemplateFolder('Main');
+        TemplateIndexer::addTemplate('Layouts/Main.php');
     }
 
     /**
@@ -76,6 +77,6 @@ class Main extends Layout
      */
     public function __show()
     {
-        return Mapper::returnTemplate('Layouts/Main.html');
+        return TemplateIndexer::returnTemplates();
     }
 }

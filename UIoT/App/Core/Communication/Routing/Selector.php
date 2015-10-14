@@ -21,8 +21,8 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
-use UIoT\App\Core\Renders\Resource;
-use UIoT\App\Core\Renders\Template;
+use UIoT\App\Core\Resources\Render as ResourceRender;
+use UIoT\App\Core\Templates\Render as TemplateRender;
 
 /**
  * Class Selector
@@ -38,9 +38,9 @@ final class Selector
      */
     public static function select($instance)
     {
-        if ($instance instanceof Resource)
+        if ($instance instanceof ResourceRender)
             return $instance->show();
-        else if ($instance instanceof Template)
+        else if ($instance instanceof TemplateRender)
             return $instance->show();
         return null;
     }
@@ -49,7 +49,7 @@ final class Selector
      * Get Render Instance
      *
      * @param $render
-     * @return Resource|Template
+     * @return ResourceRender|TemplateRender
      */
     public static function instantiate($render)
     {

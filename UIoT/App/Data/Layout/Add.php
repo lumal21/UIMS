@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Core\Helpers\Visual\Pages;
 
 /**
  * Class Add
@@ -35,6 +35,6 @@ final class Add extends Main
      */
     public function __configuration()
     {
-        Pager::setTitle('Add this Idiot on SHU');
+        Pages::setTitle('Add this Idiot on SHU');
     }
 }

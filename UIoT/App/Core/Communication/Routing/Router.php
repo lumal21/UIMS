@@ -25,8 +25,8 @@ use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Core\Helpers\Manipulators\Arrays;
 use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
-use UIoT\App\Core\Renders\Resource;
-use UIoT\App\Core\Renders\Template;
+use UIoT\App\Core\Resources\Render as ResourceRender;
+use UIoT\App\Core\Templates\Render as TemplateRender;
 
 /**
  * Class Router
@@ -73,7 +73,7 @@ final class Router
      */
     private function open()
     {
-        echo((Urls::checkCombination()) ? Selector::select(Selector::instantiate(new Resource(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new Template(['controller' => $this->controller, 'action' => $this->action]))));
+        echo((Urls::checkCombination()) ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action]))));
     }
 
     /**

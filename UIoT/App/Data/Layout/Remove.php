@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Data\Layout;
 
-use UIoT\App\Core\Resources\Pager;
+use UIoT\App\Core\Helpers\Visual\Pages;
 
 /**
  * Class Remove
@@ -35,6 +35,6 @@ final class Remove extends Main
      */
     public function __configuration()
     {
-        Pager::setTitle('Delete my Main Chu');
+        Pages::setTitle('Delete my Main Chu');
     }
 }

@@ -21,8 +21,8 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
-use UIoT\App\Core\Renders\Template;
-use UIoT\App\Core\Views\Indexer as VIndexer;
+use UIoT\App\Core\Templates\Render as TemplateRender;
+use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /**
  * Class Accessor
@@ -38,7 +38,7 @@ final class Accessor
      */
     public static function redirectToView($view)
     {
-        return (VIndexer::getView($view));
+        return (ViewIndexer::getView($view));
     }
 
     /**
@@ -50,6 +50,6 @@ final class Accessor
      */
     public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
     {
-        return Selector::select(Selector::instantiate(new Template(['controller' => $controller, 'action' => $controller_action])));
+        return Selector::select(Selector::instantiate(new TemplateRender(['controller' => $controller, 'action' => $controller_action])));
     }
 }

@@ -19,21 +19,20 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Renders;
+namespace UIoT\App\Core\Templates;
 
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
-use UIoT\App\Core\Controllers\Indexer as CIndexer;
+use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
-use UIoT\App\Core\Resources\Mapper;
-use UIoT\App\Core\Views\Indexer;
+use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
+use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /**
- * Class Template
- * @property string template
- * @package UIoT\App\Core\Views
+ * Class Render
+ * @package UIoT\App\Core\Templates
  */
-final class Template
+final class Render
 {
     /**
      * @var bool
@@ -98,7 +97,7 @@ final class Template
      */
     public function show()
     {
-        return ((!self::$disable_show_view) ? ((Indexer::viewExists($this->controller)) ? Indexer::getView($this->controller) : '') : ((!CIndexer::controllerExists($this->controller)) ? $this->aView() : $this->bView()));
+        return ((!self::$disable_show_view) ? ((ViewIndexer::viewExists($this->controller)) ? ViewIndexer::getView($this->controller) : '') : ((!ControllerIndexer::controllerExists($this->controller)) ? $this->aView() : $this->bView()));
     }
 
     /**
@@ -106,6 +105,6 @@ final class Template
      */
     private function setResources()
     {
-        Mapper::registerResources(((in_array($this->action, Urls::getLayouts())) ? $this->action : $this->controller), true);
+        ResourceIndexer::registerResources(((in_array($this->action, Urls::getLayouts())) ? $this->action : $this->controller), true);
     }
 }
