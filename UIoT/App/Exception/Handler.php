@@ -47,7 +47,13 @@ class Handler extends PrettyPageHandler
     {
         $helper     = new TemplateHelper;
         $error_code = $this->getInspector()->getException()->getCode();
-        $frames     = (($error_code >= 9000) ? [] : $this->getInspector()->getFrames());
+        $frames     = $this->getInspector()->getFrames();
+
+        if ($error_code >= 900):
+            $error_code -= 9000;
+            $frames = [];
+        endif;
+
         $helper->setVariables([
             'page_title' => $this->getPageTitle(),
             'Stylesheet' => file_get_contents($this->getResource('Stylesheet/whoops.base.css')),
@@ -60,7 +66,7 @@ class Handler extends PrettyPageHandler
             'title' => $this->getPageTitle(),
             'name' => explode('\\', $this->getInspector()->getExceptionName()),
             'message' => $this->getInspector()->getException()->getMessage(),
-            'code' => (($error_code >= 9000) ? ($error_code - 9000) : $error_code),
+            'code' => $error_code,
             'plain_exception' => Formatter::formatExceptionPlain($this->getInspector()),
             'frames' => $frames,
             'has_frames' => !!count($frames),
