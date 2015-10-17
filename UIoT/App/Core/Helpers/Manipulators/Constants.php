@@ -55,9 +55,9 @@ final class Constants
      * Add Serialized Constant
      *
      * @param $constant_name
-     * @param string $constant_value
+     * @param string|array|object $constant_value
      */
-    public static function addSerializedConstant($constant_name, $constant_value = '')
+    public static function addSerializedConstant($constant_name, $constant_value)
     {
         self::addConstant($constant_name, serialize($constant_value));
     }
