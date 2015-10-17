@@ -64,9 +64,9 @@ class Get
     /**
      * Store Get Data
      *
-     * @param string $data
+     * @param string|array|object $data
      */
-    public static function storeGetData($data = '')
+    public static function storeGetData($data)
     {
         Constants::addSerializedConstant('GET_WEB', $data);
     }
