@@ -21,68 +21,58 @@
 
 namespace UIoT\App\Core\Communication\Sessions;
 
+use UIoT\App\Core\Helpers\Manipulators\Settings;
+
 /**
  * Class Starter
- * @property Handler handler
  * @package UIoT\App\Core\Communication\Sessions
  */
 final class Starter
 {
     /**
-     * private var with session security settings
-     *
-     * @var string $settings
+     * @var Handler
      */
-    private $settings;
+    private $handler;
 
     /**
      * Init session Handler
      */
     public function __construct()
     {
-        $this->__settings();
-        $this->__security();
-        $this->__instance();
-        $this->__handler();
-        $this->__start();
+        $this->setSettings();
+        $this->setInstance();
+        $this->setHandler();
+        $this->startSession();
     }
 
     /**
      * Set Session Handler to Store in Files
      */
-    private function __settings()
+    private function setSettings()
     {
         ini_set('session.save_handler', 'files');
     }
 
     /**
-     * Set security Settings
-     */
-    private function __security()
-    {
-        $this->settings = (json_decode(SETTINGS)->security);
-    }
-
-    /**
      * Instantiate the Session Handler
      */
-    private function __instance()
+    private function setInstance()
     {
-        $this->handler = new Handler(($this->settings->session_handler_salt), ($this->settings->session_time_out));
+        $this->handler = new Handler(Settings::getSetting('security')->session_handler_salt, Settings::getSetting('security')->session_time_out);
     }
 
     /**
      * Save the Session Handler as PhP Session Handler
      */
-    private function __handler()
+    private function setHandler()
     {
-        session_set_save_handler(($this->handler), true);
+        session_set_save_handler($this->handler, true);
     }
 
     /**
      * Start Session
      */
-    public static function __start()
+    public static function startSession()
     {
         session_start();
     }
@@ -90,7 +80,7 @@ final class Starter
     /**
      * Unset all Sessions
      */
-    public static function __erase()
+    public static function eraseSession()
     {
         session_unset();
     }
@@ -98,7 +88,7 @@ final class Starter
     /**
      * Stop Session Handler
      */
-    public static function __stop()
+    public static function stopSession()
     {
         session_destroy();
     }

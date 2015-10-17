@@ -23,6 +23,7 @@ namespace UIoT\App\Core\Database;
 
 use PDO;
 use PDOStatement;
+use UIoT\App\Core\Helpers\Manipulators\Settings;
 
 /**
  * Class Adapter
@@ -40,7 +41,7 @@ final class Adapter
      */
     public function __construct()
     {
-        $this->instance = (new Handler(json_decode(SETTINGS)->database));
+        $this->instance = (new Handler(Settings::getSetting('database')));
     }
 
     /**

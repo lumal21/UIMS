@@ -40,14 +40,14 @@
 
 namespace UIoT;
 
-use UIoT\App\Core\Helpers\Manipulators\Constants as C;
+use UIoT\App\Core\Helpers\Manipulators\Settings;
 
 /**
  * UIoTcms Settings
  * Please be Careful at configuring the settings
  */
 
-C::addJsonConstant('SETTINGS', [
+Settings::setAndStoreSettings([
     // database settings (not really necessary, because the cms doesn't uses database connection
     // but you can set and enable cms database connection if you want
     'database' =>
@@ -77,5 +77,16 @@ C::addJsonConstant('SETTINGS', [
                     '127.0.0.1',
                     'localhost'
                 ],
+        ],
+    'exceptions' =>
+        [
+            // set error page title
+            'error_page_title' => 'Houston, we have a problem!',
+            // set reporting php error level
+            'error_reporting_levels' => (E_ALL),
+            // set query_string developer access mode
+            'error_developer_code' => 'de',
+            // set whoops resource folder
+            'error_resource_folder' => 'Whoops'
         ]
-], JSON_FORCE_OBJECT);
+]);

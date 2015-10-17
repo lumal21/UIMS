@@ -36,7 +36,7 @@ final class Data
     /**
      * @var Response
      */
-    public $data;
+    private $data;
 
     /**
      * Do a Request
@@ -57,15 +57,15 @@ final class Data
      * @param string $var
      * @return Response
      */
-    public function __get($var)
+    public function __get($var = '')
     {
         /* this switch is for closure calls (get abstract variables) */
         switch ($var):
             default:
             case 'body':
-                return @$this->data->body;
+                return $this->data->body;
             case 'header':
-                return @$this->data->headers;
+                return $this->data->headers;
         endswitch;
     }
 
@@ -76,17 +76,17 @@ final class Data
      * @param mixed $arguments
      * @return mixed
      */
-    public function __call($name, $arguments)
+    public function __call($name = '', $arguments = ['', ''])
     {
         /* this switch is for closure calls (get abstract methods) */
         switch ($name):
             case 'from_json':
-                return json_decode($this->$arguments[0], @$arguments[1]);
+                return json_decode($this->$arguments[0], $arguments[1]);
             case 'to_json':
-                return json_encode(@$this->$arguments[0]);
+                return json_encode($this->$arguments[0]);
             case 'get_data':
             default:
-                return @$this->$arguments[0];
+                return $this->$arguments[0];
         endswitch;
     }
 }

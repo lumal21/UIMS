@@ -60,7 +60,7 @@ C::addConstant('ROOT_FOLDER', __DIR__);
 /*
  * UIoTCMS Base Folder
  * That folder is considered the base folder where the CMS lives
- * Example: C:\myfolder\apache\htdocs\somefolder\ (That is the Application BASE folder)
+ * Example: C:\my folder\apache\www\some folder\ (That is the Application BASE folder)
  * Observation: Base folder it's the same place where Index.php is
  */
 C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
@@ -172,6 +172,12 @@ C::addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
  * Query String
  */
 C::addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
+
+/*
+ * Global Variable (Request Variable)
+ * Post Method
+ */
+C::addJsonConstant('HTTP_PHP_POST', @$_POST);
 
 /*
  * Global Variable (Server Variable)

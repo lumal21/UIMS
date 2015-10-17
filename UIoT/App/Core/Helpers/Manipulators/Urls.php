@@ -35,8 +35,8 @@ final class Urls extends UrlCombinations
      */
     public static function registerItems()
     {
-        self::setLayouts(json_decode(PREDEFINED_LAYOUTS));
-        self::setResources(json_decode(RESOURCE_TYPES));
+        self::setLayouts(Constants::returnJsonConstant('PREDEFINED_LAYOUTS'));
+        self::setResources(Constants::returnJsonConstant('RESOURCE_TYPES'));
     }
 
     /**
@@ -89,6 +89,7 @@ final class Urls extends UrlCombinations
     {
         $i = (($reverse) ? array_reverse(self::getLayoutCombination()) : self::getLayoutCombination());
         $k = self::getResourceCombination();
+
         return Indexer::updateKeyIfNeeded('combination_url_router', ((!is_array(self::getNormalF())) ? (self::setNormalF(['layout' => reset($i), 'resource' => reset($k)])) : (self::getNormalF())));
     }
 

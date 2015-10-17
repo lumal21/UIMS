@@ -65,7 +65,7 @@ final class Commander
     public function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
-        ($this->checkActionExistence($action_name)) || (Register::$global->errorMessage(9002,
+        ($this->checkActionExistence($action_name)) || (Register::getRunner()->errorMessage(9002,
             "Stop! That Action Doesn't Exists!",
             'Details: ',
             [

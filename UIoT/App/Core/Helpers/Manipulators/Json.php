@@ -58,4 +58,38 @@ final class Json
     {
         return new RequestData($object);
     }
+
+    /**
+     * Is a Reference to Arrays::isInstanceOfClosure()
+     *
+     * @param string $x
+     * @return mixed
+     */
+    public static function isInstanceOfClosure($x)
+    {
+        return Arrays::isInstanceOfClosure($x);
+    }
+
+    /**
+     * Encode as jSON
+     *
+     * @param mixed|array|object|null $data
+     * @param int $options
+     * @return string
+     */
+    public static function jsonEncode($data = [], $options = 0)
+    {
+        return json_encode($data, $options);
+    }
+
+    /**
+     * Decode jSON
+     *
+     * @param string $data
+     * @return mixed|array|object
+     */
+    public static function jsonDecode($data = '')
+    {
+        return json_decode($data);
+    }
 }

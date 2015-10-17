@@ -30,12 +30,12 @@ use SessionHandler;
 final class Handler extends SessionHandler
 {
     /**
-     * string @var
+     * @var string
      */
     private $key;
 
     /**
-     * int @var
+     * @var int
      */
     private $time_out;
 

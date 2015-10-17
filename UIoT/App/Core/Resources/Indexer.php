@@ -150,7 +150,7 @@ final class Indexer
     public static function returnResource($file_name, $header = true)
     {
         /* if resource doesn't exists, or resource is hotlinked we must show error */
-        (self::checkResourceExistence($file_name)) || (Register::$global->errorMessage(9003,
+        (self::checkResourceExistence($file_name)) || (Register::getRunner()->errorMessage(9003,
             "Stop! D'not Hotlinks!",
             'Details: ',
             [

@@ -22,102 +22,132 @@
 namespace UIoT\App\Exception;
 
 use Exception;
-use UIoT\App\Security\Handler as SHandler;
-use Whoops\Handler\Handler as WHandler;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
 
 /**
  * Class Register
  * @package UIoT\App\Exception
  */
-final class Register extends Run
+final class Register
 {
     /**
-     * static variable to access the Exception Register instance
+     * static variable to store exception page handler
      *
-     * @var Register
+     * @var WhoopsHandler
      */
-    public static $global;
+    private static $handler;
 
     /**
-     * static variable to access the Exception Handler instance
+     * static variable to store exception page runner
      *
-     * @var PrettyPageHandler
+     * @var Runner
      */
-    public static $handler;
+    private static $runner;
 
     /**
-     * Registers Filp's Whoop's Error Handler
+     * Set Page Handler
      *
-     * @author Claudio Santoro
+     * @param WhoopsHandler $handler
      */
-    public function __construct()
+    public static function setHandler(WhoopsHandler $handler)
     {
-        self::$global = $this->push($this->pull('Houston, we have a problem!'));
+        self::$handler = new $handler;
     }
 
     /**
-     * Pull Down!
-     * This function register default Handler configuration
+     * Set Page Runner
      *
-     * @param string $title
-     * @return Handler
+     * @param Runner $runner
      */
-    private function pull($title)
+    public static function setRunner(Runner $runner)
     {
-        /* Is a Edited Exception Handler based on PrettyHandler */
-        $handler = new Handler;
-
-        /* add resource path from custom handler */
-        $handler->addResourcePath(RESOURCE_FOLDER . 'Whoops/');
-
-        /* set custom page title */
-        $handler->setPageTitle($title);
-
-        /* return handler */
-        return $handler;
+        self::$runner = new $runner;
     }
 
     /**
-     * Push Up!
-     * Register the Handler to the Exception Register
+     * Get Runner
      *
-     * @param WHandler $handler
-     * @return $this
+     * @return Runner
      */
-    private function push(WHandler $handler)
+    public static function getRunner()
     {
-        /* set static handler instance, and push the handler */
-        $this->pushHandler(self::$handler = $handler)->register();
-
-        /* return the class instance */
-        return $this;
+        return self::$runner;
     }
 
     /**
-     * Create a Message for Whoops
-     * Is a function to create a custom message, without stack trace.
+     * Get Handler
      *
-     * @param int $code
-     * @param string $title
+     * @return WhoopsHandler
+     */
+    public static function getHandler()
+    {
+        return self::$handler;
+    }
+
+    /**
+     * Add Resource Path
+     *
+     * @param string $resource_path
+     */
+    public static function addResourcePath($resource_path = '')
+    {
+        self::getHandler()->addResourcePath($resource_path);
+    }
+
+    /**
+     * Set Page Title
+     *
+     * @param string $page_title
+     */
+    public static function setPageTitle($page_title = '')
+    {
+        self::getHandler()->setPageTitle($page_title);
+    }
+
+    /**
+     * Push the Page Handler
+     */
+    public static function pushHandler()
+    {
+        self::getRunner()->pushHandler(self::getHandler());
+    }
+
+    /**
+     * Register the Page Handler
+     */
+    public static function registerHandler()
+    {
+        self::getRunner()->register();
+    }
+
+    /**
+     * Add Data Table on Page Handler
+     *
      * @param string $message_title
-     * @param array $message
-     * @param bool $security_error
-     * @throws Exception
+     * @param string $message
      */
-    public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
+    public static function addDataTable($message_title = '', $message = '')
     {
-        /* check if is not in security mode and if enabled developer details */
-        ((QUERY_STRING != 'de') || (($security_error) || ($code -= 9000)));
+        self::getHandler()->addDataTable($message_title, $message);
+    }
 
-        /* check if you have valid access */
-        ($security_error) || SHandler::checkIpAddressAuthority();
+    /**
+     * Handle a PhP Exception
+     *
+     * @param Exception $exception
+     */
+    public static function handleException(Exception $exception)
+    {
+        self::getRunner()->handleException($exception);
+    }
 
-        /* add data table */
-        self::$handler->addDataTable($message_title, $message);
-
-        /* handle exception */
-        $this->handleException(new Exception($title, $code));
+    /**
+     * Set Error Reporting Levels
+     *
+     * @param string $error_levels
+     */
+    public static function setErrorLevels($error_levels = '')
+    {
+        error_reporting($error_levels);
     }
 }

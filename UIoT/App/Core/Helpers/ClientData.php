@@ -16,10 +16,12 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Brasília
+ * @copyright University of Brasï¿½lia
  */
 
 namespace UIoT\App\Core\Helpers;
+
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 
 /**
  * Class ClientData
@@ -35,7 +37,7 @@ final class ClientData
     public static function getRealClientIpAddress()
     {
         foreach (['HTTP_CLIENT_IP', 'HTTP_PRAGMA', 'HTTP_CONNECTION', 'HTTP_CACHE_INFO', 'HTTP_PROXY', 'HTTP_PROXY_CONNECTION', 'HTTP_VIA', 'HTTP_X_COMING_FROM', 'HTTP_COMING_FROM', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'] as $key)
-            if (array_key_exists($key, ((array)json_decode(SERVER_WEB))) === true)
+            if (array_key_exists($key, Constants::returnJsonConstant('SERVER_WEB')) === true)
                 if (($ip = self::checkIpCombination($key)) !== false)
                     return $ip;
         return 'UNKNOWN';

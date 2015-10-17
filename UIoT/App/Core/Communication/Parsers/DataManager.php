@@ -46,8 +46,8 @@ final class DataManager
     public function __construct()
     {
         /* start collectors and handlers */
-        (new DataCollector);
-        (new DataHandler);
+        new DataCollector;
+        new DataHandler;
 
         /* store final handler */
         DataHandler::storeHandler();

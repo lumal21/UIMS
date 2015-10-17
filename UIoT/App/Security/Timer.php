@@ -19,33 +19,14 @@
  * @copyright University of Bras�lia
  */
 
-/*  License
- *  <UIoT CMS is the default content management system of uiot's
- *  architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Bras�lia>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 /**
  * @caution
  * This Class isn't being used.
  *
  * Objective of this class:
- *  Some times the Requests or the Execution of the Script Frozes
+ *  Some times the Requests or the Execution of the Script Frozen
  *  The problem is because the request system is server-side,
- *  so if the Process frozes, you can't open another PhP page from your web-server
+ *  so if the Process froze, you can't open another PhP page from your web-server
  *  until you "kill" the process.
  *  This class exists to calculate the execution time average,
  *  and check if the execution time passed a lot of time,
@@ -99,9 +80,8 @@ final class Timer
      */
     public static function checkExecutionCrash()
     {
-        if (!self::checkLoopInterval()) {
+        if (!self::checkLoopInterval())
             self::addExecutionLoop(microtime(true));
-        }
     }
 
     /**

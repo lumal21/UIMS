@@ -22,6 +22,7 @@
 namespace UIoT\App\Security;
 
 use UIoT\App\Core\Helpers\ClientData;
+use UIoT\App\Core\Helpers\Manipulators\Settings;
 use UIoT\App\Exception\Register;
 use Whitelist\Check;
 
@@ -67,7 +68,7 @@ final class Handler
         self::$white_list = new Check;
 
         /* load white list ip */
-        self::loadIpWhiteList((array)(json_decode(SETTINGS)->security->white_ip_list));
+        self::loadIpWhiteList(Settings::getSetting('security')->white_ip_list);
     }
 
     /**
@@ -77,7 +78,7 @@ final class Handler
      */
     public static function loadIpWhiteList($arguments = [])
     {
-        self::$white_list->whitelist($arguments);
+        self::$white_list->whitelist((array)$arguments);
     }
 
     /**
@@ -113,12 +114,22 @@ final class Handler
      */
     public static function securityProblem($title = '', $message = '')
     {
-        Register::$global->errorMessage(9004,
+        Register::getRunner()->errorMessage(9004,
             "Stop! {$title}!",
             'Details: ',
             [
                 'What Happened?' => $message,
             ], true
         );
+    }
+
+    /**
+     * Check if Trying to Access Developer Mode
+     *
+     * @return bool
+     */
+    public static function checkDeveloperMode()
+    {
+        return (QUERY_STRING != (Settings::getSetting('exceptions')->error_developer_code));
     }
 }

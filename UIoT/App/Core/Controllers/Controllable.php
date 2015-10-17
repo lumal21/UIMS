@@ -78,10 +78,10 @@ final class Controllable extends IControllable
     {
         /* if is let's do it */
         (!$this->checkData()) || $this->getResources();
-        (!$this->checkData()) || $this->enableController();
+        (!$this->checkData()) || $this->enableController($this->c_s_array);
 
         /* if not valid finish */
-        ($this->checkData()) || (Register::$global->errorMessage(9001,
+        ($this->checkData()) || (Register::getRunner()->errorMessage(9001,
             "Stop! That Controller Doesn't Exists!",
             'Details: ',
             [
@@ -121,10 +121,11 @@ final class Controllable extends IControllable
 
     /**
      * Call the IController And Create his Instance
+     * @param array $array
      */
-    protected function enableController()
+    protected function enableController($array = [])
     {
-        parent::enableController($this->c_s_array);
+        parent::enableController($array);
     }
 
     /**

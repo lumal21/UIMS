@@ -104,4 +104,19 @@ class Strings
     {
         return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string);
     }
+
+    /**
+     * Sanitize the String
+     *
+     * @param string $text_string
+     * @return array|mixed|string
+     */
+    public static function sanitizeString($text_string = '')
+    {
+        if (is_array($text_string))
+            return array_map(__METHOD__, $text_string);
+        if (!empty($text_string) && is_string($text_string))
+            return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $text_string);
+        return $text_string;
+    }
 }

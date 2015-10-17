@@ -22,9 +22,9 @@
 namespace UIoT\App\Core\Communication\Routing;
 
 use UIoT\App\Core\Communication\Sessions\Indexer;
-use UIoT\App\Core\Helpers\Manipulators\Arrays;
-use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
+use UIoT\App\Core\Helpers\Methods\Get as GetHelper;
+use UIoT\App\Core\Helpers\Methods\Post as PostHelper;
 use UIoT\App\Core\Resources\Render as ResourceRender;
 use UIoT\App\Core\Templates\Render as TemplateRender;
 
@@ -95,16 +95,11 @@ final class Router
      */
     private function query()
     {
-        /* first $last need be empty */
-        $last = '';
-        $get  = [];
+        /* apply get data from query string */
+        GetHelper::storeGetData(GetHelper::receiveGetData());
 
-        /* put query string into $GET */
-        foreach (Urls::combineUrlSimple() as $key => $value)
-            ((($key % 2) != 0) ? (Arrays::addOnArray($last = $value, '', $get)) : Arrays::addOnArray($last, urldecode($value), $get));
-
-        /* define super global */
-        Constants::addJsonConstant('GET_WEB', $get);
+        /* store post data */
+        PostHelper::storePostData(PostHelper::receivePostData());
 
         return true;
     }

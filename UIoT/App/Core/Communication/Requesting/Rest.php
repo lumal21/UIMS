@@ -22,6 +22,7 @@
 namespace UIoT\App\Core\Communication\Requesting;
 
 use Httpful\Request;
+use UIoT\App\Core\Helpers\Manipulators\Settings;
 
 /**
  * Class Rest
@@ -32,7 +33,7 @@ class Rest
     /**
      * Rest Settings
      *
-     * @var SETTINGS
+     * @var object
      */
     public static $rest_data = [];
 
@@ -55,7 +56,7 @@ class Rest
      */
     public static function setSettings()
     {
-        self::$rest_data = (json_decode(SETTINGS)->raise);
+        self::$rest_data = Settings::getSetting('raise');
     }
 
     /**
