@@ -77,7 +77,7 @@ final class Register
     /**
      * Get Handler
      *
-     * @return WhoopsHandler
+     * @return WhoopsHandler|callable
      */
     public static function getHandler()
     {
@@ -124,9 +124,9 @@ final class Register
      * Add Data Table on Page Handler
      *
      * @param string $message_title
-     * @param string $message
+     * @param array $message
      */
-    public static function addDataTable($message_title = '', $message = '')
+    public static function addDataTable($message_title = '', $message = [])
     {
         self::getHandler()->addDataTable($message_title, $message);
     }

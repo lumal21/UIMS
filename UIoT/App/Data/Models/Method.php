@@ -29,7 +29,7 @@ use UIoT\App\Data\Interfaces\Method as InterfaceMethod;
  */
 class Method implements InterfaceMethod
 {
-    /** @var object */
+    /** @var object|array */
     private $data;
 
     /**

@@ -55,7 +55,7 @@ final class Data
      * Get HttpFul Request Data
      *
      * @param string $var
-     * @return Response
+     * @return array|string|object
      */
     public function __get($var = '')
     {

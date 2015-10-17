@@ -62,9 +62,9 @@ class Post
     /**
      * Store Post Data
      *
-     * @param array $data
+     * @param string $data
      */
-    public static function storePostData($data = [])
+    public static function storePostData($data = '')
     {
         Constants::addSerializedConstant('POST_WEB', $data);
     }
