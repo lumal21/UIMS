@@ -1,6 +1,6 @@
 {
   "config": {
-    "vendor-dir": "UIoT/Vendor"
+    "vendor-dir": "Web/UIoT/Vendor"
   },
   "name": "uiot/middleware_mc_srvcl_cms",
   "description": "middleware_mc_srvcl_cms",
@@ -44,8 +44,8 @@
   },
   "autoload": {
     "classmap": [
-      "UIoT/",
-      "UIoT/App/"
+      "Web/UIoT/",
+      "Web/UIoT/App/"
     ]
   }
 }
