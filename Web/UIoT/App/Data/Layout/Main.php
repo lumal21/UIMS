@@ -32,51 +32,51 @@ use UIoT\App\Data\Models\LayoutModel;
  */
 class Main extends LayoutModel
 {
-    /**
-     * Set Resources
-     * (Main)
-     */
-    public static function __resources()
-    {
-        ResourceIndexer::setResourceFolder('None');
-        ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
-        ResourceIndexer::addResource('Stylesheet/Foundation.css', 'text/css');
-        ResourceIndexer::addResource('Stylesheet/Font-awesome.css', 'text/css');
-        ResourceIndexer::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
-        ResourceIndexer::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
-        ResourceIndexer::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
-        ResourceIndexer::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
-        ResourceIndexer::addResource('Scripts/Foundation.min.js', 'text/javascript');
-        ResourceIndexer::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
-        ResourceIndexer::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
-        ResourceIndexer::setResourceFolder('Main');
-        ResourceIndexer::addResource('Stylesheet/Main.css', 'text/css');
-    }
+	/**
+	 * Set Resources
+	 * (Main)
+	 */
+	public static function __resources()
+	{
+		ResourceIndexer::setResourceFolder('None');
+		ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
+		ResourceIndexer::addResource('Stylesheet/Foundation.css', 'text/css');
+		ResourceIndexer::addResource('Stylesheet/Font-awesome.css', 'text/css');
+		ResourceIndexer::addResource('Images/Marquee-stars.svg', 'image/svg+xml');
+		ResourceIndexer::addResource('Fonts/Fontawesome-webfont.woff2', 'font/opentype');
+		ResourceIndexer::addResource('Scripts/Vendor/Jquery.js', 'text/javascript');
+		ResourceIndexer::addResource('Scripts/Vendor/Modernizr.js', 'text/javascript');
+		ResourceIndexer::addResource('Scripts/Foundation.min.js', 'text/javascript');
+		ResourceIndexer::addResource('Scripts/Foundation/Foundation.topbar.js', 'text/javascript');
+		ResourceIndexer::addResource('Scripts/Foundation/Foundation.offcanvas.js', 'text/javascript');
+		ResourceIndexer::setResourceFolder('Main');
+		ResourceIndexer::addResource('Stylesheet/Main.css', 'text/css');
+	}
 
-    /**
-     * Set Configuration
-     */
-    public function __configuration()
-    {
-        Pages::setTitle('PIKAA');
-    }
+	/**
+	 * Set Configuration
+	 */
+	public function __configuration()
+	{
+		Pages::setTitle('PIKAA');
+	}
 
-    /**
-     * Set Templates
-     */
-    public function __templates()
-    {
-        TemplateIndexer::setTemplateFolder('Main');
-        TemplateIndexer::addTemplate('Layouts/Main.php');
-    }
+	/**
+	 * Set Templates
+	 */
+	public function __templates()
+	{
+		TemplateIndexer::setTemplateFolder('Main');
+		TemplateIndexer::addTemplate('Layouts/Main.php');
+	}
 
-    /**
-     * Return Template Code
-     *
-     * @return null|mixed|string
-     */
-    public function __show()
-    {
-        return TemplateIndexer::returnTemplates();
-    }
+	/**
+	 * Return Template Code
+	 *
+	 * @return null|mixed|string
+	 */
+	public function __show()
+	{
+		return TemplateIndexer::returnTemplates();
+	}
 }

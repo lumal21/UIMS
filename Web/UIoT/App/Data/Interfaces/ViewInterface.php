@@ -27,11 +27,11 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface ViewInterface
 {
-    public function __construct();
+	public function __construct();
 
-    public function __name();
+	public function __name();
 
-    public function __layout();
+	public function __layout();
 
-    public function __show();
+	public function __show();
 }

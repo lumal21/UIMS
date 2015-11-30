@@ -30,26 +30,26 @@ use UIoT\App\Core\Views\Indexer as ViewIndexer;
  */
 final class Accessor
 {
-    /**
-     * Redirect to Another View
-     *
-     * @param string $view
-     * @return mixed
-     */
-    public static function redirectToView($view)
-    {
-        return (ViewIndexer::getView($view));
-    }
+	/**
+	 * Redirect to Another View
+	 *
+	 * @param string $view
+	 * @return mixed
+	 */
+	public static function redirectToView($view)
+	{
+		return (ViewIndexer::getView($view));
+	}
 
-    /**
-     * Redirect to Another Controller
-     *
-     * @param string $controller
-     * @param string $controller_action
-     * @return string
-     */
-    public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
-    {
-        return Selector::select(Selector::instantiate(new TemplateRender(['controller' => $controller, 'action' => $controller_action])));
-    }
+	/**
+	 * Redirect to Another Controller
+	 *
+	 * @param string $controller
+	 * @param string $controller_action
+	 * @return string
+	 */
+	public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
+	{
+		return Selector::select(Selector::instantiate(new TemplateRender(['controller' => $controller, 'action' => $controller_action])));
+	}
 }

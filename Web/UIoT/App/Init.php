@@ -51,38 +51,38 @@ namespace UIoT\App;
  */
 final class Init
 {
-    /**
-     * start environment
-     */
-    public function __construct()
-    {
-        /* start exception handler */
-        (new Exception\Manager);
+	/**
+	 * start environment
+	 */
+	public function __construct()
+	{
+		/* start exception handler */
+		(new Exception\Manager);
 
-        /* start security handler */
-        (new Security\Handler);
+		/* start security handler */
+		(new Security\Handler);
 
-        /* session register */
-        (new Core\Communication\Sessions\Starter);
+		/* session register */
+		(new Core\Communication\Sessions\Manager);
 
-        /* start raise */
-        (new Core\Communication\Requesting\Raise);
+		/* start raise */
+		(new Core\Communication\Requesting\Raise);
 
-        /* register handlers,methods of rest */
-        (new Core\Communication\Parsers\DataManager);
+		/* register handlers,methods of rest */
+		(new Core\Communication\Parsers\DataManager);
 
-        /* start router */
-        (new Core\Communication\Routing\Router);
-    }
+		/* start router */
+		(new Core\Communication\Routing\Router);
+	}
 
-    /**
-     * It's unnecessary but we will do that anyway
-     * Forces all Cycle Collections (\GC)
-     * Reason: The CMS is called async-times, Force all Process terminate is good.
-     */
-    public function __destruct()
-    {
-        /* force gc collect */
-        gc_collect_cycles();
-    }
+	/**
+	 * It's unnecessary but we will do that anyway
+	 * Forces all Cycle Collections (\GC)
+	 * Reason: The CMS is called async-times, Force all Process terminate is good.
+	 */
+	public function __destruct()
+	{
+		/* force gc collect */
+		gc_collect_cycles();
+	}
 }

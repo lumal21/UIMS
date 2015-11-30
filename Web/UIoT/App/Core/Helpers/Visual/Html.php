@@ -30,59 +30,59 @@ use UIoT\App\Core\Helpers\Manipulators\Strings;
  */
 final class Html
 {
-    /**
-     * @var string
-     */
-    private static $internal_formatted_code = '';
+	/**
+	 * @var string
+	 */
+	private static $internal_formatted_code = '';
 
-    /**
-     * Add Code, Format and Store
-     *
-     * @param string $code
-     */
-    public static function addf($code = '')
-    {
-        self::add(self::format($code));
-    }
+	/**
+	 * Add Code, Format and Store
+	 *
+	 * @param string $code
+	 */
+	public static function addf($code = '')
+	{
+		self::add(self::format($code));
+	}
 
-    /**
-     * Add Code and Store
-     *
-     * @param string $code
-     */
-    public static function add($code = '')
-    {
-        self::$internal_formatted_code .= $code;
-    }
+	/**
+	 * Add Code and Store
+	 *
+	 * @param string $code
+	 */
+	public static function add($code = '')
+	{
+		self::$internal_formatted_code .= $code;
+	}
 
-    /**
-     * Format Html Code
-     *
-     * @param string $code
-     * @return string
-     */
-    public static function format($code = '')
-    {
-        return Strings::removeEmptyLines(HtmlFormatter::format($code));
-    }
+	/**
+	 * Format Html Code
+	 *
+	 * @param string $code
+	 * @return string
+	 */
+	public static function format($code = '')
+	{
+		return Strings::removeEmptyLines(HtmlFormatter::format($code));
+	}
 
-    /**
-     * Return Internal Code
-     *
-     * @return string
-     */
-    public static function get()
-    {
-        return self::$internal_formatted_code;
-    }
+	/**
+	 * Return Internal Code
+	 *
+	 * @return string
+	 */
+	public static function get()
+	{
+		return self::$internal_formatted_code;
+	}
 
-    /**
-     * Return Internal Code Formatted
-     *
-     * @return string
-     */
-    public static function getf()
-    {
-        return self::format(self::$internal_formatted_code);
-    }
+	/**
+	 * Return Internal Code Formatted
+	 *
+	 * @return string
+	 */
+	public static function getf()
+	{
+		return self::format(self::$internal_formatted_code);
+	}
 }

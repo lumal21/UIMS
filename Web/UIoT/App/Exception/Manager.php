@@ -30,41 +30,41 @@ use UIoT\App\Core\Helpers\Manipulators\Settings;
  */
 final class Manager
 {
-    /**
-     * Create Instance of Everything
-     */
-    public function __construct()
-    {
-        $this->setClasses();
-        $this->setSettings();
-        $this->registerHandler();
-    }
+	/**
+	 * Create Instance of Everything
+	 */
+	public function __construct()
+	{
+		$this->setClasses();
+		$this->setSettings();
+		$this->registerHandler();
+	}
 
-    /**
-     * Set Classes
-     */
-    private function setClasses()
-    {
-        Register::setHandler(new Handler);
-        Register::setRunner(new Runner);
-    }
+	/**
+	 * Set Classes
+	 */
+	private function setClasses()
+	{
+		Register::setHandler(new Handler);
+		Register::setRunner(new Runner);
+	}
 
-    /**
-     * Set Page Handler Settings
-     */
-    private function setSettings()
-    {
-        Register::setErrorLevels(Settings::getSetting('exceptions')->error_reporting_levels);
-        Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . Settings::getSetting('exceptions')->error_resource_folder . '/');
-        Register::setPageTitle(Settings::getSetting('exceptions')->error_page_title);
-    }
+	/**
+	 * Set Page Handler Settings
+	 */
+	private function setSettings()
+	{
+		Register::setErrorLevels(Settings::getSetting('exceptions')->error_reporting_levels);
+		Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . Settings::getSetting('exceptions')->error_resource_folder . '/');
+		Register::setPageTitle(Settings::getSetting('exceptions')->error_page_title);
+	}
 
-    /**
-     * Register Page Handler
-     */
-    private function registerHandler()
-    {
-        Register::pushHandler();
-        Register::registerHandler();
-    }
+	/**
+	 * Register Page Handler
+	 */
+	private function registerHandler()
+	{
+		Register::pushHandler();
+		Register::registerHandler();
+	}
 }

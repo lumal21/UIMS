@@ -31,23 +31,23 @@ use UIoT\App\Data\Interfaces\IControllerInterface;
  */
 class IControllerModel extends stdClass implements IControllerInterface
 {
-    /**
-     * Init Abstract Controller
-     */
-    public function __construct()
-    {
-        TemplateRender::$disable_show_view = true;
-    }
+	/**
+	 * Init Abstract Controller
+	 */
+	public function __construct()
+	{
+		TemplateRender::$disable_show_view = true;
+	}
 
-    /**
-     * Dynamic Method Call
-     *
-     * @param $key
-     * @param $params
-     * @return mixed
-     */
-    public function __call($key, $params)
-    {
-        return (call_user_func_array($this->{$key}, $params));
-    }
+	/**
+	 * Dynamic Method Call
+	 *
+	 * @param $key
+	 * @param $params
+	 * @return mixed
+	 */
+	public function __call($key, $params)
+	{
+		return (call_user_func_array($this->{$key}, $params));
+	}
 }

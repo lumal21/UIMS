@@ -27,71 +27,71 @@ namespace UIoT\App\Core\Helpers\Manipulators;
  */
 final class Constants
 {
-    /**
-     * Define a Constant with jSON
-     *
-     * @param string $constant_name Name
-     * @param mixed $constant_value Value
-     * @param int $constant_options jSON Options
-     * @return string
-     */
-    public static function addJsonConstant($constant_name, $constant_value = '', $constant_options = 0)
-    {
-        self::addConstant($constant_name, Json::jsonEncode($constant_value, $constant_options));
-    }
+	/**
+	 * Define a Constant with jSON
+	 *
+	 * @param string $constant_name Name
+	 * @param mixed $constant_value Value
+	 * @param int $constant_options jSON Options
+	 * @return string
+	 */
+	public static function addJsonConstant($constant_name, $constant_value = '', $constant_options = 0)
+	{
+		self::addConstant($constant_name, Json::jsonEncode($constant_value, $constant_options));
+	}
 
-    /**
-     * Define a Constant
-     *
-     * @param string $constant_name Name
-     * @param string $constant_value Value
-     */
-    public static function addConstant($constant_name, $constant_value = '')
-    {
-        defined($constant_name) || define($constant_name, $constant_value);
-    }
+	/**
+	 * Define a Constant
+	 *
+	 * @param string $constant_name Name
+	 * @param string $constant_value Value
+	 */
+	public static function addConstant($constant_name, $constant_value = '')
+	{
+		defined($constant_name) || define($constant_name, $constant_value);
+	}
 
-    /**
-     * Add Serialized Constant
-     *
-     * @param $constant_name
-     * @param string|array|object $constant_value
-     */
-    public static function addSerializedConstant($constant_name, $constant_value)
-    {
-        self::addConstant($constant_name, serialize($constant_value));
-    }
+	/**
+	 * Add Serialized Constant
+	 *
+	 * @param $constant_name
+	 * @param string|array|object $constant_value
+	 */
+	public static function addSerializedConstant($constant_name, $constant_value)
+	{
+		self::addConstant($constant_name, serialize($constant_value));
+	}
 
-    /**
-     * Return Unserialized Constant
-     *
-     * @param string $constant_name
-     * @return mixed
-     */
-    public static function returnSerializedConstant($constant_name = '')
-    {
-        return unserialize(self::returnConstant($constant_name));
-    }
+	/**
+	 * Return Unserialized Constant
+	 *
+	 * @param string $constant_name
+	 * @return mixed
+	 */
+	public static function returnSerializedConstant($constant_name = '')
+	{
+		return unserialize(self::returnConstant($constant_name));
+	}
 
-    /**
-     * Return Constant
-     *
-     * @param string $constant_name
-     * @return string
-     */
-    public static function returnConstant($constant_name = '')
-    {
-        return defined($constant_name) ? constant($constant_name) : '';
-    }
+	/**
+	 * Return Constant
+	 *
+	 * @param string $constant_name
+	 * @return string
+	 */
+	public static function returnConstant($constant_name = '')
+	{
+		return defined($constant_name) ? constant($constant_name) : '';
+	}
 
-    /**
-     * Return Json Constant
-     *
-     * @param string $constant_name
-     * @return mixed
-     */
-    public static function returnJsonConstant($constant_name = '')
-    {
-        return Json::jsonDecode(self::returnConstant($constant_name));
-    }
+	/**
+	 * Return Json Constant
+	 *
+	 * @param string $constant_name
+	 * @return mixed
+	 */
+	public static function returnJsonConstant($constant_name = '')
+	{
+		return Json::jsonDecode(self::returnConstant($constant_name));
+	}
 }

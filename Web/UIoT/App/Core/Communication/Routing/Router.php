@@ -38,71 +38,71 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
  */
 final class Router
 {
-    /**
-     * Start's Router Procedure
-     */
-    public function __construct()
-    {
-        /* map section */
-        $this->reach();
+	/**
+	 * Start's Router Procedure
+	 */
+	public function __construct()
+	{
+		/* map section */
+		$this->reach();
 
-        /* routing section */
-        $this->route();
-        $this->query();
+		/* routing section */
+		$this->route();
+		$this->query();
 
-        /* show section */
-        $this->open();
-    }
+		/* show section */
+		$this->open();
+	}
 
-    /**
-     * Route the Items
-     *
-     * @return bool
-     */
-    private function route()
-    {
-        /* get controller name (layout) */
-        $this->controller = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
-        $this->action = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
-        $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
+	/**
+	 * Route the Items
+	 *
+	 * @return bool
+	 */
+	private function route()
+	{
+		/* get controller name (layout) */
+		$this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
+		$this->action       = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
+		$this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * Open the Template or Router
-     */
-    private function open()
-    {
-        echo Urls::checkCombination() ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action])));
-    }
+	/**
+	 * Open the Template or Router
+	 */
+	private function open()
+	{
+		echo Urls::checkCombination() ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action])));
+	}
 
-    /**
-     * Get Requested URL and Script Name, Removing the Repeated Things
-     */
-    private function reach()
-    {
-        /* register layouts and resources */
-        Urls::registerItems();
+	/**
+	 * Get Requested URL and Script Name, Removing the Repeated Things
+	 */
+	private function reach()
+	{
+		/* register layouts and resources */
+		Urls::registerItems();
 
-        /* add urls */
+		/* add urls */
 
-        Urls::addUrl(Constants::returnConstant('REQUEST_URL'));
-        Urls::addUrl(Constants::returnConstant('PHP_SELF'));
-        Urls::addUrl(Constants::returnConstant('QUERY_STRING'));
-    }
+		Urls::addUrl(Constants::returnConstant('REQUEST_URL'));
+		Urls::addUrl(Constants::returnConstant('PHP_SELF'));
+		Urls::addUrl(Constants::returnConstant('QUERY_STRING'));
+	}
 
-    /**
-     * Apply Query String
-     */
-    private function query()
-    {
-        /* apply get data from query string */
-        GetHelper::storeGetData(GetHelper::receiveGetData());
+	/**
+	 * Apply Query String
+	 */
+	private function query()
+	{
+		/* apply get data from query string */
+		GetHelper::storeGetData(GetHelper::receiveGetData());
 
-        /* store post data */
-        PostHelper::storePostData(PostHelper::receivePostData());
+		/* store post data */
+		PostHelper::storePostData(PostHelper::receivePostData());
 
-        return true;
-    }
+		return true;
+	}
 }

@@ -32,38 +32,38 @@ use UIoT\App\Data\Models\LayoutModel;
  */
 class Test extends LayoutModel
 {
-    /**
-     * Set Resources
-     */
-    public static function __resources()
-    {
-        ResourceIndexer::setResourceFolder('None');
-    }
+	/**
+	 * Set Resources
+	 */
+	public static function __resources()
+	{
+		ResourceIndexer::setResourceFolder('None');
+	}
 
-    /**
-     * Set Configuration
-     */
-    public function __configuration()
-    {
-        Pages::setTitle('Hello World');
-    }
+	/**
+	 * Set Configuration
+	 */
+	public function __configuration()
+	{
+		Pages::setTitle('Hello World');
+	}
 
-    /**
-     * Set Templates
-     */
-    public function __templates()
-    {
-        TemplateIndexer::setTemplateFolder('Test');
-        TemplateIndexer::addTemplate('Layouts/Test.php');
-    }
+	/**
+	 * Set Templates
+	 */
+	public function __templates()
+	{
+		TemplateIndexer::setTemplateFolder('Test');
+		TemplateIndexer::addTemplate('Layouts/Test.php');
+	}
 
-    /**
-     * Return Template
-     *
-     * @return null|mixed|string
-     */
-    public function __show()
-    {
-        return TemplateIndexer::returnTemplates();
-    }
+	/**
+	 * Return Template
+	 *
+	 * @return null|mixed|string
+	 */
+	public function __show()
+	{
+		return TemplateIndexer::returnTemplates();
+	}
 }

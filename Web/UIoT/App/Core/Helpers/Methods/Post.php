@@ -37,56 +37,56 @@ use UIoT\App\Core\Helpers\Manipulators\Strings;
  */
 class Post
 {
-    /**
-     * @var object
-     */
-    private static $data;
+	/**
+	 * @var object
+	 */
+	private static $data;
 
-    /**
-     * Receive Post Data
-     *
-     * @return array
-     */
-    public static function receivePostData()
-    {
-        /* define array */
-        $post = [];
+	/**
+	 * Receive Post Data
+	 *
+	 * @return array
+	 */
+	public static function receivePostData()
+	{
+		/* define array */
+		$post = [];
 
-        /* put query string into $GET */
-        foreach (Constants::returnJsonConstant('HTTP_PHP_POST') as $key => $value)
-            Arrays::addOnHttpMethod(Strings::sanitizeString($key), Strings::sanitizeString($value), (new PostMethod), $post);
+		/* put query string into $GET */
+		foreach (Constants::returnJsonConstant('HTTP_PHP_POST') as $key => $value)
+			Arrays::addOnHttpMethod(Strings::sanitizeString($key), Strings::sanitizeString($value), (new PostMethod), $post);
 
-        return $post;
-    }
+		return $post;
+	}
 
-    /**
-     * Store Post Data
-     *
-     * @param string|array|object $data
-     */
-    public static function storePostData($data)
-    {
-        Constants::addSerializedConstant('POST_WEB', $data);
-    }
+	/**
+	 * Store Post Data
+	 *
+	 * @param string|array|object $data
+	 */
+	public static function storePostData($data)
+	{
+		Constants::addSerializedConstant('POST_WEB', $data);
+	}
 
-    /**
-     * Return All Post Data
-     *
-     * @return object
-     */
-    public static function returnPostData()
-    {
-        return !self::$data ? (self::$data = Constants::returnSerializedConstant('POST_WEB')) : self::$data;
-    }
+	/**
+	 * Return All Post Data
+	 *
+	 * @return object
+	 */
+	public static function returnPostData()
+	{
+		return !self::$data ? (self::$data = Constants::returnSerializedConstant('POST_WEB')) : self::$data;
+	}
 
-    /**
-     * Return Specific Post Data
-     *
-     * @param string $variable_name
-     * @return mixed
-     */
-    public static function returnPostVariable($variable_name = '')
-    {
-        return isset(self::returnPostData()[$variable_name]) ? self::returnPostData()[$variable_name]->getData() : '';
-    }
+	/**
+	 * Return Specific Post Data
+	 *
+	 * @param string $variable_name
+	 * @return mixed
+	 */
+	public static function returnPostVariable($variable_name = '')
+	{
+		return isset(self::returnPostData()[$variable_name]) ? self::returnPostData()[$variable_name]->getData() : '';
+	}
 }

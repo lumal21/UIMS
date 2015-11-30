@@ -30,36 +30,36 @@ use UIoT\App\Data\Interfaces\RequestDataInterface;
  */
 class RequestDataModel extends stdClass implements RequestDataInterface
 {
-    /**
-     * Constructs and Set all Abstract Data
-     *
-     * @param stdClass $k
-     */
-    public function __construct(stdClass $k)
-    {
-        /* set object vars */
-        foreach (get_object_vars($k) as $name => $value)
-            $this->{$name} = $value;
-    }
+	/**
+	 * Constructs and Set all Abstract Data
+	 *
+	 * @param stdClass $k
+	 */
+	public function __construct(stdClass $k)
+	{
+		/* set object vars */
+		foreach (get_object_vars($k) as $name => $value)
+			$this->{$name} = $value;
+	}
 
-    /**
-     * Get Something
-     *
-     * @param $a
-     */
-    public function __get($a)
-    {
-        return $a;
-    }
+	/**
+	 * Get Something
+	 *
+	 * @param $a
+	 */
+	public function __get($a)
+	{
+		return $a;
+	}
 
-    /**
-     * Set Something
-     *
-     * @param $a
-     * @param $b
-     */
-    public function __set($a, $b)
-    {
-        $this->{$a} = $b;
-    }
+	/**
+	 * Set Something
+	 *
+	 * @param $a
+	 * @param $b
+	 */
+	public function __set($a, $b)
+	{
+		$this->{$a} = $b;
+	}
 }

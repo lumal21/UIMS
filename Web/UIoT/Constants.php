@@ -101,14 +101,14 @@ C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/Resource
  *  And my-ass is not an resource-type listed here.
  */
 C::addJsonConstant('RESOURCE_TYPES', [
-        '',
-        'Images',
-        'Fonts',
-        'Less',
-        'Scripts',
-        'Scss',
-        'Stylesheet'
-    ]
+		'',
+		'Images',
+		'Fonts',
+		'Less',
+		'Scripts',
+		'Scss',
+		'Stylesheet'
+	]
 );
 
 /*
@@ -142,13 +142,13 @@ C::addJsonConstant('RESOURCE_TYPES', [
  *  And to the RESOURCES from that LAYOUT be accessible you need REGISTER the LAYOUT in this ARRAY.
  */
 C::addJsonConstant('PREDEFINED_LAYOUTS', [
-        '',
-        'Add',
-        'Edit',
-        'Login',
-        'Main',
-        'Remove'
-    ]
+		'',
+		'Add',
+		'Edit',
+		'Login',
+		'Main',
+		'Remove'
+	]
 );
 
 /**

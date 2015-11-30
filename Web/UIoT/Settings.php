@@ -48,45 +48,45 @@ use UIoT\App\Core\Helpers\Manipulators\Settings;
  */
 
 Settings::setAndStoreSettings([
-    // database settings (not really necessary, because the cms doesn't uses database connection
-    // but you can set and enable cms database connection if you want
-    'database' =>
-        [
-            'host' => 'localhost',
-            'port' => 3306,
-            'user' => 'root',
-            'pass' => 'latitude',
-            'name' => 'cms',
-        ],
-    'raise' =>
-        [
-            'host' => 'rest_uiot',
-            'base_path' => '',
-            'port' => 82,
-            'ssl' => false,
-        ],
-    'security' =>
-        [
-            // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
-            'session_handler_salt' => 'uniform-internetofthings',
-            // session expire (seconds)
-            'session_time_out' => 960,
-            // white list ip to access security items and complete exceptions stack trace, debug tools etc.
-            'white_ip_list' =>
-                [
-                    '127.0.0.1',
-                    'localhost'
-                ],
-        ],
-    'exceptions' =>
-        [
-            // set error page title
-            'error_page_title' => 'Houston, we have a problem!',
-            // set reporting php error level
-            'error_reporting_levels' => (E_ALL),
-            // set query_string developer access mode
-            'error_developer_code' => 'de',
-            // set whoops resource folder
-            'error_resource_folder' => 'Whoops'
-        ]
+	// database settings (not really necessary, because the cms doesn't uses database connection
+	// but you can set and enable cms database connection if you want
+	'database' =>
+		[
+			'host' => 'localhost',
+			'port' => 3306,
+			'user' => 'root',
+			'pass' => 'latitude',
+			'name' => 'cms',
+		],
+	'raise' =>
+		[
+			'host' => 'rest_uiot',
+			'base_path' => '',
+			'port' => 82,
+			'ssl' => false,
+		],
+	'security' =>
+		[
+			// session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
+			'session_handler_salt' => 'uniform-internetofthings',
+			// session expire (seconds)
+			'session_time_out' => 960,
+			// white list ip to access security items and complete exceptions stack trace, debug tools etc.
+			'white_ip_list' =>
+				[
+					'127.0.0.1',
+					'localhost'
+				],
+		],
+	'exceptions' =>
+		[
+			// set error page title
+			'error_page_title' => 'Houston, we have a problem!',
+			// set reporting php error level
+			'error_reporting_levels' => (E_ALL),
+			// set query_string developer access mode
+			'error_developer_code' => 'de',
+			// set whoops resource folder
+			'error_resource_folder' => 'Whoops'
+		]
 ]);

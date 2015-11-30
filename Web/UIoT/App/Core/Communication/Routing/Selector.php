@@ -30,29 +30,29 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
  */
 final class Selector
 {
-    /**
-     * Show the Render
-     *
-     * @param $instance
-     * @return mixed|null|string
-     */
-    public static function select($instance)
-    {
-        if ($instance instanceof ResourceRender)
-            return $instance->show();
-        else if ($instance instanceof TemplateRender)
-            return $instance->show();
-        return null;
-    }
+	/**
+	 * Show the Render
+	 *
+	 * @param $instance
+	 * @return mixed|null|string
+	 */
+	public static function select($instance)
+	{
+		if ($instance instanceof ResourceRender)
+			return $instance->show();
+		else if ($instance instanceof TemplateRender)
+			return $instance->show();
+		return null;
+	}
 
-    /**
-     * Get Render Instance
-     *
-     * @param $render
-     * @return ResourceRender|TemplateRender
-     */
-    public static function instantiate($render)
-    {
-        return $render;
-    }
+	/**
+	 * Get Render Instance
+	 *
+	 * @param $render
+	 * @return ResourceRender|TemplateRender
+	 */
+	public static function instantiate($render)
+	{
+		return $render;
+	}
 }
