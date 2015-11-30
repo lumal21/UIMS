@@ -33,13 +33,11 @@ final class Security
 	 * @param mixed $input_variable
 	 * @return array|mixed|string
 	 */
-	public static function sanitizeVariable($input_variable)
+	public static function sanitizeVariable($input_variable = '')
 	{
-		if (is_array($input_variable))
-			return array_map(__METHOD__, $input_variable);
-		if (is_object($input_variable))
+		if (is_array($input_variable) || is_object($input_variable))
 			return array_map(__METHOD__, (array)$input_variable);
-		if (!empty($input_variable) && is_string($input_variable))
+		if (is_string($input_variable))
 			return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $input_variable);
 		return $input_variable;
 	}
