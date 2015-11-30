@@ -59,7 +59,7 @@
                     // if user pressed tab key
                     if (keyCode == 9) {
                         e.preventDefault();
-                        // TODO: Change usual_tab_behavior into accessibility function?
+                        //o: Change usual_tab_behavior into accessibility function?
                         usual_tab_behavior(e, el);
                     }
                 })

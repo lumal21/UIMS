@@ -155,7 +155,7 @@ final class Indexer
      * @param string $layout_name
      * @return mixed
      */
-    public static function openLayoutResources($layout_name)
+    public static function openLayoutResources($layout_name = '')
     {
         !self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
     }
