@@ -22,32 +22,44 @@
 namespace UIoT\App\Data\Models;
 
 use stdClass;
-use UIoT\App\Core\Templates\Render as TemplateRender;
-use UIoT\App\Data\Interfaces\IControllerInterface as InterfaceIController;
+use UIoT\App\Data\Interfaces\RequestDataInterface;
 
 /**
- * Class IController
- * @package UIoT\App\Data\Models\Types
+ * Class RequestData
+ * @package UIoT\App\Data\Models
  */
-class IControllerInterface extends stdClass implements InterfaceIController
+class RequestDataModel extends stdClass implements RequestDataInterface
 {
     /**
-     * Init Abstract Controller
+     * Constructs and Set all Abstract Data
+     *
+     * @param stdClass $k
      */
-    public function __construct()
+    public function __construct(stdClass $k)
     {
-        TemplateRender::$disable_show_view = true;
+        /* set object vars */
+        foreach (get_object_vars($k) as $name => $value)
+            $this->{$name} = $value;
     }
 
     /**
-     * Dynamic Method Call
+     * Get Something
      *
-     * @param $key
-     * @param $params
-     * @return mixed
+     * @param $a
      */
-    public function __call($key, $params)
+    public function __get($a)
     {
-        return (call_user_func_array($this->{$key}, $params));
+        return $a;
+    }
+
+    /**
+     * Set Something
+     *
+     * @param $a
+     * @param $b
+     */
+    public function __set($a, $b)
+    {
+        $this->{$a} = $b;
     }
 }

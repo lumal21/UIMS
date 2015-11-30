@@ -19,19 +19,50 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Views;
+namespace UIoT\App\Data\Models;
 
 use ReflectionClass;
-use UIoT\App\Data\Models\ViewModel;
+use UIoT\App\Core\Layouts\Indexer as LIndexer;
+use UIoT\App\Data\Interfaces\ViewInterface;
 
 /**
- * Class Login
- * @package UIoT\App\Data\Views
+ * Class View
+ * @property string view
+ * @property string vname
+ * @package UIoT\App\Data\Models\Types
  */
-final class Login extends ViewModel
+class ViewModel implements ViewInterface
 {
+    /**
+     * Start View
+     */
+    public function __construct()
+    {
+        $this->__name();
+        $this->__layout();
+    }
+
+    /**
+     * Set Abstract Name
+     */
     public function __name()
     {
         $this->vname = (new ReflectionClass(self::class))->getShortName();
+    }
+
+    /**
+     * Set Layout
+     */
+    public function __layout()
+    {
+        LIndexer::addLayout($this->vname, $this->vname);
+    }
+
+    /**
+     * Show Layout
+     */
+    public function __show()
+    {
+        return LIndexer::getLayout($this->vname);
     }
 }

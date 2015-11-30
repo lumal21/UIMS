@@ -21,11 +21,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Data\Models\HandlerModel;
+
 /**
  * Class Gettable
  * @package UIoT\App\Core\Communication\Parsers\Methods
  */
-class Gettable extends HandlerInterface
+class Gettable extends HandlerModel
 {
 
 }

@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
-use UIoT\App\Data\Models\MethodInterface;
+use UIoT\App\Data\Models\MethodModel;
 
 /*
  * Warning:
@@ -43,7 +43,7 @@ use UIoT\App\Data\Models\MethodInterface;
  * Class Get
  * @package UIoT\App\Core\Communication\Methods
  */
-final class Get extends MethodInterface
+final class Get extends MethodModel
 {
 
 }

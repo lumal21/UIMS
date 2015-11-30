@@ -30,7 +30,7 @@ use UIoT\App\Exception\Register;
  * Class Commander
  * @property array controller_actions
  * @property string controller_name
- * @property \UIoT\App\Data\Models\IControllerInterface controller
+ * @property \UIoT\App\Data\Models\IControllerModel controller
  * @package UIoT\App\Core\Controllers
  */
 final class Commander

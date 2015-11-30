@@ -22,13 +22,13 @@
 namespace UIoT\App\Data\Controllers;
 
 use UIoT\App\Core\Communication\Routing\Accessor;
-use UIoT\App\Data\Models\ControllerInterface;
+use UIoT\App\Data\Models\ControllerModel;
 
 /**
  * Class None
  * @package UIoT\App\Data\Controllers
  */
-final class None extends ControllerInterface
+final class None extends ControllerModel
 {
     public function __actionMain()
     {

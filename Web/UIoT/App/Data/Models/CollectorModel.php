@@ -21,45 +21,39 @@
 
 namespace UIoT\App\Data\Models;
 
-use stdClass;
-use UIoT\App\Data\Interfaces\RequestDataInterface as InterfaceRequestData;
+use UIoT\App\Data\Interfaces\CollectorInterface;
 
 /**
- * Class RequestData
+ * Class Collector
  * @package UIoT\App\Data\Models
  */
-class RequestDataInterface extends stdClass implements InterfaceRequestData
+class CollectorModel implements CollectorInterface
 {
+    protected $request;
+
     /**
-     * Constructs and Set all Abstract Data
-     *
-     * @param stdClass $k
+     * @param $a
+     * @return $this
      */
-    public function __construct(stdClass $k)
+    public function passRequest($a)
     {
-        /* set object vars */
-        foreach (get_object_vars($k) as $name => $value)
-            $this->{$name} = $value;
+        /* save request data */
+        $this->request = $a;
+
+        /* return class instance */
+        return $this;
     }
 
     /**
-     * Get Something
-     *
      * @param $a
+     * @return $this
      */
-    public function __get($a)
+    public function passHandler($a)
     {
-        return $a;
-    }
+        /* store request data */
+        $b = new $a($this->request);
 
-    /**
-     * Set Something
-     *
-     * @param $a
-     * @param $b
-     */
-    public function __set($a, $b)
-    {
-        $this->{$a} = $b;
+        /* return handler */
+        return $b;
     }
 }

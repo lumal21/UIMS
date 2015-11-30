@@ -21,11 +21,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Data\Models\HandlerModel;
+
 /**
  * Class Deletable
  * @package UIoT\App\Core\Communication\Parsers\Methods
  */
-class Deletable extends HandlerInterface
+class Deletable extends HandlerModel
 {
 
 }

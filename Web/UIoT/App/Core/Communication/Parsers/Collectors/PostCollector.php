@@ -21,13 +21,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\CollectorInterface;
+use UIoT\App\Data\Models\CollectorModel;
 
 /**
  * Class PostCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class PostCollector extends CollectorInterface
+class PostCollector extends CollectorModel
 {
     /**
      * @param $a

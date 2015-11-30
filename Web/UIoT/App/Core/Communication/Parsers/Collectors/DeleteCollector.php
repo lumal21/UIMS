@@ -21,13 +21,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\CollectorInterface;
+use UIoT\App\Data\Models\CollectorModel;
 
 /**
  * Class DeleteCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class DeleteCollector extends CollectorInterface
+class DeleteCollector extends CollectorModel
 {
     /**
      * @param $a

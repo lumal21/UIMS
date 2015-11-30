@@ -21,31 +21,53 @@
 
 namespace UIoT\App\Data\Models;
 
-use UIoT\App\Data\Interfaces\HandlerInterface as InterfaceHandler;
+use UIoT\App\Data\Interfaces\LayoutInterface;
 
 /**
- * Class Handler
+ * Class Layout
  * @package UIoT\App\Data\Models\Types
  */
-class HandlerInterface implements InterfaceHandler
+class LayoutModel implements LayoutInterface
 {
-    protected $content;
-
     /**
-     * @param $request_content
+     * Start Layout
      */
-    public function __construct($request_content)
+    public function __construct()
     {
-        $this->content .= '<pre>';
-        $this->content .= print_r($request_content, true);
-        $this->content .= '</pre>';
+        $this->__resources();
+        $this->__configuration();
+        $this->__templates();
     }
 
     /**
-     * @return string
+     * Define Resources
      */
-    public function __toString()
+    public static function __resources()
     {
-        return $this->content;
+        /* not implemented */
+    }
+
+    /**
+     * Define Settings
+     */
+    public function __configuration()
+    {
+        /* not implemented */
+    }
+
+    /**
+     * Define Templates
+     */
+    public function __templates()
+    {
+        /* not implemented */
+    }
+
+    /**
+     * Return Layout Code
+     */
+    public function __show()
+    {
+        /* not implemented */
     }
 }

@@ -36,16 +36,6 @@ final class Html
     private static $internal_formatted_code = '';
 
     /**
-     * Add Code and Store
-     *
-     * @param string $code
-     */
-    public static function add($code = '')
-    {
-        self::$internal_formatted_code .= $code;
-    }
-
-    /**
      * Add Code, Format and Store
      *
      * @param string $code
@@ -53,6 +43,16 @@ final class Html
     public static function addf($code = '')
     {
         self::add(self::format($code));
+    }
+
+    /**
+     * Add Code and Store
+     *
+     * @param string $code
+     */
+    public static function add($code = '')
+    {
+        self::$internal_formatted_code .= $code;
     }
 
     /**

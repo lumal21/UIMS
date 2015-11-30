@@ -21,13 +21,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Data\Models\HandlerInterface;
+use UIoT\App\Data\Models\HandlerModel;
 
 /**
  * Class Postable
  * @package UIoT\App\Core\Communication\Parsers\Methods
  */
-class Postable extends HandlerInterface
+class Postable extends HandlerModel
 {
 
 }

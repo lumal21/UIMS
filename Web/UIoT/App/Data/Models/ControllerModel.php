@@ -21,39 +21,27 @@
 
 namespace UIoT\App\Data\Models;
 
-use UIoT\App\Data\Interfaces\CollectorInterface as InterfaceCollector;
+use UIoT\App\Data\Interfaces\ControllerInterface;
 
 /**
- * Class Collector
- * @package UIoT\App\Data\Models
+ * Class Controller
+ * @package UIoT\App\Data\Models\Types
  */
-class CollectorInterface implements InterfaceCollector
+class ControllerModel implements ControllerInterface
 {
-    protected $request;
-
     /**
-     * @param $a
-     * @return $this
+     * Init Controller
      */
-    public function passRequest($a)
+    public function __construct()
     {
-        /* save request data */
-        $this->request = $a;
-
-        /* return class instance */
-        return $this;
+        /* nothing to do */
     }
 
     /**
-     * @param $a
-     * @return $this
+     * Default Action
      */
-    public function passHandler($a)
+    public function __actionMain()
     {
-        /* store request data */
-        $b = new $a($this->request);
-
-        /* return handler */
-        return $b;
+        /* nothing to do */
     }
 }

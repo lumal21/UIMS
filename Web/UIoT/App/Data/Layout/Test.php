@@ -24,13 +24,13 @@ namespace UIoT\App\Data\Layout;
 use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
-use UIoT\App\Data\Models\LayoutInterface;
+use UIoT\App\Data\Models\LayoutModel;
 
 /**
  * Class Test
  * @package UIoT\App\Data\Layout
  */
-class Test extends LayoutInterface
+class Test extends LayoutModel
 {
     /**
      * Set Resources

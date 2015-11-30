@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Helpers\Manipulators;
 
 use UIoT\App\Core\Controllers\Indexer;
-use UIoT\App\Data\Models\MethodInterface;
+use UIoT\App\Data\Models\MethodModel;
 
 /**
  * Class Arrays
@@ -59,11 +59,11 @@ class Arrays
      *
      * @param $key
      * @param $value
-     * @param MethodInterface $class
+     * @param MethodModel $class
      * @param array $array
      * @return bool
      */
-    public static function addOnHttpMethod($key, $value, MethodInterface $class, &$array = [])
+    public static function addOnHttpMethod($key, $value, MethodModel $class, &$array = [])
     {
         $array[$key] = $class->setData($value);
     }
@@ -113,7 +113,7 @@ class Arrays
      */
     public static function toControllerArray($a = [])
     {
-        return array_map('self::toControllerName', $a);
+        return array_map('self::toControllerName', (array)$a);
     }
 
     /**

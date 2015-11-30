@@ -22,13 +22,13 @@
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
 use UIoT\App\Core\Helpers\Manipulators\Json;
-use UIoT\App\Data\Models\CollectorInterface;
+use UIoT\App\Data\Models\CollectorModel;
 
 /**
  * Class GetCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class GetCollector extends CollectorInterface
+class GetCollector extends CollectorModel
 {
     /**
      * Pass Request for Gettable

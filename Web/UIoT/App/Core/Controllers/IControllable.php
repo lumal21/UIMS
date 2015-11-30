@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Controllers;
 use RuntimeException;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Helpers\Manipulators\Strings;
-use UIoT\App\Data\Models\IControllerInterface;
+use UIoT\App\Data\Models\IControllerModel;
 
 /**
  * Class IControllable
@@ -49,7 +49,7 @@ class IControllable
      */
     public $c_array = [];
     /**
-     * @var IControllerInterface
+     * @var IControllerModel
      */
     public $c_data;
 
@@ -76,7 +76,7 @@ class IControllable
      */
     private function addInstance()
     {
-        $this->c_data = (new IControllerInterface);
+        $this->c_data = (new IControllerModel);
     }
 
     /**

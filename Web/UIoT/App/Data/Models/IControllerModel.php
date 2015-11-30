@@ -21,48 +21,33 @@
 
 namespace UIoT\App\Data\Models;
 
-use ReflectionClass;
-use UIoT\App\Core\Layouts\Indexer as LIndexer;
-use UIoT\App\Data\Interfaces\ViewInterface as InterfaceView;
+use stdClass;
+use UIoT\App\Core\Templates\Render as TemplateRender;
+use UIoT\App\Data\Interfaces\IControllerInterface;
 
 /**
- * Class View
- * @property string view
- * @property string vname
+ * Class IController
  * @package UIoT\App\Data\Models\Types
  */
-class ViewInterface implements InterfaceView
+class IControllerModel extends stdClass implements IControllerInterface
 {
     /**
-     * Start View
+     * Init Abstract Controller
      */
     public function __construct()
     {
-        $this->__name();
-        $this->__layout();
+        TemplateRender::$disable_show_view = true;
     }
 
     /**
-     * Set Abstract Name
+     * Dynamic Method Call
+     *
+     * @param $key
+     * @param $params
+     * @return mixed
      */
-    public function __name()
+    public function __call($key, $params)
     {
-        $this->vname = (new ReflectionClass(self::class))->getShortName();
-    }
-
-    /**
-     * Set Layout
-     */
-    public function __layout()
-    {
-        LIndexer::addLayout($this->vname, $this->vname);
-    }
-
-    /**
-     * Show Layout
-     */
-    public function __show()
-    {
-        return LIndexer::getLayout($this->vname);
+        return (call_user_func_array($this->{$key}, $params));
     }
 }

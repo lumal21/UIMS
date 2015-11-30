@@ -21,27 +21,37 @@
 
 namespace UIoT\App\Data\Models;
 
-use UIoT\App\Data\Interfaces\ControllerInterface as InterfaceController;
+use UIoT\App\Data\Interfaces\MethodInterface;
 
 /**
- * Class Controller
- * @package UIoT\App\Data\Models\Types
+ * Class Method
+ * @package UIoT\App\Data\Models
  */
-class ControllerInterface implements InterfaceController
+class MethodModel implements MethodInterface
 {
+    /** @var object|array */
+    private $data;
+
     /**
-     * Init Controller
+     * Get Data
+     *
+     * @return array|mixed|object
      */
-    public function __construct()
+    public function getData()
     {
-        /* nothing to do */
+        return $this->data;
     }
 
     /**
-     * Default Action
+     * Set Data
+     *
+     * @param $data
+     * @return $this
      */
-    public function __actionMain()
+    public function setData($data = [])
     {
-        /* nothing to do */
+        $this->data = $data;
+
+        return $this;
     }
 }

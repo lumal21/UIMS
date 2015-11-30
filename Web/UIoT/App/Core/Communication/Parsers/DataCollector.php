@@ -23,8 +23,8 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Requesting\Raise;
-use UIoT\App\Data\Models\CollectorInterface;
-use UIoT\App\Data\Models\HandlerInterface;
+use UIoT\App\Data\Models\CollectorModel;
+use UIoT\App\Data\Models\HandlerModel;
 
 /**
  * Class DataCollector
@@ -82,11 +82,11 @@ class DataCollector
     /**
      * Return Collector and Handler
      *
-     * @param CollectorInterface $collector
-     * @param string|HandlerInterface $handler
-     * @return CollectorInterface
+     * @param CollectorModel $collector
+     * @param string|HandlerModel $handler
+     * @return CollectorModel
      */
-    public static function initCollector(CollectorInterface $collector, $handler = '')
+    public static function initCollector(CollectorModel $collector, $handler = '')
     {
         return $collector->passRequest(self::doRequest())->passHandler($handler);
     }

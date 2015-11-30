@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Layouts;
 
 use UIoT\App\Core\Helpers\Manipulators\Strings;
-use UIoT\App\Data\Models\LayoutInterface;
+use UIoT\App\Data\Models\LayoutModel;
 
 /**
  * Class Indexer
@@ -132,7 +132,7 @@ final class Indexer
      * Return the Namespace form the Layout
      *
      * @param string $layout_name
-     * @return LayoutInterface|string
+     * @return LayoutModel|string
      */
     public static function getLayoutNameSpace($layout_name)
     {

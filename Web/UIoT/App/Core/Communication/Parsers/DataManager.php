@@ -65,7 +65,7 @@ final class DataManager
      * Return DataHandler and DataCollector Instance
      *
      * @param $method
-     * @return \UIoT\App\Data\Models\CollectorInterface
+     * @return \UIoT\App\Data\Models\CollectorModel
      */
     public static function getInstance($method)
     {

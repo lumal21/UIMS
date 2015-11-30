@@ -23,13 +23,13 @@ namespace UIoT\App\Data\Views;
 
 
 use ReflectionClass;
-use UIoT\App\Data\Models\ViewInterface;
+use UIoT\App\Data\Models\ViewModel;
 
 /**
  * Class Test
  * @package UIoT\App\Data\Views
  */
-final class Test extends ViewInterface
+final class Test extends ViewModel
 {
     public function __name()
     {

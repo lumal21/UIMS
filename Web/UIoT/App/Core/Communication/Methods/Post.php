@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
-use UIoT\App\Data\Models\MethodInterface;
+use UIoT\App\Data\Models\MethodModel;
 
 /*
  * Warning:
@@ -43,7 +43,7 @@ use UIoT\App\Data\Models\MethodInterface;
  * Class Post
  * @package UIoT\App\Core\Communication\Methods
  */
-final class Post extends MethodInterface
+final class Post extends MethodModel
 {
 
 }

@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Helpers\Manipulators;
 
 use stdClass;
-use UIoT\App\Data\Models\RequestDataInterface;
+use UIoT\App\Data\Models\RequestDataModel;
 
 /**
  * Class Json
@@ -52,11 +52,11 @@ final class Json
      * Create Closure
      *
      * @param stdClass $object
-     * @return RequestDataInterface
+     * @return RequestDataModel
      */
     public static function createClosure(stdClass $object)
     {
-        return new RequestDataInterface($object);
+        return new RequestDataModel($object);
     }
 
     /**
