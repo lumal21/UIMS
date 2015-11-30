@@ -88,7 +88,7 @@ class DataCollector
 	 */
 	public static function initCollector(CollectorModel $collector = null, $handler = '')
 	{
-		return ($collector == null) || $collector->passRequest(self::doRequest())->passHandler($handler);
+		return ($collector === null) || $collector->passRequest(self::doRequest())->passHandler($handler);
 	}
 
 	/**
