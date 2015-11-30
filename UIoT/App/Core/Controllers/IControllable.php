@@ -61,7 +61,7 @@ class IControllable
     protected function enableController($array = [])
     {
         /* if is not array we have problem */
-        (is_array($array)) || new RuntimeException('Fail! The IController Array is empty!');
+        is_array($array) || new RuntimeException('Fail! The IController Array is empty!');
 
         /* store array */
         $this->c_s_array = $array;

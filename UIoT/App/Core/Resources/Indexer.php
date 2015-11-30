@@ -22,6 +22,7 @@
 namespace UIoT\App\Core\Resources;
 
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Layouts\Indexer as LIndexer;
 use UIoT\App\Exception\Register;
 
@@ -48,7 +49,7 @@ final class Indexer
      */
     public static function setResourceFolder($f)
     {
-        self::$folder = (RESOURCE_FOLDER . $f . '/');
+        self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
     }
 
     /**
@@ -75,7 +76,7 @@ final class Indexer
     public static function registerResources($layout_name, $reset_session = false)
     {
         /* remove if is needed */
-        (!$reset_session) || SIndexer::removeKey('layout');
+        !$reset_session || SIndexer::removeKey('layout');
 
         /* register the layout */
         LIndexer::addLayout($layout_name, strtok($layout_name, '_'));
@@ -96,24 +97,25 @@ final class Indexer
      * also if don't exists any changes the session array will be used.
      *
      * @bug the algorithm only will work on second resource instantiation
+     *
      * The reason of these algorithm is only the page-side resources must be loaded.
      * to protect XSS, and hot-links.
      */
     public static function calculateResourceChanges()
     {
         // get array values
-        $resourc_array = (array)array_keys(self::$array);
+        $resource_array = array_keys(self::$array);
 
         /* if the session doesn't exists, add then */
-        (SIndexer::keyExists('layout')) || SIndexer::addKey('layout', $resourc_array);
+        SIndexer::keyExists('layout') || SIndexer::addKey('layout', $resource_array);
 
-        $session_array = (array)SIndexer::getKeyValue('layout');
+        $session_array = SIndexer::getKeyValue('layout');
 
         // mount array with removed items
-        $removed_array = (array)array_diff($session_array, $resourc_array);
+        $removed_array = array_diff($session_array, $resource_array);
 
         // mount final array
-        $final_array = ((empty($removed_array)) ? $session_array : $resourc_array);
+        $final_array = empty($removed_array) ? $session_array : $resource_array;
 
         // store array
         SIndexer::updateKey('layout', $final_array);
@@ -127,7 +129,7 @@ final class Indexer
      */
     public static function getResourcesArray()
     {
-        return ((SIndexer::keyExists('layout')) ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::$array));
+        return SIndexer::keyExists('layout') ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::$array);
     }
 
     /**
@@ -149,13 +151,13 @@ final class Indexer
      */
     public static function returnResource($file_name, $header = true)
     {
-        /* if resource doesn't exists, or resource is hotlinked we must show error */
-        (self::checkResourceExistence($file_name)) || (Register::getRunner()->errorMessage(9003,
-            "Stop! D'not Hotlinks!",
+        /* if resource doesn't exists, or resource is hot linked we must show error */
+        (self::checkResourceExistence($file_name)) || (Register::getRunner()->errorMessage(903,
+            'Stop! D\'not Hotlinks!',
             'Details: ',
             [
-                'What Happened?' => "You're a bitch, and trying to get resources...",
-                'Resolution:' => "Stop giving 555xxxx requests!",
+                'What Happened?' => 'You\'re a bitch, and trying to get resources...',
+                'Resolution:' => 'Stop giving 555xxxx requests!',
                 'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
             ]
         ));
@@ -164,7 +166,7 @@ final class Indexer
         self::updateResourceChange($file_name);
 
         /* add header (mime-type) */
-        (!$header) || (header('Content-Type: ' . (self::$array[$file_name]['mime_type'])));
+        !$header || header('Content-Type: ' . (self::$array[$file_name]['mime_type']));
 
         /* return content */
         return self::$array[$file_name]['file_content'];

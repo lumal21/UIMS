@@ -42,13 +42,10 @@ final class Runner extends Run
      * @param bool $security_error
      * @throws Exception
      */
-    public function errorMessage($code = 9000, $title = '', $message_title = '', $message = [], $security_error = false)
+    public function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
     {
-        /* check if is not in security mode and if enabled developer details */
-        ((SHandler::checkDeveloperMode()) || (($security_error) || ($code -= 9000)));
-
         /* check if you have valid access */
-        (($security_error) || SHandler::checkIpAddressAuthority());
+        !$security_error || SHandler::checkIpAddressAuthority();
 
         /* add data table */
         Register::addDataTable($message_title, $message);

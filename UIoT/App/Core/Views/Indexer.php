@@ -58,7 +58,7 @@ final class Indexer
      */
     public static function viewExists($view_name = '')
     {
-        return (array_key_exists($view_name, self::$view));
+        return array_key_exists($view_name, self::$view);
     }
 
     /**
@@ -69,7 +69,7 @@ final class Indexer
      */
     public static function addViewAction($view_name, $action_name)
     {
-        ((!self::viewExists($view_name)) && (self::actionExists($view_name, $action_name))) || array_push(self::$view[$view_name], $action_name);
+        (!self::viewExists($view_name) && self::actionExists($view_name, $action_name)) || array_push(self::$view[$view_name], $action_name);
     }
 
     /**
@@ -92,7 +92,7 @@ final class Indexer
      */
     public static function removeViewAction($view_name, $action_name)
     {
-        if ((self::viewExists($view_name)) && (self::actionExists($view_name, $action_name)))
+        if (self::viewExists($view_name) && self::actionExists($view_name, $action_name))
             unset(self::$view[$view_name][$action_name]);
     }
 
@@ -127,7 +127,7 @@ final class Indexer
      */
     public static function getViewAction($view_name)
     {
-        return ((self::viewExists($view_name)) ? self::$view[$view_name] : []);
+        return self::$view[$view_name] || [];
     }
 
     /**
@@ -138,7 +138,7 @@ final class Indexer
      */
     public static function getView($view_name)
     {
-        return ((self::viewExists($view_name)) ? (self::openView($view_name)) : '');
+        return self::openView($view_name);
     }
 
     /**
@@ -149,7 +149,7 @@ final class Indexer
      */
     public static function openView($view_name)
     {
-        return ((self::viewExists(self::getViewReverseSpace($view_name))) ? (new $view_name)->__show() : '');
+        return self::viewExists(self::getViewReverseSpace($view_name)) ? (new $view_name)->__show() : '';
     }
 
     /**
@@ -161,10 +161,8 @@ final class Indexer
      */
     public static function getViewReverseSpace(&$view_name_space)
     {
-        /* get view name space and returns */
         $view_name_space = self::getViewNameSpace($view_name = $view_name_space);
 
-        /* return normal view name */
         return $view_name;
     }
 
@@ -176,6 +174,6 @@ final class Indexer
      */
     public static function getViewNameSpace($view_name)
     {
-        return ((self::viewExists($view_name)) ? (Strings::toNameSpace($view_name, 'UIoT\App\Data\Views\\')) : '');
+        return Strings::toNameSpace($view_name, 'UIoT\App\Data\Views\\');
     }
 }

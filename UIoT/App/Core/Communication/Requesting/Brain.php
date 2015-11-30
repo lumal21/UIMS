@@ -53,7 +53,7 @@ class Brain
      */
     public static function setTemplate($method_name, $mime_type)
     {
-        self::adjustTemplate(self::$template = (Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type)));
+        self::adjustTemplate(self::$template = Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type));
     }
 
     /**

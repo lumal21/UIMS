@@ -22,6 +22,7 @@
 namespace UIoT\App\Core\Communication\Routing;
 
 use UIoT\App\Core\Communication\Sessions\Indexer;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
 use UIoT\App\Core\Helpers\Methods\Get as GetHelper;
 use UIoT\App\Core\Helpers\Methods\Post as PostHelper;
@@ -61,8 +62,8 @@ final class Router
     private function route()
     {
         /* get controller name (layout) */
-        $this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
-        $this->action       = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
+        $this->controller = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
+        $this->action = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
         $this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
 
         return true;
@@ -73,7 +74,7 @@ final class Router
      */
     private function open()
     {
-        echo((Urls::checkCombination()) ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action]))));
+        echo Urls::checkCombination() ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action])));
     }
 
     /**
@@ -85,9 +86,9 @@ final class Router
         Urls::registerItems();
 
         /* add urls */
-        Urls::addUrl(REQUEST_URL);
-        Urls::addUrl(PHP_SELF);
-        Urls::addUrl(QUERY_STRING);
+        Urls::addUrl(Constants::returnConstant('REQUEST_URL'));
+        Urls::addUrl(Constants::returnConstant('PHP_SELF'));
+        Urls::addUrl(Constants::returnConstant('QUERY_STRING'));
     }
 
     /**

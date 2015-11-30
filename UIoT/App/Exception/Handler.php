@@ -22,6 +22,7 @@
 namespace UIoT\App\Exception;
 
 use Whoops\Exception\Formatter;
+use UIoT\App\Security\Handler as SHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Util\TemplateHelper;
 
@@ -45,16 +46,10 @@ class Handler extends PrettyPageHandler
      */
     public function handle()
     {
-        $helper     = new TemplateHelper;
-        $error_code = $this->getInspector()->getException()->getCode();
-        $frames     = $this->getInspector()->getFrames();
+        (!SHandler::checkDeveloperMode() && SHandler::checkWhiteListIp() && ($frames = $this->getInspector()->getFrames())) || $frames = [];
 
-        if ($error_code >= 900):
-            $error_code -= 9000;
-            $frames = [];
-        endif;
-
-        $helper->setVariables([
+        $k = new TemplateHelper;
+        $k->setVariables([
             'page_title' => $this->getPageTitle(),
             'Stylesheet' => file_get_contents($this->getResource('Stylesheet/whoops.base.css')),
             'zepto' => file_get_contents($this->getResource('Scripts/zepto.min.js')),
@@ -66,14 +61,15 @@ class Handler extends PrettyPageHandler
             'title' => $this->getPageTitle(),
             'name' => explode('\\', $this->getInspector()->getExceptionName()),
             'message' => $this->getInspector()->getException()->getMessage(),
-            'code' => $error_code,
+            'code' => $this->getInspector()->getException()->getCode(),
             'plain_exception' => Formatter::formatExceptionPlain($this->getInspector()),
             'frames' => $frames,
             'has_frames' => !!count($frames),
             'handler' => $this,
             'handlers' => $this->getRun()->getHandlers(),
             'tables' => array_map('UIoT\App\Core\Helpers\Manipulators\Json::isInstanceOfClosure', $this->getDataTables())]);
-        $helper->render($this->getResource('Layouts/layout.html.php'));
+        $k->render($this->getResource('Layouts/layout.html.php'));
+
         return Handler::QUIT;
     }
 }

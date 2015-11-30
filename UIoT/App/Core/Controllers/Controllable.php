@@ -44,10 +44,10 @@ final class Controllable extends IControllable
     public function __construct($controller_name, $action_name = 'main')
     {
         /* put abstract controller name */
-        $this->c_name = (DataManager::setController($controller_name));
+        $this->c_name = DataManager::setController($controller_name);
 
         /* set abstract action name */
-        $this->a_name = (DataManager::setAction($action_name));
+        $this->a_name = DataManager::setAction($action_name);
 
         /* prepare template */
         DataManager::prepareTemplate();
@@ -77,11 +77,11 @@ final class Controllable extends IControllable
     private function goCheck()
     {
         /* if is let's do it */
-        (!$this->checkData()) || $this->getResources();
-        (!$this->checkData()) || $this->enableController($this->c_s_array);
+        !$this->checkData() || $this->getResources();
+        !$this->checkData() || $this->enableController($this->c_s_array);
 
         /* if not valid finish */
-        ($this->checkData()) || (Register::getRunner()->errorMessage(9001,
+        $this->checkData() || Register::getRunner()->errorMessage(901,
             "Stop! That Controller Doesn't Exists!",
             'Details: ',
             [
@@ -91,7 +91,7 @@ final class Controllable extends IControllable
                 'What Controllers can i Call?' => "You can Call UIoT's Abstract Controllers, and the Built-In Controllers",
                 'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
             ]
-        ));
+        );
     }
 
     /**
@@ -107,7 +107,7 @@ final class Controllable extends IControllable
      */
     private function validateData()
     {
-        $this->c_array = (Arrays::toControllerArray((!SIndexer::keyExists('i_data')) ? (SIndexer::updateKeyIfNeeded('i_data', Brain::getItems())) : (SIndexer::getKeyValue('i_data'))));
+        $this->c_array = Arrays::toControllerArray(!SIndexer::keyExists('i_data')) ? SIndexer::updateKeyIfNeeded('i_data', Brain::getItems()) : SIndexer::getKeyValue('i_data');
     }
 
     /**
@@ -116,7 +116,7 @@ final class Controllable extends IControllable
      */
     private function checkData()
     {
-        return (in_array($this->c_name, $this->c_array));
+        return in_array($this->c_name, $this->c_array);
     }
 
     /**

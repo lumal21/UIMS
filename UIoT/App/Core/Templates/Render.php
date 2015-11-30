@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Templates;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Urls;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Views\Indexer as ViewIndexer;
@@ -58,11 +59,20 @@ final class Render
      */
     public function __construct($arguments = [])
     {
-        $this->controller = $arguments['controller'];
-        $this->action     = $arguments['action'];
-
+        $this->setArguments($arguments);
         $this->setResources();
         $this->setController();
+    }
+
+    /**
+     * Set Arguments
+     *
+     * @param array $arguments
+     */
+    private function setArguments($arguments = [])
+    {
+        $this->controller = $arguments['controller'];
+        $this->action = $arguments['action'];
     }
 
     /**
@@ -80,7 +90,7 @@ final class Render
      */
     private function bView()
     {
-        return (CONTROLLER_CONTENT);
+        return Constants::returnConstant('CONTROLLER_CONTENT');
     }
 
     /**
@@ -88,7 +98,6 @@ final class Render
      */
     private function aView()
     {
-        /* open the layout */
         return DataHandler::openParserLayout($this->action);
     }
 
@@ -97,7 +106,7 @@ final class Render
      */
     public function show()
     {
-        return ((!self::$disable_show_view) ? ((ViewIndexer::viewExists($this->controller)) ? ViewIndexer::getView($this->controller) : '') : ((!ControllerIndexer::controllerExists($this->controller)) ? $this->aView() : $this->bView()));
+        return !self::$disable_show_view ? (ViewIndexer::viewExists($this->controller) ? ViewIndexer::getView($this->controller) : '') : (!ControllerIndexer::controllerExists($this->controller) ? $this->aView() : $this->bView());
     }
 
     /**
@@ -105,6 +114,6 @@ final class Render
      */
     private function setResources()
     {
-        ResourceIndexer::registerResources(((in_array($this->action, Urls::getLayouts())) ? $this->action : $this->controller), true);
+        ResourceIndexer::registerResources(in_array($this->action, Urls::getLayouts()) ? $this->action : $this->controller, true);
     }
 }

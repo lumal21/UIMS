@@ -21,6 +21,7 @@
 
 namespace UIoT\App\Exception;
 
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Settings;
 
 /**
@@ -54,7 +55,7 @@ final class Manager
     private function setSettings()
     {
         Register::setErrorLevels(Settings::getSetting('exceptions')->error_reporting_levels);
-        Register::addResourcePath(RESOURCE_FOLDER . (Settings::getSetting('exceptions')->error_resource_folder) . '/');
+        Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . Settings::getSetting('exceptions')->error_resource_folder . '/');
         Register::setPageTitle(Settings::getSetting('exceptions')->error_page_title);
     }
 

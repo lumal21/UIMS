@@ -127,7 +127,7 @@ class UrlCombinations
      */
     public static function setNormalF($normal_f = [])
     {
-        return ((!is_array(self::getNormalF())) ? (self::$normal_f = $normal_f) : []);
+        return !is_array(self::getNormalF()) ? (self::$normal_f = $normal_f) : [];
     }
 
     /**
@@ -148,7 +148,7 @@ class UrlCombinations
      */
     public static function setReversedF($reversed_f = [])
     {
-        return ((!is_array(self::getReversedF())) ? (self::$reversed_f = $reversed_f) : []);
+        return !is_array(self::getReversedF()) ? (self::$reversed_f = $reversed_f) : [];
     }
 
     /**
@@ -170,7 +170,7 @@ class UrlCombinations
      */
     protected static function checkResourceInto($c)
     {
-        return (($c['controller'] != DEFAULT_CONTROLLER) ? ((self::checkIsResourceAction($c)) ? ($c['action']) : ((self::checkIsDefaultAction($c)) ? ($c['controller']) : ($c['action']))) : ($c['controller']));
+        return ($c['controller'] != Constants::returnConstant('DEFAULT_CONTROLLER')) ? ((self::checkIsResourceAction($c)) ? ($c['action']) : ((self::checkIsDefaultAction($c)) ? ($c['controller']) : ($c['action']))) : ($c['controller']);
     }
 
     /**
@@ -213,6 +213,6 @@ class UrlCombinations
      */
     protected static function checkIsDefaultAction($c)
     {
-        return (($c['action'] == $c['controller']) || ($c['action'] != DEFAULT_VIEW_ACTION));
+        return (($c['action'] == $c['controller']) || ($c['action'] != Constants::returnConstant('DEFAULT_VIEW_ACTION')));
     }
 }

@@ -22,6 +22,7 @@
 namespace UIoT\App\Security;
 
 use UIoT\App\Core\Helpers\ClientData;
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Manipulators\Settings;
 use UIoT\App\Exception\Register;
 use Whitelist\Check;
@@ -98,11 +99,11 @@ final class Handler
      */
     public static function checkIpAddressAuthority()
     {
-        return ((!self::checkWhiteListIp()) ? self::securityProblem(
-            "You Don't have Permissions",
-            "You Don't have authorization to get Exception Stack from the Server.
-            That Happens because your IP address isn't in the white list."
-        ) : null);
+        self::checkWhiteListIp() || self::securityProblem(
+            'You Don\'t have Permissions',
+            'You Don\'t have authorization to get Exception Stack from the Server.
+            That Happens because your IP address isn\'t in the white list.'
+        );
     }
 
     /**
@@ -114,12 +115,11 @@ final class Handler
      */
     public static function securityProblem($title = '', $message = '')
     {
-        Register::getRunner()->errorMessage(9004,
+        Register::getRunner()->errorMessage(904,
             "Stop! {$title}!",
             'Details: ',
-            [
-                'What Happened?' => $message,
-            ], true
+            ['What Happened?' => $message],
+            true
         );
     }
 
@@ -130,6 +130,6 @@ final class Handler
      */
     public static function checkDeveloperMode()
     {
-        return (QUERY_STRING != (Settings::getSetting('exceptions')->error_developer_code));
+        return Constants::returnConstant('QUERY_STRING') != Settings::getSetting('exceptions')->error_developer_code;
     }
 }

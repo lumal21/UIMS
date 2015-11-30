@@ -81,7 +81,7 @@ final class Constants
      */
     public static function returnConstant($constant_name = '')
     {
-        return (defined($constant_name) ? constant($constant_name) : '');
+        return defined($constant_name) ? constant($constant_name) : '';
     }
 
     /**

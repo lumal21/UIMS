@@ -43,7 +43,7 @@ final class Indexer
      */
     public static function addLayout($layout_name, $view_name = '')
     {
-        (self::layoutExists($layout_name)) || (self::$layout[$layout_name] = ((!empty($view_name)) ? $view_name : $layout_name));
+        self::layoutExists($layout_name) || (self::$layout[$layout_name] = !empty($view_name) ? $view_name : $layout_name);
     }
 
     /**
@@ -87,7 +87,7 @@ final class Indexer
      */
     public static function getLayoutView($layout_name)
     {
-        return ((self::layoutExists($layout_name)) ? self::$layout[$layout_name] : '');
+        return self::$layout[$layout_name] || '';
     }
 
     /**
@@ -98,7 +98,7 @@ final class Indexer
      */
     public static function getLayout($layout_name)
     {
-        return ((self::layoutExists($layout_name)) ? self::openLayout($layout_name) : '');
+        return self::openLayout($layout_name);
     }
 
     /**
@@ -109,7 +109,7 @@ final class Indexer
      */
     public static function openLayout($layout_name)
     {
-        return ((self::layoutExists(self::getLayoutReverseNameSpace($layout_name))) ? (new $layout_name)->__show() : '');
+        return self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) ? (new $layout_name)->__show() : '';
     }
 
     /**
@@ -136,18 +136,17 @@ final class Indexer
      */
     public static function getLayoutNameSpace($layout_name)
     {
-        return ((self::layoutExists($layout_name)) ? (Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\')) : '');
+        return Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\');
     }
 
     /**
      * Get the Layout Resources
      *
      * @param string $layout_name
-     * @return mixed|null
      */
     public static function getLayoutResources($layout_name)
     {
-        return ((self::layoutExists($layout_name)) ? self::openLayoutResources($layout_name) : '');
+        self::openLayoutResources($layout_name);
     }
 
     /**
@@ -158,6 +157,6 @@ final class Indexer
      */
     public static function openLayoutResources($layout_name)
     {
-        return ((self::layoutExists(self::getLayoutReverseNameSpace($layout_name))) ? $layout_name::__resources() : '');
+        !self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
     }
 }

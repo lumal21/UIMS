@@ -45,14 +45,14 @@ final class Commander
     {
         /* if is non abstract controller or is an abstract controller */
         if (Indexer::controllerExists($controller_name)):
-            $this->controller         = (Indexer::getController($controller_name));
+            $this->controller = (Indexer::getController($controller_name));
             $this->controller_actions = (Arrays::staticToArray($controller_name));
-            $this->controller_name    = $controller_name;
+            $this->controller_name = $controller_name;
         else:
-            $c                        = (new Controllable($controller_name, $action_name));
-            $this->controller         = $c->c_data;
+            $c = (new Controllable($controller_name, $action_name));
+            $this->controller = $c->c_data;
             $this->controller_actions = (Arrays::abstractToArray($c->c_s_array));
-            $this->controller_name    = (Strings::toControllerName($controller_name));
+            $this->controller_name = (Strings::toControllerName($controller_name));
         endif;
     }
 
@@ -65,7 +65,7 @@ final class Commander
     public function setAction($action_name)
     {
         /* check if action exists, if not we have problem! */
-        ($this->checkActionExistence($action_name)) || (Register::getRunner()->errorMessage(9002,
+        ($this->checkActionExistence($action_name)) || (Register::getRunner()->errorMessage(902,
             "Stop! That Action Doesn't Exists!",
             'Details: ',
             [
@@ -79,7 +79,7 @@ final class Commander
         ));
 
         /* if not call action */
-        ($this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}()));
+        $this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}());
     }
 
     /**
@@ -98,8 +98,8 @@ final class Commander
      *
      * @param mixed|string $returned_code
      */
-    public function refineControllerData($returned_code)
+    public function refineControllerData($returned_code = '')
     {
-        Constants::addConstant('CONTROLLER_CONTENT', ((!empty($returned_code)) ? $returned_code : ''));
+        Constants::addConstant('CONTROLLER_CONTENT', $returned_code);
     }
 }

@@ -47,7 +47,7 @@ final class Handler extends SessionHandler
      */
     public function __construct($key, $time_out)
     {
-        $this->key      = $key;
+        $this->key = $key;
         $this->time_out = $time_out;
     }
 
@@ -63,7 +63,7 @@ final class Handler extends SessionHandler
         $data = parent::read($id);
 
         /* check if session timed-out, if yes, erase session */
-        (!self::check_time_out($id)) || Indexer::removeKey($id);
+        !self::check_time_out($id) || Indexer::removeKey($id);
 
         /* return session data */
         return mcrypt_decrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
@@ -77,7 +77,7 @@ final class Handler extends SessionHandler
      */
     private function check_time_out($id)
     {
-        return (parent::read("time-{$id}") > time());
+        return parent::read("time-{$id}") > time();
     }
 
     /**

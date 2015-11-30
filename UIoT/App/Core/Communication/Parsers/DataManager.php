@@ -109,6 +109,6 @@ final class DataManager
      */
     public static function setAction($action)
     {
-        return (self::$action = Strings::toActionName($action));
+        return self::$action = Strings::toActionName($action);
     }
 }

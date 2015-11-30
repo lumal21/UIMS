@@ -42,7 +42,7 @@ final class Indexer
      */
     public static function addController($controller_name)
     {
-        (self::controllerExists($controller_name)) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
+        self::controllerExists($controller_name) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
     }
 
     /**
@@ -64,7 +64,7 @@ final class Indexer
      */
     public static function getControllerActions($controller_name)
     {
-        return ((self::controllerExists($controller_name)) ? VIndexer::getViewAction($controller_name) : null);
+        return self::controllerExists($controller_name) ? VIndexer::getViewAction($controller_name) : null;
     }
 
     /**
@@ -75,7 +75,7 @@ final class Indexer
      */
     public static function getController($controller_name)
     {
-        return ((self::controllerExists($controller_name)) ? self::activeController($controller_name) : null);
+        return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
     }
 
     /**
@@ -86,7 +86,7 @@ final class Indexer
      */
     public static function activeController($controller_name)
     {
-        return ((self::controllerExists(self::getControllerReverseNameSpace($controller_name))) ? (new $controller_name) : '');
+        return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? (new $controller_name) : '';
     }
 
     /**
@@ -113,6 +113,6 @@ final class Indexer
      */
     public static function getControllerNameSpace($controller_name)
     {
-        return ((self::controllerExists($controller_name)) ? (Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\')) : '');
+        return self::controllerExists($controller_name) ? Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\') : '';
     }
 }

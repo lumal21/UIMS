@@ -52,11 +52,11 @@ class Get
     {
         /* first $last need be empty */
         $last = '';
-        $get  = [];
+        $get = [];
 
         /* put query string into $GET */
         foreach (Urls::combineUrlSimple() as $key => $value)
-            ((($key % 2) != 0) ? (Arrays::addOnHttpMethod(Strings::sanitizeString($last = $value), '', (new GetMethod), $get)) : (Arrays::addOnHttpMethod($last, Strings::sanitizeString(urldecode($value)), (new GetMethod), $get)));
+            $key % 2 != 0 ? Arrays::addOnHttpMethod(Strings::sanitizeString($last = $value), '', new GetMethod, $get) : Arrays::addOnHttpMethod($last, Strings::sanitizeString(urldecode($value)), new GetMethod, $get);
 
         return $get;
     }
@@ -78,7 +78,7 @@ class Get
      */
     public static function returnGetData()
     {
-        return ((!self::$data) ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data);
+        return !self::$data ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data;
     }
 
     /**
@@ -89,6 +89,6 @@ class Get
      */
     public static function returnGetVariable($variable_name = '')
     {
-        return ((isset(self::returnGetData()[$variable_name])) ? self::returnGetData()[$variable_name]->getData() : '');
+        return isset(self::returnGetData()[$variable_name]) ? self::returnGetData()[$variable_name]->getData() : '';
     }
 }

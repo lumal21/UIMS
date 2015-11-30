@@ -21,6 +21,7 @@
 
 namespace UIoT\App\Core\Templates;
 
+use UIoT\App\Core\Helpers\Manipulators\Constants;
 use UIoT\App\Core\Helpers\Visual\Html;
 
 /**
@@ -41,7 +42,7 @@ final class Indexer
      */
     public static function setTemplateFolder($f)
     {
-        self::$folder = (RESOURCE_FOLDER . $f . '/');
+        self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
     }
 
     /**
@@ -63,9 +64,11 @@ final class Indexer
     public static function parseTemplateFile($file_name = '')
     {
         ob_start();
+
         include_once $file_name;
         $template = ob_get_contents();
         ob_end_clean();
+
         return $template;
     }
 

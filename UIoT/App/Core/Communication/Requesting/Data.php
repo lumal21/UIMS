@@ -27,9 +27,9 @@ use Httpful\Response;
  * Class Data
  * @package UIoT\App\Core\Communication\Requesting
  *
- * @method string from_json(string $string)
- * @method string to_json(string $string)
- * @method string get_data(string $string)
+ * @method string from_json($string)
+ * @method string to_json($string)
+ * @method string get_data($string)
  */
 final class Data
 {

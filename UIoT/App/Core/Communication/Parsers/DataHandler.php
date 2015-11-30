@@ -190,7 +190,18 @@ class DataHandler
      */
     public static function getParser($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]) : null);
+        return self::parserExists($name) ? self::$parsers[$name] : null;
+    }
+
+    /**
+     * Get Parser Variable
+     * @param $name
+     * @param $variable
+     * @return null
+     */
+    protected static function getParserVariable($name, $variable)
+    {
+        return self::parserExists($name) ? self::$parsers[$name][$variable] : null;
     }
 
     /**
@@ -201,7 +212,7 @@ class DataHandler
      */
     public static function getParserMethod($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]['method']) : null);
+        return self::getParserVariable($name, 'method');
     }
 
     /**
@@ -212,7 +223,7 @@ class DataHandler
      */
     public static function getParserCollector($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]['collector']) : null);
+        return self::getParserVariable($name, 'collector');
     }
 
     /**
@@ -223,7 +234,7 @@ class DataHandler
      */
     public static function getParserController($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]['controller']) : null);
+        return self::getParserVariable($name, 'controller');
     }
 
     /**
@@ -234,7 +245,7 @@ class DataHandler
      */
     public static function getParserHandler($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]['handler']) : null);
+        return self::getParserVariable($name, 'handler');
     }
 
     /**
@@ -246,7 +257,7 @@ class DataHandler
      */
     public static function getParserLayout($name)
     {
-        return ((self::parserExists($name)) ? (self::$parsers[$name]['layout']) : null);
+        return self::getParserVariable($name, 'layout');
     }
 
     /**
@@ -258,7 +269,7 @@ class DataHandler
      */
     public static function openParserLayout($name)
     {
-        return ((self::parserExists($name)) ? (Indexer::getLayout(Strings::toControllerName($name))) : null);
+        return self::parserExists($name) ? Indexer::getLayout(Strings::toControllerName($name)) : null;
     }
 
     /**

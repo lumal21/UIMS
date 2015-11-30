@@ -72,7 +72,7 @@ C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
  * But must set the New Path here.
  *  Warning: Vendor folder location, CAN'T be changed!
  */
-C::addConstant('RESOURCE_FOLDER', (ROOT_FOLDER . '/Resources/'));
+C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/Resources/'));
 
 /**
  * Registering Constants

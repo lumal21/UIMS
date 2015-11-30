@@ -35,7 +35,7 @@ final class Indexer
      */
     public static function addKey($key_name, $key_value)
     {
-        (self::keyExists($key_name)) || ($_SESSION[$key_name] = $key_value);
+        self::keyExists($key_name) || ($_SESSION[$key_name] = $key_value);
     }
 
     /**
@@ -70,10 +70,10 @@ final class Indexer
     public static function updateKeyIfNeeded($key_name, $key_value)
     {
         /* first check if exists, and if exists, check if value is different, if is, update value, else, do nothing */
-        (!self::keyExists($key_name)) || (((self::getKeyValue($key_name)) != $key_value) ? (self::updateKey($key_name, $key_value)) : null);
+        !self::keyExists($key_name) || (self::getKeyValue($key_name) != $key_value) ? self::updateKey($key_name, $key_value) : null;
 
         /* return value if exists, if not return only key value */
-        return ((self::keyExists($key_name)) ? (self::getKeyValue($key_name)) : $key_value);
+        return self::keyExists($key_name) ? self::getKeyValue($key_name) : $key_value;
     }
 
     /**
@@ -85,7 +85,7 @@ final class Indexer
      */
     public static function getKeyValue($key_name)
     {
-        return ((self::keyExists($key_name)) ? $_SESSION[$key_name] : '');
+        return self::keyExists($key_name) ? $_SESSION[$key_name] : '';
     }
 
     /**
@@ -96,6 +96,6 @@ final class Indexer
      */
     public static function updateKey($key_name, $key_value)
     {
-        ($_SESSION[$key_name] = $key_value);
+        $_SESSION[$key_name] = $key_value;
     }
 }

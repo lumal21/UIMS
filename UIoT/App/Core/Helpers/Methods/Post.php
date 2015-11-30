@@ -76,7 +76,7 @@ class Post
      */
     public static function returnPostData()
     {
-        return ((!self::$data) ? (self::$data = Constants::returnSerializedConstant('POST_WEB')) : self::$data);
+        return !self::$data ? (self::$data = Constants::returnSerializedConstant('POST_WEB')) : self::$data;
     }
 
     /**
@@ -87,6 +87,6 @@ class Post
      */
     public static function returnPostVariable($variable_name = '')
     {
-        return ((isset(self::returnPostData()[$variable_name])) ? self::returnPostData()[$variable_name]->getData() : '');
+        return isset(self::returnPostData()[$variable_name]) ? self::returnPostData()[$variable_name]->getData() : '';
     }
 }

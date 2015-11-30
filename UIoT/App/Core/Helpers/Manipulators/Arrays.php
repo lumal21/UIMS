@@ -39,7 +39,7 @@ class Arrays
      */
     public static function toActionName($x)
     {
-        return (Strings::toActionName(((stripos($x, '__action') !== false) ? (str_ireplace('__action', '', $x)) : $x)));
+        return Strings::toActionName(stripos($x, '__action') !== false ? (str_ireplace('__action', '', $x)) : $x);
     }
 
     /**
@@ -61,10 +61,11 @@ class Arrays
      * @param $value
      * @param Method $class
      * @param array $array
+     * @return bool
      */
     public static function addOnHttpMethod($key, $value, Method $class, &$array = [])
     {
-        $array[$key] = ($class->setData($value));
+        $array[$key] = $class->setData($value);
     }
 
     /**
@@ -89,7 +90,7 @@ class Arrays
      */
     public static function checkIsInstanceOf($a, $b)
     {
-        return (($a instanceof $b) ? $a() : $a);
+        return $a instanceof $b ? $a() : $a;
     }
 
     /**
@@ -101,7 +102,7 @@ class Arrays
      */
     public static function toControllerName($x)
     {
-        return (Strings::toControllerName($x));
+        return Strings::toControllerName($x);
     }
 
     /**
@@ -112,7 +113,7 @@ class Arrays
      */
     public static function toControllerArray($a = [])
     {
-        return (array_map('self::toControllerName', $a));
+        return array_map('self::toControllerName', $a);
     }
 
     /**
@@ -124,7 +125,7 @@ class Arrays
      */
     public static function staticToArray($controller_name = '')
     {
-        return (array_map('self::toActionName', get_class_methods(Indexer::getControllerNameSpace($controller_name))));
+        return array_map('self::toActionName', get_class_methods(Indexer::getControllerNameSpace($controller_name)));
     }
 
     /**
@@ -135,7 +136,7 @@ class Arrays
      */
     public static function removeBlank($array = [])
     {
-        return ((is_array($array)) ? array_values(array_diff($array, [''])) : []);
+        return is_array($array) ? array_values(array_diff($array, [''])) : [];
     }
 
     /**
@@ -147,6 +148,6 @@ class Arrays
      */
     public static function abstractToArray($a = [])
     {
-        return ((is_array($a)) ? (array_map('self::toActionName', array_keys((array)$a))) : []);
+        return is_array($a) ? (array_map('self::toActionName', array_keys((array)$a))) : [];
     }
 }

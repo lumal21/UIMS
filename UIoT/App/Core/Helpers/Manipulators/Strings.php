@@ -36,7 +36,7 @@ class Strings
      */
     public static function toNameSpace($class = '', $namespace = '')
     {
-        return ((class_exists($namespace . ($class = self::toControllerName($class))) ? ($namespace . $class) : false));
+        return class_exists($namespace . ($class = self::toControllerName($class)) ? ($namespace . $class) : false);
     }
 
     /**
@@ -47,7 +47,7 @@ class Strings
      */
     public static function toControllerName($string = '')
     {
-        return (self::toActionName($string));
+        return self::toActionName($string);
     }
 
     /**
@@ -58,7 +58,7 @@ class Strings
      */
     public static function toActionName($string = '')
     {
-        return (ucfirst(strtolower($string)));
+        return ucfirst(self::toRestUrlName($string));
     }
 
     /**
@@ -69,7 +69,7 @@ class Strings
      */
     public static function toRestUrlName($string = '')
     {
-        return (strtolower($string));
+        return strtolower($string);
     }
 
     /**
@@ -91,7 +91,7 @@ class Strings
      */
     public static function removeMethodName($string = '')
     {
-        return ((stripos($string, '__action') !== false) ? (self::toActionName(str_ireplace('__action', '', $string))) : (self::toActionName($string)));
+        return (stripos($string, '__action') !== false ? self::toActionName(str_ireplace('__action', '', $string)) : self::toActionName($string));
     }
 
     /**

@@ -32,7 +32,7 @@ final class Render
      */
     private $controller;
     /**
-     * @var
+     * @var string
      */
     private $file;
 
@@ -43,8 +43,18 @@ final class Render
      */
     public function __construct($arguments = [])
     {
+        $this->setArguments($arguments);
+    }
+
+    /**
+     * Set Arguments
+     *
+     * @param array $arguments
+     */
+    private function setArguments($arguments = [])
+    {
         $this->controller = $arguments['controller'];
-        $this->file       = $arguments['file'];
+        $this->file = $arguments['file'];
     }
 
     /**

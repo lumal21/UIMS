@@ -40,7 +40,7 @@ final class ClientData
             if (array_key_exists($key, Constants::returnJsonConstant('SERVER_WEB')) === true)
                 if (($ip = self::checkIpCombination($key)) !== false)
                     return $ip;
-        return 'UNKNOWN';
+        return '127.0.0.1';
     }
 
     /**

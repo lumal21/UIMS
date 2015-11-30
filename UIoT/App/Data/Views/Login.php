@@ -21,7 +21,6 @@
 
 namespace UIoT\App\Data\Views;
 
-
 use ReflectionClass;
 use UIoT\App\Data\Models\View;
 
