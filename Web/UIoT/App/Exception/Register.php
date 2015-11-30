@@ -22,7 +22,9 @@
 namespace UIoT\App\Exception;
 
 use Exception;
+use Whoops\Handler\HandlerInterface;
 use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
+use Whoops\Handler\PrettyPageHandler;
 
 /**
  * Class Register
@@ -33,7 +35,7 @@ final class Register
 	/**
 	 * static variable to store exception page handler
 	 *
-	 * @var WhoopsHandler
+	 * @var WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
 	 */
 	private static $handler;
 
@@ -57,7 +59,7 @@ final class Register
 	/**
 	 * Get Handler
 	 *
-	 * @return WhoopsHandler|callable
+	 * @return WhoopsHandler|callable|PrettyPageHandler|HandlerInterface
 	 */
 	public static function getHandler()
 	{

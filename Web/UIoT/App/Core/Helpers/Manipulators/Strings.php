@@ -44,7 +44,7 @@ class Strings
 	/**
 	 * Convert string to Controller String
 	 *
-	 * @param string $string
+	 * @param string|LayoutModel $string
 	 * @return string
 	 */
 	public static function toControllerName($string = '')

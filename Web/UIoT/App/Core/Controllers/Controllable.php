@@ -107,7 +107,7 @@ final class Controllable extends IControllable
 	 */
 	private function validateData()
 	{
-		$this->c_array = Arrays::toControllerArray(!SIndexer::keyExists('i_data')) ? SIndexer::updateKeyIfNeeded('i_data', Brain::getItems()) : (array)SIndexer::getKeyValue('i_data');
+		$this->c_array = Arrays::toControllerArray(!SIndexer::keyExists('i_data') ? (array)SIndexer::updateKeyIfNeeded('i_data', Brain::getItems()) : (array)SIndexer::getKeyValue('i_data'));
 	}
 
 	/**

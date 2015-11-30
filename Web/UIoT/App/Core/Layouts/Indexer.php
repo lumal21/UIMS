@@ -49,7 +49,7 @@ final class Indexer
 	/**
 	 * Check if Layout Exists
 	 *
-	 * @param string $layout_name
+	 * @param string|LayoutModel $layout_name
 	 * @return bool
 	 */
 	public static function layoutExists($layout_name)
@@ -131,7 +131,7 @@ final class Indexer
 	/**
 	 * Return the Namespace form the Layout
 	 *
-	 * @param string $layout_name
+	 * @param string|LayoutModel $layout_name
 	 * @return LayoutModel|string
 	 */
 	public static function getLayoutNameSpace($layout_name)
