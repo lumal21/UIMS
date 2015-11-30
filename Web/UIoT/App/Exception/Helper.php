@@ -34,7 +34,7 @@ class Helper extends TemplateHelper
 	 *
 	 * @var array
 	 */
-	private $variables = [];
+	private $helper_variables = [];
 
 	/**
 	 * Sets a single template variable, by its name:
@@ -44,7 +44,7 @@ class Helper extends TemplateHelper
 	 */
 	public function setVariable($variableName, $variableValue)
 	{
-		$this->variables[$variableName] = $variableValue;
+		$this->helper_variables[$variableName] = $variableValue;
 	}
 
 	/**
@@ -57,17 +57,17 @@ class Helper extends TemplateHelper
 	 */
 	public function getVariable($variableName, $defaultValue = '')
 	{
-		return isset($this->variables[$variableName]) ? $this->variables[$variableName] : $defaultValue;
+		return isset($this->helper_variables[$variableName]) ? $this->helper_variables[$variableName] : $defaultValue;
 	}
 
 	/**
-	 * Unsets a single template variable, by its name
+	 * Unset a single template variable, by its name
 	 *
 	 * @param string $variableName
 	 */
 	public function delVariable($variableName)
 	{
-		unset($this->variables[$variableName]);
+		unset($this->helper_variables[$variableName]);
 	}
 
 	/**
@@ -75,22 +75,33 @@ class Helper extends TemplateHelper
 	 *
 	 * @return array
 	 */
-	public function getVariables()
+	public function getHelperVariables()
 	{
-		return $this->variables;
+		return $this->helper_variables;
 	}
 
 	/**
 	 * Sets the variables to be passed to all templates rendered
 	 * by this template helper.
 	 *
-	 * @param array $variables
-	 * @return $this|void
+	 * @param array $helper_variables
+	 * @return Helper
 	 */
-	public function setVariables(array $variables = [])
+	public function setHelperVariables(array $helper_variables = [])
 	{
-		$this->variables = $variables;
+		$this->helper_variables = $helper_variables;
 
 		return $this;
+	}
+
+	/**
+	 * Set Helper Variables
+	 *
+	 * @param array $helper_variables
+	 * @return Helper
+	 */
+	public function setH(array $helper_variables = [])
+	{
+		return $this->setHelperVariables($helper_variables);
 	}
 }
