@@ -19,13 +19,13 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Security\Helpers;
 
 /**
- * Class Security
- * @package UIoT\App\Core\Helpers\Manipulators
+ * Class VariableFilters
+ * @package UIoT\App\Security\Helpers
  */
-final class Security
+final class VariableFilters
 {
 	/**
 	 * Sanitize a Variable

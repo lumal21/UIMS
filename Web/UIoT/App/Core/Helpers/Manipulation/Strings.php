@@ -19,13 +19,14 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Manipulation;
 
 use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Security\Helpers\VariableFilters;
 
 /**
  * Class Strings
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 class Strings
 {
@@ -115,6 +116,6 @@ class Strings
 	 */
 	public static function sanitizeString($input_string = '')
 	{
-		return Security::sanitizeVariable((string)$input_string);
+		return VariableFilters::sanitizeVariable((string)$input_string);
 	}
 }

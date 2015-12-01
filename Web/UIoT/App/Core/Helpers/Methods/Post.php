@@ -22,9 +22,9 @@
 namespace UIoT\App\Core\Helpers\Methods;
 
 use UIoT\App\Core\Communication\Methods\Post as PostMethod;
-use UIoT\App\Core\Helpers\Manipulators\Arrays;
-use UIoT\App\Core\Helpers\Manipulators\Constants;
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Arrays;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 
 /*
  * Post Helper

@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Sessions;
 
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\System\Settings;
 
 /**
  * Class Manager

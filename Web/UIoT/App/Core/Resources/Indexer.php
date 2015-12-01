@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Resources;
 
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
-use UIoT\App\Core\Helpers\Manipulators\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Layouts\Indexer as LIndexer;
 use UIoT\App\Exception\Register;
 

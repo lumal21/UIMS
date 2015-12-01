@@ -19,14 +19,14 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Manipulation;
 
 use stdClass;
 use UIoT\App\Data\Models\RequestDataModel;
 
 /**
  * Class Json
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 final class Json
 {

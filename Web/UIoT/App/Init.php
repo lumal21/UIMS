@@ -60,7 +60,7 @@ final class Init
 		(new Exception\Manager);
 
 		/* start security handler */
-		(new Security\Handler);
+		(new Security\Manager);
 
 		/* session register */
 		(new Core\Communication\Sessions\Manager);

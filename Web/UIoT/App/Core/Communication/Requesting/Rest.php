@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Communication\Requesting;
 
 use Httpful\Request;
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\System\Settings;
 
 /**
  * Class Rest

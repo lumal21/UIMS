@@ -40,7 +40,7 @@
 
 namespace UIoT;
 
-use UIoT\App\Core\Helpers\Manipulators\Constants as C;
+use UIoT\App\Core\Helpers\Manipulation\Constants as C;
 
 /**
  * This file is where you register all Public Constants

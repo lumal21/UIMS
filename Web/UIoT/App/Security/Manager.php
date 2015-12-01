@@ -21,17 +21,19 @@
 
 namespace UIoT\App\Security;
 
-use UIoT\App\Core\Helpers\ClientData;
-use UIoT\App\Core\Helpers\Manipulators\Constants;
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\Data\ClientData;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\System\Settings;
 use UIoT\App\Exception\Register;
 use Whitelist\Check;
 
 /**
  * Class Handler
+ * Security Manager
+ *
  * @package UIoT\App\Security
  */
-final class Handler
+final class Manager
 {
 	/**
 	 * this class will use security helpers

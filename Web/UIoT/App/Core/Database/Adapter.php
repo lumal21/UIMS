@@ -23,7 +23,7 @@ namespace UIoT\App\Core\Database;
 
 use PDO;
 use PDOStatement;
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\System\Settings;
 
 /**
  * Class Adapter

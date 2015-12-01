@@ -23,19 +23,25 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 
 /**
  * Class DataManager
+ * Manage the Data from Requests
+ *
  * @package UIoT\App\Core\Communication\Parsers
  */
 final class DataManager
 {
 	/**
+	 * Controller Name
+	 *
 	 * @var string
 	 */
 	private static $controller;
 	/**
+	 * Action Name
+	 *
 	 * @var string
 	 */
 	private static $action;
@@ -92,7 +98,7 @@ final class DataManager
 	 */
 	public static function setController($controller = '')
 	{
-		return (self::$controller = Strings::toControllerName($controller));
+		return self::$controller = Strings::toControllerName($controller);
 	}
 
 	/**

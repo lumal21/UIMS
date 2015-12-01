@@ -33,13 +33,15 @@
  *  finishing the execution. With a Whoops Error Message.
  */
 
-namespace UIoT\App\Security;
+namespace UIoT\App\Security\Helpers;
 
 /**
- * Class Timer
- * @package UIoT\App\Security
+ * Class ExecutionTime
+ * Checks Max Execution Time for the Application Instance
+ *
+ * @package UIoT\App\Security\Helpers
  */
-final class Timer
+final class ExecutionTime
 {
 	/**
 	 * Execution Time

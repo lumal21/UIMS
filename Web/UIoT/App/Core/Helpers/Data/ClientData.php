@@ -19,13 +19,13 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers;
+namespace UIoT\App\Core\Helpers\Data;
 
-use UIoT\App\Core\Helpers\Manipulators\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 
 /**
  * Class ClientData
- * @package UIoT\App\Core\Helpers
+ * @package UIoT\App\Core\Helpers\Data
  */
 final class ClientData
 {

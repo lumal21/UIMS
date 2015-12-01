@@ -26,7 +26,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
-use UIoT\App\Core\Helpers\Manipulators\Arrays;
+use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Exception\Register;
 
 /**

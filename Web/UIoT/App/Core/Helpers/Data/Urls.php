@@ -19,13 +19,14 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Data;
 
 use UIoT\App\Core\Communication\Sessions\Indexer;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 
 /**
  * Class Urls
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 final class Urls extends UrlCombinations
 {

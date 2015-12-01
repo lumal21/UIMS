@@ -22,14 +22,16 @@
 namespace UIoT\App\Exception;
 
 use Exception;
-use UIoT\App\Security\Handler as SHandler;
+use UIoT\App\Security\Manager as SHandler;
 use Whoops\Run;
 
 /**
- * Class Runner
+ * Class Collector
+ * Exception Errors/Warnings/Messages Collector
+ *
  * @package UIoT\App\Exception
  */
-final class Runner extends Run
+final class Collector extends Run
 {
 	/**
 	 * Create a Message for Whoops

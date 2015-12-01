@@ -40,7 +40,7 @@
 
 namespace UIoT;
 
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\System\Settings;
 
 /**
  * UIoTcms Settings

@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Templates;
 
-use UIoT\App\Core\Helpers\Manipulators\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Visual\Html;
 
 /**

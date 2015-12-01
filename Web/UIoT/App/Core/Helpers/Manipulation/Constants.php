@@ -19,11 +19,11 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Manipulation;
 
 /**
  * Class Constants
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 final class Constants
 {

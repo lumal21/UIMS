@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Core\Helpers\Manipulators\Json;
+use UIoT\App\Core\Helpers\Manipulation\Json;
 use UIoT\App\Data\Models\CollectorModel;
 
 /**

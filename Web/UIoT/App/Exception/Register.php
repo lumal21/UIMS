@@ -28,6 +28,8 @@ use Whoops\Handler\PrettyPageHandler;
 
 /**
  * Class Register
+ * Exception Template Data/Configuration Register
+ *
  * @package UIoT\App\Exception
  */
 final class Register
@@ -42,7 +44,7 @@ final class Register
 	/**
 	 * static variable to store exception page runner
 	 *
-	 * @var Runner
+	 * @var Collector
 	 */
 	private static $runner;
 
@@ -97,7 +99,7 @@ final class Register
 	/**
 	 * Get Runner
 	 *
-	 * @return Runner
+	 * @return Collector
 	 */
 	public static function getRunner()
 	{
@@ -107,9 +109,9 @@ final class Register
 	/**
 	 * Set Page Runner
 	 *
-	 * @param Runner $runner
+	 * @param Collector $runner
 	 */
-	public static function setRunner(Runner $runner)
+	public static function setRunner(Collector $runner)
 	{
 		self::$runner = new $runner;
 	}

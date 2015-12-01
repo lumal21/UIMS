@@ -22,12 +22,14 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use UIoT\App\Core\Helpers\Manipulators\Arrays;
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Arrays;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer;
 
 /**
  * Class DataHandler
+ * Manages the Handling of the Specific Data of Each Type
+ *
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataHandler

@@ -19,8 +19,9 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\System;
 
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 
 final class Settings
 {

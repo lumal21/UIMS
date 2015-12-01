@@ -20,11 +20,12 @@
  */
 
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Data;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 
 /**
  * Class UrlCombinations
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 class UrlCombinations
 {

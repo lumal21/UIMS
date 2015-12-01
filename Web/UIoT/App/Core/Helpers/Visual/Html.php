@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Helpers\Visual;
 
 use Mihaeu\HtmlFormatter;
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 
 /**
  * Class Html

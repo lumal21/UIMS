@@ -28,11 +28,15 @@ use UIoT\App\Data\Models\HandlerModel;
 
 /**
  * Class DataCollector
+ * Manages all Data Collection and Filtering/Rendering from Requests
+ *
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataCollector
 {
 	/**
+	 * Array of Collectors
+	 *
 	 * @var array
 	 */
 	private static $collectors;
@@ -88,7 +92,7 @@ class DataCollector
 	 */
 	public static function initCollector(CollectorModel $collector = null, $handler = '')
 	{
-		return ($collector === null) || $collector->passRequest(self::doRequest())->passHandler($handler);
+		return $collector === null || $collector->passRequest(self::doRequest())->passHandler($handler);
 	}
 
 	/**

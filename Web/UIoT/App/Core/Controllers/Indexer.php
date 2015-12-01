@@ -21,7 +21,7 @@
 
 namespace UIoT\App\Core\Controllers;
 
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Views\Indexer as VIndexer;
 
 /**

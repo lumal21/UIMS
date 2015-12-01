@@ -21,11 +21,14 @@
 
 namespace UIoT\App\Exception;
 
-use UIoT\App\Core\Helpers\Manipulators\Constants;
-use UIoT\App\Core\Helpers\Manipulators\Settings;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\System\Settings;
+use UIoT\App\Exception\Template\Handler;
 
 /**
  * Class Manager
+ * Exception Manager
+ *
  * @package UIoT\App\Exception
  */
 final class Manager
@@ -46,7 +49,7 @@ final class Manager
 	private function setClasses()
 	{
 		Register::setHandler(new Handler);
-		Register::setRunner(new Runner);
+		Register::setRunner(new Collector);
 	}
 
 	/**

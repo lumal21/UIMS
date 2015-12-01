@@ -23,7 +23,7 @@ namespace UIoT\App\Core\Controllers;
 
 use RuntimeException;
 use UIoT\App\Core\Communication\Parsers\DataManager;
-use UIoT\App\Core\Helpers\Manipulators\Strings;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Models\IControllerModel;
 
 /**

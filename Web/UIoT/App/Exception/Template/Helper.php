@@ -19,13 +19,15 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Exception;
+namespace UIoT\App\Exception\Template;
 
 use Whoops\Util\TemplateHelper;
 
 /**
  * Class Helper
- * @package UIoT\App\Exception
+ * Exception Template Helper
+ *
+ * @package UIoT\App\Exception\Template
  */
 class Helper extends TemplateHelper
 {
@@ -35,17 +37,6 @@ class Helper extends TemplateHelper
 	 * @var array
 	 */
 	private $helper_variables = [];
-
-	/**
-	 * Sets a single template variable, by its name:
-	 *
-	 * @param string $variableName
-	 * @param mixed $variableValue
-	 */
-	public function setVariable($variableName, $variableValue)
-	{
-		$this->helper_variables[$variableName] = $variableValue;
-	}
 
 	/**
 	 * Gets a single template variable, by its name, or
@@ -71,6 +62,78 @@ class Helper extends TemplateHelper
 	}
 
 	/**
+	 * Get File Content
+	 *
+	 * @param string $template
+	 * @return mixed|string
+	 */
+	public function display($template = '')
+	{
+		/* return templates like css,js, etc */
+		return file_get_contents($template);
+	}
+
+	/**
+	 * Executes the Render
+	 *
+	 * @param Handler $handler
+	 * @return int
+	 */
+	public function execute(Handler $handler)
+	{
+		$this->setHelperVariables(array_merge($handler->hResources(), $handler->hSettings(), $handler->hVariables()));
+
+		/* render main layout */
+		$this->render($handler->getPublicResource('Layouts/layout.html.php'));
+
+		/* return exit code */
+		return Handler::QUIT;
+	}
+
+	/**
+	 * Given a template path, render it within its own scope. This
+	 * method also accepts an array of additional variables to be
+	 * passed to the template.
+	 *
+	 * @param string $template
+	 * @param array $additionalVariables
+	 */
+	public function render($template, array $additionalVariables = null)
+	{
+		/* set tpl variable */
+		$this->setVariable('tpl', $this);
+
+		/* render file */
+		$this->getRenderFile($template, $this->getHelperVariables());
+	}
+
+	/**
+	 * Sets a single template variable, by its name:
+	 *
+	 * @param string $variableName
+	 * @param mixed $variableValue
+	 */
+	public function setVariable($variableName, $variableValue)
+	{
+		$this->helper_variables[$variableName] = $variableValue;
+	}
+
+	/**
+	 * Get A Rendered File Content
+	 *
+	 * @param string $template
+	 * @param array|null $variables
+	 */
+	protected function getRenderFile($template = '', array $variables = null)
+	{
+		/* get variables from array and set in this function */
+		extract($variables);
+
+		/* require included file */
+		require_once $template;
+	}
+
+	/**
 	 * Returns all variables for this helper
 	 *
 	 * @return array
@@ -90,18 +153,5 @@ class Helper extends TemplateHelper
 	public function setHelperVariables(array $helper_variables = [])
 	{
 		$this->helper_variables = $helper_variables;
-
-		return $this;
-	}
-
-	/**
-	 * Set Helper Variables
-	 *
-	 * @param array $helper_variables
-	 * @return Helper
-	 */
-	public function setH(array $helper_variables = [])
-	{
-		return $this->setHelperVariables($helper_variables);
 	}
 }

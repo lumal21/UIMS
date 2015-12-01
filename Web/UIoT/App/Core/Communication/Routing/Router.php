@@ -22,8 +22,8 @@
 namespace UIoT\App\Core\Communication\Routing;
 
 use UIoT\App\Core\Communication\Sessions\Indexer;
-use UIoT\App\Core\Helpers\Manipulators\Constants;
-use UIoT\App\Core\Helpers\Manipulators\Urls;
+use UIoT\App\Core\Helpers\Data\Urls;
+use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Methods\Get as GetHelper;
 use UIoT\App\Core\Helpers\Methods\Post as PostHelper;
 use UIoT\App\Core\Resources\Render as ResourceRender;

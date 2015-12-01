@@ -19,14 +19,15 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Core\Helpers\Manipulators;
+namespace UIoT\App\Core\Helpers\Manipulation;
 
 use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Data\Models\MethodModel;
+use UIoT\App\Security\Helpers\VariableFilters;
 
 /**
  * Class Arrays
- * @package UIoT\App\Core\Helpers\Manipulators
+ * @package UIoT\App\Core\Helpers\Manipulation
  */
 class Arrays
 {
@@ -182,6 +183,6 @@ class Arrays
 	 */
 	public static function sanitizeArray(array $input_array = [])
 	{
-		return Security::sanitizeVariable((array)$input_array);
+		return VariableFilters::sanitizeVariable((array)$input_array);
 	}
 }
