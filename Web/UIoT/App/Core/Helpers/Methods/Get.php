@@ -21,10 +21,7 @@
 
 namespace UIoT\App\Core\Helpers\Methods;
 
-use UIoT\App\Core\Communication\Methods\Get as GetMethod;
-use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 
 /*
  * Get Helper
@@ -49,15 +46,7 @@ class Get
 	 */
 	public static function receiveGetData()
 	{
-		/* first $last need be empty */
-		$last = '';
-		$get  = [];
-
-		/* put query string into $GET */
-		foreach (Urls::combineUrlSimple() as $key => $value)
-			$key % 2 != 0 ? Arrays::addOnHttpMethod(Strings::sanitizeString($last = $value), '', new GetMethod, $get) : Arrays::addOnHttpMethod($last, Strings::sanitizeString(urldecode($value)), new GetMethod, $get);
-
-		return $get;
+		return [];
 	}
 
 	/**
@@ -71,16 +60,6 @@ class Get
 	}
 
 	/**
-	 * Return All Get Data
-	 *
-	 * @return object
-	 */
-	public static function returnGetData()
-	{
-		return !self::$data ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data;
-	}
-
-	/**
 	 * Return Specific Get Data
 	 *
 	 * @param string $variable_name
@@ -89,5 +68,15 @@ class Get
 	public static function returnGetVariable($variable_name = '')
 	{
 		return isset(self::returnGetData()[$variable_name]) ? self::returnGetData()[$variable_name]->getData() : '';
+	}
+
+	/**
+	 * Return All Get Data
+	 *
+	 * @return object
+	 */
+	public static function returnGetData()
+	{
+		return !self::$data ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data;
 	}
 }

@@ -88,6 +88,26 @@ final class PathFinder
 	}
 
 	/**
+	 * Return Node Indexer Instance
+	 *
+	 * @return NodeIndexer
+	 */
+	public function getNodeIndexer()
+	{
+		return $this->node_indexer;
+	}
+
+	/**
+	 * Set Node Indexer Instance
+	 *
+	 * @param NodeIndexer $node_indexer
+	 */
+	public function setNodeIndexer(NodeIndexer $node_indexer)
+	{
+		$this->node_indexer = $node_indexer;
+	}
+
+	/**
 	 * Mount Router Node
 	 *
 	 * @param IRouter|null $router
@@ -121,26 +141,6 @@ final class PathFinder
 			$router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'call_value']);
 
 		endforeach;
-	}
-
-	/**
-	 * Return Node Indexer Instance
-	 *
-	 * @return NodeIndexer
-	 */
-	public function getNodeIndexer()
-	{
-		return $this->node_indexer;
-	}
-
-	/**
-	 * Set Node Indexer Instance
-	 *
-	 * @param NodeIndexer $node_indexer
-	 */
-	public function setNodeIndexer(NodeIndexer $node_indexer)
-	{
-		$this->node_indexer = $node_indexer;
 	}
 
 	/**
