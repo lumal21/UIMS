@@ -76,6 +76,18 @@ class Strings
 	}
 
 	/**
+	 * Get Class Name
+	 *
+	 * @param  $class
+	 * @param string $namespace
+	 * @return string|false
+	 */
+	public static function getNamespace($class, $namespace = '')
+	{
+		return $namespace . get_class($class);
+	}
+
+	/**
 	 * Convert string to Actions Methods Names
 	 *
 	 * @param $string
@@ -117,5 +129,16 @@ class Strings
 	public static function sanitizeString($input_string = '')
 	{
 		return VariableFilters::sanitizeVariable((string)$input_string);
+	}
+
+	/**
+	 * Check if is Regex
+	 *
+	 * @param string $str0
+	 * @return bool
+	 */
+	public static function isRegex($str0)
+	{
+		return (bool)preg_match("/^\/[\s\S]+\/$/", $str0);
 	}
 }

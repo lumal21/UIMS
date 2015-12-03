@@ -28,7 +28,7 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
  * Class Selector
  * @package UIoT\App\Core\Communication\Routing
  */
-final class Selector
+final class RenderSelector
 {
 	/**
 	 * Show the Render

@@ -53,6 +53,17 @@ final class Indexer
 	}
 
 	/**
+	 * Check if File Exists
+	 *
+	 * @param $f
+	 * @return bool
+	 */
+	public static function fileExists($f)
+	{
+		return is_file(self::$folder . $f);
+	}
+
+	/**
 	 * Add Resource
 	 *
 	 * @param string $file_name
@@ -151,6 +162,17 @@ final class Indexer
 	 */
 	public static function returnResource($file_name, $header = true)
 	{
+		/* check if file exists */
+		self::fileExists($file_name) || Register::getRunner()->errorMessage(907,
+			"404!",
+			'Details: ',
+			[
+				'What Happened?' => "Sorry but this file doesn't exists.",
+				'Solution:' => "Go Back to Home Page.",
+				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+			]
+		);
+
 		/* if resource doesn't exists, or resource is hot linked we must show error */
 		self::checkResourceExistence($file_name) || Register::getRunner()->errorMessage(903,
 			'Stop! D\'not Hotlinks!',

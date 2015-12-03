@@ -57,6 +57,18 @@ final class Commander
 	}
 
 	/**
+	 * Check if Is an Valid Action
+	 *
+	 * @param $controller_name
+	 * @param $action_name
+	 * @return bool
+	 */
+	public static function controllerActionExists($controller_name, $action_name)
+	{
+		return in_array(Strings::toActionName($action_name), Arrays::staticToArray($controller_name));
+	}
+
+	/**
 	 * Enable Action
 	 *
 	 * @param string $action_name
@@ -90,7 +102,7 @@ final class Commander
 	 */
 	public function checkActionExistence($action_name)
 	{
-		return (in_array((Strings::toActionName($action_name)), $this->controller_actions));
+		return in_array((Strings::toActionName($action_name)), $this->controller_actions);
 	}
 
 	/**

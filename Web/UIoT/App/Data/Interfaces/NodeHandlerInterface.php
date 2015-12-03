@@ -19,20 +19,19 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Controllers;
+namespace UIoT\App\Data\Interfaces;
 
-use UIoT\App\Core\Controllers\Indexer;
-use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Models\NodeModel;
 
 /**
- * Class None
- * @package UIoT\App\Data\Controllers
+ * Interface NodeHandlerInterface
+ * @package UIoT\App\Data\Interfaces
  */
-final class None extends ControllerModel
+interface NodeHandlerInterface
 {
-	public function __actionMain()
-	{
-		/* redirect to Login view */
-		echo Indexer::redirectToController('Login');
-	}
+	public function __construct(NodeModel $node);
+
+	public function call_value(...$arguments);
+
+	public function call();
 }

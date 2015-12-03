@@ -40,6 +40,14 @@
 
 namespace UIoT;
 
+use UIoT\App\Core\Communication\Routing\Nodes\ActionNode;
+use UIoT\App\Core\Communication\Routing\Nodes\ArgumentsNode;
+use UIoT\App\Core\Communication\Routing\Nodes\BasePathNode;
+use UIoT\App\Core\Communication\Routing\Nodes\ControllerNode;
+use UIoT\App\Core\Communication\Routing\Nodes\LayoutNode;
+use UIoT\App\Core\Communication\Routing\Nodes\ResourceFileNode;
+use UIoT\App\Core\Communication\Routing\Nodes\ResourceTypeNode;
+use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
@@ -105,3 +113,34 @@ ControllerIndexer::addController('Login');
 
 /* default page */
 ControllerIndexer::addController('None');
+
+/**
+ * Register Nodes
+ */
+
+/* set controller routing parameters yoururl/CONTROLLER - For Web Pages */
+Router::addRoute('/', new BasePathNode, 0, 'get', 'web_page');
+
+/* set controller routing parameters yoururl/CONTROLLER - For Web Pages */
+Router::addRoute('/(\w+)', new ControllerNode, 1, 'get', 'web_page');
+
+/* set action routing parameters yoururl/CONTROLLER/ACTION - For Web Pages */
+Router::addRoute('/(\w+)', new ActionNode, 2, 'get', 'web_page');
+
+/* set action routing parameters yoururl/CONTROLLER/ACTION - For Web Pages */
+Router::addRoute('/(\w+)', new ActionNode, 2, 'post', 'web_page');
+
+/* set arguments routing parameters yoururl/CONTROLLER/ACTION/QUERY/STRING/REST/PARAMETER - For Web Pages */
+Router::addRoute('/(\w+)/(.*)', new ArgumentsNode, 3, 'get', 'web_page');
+
+/* ##### */
+
+/* set layout routing parameters yoururl/LAYOUT - For Opening Resource Files */
+Router::addRoute('/(\w+)', new LayoutNode, 1, 'get', 'resource_file');
+
+/* set resource type folder routing parameters yoururl/LAYOUT/RESOURCE-TYPE-FOLDER - For Opening Resource Files */
+Router::addRoute('/(\w+)', new ResourceTypeNode, 2, 'get', 'resource_file');
+
+/* set resource file parameters routing parameters yoururl/LAYOUT/RESOURCE-TYPE-FOLDER/PATH/TO/FILE - For Opening Resource Files */
+Router::addRoute('/(\w+)/(.*)', new ResourceFileNode, 3, 'get', 'resource_file');
+

@@ -114,6 +114,6 @@ final class Render
 	 */
 	private function setResources()
 	{
-		ResourceIndexer::registerResources(in_array($this->action, Urls::getLayouts()) ? $this->action : $this->controller, true);
+		ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
 	}
 }

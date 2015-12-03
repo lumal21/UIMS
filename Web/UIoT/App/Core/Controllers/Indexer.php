@@ -21,7 +21,9 @@
 
 namespace UIoT\App\Core\Controllers;
 
+use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Core\Templates\Render;
 use UIoT\App\Core\Views\Indexer as VIndexer;
 
 /**
@@ -114,5 +116,17 @@ final class Indexer
 	public static function getControllerNameSpace($controller_name)
 	{
 		return Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\');
+	}
+
+	/**
+	 * Redirect to Another Controller
+	 *
+	 * @param string $controller
+	 * @param string $controller_action
+	 * @return string
+	 */
+	public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
+	{
+		return RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $controller, 'action' => $controller_action])));
 	}
 }

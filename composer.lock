@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5edf883c32b3094332431d9fbd8ec742",
-    "content-hash": "83d732b134dd5cbcc07fdb07d285f01a",
+    "hash": "34c71bff11848331c94787bd689197a3",
+    "content-hash": "82d493b62db9210555386de2a15de51a",
     "packages": [
         {
             "name": "asm89/rx.php",
@@ -61,6 +61,52 @@
                 "rx"
             ],
             "time": "2015-11-09 09:20:21"
+        },
+        {
+            "name": "bramus/router",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bramus/router.git",
+                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bramus/router/zipball/e4a588b333a539f7321cd7bbfba9bdf181209d4c",
+                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/php-code-coverage": "1.3.*@dev",
+                "phpunit/phpunit": "3.7.x"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bramus": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bram(us) Van Damme",
+                    "email": "bramus@bram.us",
+                    "homepage": "http://www.bram.us"
+                }
+            ],
+            "description": "A lightweight and simple object oriented PHP Router",
+            "homepage": "https://github.com/bramus/router",
+            "keywords": [
+                "router",
+                "routing"
+            ],
+            "time": "2015-02-04 12:43:17"
         },
         {
             "name": "easyframework/collections",

@@ -21,13 +21,9 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
-use UIoT\App\Core\Communication\Sessions\Indexer;
-use UIoT\App\Core\Helpers\Data\Urls;
-use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\Methods\Get as GetHelper;
-use UIoT\App\Core\Helpers\Methods\Post as PostHelper;
-use UIoT\App\Core\Resources\Render as ResourceRender;
-use UIoT\App\Core\Templates\Render as TemplateRender;
+use Bramus\Router\Router as IRouter;
+use UIoT\App\Core\Communication\Routing\Nodes\NotFoundNode;
+use UIoT\App\Core\Communication\Routing\Path\PathFinder;
 
 /**
  * Class Router
@@ -36,73 +32,99 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
  * @property mixed action
  * @package UIoT\App\Core\Communication\Routing
  */
-final class Router
+final class Router extends RouterAccessor
 {
 	/**
 	 * Start's Router Procedure
 	 */
 	public function __construct()
 	{
-		/* map section */
-		$this->reach();
+		/* create router instance */
+		$this->mount();
 
-		/* routing section */
-		$this->route();
-		$this->query();
+		/* set all nodes */
+		$this->nodes();
 
-		/* show section */
-		$this->open();
+		/* execute router */
+		$this->exec();
 	}
 
 	/**
-	 * Route the Items
+	 * Prepare Router
+	 */
+	private function prepare()
+	{
+		/* serialize call backs */
+		$this->getPathFinder()->serializeCallBacks($this->getPathFinder()->getNodeIndexer()->getNodes());
+
+		/* mount router */
+		$this->getPathFinder()->mountRouter($this->getRouter());
+
+		/* set 404 Callback Node */
+		$this->getRouter()->set404(new NotFoundNode);
+	}
+
+	/**
+	 * Mount Router Instance and Path Finder Instance
+	 */
+	private function mount()
+	{
+		/* set router */
+		$this->setRouter(new IRouter);
+
+		/* set path finder */
+		$this->setPathFinder(new PathFinder);
+	}
+
+	/**
+	 * Run the Router
+	 */
+	private function run()
+	{
+		$this->getRouter()->run([$this, 'performRouterUpdate']);
+	}
+
+	/**
+	 * Execute the Router
+	 */
+	protected function exec()
+	{
+		/* sort all nodes */
+		$this->getPathFinder()->getNodeIndexer()->sort();
+
+		/* prepare route */
+		$this->prepare();
+
+		/* run the router */
+		$this->run();
+	}
+
+	/**
+	 * Validate the Router Run
+	 */
+	public function performRouterUpdate()
+	{
+		/* check if need perform router update */
+		if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) || empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue()))
+			return;
+
+		/* if yes perform core update */
+		$this->performCoreUpdate();
+
+		/* reset router instance to reassign data */
+		$this->setRouter(new IRouter);
+
+		/* execute router procedures */
+		$this->exec();
+	}
+
+	/**
+	 * Perform NodeIndexer Core Update
 	 *
-	 * @return bool
+	 * Update Data of what need be removed
 	 */
-	private function route()
+	protected function performCoreUpdate()
 	{
-		/* get controller name (layout) */
-		$this->controller   = Indexer::updateKeyIfNeeded('controller_router', Urls::getController());
-		$this->action       = Indexer::updateKeyIfNeeded('action_router', Urls::getActionInUrl());
-		$this->resource_url = Indexer::updateKeyIfNeeded('resource_router', Urls::getValidResourceUrl());
-
-		return true;
-	}
-
-	/**
-	 * Open the Template or Router
-	 */
-	private function open()
-	{
-		echo Urls::checkCombination() ? Selector::select(Selector::instantiate(new ResourceRender(['controller' => $this->controller, 'file' => $this->resource_url]))) : Selector::select(Selector::instantiate(new TemplateRender(['controller' => $this->controller, 'action' => $this->action])));
-	}
-
-	/**
-	 * Get Requested URL and Script Name, Removing the Repeated Things
-	 */
-	private function reach()
-	{
-		/* register layouts and resources */
-		Urls::registerItems();
-
-		/* add urls */
-
-		Urls::addUrl(Constants::returnConstant('REQUEST_URL'));
-		Urls::addUrl(Constants::returnConstant('PHP_SELF'));
-		Urls::addUrl(Constants::returnConstant('QUERY_STRING'));
-	}
-
-	/**
-	 * Apply Query String
-	 */
-	private function query()
-	{
-		/* apply get data from query string */
-		GetHelper::storeGetData(GetHelper::receiveGetData());
-
-		/* store post data */
-		PostHelper::storePostData(PostHelper::receivePostData());
-
-		return true;
+		array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
 	}
 }

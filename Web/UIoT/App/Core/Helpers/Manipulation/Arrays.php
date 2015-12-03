@@ -23,6 +23,7 @@ namespace UIoT\App\Core\Helpers\Manipulation;
 
 use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Data\Models\MethodModel;
+use UIoT\App\Data\Models\NodeModel;
 use UIoT\App\Security\Helpers\VariableFilters;
 
 /**
@@ -130,6 +131,17 @@ class Arrays
 	}
 
 	/**
+	 * Return to Resource Valid File Name
+	 *
+	 * @param array $array
+	 * @return array
+	 */
+	public static function toResourceName(array $array)
+	{
+		return array_map('self::toActionName', $array);
+	}
+
+	/**
 	 * Remove Blank Items from Array
 	 *
 	 * @param array $array
@@ -153,29 +165,6 @@ class Arrays
 	}
 
 	/**
-	 * Override Array Contents
-	 *
-	 * @param array $array
-	 * @param array $new_array
-	 */
-	public static function overrideArray(&$array = [], $new_array = [])
-	{
-		$array = array_replace($array, $new_array);
-	}
-
-	/**
-	 * Get Array
-	 * With Sanitize Options
-	 *
-	 * @param array $array
-	 * @return array
-	 */
-	public static function getArray($array = [])
-	{
-		return self::sanitizeArray($array);
-	}
-
-	/**
 	 * Sanitize the Array
 	 *
 	 * @param array $input_array
@@ -184,5 +173,116 @@ class Arrays
 	public static function sanitizeArray(array $input_array = [])
 	{
 		return VariableFilters::sanitizeVariable((array)$input_array);
+	}
+
+	/**
+	 * Return Search by Parameter
+	 *
+	 * @param array $array
+	 * @param string $parameter_name
+	 * @param mixed $parameter_value
+	 * @param string $expression
+	 * @param bool $by_callback
+	 * @return array
+	 */
+	public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==', $by_callback = false)
+	{
+		return array_filter($array, function ($var) use ($parameter_name, $parameter_value, $expression, $by_callback) {
+
+			/** @var NodeModel $var */
+			$variable = !empty($parameter_name) ? ($by_callback ? $var->getCallback()->{'get' . $parameter_name}() : $var->{'get' . $parameter_name}()) : get_class($var->getCallback());
+
+			switch ($expression):
+				default:
+					return $variable == $parameter_value;
+				case '!=':
+					return $variable != $parameter_value;
+				case '>=':
+					return $variable >= $parameter_value;
+				case '>':
+					return $variable > $parameter_value;
+				case '<=':
+					return $variable <= $parameter_value;
+				case '<':
+					return $variable < $parameter_value;
+				case '===':
+					return $variable === $parameter_value;
+			endswitch;
+		});
+	}
+
+	/**
+	 * Remove each instance of an object within an array (matched on a given property, $prop)
+	 *
+	 * @param array $array
+	 * @param mixed $value
+	 * @param string $prop
+	 * @return array
+	 */
+	public static function removeObjectFromArray(&$array, $value, $prop)
+	{
+		return array_filter($array, function ($a) use ($value, $prop) {
+			return $a->$prop !== $value;
+		});
+	}
+
+	/**
+	 * Return Object by Search for Property
+	 *
+	 * @param $array
+	 * @param $index
+	 * @param $value
+	 * @return null|NodeModel
+	 */
+	public static function objArraySearch($array, $index, $value)
+	{
+		foreach ($array as $arrayInf)
+			if ($arrayInf->{'get' . $index}() == $value)
+				return $arrayInf;
+
+		return null;
+	}
+
+	/**
+	 * Return Object by Search for Property
+	 *
+	 * @param $array
+	 * @param $index
+	 * @param $value
+	 * @return null|NodeModel
+	 */
+	public static function objArraySearchBool($array, $index, $value)
+	{
+		foreach ($array as $arrayInf)
+			if ($arrayInf->{'get' . $index}() == $value)
+				return true;
+
+		return false;
+	}
+
+	/**
+	 * Get Array Object Parameter Value
+	 *
+	 * @param $getNodes
+	 * @param $parameter_name
+	 * @return array
+	 */
+	public static function getArrayObjectProperty($getNodes, $parameter_name)
+	{
+		return array_map(function ($node) use ($parameter_name) {
+			return $node->{'get' . $parameter_name}();
+		}, $getNodes);
+	}
+
+	/**
+	 * Check if Any Occurrence Exists
+	 *
+	 * @param array $needles
+	 * @param array $haystack
+	 * @return bool
+	 */
+	public static function inArrayAny($needles, $haystack)
+	{
+		return !!array_intersect($needles, $haystack);
 	}
 }

@@ -19,20 +19,14 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Controllers;
-
-use UIoT\App\Core\Controllers\Indexer;
-use UIoT\App\Data\Models\ControllerModel;
+namespace UIoT\App\Core\Helpers\Data;
 
 /**
- * Class None
- * @package UIoT\App\Data\Controllers
+ * Class UrlWrapper
+ * @package UIoT\App\Core\Helpers\Data
  */
-final class None extends ControllerModel
+class UrlWrapper
 {
-	public function __actionMain()
-	{
-		/* redirect to Login view */
-		echo Indexer::redirectToController('Login');
-	}
+
+
 }
