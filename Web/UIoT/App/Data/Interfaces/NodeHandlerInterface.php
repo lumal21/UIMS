@@ -31,7 +31,7 @@ interface NodeHandlerInterface
 {
 	public function __construct(NodeModel $node);
 
-	public function call_value(...$arguments);
+	public function callValue(...$arguments);
 
 	public function call();
 }

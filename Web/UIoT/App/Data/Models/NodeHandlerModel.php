@@ -66,7 +66,7 @@ class NodeHandlerModel implements NodeHandlerInterface
 	 *
 	 * @param string[] $arguments
 	 */
-	public function call_value(...$arguments)
+	public function callValue(...$arguments)
 	{
 		/* foreach arguments */
 		foreach ($arguments as $argument)

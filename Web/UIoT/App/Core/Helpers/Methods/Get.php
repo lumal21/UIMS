@@ -22,7 +22,6 @@
 namespace UIoT\App\Core\Helpers\Methods;
 
 use UIoT\App\Core\Communication\Methods\Get as GetMethod;
-use UIoT\App\Core\Helpers\Data\Urls;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
