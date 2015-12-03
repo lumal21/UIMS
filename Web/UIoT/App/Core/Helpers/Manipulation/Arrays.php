@@ -186,9 +186,8 @@ class Arrays
 	 */
 	public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==')
 	{
-		return array_filter($array, function ($var) use ($parameter_name, $parameter_value, $expression) {
+		return array_filter($array, function (NodeModel $var) use ($parameter_name, $parameter_value, $expression) {
 
-			/** @var NodeModel $var */
 			$variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 
 			switch ($expression):
@@ -198,14 +197,8 @@ class Arrays
 					return $variable != $parameter_value;
 				case '>=':
 					return $variable >= $parameter_value;
-				case '>':
-					return $variable > $parameter_value;
 				case '<=':
 					return $variable <= $parameter_value;
-				case '<':
-					return $variable < $parameter_value;
-				case '===':
-					return $variable === $parameter_value;
 			endswitch;
 		});
 	}

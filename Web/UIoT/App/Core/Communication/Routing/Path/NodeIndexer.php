@@ -263,7 +263,7 @@ final class NodeIndexer
 	 */
 	public function removeNodeByCallBackName(array $array, $value)
 	{
-		return array_filter($array, function ($a) use ($value) {
+		return array_filter($array, function (NodeModel $a) use ($value) {
 			return get_class($a->getCallback()) != get_class($value);
 		});
 	}

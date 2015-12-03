@@ -26,9 +26,11 @@ use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Core\Resources\Indexer as RIndexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Exception\Register;
 
 /**
  * Class ResourceFIleNode
@@ -60,6 +62,17 @@ class ResourceFileNode extends NodeHandlerModel
 		foreach ($this->getPathValue() as $key => $value)
 			$key == 0 || $file_name[] = Strings::toControllerName($value);
 
-		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
+		/* check if file exists */
+		RIndexer::fileExists($file = implode('/', $file_name)) || Register::getRunner()->errorMessage(907,
+			"404!",
+			'Details: ',
+			[
+				'What Happened?' => "Sorry but this file doesn't exists.",
+				'Solution:' => "Go Back to Home Page.",
+				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+			]
+		);
+
+		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => $file])));
 	}
 }

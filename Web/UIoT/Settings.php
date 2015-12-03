@@ -83,7 +83,7 @@ Settings::setAndStoreSettings([
 			// set error page title
 			'error_page_title' => 'Houston, we have a problem!',
 			// set reporting php error level
-			'error_reporting_levels' => (E_ALL),
+			'error_reporting_levels' => (E_ALL ^ E_WARNING),
 			// set query_string developer access mode
 			'error_developer_code' => 'de',
 			// set whoops resource folder
