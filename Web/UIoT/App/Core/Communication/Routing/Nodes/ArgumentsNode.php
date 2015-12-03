@@ -54,7 +54,6 @@ class ArgumentsNode extends NodeHandlerModel
 
 		$this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
 
-		if ($this->getResult())
-			echo RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
+		!$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
 	}
 }

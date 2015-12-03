@@ -182,15 +182,14 @@ class Arrays
 	 * @param string $parameter_name
 	 * @param mixed $parameter_value
 	 * @param string $expression
-	 * @param bool $by_callback
 	 * @return array
 	 */
-	public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==', $by_callback = false)
+	public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==')
 	{
-		return array_filter($array, function ($var) use ($parameter_name, $parameter_value, $expression, $by_callback) {
+		return array_filter($array, function ($var) use ($parameter_name, $parameter_value, $expression) {
 
 			/** @var NodeModel $var */
-			$variable = !empty($parameter_name) ? ($by_callback ? $var->getCallback()->{'get' . $parameter_name}() : $var->{'get' . $parameter_name}()) : get_class($var->getCallback());
+			$variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 
 			switch ($expression):
 				default:
@@ -239,25 +238,7 @@ class Arrays
 		foreach ($array as $arrayInf)
 			if ($arrayInf->{'get' . $index}() == $value)
 				return $arrayInf;
-
 		return null;
-	}
-
-	/**
-	 * Return Object by Search for Property
-	 *
-	 * @param $array
-	 * @param $index
-	 * @param $value
-	 * @return null|NodeModel
-	 */
-	public static function objArraySearchBool($array, $index, $value)
-	{
-		foreach ($array as $arrayInf)
-			if ($arrayInf->{'get' . $index}() == $value)
-				return true;
-
-		return false;
 	}
 
 	/**

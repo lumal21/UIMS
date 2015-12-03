@@ -82,7 +82,7 @@ final class PathFinder
 			$this->mountRouterNode($router, $edge);
 
 			/* serialize router node */
-			$router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'call_value']);
+			$router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
 
 		endforeach;
 	}
@@ -138,7 +138,7 @@ final class PathFinder
 				continue;
 
 			/* serialize router edge */
-			$router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'call_value']);
+			$router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
 
 		endforeach;
 	}

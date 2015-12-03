@@ -39,10 +39,9 @@ final class RenderSelector
 	public static function select($instance)
 	{
 		if ($instance instanceof ResourceRender)
-			return $instance->show();
+			echo $instance->show();
 		else if ($instance instanceof TemplateRender)
-			return $instance->show();
-		return null;
+			echo $instance->show();
 	}
 
 	/**

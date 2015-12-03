@@ -60,6 +60,6 @@ class ResourceFileNode extends NodeHandlerModel
 		foreach ($this->getPathValue() as $key => $value)
 			$key == 0 || $file_name[] = Strings::toControllerName($value);
 
-		echo RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
+		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
 	}
 }

@@ -57,9 +57,6 @@ final class ActionNode extends NodeHandlerModel
 
 		$this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
-		if ($this->getResult())
-			echo RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
-
 		$this->getResult() || Register::getRunner()->errorMessage(902,
 			"Stop! That Action Doesn't Exists!",
 			'Details: ',
@@ -72,5 +69,7 @@ final class ActionNode extends NodeHandlerModel
 				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
 			]
 		);
+
+		!$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
 	}
 }

@@ -22,6 +22,7 @@
 namespace UIoT\App\Core\Communication\Routing\Path;
 
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
+use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
 
 /**
@@ -187,7 +188,17 @@ final class NodeIndexer
 	 */
 	private function getNodesByCallBackParameter($parameter_name, $parameter_value, $expression = '==')
 	{
-		return Arrays::getArrayByLogicComparsion($this->getNodes(), $parameter_name, $parameter_value, $expression, true);
+		return Arrays::getArrayByLogicComparsion($this->getNodesCallBack(), $parameter_name, $parameter_value, $expression);
+	}
+
+	/**
+	 * Get Nodes Callback Array
+	 *
+	 * @return array
+	 */
+	public function getNodesCallBack()
+	{
+		return array_map(function (NodeModel $node) { return $node->getCallback(); }, $this->getNodes());
 	}
 
 	/**
@@ -230,7 +241,7 @@ final class NodeIndexer
 	 */
 	public function nodeExistsById($node_id)
 	{
-		return Arrays::objArraySearchBool($this->getNodes(), 'NodeId', $node_id);
+		return (bool)Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
 	}
 
 	/**
@@ -246,8 +257,8 @@ final class NodeIndexer
 	/**
 	 * Remove each instance of an object within an array (matched on a given property, $prop)
 	 *
-	 * @param array $array
-	 * @param mixed $value
+	 * @param NodeModel[] $array
+	 * @param NodeHandlerModel $value
 	 * @return array
 	 */
 	public function removeNodeByCallBackName(array $array, $value)
@@ -260,11 +271,11 @@ final class NodeIndexer
 	/**
 	 * Perform NodeIndexer Changes List
 	 *
-	 * @param NodeModel $node
+	 * @param NodeHandlerModel $node
 	 */
-	public function performCoreUpdate(NodeModel $node)
+	public function performCoreUpdate(NodeHandlerModel $node)
 	{
-		array_map([$this, 'removeNodesFromArray'], $this->getNodesByGroup($node->getNodeGroup()));
+		array_map([$this, 'removeNodesFromArray'], $this->getNodesByGroup($node->getNodeModel()->getNodeGroup()));
 	}
 
 	/**
