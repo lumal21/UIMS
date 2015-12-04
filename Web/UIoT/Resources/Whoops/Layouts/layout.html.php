@@ -9,24 +9,30 @@
 <body>
 
 <div class="Whoops container">
-
 	<div class="stack-container">
-		<div class="frames-container cf <?php echo(!$has_frames ? 'empty' : '') ?>">
-			<?php $tpl->render($frame_list) ?>
-		</div>
-		<div class="details-container cf">
+		<div class="left-panel cf <?php echo(!$has_frames ? 'empty' : '') ?>">
 			<header>
 				<?php $tpl->render($header) ?>
 			</header>
+
+			<div class="frames-description">
+				Stack frames (<?php echo count($frames) ?>):
+			</div>
+
+			<div class="frames-container">
+				<?php $tpl->render($frame_list) ?>
+			</div>
+		</div>
+		<div class="details-container cf">
 			<?php $tpl->render($frame_code) ?>
 			<?php $tpl->render($env_details) ?>
 		</div>
 	</div>
 </div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.5/ZeroClipboard.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 <script><?= $tpl->display($zepto); ?></script>
+<script><?= $tpl->display($clipboard); ?></script>
 <script><?= $tpl->display($javascript); ?></script>
 </body>
 </html>
+

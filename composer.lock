@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34c71bff11848331c94787bd689197a3",
-    "content-hash": "82d493b62db9210555386de2a15de51a",
+    "hash": "d715ee7dc930495fa7bdb1ce3b660022",
+    "content-hash": "f1a0fb2e56ef97059ba52992c5e16296",
     "packages": [
         {
             "name": "asm89/rx.php",
@@ -64,16 +64,16 @@
         },
         {
             "name": "bramus/router",
-            "version": "1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramus/router.git",
-                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c"
+                "reference": "1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramus/router/zipball/e4a588b333a539f7321cd7bbfba9bdf181209d4c",
-                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c",
+                "url": "https://api.github.com/repos/bramus/router/zipball/1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc",
+                "reference": "1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc",
                 "shasum": ""
             },
             "require": {
@@ -106,7 +106,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-02-04 12:43:17"
+            "time": "2015-07-17 10:08:09"
         },
         {
             "name": "easyframework/collections",
@@ -210,36 +210,39 @@
         },
         {
             "name": "filp/whoops",
-            "version": "1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7"
+                "reference": "9425bc243f5fdb18925c3dbd5fb69962aab6e4a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/72538eeb70bbfb11964412a3d098d109efd012f7",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/9425bc243f5fdb18925c3dbd5fb69962aab6e4a6",
+                "reference": "9425bc243f5fdb18925c3dbd5fb69962aab6e4a6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.*"
             },
+            "suggest": {
+                "symfony/var-dumper": "^2.6"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Whoops": "src/"
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
                 },
-                "classmap": [
-                    "src/deprecated"
+                "files": [
+                    "src/Whoops/functions.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -264,11 +267,11 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-06-29 05:42:04"
+            "time": "2015-11-24 14:11:16"
         },
         {
             "name": "italolelis/datatables",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/datatables.git",
@@ -317,16 +320,16 @@
         },
         {
             "name": "jalle19/php-whitelist-check",
-            "version": "1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jalle19/php-whitelist-check.git",
-                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb"
+                "reference": "863b895c0d2c8246e36e5a4a13cb61f87bcd54a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jalle19/php-whitelist-check/zipball/e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
-                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
+                "url": "https://api.github.com/repos/Jalle19/php-whitelist-check/zipball/863b895c0d2c8246e36e5a4a13cb61f87bcd54a9",
+                "reference": "863b895c0d2c8246e36e5a4a13cb61f87bcd54a9",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +358,7 @@
                 "ipv6",
                 "whitelist"
             ],
-            "time": "2015-10-29 15:02:38"
+            "time": "2015-10-30 08:11:52"
         },
         {
             "name": "jeremykendall/php-domain-parser",
@@ -486,22 +489,28 @@
         },
         {
             "name": "mihaeu/html-formatter",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mihaeu/html-formatter.git",
-                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5"
+                "reference": "9fd72547984643be9233580ac577625e74d33134"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/a376177343ffe5484f8457f699237c1863b7cfd5",
-                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5",
+                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/9fd72547984643be9233580ac577625e74d33134",
+                "reference": "9fd72547984643be9233580ac577625e74d33134",
                 "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Mihaeu": "src"
+                "psr-4": {
+                    "Mihaeu\\": [
+                        "src/",
+                        "tests/unit/"
+                    ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -522,11 +531,11 @@
                 "html",
                 "pretty"
             ],
-            "time": "2013-11-26 11:55:02"
+            "time": "2015-04-02 16:41:13"
         },
         {
             "name": "nategood/httpful",
-            "version": "0.2.20",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nategood/httpful.git",

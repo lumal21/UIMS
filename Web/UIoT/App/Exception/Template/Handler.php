@@ -107,6 +107,7 @@ class Handler extends PrettyPageHandler
 	{
 		return ['header' => $this->getResource('Layouts/header.html.php'),
 		        'stylesheet' => $this->getResource('Stylesheet/whoops.base.css'),
+		        'clipboard' => $this->getResource('Scripts/clipboard.min.js'),
 		        'zepto' => $this->getResource('Scripts/zepto.min.js'),
 		        'javascript' => $this->getResource('Scripts/whoops.base.js'),
 		        'frame_list' => $this->getResource('Layouts/frame_list.html.php'),
