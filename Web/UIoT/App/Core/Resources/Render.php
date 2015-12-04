@@ -21,7 +21,6 @@
 
 namespace UIoT\App\Core\Resources;
 
-use UIoT\App\Exception\Register;
 
 /**
  * Class Render
