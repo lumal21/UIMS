@@ -46,10 +46,6 @@
   },
   "autoload": {
     "classmap": [
-      "Web/Index.php",
-      "Web/UIoT/Constants.php",
-      "Web/UIoT/Register.php",
-      "Web/UIoT/Settings.php",
       "Web/UIoT/App/"
     ]
   }
