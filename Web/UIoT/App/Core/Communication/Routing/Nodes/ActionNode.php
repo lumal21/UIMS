@@ -38,38 +38,38 @@ use UIoT\App\Exception\Register;
  */
 final class ActionNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
 
-		$this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+        $this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
-		$this->getResult() || Register::getRunner()->errorMessage(902,
-			"Stop! That Action Doesn't Exists!",
-			'Details: ',
-			[
-				'What Happened?' => "You're trying to Call an nonexistent Action",
-				'What Action?' => "Action with name: {$this->getPathValue()[1]}",
-				'From the Controller:' => "{$this->getPathValue()[0]}",
-				'Resolution:' => "Stop trying to call nonexistent actions.",
-				'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
-				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-			]
-		);
+        $this->getResult() || Register::getRunner()->errorMessage(902,
+            "Stop! That Action Doesn't Exists!",
+            'Details: ',
+            [
+                'What Happened?' => "You're trying to Call an nonexistent Action",
+                'What Action?' => "Action with name: {$this->getPathValue()[1]}",
+                'From the Controller:' => "{$this->getPathValue()[0]}",
+                'Resolution:' => "Stop trying to call nonexistent actions.",
+                'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
+                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+            ]
+        );
 
-		!$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
-	}
+        !$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
+    }
 }

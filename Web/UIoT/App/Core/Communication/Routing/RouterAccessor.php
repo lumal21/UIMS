@@ -30,105 +30,107 @@ use UIoT\App\Core\Communication\Routing\Path\PathFinder;
  */
 class RouterAccessor
 {
-	/**
-	 * Node List
-	 *
-	 * @var array
-	 */
-	protected static $node_list = [];
-	/**
-	 * Router Instance
-	 *
-	 * @var IRouter
-	 */
-	protected $router = null;
-	/**
-	 * PathFinder Instance
-	 *
-	 * @var PathFinder
-	 */
-	protected $pathFinder = null;
+    /**
+     * Node List
+     *
+     * @var array
+     */
+    protected static $node_list = [];
+    /**
+     * Router Instance
+     *
+     * @var IRouter
+     */
+    protected $router = null;
+    /**
+     * PathFinder Instance
+     *
+     * @var PathFinder
+     */
+    protected $pathFinder = null;
 
-	/**
-	 * Add Node for Router
-	 *
-	 * @param string $path
-	 * @param $callback
-	 * @param int $priority
-	 * @param string $method
-	 * @param string $group
-	 */
-	public static function addRoute($path, $callback, $priority, $method, $group)
-	{
-		self::$node_list[self::getNodeListSize() + 1] = ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
-	}
+    /**
+     * Add Node for Router
+     *
+     * @param string $path
+     * @param $callback
+     * @param int $priority
+     * @param string $method
+     * @param string $group
+     */
+    public static function addRoute($path, $callback, $priority, $method, $group)
+    {
+        self::$node_list[self::getNodeListSize() + 1] = ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
+    }
 
-	/**
-	 * Return Node List Array Size
-	 *
-	 * @return int
-	 */
-	private static function getNodeListSize()
-	{
-		return sizeof(self::getNodeList()) - 1;
-	}
+    /**
+     * Return Node List Array Size
+     *
+     * @return int
+     */
+    private static function getNodeListSize()
+    {
+        return sizeof(self::getNodeList()) - 1;
+    }
 
-	/**
-	 * Get Node List
-	 *
-	 * @return array
-	 */
-	public static function getNodeList()
-	{
-		return self::$node_list;
-	}
+    /**
+     * Get Node List
+     *
+     * @return array
+     */
+    public static function getNodeList()
+    {
+        return self::$node_list;
+    }
 
-	/**
-	 * Get Router Instance
-	 *
-	 * @return IRouter
-	 */
-	public function getRouter()
-	{
-		return $this->router;
-	}
+    /**
+     * Get Router Instance
+     *
+     * @return IRouter
+     */
+    public function getRouter()
+    {
+        return $this->router;
+    }
 
-	/**
-	 * Set Router Instance
-	 *
-	 * @param IRouter $router
-	 */
-	public function setRouter(IRouter $router)
-	{
-		$this->router = $router;
-	}
+    /**
+     * Set Router Instance
+     *
+     * @param IRouter $router
+     */
+    public function setRouter(IRouter $router)
+    {
+        $this->router = $router;
+    }
 
-	/**
-	 * Add Node for Router
-	 */
-	protected function nodes()
-	{
-		/* add node item */
-		array_map(function ($node) { $this->getPathFinder()->getNodeIndexer()->addNode($node); }, self::getNodeList());
-	}
+    /**
+     * Add Node for Router
+     */
+    protected function nodes()
+    {
+        /* add node item */
+        array_map(function ($node) {
+            $this->getPathFinder()->getNodeIndexer()->addNode($node);
+        }, self::getNodeList());
+    }
 
-	/**
-	 * Get PathFinder Instance
-	 *
-	 * @return PathFinder
-	 */
-	public function getPathFinder()
-	{
-		return $this->pathFinder;
-	}
+    /**
+     * Get PathFinder Instance
+     *
+     * @return PathFinder
+     */
+    public function getPathFinder()
+    {
+        return $this->pathFinder;
+    }
 
-	/**
-	 * Set PathFinder Instance
-	 *
-	 * @param PathFinder $pathFinder
-	 */
-	public function setPathFinder(PathFinder $pathFinder)
-	{
-		$this->pathFinder = $pathFinder;
-	}
+    /**
+     * Set PathFinder Instance
+     *
+     * @param PathFinder $pathFinder
+     */
+    public function setPathFinder(PathFinder $pathFinder)
+    {
+        $this->pathFinder = $pathFinder;
+    }
 }

@@ -32,61 +32,61 @@ use UIoT\App\Data\Models\IControllerModel;
  */
 class IControllable
 {
-	/**
-	 * @var string
-	 */
-	public $c_name = '';
-	/**
-	 * @var string
-	 */
-	public $a_name = '';
-	/**
-	 * @var array
-	 */
-	public $c_s_array = [];
-	/**
-	 * @var array
-	 */
-	public $c_array = [];
-	/**
-	 * @var IControllerModel
-	 */
-	public $c_data;
+    /**
+     * @var string
+     */
+    public $c_name = '';
+    /**
+     * @var string
+     */
+    public $a_name = '';
+    /**
+     * @var array
+     */
+    public $c_s_array = [];
+    /**
+     * @var array
+     */
+    public $c_array = [];
+    /**
+     * @var IControllerModel
+     */
+    public $c_data;
 
-	/**
-	 * Enable the Instance
-	 *
-	 * @param array $array
-	 */
-	protected function enableController($array = [])
-	{
-		/* if is not array we have problem */
-		is_array($array) || new RuntimeException('Fail! The IController Array is empty!');
+    /**
+     * Enable the Instance
+     *
+     * @param array $array
+     */
+    protected function enableController($array = [])
+    {
+        /* if is not array we have problem */
+        is_array($array) || new RuntimeException('Fail! The IController Array is empty!');
 
-		/* store array */
-		$this->c_s_array = $array;
+        /* store array */
+        $this->c_s_array = $array;
 
-		/* call methods */
-		$this->addInstance();
-		$this->addMethods();
-	}
+        /* call methods */
+        $this->addInstance();
+        $this->addMethods();
+    }
 
-	/**
-	 * Create Controller Instance
-	 */
-	private function addInstance()
-	{
-		$this->c_data = (new IControllerModel);
-	}
+    /**
+     * Create Controller Instance
+     */
+    private function addInstance()
+    {
+        $this->c_data = (new IControllerModel);
+    }
 
-	/**
-	 * Add Controller Abstract Methods
-	 */
-	private function addMethods()
-	{
-		foreach ($this->c_s_array as $method => $request)
-			$this->c_data->{Strings::toActionMethodName($method)} = function () use ($method) {
-				return DataManager::getInstance($method);
-			};
-	}
+    /**
+     * Add Controller Abstract Methods
+     */
+    private function addMethods()
+    {
+        foreach ($this->c_s_array as $method => $request)
+            $this->c_data->{Strings::toActionMethodName($method)} = function () use ($method) {
+                return DataManager::getInstance($method);
+            };
+    }
 }

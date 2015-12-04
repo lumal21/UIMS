@@ -29,23 +29,23 @@ use UIoT\App\Data\Interfaces\HandlerInterface;
  */
 class HandlerModel implements HandlerInterface
 {
-	protected $content;
+    protected $content;
 
-	/**
-	 * @param $request_content
-	 */
-	public function __construct($request_content)
-	{
-		$this->content .= '<pre>';
-		$this->content .= print_r($request_content, true);
-		$this->content .= '</pre>';
-	}
+    /**
+     * @param $request_content
+     */
+    public function __construct($request_content)
+    {
+        $this->content .= '<pre>';
+        $this->content .= print_r($request_content, true);
+        $this->content .= '</pre>';
+    }
 
-	/**
-	 * @return string
-	 */
-	public function __toString()
-	{
-		return $this->content;
-	}
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->content;
+    }
 }

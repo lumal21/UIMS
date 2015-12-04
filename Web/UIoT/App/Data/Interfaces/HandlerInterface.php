@@ -27,7 +27,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface HandlerInterface
 {
-	public function __construct($a);
+    public function __construct($a);
 
-	public function __toString();
+    public function __toString();
 }

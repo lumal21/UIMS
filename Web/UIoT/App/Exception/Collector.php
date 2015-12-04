@@ -33,26 +33,26 @@ use Whoops\Run;
  */
 final class Collector extends Run
 {
-	/**
-	 * Create a Message for Whoops
-	 * Is a function to create a custom message, without stack trace.
-	 *
-	 * @param int $code
-	 * @param string $title
-	 * @param string $message_title
-	 * @param array $message
-	 * @param bool $security_error
-	 * @throws Exception
-	 */
-	public function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
-	{
-		/* check if you have valid access */
-		!$security_error || SHandler::checkIpAddressAuthority();
+    /**
+     * Create a Message for Whoops
+     * Is a function to create a custom message, without stack trace.
+     *
+     * @param int $code
+     * @param string $title
+     * @param string $message_title
+     * @param array $message
+     * @param bool $security_error
+     * @throws Exception
+     */
+    public function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
+    {
+        /* check if you have valid access */
+        !$security_error || SHandler::checkIpAddressAuthority();
 
-		/* add data table */
-		Register::addDataTable($message_title, $message);
+        /* add data table */
+        Register::addDataTable($message_title, $message);
 
-		/* handle exception - need to be $this to don't make a infinite recursive loop */
-		$this->handleException(new Exception($title, $code));
-	}
+        /* handle exception - need to be $this to don't make a infinite recursive loop */
+        $this->handleException(new Exception($title, $code));
+    }
 }

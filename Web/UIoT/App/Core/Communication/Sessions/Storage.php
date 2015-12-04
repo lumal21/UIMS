@@ -27,45 +27,45 @@ namespace UIoT\App\Core\Communication\Sessions;
  */
 final class Storage
 {
-	/**
-	 * Get Session Array Key
-	 *
-	 * @param string $session_key
-	 * @return array
-	 */
-	public function getSessionArrayKey($session_key = '')
-	{
-		return $_SESSION[$session_key];
-	}
+    /**
+     * Get Session Array Key
+     *
+     * @param string $session_key
+     * @return array
+     */
+    public function getSessionArrayKey($session_key = '')
+    {
+        return $_SESSION[$session_key];
+    }
 
-	/**
-	 * Remove Session Array Key
-	 *
-	 * @param string $session_array_key
-	 */
-	public function removeSessionArrayKey($session_array_key = '')
-	{
-		unset($_SESSION[$session_array_key]);
-	}
+    /**
+     * Remove Session Array Key
+     *
+     * @param string $session_array_key
+     */
+    public function removeSessionArrayKey($session_array_key = '')
+    {
+        unset($_SESSION[$session_array_key]);
+    }
 
-	/**
-	 * Set Session Array Key
-	 *
-	 * @param $session_array_key
-	 * @param $session_array_value
-	 */
-	public function setSessionArrayKey($session_array_key, $session_array_value)
-	{
-		$_SESSION[$session_array_key] = $session_array_value;
-	}
+    /**
+     * Set Session Array Key
+     *
+     * @param $session_array_key
+     * @param $session_array_value
+     */
+    public function setSessionArrayKey($session_array_key, $session_array_value)
+    {
+        $_SESSION[$session_array_key] = $session_array_value;
+    }
 
-	/**
-	 * Get Session Array
-	 *
-	 * @return array
-	 */
-	public function getSessionArray()
-	{
-		return $_SESSION;
-	}
+    /**
+     * Get Session Array
+     *
+     * @return array
+     */
+    public function getSessionArray()
+    {
+        return $_SESSION;
+    }
 }

@@ -22,9 +22,9 @@
 namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 use UIoT\App\Core\Communication\Routing\RenderSelector;
-use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Templates\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
@@ -35,23 +35,23 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class LayoutNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
 
-		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_VIEW_ACTION')])));
-	}
+        RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_VIEW_ACTION')])));
+    }
 }

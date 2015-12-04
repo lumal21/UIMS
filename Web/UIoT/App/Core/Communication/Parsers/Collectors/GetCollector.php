@@ -30,17 +30,17 @@ use UIoT\App\Data\Models\CollectorModel;
  */
 class GetCollector extends CollectorModel
 {
-	/**
-	 * Pass Request for Gettable
-	 * @param $a
-	 * @return $this
-	 */
-	public function passRequest($a)
-	{
-		/* save request data */
-		$this->request = Json::valueArrayObjectToClosure($a);
+    /**
+     * Pass Request for Gettable
+     * @param $a
+     * @return $this
+     */
+    public function passRequest($a)
+    {
+        /* save request data */
+        $this->request = Json::valueArrayObjectToClosure($a);
 
-		/* return class instance */
-		return $this;
-	}
+        /* return class instance */
+        return $this;
+    }
 }

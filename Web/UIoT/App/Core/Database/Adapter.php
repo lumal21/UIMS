@@ -31,77 +31,77 @@ use UIoT\App\Core\Helpers\System\Settings;
  */
 final class Adapter
 {
-	/**
-	 * @var Handler
-	 */
-	private $instance;
+    /**
+     * @var Handler
+     */
+    private $instance;
 
-	/**
-	 * creates MySQL Connection
-	 */
-	public function __construct()
-	{
-		$this->instance = (new Handler(Settings::getSetting('database')));
-	}
+    /**
+     * creates MySQL Connection
+     */
+    public function __construct()
+    {
+        $this->instance = (new Handler(Settings::getSetting('database')));
+    }
 
-	/**
-	 * function fetch_array
-	 * fetch an array of query
-	 * @param PDOStatement $query
-	 * @return array
-	 */
-	public function fetchArray(PDOStatement $query)
-	{
-		return $query->fetch(PDO::FETCH_ASSOC);
-	}
+    /**
+     * function fetch_array
+     * fetch an array of query
+     * @param PDOStatement $query
+     * @return array
+     */
+    public function fetchArray(PDOStatement $query)
+    {
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 
-	/**
-	 * function fetch_object
-	 * fetch an array of query
-	 * @param PDOStatement $query
-	 * @return object
-	 */
-	public function fetchObject(PDOStatement $query)
-	{
-		return $query->fetch(PDO::FETCH_OBJ);
-	}
+    /**
+     * function fetch_object
+     * fetch an array of query
+     * @param PDOStatement $query
+     * @return object
+     */
+    public function fetchObject(PDOStatement $query)
+    {
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
-	/**
-	 * function secure_query
-	 * do a query ;)
-	 * @param string $query
-	 * @param array $array
-	 * @return PDOStatement
-	 */
-	public function secureQuery($query = '', $array = [])
-	{
-		if ($this->instance instanceof PDO)
-			return $this->instance->prepare($query)->execute($array);
-		return null;
-	}
+    /**
+     * function secure_query
+     * do a query ;)
+     * @param string $query
+     * @param array $array
+     * @return PDOStatement
+     */
+    public function secureQuery($query = '', $array = [])
+    {
+        if ($this->instance instanceof PDO)
+            return $this->instance->prepare($query)->execute($array);
+        return null;
+    }
 
-	/**
-	 * function query
-	 * do a query ;)
-	 * @param string $query
-	 * @return PDOStatement
-	 */
-	public function query($query = '')
-	{
-		if ($this->instance instanceof PDO)
-			return $this->instance->query($query);
+    /**
+     * function query
+     * do a query ;)
+     * @param string $query
+     * @return PDOStatement
+     */
+    public function query($query = '')
+    {
+        if ($this->instance instanceof PDO)
+            return $this->instance->query($query);
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * function row_count
-	 * count number of fields
-	 * @param PDOStatement $query
-	 * @return int
-	 */
-	public function rowCount(PDOStatement $query)
-	{
-		return $query->rowCount();
-	}
+    /**
+     * function row_count
+     * count number of fields
+     * @param PDOStatement $query
+     * @return int
+     */
+    public function rowCount(PDOStatement $query)
+    {
+        return $query->rowCount();
+    }
 }

@@ -27,7 +27,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface MethodInterface
 {
-	public function setData($data);
+    public function setData($data);
 
-	public function getData();
+    public function getData();
 }

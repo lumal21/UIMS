@@ -33,36 +33,36 @@ use UIoT\App\Data\Interfaces\ViewInterface;
  */
 class ViewModel implements ViewInterface
 {
-	/**
-	 * Start View
-	 */
-	public function __construct()
-	{
-		$this->__name();
-		$this->__layout();
-	}
+    /**
+     * Start View
+     */
+    public function __construct()
+    {
+        $this->__name();
+        $this->__layout();
+    }
 
-	/**
-	 * Set Abstract Name
-	 */
-	public function __name()
-	{
-		$this->vname = (new ReflectionClass(self::class))->getShortName();
-	}
+    /**
+     * Set Abstract Name
+     */
+    public function __name()
+    {
+        $this->vname = (new ReflectionClass(self::class))->getShortName();
+    }
 
-	/**
-	 * Set Layout
-	 */
-	public function __layout()
-	{
-		LIndexer::addLayout($this->vname, $this->vname);
-	}
+    /**
+     * Set Layout
+     */
+    public function __layout()
+    {
+        LIndexer::addLayout($this->vname, $this->vname);
+    }
 
-	/**
-	 * Show Layout
-	 */
-	public function __show()
-	{
-		return LIndexer::getLayout($this->vname);
-	}
+    /**
+     * Show Layout
+     */
+    public function __show()
+    {
+        return LIndexer::getLayout($this->vname);
+    }
 }

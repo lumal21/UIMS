@@ -30,55 +30,55 @@ use UIoT\App\Core\Helpers\Visual\Html;
  */
 final class Indexer
 {
-	/**
-	 * @var string
-	 */
-	public static $folder = '';
+    /**
+     * @var string
+     */
+    public static $folder = '';
 
-	/**
-	 * Set Template Folder
-	 *
-	 * @param string $f
-	 */
-	public static function setTemplateFolder($f)
-	{
-		self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
-	}
+    /**
+     * Set Template Folder
+     *
+     * @param string $f
+     */
+    public static function setTemplateFolder($f)
+    {
+        self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
+    }
 
-	/**
-	 * Add Template
-	 *
-	 * @param string $file_name
-	 */
-	public static function addTemplate($file_name)
-	{
-		Html::add(self::parseTemplateFile(self::$folder . $file_name));
-	}
+    /**
+     * Add Template
+     *
+     * @param string $file_name
+     */
+    public static function addTemplate($file_name)
+    {
+        Html::add(self::parseTemplateFile(self::$folder . $file_name));
+    }
 
-	/**
-	 * Parse Template File
-	 *
-	 * @param string $file_name
-	 * @return string
-	 */
-	public static function parseTemplateFile($file_name = '')
-	{
-		ob_start();
+    /**
+     * Parse Template File
+     *
+     * @param string $file_name
+     * @return string
+     */
+    public static function parseTemplateFile($file_name = '')
+    {
+        ob_start();
 
-		include_once $file_name;
-		$template = ob_get_contents();
-		ob_end_clean();
+        include_once $file_name;
+        $template = ob_get_contents();
+        ob_end_clean();
 
-		return $template;
-	}
+        return $template;
+    }
 
-	/**
-	 * Return Template
-	 *
-	 * @return string
-	 */
-	public static function returnTemplates()
-	{
-		return Html::getf();
-	}
+    /**
+     * Return Template
+     *
+     * @return string
+     */
+    public static function returnTemplates()
+    {
+        return Html::getf();
+    }
 }

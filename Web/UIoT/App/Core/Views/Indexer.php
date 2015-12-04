@@ -29,151 +29,151 @@ use UIoT\App\Core\Helpers\Manipulation\Strings;
  */
 final class Indexer
 {
-	/**
-	 * Views Array
-	 *
-	 * @var array
-	 */
-	private static $view = [];
+    /**
+     * Views Array
+     *
+     * @var array
+     */
+    private static $view = [];
 
-	/**
-	 * Add a View
-	 *
-	 * @param string $view_name
-	 */
-	public static function addView($view_name = '')
-	{
-		if (self::viewExists($view_name))
-			return;
+    /**
+     * Add a View
+     *
+     * @param string $view_name
+     */
+    public static function addView($view_name = '')
+    {
+        if (self::viewExists($view_name))
+            return;
 
-		self::$view[$view_name] = [];
-		self::addViewAction($view_name, 'Main');
-	}
+        self::$view[$view_name] = [];
+        self::addViewAction($view_name, 'Main');
+    }
 
-	/**
-	 * Check if View Exists
-	 *
-	 * @param string $view_name
-	 * @return bool
-	 */
-	public static function viewExists($view_name = '')
-	{
-		return array_key_exists($view_name, self::$view);
-	}
+    /**
+     * Check if View Exists
+     *
+     * @param string $view_name
+     * @return bool
+     */
+    public static function viewExists($view_name = '')
+    {
+        return array_key_exists($view_name, self::$view);
+    }
 
-	/**
-	 * Add View Action
-	 *
-	 * @param string $view_name
-	 * @param string $action_name
-	 */
-	public static function addViewAction($view_name, $action_name)
-	{
-		(!self::viewExists($view_name) && self::actionExists($view_name, $action_name)) || array_push(self::$view[$view_name], $action_name);
-	}
+    /**
+     * Add View Action
+     *
+     * @param string $view_name
+     * @param string $action_name
+     */
+    public static function addViewAction($view_name, $action_name)
+    {
+        (!self::viewExists($view_name) && self::actionExists($view_name, $action_name)) || array_push(self::$view[$view_name], $action_name);
+    }
 
-	/**
-	 * Check if Action Exists
-	 *
-	 * @param string $view_name
-	 * @param string $action_name
-	 * @return bool
-	 */
-	public static function actionExists($view_name, $action_name)
-	{
-		return array_key_exists($action_name, self::$view[$view_name]);
-	}
+    /**
+     * Check if Action Exists
+     *
+     * @param string $view_name
+     * @param string $action_name
+     * @return bool
+     */
+    public static function actionExists($view_name, $action_name)
+    {
+        return array_key_exists($action_name, self::$view[$view_name]);
+    }
 
-	/**
-	 * Remove View Action
-	 *
-	 * @param string $view_name
-	 * @param string $action_name
-	 */
-	public static function removeViewAction($view_name, $action_name)
-	{
-		if (self::viewExists($view_name) && self::actionExists($view_name, $action_name))
-			unset(self::$view[$view_name][$action_name]);
-	}
+    /**
+     * Remove View Action
+     *
+     * @param string $view_name
+     * @param string $action_name
+     */
+    public static function removeViewAction($view_name, $action_name)
+    {
+        if (self::viewExists($view_name) && self::actionExists($view_name, $action_name))
+            unset(self::$view[$view_name][$action_name]);
+    }
 
-	/**
-	 * Remove View
-	 *
-	 * @param string $view_name
-	 */
-	public static function removeView($view_name)
-	{
-		if (self::viewExists($view_name))
-			unset(self::$view[$view_name]);
-	}
+    /**
+     * Remove View
+     *
+     * @param string $view_name
+     */
+    public static function removeView($view_name)
+    {
+        if (self::viewExists($view_name))
+            unset(self::$view[$view_name]);
+    }
 
-	/**
-	 * Get View Name
-	 * Return all View Names by Action
-	 *
-	 * @param string $action_name
-	 * @return mixed|array
-	 */
-	public static function getViewName($action_name)
-	{
-		return array_keys($action_name, self::$view);
-	}
+    /**
+     * Get View Name
+     * Return all View Names by Action
+     *
+     * @param string $action_name
+     * @return mixed|array
+     */
+    public static function getViewName($action_name)
+    {
+        return array_keys($action_name, self::$view);
+    }
 
-	/**
-	 * Return View Actions by View Name
-	 *
-	 * @param string $view_name
-	 * @return mixed|array
-	 */
-	public static function getViewAction($view_name)
-	{
-		return self::$view[$view_name] || [];
-	}
+    /**
+     * Return View Actions by View Name
+     *
+     * @param string $view_name
+     * @return mixed|array
+     */
+    public static function getViewAction($view_name)
+    {
+        return self::$view[$view_name] || [];
+    }
 
-	/**
-	 * Open the View
-	 *
-	 * @param string $view_name
-	 * @return mixed
-	 */
-	public static function getView($view_name)
-	{
-		return self::openView($view_name);
-	}
+    /**
+     * Open the View
+     *
+     * @param string $view_name
+     * @return mixed
+     */
+    public static function getView($view_name)
+    {
+        return self::openView($view_name);
+    }
 
-	/**
-	 * Return a Instance of the View
-	 *
-	 * @param string $view_name
-	 * @return mixed
-	 */
-	public static function openView($view_name)
-	{
-		return self::viewExists(self::getViewReverseSpace($view_name)) ? (new $view_name)->__show() : '';
-	}
+    /**
+     * Return a Instance of the View
+     *
+     * @param string $view_name
+     * @return mixed
+     */
+    public static function openView($view_name)
+    {
+        return self::viewExists(self::getViewReverseSpace($view_name)) ? (new $view_name)->__show() : '';
+    }
 
-	/**
-	 * Really Crazy but Works
-	 * (Is for return a reverse namespace)
-	 *
-	 * @param string $view_name_space
-	 * @return string
-	 */
-	public static function getViewReverseSpace(&$view_name_space)
-	{
-		$view_name_space = self::getViewNameSpace($view_name = $view_name_space);
+    /**
+     * Really Crazy but Works
+     * (Is for return a reverse namespace)
+     *
+     * @param string $view_name_space
+     * @return string
+     */
+    public static function getViewReverseSpace(&$view_name_space)
+    {
+        $view_name_space = self::getViewNameSpace($view_name = $view_name_space);
 
-		return $view_name;
-	}
+        return $view_name;
+    }
 
-	/**
-	 * Return the Namespace form the View
-	 *
-	 * @param string $view_name
-	 * @return string
-	 */
-	public static function getViewNameSpace($view_name)
-	{
-		return Strings::toNameSpace($view_name, 'UIoT\App\Data\Views\\');
-	}
+    /**
+     * Return the Namespace form the View
+     *
+     * @param string $view_name
+     * @return string
+     */
+    public static function getViewNameSpace($view_name)
+    {
+        return Strings::toNameSpace($view_name, 'UIoT\App\Data\Views\\');
+    }
 }

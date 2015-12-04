@@ -29,19 +29,19 @@ use UIoT\App\Data\Interfaces\ControllerInterface;
  */
 class ControllerModel implements ControllerInterface
 {
-	/**
-	 * Init Controller
-	 */
-	public function __construct()
-	{
-		/* nothing to do */
-	}
+    /**
+     * Init Controller
+     */
+    public function __construct()
+    {
+        /* nothing to do */
+    }
 
-	/**
-	 * Default Action
-	 */
-	public function __actionMain()
-	{
-		/* nothing to do */
-	}
+    /**
+     * Default Action
+     */
+    public function __actionMain()
+    {
+        /* nothing to do */
+    }
 }

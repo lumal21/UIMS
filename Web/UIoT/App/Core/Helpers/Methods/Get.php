@@ -34,49 +34,49 @@ use UIoT\App\Core\Helpers\Manipulation\Constants;
  */
 class Get
 {
-	/**
-	 * @var object
-	 */
-	private static $data;
+    /**
+     * @var object
+     */
+    private static $data;
 
-	/**
-	 * Receive Get Data
-	 *
-	 * @return array
-	 */
-	public static function receiveGetData()
-	{
-		return [];
-	}
+    /**
+     * Receive Get Data
+     *
+     * @return array
+     */
+    public static function receiveGetData()
+    {
+        return [];
+    }
 
-	/**
-	 * Store Get Data
-	 *
-	 * @param string|array|object $data
-	 */
-	public static function storeGetData($data)
-	{
-		Constants::addSerializedConstant('GET_WEB', $data);
-	}
+    /**
+     * Store Get Data
+     *
+     * @param string|array|object $data
+     */
+    public static function storeGetData($data)
+    {
+        Constants::addSerializedConstant('GET_WEB', $data);
+    }
 
-	/**
-	 * Return Specific Get Data
-	 *
-	 * @param string $variable_name
-	 * @return mixed
-	 */
-	public static function returnGetVariable($variable_name = '')
-	{
-		return isset(self::returnGetData()[$variable_name]) ? self::returnGetData()[$variable_name]->getData() : '';
-	}
+    /**
+     * Return Specific Get Data
+     *
+     * @param string $variable_name
+     * @return mixed
+     */
+    public static function returnGetVariable($variable_name = '')
+    {
+        return isset(self::returnGetData()[$variable_name]) ? self::returnGetData()[$variable_name]->getData() : '';
+    }
 
-	/**
-	 * Return All Get Data
-	 *
-	 * @return object
-	 */
-	public static function returnGetData()
-	{
-		return !self::$data ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data;
-	}
+    /**
+     * Return All Get Data
+     *
+     * @return object
+     */
+    public static function returnGetData()
+    {
+        return !self::$data ? (self::$data = Constants::returnSerializedConstant('GET_WEB')) : self::$data;
+    }
 }

@@ -35,25 +35,25 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class ArgumentsNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
 
-		$this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
+        $this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
 
-		!$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
-	}
+        !$this->getResult() || RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Strings::toControllerName($this->getPathValue()[1])])));
+    }
 }

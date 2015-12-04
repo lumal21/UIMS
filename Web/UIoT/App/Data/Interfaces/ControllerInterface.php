@@ -27,7 +27,7 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface ControllerInterface
 {
-	public function __construct();
+    public function __construct();
 
-	public function __actionMain();
+    public function __actionMain();
 }

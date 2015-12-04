@@ -27,27 +27,27 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface NodeInterface
 {
-	public function __construct($node_id, $path, $callback, $priority, $method, $group);
+    public function __construct($node_id, $path, $callback, $priority, $method, $group);
 
-	public function isAbsolute();
+    public function isAbsolute();
 
-	public function getPath();
+    public function getPath();
 
-	public function setPath($path);
+    public function setPath($path);
 
-	public function getCallback();
+    public function getCallback();
 
-	public function setCallback($callback);
+    public function setCallback($callback);
 
-	public function getMethod();
+    public function getMethod();
 
-	public function setMethod($method);
+    public function setMethod($method);
 
-	public function getPriority();
+    public function getPriority();
 
-	public function setPriority($priority);
+    public function setPriority($priority);
 
-	public function getNodeGroup();
+    public function getNodeGroup();
 
-	public function setNodeGroup($node_group);
+    public function setNodeGroup($node_group);
 }

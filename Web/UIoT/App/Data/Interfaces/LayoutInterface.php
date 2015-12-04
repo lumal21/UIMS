@@ -27,13 +27,13 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface LayoutInterface
 {
-	public function __construct();
+    public function __construct();
 
-	public static function __resources();
+    public static function __resources();
 
-	public function __configuration();
+    public function __configuration();
 
-	public function __templates();
+    public function __templates();
 
-	public function __show();
+    public function __show();
 }

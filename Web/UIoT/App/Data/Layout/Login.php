@@ -32,42 +32,42 @@ use UIoT\App\Data\Models\LayoutModel;
  */
 class Login extends LayoutModel
 {
-	/**
-	 * Set Resources
-	 */
-	public static function __resources()
-	{
-		ResourceIndexer::setResourceFolder('None');
-		ResourceIndexer::addResource('Images/6.jpg', 'image/jpg');
-		ResourceIndexer::addResource('Images/Logo_small_transparent.png', 'image/png');
-		ResourceIndexer::addResource('Stylesheet/Foundation.css', 'text/css');
-		ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
-	}
+    /**
+     * Set Resources
+     */
+    public static function __resources()
+    {
+        ResourceIndexer::setResourceFolder('None');
+        ResourceIndexer::addResource('Images/6.jpg', 'image/jpg');
+        ResourceIndexer::addResource('Images/Logo_small_transparent.png', 'image/png');
+        ResourceIndexer::addResource('Stylesheet/Foundation.css', 'text/css');
+        ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
+    }
 
-	/**
-	 * Set Configuration
-	 */
-	public function __configuration()
-	{
-		Pages::setTitle('Hello World');
-	}
+    /**
+     * Set Configuration
+     */
+    public function __configuration()
+    {
+        Pages::setTitle('Hello World');
+    }
 
-	/**
-	 * Set Templates
-	 */
-	public function __templates()
-	{
-		TemplateIndexer::setTemplateFolder('Login');
-		TemplateIndexer::addTemplate('Layouts/Login.php');
-	}
+    /**
+     * Set Templates
+     */
+    public function __templates()
+    {
+        TemplateIndexer::setTemplateFolder('Login');
+        TemplateIndexer::addTemplate('Layouts/Login.php');
+    }
 
-	/**
-	 * Return Template
-	 *
-	 * @return null|mixed|string
-	 */
-	public function __show()
-	{
-		return TemplateIndexer::returnTemplates();
-	}
+    /**
+     * Return Template
+     *
+     * @return null|mixed|string
+     */
+    public function __show()
+    {
+        return TemplateIndexer::returnTemplates();
+    }
 }

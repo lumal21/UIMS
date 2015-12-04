@@ -29,9 +29,9 @@ use UIoT\App\Data\Models\NodeModel;
  */
 interface NodeHandlerInterface
 {
-	public function __construct(NodeModel $node);
+    public function __construct(NodeModel $node);
 
-	public function callValue(...$arguments);
+    public function callValue(...$arguments);
 
-	public function call();
+    public function call();
 }

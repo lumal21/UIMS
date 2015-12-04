@@ -36,30 +36,30 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class ResourceFileNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
 
-		$this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+        $this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
-		$file_name = [];
+        $file_name = [];
 
-		foreach ($this->getPathValue() as $key => $value)
-			$key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
+        foreach ($this->getPathValue() as $key => $value)
+            $key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
 
-		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
-	}
+        RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
+    }
 }

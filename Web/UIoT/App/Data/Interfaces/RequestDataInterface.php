@@ -29,9 +29,9 @@ use stdClass;
  */
 interface RequestDataInterface
 {
-	public function __construct(stdClass $a);
+    public function __construct(stdClass $a);
 
-	public function __get($a);
+    public function __get($a);
 
-	public function __set($a, $b);
+    public function __set($a, $b);
 }

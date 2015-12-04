@@ -25,6 +25,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /**
@@ -33,85 +34,85 @@ use UIoT\App\Core\Views\Indexer as ViewIndexer;
  */
 final class Render
 {
-	/**
-	 * @var bool
-	 */
-	public static $disable_show_view = false;
-	/**
-	 * @var bool
-	 */
-	public static $enable_default_action = false;
-	/**
-	 * @var string
-	 */
-	private $controller;
-	/**
-	 * @var string
-	 */
-	private $action;
+    /**
+     * @var bool
+     */
+    public static $disable_show_view = false;
+    /**
+     * @var bool
+     */
+    public static $enable_default_action = false;
+    /**
+     * @var string
+     */
+    private $controller;
+    /**
+     * @var string
+     */
+    private $action;
 
-	/**
-	 * Init Template (Layout/Controller/View) Handler
-	 *
-	 * @param array $arguments
-	 */
-	public function __construct($arguments = [])
-	{
-		$this->setArguments($arguments);
-		$this->setResources();
-		$this->setController();
-	}
+    /**
+     * Init Template (Layout/Controller/View) Handler
+     *
+     * @param array $arguments
+     */
+    public function __construct($arguments = [])
+    {
+        $this->setArguments($arguments);
+        $this->setResources();
+        $this->setController();
+    }
 
-	/**
-	 * Set Arguments
-	 *
-	 * @param array $arguments
-	 */
-	private function setArguments($arguments = [])
-	{
-		$this->controller = $arguments['controller'];
-		$this->action     = $arguments['action'];
-	}
+    /**
+     * Set Arguments
+     *
+     * @param array $arguments
+     */
+    private function setArguments($arguments = [])
+    {
+        $this->controller = $arguments['controller'];
+        $this->action = $arguments['action'];
+    }
 
-	/**
-	 * Start the Controller Commander
-	 */
-	private function setController()
-	{
-		(new Commander($this->controller, $this->action))->setAction($this->action);
-	}
+    /**
+     * Start the Controller Commander
+     */
+    private function setController()
+    {
+        (new Commander($this->controller, $this->action))->setAction($this->action);
+    }
 
-	/**
-	 * Enable Basic View/Layout (Only controller output Code)
-	 *
-	 * @return mixed|string|null
-	 */
-	private function bView()
-	{
-		return Constants::returnConstant('CONTROLLER_CONTENT');
-	}
+    /**
+     * Enable Basic View/Layout (Only controller output Code)
+     *
+     * @return mixed|string|null
+     */
+    private function bView()
+    {
+        return Constants::returnConstant('CONTROLLER_CONTENT');
+    }
 
-	/**
-	 * Start Abstract Layout (For Abstract Core)
-	 */
-	private function aView()
-	{
-		return DataHandler::openParserLayout($this->action);
-	}
+    /**
+     * Start Abstract Layout (For Abstract Core)
+     */
+    private function aView()
+    {
+        return DataHandler::openParserLayout($this->action);
+    }
 
-	/**
-	 * Call View/Layout
-	 */
-	public function show()
-	{
-		return !self::$disable_show_view ? (ViewIndexer::viewExists($this->controller) ? ViewIndexer::getView($this->controller) : '') : (!ControllerIndexer::controllerExists($this->controller) ? $this->aView() : $this->bView());
-	}
+    /**
+     * Call View/Layout
+     */
+    public function show()
+    {
+        return !self::$disable_show_view ? (ViewIndexer::viewExists($this->controller) ? ViewIndexer::getView($this->controller) : '') : (!ControllerIndexer::controllerExists($this->controller) ? $this->aView() : $this->bView());
+    }
 
-	/**
-	 * Register Resources
-	 */
-	private function setResources()
-	{
-		ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
-	}
+    /**
+     * Register Resources
+     */
+    private function setResources()
+    {
+        ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
+    }
 }

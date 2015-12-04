@@ -29,12 +29,12 @@ use UIoT\App\Core\Helpers\Visual\Pages;
  */
 final class Add extends Main
 {
-	/**
-	 * Set Configuration
-	 * (Add)
-	 */
-	public function __configuration()
-	{
-		Pages::setTitle('Add this Idiot on SHU');
-	}
+    /**
+     * Set Configuration
+     * (Add)
+     */
+    public function __configuration()
+    {
+        Pages::setTitle('Add this Idiot on SHU');
+    }
 }

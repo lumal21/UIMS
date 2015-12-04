@@ -29,27 +29,27 @@ use UIoT\App\Core\Resources\Indexer;
  */
 final class Pages
 {
-	/**
-	 * Set Page Title
-	 *
-	 * @param string $page_title
-	 */
-	public static function setTitle($page_title)
-	{
-		Html::add("<title>{$page_title}</title>");
-	}
+    /**
+     * Set Page Title
+     *
+     * @param string $page_title
+     */
+    public static function setTitle($page_title)
+    {
+        Html::add("<title>{$page_title}</title>");
+    }
 
-	/**
-	 * Add Embed Script
-	 *
-	 * @param $script_name
-	 */
-	public static function addEmbedScript($script_name)
-	{
-		/* first add resource */
-		Indexer::addResource($script_name, 'script/javascript');
+    /**
+     * Add Embed Script
+     *
+     * @param $script_name
+     */
+    public static function addEmbedScript($script_name)
+    {
+        /* first add resource */
+        Indexer::addResource($script_name, 'script/javascript');
 
-		/* so echo the script */
-		Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name, false)));
-	}
+        /* so echo the script */
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name, false)));
+    }
 }

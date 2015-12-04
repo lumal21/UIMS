@@ -31,8 +31,8 @@ use UIoT\App\Data\Models\ViewModel;
  */
 final class Test extends ViewModel
 {
-	public function __name()
-	{
-		$this->vname = (new ReflectionClass(self::class))->getShortName();
-	}
+    public function __name()
+    {
+        $this->vname = (new ReflectionClass(self::class))->getShortName();
+    }
 }

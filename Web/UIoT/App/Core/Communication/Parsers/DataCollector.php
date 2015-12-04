@@ -34,74 +34,74 @@ use UIoT\App\Data\Models\HandlerModel;
  */
 class DataCollector
 {
-	/**
-	 * Array of Collectors
-	 *
-	 * @var array
-	 */
-	private static $collectors;
+    /**
+     * Array of Collectors
+     *
+     * @var array
+     */
+    private static $collectors;
 
-	/**
-	 * Start the Handler
-	 */
-	public function __construct()
-	{
-		$this->startCollectors();
-	}
+    /**
+     * Start the Handler
+     */
+    public function __construct()
+    {
+        $this->startCollectors();
+    }
 
-	/**
-	 * Register Httpful UIoT Data Collectors
-	 * Methods: GET, POST, PUT, DELETE
-	 * Default Handlers: Gettable, Postable, Puttable, Deletable
-	 */
-	private static function registerCollectors()
-	{
-		self::$collectors = [
-			Http::GET => new Collectors\GetCollector(),
-			Http::POST => new Collectors\PostCollector(),
-			Http::PUT => new Collectors\PutCollector(),
-			Http::DELETE => new Collectors\DeleteCollector(),
-		];
-	}
+    /**
+     * Register Httpful UIoT Data Collectors
+     * Methods: GET, POST, PUT, DELETE
+     * Default Handlers: Gettable, Postable, Puttable, Deletable
+     */
+    private static function registerCollectors()
+    {
+        self::$collectors = [
+            Http::GET => new Collectors\GetCollector(),
+            Http::POST => new Collectors\PostCollector(),
+            Http::PUT => new Collectors\PutCollector(),
+            Http::DELETE => new Collectors\DeleteCollector(),
+        ];
+    }
 
-	/**
-	 * Start Indexing all Collectors
-	 * Start the Handler, and register everything
-	 */
-	public static function startCollectors()
-	{
-		self::registerCollectors();
-	}
+    /**
+     * Start Indexing all Collectors
+     * Start the Handler, and register everything
+     */
+    public static function startCollectors()
+    {
+        self::registerCollectors();
+    }
 
-	/**
-	 * Do the REST request
-	 *
-	 * @return array|mixed|null|object|string
-	 */
-	public static function doRequest()
-	{
-		return Raise::doRequest(DataManager::getController() . '/');
-	}
+    /**
+     * Do the REST request
+     *
+     * @return array|mixed|null|object|string
+     */
+    public static function doRequest()
+    {
+        return Raise::doRequest(DataManager::getController() . '/');
+    }
 
-	/**
-	 * Return Collector and Handler
-	 *
-	 * @param CollectorModel|null $collector
-	 * @param string|HandlerModel $handler
-	 * @return CollectorModel
-	 */
-	public static function initCollector(CollectorModel $collector = null, $handler = '')
-	{
-		return $collector === null || $collector->passRequest(self::doRequest())->passHandler($handler);
-	}
+    /**
+     * Return Collector and Handler
+     *
+     * @param CollectorModel|null $collector
+     * @param string|HandlerModel $handler
+     * @return CollectorModel
+     */
+    public static function initCollector(CollectorModel $collector = null, $handler = '')
+    {
+        return $collector === null || $collector->passRequest(self::doRequest())->passHandler($handler);
+    }
 
-	/**
-	 * Return all Collectors
-	 *
-	 * @return mixed
-	 */
-	public static function getCollectors()
-	{
-		return self::$collectors;
-	}
+    /**
+     * Return all Collectors
+     *
+     * @return mixed
+     */
+    public static function getCollectors()
+    {
+        return self::$collectors;
+    }
 }
