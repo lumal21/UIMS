@@ -21,7 +21,6 @@
 
 namespace UIoT\App\Core\Helpers\Manipulation;
 
-use UIoT\App\Data\Models\LayoutModel;
 use UIoT\App\Security\Helpers\VariableFilters;
 
 /**

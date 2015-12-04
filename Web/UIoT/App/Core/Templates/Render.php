@@ -25,7 +25,6 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /**
