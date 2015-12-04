@@ -87,7 +87,7 @@ final class NodeIndexer
 	 * @param NodeModel $node_b
 	 * @return int
 	 */
-	public function sortNodes($node_a, $node_b)
+	public function sortNodes(NodeModel $node_a, NodeModel $node_b)
 	{
 		return $node_a->getPriority() != $node_b->getPriority() ? (($node_a->getPriority() < $node_b->getPriority()) ? -1 : 1) : 0;
 	}
@@ -96,10 +96,10 @@ final class NodeIndexer
 	 * Update NodeModel Node Ids
 	 *
 	 * @param int $node_id
-	 * @param NodeModel $node
+	 * @param NodeModel $node˙
 	 * @return NodeModel
 	 */
-	public function updateNodeIds($node_id, $node)
+	public function updateNodeIds(NodeModel $node_id, NodeModel $node)
 	{
 		/* set new node unique identification */
 		$node->setNodeId($node_id);
