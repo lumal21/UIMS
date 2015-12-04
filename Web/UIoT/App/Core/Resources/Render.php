@@ -69,27 +69,7 @@ final class Render
 		/* register resources */
 		Indexer::registerResources($this->controller);
 
-		/* check for file existence */
-		$this->checkFileExistence();
-
 		/* return resource */
 		return Indexer::returnResource($this->file);
-	}
-
-	/**
-	 * Check if File Exists
-	 */
-	private function checkFileExistence()
-	{
-		/* check if file exists */
-		Indexer::fileExists($this->file) || Register::getRunner()->errorMessage(907,
-			"404!",
-			'Details: ',
-			[
-				'What Happened?' => "Sorry but this file doesn't exists.",
-				'Solution:' => "Go Back to Home Page.",
-				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-			]
-		);
 	}
 }

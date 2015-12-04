@@ -22,7 +22,7 @@
 namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 use UIoT\App\Core\Communication\Routing\RenderSelector;
-use UIoT\App\Core\Controllers\Indexer;
+use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Templates\Render;
@@ -50,7 +50,7 @@ class LayoutNode extends NodeHandlerModel
 	 */
 	public function call()
 	{
-		$this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
+		$this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
 
 		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_VIEW_ACTION')])));
 	}

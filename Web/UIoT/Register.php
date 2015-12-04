@@ -114,6 +114,9 @@ ControllerIndexer::addController('Login');
 /* default page */
 ControllerIndexer::addController('None');
 
+/* test page */
+ControllerIndexer::addController('Test');
+
 /**
  * Register Nodes
  */

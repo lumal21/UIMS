@@ -99,7 +99,7 @@ final class NodeIndexer
 	 * @param NodeModel $node˙
 	 * @return NodeModel
 	 */
-	public function updateNodeIds(NodeModel $node_id, NodeModel $node)
+	public function updateNodeIds($node_id, NodeModel $node)
 	{
 		/* set new node unique identification */
 		$node->setNodeId($node_id);

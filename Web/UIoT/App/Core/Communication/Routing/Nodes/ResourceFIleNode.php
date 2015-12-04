@@ -22,10 +22,10 @@
 namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 use UIoT\App\Core\Communication\Routing\RenderSelector;
-use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
@@ -51,14 +51,14 @@ class ResourceFileNode extends NodeHandlerModel
 	 */
 	public function call()
 	{
-		$this->setResult(Indexer::controllerExists(Strings::toControllerName($this->getPathValue()[0])));
+		$this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
 
 		$this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
 		$file_name = [];
 
 		foreach ($this->getPathValue() as $key => $value)
-			$key == 0 || $file_name[] = Strings::toControllerName($value);
+			$key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
 
 		RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
 	}

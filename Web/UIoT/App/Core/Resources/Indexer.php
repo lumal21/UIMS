@@ -173,6 +173,9 @@ final class Indexer
 			]
 		);
 
+        /* check for file existence */
+        self::checkResourceExistence($file_name) || self::checkFileExistence($file_name);
+
 		/* update the resource change */
 		self::updateResourceChange($file_name);
 
@@ -214,5 +217,23 @@ final class Indexer
 	public static function checkResourceExistence($file_name)
 	{
 		return in_array($file_name, self::getResourcesArray());
+	}
+
+	/**
+	 * Check if File Exists
+	 * @param string $filename
+	 */
+	private static function checkFileExistence($filename)
+	{
+		/* check if file exists */
+		self::fileExists($filename) || Register::getRunner()->errorMessage(907,
+				"404!",
+				'Details: ',
+				[
+						'What Happened?' => "Sorry but this file doesn't exists.",
+						'Solution:' => "Go Back to Home Page.",
+						'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+				]
+		);
 	}
 }
