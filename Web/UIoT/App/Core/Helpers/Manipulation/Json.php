@@ -30,66 +30,66 @@ use UIoT\App\Data\Models\RequestDataModel;
  */
 final class Json
 {
-    /**
-     * Convert an Array of Standard Objects in an Array of Closure Objects
-     *
-     * @param array $k
-     * @return array
-     */
-    public static function valueArrayObjectToClosure(array $k = [])
-    {
-        /* create the garbage array */
-        $v = [];
+	/**
+	 * Convert an Array of Standard Objects in an Array of Closure Objects
+	 *
+	 * @param array $k
+	 * @return array
+	 */
+	public static function valueArrayObjectToClosure(array $k = [])
+	{
+		/* create the garbage array */
+		$v = [];
 
-        /* foreach every item */
-        foreach ($k as $index => $object)
-            $v[] = self::createClosure($object);
+		/* foreach every item */
+		foreach ($k as $index => $object)
+			$v[] = self::createClosure($object);
 
-        return $v;
-    }
+		return $v;
+	}
 
-    /**
-     * Create Closure
-     *
-     * @param stdClass $object
-     * @return RequestDataModel
-     */
-    public static function createClosure(stdClass $object)
-    {
-        return new RequestDataModel($object);
-    }
+	/**
+	 * Create Closure
+	 *
+	 * @param stdClass $object
+	 * @return RequestDataModel
+	 */
+	public static function createClosure(stdClass $object)
+	{
+		return new RequestDataModel($object);
+	}
 
-    /**
-     * Is a Reference to Arrays::isInstanceOfClosure()
-     *
-     * @param string $x
-     * @return mixed
-     */
-    public static function isInstanceOfClosure($x)
-    {
-        return Arrays::isInstanceOfClosure($x);
-    }
+	/**
+	 * Is a Reference to Arrays::isInstanceOfClosure()
+	 *
+	 * @param string $x
+	 * @return mixed
+	 */
+	public static function isInstanceOfClosure($x)
+	{
+		return Arrays::isInstanceOfClosure($x);
+	}
 
-    /**
-     * Encode as jSON
-     *
-     * @param mixed|array|object|null $data
-     * @param int $options
-     * @return string
-     */
-    public static function jsonEncode($data = [], $options = 0)
-    {
-        return json_encode($data, $options);
-    }
+	/**
+	 * Encode as jSON
+	 *
+	 * @param mixed|array|object|null $data
+	 * @param int $options
+	 * @return string
+	 */
+	public static function jsonEncode($data = [], $options = 0)
+	{
+		return json_encode($data, $options);
+	}
 
-    /**
-     * Decode jSON
-     *
-     * @param string $data
-     * @return mixed|array|object
-     */
-    public static function jsonDecode($data = '')
-    {
-        return json_decode($data);
-    }
+	/**
+	 * Decode jSON
+	 *
+	 * @param string $data
+	 * @return mixed|array|object
+	 */
+	public static function jsonDecode($data = '')
+	{
+		return json_decode($data);
+	}
 }

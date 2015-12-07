@@ -28,47 +28,52 @@ namespace UIoT\App\Core\Resources;
  */
 final class Render
 {
-    /**
-     * @var string
-     */
-    private $controller;
-    /**
-     * @var string
-     */
-    private $file;
+	/**
+	 * Layout Name
+	 *
+	 * @var string
+	 */
+	private $layout;
 
-    /**
-     * Init Resource Handler
-     *
-     * @param array $arguments
-     */
-    public function __construct($arguments = [])
-    {
-        $this->setArguments($arguments);
-    }
+	/**
+	 * File Name
+	 *
+	 * @var string
+	 */
+	private $file;
 
-    /**
-     * Set Arguments
-     *
-     * @param array $arguments
-     */
-    private function setArguments($arguments = [])
-    {
-        $this->controller = $arguments['controller'];
-        $this->file = $arguments['file'];
-    }
+	/**
+	 * Init Resource Handler
+	 *
+	 * @param array $arguments
+	 */
+	public function __construct($arguments = [])
+	{
+		$this->setArguments($arguments);
+	}
 
-    /**
-     * Show the Resource
-     *
-     * @return string
-     */
-    public function show()
-    {
-        /* register resources */
-        Indexer::registerResources($this->controller);
+	/**
+	 * Set Arguments
+	 *
+	 * @param array $arguments
+	 */
+	private function setArguments($arguments = [])
+	{
+		$this->layout = $arguments['layout'];
+		$this->file   = $arguments['file'];
+	}
 
-        /* return resource */
-        return Indexer::returnResource($this->file);
-    }
+	/**
+	 * Show the Resource
+	 *
+	 * @return string
+	 */
+	public function show()
+	{
+		/* register resources */
+		Indexer::registerResources($this->layout);
+
+		/* return resource */
+		return Indexer::returnResource($this->file);
+	}
 }

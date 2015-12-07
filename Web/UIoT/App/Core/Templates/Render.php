@@ -25,6 +25,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
@@ -34,85 +35,131 @@ use UIoT\App\Core\Views\Indexer as ViewIndexer;
  */
 final class Render
 {
-    /**
-     * @var bool
-     */
-    public static $disable_show_view = false;
-    /**
-     * @var bool
-     */
-    public static $enable_default_action = false;
-    /**
-     * @var string
-     */
-    private $controller;
-    /**
-     * @var string
-     */
-    private $action;
+	/**
+	 * Disable Render the View's and View's Layout
+	 *
+	 * @var bool
+	 */
+	private static $show_view = true;
 
-    /**
-     * Init Template (Layout/Controller/View) Handler
-     *
-     * @param array $arguments
-     */
-    public function __construct($arguments = [])
-    {
-        $this->setArguments($arguments);
-        $this->setResources();
-        $this->setController();
-    }
+	/**
+	 * Enable to show Default Action
+	 *
+	 * @var bool
+	 */
+	private static $enable_default_action = false;
 
-    /**
-     * Set Arguments
-     *
-     * @param array $arguments
-     */
-    private function setArguments($arguments = [])
-    {
-        $this->controller = $arguments['controller'];
-        $this->action = $arguments['action'];
-    }
+	/**
+	 * Controller Name
+	 *
+	 * @var string
+	 */
+	private $controller;
 
-    /**
-     * Start the Controller Commander
-     */
-    private function setController()
-    {
-        (new Commander($this->controller, $this->action))->setAction($this->action);
-    }
+	/**
+	 * Action Name
+	 *
+	 * @var string
+	 */
+	private $action;
 
-    /**
-     * Enable Basic View/Layout (Only controller output Code)
-     *
-     * @return mixed|string|null
-     */
-    private function bView()
-    {
-        return Constants::returnConstant('CONTROLLER_CONTENT');
-    }
+	/**
+	 * Init Template (Layout/Controller/View) Handler
+	 *
+	 * @param array $arguments
+	 */
+	public function __construct($arguments = [])
+	{
+		$this->setArguments($arguments);
+		$this->setResources();
+		$this->setController();
+	}
 
-    /**
-     * Start Abstract Layout (For Abstract Core)
-     */
-    private function aView()
-    {
-        return DataHandler::openParserLayout($this->action);
-    }
+	/**
+	 * Set Arguments
+	 *
+	 * @param array $arguments
+	 */
+	private function setArguments($arguments = [])
+	{
+		$this->controller = Strings::toControllerName($arguments['controller']);
+		$this->action     = Strings::toActionName($arguments['action']);
+	}
 
-    /**
-     * Call View/Layout
-     */
-    public function show()
-    {
-        return !self::$disable_show_view ? (ViewIndexer::viewExists($this->controller) ? ViewIndexer::getView($this->controller) : '') : (!ControllerIndexer::controllerExists($this->controller) ? $this->aView() : $this->bView());
-    }
+	/**
+	 * Start the Controller Commander
+	 */
+	private function setController()
+	{
+		/* Start Controller Commander, and set Action to Execute */
+		(new Commander($this->controller, $this->action))->setAction($this->action);
+	}
 
-    /**
-     * Register Resources
-     */
-    private function setResources()
-    {
-        ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
-    }
+	/**
+	 * Check if Need to Enable Default Controller Action
+	 *
+	 * @param bool $boolean
+	 * @return bool
+	 */
+	public static function enableControllerDefaultAction($boolean = null)
+	{
+		/* check if need change boolean value */
+		!(self::$enable_default_action === $boolean && is_bool($boolean)) || self::$enable_default_action = $boolean;
+
+		return self::$enable_default_action;
+	}
+
+	/**
+	 * Check if need to Show Controller View
+	 *
+	 * @param bool $boolean
+	 * @return bool
+	 */
+	public static function showControllerView($boolean = null)
+	{
+		/* check if need change boolean value */
+		!(self::$show_view === $boolean && is_bool($boolean)) || self::$show_view = $boolean;
+
+		return self::$show_view;
+	}
+
+	/**
+	 * Return Controller Content if the Controller Exists,
+	 * If not Return the Abstract Controller Handler (DataHandler) Content
+	 * Also DataHandler view Enable the Abstract Controller Layout
+	 *
+	 * @return mixed
+	 */
+	private function returnControllerContent()
+	{
+		return ControllerIndexer::controllerExists($this->controller) ? Commander::getControllerContent() : DataHandler::openParserLayout($this->action);
+	}
+
+	/**
+	 * Return Controller View Content if View Exists,
+	 * If not, return Controller Content
+	 *
+	 * @return mixed
+	 */
+	private function returnControllerView()
+	{
+		return ViewIndexer::viewExists($this->controller) ? ViewIndexer::showView($this->controller) : $this->returnControllerContent();
+	}
+
+	/**
+	 * Show Template Content
+	 * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
+	 */
+	public function show()
+	{
+		return self::showControllerView() ? $this->returnControllerView() : $this->returnControllerContent();
+	}
+
+	/**
+	 * Register Controller's Layout Resources
+	 */
+	private function setResources()
+	{
+		ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
+	}
 }

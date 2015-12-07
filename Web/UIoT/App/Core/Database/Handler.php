@@ -30,14 +30,14 @@ use stdClass;
  */
 final class Handler
 {
-    /**
-     * Open a Persistent Socket with MySQL Database
-     * @author Claudio Santoro
-     *
-     * @param stdClass $c Connection Details
-     */
-    public function __construct(stdClass $c)
-    {
-        new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass));
-    }
+	/**
+	 * Open a Persistent Socket with MySQL Database
+	 * @author Claudio Santoro
+	 *
+	 * @param stdClass $c Connection Details
+	 */
+	public function __construct(stdClass $c)
+	{
+		new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass));
+	}
 }

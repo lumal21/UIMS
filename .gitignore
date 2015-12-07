@@ -1,6 +1,12 @@
 ### Composer template
 composer.phar
 Web/UIoT/Vendor/*
+Web/UIoT/Resources/Vendor/Bower/*
+Web/UIoT/Resources/Vendor/Npm/*
+!Web/UIoT/Resources/Vendor/Npm/Humans.txt
+!Web/UIoT/Resources/Vendor/Npm/Robots.txt
+!Web/UIoT/Resources/Vendor/Bower/Humans.txt
+!Web/UIoT/Resources/Vendor/Bower/Robots.txt
 composer.lock
 !Web/UIoT/Vendor/README.md
 

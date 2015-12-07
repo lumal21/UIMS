@@ -22,7 +22,7 @@
 namespace UIoT\App\Data\Models;
 
 use stdClass;
-use UIoT\App\Core\Templates\Render as TemplateRender;
+use UIoT\App\Core\Templates\Render;
 use UIoT\App\Data\Interfaces\IControllerInterface;
 
 /**
@@ -31,23 +31,26 @@ use UIoT\App\Data\Interfaces\IControllerInterface;
  */
 class IControllerModel extends stdClass implements IControllerInterface
 {
-    /**
-     * Init Abstract Controller
-     */
-    public function __construct()
-    {
-        TemplateRender::$disable_show_view = true;
-    }
+	/**
+	 * Init Abstract Controller
+	 * And set to Template Render that does'nt need to show the View (Because does'nt exists View for Abstract Controllers,
+	 * Only Layouts)
+	 */
+	public function __construct()
+	{
+		Render::showControllerView(false);
+	}
 
-    /**
-     * Dynamic Method Call
-     *
-     * @param $key
-     * @param $params
-     * @return mixed
-     */
-    public function __call($key, $params)
-    {
-        return (call_user_func_array($this->{$key}, $params));
-    }
+	/**
+	 * Return the Dynamic Method Call Value
+	 * (Call Abstract Controllers Methods)
+	 *
+	 * @param $key
+	 * @param $params
+	 * @return mixed
+	 */
+	public function __call($key, $params)
+	{
+		return (call_user_func_array($this->{$key}, $params));
+	}
 }

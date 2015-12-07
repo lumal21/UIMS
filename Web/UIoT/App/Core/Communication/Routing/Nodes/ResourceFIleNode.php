@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Communication\Routing\Nodes;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
@@ -36,30 +35,32 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class ResourceFileNode extends NodeHandlerModel
 {
-    /**
-     * ControllerNode constructor.
-     *
-     * @param NodeModel $node
-     */
-    public function __construct(NodeModel $node = null)
-    {
-        parent::__construct($node);
-    }
+	/**
+	 * ControllerNode constructor.
+	 *
+	 * @param NodeModel $node
+	 */
+	public function __construct(NodeModel $node = null)
+	{
+		parent::__construct($node);
+	}
 
-    /**
-     * Callback Function
-     */
-    public function call()
-    {
-        $this->setResult(Indexer::layoutExists(Strings::toControllerName($this->getPathValue()[0])));
+	/**
+	 * Callback Function
+	 */
+	public function call()
+	{
+		$this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
 
-        $this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+		$this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
-        $file_name = [];
+		!$this->getResult() || $this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), ['Bower', 'Npm']));
 
-        foreach ($this->getPathValue() as $key => $value)
-            $key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
+		$file_name = [];
 
-        RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'file' => implode('/', $file_name)])));
-    }
+		foreach ($this->getPathValue() as $key => $value)
+			$key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
+
+		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'file' => implode('/', $file_name)]))));
+	}
 }

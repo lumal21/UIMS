@@ -25,63 +25,63 @@ use UIoT\App\Core\Helpers\Manipulation\Constants;
 
 final class Settings
 {
-    /**
-     * @var object
-     */
-    private static $settings;
+	/**
+	 * @var object
+	 */
+	private static $settings;
 
-    /**
-     * Store and Set Settings
-     *
-     * @param array $setting_variable
-     */
-    public static function setAndStoreSettings($setting_variable = [])
-    {
-        self::storeSettings($setting_variable);
-        self::setSettings();
-    }
+	/**
+	 * Store and Set Settings
+	 *
+	 * @param array $setting_variable
+	 */
+	public static function setAndStoreSettings($setting_variable = [])
+	{
+		self::storeSettings($setting_variable);
+		self::setSettings();
+	}
 
-    /**
-     * Store Settings Constant
-     *
-     * @param array $setting_variable
-     */
-    public static function storeSettings($setting_variable = [])
-    {
-        Constants::addJsonConstant
-        (
-            'SETTINGS',
-            $setting_variable,
-            JSON_FORCE_OBJECT
-        );
-    }
+	/**
+	 * Store Settings Constant
+	 *
+	 * @param array $setting_variable
+	 */
+	public static function storeSettings($setting_variable = [])
+	{
+		Constants::addJsonConstant
+		(
+			'SETTINGS',
+			$setting_variable,
+			JSON_FORCE_OBJECT
+		);
+	}
 
-    /**
-     * Return Specific Setting Variable
-     *
-     * @param string $setting_variable_name
-     * @return mixed
-     */
-    public static function getSetting($setting_variable_name = '')
-    {
-        return self::getSettings()->$setting_variable_name;
-    }
+	/**
+	 * Return Specific Setting Variable
+	 *
+	 * @param string $setting_variable_name
+	 * @return mixed
+	 */
+	public static function getSetting($setting_variable_name = '')
+	{
+		return self::getSettings()->$setting_variable_name;
+	}
 
-    /**
-     * Return Settings Constants
-     *
-     * @return mixed
-     */
-    public static function getSettings()
-    {
-        return self::$settings;
-    }
+	/**
+	 * Return Settings Constants
+	 *
+	 * @return mixed
+	 */
+	public static function getSettings()
+	{
+		return self::$settings;
+	}
 
-    /**
-     * Set Settings
-     */
-    public static function setSettings()
-    {
-        self::$settings = Constants::returnJsonConstant('SETTINGS');
-    }
+	/**
+	 * Set Settings
+	 */
+	public static function setSettings()
+	{
+		self::$settings = Constants::returnJsonConstant('SETTINGS');
+	}
 }

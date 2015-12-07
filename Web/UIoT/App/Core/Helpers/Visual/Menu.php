@@ -27,43 +27,43 @@ namespace UIoT\App\Core\Helpers\Visual;
  */
 final class Menu
 {
-    /**
-     * Final Menu
-     *
-     * @var string
-     */
-    private $content = '';
+	/**
+	 * Final Menu
+	 *
+	 * @var string
+	 */
+	private $content = '';
 
-    /**
-     * Add Menu Item
-     *
-     * @param string $url
-     * @param string $div_class
-     * @param string $div_id
-     * @param string $text
-     * @param string $ref_label
-     */
-    public function __addItem($url = '', $div_class = '', $div_id = '', $text = '', $ref_label = '')
-    {
-        $this->content .= '<li class="' . $ref_label . '"><a href="' . $url . '" ><i class="' . $div_class . '" id="' . $div_id . '"></i > ' . $text . '</a ></li >';
-    }
+	/**
+	 * Add Menu Item
+	 *
+	 * @param string $url
+	 * @param string $div_class
+	 * @param string $div_id
+	 * @param string $text
+	 * @param string $ref_label
+	 */
+	public function __addItem($url = '', $div_class = '', $div_id = '', $text = '', $ref_label = '')
+	{
+		$this->content .= '<li class="' . $ref_label . '"><a href="' . $url . '" ><i class="' . $div_class . '" id="' . $div_id . '"></i > ' . $text . '</a ></li >';
+	}
 
-    /**
-     * Add Menu Label
-     *
-     * @param string $text
-     * @param string $icon
-     */
-    public function __addLabel($text = '', $icon = '')
-    {
-        $this->content .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
-    }
+	/**
+	 * Add Menu Label
+	 *
+	 * @param string $text
+	 * @param string $icon
+	 */
+	public function __addLabel($text = '', $icon = '')
+	{
+		$this->content .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
+	}
 
-    /**
-     * Return Content
-     */
-    public function __returnItems()
-    {
-        echo $this->content;
-    }
+	/**
+	 * Return Content
+	 */
+	public function __returnItems()
+	{
+		echo $this->content;
+	}
 }

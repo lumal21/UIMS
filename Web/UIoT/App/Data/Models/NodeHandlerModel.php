@@ -29,107 +29,139 @@ use UIoT\App\Data\Interfaces\NodeHandlerInterface;
  */
 class NodeHandlerModel implements NodeHandlerInterface
 {
-    /**
-     * Node Model
-     *
-     * @var NodeModel
-     */
-    protected $node_model;
+	/**
+	 * Node Model
+	 *
+	 * @var NodeModel
+	 */
+	protected $node_model;
 
-    /**
-     * Result of Callback
-     *
-     * @var bool
-     */
-    protected $result = false;
+	/**
+	 * Result of Callback
+	 *
+	 * @var bool
+	 */
+	protected $result = false;
 
-    /**
-     * Path Value
-     *
-     * @var string[]
-     */
-    protected $path_value = [];
+	/**
+	 * Path Value
+	 *
+	 * @var string[]
+	 */
+	protected $path_value = [];
 
-    /**
-     * NodeHandlerModel constructor.
-     *
-     * @param NodeModel $node
-     */
-    public function __construct(NodeModel $node = null)
-    {
-        /* optional set node model */
-        $this->setNodeModel($node);
-    }
+	/**
+	 * CallBack Content Result
+	 *
+	 * @var string
+	 */
+	protected $result_content = '';
 
-    /**
-     * CallBack Function
-     *
-     * @param string[] $arguments
-     */
-    public function callValue(...$arguments)
-    {
-        /* foreach arguments */
-        foreach ($arguments as $argument)
-            $this->path_value[] = $argument;
+	/**
+	 * NodeHandlerModel constructor.
+	 *
+	 * @param NodeModel $node
+	 */
+	public function __construct(NodeModel $node = null)
+	{
+		/* optional set node model */
+		$this->setNodeModel($node);
+	}
 
-        $this->call();
-    }
+	/**
+	 * CallBack Function
+	 *
+	 * @param string[] $arguments
+	 * @return null|string
+	 */
+	public function callValue(...$arguments)
+	{
+		/* foreach arguments */
+		foreach ($arguments as $argument)
+			$this->path_value[] = $argument;
 
-    /**
-     * CallBack Function
-     */
-    public function call()
-    {
+		/* call callback function */
+		$this->call();
 
-    }
+		/* return rendered content */
+		echo $this->getResultContent();
+	}
 
-    /**
-     * Get Result
-     *
-     * @return bool
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
+	/**
+	 * CallBack Function
+	 */
+	public function call()
+	{
 
-    /**
-     * Set Result
-     *
-     * @param bool
-     */
-    public function setResult($result)
-    {
-        $this->result = $result;
-    }
+	}
 
-    /**
-     * Get Path Value
-     *
-     * @return mixed
-     */
-    public function getPathValue()
-    {
-        return $this->path_value;
-    }
+	/**
+	 * Get Result Content
+	 *
+	 * @return null|string
+	 */
+	public function getResultContent()
+	{
+		return $this->result_content;
+	}
 
-    /**
-     * Get Node Model
-     *
-     * @return NodeModel
-     */
-    public function getNodeModel()
-    {
-        return $this->node_model;
-    }
+	/**
+	 * Set Result Content
+	 *
+	 * @param null|string $result_content
+	 */
+	public function setResultContent($result_content)
+	{
+		$this->result_content = $result_content;
+	}
 
-    /**
-     * Set Node Model
-     *
-     * @param NodeModel $node_model
-     */
-    public function setNodeModel($node_model)
-    {
-        $this->node_model = $node_model;
-    }
+	/**
+	 * Get Result
+	 *
+	 * @return bool
+	 */
+	public function getResult()
+	{
+		return $this->result;
+	}
+
+	/**
+	 * Set Result
+	 *
+	 * @param bool
+	 */
+	public function setResult($result)
+	{
+		$this->result = $result;
+	}
+
+	/**
+	 * Get Path Value
+	 *
+	 * @return mixed
+	 */
+	public function getPathValue()
+	{
+		return $this->path_value;
+	}
+
+	/**
+	 * Get Node Model
+	 *
+	 * @return NodeModel
+	 */
+	public function getNodeModel()
+	{
+		return $this->node_model;
+	}
+
+	/**
+	 * Set Node Model
+	 *
+	 * @param NodeModel $node_model
+	 */
+	public function setNodeModel($node_model)
+	{
+		$this->node_model = $node_model;
+	}
 }

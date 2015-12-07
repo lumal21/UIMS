@@ -34,124 +34,124 @@ use Whoops\Handler\PrettyPageHandler;
  */
 final class Register
 {
-    /**
-     * static variable to store exception page handler
-     *
-     * @var WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
-     */
-    private static $handler;
+	/**
+	 * static variable to store exception page handler
+	 *
+	 * @var WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
+	 */
+	private static $handler;
 
-    /**
-     * static variable to store exception page runner
-     *
-     * @var Collector
-     */
-    private static $runner;
+	/**
+	 * static variable to store exception page runner
+	 *
+	 * @var Collector
+	 */
+	private static $runner;
 
-    /**
-     * Add Resource Path
-     *
-     * @param string $resource_path
-     */
-    public static function addResourcePath($resource_path = '')
-    {
-        self::getHandler()->addResourcePath($resource_path);
-    }
+	/**
+	 * Add Resource Path
+	 *
+	 * @param string $resource_path
+	 */
+	public static function addResourcePath($resource_path = '')
+	{
+		self::getHandler()->addResourcePath($resource_path);
+	}
 
-    /**
-     * Get Handler
-     *
-     * @return WhoopsHandler|callable|PrettyPageHandler|HandlerInterface
-     */
-    public static function getHandler()
-    {
-        return self::$handler;
-    }
+	/**
+	 * Get Handler
+	 *
+	 * @return WhoopsHandler|callable|PrettyPageHandler|HandlerInterface
+	 */
+	public static function getHandler()
+	{
+		return self::$handler;
+	}
 
-    /**
-     * Set Page Handler
-     *
-     * @param WhoopsHandler $handler
-     */
-    public static function setHandler(WhoopsHandler $handler)
-    {
-        self::$handler = new $handler;
-    }
+	/**
+	 * Set Page Handler
+	 *
+	 * @param WhoopsHandler $handler
+	 */
+	public static function setHandler(WhoopsHandler $handler)
+	{
+		self::$handler = new $handler;
+	}
 
-    /**
-     * Set Page Title
-     *
-     * @param string $page_title
-     */
-    public static function setPageTitle($page_title = '')
-    {
-        self::getHandler()->setPageTitle($page_title);
-    }
+	/**
+	 * Set Page Title
+	 *
+	 * @param string $page_title
+	 */
+	public static function setPageTitle($page_title = '')
+	{
+		self::getHandler()->setPageTitle($page_title);
+	}
 
-    /**
-     * Push the Page Handler
-     */
-    public static function pushHandler()
-    {
-        self::getRunner()->pushHandler(self::getHandler());
-    }
+	/**
+	 * Push the Page Handler
+	 */
+	public static function pushHandler()
+	{
+		self::getRunner()->pushHandler(self::getHandler());
+	}
 
-    /**
-     * Get Runner
-     *
-     * @return Collector
-     */
-    public static function getRunner()
-    {
-        return self::$runner;
-    }
+	/**
+	 * Get Runner
+	 *
+	 * @return Collector
+	 */
+	public static function getRunner()
+	{
+		return self::$runner;
+	}
 
-    /**
-     * Set Page Runner
-     *
-     * @param Collector $runner
-     */
-    public static function setRunner(Collector $runner)
-    {
-        self::$runner = new $runner;
-    }
+	/**
+	 * Set Page Runner
+	 *
+	 * @param Collector $runner
+	 */
+	public static function setRunner(Collector $runner)
+	{
+		self::$runner = new $runner;
+	}
 
-    /**
-     * Register the Page Handler
-     */
-    public static function registerHandler()
-    {
-        self::getRunner()->register();
-    }
+	/**
+	 * Register the Page Handler
+	 */
+	public static function registerHandler()
+	{
+		self::getRunner()->register();
+	}
 
-    /**
-     * Add Data Table on Page Handler
-     *
-     * @param string $message_title
-     * @param array $message
-     */
-    public static function addDataTable($message_title = '', $message = [])
-    {
-        self::getHandler()->addDataTable($message_title, $message);
-    }
+	/**
+	 * Add Data Table on Page Handler
+	 *
+	 * @param string $message_title
+	 * @param array $message
+	 */
+	public static function addDataTable($message_title = '', $message = [])
+	{
+		self::getHandler()->addDataTable($message_title, $message);
+	}
 
-    /**
-     * Handle a PhP Exception
-     *
-     * @param Exception $exception
-     */
-    public static function handleException(Exception $exception)
-    {
-        self::getRunner()->handleException($exception);
-    }
+	/**
+	 * Handle a PhP Exception
+	 *
+	 * @param Exception $exception
+	 */
+	public static function handleException(Exception $exception)
+	{
+		self::getRunner()->handleException($exception);
+	}
 
-    /**
-     * Set Error Reporting Levels
-     *
-     * @param string $error_levels
-     */
-    public static function setErrorLevels($error_levels = '')
-    {
-        error_reporting($error_levels);
-    }
+	/**
+	 * Set Error Reporting Levels
+	 *
+	 * @param string $error_levels
+	 */
+	public static function setErrorLevels($error_levels = '')
+	{
+		error_reporting($error_levels);
+	}
 }

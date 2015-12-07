@@ -145,8 +145,8 @@ C::addJsonConstant('PREDEFINED_LAYOUTS', [
 		'',
 		'Add',
 		'Edit',
-        'None',
-        'Test',
+		'None',
+		'Test',
 		'Login',
 		'Main',
 		'Remove'

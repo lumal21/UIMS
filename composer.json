@@ -33,15 +33,54 @@
       "email": "claudio.santoro@redes.unb.br"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
-    "nategood/httpful": ">=0.2.20",
-    "filp/whoops": ">=1.1.9",
-    "jalle19/php-whitelist-check": ">=1.0",
-    "italolelis/datatables": ">=1.0",
-    "mihaeu/html-formatter": ">=1.0",
-    "php": ">=5.6.0",
-    "bramus/router": ">=1.0"
+    "nategood/httpful": "^0.2.20",
+    "filp/whoops": "^1.1.9",
+    "jalle19/php-whitelist-check": "^1.0",
+    "italolelis/datatables": "^1.0",
+    "mihaeu/html-formatter": "^1.0",
+    "php": "^5.6.0",
+    "bramus/router": "^1.0",
+    "fxp/composer-asset-plugin": "^1.1.1",
+    "bower-asset/foundation-sites": "^6.0"
+  },
+  "scripts": {
+    "post-package-install": [
+      "Fxp\\Composer\\AssetPlugin\\Composer\\ScriptHandler::deleteIgnoredFiles"
+    ],
+    "post-package-update": [
+      "Fxp\\Composer\\AssetPlugin\\Composer\\ScriptHandler::deleteIgnoredFiles"
+    ]
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "bower-asset-library": "Web/UIoT/Resources/Vendor/Bower",
+      "npm-asset-library": "Web/UIoT/Resources/Vendor/Npm"
+    },
+    "asset-ignore-files": {
+      "bower-asset/foundation-sites": [
+        "*.scss",
+        "*.md",
+        ".npmignore",
+        "*.npmignore",
+        ".versions",
+        "*.versions",
+        "*.gitignore",
+        ".gitignore",
+        "*.editorconfig",
+        ".editorconfig",
+        "gulpfile.js",
+        "package.js",
+        "scss",
+        ".npm",
+        "docs",
+        "config",
+        "test",
+        "lib",
+        "gulp",
+        "LICENSE"
+      ]
+    }
   },
   "autoload": {
     "classmap": [

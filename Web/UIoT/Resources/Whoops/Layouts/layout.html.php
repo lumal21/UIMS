@@ -32,6 +32,7 @@
 
 <script><?= $tpl->display($zepto); ?></script>
 <script><?= $tpl->display($clipboard); ?></script>
+<script><?= $tpl->display($prettify); ?></script>
 <script><?= $tpl->display($javascript); ?></script>
 </body>
 </html>

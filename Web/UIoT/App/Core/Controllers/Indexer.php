@@ -25,6 +25,7 @@ use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Templates\Render;
 use UIoT\App\Core\Views\Indexer as VIndexer;
+use UIoT\App\Data\Models\ControllerModel;
 
 /**
  * Class Indexer
@@ -32,101 +33,101 @@ use UIoT\App\Core\Views\Indexer as VIndexer;
  */
 final class Indexer
 {
-    /**
-     * @var array
-     */
-    public static $controller = [];
+	/**
+	 * @var array
+	 */
+	public static $controller = [];
 
-    /**
-     * Add a Controller
-     *
-     * @param string $controller_name
-     */
-    public static function addController($controller_name)
-    {
-        self::controllerExists($controller_name) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
-    }
+	/**
+	 * Add a Controller
+	 *
+	 * @param string $controller_name
+	 */
+	public static function addController($controller_name)
+	{
+		self::controllerExists($controller_name) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
+	}
 
-    /**
-     * Check if Controller Exists
-     *
-     * @param string $controller_name
-     * @return bool
-     */
-    public static function controllerExists($controller_name)
-    {
-        return array_key_exists($controller_name, self::$controller);
-    }
+	/**
+	 * Check if Controller Exists
+	 *
+	 * @param string $controller_name
+	 * @return bool
+	 */
+	public static function controllerExists($controller_name)
+	{
+		return array_key_exists(Strings::toControllerName($controller_name), self::$controller);
+	}
 
-    /**
-     * Get Controller Actions
-     *
-     * @param string $controller_name
-     * @return array|mixed|null
-     */
-    public static function getControllerActions($controller_name)
-    {
-        return self::controllerExists($controller_name) ? VIndexer::getViewAction($controller_name) : null;
-    }
+	/**
+	 * Get Controller Actions
+	 *
+	 * @param string $controller_name
+	 * @return array|mixed|null
+	 */
+	public static function getControllerActions($controller_name)
+	{
+		return self::controllerExists($controller_name) ? VIndexer::getViewActions($controller_name) : null;
+	}
 
-    /**
-     * Get Controller Instance
-     *
-     * @param string $controller_name
-     * @return null
-     */
-    public static function getController($controller_name)
-    {
-        return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
-    }
+	/**
+	 * Get Controller Instance
+	 *
+	 * @param string $controller_name
+	 * @return null
+	 */
+	public static function getController($controller_name)
+	{
+		return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
+	}
 
-    /**
-     * Activate Controller
-     *
-     * @param string $controller_name
-     * @return mixed
-     */
-    public static function activeController($controller_name)
-    {
-        return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? new $controller_name : '';
-    }
+	/**
+	 * Activate Controller
+	 *
+	 * @param string $controller_name
+	 * @return ControllerModel
+	 */
+	public static function activeController($controller_name)
+	{
+		return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? new $controller_name : new ControllerModel;
+	}
 
-    /**
-     * Really Crazy but Works
-     * (Is for return a reverse namespace)
-     *
-     * @param string $controller_name_space
-     * @return string
-     */
-    public static function getControllerReverseNameSpace(&$controller_name_space)
-    {
-        /* get layout name space and returns */
-        $controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
+	/**
+	 * Really Crazy but Works
+	 * (Is for return a reverse namespace)
+	 *
+	 * @param string $controller_name_space
+	 * @return string
+	 */
+	public static function getControllerReverseNameSpace(&$controller_name_space)
+	{
+		/* get layout name space and returns */
+		$controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
 
-        /* return normal layout name */
-        return $controller_name;
-    }
+		/* return normal layout name */
+		return $controller_name;
+	}
 
-    /**
-     * Get Controller Namespace
-     *
-     * @param string $controller_name
-     * @return string
-     */
-    public static function getControllerNameSpace($controller_name)
-    {
-        return Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\');
-    }
+	/**
+	 * Get Controller Namespace
+	 *
+	 * @param string $controller_name
+	 * @return string
+	 */
+	public static function getControllerNameSpace($controller_name)
+	{
+		return Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\');
+	}
 
-    /**
-     * Redirect to Another Controller
-     *
-     * @param string $controller
-     * @param string $controller_action
-     * @return string
-     */
-    public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
-    {
-        return RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $controller, 'action' => $controller_action])));
-    }
+	/**
+	 * Redirect to Another Controller
+	 *
+	 * @param string $controller
+	 * @param string $controller_action
+	 * @return string
+	 */
+	public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
+	{
+		return RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $controller, 'action' => $controller_action])));
+	}
 }

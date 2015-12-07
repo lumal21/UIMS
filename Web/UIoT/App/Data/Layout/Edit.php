@@ -29,12 +29,12 @@ use UIoT\App\Core\Helpers\Visual\Pages;
  */
 final class Edit extends Main
 {
-    /**
-     * Set Configuration
-     * (Edit)
-     */
-    public function __configuration()
-    {
-        Pages::setTitle('Edit that Chuck Norris');
-    }
+	/**
+	 * Set Configuration
+	 * (Edit)
+	 */
+	public function __configuration()
+	{
+		Pages::setTitle('Edit that Chuck Norris');
+	}
 }

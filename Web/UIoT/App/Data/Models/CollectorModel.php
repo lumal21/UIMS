@@ -29,31 +29,31 @@ use UIoT\App\Data\Interfaces\CollectorInterface;
  */
 class CollectorModel implements CollectorInterface
 {
-    protected $request;
+	protected $request;
 
-    /**
-     * @param $a
-     * @return $this
-     */
-    public function passRequest($a)
-    {
-        /* save request data */
-        $this->request = $a;
+	/**
+	 * @param $a
+	 * @return $this
+	 */
+	public function passRequest($a)
+	{
+		/* save request data */
+		$this->request = $a;
 
-        /* return class instance */
-        return $this;
-    }
+		/* return class instance */
+		return $this;
+	}
 
-    /**
-     * @param $a
-     * @return $this
-     */
-    public function passHandler($a)
-    {
-        /* store request data */
-        $b = new $a($this->request);
+	/**
+	 * @param $a
+	 * @return $this
+	 */
+	public function passHandler($a)
+	{
+		/* store request data */
+		$b = new $a($this->request);
 
-        /* return handler */
-        return $b;
-    }
+		/* return handler */
+		return $b;
+	}
 }

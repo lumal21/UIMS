@@ -4,21 +4,141 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e1fba893df80ba53015271cfb115472a",
-    "content-hash": "ae4e8469b0bb285f627d80765c979f5b",
+    "hash": "4a935955b1a678ddeab55ec6e65dc61d",
+    "content-hash": "46423ea5c6ff728c8f86909e3f852806",
     "packages": [
         {
-            "name": "bramus/router",
-            "version": "dev-master",
+            "name": "bower-asset/foundation-sites",
+            "version": "v6.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bramus/router.git",
-                "reference": "1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc"
+                "url": "https://github.com/zurb/foundation-sites.git",
+                "reference": "e4a86e190d2803f76511cf04f7bc4d36d647d885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bramus/router/zipball/1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc",
-                "reference": "1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/e4a86e190d2803f76511cf04f7bc4d36d647d885",
+                "reference": "e4a86e190d2803f76511cf04f7bc4d36d647d885",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": "~2.1.0",
+                "bower-asset/what-input": "~1.1.2"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "scss/foundation.scss",
+                    "dist/foundation.js"
+                ],
+                "bower-asset-ignore": [
+                    "config",
+                    "docs",
+                    "gulp",
+                    "lib",
+                    "test",
+                    "composer.json",
+                    "CONTRIBUTING.md",
+                    "gulpfile.js",
+                    "meteor-README.md",
+                    "package.js",
+                    "package.json",
+                    "sache.json"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/jquery",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jquery/jquery.git",
+                "reference": "7751e69b615c6eca6f783a81e292a55725af6b85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jquery/jquery/zipball/7751e69b615c6eca6f783a81e292a55725af6b85",
+                "reference": "7751e69b615c6eca6f783a81e292a55725af6b85",
+                "shasum": ""
+            },
+            "require-dev": {
+                "bower-asset/qunit": "1.14.0",
+                "bower-asset/requirejs": "2.1.10",
+                "bower-asset/sinon": "1.8.1",
+                "bower-asset/sizzle": "2.1.1-patch2"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/jquery.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "build",
+                    "dist/cdn",
+                    "speed",
+                    "test",
+                    "*.md",
+                    "AUTHORS.txt",
+                    "Gruntfile.js",
+                    "package.json"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "javascript",
+                "jquery",
+                "library"
+            ]
+        },
+        {
+            "name": "bower-asset/what-input",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ten1seven/what-input.git",
+                "reference": "190d4fcf1765552370ca72dd98e44402773d9bc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/190d4fcf1765552370ca72dd98e44402773d9bc6",
+                "reference": "190d4fcf1765552370ca72dd98e44402773d9bc6",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "what-input.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A global utility for tracking the current input method (mouse, keyboard or touch).",
+            "keywords": [
+                "a11y",
+                "accessibility",
+                "input",
+                "javascript"
+            ]
+        },
+        {
+            "name": "bramus/router",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bramus/router.git",
+                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bramus/router/zipball/e4a588b333a539f7321cd7bbfba9bdf181209d4c",
+                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c",
                 "shasum": ""
             },
             "require": {
@@ -51,20 +171,20 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-07-17 10:08:09"
+            "time": "2015-02-04 12:43:17"
         },
         {
             "name": "easyframework/collections",
-            "version": "v4.1.2",
+            "version": "v4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/collections.git",
-                "reference": "033959a28125cb977d73eddcc22f4708f14e7c1e"
+                "reference": "3082796d2c5f853355022d1d2ca2ded5efabe612"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/italolelis/collections/zipball/033959a28125cb977d73eddcc22f4708f14e7c1e",
-                "reference": "033959a28125cb977d73eddcc22f4708f14e7c1e",
+                "url": "https://api.github.com/repos/italolelis/collections/zipball/3082796d2c5f853355022d1d2ca2ded5efabe612",
+                "reference": "3082796d2c5f853355022d1d2ca2ded5efabe612",
                 "shasum": ""
             },
             "require": {
@@ -105,11 +225,11 @@
                 "framework",
                 "generics"
             ],
-            "time": "2015-12-01 17:48:10"
+            "time": "2015-12-07 13:33:45"
         },
         {
             "name": "easyframework/generics",
-            "version": "dev-master",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/generics.git",
@@ -153,39 +273,36 @@
         },
         {
             "name": "filp/whoops",
-            "version": "dev-master",
+            "version": "1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "9425bc243f5fdb18925c3dbd5fb69962aab6e4a6"
+                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/9425bc243f5fdb18925c3dbd5fb69962aab6e4a6",
-                "reference": "9425bc243f5fdb18925c3dbd5fb69962aab6e4a6",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/72538eeb70bbfb11964412a3d098d109efd012f7",
+                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.0"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.*"
             },
-            "suggest": {
-                "symfony/var-dumper": "^2.6"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Whoops\\": "src/Whoops/"
+                "psr-0": {
+                    "Whoops": "src/"
                 },
-                "files": [
-                    "src/Whoops/functions.php"
+                "classmap": [
+                    "src/deprecated"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -210,11 +327,67 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-11-24 14:11:16"
+            "time": "2015-06-29 05:42:04"
+        },
+        {
+            "name": "fxp/composer-asset-plugin",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/daca454b94539a4e6d30937dfc6b817eceb03f28",
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Composer\\AssetPlugin\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "NPM/Bower Dependency Manager for Composer",
+            "homepage": "https://github.com/francoispluchino/composer-asset-plugin",
+            "keywords": [
+                "asset",
+                "bower",
+                "composer",
+                "dependency manager",
+                "nodejs",
+                "npm",
+                "package"
+            ],
+            "time": "2015-11-20 14:58:24"
         },
         {
             "name": "italolelis/datatables",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/datatables.git",
@@ -263,16 +436,16 @@
         },
         {
             "name": "jalle19/php-whitelist-check",
-            "version": "dev-master",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jalle19/php-whitelist-check.git",
-                "reference": "863b895c0d2c8246e36e5a4a13cb61f87bcd54a9"
+                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jalle19/php-whitelist-check/zipball/863b895c0d2c8246e36e5a4a13cb61f87bcd54a9",
-                "reference": "863b895c0d2c8246e36e5a4a13cb61f87bcd54a9",
+                "url": "https://api.github.com/repos/Jalle19/php-whitelist-check/zipball/e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
+                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
                 "shasum": ""
             },
             "require": {
@@ -301,32 +474,26 @@
                 "ipv6",
                 "whitelist"
             ],
-            "time": "2015-10-30 08:11:52"
+            "time": "2015-10-29 15:02:38"
         },
         {
             "name": "mihaeu/html-formatter",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mihaeu/html-formatter.git",
-                "reference": "9fd72547984643be9233580ac577625e74d33134"
+                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/9fd72547984643be9233580ac577625e74d33134",
-                "reference": "9fd72547984643be9233580ac577625e74d33134",
+                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/a376177343ffe5484f8457f699237c1863b7cfd5",
+                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5",
                 "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Mihaeu\\": [
-                        "src/",
-                        "tests/unit/"
-                    ]
+                "psr-0": {
+                    "Mihaeu": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -347,11 +514,11 @@
                 "html",
                 "pretty"
             ],
-            "time": "2015-04-02 16:41:13"
+            "time": "2013-11-26 11:55:02"
         },
         {
             "name": "nategood/httpful",
-            "version": "dev-master",
+            "version": "0.2.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nategood/httpful.git",
@@ -401,7 +568,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "2.8.x-dev",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -461,7 +628,7 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "2.8.x-dev",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
@@ -521,16 +688,16 @@
         },
         {
             "name": "xrstf/ip-utils",
-            "version": "dev-default",
+            "version": "v1.1.0",
             "source": {
                 "type": "hg",
                 "url": "https://bitbucket.org/xrstf/ip-utils",
-                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57"
+                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/xrstf/ip-utils/get/6a4a617d608464c29d6e8ba3cdcfa0fb43266d57.zip",
-                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57",
+                "url": "https://bitbucket.org/xrstf/ip-utils/get/77208641fa9e6063ccb00c8899d157818ad2474f.zip",
+                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f",
                 "shasum": ""
             },
             "require": {
@@ -565,17 +732,17 @@
                 "matching",
                 "subnet"
             ],
-            "time": "2013-12-04 01:59:28"
+            "time": "2013-12-04 01:57:13"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.0"
+        "php": "^5.6.0"
     },
     "platform-dev": []
 }

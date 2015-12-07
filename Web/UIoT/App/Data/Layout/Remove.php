@@ -29,12 +29,12 @@ use UIoT\App\Core\Helpers\Visual\Pages;
  */
 final class Remove extends Main
 {
-    /**
-     * Set Configuration
-     * (Delete)
-     */
-    public function __configuration()
-    {
-        Pages::setTitle('Delete my Main Chu');
-    }
+	/**
+	 * Set Configuration
+	 * (Delete)
+	 */
+	public function __configuration()
+	{
+		Pages::setTitle('Delete my Main Chu');
+	}
 }
