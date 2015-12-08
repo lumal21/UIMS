@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Controllers;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Templates\Render;
-use UIoT\App\Core\Views\Indexer as VIndexer;
 use UIoT\App\Data\Models\ControllerModel;
 
 /**
@@ -34,9 +33,11 @@ use UIoT\App\Data\Models\ControllerModel;
 final class Indexer
 {
 	/**
+	 * Controllers
+	 *
 	 * @var array
 	 */
-	public static $controller = [];
+	private static $controllers = [];
 
 	/**
 	 * Add a Controller
@@ -45,7 +46,7 @@ final class Indexer
 	 */
 	public static function addController($controller_name)
 	{
-		self::controllerExists($controller_name) || (self::$controller[$controller_name] = self::getControllerActions($controller_name));
+		self::controllerExists($controller_name) || array_push(self::$controllers, $controller_name);
 	}
 
 	/**
@@ -56,18 +57,7 @@ final class Indexer
 	 */
 	public static function controllerExists($controller_name)
 	{
-		return array_key_exists(Strings::toControllerName($controller_name), self::$controller);
-	}
-
-	/**
-	 * Get Controller Actions
-	 *
-	 * @param string $controller_name
-	 * @return array|mixed|null
-	 */
-	public static function getControllerActions($controller_name)
-	{
-		return self::controllerExists($controller_name) ? VIndexer::getViewActions($controller_name) : null;
+		return in_array(Strings::toControllerName($controller_name), self::$controllers);
 	}
 
 	/**
@@ -76,7 +66,7 @@ final class Indexer
 	 * @param string $controller_name
 	 * @return null
 	 */
-	public static function getController($controller_name)
+	public static function instantiateController($controller_name)
 	{
 		return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
 	}
@@ -126,7 +116,7 @@ final class Indexer
 	 * @param string $controller_action
 	 * @return string
 	 */
-	public static function redirectToController($controller, $controller_action = DEFAULT_VIEW_ACTION)
+	public static function redirectToController($controller, $controller_action = DEFAULT_CONTROLLER_ACTION)
 	{
 		return RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $controller, 'action' => $controller_action])));
 	}

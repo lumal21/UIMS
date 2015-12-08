@@ -19,50 +19,41 @@
  * @copyright University of Bras�lia
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Layout;
 
-use ReflectionClass;
-use UIoT\App\Core\Layouts\Indexer as LIndexer;
-use UIoT\App\Data\Interfaces\ViewInterface;
+use UIoT\App\Core\Helpers\Visual\Pages;
+use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 
 /**
- * Class View
- * @property string view
- * @property string vname
- * @package UIoT\App\Data\Models\Types
+ * Class Home
+ * @package UIoT\App\Data\Layout
  */
-class ViewModel implements ViewInterface
+class Home extends Main
 {
 	/**
-	 * Start View
+	 * Set Configuration
 	 */
-	public function __construct()
+	public function __configuration()
 	{
-		$this->__name();
-		$this->__layout();
+		Pages::setTitle('PIKAA');
 	}
 
 	/**
-	 * Set Abstract Name
+	 * Set Templates
 	 */
-	public function __name()
+	public function __templates()
 	{
-		$this->vname = (new ReflectionClass(self::class))->getShortName();
+		TemplateIndexer::setTemplateFolder('Home');
+		TemplateIndexer::addTemplate('Layouts/Home.php');
 	}
 
 	/**
-	 * Set Layout
-	 */
-	public function __layout()
-	{
-		LIndexer::addLayout($this->vname, $this->vname);
-	}
-
-	/**
-	 * Show Layout
+	 * Return Template Code
+	 *
+	 * @return null|mixed|string
 	 */
 	public function __show()
 	{
-		return LIndexer::getLayout($this->vname);
+		return TemplateIndexer::returnTemplates();
 	}
 }

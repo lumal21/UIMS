@@ -21,7 +21,9 @@
 
 namespace UIoT\App\Core\Resources;
 
+use Assetic\Asset\AssetCache;
 use Assetic\Asset\FileAsset;
+use Assetic\Cache\FilesystemCache;
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
@@ -57,7 +59,7 @@ final class Indexer
 	 */
 	public static function addAsset($asset_name, $asset_folder, $asset_file_name)
 	{
-		Manager::getAssetManager()->set($asset_name, new FileAsset(self::convertToFileName($asset_folder, $asset_file_name)));
+		Manager::getAssetManager()->set($asset_name, new AssetCache(new FileAsset(self::convertToFileName($asset_folder, $asset_file_name)), new FilesystemCache(Constants::returnConstant('RESOURCE_CACHE_FOLDER'))));
 	}
 
 	/**
@@ -73,7 +75,7 @@ final class Indexer
 		!$reset_session || SIndexer::removeKey('layout');
 
 		/* register the layout */
-		LIndexer::addLayout($layout_name, strtok($layout_name, '_'));
+		LIndexer::addLayout($layout_name);
 
 		/* get layout resources */
 		LIndexer::getLayoutResources($layout_name);

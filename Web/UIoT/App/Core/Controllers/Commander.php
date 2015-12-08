@@ -23,23 +23,50 @@ namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Models\IControllerModel;
 use UIoT\App\Exception\Register;
 
 /**
  * Class Commander
- * @property array controller_actions
- * @property string controller_name
- * @property \UIoT\App\Data\Models\IControllerModel controller
  * @package UIoT\App\Core\Controllers
  */
 final class Commander
 {
+	/**
+	 * Controller Data
+	 *
+	 * @var IControllerModel|ControllerModel
+	 */
+	private $controller_data;
+
+	/**
+	 * Controller Actions
+	 *
+	 * @var array
+	 */
+	private $controller_actions = [];
+
+	/**
+	 * Controller Name
+	 *
+	 * @var string
+	 */
+	private $controller_name = '';
+
 	/**
 	 * Controller Content
 	 *
 	 * @var string
 	 */
 	private static $controller_content = '';
+
+	/**
+	 * Abstract Controller Handler
+	 *
+	 * @var null|Controllable
+	 */
+	private $abstract_controller_manager = null;
 
 	/**
 	 * Start Controller Data
@@ -51,13 +78,14 @@ final class Commander
 	{
 		/* if is non abstract controller or is an abstract controller */
 		if (Indexer::controllerExists($controller_name)):
-			$this->controller         = Indexer::getController($controller_name);
-			$this->controller_actions = Arrays::staticToArray($controller_name);
+			$this->controller_data    = Indexer::instantiateController($controller_name);
+			$this->controller_actions = Arrays::getStaticControllerActions($controller_name);
 			$this->controller_name    = $controller_name;
 		else:
-			$c                        = (new Controllable($controller_name, $action_name));
-			$this->controller         = $c->controller_data;
-			$this->controller_actions = Arrays::abstractToArray($c->c_s_array);
+			$this->setAbstractControllerManager(new Controllable($controller_name, $action_name));
+
+			$this->controller_data    = $this->getAbstractControllerManager()->getControllerData();
+			$this->controller_actions = Arrays::getAbstractControllerActions($this->getAbstractControllerManager()->getControllerActions());
 			$this->controller_name    = Strings::toControllerName($controller_name);
 		endif;
 	}
@@ -71,7 +99,7 @@ final class Commander
 	 */
 	public static function controllerActionExists($controller_name, $action_name)
 	{
-		return in_array(Strings::toActionName($action_name), Arrays::staticToArray($controller_name));
+		return in_array(Strings::toActionName($action_name), Arrays::getStaticControllerActions($controller_name));
 	}
 
 	/**
@@ -106,7 +134,7 @@ final class Commander
 		$this->checkActionExistence($action_name) || self::showNonExistentActionError($this->controller_name, $action_name);
 
 		/* if not call action */
-		$this->refineControllerData($this->controller->{Strings::toActionMethodName($action_name)}());
+		$this->refineControllerData($this->controller_data->{Strings::toActionMethodName($action_name)}());
 	}
 
 	/**
@@ -150,5 +178,25 @@ final class Commander
 				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
 			]
 		);
+	}
+
+	/**
+	 * Get Controllable
+	 *
+	 * @return Controllable
+	 */
+	public function getAbstractControllerManager()
+	{
+		return $this->abstract_controller_manager;
+	}
+
+	/**
+	 * Set Controllable
+	 *
+	 * @param Controllable $abstract_controller_manager
+	 */
+	public function setAbstractControllerManager(Controllable $abstract_controller_manager)
+	{
+		$this->abstract_controller_manager = $abstract_controller_manager;
 	}
 }

@@ -25,7 +25,6 @@ use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Exception\Register;
 
@@ -35,50 +34,51 @@ use UIoT\App\Exception\Register;
  */
 final class Controllable extends IControllable
 {
-
 	/**
 	 * Create an IControllable Instance
 	 * @param string $controller_name
 	 * @param string $action_name
 	 */
-	public function __construct($controller_name, $action_name = 'main')
+	public function __construct($controller_name, $action_name)
 	{
 		/* put abstract controller name */
-		$this->c_name = DataManager::setController($controller_name);
+		$this->controller_name = DataManager::setController($controller_name);
 
 		/* set abstract action name */
-		$this->a_name = DataManager::setAction($action_name);
+		$this->controller_action = DataManager::setAction($action_name);
 
 		/* prepare template */
 		DataManager::prepareTemplate();
 
 		/* do all data */
-		$this->goData();
+		$this->receiveBrainData();
 
 		/* go check all */
-		$this->goCheck();
+		$this->executeAbstractController();
 	}
 
 	/**
 	 * Go do All Data Functions
 	 */
-	private function goData()
+	private function receiveBrainData()
 	{
 		/* configure brain to a GET template */
-		$this->setBrain();
+		$this->setBrainTemplate();
 
-		/* check if is valid the controller */
-		$this->validateData();
+		/* get brain resource items */
+		$this->getBrainResourceItems();
 	}
 
 	/**
 	 * Check all The Steps
 	 */
-	private function goCheck()
+	private function executeAbstractController()
 	{
-		/* if is let's do it */
-		!$this->checkData() || $this->getResources();
-		!$this->checkData() || $this->enableController($this->c_s_array);
+		/* get brain resource item actions */
+		!$this->checkData() || $this->getBrainResourceItemActions();
+
+		/* execute controller */
+		!$this->checkData() || $this->enableController($this->controller_actions);
 
 		/* if not valid finish */
 		$this->checkData() || Register::getRunner()->errorMessage(901,
@@ -86,7 +86,7 @@ final class Controllable extends IControllable
 			'Details: ',
 			[
 				'What Happened?' => "You're trying to Call an nonexistent Controller",
-				'What Controller?' => "Controller with name: {$this->c_name}",
+				'What Controller?' => "Controller with name: {$this->controller_name}",
 				'Resolution:' => "Stop trying to call nonexistent controllers.",
 				'What Controllers can i Call?' => "You can Call UIoT's Abstract Controllers, and the Built-In Controllers",
 				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
@@ -97,17 +97,17 @@ final class Controllable extends IControllable
 	/**
 	 * Get IController Actions (Methods)
 	 */
-	private function getResources()
+	private function getBrainResourceItemActions()
 	{
-		$this->c_s_array = DataHandler::getParserArray();
+		$this->controller_actions = DataHandler::getParserArray();
 	}
 
 	/**
 	 * Get Possible IControllers
 	 */
-	private function validateData()
+	private function getBrainResourceItems()
 	{
-		$this->c_array = Arrays::toControllerArray(!SIndexer::keyExists('i_data') ? (array)SIndexer::updateKeyIfNeeded('i_data', Brain::getItems()) : (array)SIndexer::getKeyValue('i_data'));
+		$this->abstract_controllers_array = Arrays::toControllerArray(Brain::getItems());
 	}
 
 	/**
@@ -116,7 +116,7 @@ final class Controllable extends IControllable
 	 */
 	private function checkData()
 	{
-		return in_array($this->c_name, $this->c_array);
+		return in_array($this->controller_name, $this->abstract_controllers_array);
 	}
 
 	/**
@@ -131,8 +131,8 @@ final class Controllable extends IControllable
 	/**
 	 * Set Brain Template Type
 	 */
-	private function setBrain()
+	private function setBrainTemplate()
 	{
-		Brain::setTemplate(DataHandler::getParserMethod($this->a_name), Mime::JSON);
+		Brain::setTemplate(DataHandler::getParserMethod($this->controller_action), Mime::JSON);
 	}
 }

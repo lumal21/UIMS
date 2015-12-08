@@ -21,7 +21,6 @@
 
 namespace UIoT\App\Core\Controllers;
 
-use RuntimeException;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Models\IControllerModel;
@@ -33,25 +32,79 @@ use UIoT\App\Data\Models\IControllerModel;
 class IControllable
 {
 	/**
+	 * Abstract Controller Name
+	 *
 	 * @var string
 	 */
-	public $c_name = '';
+	protected $controller_name = '';
+
 	/**
+	 * Abstract Controller Action (Method)
+	 *
 	 * @var string
 	 */
-	public $a_name = '';
+	protected $controller_action = '';
+
 	/**
+	 * All Possible Abstract Controller Actions (Methods)
+	 *
 	 * @var array
 	 */
-	public $c_s_array = [];
+	protected $controller_actions = [];
+
 	/**
+	 * Array of Abstract Controllers
+	 *
 	 * @var array
 	 */
-	public $c_array = [];
+	protected $abstract_controllers_array = [];
+
 	/**
+	 * Abstract Controller
+	 *
 	 * @var IControllerModel
 	 */
-	public $controller_data;
+	protected $controller_data;
+
+	/**
+	 * Get Controller Data
+	 *
+	 * @return IControllerModel
+	 */
+	public function getControllerData()
+	{
+		return $this->controller_data;
+	}
+
+	/**
+	 * Set Controller Data
+	 *
+	 * @param IControllerModel $controller_data
+	 */
+	public function setControllerData(IControllerModel $controller_data)
+	{
+		$this->controller_data = $controller_data;
+	}
+
+	/**
+	 * Get Abstract Controller Actions (Methods)
+	 *
+	 * @return array
+	 */
+	public function getControllerActions()
+	{
+		return $this->controller_actions;
+	}
+
+	/**
+	 * Set Abstract Controller Actions (Methods)
+	 *
+	 * @param array $controller_actions
+	 */
+	public function setControllerActions($controller_actions)
+	{
+		$this->controller_actions = $controller_actions;
+	}
 
 	/**
 	 * Enable the Instance
@@ -60,11 +113,8 @@ class IControllable
 	 */
 	protected function enableController($array = [])
 	{
-		/* if is not array we have problem */
-		is_array($array) || new RuntimeException('Fail! The IController Array is empty!');
-
 		/* store array */
-		$this->c_s_array = $array;
+		$this->setControllerActions($array);
 
 		/* call methods */
 		$this->addInstance();
@@ -84,7 +134,7 @@ class IControllable
 	 */
 	private function addMethods()
 	{
-		foreach ($this->c_s_array as $method => $request)
+		foreach ($this->controller_actions as $method => $request)
 			$this->controller_data->{Strings::toActionMethodName($method)} = function () use ($method) {
 				return DataManager::getInstance($method);
 			};

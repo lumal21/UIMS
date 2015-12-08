@@ -1,0 +1,57 @@
+.jj {
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 40%, rgba(0, 0, 0, 0.15) 100%) !important;
+}
+
+::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+.result_title {
+    display: none;
+}
+
+.sidebar {
+    padding: 10px 20px !important;
+}
+
+.act {
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+}
+
+.vgt {
+    display: none !important;
+    height: 2.5rem !important;
+}
+
+.tbl {
+    top: -2px !important;
+    left: 4px !important;
+}
+
+.mll {
+    font-weight: normal !important;
+    font-size: 0.94444rem !important;
+    line-height: 2.5rem !important;
+}
+
+.jjk {
+    right: auto !important;
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+}
+
+.kki {
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+    z-index: 1001 !important;
+}
+
+.ppk {
+    min-height: 100% !important;
+}
+
+.ter {
+    height: 2.5rem !important;
+    line-height: 2.5rem !important;
+}

@@ -125,7 +125,7 @@ class Arrays
 	 * @param string $controller_name
 	 * @return array
 	 */
-	public static function staticToArray($controller_name = '')
+	public static function getStaticControllerActions($controller_name = '')
 	{
 		return array_map('self::toActionName', get_class_methods(Indexer::getControllerNameSpace($controller_name)));
 	}
@@ -142,24 +142,13 @@ class Arrays
 	}
 
 	/**
-	 * Remove Blank Items from Array
-	 *
-	 * @param array $array
-	 * @return array
-	 */
-	public static function removeBlank($array = [])
-	{
-		return is_array($array) ? array_values(array_diff($array, [''])) : [];
-	}
-
-	/**
 	 * Get Entire Methods (Actions) of UIoT Abstract Controller
 	 * (Only for Public - non-static - methods)
 	 *
 	 * @param array $a
 	 * @return array
 	 */
-	public static function abstractToArray($a = [])
+	public static function getAbstractControllerActions($a = [])
 	{
 		return is_array($a) ? (array_map('self::toActionName', array_keys((array)$a))) : [];
 	}

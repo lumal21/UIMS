@@ -24,10 +24,9 @@ namespace UIoT\App\Core\Templates;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
-use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
-use UIoT\App\Core\Views\Indexer as ViewIndexer;
 
 /**
  * Class Render
@@ -40,7 +39,7 @@ final class Render
 	 *
 	 * @var bool
 	 */
-	private static $show_view = true;
+	private static $show_layout = true;
 
 	/**
 	 * Enable to show Default Action
@@ -115,12 +114,12 @@ final class Render
 	 * @param bool $boolean
 	 * @return bool
 	 */
-	public static function showControllerView($boolean = null)
+	public static function showControllerLayout($boolean = null)
 	{
 		/* check if need change boolean value */
-		!(self::$show_view === $boolean && is_bool($boolean)) || self::$show_view = $boolean;
+		!(self::$show_layout === $boolean && is_bool($boolean)) || self::$show_layout = $boolean;
 
-		return self::$show_view;
+		return self::$show_layout;
 	}
 
 	/**
@@ -141,9 +140,9 @@ final class Render
 	 *
 	 * @return mixed
 	 */
-	private function returnControllerView()
+	private function returnControllerLayout()
 	{
-		return ViewIndexer::viewExists($this->controller_name) ? ViewIndexer::showView($this->controller_name) : $this->returnControllerContent();
+		return Indexer::layoutExists($this->controller_name) ? Indexer::getLayout($this->controller_name) : $this->returnControllerContent();
 	}
 
 	/**
@@ -152,7 +151,7 @@ final class Render
 	 */
 	public function show()
 	{
-		return self::showControllerView() ? $this->returnControllerView() : $this->returnControllerContent();
+		return self::showControllerLayout() ? $this->returnControllerLayout() : $this->returnControllerContent();
 	}
 
 	/**
@@ -160,6 +159,10 @@ final class Render
 	 */
 	private function setResources()
 	{
-		ResourceIndexer::registerResources(in_array($this->controller_name, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->controller_name : $this->controller_action_name, true);
+		!(Indexer::layoutExists($this->controller_name) && !Indexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
+
+		!(!Indexer::layoutExists($this->controller_name) && Indexer::layoutExists($this->controller_action_name) && !ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
+
+		!(Indexer::layoutExists($this->controller_name) && Indexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
 	}
 }

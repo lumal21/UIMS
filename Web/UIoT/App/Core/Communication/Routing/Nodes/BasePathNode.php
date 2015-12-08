@@ -50,6 +50,6 @@ final class BasePathNode extends NodeHandlerModel
 	 */
 	public function call()
 	{
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Constants::returnConstant('DEFAULT_CONTROLLER'), 'action' => Constants::returnConstant('DEFAULT_VIEW_ACTION')]))));
+		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Constants::returnConstant('DEFAULT_CONTROLLER'), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))));
 	}
 }

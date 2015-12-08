@@ -39,11 +39,10 @@ final class Indexer
 	 * Add a Layout
 	 *
 	 * @param string $layout_name
-	 * @param string $view_name
 	 */
-	public static function addLayout($layout_name, $view_name = '')
+	public static function addLayout($layout_name)
 	{
-		self::layoutExists($layout_name) || (self::$layout[$layout_name] = !empty($view_name) ? $view_name : $layout_name);
+		self::layoutExists($layout_name) || array_push(self::$layout, $layout_name);
 	}
 
 	/**
@@ -54,40 +53,7 @@ final class Indexer
 	 */
 	public static function layoutExists($layout_name)
 	{
-		return array_key_exists($layout_name, self::$layout);
-	}
-
-	/**
-	 * Remove Layout from Array
-	 *
-	 * @param string $layout_name
-	 */
-	public static function removeLayout($layout_name)
-	{
-		if (self::layoutExists($layout_name))
-			unset(self::$layout[$layout_name]);
-	}
-
-	/**
-	 * Return all Layout Names from That View
-	 *
-	 * @param string $view_name
-	 * @return mixed|array
-	 */
-	public static function getLayoutName($view_name)
-	{
-		return array_keys($view_name, self::$layout);
-	}
-
-	/**
-	 * Return View Name by Layout Name
-	 *
-	 * @param string $layout_name
-	 * @return mixed|string
-	 */
-	public static function getLayoutView($layout_name)
-	{
-		return self::$layout[$layout_name] || '';
+		return in_array($layout_name, self::$layout);
 	}
 
 	/**

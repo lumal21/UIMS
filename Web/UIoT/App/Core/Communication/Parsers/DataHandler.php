@@ -109,10 +109,10 @@ class DataHandler
 	private static function registerLayouts()
 	{
 		self::$layouts = [
-			Http::GET => Indexer::addLayout(Strings::toControllerName(self::$names[Http::GET])),
-			Http::POST => Indexer::addLayout(Strings::toControllerName(self::$names[Http::POST])),
-			Http::PUT => Indexer::addLayout(Strings::toControllerName(self::$names[Http::PUT])),
-			Http::DELETE => Indexer::addLayout(Strings::toControllerName(self::$names[Http::DELETE])),
+			Http::GET => Indexer::addLayout(Strings::toActionName(self::$names[Http::GET])),
+			Http::POST => Indexer::addLayout(Strings::toActionName(self::$names[Http::POST])),
+			Http::PUT => Indexer::addLayout(Strings::toActionName(self::$names[Http::PUT])),
+			Http::DELETE => Indexer::addLayout(Strings::toActionName(self::$names[Http::DELETE])),
 		];
 	}
 
@@ -124,7 +124,7 @@ class DataHandler
 	private static function registerNames()
 	{
 		self::$names = [
-			Http::GET => 'main',
+			Http::GET => 'home',
 			Http::POST => 'add',
 			Http::PUT => 'edit',
 			Http::DELETE => 'remove',
@@ -197,6 +197,7 @@ class DataHandler
 
 	/**
 	 * Get Parser Variable
+	 *
 	 * @param $name
 	 * @param $variable
 	 * @return null

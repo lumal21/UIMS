@@ -38,7 +38,7 @@ class IControllerModel extends stdClass implements IControllerInterface
 	 */
 	public function __construct()
 	{
-		Render::showControllerView(false);
+		Render::showControllerLayout(false);
 	}
 
 	/**

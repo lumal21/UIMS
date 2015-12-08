@@ -46,10 +46,9 @@ use UIoT\App\Core\Communication\Routing\Nodes\BasePathNode;
 use UIoT\App\Core\Communication\Routing\Nodes\ControllerNode;
 use UIoT\App\Core\Communication\Routing\Nodes\LayoutNode;
 use UIoT\App\Core\Communication\Routing\Nodes\ResourceFileNode;
-use UIoT\App\Core\Communication\Routing\Nodes\ResourceTypeNode;
 use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
-use UIoT\App\Core\Views\Indexer as ViewIndexer;
+use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
 
 /*
  * this file is necessary to register public and static controllers and views.
@@ -99,10 +98,13 @@ use UIoT\App\Core\Views\Indexer as ViewIndexer;
  */
 
 /* login page */
-ViewIndexer::addView('Login');
+LayoutIndexer::addLayout('Login');
+
+/* home page */
+LayoutIndexer::addLayout('Home');
 
 /* test page */
-ViewIndexer::addView('Test');
+LayoutIndexer::addLayout('Test');
 
 /**
  * Register Controllers

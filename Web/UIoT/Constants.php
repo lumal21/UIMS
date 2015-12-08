@@ -72,6 +72,12 @@ C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
 C::addConstant('RESOURCE_FOLDER_NAME', 'Resources');
 
 /*
+ * Global MVC Constants
+ * Resource Cache Folder Name
+ */
+C::addConstant('RESOURCE_CACHE_FOLDER_NAME', 'Cache');
+
+/*
  * UIoTCMS Resources Folder
  * Here is configured the folder where Resources Alive
  * You can change the Resource folder if you want
@@ -80,51 +86,11 @@ C::addConstant('RESOURCE_FOLDER_NAME', 'Resources');
  */
 C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/' . C::returnConstant('RESOURCE_FOLDER_NAME') . '/'));
 
-/**
- * Registering Constants
- */
-
 /*
- * @warning it's important register here
- * Here is register all LAYOUT's names, used by UIoT Router
- * Remember: This are the Public Layouts used in the Router.
- * That not means that every Layout must be added here.
- *  Explaining:
- *      1. If you have a Layout called "my-layout"
- *      2. in the Layout Class is defined the Resource directory as (example) "Edit"
- *      3. Are added Resource from that Resource Folder like: images,css,etc.
- *      4. In the Template HTML File will be something like:
- *      <image src="Edit/Stylesheet/MyCSS.css"/>
- *      5. That means that The "Edit" Layout Resources are Called, Soo you can extend the Layout and Overwrite.
- *      6. That is good, because you have the option to not set every Layout as PUBLIC.
- *      Only the listed Layouts here, his resources are accessible.
- * Observation:
- *  If you added Resources in your Layout named "My-Layout", and try to access him
- *  The page is Called, Remember that the Layout name doesn't need be the same as the Controller Name,
- *  You can have a controller called "my-controller", and layout called "my-layout",
- *  You set what Layout the Controller Loads.
- *  Remember, if the Layout isn't registered in this array,
- *  the layout resources will not be accessible.
- *  ANYWAY: the layout is accessible! because the controller need render layout.
- *  BUT: if you try something like: <image src="My-Layout/Stylesheet/MyCSS.css"/>
- *  will not work.
- *  Remember: The RESOURCE FOLDER doesn't need have the same NAME of LAYOUT NAME.
- *  An RESOURCE folder is only folders where is "stored" resource files.
- *  Any LAYOUT can call ANY resource folder. And you can add multiple RESOURCE folders.
- *  But remember: The Layout REGISTER the resources FOLDERS.
- *  And to the RESOURCES from that LAYOUT be accessible you need REGISTER the LAYOUT in this ARRAY.
+ * Global MVC Constants
+ * Resource Cache Folder
  */
-C::addJsonConstant('PREDEFINED_LAYOUTS', [
-		'',
-		'Add',
-		'Edit',
-		'None',
-		'Test',
-		'Login',
-		'Main',
-		'Remove'
-	]
-);
+C::addConstant('RESOURCE_CACHE_FOLDER', C::returnConstant('RESOURCE_FOLDER') . C::returnConstant('RESOURCE_CACHE_FOLDER_NAME') . '/');
 
 /**
  * Server Constants
@@ -174,16 +140,10 @@ C::addJsonConstant('SERVER_WEB', @$_SERVER);
  * Global MVC Constants
  * Default View
  */
-C::addConstant('DEFAULT_VIEW', 'None');
-
-/*
- * Global MVC Constants
- * Default Controller
- */
 C::addConstant('DEFAULT_CONTROLLER', 'None');
 
 /*
  * Global MVC Constants
  * Default View Action (Default Layout)
  */
-C::addConstant('DEFAULT_VIEW_ACTION', 'Main');
+C::addConstant('DEFAULT_CONTROLLER_ACTION', 'Main');

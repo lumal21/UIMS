@@ -21,8 +21,6 @@
 
 namespace UIoT\App\Data\Models;
 
-use League\Uri\Components\Path;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Interfaces\NodeInterface;
 
 /**
@@ -34,7 +32,7 @@ class NodeModel implements NodeInterface
 	/**
 	 * Node Path
 	 *
-	 * @var Path|string
+	 * @var string
 	 */
 	protected $path = null;
 
@@ -91,7 +89,7 @@ class NodeModel implements NodeInterface
 	{
 		$this->setNodeId($node_id);
 
-		$this->setPath(Strings::isRegex($path) ? new Path($path) : $path);
+		$this->setPath($path);
 
 		$this->setCallback($callback);
 
@@ -109,13 +107,13 @@ class NodeModel implements NodeInterface
 	 */
 	public function isAbsolute()
 	{
-		return ($this->getPath() instanceof Path) ? $this->getPath()->isAbsolute() : false;
+		return false;
 	}
 
 	/**
 	 * Get Node Path
 	 *
-	 * @return Path|string
+	 * @return string
 	 */
 	public function getPath()
 	{
@@ -125,7 +123,7 @@ class NodeModel implements NodeInterface
 	/**
 	 * Set Node Path
 	 *
-	 * @param Path|string $path
+	 * @param string $path
 	 */
 	public function setPath($path)
 	{

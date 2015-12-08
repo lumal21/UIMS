@@ -53,6 +53,6 @@ final class ControllerNode extends NodeHandlerModel
 	{
 		$this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
 
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $this->getPathValue()[0], 'action' => Constants::returnConstant('DEFAULT_VIEW_ACTION')]))));
+		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $this->getPathValue()[0], 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))));
 	}
 }
