@@ -22,7 +22,9 @@
 namespace UIoT\App\Core\Resources;
 
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
+use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer as LIndexer;
 use UIoT\App\Exception\Register;
 
@@ -64,7 +66,7 @@ final class Indexer
 	 */
 	public static function fileExists($file_name)
 	{
-		return is_file(strtolower(self::getFolder() . $file_name));
+		return is_file(Strings::toRestUrlName(self::getFolder() . $file_name));
 	}
 
 	/**
@@ -77,7 +79,7 @@ final class Indexer
 	{
 		self::$resources[strtolower($file_name)] = [
 			'mime_type' => $mime_type,
-			'file_content' => self::parseResourceFile(self::getFolder() . strtolower($file_name))
+			'file_content' => self::parseResourceFile(self::getFolder() . Strings::toRestUrlName($file_name))
 		];
 	}
 
@@ -154,7 +156,7 @@ final class Indexer
 	 */
 	public static function updateResourceChange($file_name)
 	{
-		SIndexer::updateKey('layout', self::resourceRemove(strtolower($file_name)));
+		SIndexer::updateKey('layout', self::resourceRemove(Strings::toRestUrlName($file_name)));
 	}
 
 	/**
@@ -167,7 +169,7 @@ final class Indexer
 	public static function returnResource($file_name, $header = true)
 	{
 		/* put in str to lower */
-		$file_name = strtolower($file_name);
+		$file_name = Strings::toRestUrlName($file_name);
 
 		/* if resource doesn't exists, or resource is hot linked we must show error */
 		self::checkResourceExistence($file_name) || self::showHotLinkErrorMessage();
@@ -193,7 +195,7 @@ final class Indexer
 	 */
 	public static function resourceRemove($resource_name)
 	{
-		return array_diff(array_keys(self::getResources()), [strtolower($resource_name)]);
+		return array_diff(array_keys(self::getResources()), [Strings::toRestUrlName($resource_name)]);
 	}
 
 	/**
@@ -204,7 +206,7 @@ final class Indexer
 	 */
 	public static function parseResourceFile($file_name)
 	{
-		return file_get_contents(strtolower($file_name));
+		return file_get_contents(Strings::toRestUrlName($file_name));
 	}
 
 	/**
@@ -215,7 +217,7 @@ final class Indexer
 	 */
 	public static function checkResourceExistence($file_name)
 	{
-		return in_array(strtolower($file_name), self::getResourceSessionValue()) || stripos($file_name, 'bower') || stripos($file_name, 'Npm');
+		return Arrays::inArray($file_name, self::getResourceSessionValue()) || stripos($file_name, 'bower') || stripos($file_name, 'Npm');
 	}
 
 	/**
@@ -225,7 +227,7 @@ final class Indexer
 	private static function checkFileExistence($filename)
 	{
 		/* check if file exists */
-		self::fileExists(strtolower($filename)) || Register::getRunner()->errorMessage(907,
+		self::fileExists(Strings::toRestUrlName($filename)) || Register::getRunner()->errorMessage(907,
 			"404!",
 			'Details: ',
 			[
@@ -290,6 +292,6 @@ final class Indexer
 	 */
 	public static function setFolder($folder)
 	{
-		self::$folder = strtolower($folder);
+		self::$folder = Strings::toRestUrlName($folder);
 	}
 }

@@ -56,11 +56,6 @@ class ResourceFileNode extends NodeHandlerModel
 
 		!$this->getResult() || $this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), ['Bower', 'Npm']));
 
-		$file_name = [];
-
-		foreach ($this->getPathValue() as $key => $value)
-			$key == 0 || $file_name[] = implode('/', Arrays::toResourceName(explode('/', $value)));
-
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'file' => implode('/', $file_name)]))));
+		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'file' => $this->getPathValue()]))));
 	}
 }

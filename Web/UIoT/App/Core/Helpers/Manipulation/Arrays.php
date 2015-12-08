@@ -255,4 +255,16 @@ class Arrays
 	{
 		return !!array_intersect($needles, $haystack);
 	}
+
+	/**
+	 * Case Insensitive in Array
+	 *
+	 * @param mixed $needle
+	 * @param mixed $haystack
+	 * @return bool
+	 */
+	public static function inArray($needle, $haystack)
+	{
+		return in_array(strtolower($needle), array_map('strtolower', $haystack));
+	}
 }
