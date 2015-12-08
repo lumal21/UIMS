@@ -162,7 +162,5 @@ final class Render
 		!(Indexer::layoutExists($this->controller_name) && !Indexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
 
 		!(!Indexer::layoutExists($this->controller_name) && Indexer::layoutExists($this->controller_action_name) && !ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
-
-		!(Indexer::layoutExists($this->controller_name) && Indexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
 	}
 }
