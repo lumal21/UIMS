@@ -25,7 +25,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
-use UIoT\App\Core\Layouts\Indexer;
+use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 
 /**
@@ -142,7 +142,7 @@ final class Render
 	 */
 	private function returnControllerLayout()
 	{
-		return Indexer::layoutExists($this->controller_name) ? Indexer::getLayout($this->controller_name) : $this->returnControllerContent();
+		return LayoutIndexer::layoutExists($this->controller_name) ? LayoutIndexer::getLayout($this->controller_name) : $this->returnControllerContent();
 	}
 
 	/**
@@ -159,8 +159,8 @@ final class Render
 	 */
 	private function setResources()
 	{
-		!(Indexer::layoutExists($this->controller_name) && !Indexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
+		!(LayoutIndexer::layoutExists($this->controller_name) && !LayoutIndexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
 
-		!(!Indexer::layoutExists($this->controller_name) && Indexer::layoutExists($this->controller_action_name) && !ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
+		!(!LayoutIndexer::layoutExists($this->controller_name) && LayoutIndexer::layoutExists($this->controller_action_name) && !ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
 	}
 }
