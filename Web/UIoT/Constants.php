@@ -100,37 +100,37 @@ C::addConstant('RESOURCE_CACHE_FOLDER', C::returnConstant('RESOURCE_FOLDER') . C
  * Global Variable (Server Variable)
  * Request URL
  */
-C::addConstant('REQUEST_URL', @$_SERVER['REQUEST_URI']);
+C::addConstant('REQUEST_URL', $_SERVER['REQUEST_URI']);
 
 /*
  * Global Variable (Server Variable)
  * Script Name
  */
-C::addConstant('SCRIPT_NAME', @$_SERVER['SCRIPT_NAME']);
+C::addConstant('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 
 /*
  * Global Variable (Server Variable)
  * Query String
  */
-C::addConstant('QUERY_STRING', @$_SERVER['QUERY_STRING']);
+C::addConstant('QUERY_STRING', $_SERVER['QUERY_STRING']);
 
 /*
  * Global Variable (Request Variable)
  * Post Method
  */
-C::addJsonConstant('HTTP_PHP_POST', @$_POST);
+C::addJsonConstant('HTTP_PHP_POST', $_POST);
 
 /*
  * Global Variable (Server Variable)
  * PhP Self
  */
-C::addConstant('PHP_SELF', @$_SERVER['PHP_SELF']);
+C::addConstant('PHP_SELF', $_SERVER['PHP_SELF']);
 
 /*
  * Global Variable (Server Variable)
  * Server
  */
-C::addJsonConstant('SERVER_WEB', @$_SERVER);
+C::addJsonConstant('SERVER_WEB', $_SERVER);
 
 /**
  * MVC Constants
