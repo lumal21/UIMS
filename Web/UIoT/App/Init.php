@@ -56,14 +56,17 @@ final class Init
 	 */
 	public function __construct()
 	{
-		/* start exception handler */
+		/* start exception manager */
 		(new Exception\Manager);
 
-		/* start security handler */
+		/* start security manager */
 		(new Security\Manager);
 
-		/* session register */
+		/* start session manager */
 		(new Core\Communication\Sessions\Manager);
+
+		/* start resource manager */
+		(new Core\Resources\Manager);
 
 		/* start raise */
 		(new Core\Communication\Requesting\Raise);

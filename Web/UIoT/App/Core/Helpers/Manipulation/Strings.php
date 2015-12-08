@@ -34,6 +34,7 @@ class Strings
 	 *
 	 * @param string|LayoutModel $class
 	 * @param string $namespace
+	 *
 	 * @return string|false
 	 */
 	public static function toNameSpace($class = '', $namespace = '')
@@ -72,6 +73,19 @@ class Strings
 	public static function toRestUrlName($string = '')
 	{
 		return strtolower($string);
+	}
+
+	/**
+	 * Check if is Equal
+	 *
+	 * @param string $string_one
+	 * @param string $string_two
+	 *
+	 * @return bool
+	 */
+	public static function isEqual($string_one, $string_two)
+	{
+		return self::toRestUrlName($string_one) == self::toRestUrlName($string_two);
 	}
 
 	/**

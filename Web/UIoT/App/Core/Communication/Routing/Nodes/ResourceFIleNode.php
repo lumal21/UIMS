@@ -22,8 +22,8 @@
 namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 use UIoT\App\Core\Communication\Routing\RenderSelector;
-use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
@@ -52,10 +52,8 @@ class ResourceFileNode extends NodeHandlerModel
 	{
 		$this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
 
-		$this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+		$this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
 
-		!$this->getResult() || $this->setResult(Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), ['Bower', 'Npm']));
-
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'file' => $this->getPathValue()]))));
+		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'asset' => $this->getPathValue()[2]]))));
 	}
 }

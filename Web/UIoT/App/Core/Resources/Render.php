@@ -36,18 +36,11 @@ final class Render
 	private $layout_name;
 
 	/**
-	 * File Name
+	 * Asset Name
 	 *
 	 * @var string
 	 */
-	private $file_name;
-
-	/**
-	 * File Name in Array
-	 *
-	 * @var array
-	 */
-	private $file_name_array = [];
+	private $asset_name;
 
 	/**
 	 * Init Resource Handler
@@ -57,8 +50,6 @@ final class Render
 	public function __construct($arguments = [])
 	{
 		$this->setArguments($arguments);
-
-		$this->adjustFileName();
 	}
 
 	/**
@@ -68,18 +59,8 @@ final class Render
 	 */
 	private function setArguments($arguments = [])
 	{
-		$this->layout_name     = $arguments['layout'];
-		$this->file_name_array = $arguments['file'];
-		$this->file_name       = '';
-	}
-
-	/**
-	 * Set File Name
-	 */
-	private function adjustFileName()
-	{
-		/* implode setting the file name, removing the layout firstly from the array */
-		$this->file_name = implode('/', array_diff($this->file_name_array, [$this->layout_name]));
+		$this->layout_name = $arguments['layout'];
+		$this->asset_name  = pathinfo($arguments['asset'], PATHINFO_FILENAME);
 	}
 
 	/**
@@ -93,6 +74,6 @@ final class Render
 		Indexer::registerResources($this->layout_name);
 
 		/* return resource */
-		return Indexer::returnResource($this->file_name);
+		return Indexer::returnResource($this->asset_name);
 	}
 }

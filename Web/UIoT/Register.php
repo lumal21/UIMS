@@ -142,8 +142,5 @@ Router::addRoute('/(\w+)/(.*)', new ArgumentsNode, 3, 'get', 'web_page');
 Router::addRoute('/(\w+)', new LayoutNode, 1, 'get', 'resource_file');
 
 /* set resource type folder routing parameters yoururl/LAYOUT/RESOURCE-TYPE-FOLDER - For Opening Resource Files */
-Router::addRoute('/(\w+)', new ResourceTypeNode, 2, 'get', 'resource_file');
-
-/* set resource file parameters routing parameters yoururl/LAYOUT/RESOURCE-TYPE-FOLDER/PATH/TO/FILE - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceFileNode, 3, 'get', 'resource_file');
+Router::addRoute('/(\w+)/(.*)', new ResourceFileNode, 2, 'get', 'resource_file');
 

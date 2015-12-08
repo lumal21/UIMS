@@ -47,7 +47,7 @@ final class Pages
 	public static function addEmbedScript($script_name)
 	{
 		/* first add resource */
-		Indexer::addResource($script_name, 'script/javascript');
+		Indexer::addAsset($script_name, 'script/javascript');
 
 		/* so echo the script */
 		Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name, false)));

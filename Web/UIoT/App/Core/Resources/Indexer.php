@@ -21,6 +21,7 @@
 
 namespace UIoT\App\Core\Resources;
 
+use Assetic\Asset\FileAsset;
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
@@ -35,52 +36,28 @@ use UIoT\App\Exception\Register;
 final class Indexer
 {
 	/**
-	 * Resource Array
-	 *
-	 * @var array
-	 */
-	private static $resources = [];
-
-	/**
-	 * Resource Folder
-	 *
-	 * @var string
-	 */
-	private static $folder = '';
-
-	/**
 	 * Set Resource Folder
 	 *
-	 * @param string $f
-	 */
-	public static function setResourceFolder($f)
-	{
-		self::setFolder(Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
-	}
-
-	/**
-	 * Check if File Exists
+	 * @param string $asset_folder
+	 * @param string $asset_file_name
 	 *
-	 * @param string $file_name
-	 * @return bool
+	 * @return string
 	 */
-	public static function fileExists($file_name)
+	public static function convertToFileName($asset_folder, $asset_file_name)
 	{
-		return is_file(Strings::toRestUrlName(self::getFolder() . $file_name));
+		return Strings::toRestUrlName(Constants::returnConstant('RESOURCE_FOLDER') . $asset_folder . '/' . $asset_file_name);
 	}
 
 	/**
 	 * Add Resource
 	 *
-	 * @param string $file_name
-	 * @param string $mime_type
+	 * @param string $asset_name
+	 * @param string $asset_folder
+	 * @param string $asset_file_name
 	 */
-	public static function addResource($file_name, $mime_type)
+	public static function addAsset($asset_name, $asset_folder, $asset_file_name)
 	{
-		self::$resources[strtolower($file_name)] = [
-			'mime_type' => $mime_type,
-			'file_content' => self::parseResourceFile(self::getFolder() . Strings::toRestUrlName($file_name))
-		];
+		Manager::getAssetManager()->set($asset_name, new FileAsset(self::convertToFileName($asset_folder, $asset_file_name)));
 	}
 
 	/**
@@ -121,7 +98,7 @@ final class Indexer
 	public static function calculateResourceChanges()
 	{
 		// get array values
-		$resource_array = array_keys(self::getResources());
+		$resource_array = Manager::getAssetManager()->getNames();
 
 		// if the session doesn't exists, add then
 		SIndexer::addKey('layout', $resource_array);
@@ -139,95 +116,77 @@ final class Indexer
 	}
 
 	/**
-	 * Check if Session array exists, if yes, return the session array as resource file names
-	 * if not, return local array of resource file names.
+	 * Check if the Required Asset is Valid and Exists
 	 *
 	 * @return array
 	 */
-	public static function getResourceSessionValue()
+	public static function getAvailableAssets()
 	{
-		return SIndexer::keyExists('layout') ? (array)SIndexer::getKeyValue('layout') : (array)array_keys(self::getResources());
+		return SIndexer::keyExists('layout') ? (array)SIndexer::getKeyValue('layout') : Manager::getAssetManager()->getNames();
 	}
 
 	/**
 	 * Update Resource Change
 	 *
-	 * @param string $file_name
+	 * @param string $asset_name
 	 */
-	public static function updateResourceChange($file_name)
+	public static function updateAssetsChanges($asset_name)
 	{
-		SIndexer::updateKey('layout', self::resourceRemove(Strings::toRestUrlName($file_name)));
+		SIndexer::updateKey('layout', self::removeAsset($asset_name));
 	}
 
 	/**
-	 * Return Resource
+	 * Return Asset
 	 *
-	 * @param string $file_name
-	 * @param boolean $header
+	 * @param string $asset_name
+	 *
 	 * @return string
 	 */
-	public static function returnResource($file_name, $header = true)
+	public static function returnResource($asset_name)
 	{
-		/* put in str to lower */
-		$file_name = Strings::toRestUrlName($file_name);
-
 		/* if resource doesn't exists, or resource is hot linked we must show error */
-		self::checkResourceExistence($file_name) || self::showHotLinkErrorMessage();
+		self::checkIfAssetIsValid($asset_name) || self::showHotLinkErrorMessage();
 
 		/* check for file existence */
-		self::checkResourceExistence($file_name) || self::checkFileExistence($file_name);
+		self::checkIfAssetIsValid($asset_name) || self::checkAssetExistence($asset_name);
 
 		/* update the resource change */
-		self::updateResourceChange($file_name);
+		self::updateAssetsChanges($asset_name);
 
-		/* add header (mime-type) */
-		!$header || header('Content-Type: ' . self::getResources()[$file_name]['mime_type']);
-
-		/* return content */
-		return self::getResources()[$file_name]['file_content'];
+		/* return asset */
+		return Manager::returnAsset($asset_name)->dump();
 	}
 
 	/**
-	 * Remove Resource
+	 * Remove Asset From Session
 	 *
-	 * @param string $resource_name
+	 * @param string $asset_name
 	 * @return array
 	 */
-	public static function resourceRemove($resource_name)
+	public static function removeAsset($asset_name)
 	{
-		return array_diff(array_keys(self::getResources()), [Strings::toRestUrlName($resource_name)]);
+		return array_diff(Manager::getAssetManager()->getNames(), [$asset_name]);
 	}
 
 	/**
-	 * Parse Resource File
+	 * Check if Asset Is Valid in Session
 	 *
-	 * @param string $file_name
-	 * @return string
-	 */
-	public static function parseResourceFile($file_name)
-	{
-		return file_get_contents(Strings::toRestUrlName($file_name));
-	}
-
-	/**
-	 * Check if Resource Exists
-	 *
-	 * @param string $file_name
+	 * @param string $asset_name
 	 * @return bool
 	 */
-	public static function checkResourceExistence($file_name)
+	public static function checkIfAssetIsValid($asset_name)
 	{
-		return Arrays::inArray($file_name, self::getResourceSessionValue()) || stripos($file_name, 'bower') || stripos($file_name, 'Npm');
+		return Arrays::inArray($asset_name, self::getAvailableAssets());
 	}
 
 	/**
-	 * Check if File Exists
-	 * @param string $filename
+	 * Check if Asset exists
+	 *
+	 * @param string $asset_name
 	 */
-	private static function checkFileExistence($filename)
+	private static function checkAssetExistence($asset_name)
 	{
-		/* check if file exists */
-		self::fileExists(Strings::toRestUrlName($filename)) || Register::getRunner()->errorMessage(907,
+		!Manager::getAssetManager()->has($asset_name) || Register::getRunner()->errorMessage(907,
 			"404!",
 			'Details: ',
 			[
@@ -253,45 +212,5 @@ final class Indexer
 				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
 			]
 		);
-	}
-
-	/**
-	 * Get Resource Array
-	 *
-	 * @return array
-	 */
-	public static function getResources()
-	{
-		return self::$resources;
-	}
-
-	/**
-	 * Set Resource Array
-	 *
-	 * @param array $resources
-	 */
-	public static function setResources($resources)
-	{
-		self::$resources = $resources;
-	}
-
-	/**
-	 * Get Folder String
-	 *
-	 * @return string
-	 */
-	public static function getFolder()
-	{
-		return self::$folder;
-	}
-
-	/**
-	 * Set Folder String
-	 *
-	 * @param string $folder
-	 */
-	public static function setFolder($folder)
-	{
-		self::$folder = Strings::toRestUrlName($folder);
 	}
 }

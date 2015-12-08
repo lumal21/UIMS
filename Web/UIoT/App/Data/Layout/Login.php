@@ -37,13 +37,12 @@ class Login extends LayoutModel
 	 */
 	public static function __resources()
 	{
-		ResourceIndexer::setResourceFolder('Default');
-		ResourceIndexer::addResource('Images/6.jpg', 'image/jpg');
-		ResourceIndexer::addResource('Images/Logo_small_transparent.png', 'image/png');
-		ResourceIndexer::addResource('Stylesheet/Foundation.old.css', 'text/css');
-		ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
-		ResourceIndexer::setResourceFolder('Vendor');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Dist/Foundation.css', 'text/css');
+		ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
+		ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+
+		ResourceIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+		ResourceIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+		ResourceIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
 	}
 
 	/**

@@ -54,14 +54,14 @@ final class Render
 	 *
 	 * @var string
 	 */
-	private $controller;
+	private $controller_name;
 
 	/**
 	 * Action Name
 	 *
 	 * @var string
 	 */
-	private $action;
+	private $controller_action_name;
 
 	/**
 	 * Init Template (Layout/Controller/View) Handler
@@ -82,8 +82,8 @@ final class Render
 	 */
 	private function setArguments($arguments = [])
 	{
-		$this->controller = Strings::toControllerName($arguments['controller']);
-		$this->action     = Strings::toActionName($arguments['action']);
+		$this->controller_name        = Strings::toControllerName($arguments['controller']);
+		$this->controller_action_name = Strings::toActionName($arguments['action']);
 	}
 
 	/**
@@ -92,7 +92,7 @@ final class Render
 	private function setController()
 	{
 		/* Start Controller Commander, and set Action to Execute */
-		(new Commander($this->controller, $this->action))->setAction($this->action);
+		(new Commander($this->controller_name, $this->controller_action_name))->setAction($this->controller_action_name);
 	}
 
 	/**
@@ -132,7 +132,7 @@ final class Render
 	 */
 	private function returnControllerContent()
 	{
-		return ControllerIndexer::controllerExists($this->controller) ? Commander::getControllerContent() : DataHandler::openParserLayout($this->action);
+		return ControllerIndexer::controllerExists($this->controller_name) ? Commander::getControllerContent() : DataHandler::openParserLayout($this->controller_action_name);
 	}
 
 	/**
@@ -143,7 +143,7 @@ final class Render
 	 */
 	private function returnControllerView()
 	{
-		return ViewIndexer::viewExists($this->controller) ? ViewIndexer::showView($this->controller) : $this->returnControllerContent();
+		return ViewIndexer::viewExists($this->controller_name) ? ViewIndexer::showView($this->controller_name) : $this->returnControllerContent();
 	}
 
 	/**
@@ -160,6 +160,6 @@ final class Render
 	 */
 	private function setResources()
 	{
-		ResourceIndexer::registerResources(in_array($this->action, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->action : $this->controller, true);
+		ResourceIndexer::registerResources(in_array($this->controller_name, Constants::returnJsonConstant('PREDEFINED_LAYOUTS')) ? $this->controller_name : $this->controller_action_name, true);
 	}
 }

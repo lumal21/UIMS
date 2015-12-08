@@ -262,10 +262,10 @@
 
 </style>
 <style>
-	@import url('/Main/Stylesheet/Styles.css');
-	@import url('/Main/Stylesheet/Foundation.old.css');
-	@import url('/Main/Bower/Foundation-sites/Dist/Foundation.css');
-	@import url('/Main/Stylesheet/Main.css');
+	@import url('/Main/Resources/MainStyle.css');
+	@import url('/Main/Resources/FoundationOld.css');
+	@import url('/Main/Resources/Foundation.css');
+	@import url('/Main/Resources/MainMainStyle.css');
 </style>
 <body class="jj">
 
@@ -347,15 +347,15 @@
 	</div>
 </div>
 </body>
-<script src="/Main/Bower/Jquery/Dist/Jquery.js"></script>
-<script src="/Main/Bower/Foundation-sites/Dist/Foundation.min.js"></script>
+<script src="/Main/Resources/Jquery.js"></script>
+<script src="/Main/Resources/FoundationJs.js"></script>
 <script>
 	$ (document).foundation();
 </script>
-<script src="/Main/Bower/Foundation-sites/Js/Foundation.core.js"></script>
-<script src="/Main/Bower/Foundation-sites/Js/Foundation.util.triggers.js"></script>
-<script src="/Main/Bower/Foundation-sites/Js/Foundation.util.motion.js"></script>
-<script src="/Main/Bower/Foundation-sites/Js/Foundation.offcanvas.js"></script>
+<script src="/Main/Resources/FoundationCore.js"></script>
+<script src="/Main/Resources/FoundationTriggers.js"></script>
+<script src="/Main/Resources/FoundationMotion.js"></script>
+<script src="/Main/Resources/FoundationCanvas.js"></script>
 
 
 

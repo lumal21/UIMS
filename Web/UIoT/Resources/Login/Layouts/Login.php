@@ -1,7 +1,7 @@
 <style>
-	@import url('/Login/Stylesheet/Styles.css');
-	@import url('/Login/Stylesheet/Foundation.old.css');
-	@import url('/Login/Bower/Foundation-sites/Dist/Foundation.css');
+	@import url('/Login/Resources/MainStyle.css');
+	@import url('/Login/Resources/FoundationOld.css');
+	@import url('/Login/Resources/Foundation.css');
 </style>
 <style type="text/css">
 	.bg {
@@ -12,7 +12,7 @@
 	}
 
 	.bs {
-		background: url(/Login/Images/6.jpg);
+		background: url(/Login/Resources/Background.jpg);
 		background-size: cover;
 		background-position-y: -40px;
 	}
@@ -45,7 +45,7 @@
 </style>
 <body class="bs">
 <div class="bg">
-	<img src="/Login/Images/Logo_small_transparent.png" class="jk"/>
+	<img src="/Login/Resources/Logo.png" class="jk"/>
 </div>
 <div class="nope obese"></div>
 <div class="nope obese"></div>

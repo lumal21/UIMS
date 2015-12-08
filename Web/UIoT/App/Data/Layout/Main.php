@@ -38,19 +38,20 @@ class Main extends LayoutModel
 	 */
 	public static function __resources()
 	{
-		ResourceIndexer::setResourceFolder('Default');
-		ResourceIndexer::addResource('Stylesheet/Styles.css', 'text/css');
-		ResourceIndexer::addResource('Stylesheet/Foundation.old.css', 'text/css');
-		ResourceIndexer::setResourceFolder('Vendor');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Dist/Foundation.css', 'text/css');
-		ResourceIndexer::addResource('Bower/Jquery/Dist/Jquery.js', 'script/javascript');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Dist/Foundation.min.js', 'script/javascript');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Js/Foundation.core.js', 'script/javascript');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Js/Foundation.offcanvas.js', 'script/javascript');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Js/Foundation.util.triggers.js', 'script/javascript');
-		ResourceIndexer::addResource('Bower/Foundation-sites/Js/Foundation.util.motion.js', 'script/javascript');
-		ResourceIndexer::setResourceFolder('Main');
-		ResourceIndexer::addResource('Stylesheet/Main.css', 'text/css');
+		ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
+		ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+
+		ResourceIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+		ResourceIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+		ResourceIndexer::addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
+		ResourceIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+
+		ResourceIndexer::addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
+		ResourceIndexer::addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
+		ResourceIndexer::addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
+		ResourceIndexer::addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+		ResourceIndexer::addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
+		ResourceIndexer::addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
 	}
 
 	/**

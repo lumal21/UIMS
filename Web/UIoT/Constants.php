@@ -66,50 +66,23 @@ C::addConstant('ROOT_FOLDER', __DIR__);
 C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
 
 /*
+ * Global MVC Constants
+ * Resource Folder Name
+ */
+C::addConstant('RESOURCE_FOLDER_NAME', 'Resources');
+
+/*
  * UIoTCMS Resources Folder
  * Here is configured the folder where Resources Alive
  * You can change the Resource folder if you want
  * But must set the New Path here.
  *  Warning: Vendor folder location, CAN'T be changed!
  */
-C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/Resources/'));
+C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/' . C::returnConstant('RESOURCE_FOLDER_NAME') . '/'));
 
 /**
  * Registering Constants
  */
-
-/*
- * UIoTCMS Resource Types
- * That namings is to set, what type of sub-resource folders is valid
- * Example:
- *  1. Root Resource folder: Resources/
- *  2. Controller Resource Folder: Resources/Main {is an example,} (the valid name is only Main)
- *  3. Resource Folder Type: Images/
- *  4. This will be a valid resource sub-folder, because is listed in this array
- * Example:
- *  http://mysite.com:port/cms-folder/controller-name/images/my/file/path/my/file.extension
- *  That's a valid url, remember the only part that is validated is:
- *      1. controller-name
- *      2. images (resource type)
- *      3. /my/file..../file.extension
- * Example 2:
- *  http://mysite.com:port/cms-folder/controller-name/my-ass/my/file/path/my/file.extension
- *  That's not a valid url, remember the only part that is validated is:
- *      1. controller-name
- *      2. my-ass (resource type)
- *      3. /my/file..../file.extension
- *  And my-ass is not an resource-type listed here.
- */
-C::addJsonConstant('RESOURCE_TYPES', [
-		'',
-		'Images',
-		'Fonts',
-		'Less',
-		'Scripts',
-		'Scss',
-		'Stylesheet'
-	]
-);
 
 /*
  * @warning it's important register here
