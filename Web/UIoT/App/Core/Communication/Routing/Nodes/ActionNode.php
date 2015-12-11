@@ -57,6 +57,6 @@ final class ActionNode extends NodeHandlerModel
 
 		$this->getResult() || Commander::showNonExistentActionError($this->getPathValue()[0], $this->getPathValue()[1]);
 
-		!$this->getResult() || $this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $this->getPathValue()[0], 'action' => $this->getPathValue()[1]]))));
+		!$this->getResult() || $this->setResultContent(RenderSelector::go(new Render(['controller' => $this->getPathValue()[0], 'action' => $this->getPathValue()[1]])));
 	}
 }

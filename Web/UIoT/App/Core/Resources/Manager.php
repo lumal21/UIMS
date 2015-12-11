@@ -21,9 +21,13 @@
 
 namespace UIoT\App\Core\Resources;
 
+use Assetic\Asset\AssetCache;
+use Assetic\Asset\FileAsset;
 use Assetic\AssetManager;
+use Assetic\Cache\FilesystemCache;
 use Assetic\Factory\AssetFactory;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Core\Helpers\System\Settings;
 
 /**
  * Class Manager
@@ -44,6 +48,20 @@ final class Manager
 	private static $asset_factory;
 
 	/**
+	 * Enable/Disable File System Cache
+	 *
+	 * @var bool
+	 */
+	private static $enable_caching = false;
+
+	/**
+	 * Cache Manager
+	 *
+	 * @var FileSystemCache
+	 */
+	private static $cache_manager;
+
+	/**
 	 * Manager constructor.
 	 */
 	public function __construct()
@@ -51,6 +69,21 @@ final class Manager
 		self::setAssetManager(new AssetManager);
 		self::setAssetFactory(new AssetFactory(Constants::returnConstant('RESOURCE_FOLDER')));
 		self::getAssetFactory()->setAssetManager($this->getAssetManager());
+		self::setEnableCaching(Settings::getSetting('resources')->enable_caching);
+	}
+
+	/**
+	 * Add an Asset
+	 *
+	 * @param string $asset_name
+	 * @param string $asset_path
+	 */
+	public static function addAsset($asset_name, $asset_path)
+	{
+		if (self::isCachingEnabled())
+			self::getAssetManager()->set($asset_name, new AssetCache(new FileAsset($asset_path), self::getCacheManager()));
+		else
+			self::getAssetManager()->set($asset_name, new FileAsset($asset_path));
 	}
 
 	/**
@@ -103,5 +136,47 @@ final class Manager
 	public static function setAssetFactory($asset_factory)
 	{
 		self::$asset_factory = $asset_factory;
+	}
+
+	/**
+	 * Return if is Enabled Cache System
+	 *
+	 * @return boolean
+	 */
+	public static function isCachingEnabled()
+	{
+		return self::$enable_caching;
+	}
+
+	/**
+	 * Enable/Disable Cache System
+	 *
+	 * @param boolean $enable_caching
+	 */
+	public static function setEnableCaching($enable_caching)
+	{
+		self::$enable_caching = $enable_caching;
+
+		!$enable_caching || self::setCacheManager(new FilesystemCache(Constants::returnConstant('RESOURCE_CACHE_FOLDER')));
+	}
+
+	/**
+	 * Return Cache Manager
+	 *
+	 * @return FilesystemCache
+	 */
+	public static function getCacheManager()
+	{
+		return self::$cache_manager;
+	}
+
+	/**
+	 * Set Cache Manager
+	 *
+	 * @param FilesystemCache $cache_manager
+	 */
+	public static function setCacheManager($cache_manager)
+	{
+		self::$cache_manager = $cache_manager;
 	}
 }

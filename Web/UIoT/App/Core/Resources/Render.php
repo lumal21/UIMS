@@ -20,6 +20,7 @@
  */
 
 namespace UIoT\App\Core\Resources;
+use UIoT\App\Core\Helpers\Manipulation\Files;
 
 
 /**
@@ -60,7 +61,7 @@ final class Render
 	private function setArguments($arguments = [])
 	{
 		$this->layout_name = $arguments['layout'];
-		$this->asset_name  = pathinfo($arguments['asset'], PATHINFO_FILENAME);
+		$this->asset_name  = Files::getBaseName($arguments['asset']);
 	}
 
 	/**

@@ -54,6 +54,6 @@ class ResourceFileNode extends NodeHandlerModel
 
 		$this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
 
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['layout' => $this->getPathValue()[0], 'asset' => $this->getPathValue()[2]]))));
+		$this->setResultContent(RenderSelector::go(new Render(['layout' => $this->getPathValue()[0], 'asset' => $this->getPathValue()[2]])));
 	}
 }

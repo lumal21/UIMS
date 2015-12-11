@@ -118,6 +118,6 @@ final class Indexer
 	 */
 	public static function redirectToController($controller, $controller_action = DEFAULT_CONTROLLER_ACTION)
 	{
-		return RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => $controller, 'action' => $controller_action])));
+		return RenderSelector::go(new Render(['controller' => $controller, 'action' => $controller_action]));
 	}
 }

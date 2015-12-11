@@ -88,5 +88,9 @@ Settings::setAndStoreSettings([
 			'error_developer_code' => 'de',
 			// set whoops resource folder
 			'error_resource_folder' => 'Whoops'
+		],
+	'resources' =>
+		[
+			'enable_caching' => true
 		]
 ]);

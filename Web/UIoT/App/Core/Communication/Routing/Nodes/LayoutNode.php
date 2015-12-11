@@ -52,6 +52,6 @@ class LayoutNode extends NodeHandlerModel
 	{
 		$this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
 
-		$this->setResultContent(RenderSelector::select(RenderSelector::instantiate(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))));
+		$this->setResultContent(RenderSelector::go(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
 	}
 }

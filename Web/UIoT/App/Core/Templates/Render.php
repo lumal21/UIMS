@@ -155,12 +155,29 @@ final class Render
 	}
 
 	/**
+	 * Set Dynamic/Abstract Resources
+	 */
+	private function setDynamicResources()
+	{
+		!(!LayoutIndexer::layoutExists($this->controller_name) && LayoutIndexer::layoutExists($this->controller_action_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
+	}
+
+	/**
 	 * Register Controller's Layout Resources
 	 */
 	private function setResources()
 	{
-		!(LayoutIndexer::layoutExists($this->controller_name) && !LayoutIndexer::layoutExists($this->controller_action_name) && ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_name, true);
+		if (ControllerIndexer::controllerExists($this->controller_name))
+			$this->setStaticResources();
+		else
+			$this->setDynamicResources();
+	}
 
-		!(!LayoutIndexer::layoutExists($this->controller_name) && LayoutIndexer::layoutExists($this->controller_action_name) && !ControllerIndexer::controllerExists($this->controller_name)) || ResourceIndexer::registerResources($this->controller_action_name, true);
+	/**
+	 * Set Static Resources
+	 */
+	private function setStaticResources()
+	{
+		!(LayoutIndexer::layoutExists($this->controller_name) && !LayoutIndexer::layoutExists($this->controller_action_name)) || ResourceIndexer::registerResources($this->controller_name, true);
 	}
 }

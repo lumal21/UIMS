@@ -31,12 +31,23 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
 final class RenderSelector
 {
 	/**
+	 * Abbreviation for the CallBacks
+	 *
+	 * @param $render
+	 * @return mixed|null|string
+	 */
+	public static function go($render)
+	{
+		return self::select(self::instantiate($render));
+	}
+
+	/**
 	 * Show the Render
 	 *
 	 * @param $instance
 	 * @return mixed|null|string
 	 */
-	public static function select($instance)
+	private static function select($instance)
 	{
 		if ($instance instanceof ResourceRender)
 			return $instance->show();
@@ -51,7 +62,7 @@ final class RenderSelector
 	 * @param $render
 	 * @return ResourceRender|TemplateRender
 	 */
-	public static function instantiate($render)
+	private static function instantiate($render)
 	{
 		return $render;
 	}
