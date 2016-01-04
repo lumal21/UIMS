@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteRule !\.(ico)$ index.php [QSA,L,NC]
+    RewriteRule !(\.(ico))$ index.php [QSA,L,NC]
 </IfModule>
 <IfModule mod_speling.c>
     CheckSpelling on
