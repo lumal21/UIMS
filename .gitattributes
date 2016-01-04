@@ -18,4 +18,5 @@
 
 # UIoT Repo Settings
 *.php linguist-language=PHP
-UIoT/Resources/* linguist-vendored
+Web/UIoT/Vendor/* linguist-vendored
+Web/UIoT/Resources/* linguist-vendored
