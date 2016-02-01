@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Templates;
@@ -36,6 +36,8 @@ final class Indexer
 	 * @var string
 	 */
 	public static $folder = '';
+	
+	private static $variables = [];
 
 	/**
 	 * Set Template Folder
@@ -45,6 +47,17 @@ final class Indexer
 	public static function setTemplateFolder($f)
 	{
 		self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
+	}
+	
+	/**
+	 * Add Variable
+	 *
+	 * @param string $key
+	 * @param string $value
+	 */
+	public static function addVariable($key, $value)
+	{
+		self::$variables[$key] = $value;
 	}
 
 	/**
@@ -66,7 +79,7 @@ final class Indexer
 	public static function parseTemplateFile($file_name = '')
 	{
 		ob_start();
-
+		extract(self::$variables);
 		include_once $file_name;
 		$template = ob_get_contents();
 		ob_end_clean();
