@@ -318,7 +318,7 @@
 			<section class="main-section">
 				<div class="nope obese" id="Closing"></div>
 				<div class="row" id="Section1">
-					<?= \UIoT\App\Core\Controllers\Commander::getControllerContent(); ?>
+					{{resource_content}}
 				</div>
 			</section>
 		</div>
