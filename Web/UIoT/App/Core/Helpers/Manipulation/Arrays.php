@@ -178,8 +178,6 @@ class Arrays
 		return array_filter($array, 
 		
 			/**
-			 * Return Logical Comparsion
-			 *
 			 * @param object|array|mixed $var
 			 */
 			function ($var) use ($parameter_name, $parameter_value, $expression) {
@@ -235,9 +233,15 @@ class Arrays
 	 */
 	public static function getArrayObjectProperty($getNodes, $parameter_name)
 	{
-		return array_map(function ($node) use ($parameter_name) {
-			return $node->{'get' . $parameter_name}();
-		}, $getNodes);
+		return array_map
+		(
+			/**
+			 * @param object|array|mixed $node
+			 */
+			 function ($node) use ($parameter_name) {
+			 	return $node->{'get' . $parameter_name}();
+			 }, $getNodes
+		);
 	}
 
 	/**
