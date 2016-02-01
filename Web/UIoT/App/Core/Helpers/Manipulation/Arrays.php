@@ -194,21 +194,6 @@ class Arrays
 	}
 
 	/**
-	 * Remove each instance of an object within an array (matched on a given property, $prop)
-	 *
-	 * @param array $array
-	 * @param mixed $value
-	 * @param string $prop
-	 * @return array
-	 */
-	public static function removeObjectFromArray(&$array, $value, $prop)
-	{
-		return array_filter($array, function ($a) use ($value, $prop) {
-			return $a->$prop !== $value;
-		});
-	}
-
-	/**
 	 * Return Object by Search for Property
 	 *
 	 * @param $array
