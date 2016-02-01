@@ -44,7 +44,7 @@ class Home extends Main
 	public function __templates()
 	{
 		TemplateIndexer::setTemplateFolder('Home');
-		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent())
+		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
 		TemplateIndexer::addTemplate('Layouts/Home.php');
 	}
 
