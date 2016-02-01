@@ -47,18 +47,4 @@ Please perform changes and submit pull requests from the ``dev`` branch instead 
 
 ### Web Site
 
-access our website (beta) [here](http://uiotweb.azurewebsites.net/).
-
-### SensioLabs Insight Custom Configuration
-```
-rules:
-    php.dynamically_change_configuration:
-        enabled: false
-    task_todo_comment:
-        enabled: false
-    symfony.include_statement_used:
-        enabled: false
-    web.apache_config:
-        enabled: false
-```
-
+access our website (beta) [here](https://uiot.org/).
