@@ -58,7 +58,7 @@
 				<div class="row">
 					<div class="large-6 columns">
 						<h5>Login</h5>
-						<?= \UIoT\App\Core\Controllers\Commander::getControllerContent(); ?>
+						{{resource_content}}
 					</div>
 					<div class="large-6 columns">
 						<p>Welcome to UIoT administration panel.<br/> This section is restricted to registered users.
