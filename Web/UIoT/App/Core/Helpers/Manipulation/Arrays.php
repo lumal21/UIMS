@@ -178,9 +178,9 @@ class Arrays
 		return array_filter($array, 
 		
 			/**
-			 * @param object|array|mixed $var
+			 * @param NodeHandlerModel|NodeModel|object|array|mixed $var
 			 */
-			function ($var) use ($parameter_name, $parameter_value, $expression) {
+			function (NodeModel $var) use ($parameter_name, $parameter_value, $expression) {
 
 				$variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 	
@@ -236,9 +236,9 @@ class Arrays
 		return array_map
 		(
 			/**
-			 * @param object|array|mixed $node
+			 * @param NodeModel|object|array|mixed $node
 			 */
-			 function ($node) use ($parameter_name) {
+			 function (NodeModel $node) use ($parameter_name) {
 			 	return $node->{'get' . $parameter_name}();
 			 }, $getNodes
 		);
