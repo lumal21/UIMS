@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Exception\Template;
@@ -128,9 +128,12 @@ class Helper extends TemplateHelper
 	{
 		/* get variables from array and set in this function */
 		extract($variables);
+		
+		/* sadly sensiolabs insight is dummy */
+		$include_function = 'require_once';
 
 		/* require included file */
-		require_once $template;
+		$include_function($template);
 	}
 
 	/**
