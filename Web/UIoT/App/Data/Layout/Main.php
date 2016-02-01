@@ -68,7 +68,7 @@ class Main extends LayoutModel
 	public function __templates()
 	{
 		TemplateIndexer::setTemplateFolder('Main');
-		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent())
+		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
 		TemplateIndexer::addTemplate('Layouts/Main.php');
 	}
 
