@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Data\Layout;
@@ -44,6 +44,7 @@ class Test extends Main
 	public function __templates()
 	{
 		TemplateIndexer::setTemplateFolder('Main');
+		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent())
 		TemplateIndexer::addTemplate('Layouts/Main.php');
 	}
 
