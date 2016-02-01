@@ -60,7 +60,7 @@ class Login extends LayoutModel
 	public function __templates()
 	{
 		TemplateIndexer::setTemplateFolder('Login');
-		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent())
+		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
 		TemplateIndexer::addTemplate('Layouts/Login.php');
 	}
 
