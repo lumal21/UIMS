@@ -69,6 +69,18 @@ final class Indexer
 	{
 		Html::add(self::parseTemplateFile(self::$folder . $file_name));
 	}
+	
+	/**
+	 * Parse Template Variables
+	 *
+	 * @param mixed $template
+	 * @param string $variables
+	 */
+	public static function extractVariables($template = '', $variables)
+	{
+		foreach($variables as $word => $content)
+			$template = str_replace($word, $content, $template);
+	}
 
 	/**
 	 * Parse Template File
@@ -79,12 +91,14 @@ final class Indexer
 	public static function parseTemplateFile($file_name = '')
 	{
 		ob_start();
-		extract(self::$variables);
-		include_once $file_name;
+		
+		file_get_contents($file_name);
+		
 		$template = ob_get_contents();
+		
 		ob_end_clean();
 
-		return $template;
+		return self::extractVariables($template, self::$variables);
 	}
 
 	/**
