@@ -16,7 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Data\Layout;
@@ -25,6 +25,7 @@ use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Core\Controllers\Commander;
 
 /**
  * Class Login
@@ -59,6 +60,7 @@ class Login extends LayoutModel
 	public function __templates()
 	{
 		TemplateIndexer::setTemplateFolder('Login');
+		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent())
 		TemplateIndexer::addTemplate('Layouts/Login.php');
 	}
 
