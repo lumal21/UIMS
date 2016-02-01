@@ -25,6 +25,7 @@ use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Core\Controllers\Commander;
 
 /**
  * Class Main
