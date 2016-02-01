@@ -118,11 +118,11 @@ final class Indexer
 	/**
 	 * Return Layout Resources
 	 *
-	 * @param LayoutModel|string $layout_name
+	 * @param string $layout_name
 	 * @return mixed
 	 */
 	public static function openLayoutResources($layout_name = '')
 	{
-		!self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
+		!self::layoutExists(self::getLayoutReverseNameSpace($layout_object = $layout_name)) || $layout_object::__resources();
 	}
 }
