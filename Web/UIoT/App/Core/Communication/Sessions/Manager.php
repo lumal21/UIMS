@@ -43,19 +43,9 @@ final class Manager
 	 */
 	public function __construct()
 	{
-		$this->setSettings();
 		$this->setHandler();
 		$this->startSession();
 		$this->setStorage();
-	}
-
-	/**
-	 * Set Session Handler to Store in Files
-	 */
-	private function setSettings()
-	{
-		ini_set('session.save_handler', 'files');
-		ini_set('session.serialize_handler', 'php_serialize');
 	}
 
 	/**
