@@ -43,6 +43,7 @@ final class Manager
 	 */
 	public function __construct()
 	{
+		$this->setSettings();
 		$this->setHandler();
 		$this->startSession();
 		$this->setStorage();
@@ -54,6 +55,12 @@ final class Manager
 	private function setHandler()
 	{
 		session_set_save_handler(new Handler(Settings::getSetting('security')->session_handler_salt, Settings::getSetting('security')->session_time_out), true);
+	}
+
+	private function setSettings()
+	{
+		ini_set('session.save_handler', 'files');
+		ini_set('session.serialize_handler', 'php_serialize');
 	}
 
 	/**

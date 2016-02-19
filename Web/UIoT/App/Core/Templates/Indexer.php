@@ -74,12 +74,14 @@ final class Indexer
 	 * Parse Template Variables
 	 *
 	 * @param mixed $template
-	 * @param string $variables
+	 * @param array $variables
 	 */
 	public static function extractVariables($template = '', $variables)
 	{
 		foreach($variables as $word => $content)
 			$template = str_replace($word, $content, $template);
+
+		return $template;
 	}
 
 	/**
@@ -92,8 +94,8 @@ final class Indexer
 	{
 		ob_start();
 		
-		file_get_contents($file_name);
-		
+		echo file_get_contents($file_name);
+
 		$template = ob_get_contents();
 		
 		ob_end_clean();

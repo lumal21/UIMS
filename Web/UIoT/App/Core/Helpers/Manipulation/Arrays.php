@@ -180,7 +180,7 @@ class Arrays
 			/**
 			 * @param NodeHandlerModel|NodeModel|object|array|mixed $var
 			 */
-			function (NodeModel $var) use ($parameter_name, $parameter_value, $expression) {
+			function ($var) use ($parameter_name, $parameter_value, $expression) {
 
 				$variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 	
@@ -223,7 +223,7 @@ class Arrays
 			/**
 			 * @param NodeModel|object|array|mixed $node
 			 */
-			 function (NodeModel $node) use ($parameter_name) {
+			 function ($node) use ($parameter_name) {
 			 	return $node->{'get' . $parameter_name}();
 			 }, $getNodes
 		);

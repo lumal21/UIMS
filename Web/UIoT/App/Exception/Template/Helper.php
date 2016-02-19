@@ -130,10 +130,7 @@ class Helper extends TemplateHelper
 		extract($variables);
 		
 		/* sadly sensiolabs insight is dummy */
-		$include_function = 'require_once';
-
-		/* require included file */
-		$include_function($template);
+		require_once($template);
 	}
 
 	/**

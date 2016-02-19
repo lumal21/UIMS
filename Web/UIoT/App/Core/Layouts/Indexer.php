@@ -123,6 +123,6 @@ final class Indexer
 	 */
 	public static function openLayoutResources($layout_name = '')
 	{
-		!self::layoutExists(self::getLayoutReverseNameSpace($layout_object = $layout_name)) || $layout_object::__resources();
+		!self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
 	}
 }

@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "bower-asset/foundation-sites",
-            "version": "v6.0.5",
+            "version": "v6.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zurb/foundation-sites.git",
-                "reference": "e4a86e190d2803f76511cf04f7bc4d36d647d885"
+                "reference": "b7cedf57265b8c8ed9b746096cc2dd9dade9c55c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/e4a86e190d2803f76511cf04f7bc4d36d647d885",
-                "reference": "e4a86e190d2803f76511cf04f7bc4d36d647d885",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/b7cedf57265b8c8ed9b746096cc2dd9dade9c55c",
+                "reference": "b7cedf57265b8c8ed9b746096cc2dd9dade9c55c",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,12 @@
                     "meteor-README.md",
                     "package.js",
                     "package.json",
-                    "sache.json"
+                    "sache.json",
+                    ".editorconfig",
+                    ".npm",
+                    ".gitignore",
+                    ".npmignore",
+                    ".versions"
                 ]
             }
         },
@@ -93,16 +98,16 @@
         },
         {
             "name": "bower-asset/what-input",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ten1seven/what-input.git",
-                "reference": "190d4fcf1765552370ca72dd98e44402773d9bc6"
+                "reference": "8176bdd24689c6fa010fbb79b2a64ac561c05305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/190d4fcf1765552370ca72dd98e44402773d9bc6",
-                "reference": "190d4fcf1765552370ca72dd98e44402773d9bc6",
+                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/8176bdd24689c6fa010fbb79b2a64ac561c05305",
+                "reference": "8176bdd24689c6fa010fbb79b2a64ac561c05305",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -175,16 +180,16 @@
         },
         {
             "name": "easyframework/collections",
-            "version": "v4.1.3",
+            "version": "v4.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/collections.git",
-                "reference": "3082796d2c5f853355022d1d2ca2ded5efabe612"
+                "reference": "cddb1790b3540c369d0c897c9ad314effc7b3f07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/italolelis/collections/zipball/3082796d2c5f853355022d1d2ca2ded5efabe612",
-                "reference": "3082796d2c5f853355022d1d2ca2ded5efabe612",
+                "url": "https://api.github.com/repos/italolelis/collections/zipball/cddb1790b3540c369d0c897c9ad314effc7b3f07",
+                "reference": "cddb1790b3540c369d0c897c9ad314effc7b3f07",
                 "shasum": ""
             },
             "require": {
@@ -225,20 +230,20 @@
                 "framework",
                 "generics"
             ],
-            "time": "2015-12-07 13:33:45"
+            "time": "2015-12-14 11:20:28"
         },
         {
             "name": "easyframework/generics",
-            "version": "v2.0.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/generics.git",
-                "reference": "f7e8322195d6b5a6c77095afe5943b783bcbe851"
+                "reference": "aa473480dc68b0daf9de4387a22a32cf254489e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/italolelis/generics/zipball/f7e8322195d6b5a6c77095afe5943b783bcbe851",
-                "reference": "f7e8322195d6b5a6c77095afe5943b783bcbe851",
+                "url": "https://api.github.com/repos/italolelis/generics/zipball/aa473480dc68b0daf9de4387a22a32cf254489e8",
+                "reference": "aa473480dc68b0daf9de4387a22a32cf254489e8",
                 "shasum": ""
             },
             "type": "library",
@@ -269,7 +274,7 @@
                 "framework",
                 "generics"
             ],
-            "time": "2014-08-26 19:03:28"
+            "time": "2015-12-17 15:36:11"
         },
         {
             "name": "filp/whoops",
@@ -645,16 +650,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.0",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "a5eb815363c0388e83247e7e9853e5dbc14999cc"
+                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/a5eb815363c0388e83247e7e9853e5dbc14999cc",
-                "reference": "a5eb815363c0388e83247e7e9853e5dbc14999cc",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ee278f7c851533e58ca307f66305ccb9188aceda",
+                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda",
                 "shasum": ""
             },
             "require": {
@@ -701,20 +706,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-30 20:15:42"
+            "time": "2016-01-13 10:28:07"
         },
         {
             "name": "symfony/process",
-            "version": "v3.0.0",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "01383ed02a1020759bc8ee5d975fcec04ba16fbf"
+                "reference": "dfecef47506179db2501430e732adbf3793099c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/01383ed02a1020759bc8ee5d975fcec04ba16fbf",
-                "reference": "01383ed02a1020759bc8ee5d975fcec04ba16fbf",
+                "url": "https://api.github.com/repos/symfony/process/zipball/dfecef47506179db2501430e732adbf3793099c8",
+                "reference": "dfecef47506179db2501430e732adbf3793099c8",
                 "shasum": ""
             },
             "require": {
@@ -750,20 +755,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-30 12:36:17"
+            "time": "2016-02-02 13:44:19"
         },
         {
             "name": "symfony/property-access",
-            "version": "v2.8.0",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "8820a541404c43838c113d6d7580bd02e0ba198a"
+                "reference": "f58bd65f1e985f4192eedbf0b2a818a220eccadc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/8820a541404c43838c113d6d7580bd02e0ba198a",
-                "reference": "8820a541404c43838c113d6d7580bd02e0ba198a",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/f58bd65f1e985f4192eedbf0b2a818a220eccadc",
+                "reference": "f58bd65f1e985f4192eedbf0b2a818a220eccadc",
                 "shasum": ""
             },
             "require": {
@@ -810,7 +815,7 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2015-11-18 13:45:00"
+            "time": "2016-01-03 15:33:41"
         },
         {
             "name": "xrstf/ip-utils",
