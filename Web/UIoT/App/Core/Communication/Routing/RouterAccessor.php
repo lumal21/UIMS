@@ -16,13 +16,15 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Routing;
 
 use Bramus\Router\Router as IRouter;
 use UIoT\App\Core\Communication\Routing\Path\PathFinder;
+use UIoT\App\Data\Interfaces\NodeHandlerInterface;
 
 /**
  * Class RouterAccessor
@@ -53,7 +55,7 @@ class RouterAccessor
 	 * Add Node for Router
 	 *
 	 * @param string $path
-	 * @param $callback
+	 * @param NodeHandlerInterface $callback
 	 * @param int $priority
 	 * @param string $method
 	 * @param string $group

@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -41,6 +42,8 @@ final class Data
 	/**
 	 * Do a Request
 	 *
+	 * Data constructor.
+	 *
 	 * @param string $url
 	 * @throws \Httpful\Exception\ConnectionErrorException
 	 */
@@ -55,7 +58,7 @@ final class Data
 	 * Get HttpFul Request Data
 	 *
 	 * @param string $var
-	 * @return array|string|object
+	 * @return array|Response\Headers|object|string
 	 */
 	public function __get($var = '')
 	{
@@ -73,8 +76,8 @@ final class Data
 	 * Call Abstract Data Validation
 	 *
 	 * @param string $name
-	 * @param mixed $arguments
-	 * @return mixed
+	 * @param array $arguments
+	 * @return array|Response\Headers|mixed|object|string
 	 */
 	public function __call($name = '', $arguments = ['', ''])
 	{

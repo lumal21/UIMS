@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 /*  License
@@ -46,7 +47,6 @@ use UIoT\App\Core\Helpers\System\Settings;
  * UIoTcms Settings
  * Please be Careful at configuring the settings
  */
-
 Settings::setAndStoreSettings([
 	// database settings (not really necessary, because the cms doesn't uses database connection
 	// but you can set and enable cms database connection if you want

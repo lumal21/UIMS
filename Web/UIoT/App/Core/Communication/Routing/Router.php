@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Routing;
@@ -36,6 +37,8 @@ final class Router extends RouterAccessor
 {
 	/**
 	 * Start's Router Procedure
+	 *
+	 * Router constructor.
 	 */
 	public function __construct()
 	{

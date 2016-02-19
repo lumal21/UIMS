@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Data\Models;
@@ -31,9 +32,11 @@ class HandlerModel implements HandlerInterface
 {
 	protected $content;
 
-	/**
-	 * @param $request_content
-	 */
+    /**
+     * HandlerModel constructor.
+     *
+     * @param $request_content
+     */
 	public function __construct($request_content)
 	{
 		$this->content .= '<pre>';

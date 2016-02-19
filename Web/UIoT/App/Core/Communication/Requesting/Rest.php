@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
@@ -33,7 +34,7 @@ class Rest
 	/**
 	 * Rest Settings
 	 *
-	 * @var object
+	 * @var array
 	 */
 	public static $rest_data = [];
 
@@ -81,7 +82,7 @@ class Rest
 	 * Do the request, and get Request Body.
 	 *
 	 * @param string $url
-	 * @return mixed|string|array|null|object
+	 * @return string
 	 */
 	public static function doRequest($url)
 	{

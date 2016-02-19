@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Data\Models;
@@ -33,8 +34,11 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	/**
 	 * Constructs and Set all Abstract Data
 	 *
+	 * RequestDataModel constructor
+	 *
 	 * @param stdClass $k
 	 */
+
 	public function __construct(stdClass $k)
 	{
 		/* set object vars */
@@ -45,7 +49,9 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	/**
 	 * Get Something
 	 *
-	 * @param $a
+	 * @param mixed $a
+	 *
+	 * @return mixed
 	 */
 	public function __get($a)
 	{
@@ -55,9 +61,10 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	/**
 	 * Set Something
 	 *
-	 * @param $a
-	 * @param $b
+	 * @param mixed $a
+	 * @param mixed $b
 	 */
+
 	public function __set($a, $b)
 	{
 		$this->{$a} = $b;

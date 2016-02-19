@@ -16,7 +16,8 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Routing\Path;
@@ -41,7 +42,7 @@ final class NodeIndexer
 	/**
 	 * Add a Node
 	 *
-	 * @param array $node_item_array
+	 * @param NodeModel[] $node_item_array
 	 *
 	 * @return int Node Id
 	 */
@@ -53,7 +54,7 @@ final class NodeIndexer
 	/**
 	 * Return Node Array Size
 	 *
-	 * @return int
+	 * @return int Return the count of NodeModel in $node
 	 */
 	private function getNodeSize()
 	{
@@ -146,7 +147,7 @@ final class NodeIndexer
 	 * Return all Nodes from a Specific Priority
 	 *
 	 * @param int $priority_id
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	public function getNodesByPriorityId($priority_id)
 	{
@@ -160,7 +161,7 @@ final class NodeIndexer
 	 * @param mixed $parameter_value
 	 * @param string $expression
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	private function getNodesByParameter($parameter_name, $parameter_value, $expression = '==')
 	{
@@ -170,7 +171,7 @@ final class NodeIndexer
 	/**
 	 * Return All Nodes that Matched
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	public function getNodesThatMatched()
 	{
@@ -184,7 +185,7 @@ final class NodeIndexer
 	 * @param mixed $parameter_value
 	 * @param string $expression
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	private function getNodesByCallBackParameter($parameter_name, $parameter_value, $expression = '==')
 	{
@@ -194,7 +195,7 @@ final class NodeIndexer
 	/**
 	 * Get Nodes Callback Array
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	public function getNodesCallBack()
 	{
@@ -206,7 +207,7 @@ final class NodeIndexer
 	/**
 	 * Return All Nodes that was tested with Path
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	public function getNodesWithPathValue()
 	{
@@ -228,7 +229,7 @@ final class NodeIndexer
 	 *
 	 * @param string $parameter_name
 	 *
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	private function getNodesParameterByParameter($parameter_name)
 	{
@@ -253,7 +254,7 @@ final class NodeIndexer
 	 */
 	public function removeNodesFromArray(NodeModel $edge)
 	{
-		$this->setNodes($this->removeNodeByCallBackName($this->getNodes(), $edge->getCallback()));
+		$this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallback()));
 	}
 
 	/**
@@ -261,9 +262,10 @@ final class NodeIndexer
 	 *
 	 * @param NodeModel[] $array
 	 * @param NodeHandlerModel $value
+     *
 	 * @return array
 	 */
-	public function removeNodeByCallBackName(array $array, $value)
+	public function getNodesByCallBack(array $array, $value)
 	{
 		return array_filter($array, function (NodeModel $a) use ($value) {
 			return get_class($a->getCallback()) != get_class($value);
@@ -284,7 +286,7 @@ final class NodeIndexer
 	 * Return all Nodes from a Specific Group
 	 *
 	 * @param string $node_group
-	 * @return array
+	 * @return NodeModel[]
 	 */
 	public function getNodesByGroup($node_group)
 	{

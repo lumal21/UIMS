@@ -16,11 +16,13 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @copyright University of Bras�lia
+ * @developer Igor Moraes
+ * @copyright University of Brasília
  */
 
 namespace UIoT\App\Core\Communication\Requesting;
 
+use Httpful\Mime;
 use Httpful\Request;
 use Httpful\Response;
 
@@ -38,7 +40,7 @@ class Brain
 	/**
 	 * Get Possible UIoT Abstract Controllers
 	 *
-	 * @return mixed
+	 * @return array|mixed|null|object|string
 	 */
 	public static function getItems()
 	{
@@ -71,7 +73,7 @@ class Brain
 	 * Set Request Expected Data Type
 	 * (Only for Adjust)
 	 *
-	 * @param $mime_type
+	 * @param Mime $mime_type
 	 */
 	public static function setExpectedMimeType($mime_type)
 	{
@@ -92,7 +94,7 @@ class Brain
 	 * Set Request Mime Type Header
 	 * (Only for Adjust)
 	 *
-	 * @param $mime_type
+	 * @param Mime $mime_type
 	 */
 	public static function setMimeType($mime_type)
 	{
@@ -103,7 +105,7 @@ class Brain
 	 * Set Request Method
 	 * (Only for Adjust)
 	 *
-	 * @param $method_name
+	 * @param Mime $method_name
 	 */
 	public static function setRequestMethod($method_name)
 	{
