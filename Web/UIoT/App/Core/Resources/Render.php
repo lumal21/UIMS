@@ -31,52 +31,52 @@ use UIoT\App\Data\Interfaces\RenderInterface;
  */
 final class Render implements RenderInterface
 {
-	/**
-	 * Layout Name
-	 *
-	 * @var string
-	 */
-	private $layout_name;
+    /**
+     * Layout Name
+     *
+     * @var string
+     */
+    private $layout_name;
 
-	/**
-	 * Asset Name
-	 *
-	 * @var string
-	 */
-	private $asset_name;
+    /**
+     * Asset Name
+     *
+     * @var string
+     */
+    private $asset_name;
 
-	/**
-	 * Init Resource Handler
-	 *
-	 * @param array $arguments
-	 */
-	public function __construct($arguments = [])
-	{
-		$this->setArguments($arguments);
-	}
+    /**
+     * Init Resource Handler
+     *
+     * @param array $arguments
+     */
+    public function __construct($arguments = [])
+    {
+        $this->setArguments($arguments);
+    }
 
-	/**
-	 * Set Arguments
-	 *
-	 * @param array $arguments
-	 */
-	public function setArguments($arguments = [])
-	{
-		$this->layout_name = $arguments['layout'];
-		$this->asset_name  = Files::getBaseName($arguments['asset']);
-	}
+    /**
+     * Set Arguments
+     *
+     * @param array $arguments
+     */
+    public function setArguments($arguments = [])
+    {
+        $this->layout_name = $arguments['layout'];
+        $this->asset_name  = Files::getBaseName($arguments['asset']);
+    }
 
-	/**
-	 * Show the Resource
-	 *
-	 * @return string
-	 */
-	public function show()
-	{
-		/* register resources */
-		Indexer::registerResources($this->layout_name);
+    /**
+     * Show the Resource
+     *
+     * @return string
+     */
+    public function show()
+    {
+        /* register resources */
+        Indexer::registerResources($this->layout_name);
 
-		/* return resource */
-		return Indexer::returnResource($this->asset_name);
-	}
+        /* return resource */
+        return Indexer::returnResource($this->asset_name);
+    }
 }
