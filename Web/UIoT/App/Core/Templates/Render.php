@@ -28,12 +28,13 @@ use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
+use UIoT\App\Data\Interfaces\RenderInterface;
 
 /**
  * Class Render
  * @package UIoT\App\Core\Templates
  */
-final class Render
+final class Render implements RenderInterface
 {
 	/**
 	 * Disable Render the View's and View's Layout
@@ -80,7 +81,7 @@ final class Render
 	 *
 	 * @param array $arguments
 	 */
-	private function setArguments($arguments = [])
+	public function setArguments($arguments = [])
 	{
 		$this->controller_name        = Strings::toControllerName($arguments['controller']);
 		$this->controller_action_name = Strings::toActionName($arguments['action']);

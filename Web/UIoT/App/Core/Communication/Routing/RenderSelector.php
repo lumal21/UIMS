@@ -22,7 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
+use Datatable\Render\RenderInterface;
 use UIoT\App\Core\Resources\Render as ResourceRender;
+use UIoT\App\Core\Resources\Render;
 use UIoT\App\Core\Templates\Render as TemplateRender;
 
 /**
@@ -31,40 +33,31 @@ use UIoT\App\Core\Templates\Render as TemplateRender;
  */
 final class RenderSelector
 {
-	/**
-	 * Abbreviation for the CallBacks
-	 *
-	 * @param $render
-	 * @return mixed|null|string
-	 */
-	public static function go($render)
-	{
-		return self::select(self::instantiate($render));
-	}
+    /**
+     * Abbreviation for the CallBacks
+     *
+     * @param $render
+     *
+     * @return mixed|null|string
+     */
+    public static function go($render)
+    {
+        return self::select($render);
+    }
 
-	/**
-	 * Show the Render
-	 *
-	 * @param $instance
-	 * @return mixed|null|string
-	 */
-	private static function select($instance)
-	{
-		if ($instance instanceof ResourceRender)
-			return $instance->show();
-		else if ($instance instanceof TemplateRender)
-			return $instance->show();
-		return null;
-	}
-
-	/**
-	 * Get Render Instance
-	 *
-	 * @param $render
-	 * @return ResourceRender|TemplateRender
-	 */
-	private static function instantiate($render)
-	{
-		return $render;
-	}
+    /**
+     * Show the Render
+     *
+     * @param $instance
+     *
+     * @return mixed|null|string
+     */
+    private static function select(RenderInterface $instance)
+    {
+        if ($instance instanceof ResourceRender)
+            return $instance->show();
+        else if ($instance instanceof TemplateRender)
+            return $instance->show();
+        return null;
+    }
 }

@@ -22,13 +22,14 @@
 
 namespace UIoT\App\Core\Resources;
 use UIoT\App\Core\Helpers\Manipulation\Files;
+use UIoT\App\Data\Interfaces\RenderInterface;
 
 
 /**
  * Class Render
  * @package UIoT\App\Core\Resources
  */
-final class Render
+final class Render implements RenderInterface
 {
 	/**
 	 * Layout Name
@@ -59,7 +60,7 @@ final class Render
 	 *
 	 * @param array $arguments
 	 */
-	private function setArguments($arguments = [])
+	public function setArguments($arguments = [])
 	{
 		$this->layout_name = $arguments['layout'];
 		$this->asset_name  = Files::getBaseName($arguments['asset']);
