@@ -36,6 +36,8 @@ final class Manager
 {
 	/**
 	 * Create Instance of Everything
+	 *
+	 * Manager constructor.
 	 */
 	public function __construct()
 	{

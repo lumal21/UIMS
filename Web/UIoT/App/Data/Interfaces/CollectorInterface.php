@@ -23,12 +23,20 @@
 namespace UIoT\App\Data\Interfaces;
 
 /**
- * Interface Collector
+ * Interface CollectorInterface
  * @package UIoT\App\Data\Interfaces
  */
 interface CollectorInterface
 {
+    /**
+     * @param $a
+     * @return mixed
+     */
 	public function passRequest($a);
 
+    /**
+     * @param $a
+     * @return mixed
+     */
 	public function passHandler($a);
 }

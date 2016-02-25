@@ -40,8 +40,8 @@
  */
 
 /**
- * this is the main file
- * here uiot is started (uiotcms)
+ * This is the main file
+ * Here uiot is started (uiotcms)
  */
 
 namespace UIoT\App;
@@ -53,7 +53,9 @@ namespace UIoT\App;
 final class Init
 {
 	/**
-	 * start environment
+	 * Start environment
+	 *
+	 * Init constructor
 	 */
 	public function __construct()
 	{

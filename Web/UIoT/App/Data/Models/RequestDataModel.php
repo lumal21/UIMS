@@ -26,7 +26,7 @@ use stdClass;
 use UIoT\App\Data\Interfaces\RequestDataInterface;
 
 /**
- * Class RequestData
+ * Class RequestDataModel
  * @package UIoT\App\Data\Models
  */
 class RequestDataModel extends stdClass implements RequestDataInterface
@@ -38,7 +38,6 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	 *
 	 * @param stdClass $k
 	 */
-
 	public function __construct(stdClass $k)
 	{
 		/* set object vars */
@@ -50,7 +49,6 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	 * Get Something
 	 *
 	 * @param mixed $a
-	 *
 	 * @return mixed
 	 */
 	public function __get($a)
@@ -64,7 +62,6 @@ class RequestDataModel extends stdClass implements RequestDataInterface
 	 * @param mixed $a
 	 * @param mixed $b
 	 */
-
 	public function __set($a, $b)
 	{
 		$this->{$a} = $b;

@@ -25,7 +25,7 @@ namespace UIoT\App\Data\Models;
 use UIoT\App\Data\Interfaces\MethodInterface;
 
 /**
- * Class Method
+ * Class MethodModel
  * @package UIoT\App\Data\Models
  */
 class MethodModel implements MethodInterface
@@ -36,7 +36,7 @@ class MethodModel implements MethodInterface
 	/**
 	 * Get Data
 	 *
-	 * @return array|mixed|object
+	 * @return array|object
 	 */
 	public function getData()
 	{
@@ -46,7 +46,7 @@ class MethodModel implements MethodInterface
 	/**
 	 * Set Data
 	 *
-	 * @param $data
+	 * @param array $data
 	 * @return $this
 	 */
 	public function setData($data = [])

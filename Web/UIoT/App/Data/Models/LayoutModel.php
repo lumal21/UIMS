@@ -25,7 +25,7 @@ namespace UIoT\App\Data\Models;
 use UIoT\App\Data\Interfaces\LayoutInterface;
 
 /**
- * Class Layout
+ * Class LayoutModel
  * @package UIoT\App\Data\Models\Types
  */
 class LayoutModel implements LayoutInterface

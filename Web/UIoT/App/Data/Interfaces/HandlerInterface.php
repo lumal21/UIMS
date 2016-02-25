@@ -23,12 +23,19 @@
 namespace UIoT\App\Data\Interfaces;
 
 /**
- * Interface Handler
+ * Interface HandlerInterface
  * @package UIoT\App\Data\Interfaces
  */
 interface HandlerInterface
 {
+	/**
+	 * HandlerInterface constructor.
+	 * @param $a
+	 */
 	public function __construct($a);
 
+	/**
+	 * @return mixed
+	 */
 	public function __toString();
 }

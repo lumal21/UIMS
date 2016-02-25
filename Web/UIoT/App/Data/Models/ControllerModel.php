@@ -25,8 +25,8 @@ namespace UIoT\App\Data\Models;
 use UIoT\App\Data\Interfaces\ControllerInterface;
 
 /**
- * Class Controller
- * @package UIoT\App\Data\Models\Types
+ * Class ControllerModel
+ * @package UIoT\App\Data\Models
  */
 class ControllerModel implements ControllerInterface
 {

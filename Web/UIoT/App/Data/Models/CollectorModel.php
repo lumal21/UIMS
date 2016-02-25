@@ -25,7 +25,7 @@ namespace UIoT\App\Data\Models;
 use UIoT\App\Data\Interfaces\CollectorInterface;
 
 /**
- * Class Collector
+ * Class CollectorModel
  * @package UIoT\App\Data\Models
  */
 class CollectorModel implements CollectorInterface
@@ -47,7 +47,7 @@ class CollectorModel implements CollectorInterface
 
 	/**
 	 * @param $a
-	 * @return $this
+	 * @return mixed
 	 */
 	public function passHandler($a)
 	{

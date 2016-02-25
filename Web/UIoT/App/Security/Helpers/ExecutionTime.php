@@ -60,6 +60,8 @@ final class ExecutionTime
 
 	/**
 	 * Set UIoT Execution
+	 *
+	 * ExecutionTime constructor.
 	 */
 	public function __construct()
 	{
@@ -101,7 +103,7 @@ final class ExecutionTime
 	/**
 	 * Get Execution Time
 	 *
-	 * @return int|float
+	 * @return float|init
 	 */
 	public static function getExecutionTime()
 	{

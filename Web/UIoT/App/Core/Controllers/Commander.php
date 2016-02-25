@@ -16,8 +16,7 @@
  * @app UIoT Content Management System
  * @author UIoT
  * @developer Claudio Santoro
- * @developer Igor Moraes
- * @copyright University of Brasília
+ * @copyright University of Bras�lia
  */
 
 namespace UIoT\App\Core\Controllers;

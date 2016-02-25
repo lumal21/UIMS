@@ -61,7 +61,7 @@ class NodeHandlerModel implements NodeHandlerInterface
 	/**
 	 * NodeHandlerModel constructor.
 	 *
-	 * @param NodeModel $node
+	 * @param NodeModel|null $node
 	 */
 	public function __construct(NodeModel $node = null)
 	{
@@ -99,7 +99,7 @@ class NodeHandlerModel implements NodeHandlerInterface
 	/**
 	 * Get Result Content
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	public function getResultContent()
 	{
@@ -129,7 +129,7 @@ class NodeHandlerModel implements NodeHandlerInterface
 	/**
 	 * Set Result
 	 *
-	 * @param bool
+	 * @param bool $result
 	 */
 	public function setResult($result)
 	{
@@ -139,7 +139,7 @@ class NodeHandlerModel implements NodeHandlerInterface
 	/**
 	 * Get Path Value
 	 *
-	 * @return mixed
+	 * @return \string[]
 	 */
 	public function getPathValue()
 	{

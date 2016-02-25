@@ -25,14 +25,27 @@ namespace UIoT\App\Data\Interfaces;
 use stdClass;
 
 /**
- * Interface RequestData
+ * Interface RequestDataInterface
  * @package UIoT\App\Data\Interfaces
  */
 interface RequestDataInterface
 {
+    /**
+     * RequestDataInterface constructor.
+     * @param stdClass $a
+     */
 	public function __construct(stdClass $a);
 
+    /**
+     * @param $a
+     * @return mixed
+     */
 	public function __get($a);
 
+    /**
+     * @param $a
+     * @param $b
+     * @return mixed
+     */
 	public function __set($a, $b);
 }

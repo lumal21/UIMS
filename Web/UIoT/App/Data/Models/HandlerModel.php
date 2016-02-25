@@ -25,18 +25,17 @@ namespace UIoT\App\Data\Models;
 use UIoT\App\Data\Interfaces\HandlerInterface;
 
 /**
- * Class Handler
- * @package UIoT\App\Data\Models\Types
+ * Class HandlerModel
+ * @package UIoT\App\Data\Models
  */
 class HandlerModel implements HandlerInterface
 {
 	protected $content;
 
-    /**
-     * HandlerModel constructor.
-     *
-     * @param $request_content
-     */
+	/**
+	 * HandlerModel constructor.
+	 * @param $request_content
+	 */
 	public function __construct($request_content)
 	{
 		$this->content .= '<pre>';

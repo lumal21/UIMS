@@ -29,7 +29,7 @@ use UIoT\App\Exception\Register;
 use Whitelist\Check;
 
 /**
- * Class Handler
+ * Class Manager
  * Security Manager
  *
  * @package UIoT\App\Security
