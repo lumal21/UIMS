@@ -20,25 +20,14 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Database;
-
-use PDO;
-use stdClass;
+namespace UIoT\App\Data\Interfaces;
 
 /**
- * Class Handler
- * @package UIoT\App\Core\Database
+ * Interface SettingsInterface
+ *
+ * @package UIoT\App\Data\Interfaces
  */
-final class Handler
+interface SettingsInterface
 {
-	/**
-	 * Open a Persistent Socket with MySQL Database
-	 * @author Claudio Santoro
-	 *
-	 * @param stdClass $c Connection Details
-	 */
-	public function __construct(stdClass $c)
-	{
-		new PDO("mysql:host={$c->host};port={$c->port};dbname={$c->name}", ($c->user), ($c->pass));
-	}
+
 }

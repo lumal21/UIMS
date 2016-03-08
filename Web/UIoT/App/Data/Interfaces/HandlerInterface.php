@@ -28,14 +28,14 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface HandlerInterface
 {
-	/**
-	 * HandlerInterface constructor.
-	 * @param $a
-	 */
-	public function __construct($a);
+    /**
+     * HandlerInterface constructor.
+     * @param $a
+     */
+    public function __construct($a);
 
-	/**
-	 * @return mixed
-	 */
-	public function __toString();
+    /**
+     * @return mixed
+     */
+    public function __toString();
 }

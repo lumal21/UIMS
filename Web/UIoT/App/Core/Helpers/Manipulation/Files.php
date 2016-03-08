@@ -32,129 +32,129 @@ use UIoT\App\Exception\Register;
  */
 class Files
 {
-	/**
-	 * File Instance
-	 *
-	 * @var SplFileInfo|null
-	 */
-	protected static $spl_file_info_instance;
+    /**
+     * File Instance
+     *
+     * @var SplFileInfo|null
+     */
+    protected static $spl_file_info_instance;
 
-	/**
-	 * File Instance
-	 *
-	 * @var Files
-	 */
-	protected static $files_instance;
+    /**
+     * File Instance
+     *
+     * @var Files
+     */
+    protected static $files_instance;
 
-	/**
-	 * Instantiate SplFileInfo Class
-	 *
-	 * Files constructor.
-	 */
-	final private function __construct()
-	{
-		if (NULL === self::$files_instance)
-			Register::getRunner()->errorMessage(908,
-				'Stop!',
-				'You cannot instantiate a singleton!',
-				['What happened?' => 'Singletons are not instantiated by the user!']);
-	}
+    /**
+     * Instantiate SplFileInfo Class
+     *
+     * Files constructor.
+     */
+    final private function __construct()
+    {
+        if (NULL === self::$files_instance)
+            Register::getRunner()->errorMessage(908,
+                'Stop!',
+                'You cannot instantiate a singleton!',
+                ['What happened?' => 'Singletons are not instantiated by the user!']);
+    }
 
-	/**
-	 * Get File Base Name
-	 *
-	 * @param $file_path
-	 *
-	 * @return string
-	 */
-	public static function getBaseName($file_path)
-	{
-		self::checkInstance($file_path);
+    /**
+     * Get File Base Name
+     *
+     * @param $file_path
+     *
+     * @return string
+     */
+    public static function getBaseName($file_path)
+    {
+        self::checkInstance($file_path);
 
-		return self::getSplFileInfoInstance()->getBasename('.' . self::getSplFileInfoInstance()->getExtension());
-	}
+        return self::getSplFileInfoInstance()->getBasename('.' . self::getSplFileInfoInstance()->getExtension());
+    }
 
-	/**
-	 * Check Instance
-	 *
-	 * @param $file_name
-	 */
-	final private static function checkInstance($file_name)
-	{
-		if (self::$spl_file_info_instance === null)
-			self::create($file_name);
-	}
+    /**
+     * Check Instance
+     *
+     * @param $file_name
+     */
+    final private static function checkInstance($file_name)
+    {
+        if (self::$spl_file_info_instance === null)
+            self::create($file_name);
+    }
 
-	/**
-	 * Instantiate SplFileInfo Class
-	 *
-	 * @param $file_name
-	 */
-	final private static function create($file_name)
-	{
-		empty($file_name) || self::$spl_file_info_instance = new SplFileInfo($file_name);
-	}
+    /**
+     * Instantiate SplFileInfo Class
+     *
+     * @param $file_name
+     */
+    final private static function create($file_name)
+    {
+        empty($file_name) || self::$spl_file_info_instance = new SplFileInfo($file_name);
+    }
 
-	/**
-	 * Get Spl File Info Instance
-	 *
-	 * @return null|SplFileInfo
-	 */
-	private static function getSplFileInfoInstance()
-	{
-		return self::$spl_file_info_instance;
-	}
+    /**
+     * Get Spl File Info Instance
+     *
+     * @return null|SplFileInfo
+     */
+    private static function getSplFileInfoInstance()
+    {
+        return self::$spl_file_info_instance;
+    }
 
-	/**
-	 * Get Only File Name
-	 *
-	 * @param $file_path
-	 *
-	 * @return string
-	 */
-	public static function getFileName($file_path)
-	{
-		self::checkInstance($file_path);
+    /**
+     * Get Only File Name
+     *
+     * @param $file_path
+     *
+     * @return string
+     */
+    public static function getFileName($file_path)
+    {
+        self::checkInstance($file_path);
 
-		return self::getSplFileInfoInstance()->getFilename();
-	}
+        return self::getSplFileInfoInstance()->getFilename();
+    }
 
-	/**
-	 * Finish Operations with that Instance
-	 */
-	public static function finish()
-	{
-		self::__destruct();
+    /**
+     * Finish Operations with that Instance
+     */
+    public static function finish()
+    {
+        self::__destruct();
 
-		self::getLastInstance();
-	}
+        self::getLastInstance();
+    }
 
-	/**
-	 * Destroy current Instance
-	 */
-	final public function __destruct()
-	{
-		self::$files_instance = null;
-	}
+    /**
+     * Destroy current Instance
+     */
+    final public function __destruct()
+    {
+        self::$files_instance = null;
+    }
 
-	/**
-	 * Return Last Instance
-	 *
-	 * @return Files
-	 */
-	public static function getLastInstance()
-	{
-		if (NULL === self::$files_instance)
-			self::$files_instance = new self;
+    /**
+     * Return Last Instance
+     *
+     * @return Files
+     */
+    public static function getLastInstance()
+    {
+        if (NULL === self::$files_instance)
+            self::$files_instance = new self;
 
-		return self::$files_instance;
-	}
+        return self::$files_instance;
+    }
 
-	/**
-	 * Clone SplFileInfo Instance
-	 */
-	final private function __clone()
-	{
-		self::$spl_file_info_instance = clone self::$spl_file_info_instance;
-	}
+    /**
+     * Clone SplFileInfo Instance
+     */
+    final private function __clone()
+    {
+        self::$spl_file_info_instance = clone self::$spl_file_info_instance;
+    }
 }

@@ -44,108 +44,108 @@ namespace UIoT\App\Security\Helpers;
  */
 final class ExecutionTime
 {
-	/**
-	 * Execution Time
-	 *
-	 * @var int|float
-	 */
-	private static $execution_time = 0;
+    /**
+     * Execution Time
+     *
+     * @var int|float
+     */
+    private static $execution_time = 0;
 
-	/**
-	 * Execution Time Loops
-	 *
-	 * @var array
-	 */
-	private static $execution_loops = [];
+    /**
+     * Execution Time Loops
+     *
+     * @var array
+     */
+    private static $execution_loops = [];
 
-	/**
-	 * Set UIoT Execution
-	 *
-	 * ExecutionTime constructor.
-	 */
-	public function __construct()
-	{
-		self::setExecutionTime(microtime(true));
-		self::addExecutionLoop(microtime(true));
-	}
+    /**
+     * Set UIoT Execution
+     *
+     * ExecutionTime constructor.
+     */
+    public function __construct()
+    {
+        self::setExecutionTime(microtime(true));
+        self::addExecutionLoop(microtime(true));
+    }
 
-	/**
-	 * Add Execution Loop
-	 *
-	 * @param double $execution_loops
-	 * @return int
-	 */
-	public static function addExecutionLoop($execution_loops)
-	{
-		self::$execution_loops[] = $execution_loops;
-	}
+    /**
+     * Add Execution Loop
+     *
+     * @param double $execution_loops
+     * @return int
+     */
+    public static function addExecutionLoop($execution_loops)
+    {
+        self::$execution_loops[] = $execution_loops;
+    }
 
-	/**
-	 * Check if Execution Time is Spending a lot of time
-	 */
-	public static function checkExecutionCrash()
-	{
-		if (!self::checkLoopInterval())
-			self::addExecutionLoop(microtime(true));
-	}
+    /**
+     * Check if Execution Time is Spending a lot of time
+     */
+    public static function checkExecutionCrash()
+    {
+        if (!self::checkLoopInterval())
+            self::addExecutionLoop(microtime(true));
+    }
 
-	/**
-	 * Check loop Interval Average
-	 *
-	 * @return bool
-	 */
-	public static function checkLoopInterval()
-	{
-		/* check if execution time is bigger than average */
-		return (((self::getExecutionTime() / count(self::getExecutionLoops())) + (self::getExecutionTime() - array_sum(self::getExecutionLoops()))) > (array_sum(self::getExecutionLoops()) / count(self::getExecutionLoops())));
-	}
+    /**
+     * Check loop Interval Average
+     *
+     * @return bool
+     */
+    public static function checkLoopInterval()
+    {
+        /* check if execution time is bigger than average */
+        return (((self::getExecutionTime() / count(self::getExecutionLoops())) + (self::getExecutionTime() - array_sum(self::getExecutionLoops()))) > (array_sum(self::getExecutionLoops()) / count(self::getExecutionLoops())));
+    }
 
-	/**
-	 * Get Execution Time
-	 *
-	 * @return float|init
-	 */
-	public static function getExecutionTime()
-	{
-		return self::$execution_time;
-	}
+    /**
+     * Get Execution Time
+     *
+     * @return float|init
+     */
+    public static function getExecutionTime()
+    {
+        return self::$execution_time;
+    }
 
-	/**
-	 * Set Execution Time
-	 *
-	 * @param double $execution_time
-	 * @return float|int
-	 */
-	public static function setExecutionTime($execution_time)
-	{
-		return (self::$execution_time = $execution_time);
-	}
+    /**
+     * Set Execution Time
+     *
+     * @param double $execution_time
+     * @return float|int
+     */
+    public static function setExecutionTime($execution_time)
+    {
+        return (self::$execution_time = $execution_time);
+    }
 
-	/**
-	 * Get Execution Loops
-	 *
-	 * @return array
-	 */
-	public static function getExecutionLoops()
-	{
-		return self::$execution_loops;
-	}
+    /**
+     * Get Execution Loops
+     *
+     * @return array
+     */
+    public static function getExecutionLoops()
+    {
+        return self::$execution_loops;
+    }
 
-	/**
-	 * Set Execution Loops
-	 *
-	 * @param array $execution_loops
-	 */
-	public static function setExecutionLoops($execution_loops)
-	{
-		self::$execution_loops = $execution_loops;
-	}
+    /**
+     * Set Execution Loops
+     *
+     * @param array $execution_loops
+     */
+    public static function setExecutionLoops($execution_loops)
+    {
+        self::$execution_loops = $execution_loops;
+    }
 
-	/**
-	 * Update Execution Time
-	 */
-	public static function updateTime()
-	{
-		self::setExecutionTime(microtime(true));
-	}
+    /**
+     * Update Execution Time
+     */
+    public static function updateTime()
+    {
+        self::setExecutionTime(microtime(true));
+    }
 }

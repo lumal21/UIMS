@@ -32,11 +32,11 @@ interface CollectorInterface
      * @param $a
      * @return mixed
      */
-	public function passRequest($a);
+    public function passRequest($a);
 
     /**
      * @param $a
      * @return mixed
      */
-	public function passHandler($a);
+    public function passHandler($a);
 }

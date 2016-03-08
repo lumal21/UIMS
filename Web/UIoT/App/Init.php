@@ -52,43 +52,43 @@ namespace UIoT\App;
  */
 final class Init
 {
-	/**
-	 * Start environment
-	 *
-	 * Init constructor
-	 */
-	public function __construct()
-	{
-		/* start exception manager */
-		(new Exception\Manager);
+    /**
+     * Start environment
+     *
+     * Init constructor
+     */
+    public function __construct()
+    {
+        /* start exception manager */
+        (new Exception\Manager);
 
-		/* start security manager */
-		(new Security\Manager);
+        /* start security manager */
+        (new Security\Manager);
 
-		/* start session manager */
-		(new Core\Communication\Sessions\Manager);
+        /* start session manager */
+        (new Core\Communication\Sessions\Manager);
 
-		/* start resource manager */
-		(new Core\Resources\Manager);
+        /* start resource manager */
+        (new Core\Resources\Manager);
 
-		/* start raise */
-		(new Core\Communication\Requesting\Raise);
+        /* start raise */
+        (new Core\Communication\Requesting\Raise);
 
-		/* register handlers,methods of rest */
-		(new Core\Communication\Parsers\DataManager);
+        /* register handlers,methods of rest */
+        (new Core\Communication\Parsers\DataManager);
 
-		/* start router */
-		(new Core\Communication\Routing\Router);
-	}
+        /* start router */
+        (new Core\Communication\Routing\Router);
+    }
 
-	/**
-	 * It's unnecessary but we will do that anyway
-	 * Forces all Cycle Collections (\GC)
-	 * Reason: The CMS is called async-times, Force all Process terminate is good.
-	 */
-	public function __destruct()
-	{
-		/* force gc collect */
-		gc_collect_cycles();
-	}
+    /**
+     * It's unnecessary but we will do that anyway
+     * Forces all Cycle Collections (\GC)
+     * Reason: The CMS is called async-times, Force all Process terminate is good.
+     */
+    public function __destruct()
+    {
+        /* force gc collect */
+        gc_collect_cycles();
+    }
 }

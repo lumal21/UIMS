@@ -31,9 +31,9 @@ use UIoT\App\Data\Models\ControllerModel;
  */
 final class None extends ControllerModel
 {
-	public function __actionMain()
-	{
-		/* redirect to Login Controller */
-		return Indexer::redirectToController('Login');
-	}
+    public function __actionMain()
+    {
+        /* redirect to Login Controller */
+        return Indexer::redirectToController('Login');
+    }
 }

@@ -31,99 +31,99 @@ use UIoT\App\Data\Models\LayoutModel;
  */
 final class Indexer
 {
-	/**
-	 * @var array
-	 */
-	private static $layout = [];
+    /**
+     * @var array
+     */
+    private static $layout = [];
 
-	/**
-	 * Add a Layout
-	 *
-	 * @param string $layout_name
-	 */
-	public static function addLayout($layout_name)
-	{
-		self::layoutExists($layout_name) || array_push(self::$layout, $layout_name);
-	}
+    /**
+     * Add a Layout
+     *
+     * @param string $layout_name
+     */
+    public static function addLayout($layout_name)
+    {
+        self::layoutExists($layout_name) || array_push(self::$layout, $layout_name);
+    }
 
-	/**
-	 * Check if Layout Exists
-	 *
-	 * @param string|LayoutModel $layout_name
-	 * @return bool
-	 */
-	public static function layoutExists($layout_name)
-	{
-		return in_array($layout_name, self::$layout);
-	}
+    /**
+     * Check if Layout Exists
+     *
+     * @param string|LayoutModel $layout_name
+     * @return bool
+     */
+    public static function layoutExists($layout_name)
+    {
+        return in_array($layout_name, self::$layout);
+    }
 
-	/**
-	 * Return View Name Space
-	 *
-	 * @param string $layout_name
-	 * @return string
-	 */
-	public static function getLayout($layout_name)
-	{
-		return self::openLayout($layout_name);
-	}
+    /**
+     * Return View Name Space
+     *
+     * @param string $layout_name
+     * @return string
+     */
+    public static function getLayout($layout_name)
+    {
+        return self::openLayout($layout_name);
+    }
 
-	/**
-	 * Return Instance of Layout
-	 *
-	 * @param string $layout_name
-	 * @return string
-	 */
-	public static function openLayout($layout_name)
-	{
-		return self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) ? (new $layout_name)->__show() : '';
-	}
+    /**
+     * Return Instance of Layout
+     *
+     * @param string $layout_name
+     * @return string
+     */
+    public static function openLayout($layout_name)
+    {
+        return self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) ? (new $layout_name)->__show() : '';
+    }
 
-	/**
-	 * Really Crazy but Works
-	 * (Is for return a reverse namespace)
-	 *
-	 * @param string|LayoutModel $layout_name_space
-	 * @return string|LayoutModel
-	 */
-	public static function getLayoutReverseNameSpace(&$layout_name_space)
-	{
-		/* get layout name space and returns */
-		$layout_name_space = self::getLayoutNameSpace($layout_name = $layout_name_space);
+    /**
+     * Really Crazy but Works
+     * (Is for return a reverse namespace)
+     *
+     * @param string|LayoutModel $layout_name_space
+     * @return string|LayoutModel
+     */
+    public static function getLayoutReverseNameSpace(&$layout_name_space)
+    {
+        /* get layout name space and returns */
+        $layout_name_space = self::getLayoutNameSpace($layout_name = $layout_name_space);
 
-		/* return normal layout name */
-		return $layout_name;
-	}
+        /* return normal layout name */
+        return $layout_name;
+    }
 
-	/**
-	 * Return the Namespace form the Layout
-	 *
-	 * @param string|LayoutModel $layout_name
-	 * @return LayoutModel|string
-	 */
-	public static function getLayoutNameSpace($layout_name)
-	{
-		return Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\');
-	}
+    /**
+     * Return the Namespace form the Layout
+     *
+     * @param string|LayoutModel $layout_name
+     * @return LayoutModel|string
+     */
+    public static function getLayoutNameSpace($layout_name)
+    {
+        return Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\');
+    }
 
-	/**
-	 * Get the Layout Resources
-	 *
-	 * @param string $layout_name
-	 */
-	public static function getLayoutResources($layout_name)
-	{
-		self::openLayoutResources($layout_name);
-	}
+    /**
+     * Get the Layout Resources
+     *
+     * @param string $layout_name
+     */
+    public static function getLayoutResources($layout_name)
+    {
+        self::openLayoutResources($layout_name);
+    }
 
-	/**
-	 * Return Layout Resources
-	 *
-	 * @param string $layout_name
-	 * @return mixed
-	 */
-	public static function openLayoutResources($layout_name = '')
-	{
-		!self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
-	}
+    /**
+     * Return Layout Resources
+     *
+     * @param string $layout_name
+     * @return mixed
+     */
+    public static function openLayoutResources($layout_name = '')
+    {
+        !self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
+    }
 }

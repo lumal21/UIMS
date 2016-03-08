@@ -20,23 +20,48 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Models\Settings;
+
+use UIoT\App\Data\Interfaces\SettingsInterface;
 
 /**
- * Interface IControllerInterface
- * @package UIoT\App\Data\Interfaces
+ * Class RaiseSettingsModel
+ *
+ * @package UIoT\App\Data\Models\Settings
  */
-interface IControllerInterface
+class RaiseSettingsModel implements SettingsInterface
 {
-    /**
-     * IControllerInterface constructor.
-     */
-    public function __construct();
+    const settingsBlockName = 'raise';
 
     /**
-     * @param $a
-     * @param $b
-     * @return mixed
+     *
+     * Host of raise server
+     *
+     * @var string
      */
-    public function __call($a, $b);
+    var $raiseHost;
+
+    /**
+     *
+     * Raise root path
+     *
+     * @var string
+     */
+    var $raiseBasePath;
+
+    /**
+     *
+     * Raise server port
+     *
+     * @var integer
+     */
+    var $raisePort;
+
+    /**
+     *
+     * Raise server is using ssl connection
+     *
+     * @var boolean
+     */
+    var $raiseSsl;
 }

@@ -24,6 +24,8 @@ namespace UIoT\App\Exception;
 
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\System\Settings;
+use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
+use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Exception\Template\Handler;
 
 /**
@@ -34,43 +36,63 @@ use UIoT\App\Exception\Template\Handler;
  */
 final class Manager
 {
-	/**
-	 * Create Instance of Everything
-	 *
-	 * Manager constructor.
-	 */
-	public function __construct()
-	{
-		$this->setClasses();
-		$this->setSettings();
-		$this->registerHandler();
-	}
+    /**
+     *
+     * Settings variable
+     *
+     * @var ExceptionSettingsModel
+     */
+    private static $settings;
 
-	/**
-	 * Set Classes
-	 */
-	private function setClasses()
-	{
-		Register::setHandler(new Handler);
-		Register::setRunner(new Collector);
-	}
+    /**
+     * Create Instance of Everything
+     *
+     * Manager constructor.
+     */
+    public function __construct()
+    {
+        $this->setClasses();
+        $this->setSettings();
+        $this->registerHandler();
+    }
 
-	/**
-	 * Set Page Handler Settings
-	 */
-	private function setSettings()
-	{
-		Register::setErrorLevels(Settings::getSetting('exceptions')->error_reporting_levels);
-		Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . Settings::getSetting('exceptions')->error_resource_folder . '/');
-		Register::setPageTitle(Settings::getSetting('exceptions')->error_page_title);
-	}
+    /**
+     * Set Classes
+     */
+    private function setClasses()
+    {
+        Register::setHandler(new Handler);
+        Register::setRunner(new Collector);
+    }
 
-	/**
-	 * Register Page Handler
-	 */
-	private function registerHandler()
-	{
-		Register::pushHandler();
-		Register::registerHandler();
-	}
+    /**
+     * Check if Trying to Access Developer Mode
+     *
+     * @return bool
+     */
+    public static function checkDeveloperMode()
+    {
+        return Constants::returnConstant('QUERY_STRING') != self::$settings->errorDeveloperCode;
+    }
+
+    /**
+     * Set Page Handler Settings
+     */
+    private function setSettings()
+    {
+        self::$settings = SettingsIndexer::getSetting('exceptions');
+
+        Register::setErrorLevels(self::$settings->errorReportingLevels);
+        Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . self::$settings->errorResourceFolder . '/');
+        Register::setPageTitle(self::$settings->errorPageTitle);
+    }
+
+    /**
+     * Register Page Handler
+     */
+    private function registerHandler()
+    {
+        Register::pushHandler();
+        Register::registerHandler();
+    }
 }

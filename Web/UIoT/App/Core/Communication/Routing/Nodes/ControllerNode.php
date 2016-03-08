@@ -35,25 +35,25 @@ use UIoT\App\Data\Models\NodeModel;
  */
 final class ControllerNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 *
-	 * @return bool
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
+    /**
+     * Callback Function
+     *
+     * @return bool
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
 
-		$this->setResultContent(RenderSelector::go(new Render(['controller' => $this->getPathValue()[0], 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
-	}
+        $this->setResultContent(RenderSelector::go(new Render(['controller' => $this->getPathValue()[0], 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
+    }
 }

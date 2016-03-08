@@ -28,7 +28,6 @@ use UIoT\App\Data\Models\HandlerModel;
  * Class Postable
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-
 class Postable extends HandlerModel
 {
 

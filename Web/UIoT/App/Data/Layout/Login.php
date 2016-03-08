@@ -22,11 +22,11 @@
 
 namespace UIoT\App\Data\Layout;
 
+use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Models\LayoutModel;
-use UIoT\App\Core\Controllers\Commander;
 
 /**
  * Class Login
@@ -34,44 +34,44 @@ use UIoT\App\Core\Controllers\Commander;
  */
 class Login extends LayoutModel
 {
-	/**
-	 * Set Resources
-	 */
-	public static function __resources()
-	{
-		ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
-		ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+    /**
+     * Set Resources
+     */
+    public static function __resources()
+    {
+        ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
+        ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
 
-		ResourceIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-		ResourceIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-		ResourceIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
-	}
+        ResourceIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        ResourceIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        ResourceIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+    }
 
-	/**
-	 * Set Configuration
-	 */
-	public function __configuration()
-	{
-		Pages::setTitle('Hello World');
-	}
+    /**
+     * Set Configuration
+     */
+    public function __configuration()
+    {
+        Pages::setTitle('Hello World');
+    }
 
-	/**
-	 * Set Templates
-	 */
-	public function __templates()
-	{
-		TemplateIndexer::setTemplateFolder('Login');
-		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
-		TemplateIndexer::addTemplate('Layouts/Login.php');
-	}
+    /**
+     * Set Templates
+     */
+    public function __templates()
+    {
+        TemplateIndexer::setTemplateFolder('Login');
+        TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
+        TemplateIndexer::addTemplate('Layouts/Login.php');
+    }
 
-	/**
-	 * Return Template
-	 *
-	 * @return null|mixed|string
-	 */
-	public function __show()
-	{
-		return TemplateIndexer::returnTemplates();
-	}
+    /**
+     * Return Template
+     *
+     * @return null|mixed|string
+     */
+    public function __show()
+    {
+        return TemplateIndexer::returnTemplates();
+    }
 }

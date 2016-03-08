@@ -34,54 +34,54 @@ interface NodeHandlerInterface
      * NodeHandlerInterface constructor.
      * @param NodeModel $node
      */
-	public function __construct(NodeModel $node);
+    public function __construct(NodeModel $node);
 
     /**
      * @param array ...$arguments
      * @return mixed
      */
-	public function callValue(...$arguments);
+    public function callValue(...$arguments);
 
     /**
      * @return mixed
      */
-	public function call();
+    public function call();
 
     /**
      * @return mixed
      */
-	public function getResult();
+    public function getResult();
 
     /**
      * @param $result
      * @return mixed
      */
-	public function setResult($result);
+    public function setResult($result);
 
     /**
      * @return mixed
      */
-	public function getPathValue();
+    public function getPathValue();
 
     /**
      * @return mixed
      */
-	public function getNodeModel();
+    public function getNodeModel();
 
     /**
      * @param $node_model
      * @return mixed
      */
-	public function setNodeModel($node_model);
+    public function setNodeModel($node_model);
 
     /**
      * @param $result_content
      * @return mixed
      */
-	public function setResultContent($result_content);
+    public function setResultContent($result_content);
 
     /**
      * @return mixed
      */
-	public function getResultContent();
+    public function getResultContent();
 }

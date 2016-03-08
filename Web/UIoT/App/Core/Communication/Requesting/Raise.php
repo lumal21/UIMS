@@ -28,14 +28,14 @@ namespace UIoT\App\Core\Communication\Requesting;
  */
 final class Raise extends Rest
 {
-	/**
-	 * Start Raise
-	 *
-	 * Raise constructor.
-	 */
-	public function __construct()
-	{
-		self::setSettings();
-		self::setHost();
-	}
+    /**
+     * Start Raise
+     *
+     * Raise constructor.
+     */
+    public function __construct()
+    {
+        self::setSettings();
+        self::setHost();
+    }
 }

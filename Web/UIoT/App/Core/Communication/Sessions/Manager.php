@@ -22,6 +22,8 @@
 namespace UIoT\App\Core\Communication\Sessions;
 
 use UIoT\App\Core\Helpers\System\Settings;
+use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
+use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 
 /**
  * Class Manager
@@ -29,89 +31,97 @@ use UIoT\App\Core\Helpers\System\Settings;
  */
 final class Manager
 {
-	/**
-	 * @var Storage
-	 */
-	private static $storage;
-	/**
-	 * @var Handler
-	 */
-	private static $handler;
+    /**
+     * @var Storage
+     */
+    private static $storage;
 
-	/**
-	 * Init session Handler
-	 */
-	public function __construct()
-	{
-		$this->setSettings();
-		$this->setHandler();
-		$this->startSession();
-		$this->setStorage();
-	}
+    /**
+     * @var Handler
+     */
+    private static $handler;
 
-	/**
-	 * Save the Session Handler as PhP Session Handler
-	 */
-	private function setHandler()
-	{
-		session_set_save_handler(new Handler(Settings::getSetting('security')->session_handler_salt, Settings::getSetting('security')->session_time_out), true);
-	}
+    /**
+     * @var SecuritySettingsModel
+     */
+    private $settings;
 
-	private function setSettings()
-	{
-		ini_set('session.save_handler', 'files');
-		ini_set('session.serialize_handler', 'php_serialize');
-	}
+    /**
+     * Init session Handler
+     */
+    public function __construct()
+    {
+        $this->setSettings();
+        $this->setHandler();
+        $this->startSession();
+        $this->setStorage();
+    }
 
-	/**
-	 * Start Session
-	 */
-	public static function startSession()
-	{
-		session_start();
-	}
+    /**
+     * Save the Session Handler as PhP Session Handler
+     */
+    private function setHandler()
+    {
+        session_set_save_handler(new Handler($this->settings->sessionHandlerSalt, $this->settings->sessionTimeOut), true);
+    }
 
-	/**
-	 * Instantiate the Session Handler
-	 */
-	private function setStorage()
-	{
-		self::$storage = new Storage;
-	}
+    private function setSettings()
+    {
+        ini_set('session.save_handler', 'files');
+        ini_set('session.serialize_handler', 'php_serialize');
 
-	/**
-	 * Unset all Sessions
-	 */
-	public static function eraseSession()
-	{
-		session_unset();
-	}
+        $this->settings = SettingsIndexer::getSetting('security');
+    }
 
-	/**
-	 * Stop Session Handler
-	 */
-	public static function stopSession()
-	{
-		session_destroy();
-	}
+    /**
+     * Start Session
+     */
+    public static function startSession()
+    {
+        session_start();
+    }
 
-	/**
-	 * Get Session Storage Manager
-	 *
-	 * @return Storage
-	 */
-	public static function getStorage()
-	{
-		return self::$storage;
-	}
+    /**
+     * Instantiate the Session Handler
+     */
+    private function setStorage()
+    {
+        self::$storage = new Storage;
+    }
 
-	/**
-	 * Get Session Handler
-	 *
-	 * @return Handler
-	 */
-	public static function getHandler()
-	{
-		return self::$handler;
-	}
+    /**
+     * Unset all Sessions
+     */
+    public static function eraseSession()
+    {
+        session_unset();
+    }
+
+    /**
+     * Stop Session Handler
+     */
+    public static function stopSession()
+    {
+        session_destroy();
+    }
+
+    /**
+     * Get Session Storage Manager
+     *
+     * @return Storage
+     */
+    public static function getStorage()
+    {
+        return self::$storage;
+    }
+
+    /**
+     * Get Session Handler
+     *
+     * @return Handler
+     */
+    public static function getHandler()
+    {
+        return self::$handler;
+    }
 }

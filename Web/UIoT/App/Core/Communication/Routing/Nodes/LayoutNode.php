@@ -36,23 +36,23 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class LayoutNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
 
-		$this->setResultContent(RenderSelector::go(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
-	}
+        $this->setResultContent(RenderSelector::go(new Render(['controller' => Strings::toControllerName($this->getPathValue()[0]), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
+    }
 }

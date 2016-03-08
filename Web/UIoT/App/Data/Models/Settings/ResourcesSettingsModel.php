@@ -20,23 +20,24 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Models\Settings;
+
+use UIoT\App\Data\Interfaces\SettingsInterface;
 
 /**
- * Interface IControllerInterface
- * @package UIoT\App\Data\Interfaces
+ * Class ResourcesSettingsModel
+ *
+ * @package UIoT\App\Data\Models\Settings
  */
-interface IControllerInterface
+class ResourcesSettingsModel implements SettingsInterface
 {
-    /**
-     * IControllerInterface constructor.
-     */
-    public function __construct();
+    const settingsBlockName = 'resources';
 
     /**
-     * @param $a
-     * @param $b
-     * @return mixed
+     *
+     * Enable caching
+     *
+     * @var boolean
      */
-    public function __call($a, $b);
+    var $enableCaching;
 }

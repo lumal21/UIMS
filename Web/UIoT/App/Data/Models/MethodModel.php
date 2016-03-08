@@ -30,29 +30,29 @@ use UIoT\App\Data\Interfaces\MethodInterface;
  */
 class MethodModel implements MethodInterface
 {
-	/** @var object|array */
-	private $data;
+    /** @var object|array */
+    private $data;
 
-	/**
-	 * Get Data
-	 *
-	 * @return array|object
-	 */
-	public function getData()
-	{
-		return $this->data;
-	}
+    /**
+     * Get Data
+     *
+     * @return array|object
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
 
-	/**
-	 * Set Data
-	 *
-	 * @param array $data
-	 * @return $this
-	 */
-	public function setData($data = [])
-	{
-		$this->data = $data;
+    /**
+     * Set Data
+     *
+     * @param array $data
+     * @return $this
+     */
+    public function setData($data = [])
+    {
+        $this->data = $data;
 
-		return $this;
-	}
+        return $this;
+    }
 }

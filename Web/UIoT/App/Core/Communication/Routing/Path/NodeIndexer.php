@@ -32,264 +32,264 @@ use UIoT\App\Data\Models\NodeModel;
  */
 final class NodeIndexer
 {
-	/**
-	 * Array of Nodes
-	 *
-	 * @var NodeModel[]
-	 */
-	public $nodes = [];
-
-	/**
-	 * Add a Node
-	 *
-	 * @param NodeModel[] $node_item_array
-	 *
-	 * @return int Node Id
-	 */
-	public function addNode(array $node_item_array)
-	{
-		$this->nodes[$this->getNodeSize() + 1] = new NodeModel($this->getNodeSize() + 1, $node_item_array['path'], $node_item_array['callback'], $node_item_array['priority'], $node_item_array['method'], $node_item_array['group']);
-	}
-
-	/**
-	 * Return Node Array Size
-	 *
-	 * @return int Return the count of NodeModel in $node
-	 */
-	private function getNodeSize()
-	{
-		return sizeof($this->getNodes()) - 1;
-	}
-
-	/**
-	 * Return All Nodes
-	 *
-	 * @return NodeModel[]
-	 */
-	public function getNodes()
-	{
-		return $this->nodes;
-	}
-
-	/**
-	 * Override Nodes
-	 *
-	 * @param NodeModel[] $nodes
-	 */
-	public function setNodes($nodes)
-	{
-		$this->nodes = $nodes;
-	}
-
-	/**
-	 * Sort Nodes
-	 *
-	 * @param NodeModel $node_a
-	 * @param NodeModel $node_b
-	 * @return int
-	 */
-	public function sortNodes(NodeModel $node_a, NodeModel $node_b)
-	{
-		return $node_a->getPriority() != $node_b->getPriority() ? (($node_a->getPriority() < $node_b->getPriority()) ? -1 : 1) : 0;
-	}
-
-	/**
-	 * Update NodeModel Node Ids
-	 *
-	 * @param int $node_id
-	 * @param NodeModel $node ˙
-	 * @return NodeModel
-	 */
-	public function updateNodeIds($node_id, NodeModel $node)
-	{
-		/* set new node unique identification */
-		$node->setNodeId($node_id);
-
-		/* return node */
-		return $node;
-	}
-
-	/**
-	 * Sort all Nodes And Update they Node Ids
-	 */
-	public function sort()
-	{
-		/* first sort the array by priority */
-		usort($this->nodes, [$this, 'sortNodes']);
-
-		/* update nodes ids also in the Node object and update the Node array */
-		$this->setNodes(array_map([$this, 'updateNodeIds'], array_keys($this->nodes), $this->nodes));
-	}
-
-	/**
-	 * Return a Node by Path
-	 *
-	 * @param $path
-	 * @return NodeModel
-	 */
-	public function getNodeByPath($path)
-	{
-		return Arrays::objArraySearch($this->getNodes(), 'Path', $path);
-	}
-
-	/**
-	 * Return Node by Id
-	 *
-	 * @param int $node_id
-	 * @return NodeModel
-	 */
-	public function getNodeById($node_id)
-	{
-		return Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
-	}
-
-	/**
-	 * Return all Nodes from a Specific Priority
-	 *
-	 * @param int $priority_id
-	 * @return NodeModel[]
-	 */
-	public function getNodesByPriorityId($priority_id)
-	{
-		return $this->getNodesByParameter('Priority', $priority_id, '==');
-	}
-
-	/**
-	 * Return Search by Parameter
-	 *
-	 * @param string $parameter_name
-	 * @param mixed $parameter_value
-	 * @param string $expression
-	 *
-	 * @return NodeModel[]
-	 */
-	private function getNodesByParameter($parameter_name, $parameter_value, $expression = '==')
-	{
-		return Arrays::getArrayByLogicComparsion($this->getNodes(), $parameter_name, $parameter_value, $expression);
-	}
-
-	/**
-	 * Return All Nodes that Matched
-	 *
-	 * @return NodeModel[]
-	 */
-	public function getNodesThatMatched()
-	{
-		return $this->getNodesByCallBackParameter('Result', true, '==');
-	}
-
-	/**
-	 * Return Search by Parameter
-	 *
-	 * @param string $parameter_name
-	 * @param mixed $parameter_value
-	 * @param string $expression
-	 *
-	 * @return NodeModel[]
-	 */
-	private function getNodesByCallBackParameter($parameter_name, $parameter_value, $expression = '==')
-	{
-		return Arrays::getArrayByLogicComparsion($this->getNodesCallBack(), $parameter_name, $parameter_value, $expression);
-	}
-
-	/**
-	 * Get Nodes Callback Array
-	 *
-	 * @return NodeModel[]
-	 */
-	public function getNodesCallBack()
-	{
-		return array_map(function (NodeModel $node) {
-			return $node->getCallback();
-		}, $this->getNodes());
-	}
-
-	/**
-	 * Return All Nodes that was tested with Path
-	 *
-	 * @return NodeModel[]
-	 */
-	public function getNodesWithPathValue()
-	{
-		return $this->getNodesByCallBackParameter('PathValue', [], '!=');
-	}
-
-	/**
-	 * Return Lowest Priority Id
-	 *
-	 * @return mixed
-	 */
-	public function getLowestNodePriorityId()
-	{
-		return min((!empty($o = $this->getNodesParameterByParameter('Priority')) ? $o : [1]));
-	}
-
-	/**
-	 * Return Search by Parameter
-	 *
-	 * @param string $parameter_name
-	 *
-	 * @return NodeModel[]
-	 */
-	private function getNodesParameterByParameter($parameter_name)
-	{
-		return Arrays::getArrayObjectProperty($this->getNodes(), $parameter_name);
-	}
-
-	/**
-	 * Check if Node Exists
-	 *
-	 * @param int $node_id
-	 * @return bool
-	 */
-	public function nodeExistsById($node_id)
-	{
-		return (bool)Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
-	}
-
-	/**
-	 * Remove Nodes from NodeIndexer
-	 *
-	 * @param NodeModel $edge
-	 */
-	public function removeNodesFromArray(NodeModel $edge)
-	{
-		$this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallback()));
-	}
-
-	/**
-	 * Remove each instance of an object within an array (matched on a given property, $prop)
-	 *
-	 * @param NodeModel[] $array
-	 * @param NodeHandlerModel $value
+    /**
+     * Array of Nodes
      *
-	 * @return array
-	 */
-	public function getNodesByCallBack(array $array, $value)
-	{
-		return array_filter($array, function (NodeModel $a) use ($value) {
-			return get_class($a->getCallback()) != get_class($value);
-		});
-	}
+     * @var NodeModel[]
+     */
+    public $nodes = [];
 
-	/**
-	 * Perform NodeIndexer Changes List
-	 *
-	 * @param NodeHandlerModel $node
-	 */
-	public function performCoreUpdate(NodeHandlerModel $node)
-	{
-		array_map([$this, 'removeNodesFromArray'], $this->getNodesByGroup($node->getNodeModel()->getNodeGroup()));
-	}
+    /**
+     * Add a Node
+     *
+     * @param NodeModel[] $node_item_array
+     *
+     * @return int Node Id
+     */
+    public function addNode(array $node_item_array)
+    {
+        $this->nodes[$this->getNodeSize() + 1] = new NodeModel($this->getNodeSize() + 1, $node_item_array['path'], $node_item_array['callback'], $node_item_array['priority'], $node_item_array['method'], $node_item_array['group']);
+    }
 
-	/**
-	 * Return all Nodes from a Specific Group
-	 *
-	 * @param string $node_group
-	 * @return NodeModel[]
-	 */
-	public function getNodesByGroup($node_group)
-	{
-		return $this->getNodesByParameter('NodeGroup', $node_group, '==');
-	}
+    /**
+     * Return Node Array Size
+     *
+     * @return int Return the count of NodeModel in $node
+     */
+    private function getNodeSize()
+    {
+        return sizeof($this->getNodes()) - 1;
+    }
+
+    /**
+     * Return All Nodes
+     *
+     * @return NodeModel[]
+     */
+    public function getNodes()
+    {
+        return $this->nodes;
+    }
+
+    /**
+     * Override Nodes
+     *
+     * @param NodeModel[] $nodes
+     */
+    public function setNodes($nodes)
+    {
+        $this->nodes = $nodes;
+    }
+
+    /**
+     * Sort Nodes
+     *
+     * @param NodeModel $node_a
+     * @param NodeModel $node_b
+     * @return int
+     */
+    public function sortNodes(NodeModel $node_a, NodeModel $node_b)
+    {
+        return $node_a->getPriority() != $node_b->getPriority() ? (($node_a->getPriority() < $node_b->getPriority()) ? -1 : 1) : 0;
+    }
+
+    /**
+     * Update NodeModel Node Ids
+     *
+     * @param int $node_id
+     * @param NodeModel $node ˙
+     * @return NodeModel
+     */
+    public function updateNodeIds($node_id, NodeModel $node)
+    {
+        /* set new node unique identification */
+        $node->setNodeId($node_id);
+
+        /* return node */
+        return $node;
+    }
+
+    /**
+     * Sort all Nodes And Update they Node Ids
+     */
+    public function sort()
+    {
+        /* first sort the array by priority */
+        usort($this->nodes, [$this, 'sortNodes']);
+
+        /* update nodes ids also in the Node object and update the Node array */
+        $this->setNodes(array_map([$this, 'updateNodeIds'], array_keys($this->nodes), $this->nodes));
+    }
+
+    /**
+     * Return a Node by Path
+     *
+     * @param $path
+     * @return NodeModel
+     */
+    public function getNodeByPath($path)
+    {
+        return Arrays::objArraySearch($this->getNodes(), 'Path', $path);
+    }
+
+    /**
+     * Return Node by Id
+     *
+     * @param int $node_id
+     * @return NodeModel
+     */
+    public function getNodeById($node_id)
+    {
+        return Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
+    }
+
+    /**
+     * Return all Nodes from a Specific Priority
+     *
+     * @param int $priority_id
+     * @return NodeModel[]
+     */
+    public function getNodesByPriorityId($priority_id)
+    {
+        return $this->getNodesByParameter('Priority', $priority_id, '==');
+    }
+
+    /**
+     * Return Search by Parameter
+     *
+     * @param string $parameter_name
+     * @param mixed $parameter_value
+     * @param string $expression
+     *
+     * @return NodeModel[]
+     */
+    private function getNodesByParameter($parameter_name, $parameter_value, $expression = '==')
+    {
+        return Arrays::getArrayByLogicComparsion($this->getNodes(), $parameter_name, $parameter_value, $expression);
+    }
+
+    /**
+     * Return All Nodes that Matched
+     *
+     * @return NodeModel[]
+     */
+    public function getNodesThatMatched()
+    {
+        return $this->getNodesByCallBackParameter('Result', true, '==');
+    }
+
+    /**
+     * Return Search by Parameter
+     *
+     * @param string $parameter_name
+     * @param mixed $parameter_value
+     * @param string $expression
+     *
+     * @return NodeModel[]
+     */
+    private function getNodesByCallBackParameter($parameter_name, $parameter_value, $expression = '==')
+    {
+        return Arrays::getArrayByLogicComparsion($this->getNodesCallBack(), $parameter_name, $parameter_value, $expression);
+    }
+
+    /**
+     * Get Nodes Callback Array
+     *
+     * @return NodeModel[]
+     */
+    public function getNodesCallBack()
+    {
+        return array_map(function (NodeModel $node) {
+            return $node->getCallback();
+        }, $this->getNodes());
+    }
+
+    /**
+     * Return All Nodes that was tested with Path
+     *
+     * @return NodeModel[]
+     */
+    public function getNodesWithPathValue()
+    {
+        return $this->getNodesByCallBackParameter('PathValue', [], '!=');
+    }
+
+    /**
+     * Return Lowest Priority Id
+     *
+     * @return mixed
+     */
+    public function getLowestNodePriorityId()
+    {
+        return min((!empty($o = $this->getNodesParameterByParameter('Priority')) ? $o : [1]));
+    }
+
+    /**
+     * Return Search by Parameter
+     *
+     * @param string $parameter_name
+     *
+     * @return NodeModel[]
+     */
+    private function getNodesParameterByParameter($parameter_name)
+    {
+        return Arrays::getArrayObjectProperty($this->getNodes(), $parameter_name);
+    }
+
+    /**
+     * Check if Node Exists
+     *
+     * @param int $node_id
+     * @return bool
+     */
+    public function nodeExistsById($node_id)
+    {
+        return (bool)Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
+    }
+
+    /**
+     * Remove Nodes from NodeIndexer
+     *
+     * @param NodeModel $edge
+     */
+    public function removeNodesFromArray(NodeModel $edge)
+    {
+        $this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallback()));
+    }
+
+    /**
+     * Remove each instance of an object within an array (matched on a given property, $prop)
+     *
+     * @param NodeModel[] $array
+     * @param NodeHandlerModel $value
+     *
+     * @return array
+     */
+    public function getNodesByCallBack(array $array, $value)
+    {
+        return array_filter($array, function (NodeModel $a) use ($value) {
+            return get_class($a->getCallback()) != get_class($value);
+        });
+    }
+
+    /**
+     * Perform NodeIndexer Changes List
+     *
+     * @param NodeHandlerModel $node
+     */
+    public function performCoreUpdate(NodeHandlerModel $node)
+    {
+        array_map([$this, 'removeNodesFromArray'], $this->getNodesByGroup($node->getNodeModel()->getNodeGroup()));
+    }
+
+    /**
+     * Return all Nodes from a Specific Group
+     *
+     * @param string $node_group
+     * @return NodeModel[]
+     */
+    public function getNodesByGroup($node_group)
+    {
+        return $this->getNodesByParameter('NodeGroup', $node_group, '==');
+    }
 }

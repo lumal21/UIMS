@@ -37,27 +37,27 @@ use UIoT\App\Data\Models\NodeModel;
  */
 final class ActionNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
 
-		$this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+        $this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
 
-		$this->getResult() || Commander::showNonExistentActionError($this->getPathValue()[0], $this->getPathValue()[1]);
+        $this->getResult() || Commander::showNonExistentActionError($this->getPathValue()[0], $this->getPathValue()[1]);
 
-		!$this->getResult() || $this->setResultContent(RenderSelector::go(new Render(['controller' => $this->getPathValue()[0], 'action' => $this->getPathValue()[1]])));
-	}
+        !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render(['controller' => $this->getPathValue()[0], 'action' => $this->getPathValue()[1]])));
+    }
 }

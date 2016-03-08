@@ -49,6 +49,7 @@ use UIoT\App\Core\Communication\Routing\Nodes\LayoutNode;
 use UIoT\App\Core\Communication\Routing\Nodes\ResourceFileNode;
 use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
+use UIoT\App\Core\Helpers\Factories\SettingsFactory;
 use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
 
 /*
@@ -93,6 +94,11 @@ use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
  * 13. The default Controller is 'none';
  * 14. You can learn more about the cms, reading the code, good luck.
  */
+
+/**
+ * Register Settings Models
+ */
+
 
 /**
  * Register Views

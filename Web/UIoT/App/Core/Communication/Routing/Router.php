@@ -35,99 +35,99 @@ use UIoT\App\Core\Communication\Routing\Path\PathFinder;
  */
 final class Router extends RouterAccessor
 {
-	/**
-	 * Start's Router Procedure
-	 *
-	 * Router constructor.
-	 */
-	public function __construct()
-	{
-		/* create router instance */
-		$this->mount();
+    /**
+     * Start's Router Procedure
+     *
+     * Router constructor.
+     */
+    public function __construct()
+    {
+        /* create router instance */
+        $this->mount();
 
-		/* set all nodes */
-		$this->nodes();
+        /* set all nodes */
+        $this->nodes();
 
-		/* execute router */
-		$this->exec();
-	}
+        /* execute router */
+        $this->exec();
+    }
 
-	/**
-	 * Prepare Router
-	 */
-	private function prepare()
-	{
-		/* serialize call backs */
-		$this->getPathFinder()->serializeCallBacks($this->getPathFinder()->getNodeIndexer()->getNodes());
+    /**
+     * Prepare Router
+     */
+    private function prepare()
+    {
+        /* serialize call backs */
+        $this->getPathFinder()->serializeCallBacks($this->getPathFinder()->getNodeIndexer()->getNodes());
 
-		/* mount router */
-		$this->getPathFinder()->mountRouter($this->getRouter());
+        /* mount router */
+        $this->getPathFinder()->mountRouter($this->getRouter());
 
-		/* set 404 Callback Node */
-		$this->getRouter()->set404(new NotFoundNode);
-	}
+        /* set 404 Callback Node */
+        $this->getRouter()->set404(new NotFoundNode);
+    }
 
-	/**
-	 * Mount Router Instance and Path Finder Instance
-	 */
-	private function mount()
-	{
-		/* set router */
-		$this->setRouter(new IRouter);
+    /**
+     * Mount Router Instance and Path Finder Instance
+     */
+    private function mount()
+    {
+        /* set router */
+        $this->setRouter(new IRouter);
 
-		/* set path finder */
-		$this->setPathFinder(new PathFinder);
-	}
+        /* set path finder */
+        $this->setPathFinder(new PathFinder);
+    }
 
-	/**
-	 * Run the Router
-	 */
-	private function run()
-	{
-		$this->getRouter()->run([$this, 'performRouterUpdate']);
-	}
+    /**
+     * Run the Router
+     */
+    private function run()
+    {
+        $this->getRouter()->run([$this, 'performRouterUpdate']);
+    }
 
-	/**
-	 * Execute the Router
-	 */
-	protected function exec()
-	{
-		/* sort all nodes */
-		$this->getPathFinder()->getNodeIndexer()->sort();
+    /**
+     * Execute the Router
+     */
+    protected function exec()
+    {
+        /* sort all nodes */
+        $this->getPathFinder()->getNodeIndexer()->sort();
 
-		/* prepare route */
-		$this->prepare();
+        /* prepare route */
+        $this->prepare();
 
-		/* run the router */
-		$this->run();
-	}
+        /* run the router */
+        $this->run();
+    }
 
-	/**
-	 * Validate the Router Run
-	 */
-	public function performRouterUpdate()
-	{
-		/* check if need perform router update */
-		if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) || empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue()))
-			return;
+    /**
+     * Validate the Router Run
+     */
+    public function performRouterUpdate()
+    {
+        /* check if need perform router update */
+        if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) || empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue()))
+            return;
 
-		/* if yes perform core update */
-		$this->performCoreUpdate();
+        /* if yes perform core update */
+        $this->performCoreUpdate();
 
-		/* reset router instance to reassign data */
-		$this->setRouter(new IRouter);
+        /* reset router instance to reassign data */
+        $this->setRouter(new IRouter);
 
-		/* execute router procedures */
-		$this->exec();
-	}
+        /* execute router procedures */
+        $this->exec();
+    }
 
-	/**
-	 * Perform NodeIndexer Core Update
-	 *
-	 * Update Data of what need be removed
-	 */
-	protected function performCoreUpdate()
-	{
-		array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
-	}
+    /**
+     * Perform NodeIndexer Core Update
+     *
+     * Update Data of what need be removed
+     */
+    protected function performCoreUpdate()
+    {
+        array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
+    }
 }

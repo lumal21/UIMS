@@ -32,29 +32,29 @@ use UIoT\App\Exception\Register;
  */
 class NotFoundNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		Register::getRunner()->errorMessage(906,
-			"404!",
-			'Details: ',
-			[
-				'What Happened?' => "Sorry but this Page was not encountered.",
-				'Solution:' => "Go Back to Home Page.",
-				'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-			]
-		);
-	}
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        Register::getRunner()->errorMessage(906,
+            "404!",
+            'Details: ',
+            [
+                'What Happened?' => "Sorry but this Page was not encountered.",
+                'Solution:' => "Go Back to Home Page.",
+                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+            ]
+        );
+    }
 }

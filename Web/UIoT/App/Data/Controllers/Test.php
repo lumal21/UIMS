@@ -30,25 +30,25 @@ use UIoT\App\Data\Models\ControllerModel;
  */
 final class Test extends ControllerModel
 {
-	/**
-	 *
-	 * This is an Example and Beta Code!
-	 *
-	 * @return string
-	 */
-	public function __actionMain()
-	{
+    /**
+     *
+     * This is an Example and Beta Code!
+     *
+     * @return string
+     */
+    public function __actionMain()
+    {
 
-	}
+    }
 
-	/**
-	 *
-	 * This is an Example and Beta Code!
-	 *
-	 * @return string
-	 */
-	public function __actionPost()
-	{
-		return '';
-	}
+    /**
+     *
+     * This is an Example and Beta Code!
+     *
+     * @return string
+     */
+    public function __actionPost()
+    {
+        return '';
+    }
 }

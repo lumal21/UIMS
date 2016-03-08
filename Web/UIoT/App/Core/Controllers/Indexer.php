@@ -33,92 +33,92 @@ use UIoT\App\Data\Models\ControllerModel;
  */
 final class Indexer
 {
-	/**
-	 * Controllers
-	 *
-	 * @var array
-	 */
-	private static $controllers = [];
+    /**
+     * Controllers
+     *
+     * @var array
+     */
+    private static $controllers = [];
 
-	/**
-	 * Add a Controller
-	 *
-	 * @param string $controller_name
-	 */
-	public static function addController($controller_name)
-	{
-		self::controllerExists($controller_name) || array_push(self::$controllers, $controller_name);
-	}
+    /**
+     * Add a Controller
+     *
+     * @param string $controller_name
+     */
+    public static function addController($controller_name)
+    {
+        self::controllerExists($controller_name) || array_push(self::$controllers, $controller_name);
+    }
 
-	/**
-	 * Check if Controller Exists
-	 *
-	 * @param string $controller_name
-	 * @return bool
-	 */
-	public static function controllerExists($controller_name)
-	{
-		return in_array(Strings::toControllerName($controller_name), self::$controllers);
-	}
+    /**
+     * Check if Controller Exists
+     *
+     * @param string $controller_name
+     * @return bool
+     */
+    public static function controllerExists($controller_name)
+    {
+        return in_array(Strings::toControllerName($controller_name), self::$controllers);
+    }
 
-	/**
-	 * Get Controller Instance
-	 *
-	 * @param string $controller_name
-	 * @return null
-	 */
-	public static function instantiateController($controller_name)
-	{
-		return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
-	}
+    /**
+     * Get Controller Instance
+     *
+     * @param string $controller_name
+     * @return null
+     */
+    public static function instantiateController($controller_name)
+    {
+        return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
+    }
 
-	/**
-	 * Activate Controller
-	 *
-	 * @param string $controller_name
-	 * @return ControllerModel
-	 */
-	public static function activeController($controller_name)
-	{
-		return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? new $controller_name : new ControllerModel;
-	}
+    /**
+     * Activate Controller
+     *
+     * @param string $controller_name
+     * @return ControllerModel
+     */
+    public static function activeController($controller_name)
+    {
+        return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? new $controller_name : new ControllerModel;
+    }
 
-	/**
-	 * Really Crazy but Works
-	 * (Is for return a reverse namespace)
-	 *
-	 * @param string $controller_name_space
-	 * @return string
-	 */
-	public static function getControllerReverseNameSpace(&$controller_name_space)
-	{
-		/* get layout name space and returns */
-		$controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
+    /**
+     * Really Crazy but Works
+     * (Is for return a reverse namespace)
+     *
+     * @param string $controller_name_space
+     * @return string
+     */
+    public static function getControllerReverseNameSpace(&$controller_name_space)
+    {
+        /* get layout name space and returns */
+        $controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
 
-		/* return normal layout name */
-		return $controller_name;
-	}
+        /* return normal layout name */
+        return $controller_name;
+    }
 
-	/**
-	 * Get Controller Namespace
-	 *
-	 * @param string $controller_name
-	 * @return string
-	 */
-	public static function getControllerNameSpace($controller_name)
-	{
-		return Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\');
-	}
+    /**
+     * Get Controller Namespace
+     *
+     * @param string $controller_name
+     * @return string
+     */
+    public static function getControllerNameSpace($controller_name)
+    {
+        return Strings::toNameSpace($controller_name, 'UIoT\App\Data\Controllers\\');
+    }
 
-	/**
-	 * Redirect to Another Controller
-	 *
-	 * @param string $controller
-	 * @param string $controller_action
-	 * @return string
-	 */
-	public static function redirectToController($controller, $controller_action = DEFAULT_CONTROLLER_ACTION)
-	{
-		return RenderSelector::go(new Render(['controller' => $controller, 'action' => $controller_action]));
-	}
+    /**
+     * Redirect to Another Controller
+     *
+     * @param string $controller
+     * @param string $controller_action
+     * @return string
+     */
+    public static function redirectToController($controller, $controller_action = DEFAULT_CONTROLLER_ACTION)
+    {
+        return RenderSelector::go(new Render(['controller' => $controller, 'action' => $controller_action]));
+    }
 }

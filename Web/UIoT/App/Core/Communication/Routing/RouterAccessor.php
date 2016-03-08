@@ -111,7 +111,7 @@ class RouterAccessor
     protected function nodes()
     {
         /* add node item */
-        array_map(function($node) {
+        array_map(function ($node) {
             $this->getPathFinder()->getNodeIndexer()->addNode($node);
         }, self::getNodeList());
     }

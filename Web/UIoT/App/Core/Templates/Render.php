@@ -83,7 +83,7 @@ final class Render implements RenderInterface
      */
     public function setArguments($arguments = [])
     {
-        $this->controller_name        = Strings::toControllerName($arguments['controller']);
+        $this->controller_name = Strings::toControllerName($arguments['controller']);
         $this->controller_action_name = Strings::toActionName($arguments['action']);
     }
 

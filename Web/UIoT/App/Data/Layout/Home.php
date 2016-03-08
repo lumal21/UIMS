@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Data\Layout;
 
+use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
-use UIoT\App\Core\Controllers\Commander;
 
 /**
  * Class Home
@@ -32,31 +32,31 @@ use UIoT\App\Core\Controllers\Commander;
  */
 class Home extends Main
 {
-	/**
-	 * Set Configuration
-	 */
-	public function __configuration()
-	{
-		Pages::setTitle('PIKAA');
-	}
+    /**
+     * Set Configuration
+     */
+    public function __configuration()
+    {
+        Pages::setTitle('PIKAA');
+    }
 
-	/**
-	 * Set Templates
-	 */
-	public function __templates()
-	{
-		TemplateIndexer::setTemplateFolder('Home');
-		TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
-		TemplateIndexer::addTemplate('Layouts/Home.php');
-	}
+    /**
+     * Set Templates
+     */
+    public function __templates()
+    {
+        TemplateIndexer::setTemplateFolder('Home');
+        TemplateIndexer::addVariable('{{resource_content}}', Commander::getControllerContent());
+        TemplateIndexer::addTemplate('Layouts/Home.php');
+    }
 
-	/**
-	 * Return Template Code
-	 *
-	 * @return null|mixed|string
-	 */
-	public function __show()
-	{
-		return TemplateIndexer::returnTemplates();
-	}
+    /**
+     * Return Template Code
+     *
+     * @return null|mixed|string
+     */
+    public function __show()
+    {
+        return TemplateIndexer::returnTemplates();
+    }
 }

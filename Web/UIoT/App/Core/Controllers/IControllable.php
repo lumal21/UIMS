@@ -32,112 +32,112 @@ use UIoT\App\Data\Models\IControllerModel;
  */
 class IControllable
 {
-	/**
-	 * Abstract Controller Name
-	 *
-	 * @var string
-	 */
-	protected $controller_name = '';
+    /**
+     * Abstract Controller Name
+     *
+     * @var string
+     */
+    protected $controller_name = '';
 
-	/**
-	 * Abstract Controller Action (Method)
-	 *
-	 * @var string
-	 */
-	protected $controller_action = '';
+    /**
+     * Abstract Controller Action (Method)
+     *
+     * @var string
+     */
+    protected $controller_action = '';
 
-	/**
-	 * All Possible Abstract Controller Actions (Methods)
-	 *
-	 * @var array
-	 */
-	protected $controller_actions = [];
+    /**
+     * All Possible Abstract Controller Actions (Methods)
+     *
+     * @var array
+     */
+    protected $controller_actions = [];
 
-	/**
-	 * Array of Abstract Controllers
-	 *
-	 * @var array
-	 */
-	protected $abstract_controllers_array = [];
+    /**
+     * Array of Abstract Controllers
+     *
+     * @var array
+     */
+    protected $abstract_controllers_array = [];
 
-	/**
-	 * Abstract Controller
-	 *
-	 * @var IControllerModel
-	 */
-	protected $controller_data;
+    /**
+     * Abstract Controller
+     *
+     * @var IControllerModel
+     */
+    protected $controller_data;
 
-	/**
-	 * Get Controller Data
-	 *
-	 * @return IControllerModel
-	 */
-	public function getControllerData()
-	{
-		return $this->controller_data;
-	}
+    /**
+     * Get Controller Data
+     *
+     * @return IControllerModel
+     */
+    public function getControllerData()
+    {
+        return $this->controller_data;
+    }
 
-	/**
-	 * Set Controller Data
-	 *
-	 * @param IControllerModel $controller_data
-	 */
-	public function setControllerData(IControllerModel $controller_data)
-	{
-		$this->controller_data = $controller_data;
-	}
+    /**
+     * Set Controller Data
+     *
+     * @param IControllerModel $controller_data
+     */
+    public function setControllerData(IControllerModel $controller_data)
+    {
+        $this->controller_data = $controller_data;
+    }
 
-	/**
-	 * Get Abstract Controller Actions (Methods)
-	 *
-	 * @return array
-	 */
-	public function getControllerActions()
-	{
-		return $this->controller_actions;
-	}
+    /**
+     * Get Abstract Controller Actions (Methods)
+     *
+     * @return array
+     */
+    public function getControllerActions()
+    {
+        return $this->controller_actions;
+    }
 
-	/**
-	 * Set Abstract Controller Actions (Methods)
-	 *
-	 * @param array $controller_actions
-	 */
-	public function setControllerActions($controller_actions)
-	{
-		$this->controller_actions = $controller_actions;
-	}
+    /**
+     * Set Abstract Controller Actions (Methods)
+     *
+     * @param array $controller_actions
+     */
+    public function setControllerActions($controller_actions)
+    {
+        $this->controller_actions = $controller_actions;
+    }
 
-	/**
-	 * Enable the Instance
-	 *
-	 * @param array $array
-	 */
-	protected function enableController($array = [])
-	{
-		/* store array */
-		$this->setControllerActions($array);
+    /**
+     * Enable the Instance
+     *
+     * @param array $array
+     */
+    protected function enableController($array = [])
+    {
+        /* store array */
+        $this->setControllerActions($array);
 
-		/* call methods */
-		$this->addInstance();
-		$this->addMethods();
-	}
+        /* call methods */
+        $this->addInstance();
+        $this->addMethods();
+    }
 
-	/**
-	 * Create Controller Instance
-	 */
-	private function addInstance()
-	{
-		$this->controller_data = new IControllerModel;
-	}
+    /**
+     * Create Controller Instance
+     */
+    private function addInstance()
+    {
+        $this->controller_data = new IControllerModel;
+    }
 
-	/**
-	 * Add Controller Abstract Methods
-	 */
-	private function addMethods()
-	{
-		foreach ($this->controller_actions as $method => $request)
-			$this->controller_data->{Strings::toActionMethodName($method)} = function () use ($method) {
-				return DataManager::getInstance($method);
-			};
-	}
+    /**
+     * Add Controller Abstract Methods
+     */
+    private function addMethods()
+    {
+        foreach ($this->controller_actions as $method => $request)
+            $this->controller_data->{Strings::toActionMethodName($method)} = function () use ($method) {
+                return DataManager::getInstance($method);
+            };
+    }
 }

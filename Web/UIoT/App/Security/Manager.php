@@ -23,8 +23,9 @@
 namespace UIoT\App\Security;
 
 use UIoT\App\Core\Helpers\Data\ClientData;
-use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\System\Settings;
+use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
+use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 use UIoT\App\Exception\Register;
 use Whitelist\Check;
 
@@ -36,102 +37,114 @@ use Whitelist\Check;
  */
 final class Manager
 {
-	/**
-	 * this class will use security helpers
-	 * like:
-	 *  - string cleaning
-	 *  - ip verification
-	 *  - xss verification
-	 *  - filter all $_REQUESTS
-	 *  - handle white list-ip system
-	 *  - and more
-	 * @param array $arguments
-	 */
+    /**
+     * this class will use security helpers
+     * like:
+     *  - string cleaning
+     *  - ip verification
+     *  - xss verification
+     *  - filter all $_REQUESTS
+     *  - handle white list-ip system
+     *  - and more
+     * @param array $arguments
+     */
 
-	/**
-	 * @var Check
-	 */
-	private static $white_list;
+    /**
+     *
+     * Settings variable
+     *
+     * @var SecuritySettingsModel
+     */
+    private $settings;
 
-	/**
-	 * Start Security Handler
-	 */
-	public function __construct()
-	{
-		/* start white list checker */
-		$this->startWhiteList();
-	}
+    /**
+     * @var Check
+     */
+    private static $white_list;
 
-	/**
-	 * Start White List Ip
-	 */
-	private function startWhiteList()
-	{
-		/* start white list checker */
-		self::$white_list = new Check;
+    /**
+     * Start Security Handler
+     */
+    public function __construct()
+    {
+        /* set settings */
+        $this->setSettings(SettingsIndexer::getSetting('security'));
 
-		/* load white list ip */
-		self::loadIpWhiteList(Settings::getSetting('security')->white_ip_list);
-	}
+        /* start white list checker */
+        $this->startWhiteList();
+    }
 
-	/**
-	 * Create White List Parameters
-	 *
-	 * @param array $arguments
-	 */
-	public static function loadIpWhiteList($arguments = [])
-	{
-		self::$white_list->whitelist((array)$arguments);
-	}
+    /**
+     * Start White List Ip
+     */
+    private function startWhiteList()
+    {
+        /* start white list checker */
+        self::$white_list = new Check;
 
-	/**
-	 * Check white list Ip Address
-	 *
-	 * @return boolean
-	 */
-	public static function checkWhiteListIp()
-	{
-		return self::$white_list->check(ClientData::getRealClientIpAddress());
-	}
+        /* load white list ip */
+        self::loadIpWhiteList($this->settings->whiteIpList);
+    }
 
-	/**
-	 * Check if Ip Address is valid to Security Access
-	 *
-	 * @return null|void
-	 */
-	public static function checkIpAddressAuthority()
-	{
-		self::checkWhiteListIp() || self::securityProblem(
-			'You Don\'t have Permissions',
-			'You Don\'t have authorization to get Exception Stack from the Server.
+    /**
+     * Create White List Parameters
+     *
+     * @param array $arguments
+     */
+    public static function loadIpWhiteList($arguments = [])
+    {
+        self::$white_list->whitelist((array)$arguments);
+    }
+
+    /**
+     * Check white list Ip Address
+     *
+     * @return boolean
+     */
+    public static function checkWhiteListIp()
+    {
+        return self::$white_list->check(ClientData::getRealClientIpAddress());
+    }
+
+    /**
+     * Check if Ip Address is valid to Security Access
+     *
+     * @return null|void
+     */
+    public static function checkIpAddressAuthority()
+    {
+        self::checkWhiteListIp() || self::securityProblem(
+            'You Don\'t have Permissions',
+            'You Don\'t have authorization to get Exception Stack from the Server.
             That Happens because your IP address isn\'t in the white list.'
-		);
-	}
+        );
+    }
 
-	/**
-	 * Security Problem
-	 *
-	 * @param string $title
-	 * @param string $message
-	 * @throws \Exception
-	 */
-	public static function securityProblem($title = '', $message = '')
-	{
-		Register::getRunner()->errorMessage(904,
-			"Stop! {$title}!",
-			'Details: ',
-			['What Happened?' => $message],
-			true
-		);
-	}
+    /**
+     * Security Problem
+     *
+     * @param string $title
+     * @param string $message
+     * @throws \Exception
+     */
+    public static function securityProblem($title = '', $message = '')
+    {
+        Register::getRunner()->errorMessage(904,
+            "Stop! {$title}!",
+            'Details: ',
+            ['What Happened?' => $message],
+            true
+        );
+    }
 
-	/**
-	 * Check if Trying to Access Developer Mode
-	 *
-	 * @return bool
-	 */
-	public static function checkDeveloperMode()
-	{
-		return Constants::returnConstant('QUERY_STRING') != Settings::getSetting('exceptions')->error_developer_code;
-	}
+    /**
+     *
+     * Set settings
+     *
+     * @param SecuritySettingsModel $settings
+     */
+    public function setSettings(SecuritySettingsModel $settings)
+    {
+        $this->settings = $settings;
+    }
 }

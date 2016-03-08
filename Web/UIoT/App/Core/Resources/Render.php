@@ -21,6 +21,7 @@
  */
 
 namespace UIoT\App\Core\Resources;
+
 use UIoT\App\Core\Helpers\Manipulation\Files;
 use UIoT\App\Data\Interfaces\RenderInterface;
 
@@ -63,7 +64,7 @@ final class Render implements RenderInterface
     public function setArguments($arguments = [])
     {
         $this->layout_name = $arguments['layout'];
-        $this->asset_name  = Files::getBaseName($arguments['asset']);
+        $this->asset_name = Files::getBaseName($arguments['asset']);
     }
 
     /**

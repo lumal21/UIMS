@@ -36,25 +36,25 @@ use UIoT\App\Data\Models\NodeModel;
  */
 class ResourceFileNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 */
-	public function call()
-	{
-		$this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
+    /**
+     * Callback Function
+     */
+    public function call()
+    {
+        $this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
 
-		$this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
+        $this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
 
-		$this->setResultContent(RenderSelector::go(new Render(['layout' => $this->getPathValue()[0], 'asset' => $this->getPathValue()[2]])));
-	}
+        $this->setResultContent(RenderSelector::go(new Render(['layout' => $this->getPathValue()[0], 'asset' => $this->getPathValue()[2]])));
+    }
 }

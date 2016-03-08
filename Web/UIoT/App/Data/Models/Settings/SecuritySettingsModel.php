@@ -20,23 +20,40 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Models\Settings;
+
+use UIoT\App\Data\Interfaces\SettingsInterface;
 
 /**
- * Interface IControllerInterface
- * @package UIoT\App\Data\Interfaces
+ * Class SecuritySettingsModel
+ *
+ * @package UIoT\App\Data\Models\Settings
  */
-interface IControllerInterface
+class SecuritySettingsModel implements SettingsInterface
 {
-    /**
-     * IControllerInterface constructor.
-     */
-    public function __construct();
+    const settingsBlockName = 'security';
 
     /**
-     * @param $a
-     * @param $b
-     * @return mixed
+     *
+     * Max length = 24 characters
+     *
+     * @var string
      */
-    public function __call($a, $b);
+    var $sessionHandlerSalt;
+
+    /**
+     *
+     * Session expire time interval
+     *
+     * @var integer
+     */
+    var $sessionTimeOut;
+
+    /**
+     *
+     * Developer access allowed ip addresses
+     *
+     * @var array
+     */
+    var $whiteIpList;
 }

@@ -30,94 +30,94 @@ use SessionHandler;
  */
 final class Handler extends SessionHandler
 {
-	/**
-	 * Session Key (ID)
-	 *
-	 * @var string
-	 */
-	private $key;
+    /**
+     * Session Key (ID)
+     *
+     * @var string
+     */
+    private $key;
 
-	/**
-	 * Session Time Out
-	 *
-	 * @var int
-	 */
-	private $time_out;
+    /**
+     * Session Time Out
+     *
+     * @var int
+     */
+    private $time_out;
 
-	/**
-	 * Initialize Session Handler
-	 *
-	 * @param string $key (24 letters)
-	 * @param int $time_out
-	 */
-	public function __construct($key, $time_out)
-	{
-		$this->key      = $key;
-		$this->time_out = $time_out;
-	}
+    /**
+     * Initialize Session Handler
+     *
+     * @param string $key (24 letters)
+     * @param int $time_out
+     */
+    public function __construct($key, $time_out)
+    {
+        $this->key = $key;
+        $this->time_out = $time_out;
+    }
 
-	/**
-	 * Read Session
-	 *
-	 * @param string $id
-	 *
-	 * @return string
-	 */
-	public function read($id)
-	{
-		/* read parent data */
-		$data = parent::read($id);
+    /**
+     * Read Session
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    public function read($id)
+    {
+        /* read parent data */
+        $data = parent::read($id);
 
-		/* check if session timed-out, if yes, erase session */
-		!self::checkTimeOut($id) || Indexer::removeKey($id);
+        /* check if session timed-out, if yes, erase session */
+        !self::checkTimeOut($id) || Indexer::removeKey($id);
 
-		/* return session data */
-		return mcrypt_decrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
-	}
+        /* return session data */
+        return mcrypt_decrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
+    }
 
-	/**
-	 * Check if Time out is Gotta
-	 *
-	 * @param string $id
-	 *
-	 * @return bool
-	 */
-	private function checkTimeOut($id)
-	{
-		return parent::read("time-{$id}") > time();
-	}
+    /**
+     * Check if Time out is Gotta
+     *
+     * @param string $id
+     *
+     * @return bool
+     */
+    private function checkTimeOut($id)
+    {
+        return parent::read("time-{$id}") > time();
+    }
 
-	/**
-	 * Write Session
-	 *
-	 * @param string $id
-	 * @param string $data
-	 *
-	 * @return bool
-	 */
-	public function write($id, $data)
-	{
-		/* encrypt data */
-		$data = mcrypt_encrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
+    /**
+     * Write Session
+     *
+     * @param string $id
+     * @param string $data
+     *
+     * @return bool
+     */
+    public function write($id, $data)
+    {
+        /* encrypt data */
+        $data = mcrypt_encrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
 
-		/* store time out */
-		self::timeOut($id);
+        /* store time out */
+        self::timeOut($id);
 
-		/* write session */
-		return parent::write($id, $data);
-	}
+        /* write session */
+        return parent::write($id, $data);
+    }
 
-	/**
-	 * Put a Time Out
-	 *
-	 * @param string $id
-	 */
-	private function timeOut($id)
-	{
-		/* create time string */
-		$time = time() + $this->time_out;
+    /**
+     * Put a Time Out
+     *
+     * @param string $id
+     */
+    private function timeOut($id)
+    {
+        /* create time string */
+        $time = time() + $this->time_out;
 
-		/* write the time */
-		parent::write("time-{$id}", $time);
-	}
+        /* write the time */
+        parent::write("time-{$id}", $time);
+    }
 }

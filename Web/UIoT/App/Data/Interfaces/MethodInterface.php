@@ -28,14 +28,14 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface MethodInterface
 {
-	/**
-	 * @param $data
-	 * @return mixed
-	 */
-	public function setData($data);
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function setData($data);
 
-	/**
-	 * @return mixed
-	 */
-	public function getData();
+    /**
+     * @return mixed
+     */
+    public function getData();
 }

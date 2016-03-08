@@ -31,86 +31,86 @@ use UIoT\App\Core\Helpers\Visual\Html;
  */
 final class Indexer
 {
-	/**
-	 * Folder Name
-	 *
-	 * @var string
-	 */
-	public static $folder = '';
-	
-	private static $variables = [];
+    /**
+     * Folder Name
+     *
+     * @var string
+     */
+    public static $folder = '';
 
-	/**
-	 * Set Template Folder
-	 *
-	 * @param string $f
-	 */
-	public static function setTemplateFolder($f)
-	{
-		self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
-	}
-	
-	/**
-	 * Add Variable
-	 *
-	 * @param string $key
-	 * @param string $value
-	 */
-	public static function addVariable($key, $value)
-	{
-		self::$variables[$key] = $value;
-	}
+    private static $variables = [];
 
-	/**
-	 * Add Template
-	 *
-	 * @param string $file_name
-	 */
-	public static function addTemplate($file_name)
-	{
-		Html::add(self::parseTemplateFile(self::$folder . $file_name));
-	}
-	
-	/**
-	 * Parse Template Variables
-	 *
-	 * @param mixed $template
-	 * @param array $variables
-	 */
-	public static function extractVariables($template = '', $variables)
-	{
-		foreach($variables as $word => $content)
-			$template = str_replace($word, $content, $template);
+    /**
+     * Set Template Folder
+     *
+     * @param string $f
+     */
+    public static function setTemplateFolder($f)
+    {
+        self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
+    }
 
-		return $template;
-	}
+    /**
+     * Add Variable
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public static function addVariable($key, $value)
+    {
+        self::$variables[$key] = $value;
+    }
 
-	/**
-	 * Parse Template File
-	 *
-	 * @param string $file_name
-	 * @return string
-	 */
-	public static function parseTemplateFile($file_name = '')
-	{
-		ob_start();
-		
-		echo file_get_contents($file_name);
+    /**
+     * Add Template
+     *
+     * @param string $file_name
+     */
+    public static function addTemplate($file_name)
+    {
+        Html::add(self::parseTemplateFile(self::$folder . $file_name));
+    }
 
-		$template = ob_get_contents();
-		
-		ob_end_clean();
+    /**
+     * Parse Template File
+     *
+     * @param string $file_name
+     * @return string
+     */
+    public static function parseTemplateFile($file_name = '')
+    {
+        ob_start();
 
-		return self::extractVariables($template, self::$variables);
-	}
+        echo file_get_contents($file_name);
 
-	/**
-	 * Return Template
-	 *
-	 * @return string
-	 */
-	public static function returnTemplates()
-	{
-		return Html::getf();
-	}
+        $template = ob_get_contents();
+
+        ob_end_clean();
+
+        return self::extractVariables($template, self::$variables);
+    }
+
+    /**
+     * Parse Template Variables
+     *
+     * @param mixed $template
+     * @param array $variables
+     */
+    public static function extractVariables($template = '', $variables)
+    {
+        foreach ($variables as $word => $content)
+            $template = str_replace($word, $content, $template);
+
+        return $template;
+    }
+
+    /**
+     * Return Template
+     *
+     * @return string
+     */
+    public static function returnTemplates()
+    {
+        return Html::getf();
+    }
 }

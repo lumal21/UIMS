@@ -34,23 +34,23 @@ use UIoT\App\Data\Models\NodeModel;
  */
 final class BasePathNode extends NodeHandlerModel
 {
-	/**
-	 * ControllerNode constructor.
-	 *
-	 * @param NodeModel $node
-	 */
-	public function __construct(NodeModel $node = null)
-	{
-		parent::__construct($node);
-	}
+    /**
+     * ControllerNode constructor.
+     *
+     * @param NodeModel $node
+     */
+    public function __construct(NodeModel $node = null)
+    {
+        parent::__construct($node);
+    }
 
-	/**
-	 * Callback Function
-	 *
-	 * @return bool
-	 */
-	public function call()
-	{
-		$this->setResultContent(RenderSelector::go(new Render(['controller' => Constants::returnConstant('DEFAULT_CONTROLLER'), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
-	}
+    /**
+     * Callback Function
+     *
+     * @return bool
+     */
+    public function call()
+    {
+        $this->setResultContent(RenderSelector::go(new Render(['controller' => Constants::returnConstant('DEFAULT_CONTROLLER'), 'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')])));
+    }
 }

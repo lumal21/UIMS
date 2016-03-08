@@ -31,25 +31,25 @@ interface LayoutInterface
     /**
      * LayoutInterface constructor.
      */
-	public function __construct();
+    public function __construct();
 
     /**
      * @return mixed
      */
-	public static function __resources();
+    public static function __resources();
 
     /**
      * @return mixed
      */
-	public function __configuration();
+    public function __configuration();
 
     /**
      * @return mixed
      */
-	public function __templates();
+    public function __templates();
 
     /**
      * @return mixed
      */
-	public function __show();
+    public function __show();
 }
