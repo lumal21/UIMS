@@ -51,10 +51,10 @@ use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 SettingsIndexer::prepareSettings();
 
 SettingsIndexer::addSettingsBlock('raise', [
-	'raiseHost' => 'rest_uiot',
-	'raiseBasePath' => '',
-	'raisePort' => 82,
-	'raiseSsl' => false
+    'raiseHost' => 'rest_uiot',
+    'raiseBasePath' => '',
+    'raisePort' => 82,
+    'raiseSsl' => false
 ]);
 
 SettingsIndexer::addSettingsBlock('security', [

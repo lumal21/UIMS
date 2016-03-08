@@ -122,7 +122,7 @@ final class Indexer
      */
     public static function getAvailableAssets()
     {
-        return SIndexer::keyExists('layout') ? (array) SIndexer::getKeyValue('layout') : Manager::getAssetManager()->getNames();
+        return SIndexer::keyExists('layout') ? (array)SIndexer::getKeyValue('layout') : Manager::getAssetManager()->getNames();
     }
 
     /**
