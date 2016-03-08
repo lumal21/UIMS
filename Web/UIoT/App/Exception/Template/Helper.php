@@ -85,7 +85,7 @@ class Helper extends TemplateHelper
 		$this->setHelperVariables(array_merge($handler->hResources(), $handler->hSettings(), $handler->hVariables()));
 
 		/* render main layout */
-		$this->render($handler->getPublicResource('Layouts/layout.html.php'));
+		$this->render($handler->getResource('Layouts/layout.html.php'));
 
 		/* return exit code */
 		return Handler::QUIT;

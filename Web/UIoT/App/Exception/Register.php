@@ -62,7 +62,7 @@ final class Register
 	/**
 	 * Get Handler
 	 *
-	 * @return WhoopsHandler|callable|PrettyPageHandler|HandlerInterface
+	 * @return WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
 	 */
 	public static function getHandler()
 	{

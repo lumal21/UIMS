@@ -74,7 +74,7 @@ class Handler extends PrettyPageHandler
 	 * @param string $resource
 	 * @return string
 	 */
-	public function getPublicResource($resource = '')
+	public function getResource($resource = '')
 	{
 		return parent::getResource($resource);
 	}
