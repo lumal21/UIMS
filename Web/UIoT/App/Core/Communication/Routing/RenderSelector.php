@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
-use Datatable\Render\RenderInterface;
 use UIoT\App\Core\Resources\Render as ResourceRender;
 use UIoT\App\Core\Templates\Render as TemplateRender;
+use UIoT\App\Data\Interfaces\RenderInterface;
 
 /**
  * Class Selector

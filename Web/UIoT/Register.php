@@ -96,11 +96,6 @@ use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
  */
 
 /**
- * Register Settings Models
- */
-
-
-/**
  * Register Views
  */
 

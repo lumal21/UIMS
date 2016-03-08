@@ -143,7 +143,7 @@ final class Manager
      *
      * @param SecuritySettingsModel $settings
      */
-    public function setSettings(SecuritySettingsModel $settings)
+    public function setSettings($settings)
     {
         $this->settings = $settings;
     }

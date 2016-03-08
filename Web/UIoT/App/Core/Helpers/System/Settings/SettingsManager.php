@@ -44,7 +44,7 @@ class SettingsManager
      *
      * @param SettingsInterface $settingModel
      */
-    public function create(SettingsInterface $settingModel)
+    public function __construct(SettingsInterface $settingModel)
     {
         $this->settingModel = $settingModel;
     }
@@ -58,7 +58,7 @@ class SettingsManager
      */
     public function setVariable($variableName, $variableValue)
     {
-        $this->$variableName = $variableValue;
+        $this->settingModel->$variableName = $variableValue;
     }
 
     /**

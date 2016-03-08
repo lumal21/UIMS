@@ -54,7 +54,7 @@ final class ActionNode extends NodeHandlerModel
     {
         $this->setResult(Indexer::controllerExists($this->getPathValue()[0]));
 
-        $this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]) && !Arrays::inArrayAny(Arrays::toResourceName($this->getPathValue()), Constants::returnJsonConstant('RESOURCE_TYPES')));
+        $this->setResult(Commander::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
 
         $this->getResult() || Commander::showNonExistentActionError($this->getPathValue()[0], $this->getPathValue()[1]);
 

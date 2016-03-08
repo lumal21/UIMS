@@ -51,19 +51,19 @@ use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 SettingsIndexer::prepareSettings();
 
 SettingsIndexer::addSettingsBlock('raise', [
-	'host' => 'rest_uiot',
-	'base_path' => '',
-	'port' => 82,
-	'ssl' => false
+	'raiseHost' => 'rest_uiot',
+	'raiseBasePath' => '',
+	'raisePort' => 82,
+	'raiseSsl' => false
 ]);
 
 SettingsIndexer::addSettingsBlock('security', [
     // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
-    'session_handler_salt' => 'uniform-internetofthings',
+    'sessionHandlerSalt' => 'uniform-internetofthings',
     // session expire (seconds)
-    'session_time_out' => 960,
+    'sessionTimeOut' => 960,
     // white list ip to access security items and complete exceptions stack trace, debug tools etc.
-    'white_ip_list' =>
+    'whiteIpList' =>
         [
             '127.0.0.1',
             'localhost'
@@ -72,17 +72,17 @@ SettingsIndexer::addSettingsBlock('security', [
 
 SettingsIndexer::addSettingsBlock('exceptions', [
     // set error page title
-    'error_page_title' => 'Houston, we have a problem!',
+    'errorPageTitle' => 'Houston, we have a problem!',
     // set reporting php error level
-    'error_reporting_levels' => (E_ALL),
+    'errorReportingLevels' => (E_ALL ^ E_WARNING),
     // set query_string developer access mode
-    'error_developer_code' => 'de',
+    'errorDeveloperCode' => 'de',
     // set whoops resource folder
-    'error_resource_folder' => 'Whoops'
+    'errorResourceFolder' => 'Whoops'
 ]);
 
 SettingsIndexer::addSettingsBlock('resources', [
-    'enable_caching' => true
+    'enableCaching' => true
 ]);
 
 SettingsIndexer::runSettings();

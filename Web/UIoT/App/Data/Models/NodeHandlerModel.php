@@ -63,7 +63,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      *
      * @param NodeModel|null $node
      */
-    public function __construct(NodeModel $node)
+    public function __construct(NodeModel $node = null)
     {
         /* optional set node model */
         $this->setNodeModel($node);

@@ -81,9 +81,9 @@ final class SettingsIndexer
     /**
      * Store Settings Constant
      *
-     * @param array $settingVariable
+     * @param SettingsManager[] $settingVariable
      */
-    public static function storeSettings($settingVariable = [])
+    public static function storeSettings($settingVariable)
     {
         Constants::addJsonConstant
         (

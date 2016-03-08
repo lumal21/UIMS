@@ -198,7 +198,7 @@ final class Manager
      *
      * @param ResourcesSettingsModel $settings
      */
-    public function setSettings(ResourcesSettingsModel $settings)
+    public function setSettings($settings)
     {
         $this->settings = $settings;
     }
