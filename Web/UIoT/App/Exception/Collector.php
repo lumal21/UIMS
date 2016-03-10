@@ -24,7 +24,6 @@ namespace UIoT\App\Exception;
 
 use Exception;
 use UIoT\App\Security\Manager as SHandler;
-use Whoops\Run;
 
 /**
  * Class Collector
