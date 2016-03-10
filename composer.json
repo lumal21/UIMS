@@ -2,10 +2,11 @@
   "config": {
     "vendor-dir": "Web/UIoT/Vendor"
   },
-  "name": "uiot/middleware_mc_srvcl_cms",
-  "description": "middleware_mc_srvcl_cms",
+  "name": "uiot/middleware_mc_appl_cms",
+  "description": "middleware_mc_appl_cms",
   "type": "project",
   "license": "GPL-3.0+",
+  "minimum-stability": "dev",
   "keywords": [
     "library",
     "iot",
@@ -26,23 +27,53 @@
     "cms",
     "database"
   ],
-  "homepage": "http://uiot.org",
+  "homepage": "https://uiot.org",
   "authors": [
     {
       "name": "Claudio Santoro",
       "email": "claudio.santoro@redes.unb.br"
     }
   ],
+  "repositories": [
+    {
+      "url": "https://github.com/filp/whoops.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/kriswallsmith/assetic.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/bramus/router.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/mihaeu/html-formatter.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/Jalle19/php-whitelist-check.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/nategood/httpful.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+      "type": "git"
+    }
+  ],
   "require": {
-    "nategood/httpful": "^0.2.20",
-    "filp/whoops": "^1.1.9",
-    "jalle19/php-whitelist-check": "^1.0",
-    "italolelis/datatables": "^1.0",
-    "mihaeu/html-formatter": "^1.0",
-    "bramus/router": "^1.0",
-    "bower-asset/foundation-sites": "^6.0",
-    "kriswallsmith/assetic": "^1.3",
-    "fxp/composer-asset-plugin": "~1.1"
+    "nategood/httpful": "master",
+    "jalle19/php-whitelist-check": "master",
+    "italolelis/datatables": ">=1.0",
+    "mihaeu/html-formatter": "master",
+    "bramus/router": "master",
+    "bower-asset/foundation-sites": ">=6.0",
+    "kriswallsmith/assetic": "master",
+    "fxp/composer-asset-plugin": "master",
+    "filp/whoops": "master"
   },
   "scripts": {
     "post-package-install": [

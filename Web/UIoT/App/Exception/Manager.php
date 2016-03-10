@@ -27,6 +27,7 @@ use UIoT\App\Core\Helpers\System\Settings;
 use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Exception\Template\Handler;
+use Whoops\Run;
 
 /**
  * Class Manager
@@ -62,7 +63,7 @@ final class Manager
     private function setClasses()
     {
         Register::setHandler(new Handler);
-        Register::setRunner(new Collector);
+        Register::setRunner(new Run);
     }
 
     /**

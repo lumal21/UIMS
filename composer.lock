@@ -4,26 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "243fe9f06b689129cb2b7f2192546ca3",
-    "content-hash": "8b46175b4165bc1ba98c24bc71ea1dc4",
+    "hash": "2b9071d7035dcf97776c509b30d8db6e",
+    "content-hash": "e434874bae5da6b31782bea3c3242ac4",
     "packages": [
         {
             "name": "bower-asset/foundation-sites",
-            "version": "v6.2.0",
+            "version": "6.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zurb/foundation-sites.git",
-                "reference": "d79008091c6f32ffd9bd6ea60d266c4a76771886"
+                "reference": "7a956bea261bdb23a12d3d3715ec4aafd2ff9b00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/d79008091c6f32ffd9bd6ea60d266c4a76771886",
-                "reference": "d79008091c6f32ffd9bd6ea60d266c4a76771886",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/7a956bea261bdb23a12d3d3715ec4aafd2ff9b00",
+                "reference": "7a956bea261bdb23a12d3d3715ec4aafd2ff9b00",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/jquery": "~2.2.0",
-                "bower-asset/what-input": "~1.1.2"
+                "bower-asset/what-input": "~2.0.0"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -50,7 +50,8 @@
                     ".npmignore",
                     ".versions"
                 ]
-            }
+            },
+            "time": "2016-03-01 00:14:32"
         },
         {
             "name": "bower-asset/jquery",
@@ -85,16 +86,16 @@
         },
         {
             "name": "bower-asset/what-input",
-            "version": "v1.1.4",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ten1seven/what-input.git",
-                "reference": "8176bdd24689c6fa010fbb79b2a64ac561c05305"
+                "reference": "8c9e6828d08a2605139a68cb7e54d495310ef823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/8176bdd24689c6fa010fbb79b2a64ac561c05305",
-                "reference": "8176bdd24689c6fa010fbb79b2a64ac561c05305",
+                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/8c9e6828d08a2605139a68cb7e54d495310ef823",
+                "reference": "8c9e6828d08a2605139a68cb7e54d495310ef823",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -121,17 +122,11 @@
         },
         {
             "name": "bramus/router",
-            "version": "1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramus/router.git",
-                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bramus/router/zipball/e4a588b333a539f7321cd7bbfba9bdf181209d4c",
-                "reference": "e4a588b333a539f7321cd7bbfba9bdf181209d4c",
-                "shasum": ""
+                "reference": "1f40155d0fe9ec21ff0dcf4c4d003d9fb38f41bc"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -146,7 +141,6 @@
                     "Bramus": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -163,7 +157,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-02-04 12:43:17"
+            "time": "2015-07-17 10:08:09"
         },
         {
             "name": "easyframework/collections",
@@ -265,39 +259,35 @@
         },
         {
             "name": "filp/whoops",
-            "version": "1.1.10",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/72538eeb70bbfb11964412a3d098d109efd012f7",
-                "reference": "72538eeb70bbfb11964412a3d098d109efd012f7",
-                "shasum": ""
+                "reference": "1de56025c4251e33ee88ea138b11081edb697e2a"
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "mockery/mockery": "0.9.*"
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "symfony/var-dumper": "~3.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Whoops": "src/"
-                },
-                "classmap": [
-                    "src/deprecated"
-                ]
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -315,15 +305,14 @@
                 "exception",
                 "handling",
                 "library",
-                "silex-provider",
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-06-29 05:42:04"
+            "time": "2016-03-06 13:11:36"
         },
         {
             "name": "fxp/composer-asset-plugin",
-            "version": "v1.1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
@@ -379,7 +368,7 @@
         },
         {
             "name": "italolelis/datatables",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/italolelis/datatables.git",
@@ -428,17 +417,11 @@
         },
         {
             "name": "jalle19/php-whitelist-check",
-            "version": "1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jalle19/php-whitelist-check.git",
-                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Jalle19/php-whitelist-check/zipball/e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
-                "reference": "e19311902abcae3ddcbdd9905e7a2cdae13d3fcb",
-                "shasum": ""
+                "reference": "863b895c0d2c8246e36e5a4a13cb61f87bcd54a9"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -454,7 +437,6 @@
                     "Whitelist\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-2-Clause"
             ],
@@ -466,20 +448,20 @@
                 "ipv6",
                 "whitelist"
             ],
-            "time": "2015-10-29 15:02:38"
+            "time": "2015-10-30 08:11:52"
         },
         {
             "name": "kriswallsmith/assetic",
-            "version": "v1.3.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5"
+                "reference": "4bb27cf9148b5c34f1963cb01bfc586db60d5883"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/9928f7c4ad98b234e3559d1049abd13387f86db5",
-                "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/4bb27cf9148b5c34f1963cb01bfc586db60d5883",
+                "reference": "4bb27cf9148b5c34f1963cb01bfc586db60d5883",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +483,7 @@
                 "psr/log": "~1.0",
                 "ptachoire/cssembed": "~1.0",
                 "symfony/phpunit-bridge": "~2.7|~3.0",
-                "twig/twig": "~1.8|~2.0"
+                "twig/twig": "~1.23|~2.0"
             },
             "suggest": {
                 "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
@@ -543,29 +525,28 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-11-12 13:51:40"
+            "time": "2016-02-07 17:40:57"
         },
         {
             "name": "mihaeu/html-formatter",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mihaeu/html-formatter.git",
-                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5"
+                "reference": "9fd72547984643be9233580ac577625e74d33134"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mihaeu/html-formatter/zipball/a376177343ffe5484f8457f699237c1863b7cfd5",
-                "reference": "a376177343ffe5484f8457f699237c1863b7cfd5",
-                "shasum": ""
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Mihaeu": "src"
+                "psr-4": {
+                    "Mihaeu\\": [
+                        "src/",
+                        "tests/unit/"
+                    ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -583,21 +564,15 @@
                 "html",
                 "pretty"
             ],
-            "time": "2013-11-26 11:55:02"
+            "time": "2015-04-02 16:41:13"
         },
         {
             "name": "nategood/httpful",
-            "version": "0.2.20",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nategood/httpful.git",
                 "reference": "c1cd4d46a4b281229032cf39d4dd852f9887c0f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nategood/httpful/zipball/c1cd4d46a4b281229032cf39d4dd852f9887c0f6",
-                "reference": "c1cd4d46a4b281229032cf39d4dd852f9887c0f6",
-                "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
@@ -612,7 +587,6 @@
                     "Httpful": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -637,16 +611,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.3",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3"
+                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/78c468665c9568c3faaa9c416a7134308f2d85c3",
-                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
+                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
                 "shasum": ""
             },
             "require": {
@@ -693,20 +667,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-27 05:14:19"
+            "time": "2016-03-04 07:54:35"
         },
         {
             "name": "symfony/process",
-            "version": "v3.0.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "dfecef47506179db2501430e732adbf3793099c8"
+                "reference": "101c171199fd40c555e60998c63de59f83661e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/dfecef47506179db2501430e732adbf3793099c8",
-                "reference": "dfecef47506179db2501430e732adbf3793099c8",
+                "url": "https://api.github.com/repos/symfony/process/zipball/101c171199fd40c555e60998c63de59f83661e9c",
+                "reference": "101c171199fd40c555e60998c63de59f83661e9c",
                 "shasum": ""
             },
             "require": {
@@ -715,7 +689,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -742,20 +716,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
+            "time": "2016-03-10 11:16:56"
         },
         {
             "name": "symfony/property-access",
-            "version": "v2.8.3",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "9e672f852c2270eed936d5918e2090ddfee21d1e"
+                "reference": "2b0136fddf6324924c53a7aed52f470d33d9c1a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/9e672f852c2270eed936d5918e2090ddfee21d1e",
-                "reference": "9e672f852c2270eed936d5918e2090ddfee21d1e",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/2b0136fddf6324924c53a7aed52f470d33d9c1a4",
+                "reference": "2b0136fddf6324924c53a7aed52f470d33d9c1a4",
                 "shasum": ""
             },
             "require": {
@@ -802,20 +776,20 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2016-02-13 09:21:29"
+            "time": "2016-03-04 07:54:35"
         },
         {
             "name": "xrstf/ip-utils",
-            "version": "v1.1.0",
+            "version": "dev-default",
             "source": {
                 "type": "hg",
                 "url": "https://bitbucket.org/xrstf/ip-utils",
-                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f"
+                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/xrstf/ip-utils/get/77208641fa9e6063ccb00c8899d157818ad2474f.zip",
-                "reference": "77208641fa9e6063ccb00c8899d157818ad2474f",
+                "url": "https://bitbucket.org/xrstf/ip-utils/get/6a4a617d608464c29d6e8ba3cdcfa0fb43266d57.zip",
+                "reference": "6a4a617d608464c29d6e8ba3cdcfa0fb43266d57",
                 "shasum": ""
             },
             "require": {
@@ -850,12 +824,12 @@
                 "matching",
                 "subnet"
             ],
-            "time": "2013-12-04 01:57:13"
+            "time": "2013-12-04 01:59:28"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,

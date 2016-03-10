@@ -65,11 +65,11 @@ final class Manager
         session_set_save_handler(new Handler($this->settings->sessionHandlerSalt, $this->settings->sessionTimeOut), true);
     }
 
+    /**
+     * Set System Settings
+     */
     private function setSettings()
     {
-        ini_set('session.save_handler', 'files');
-        ini_set('session.serialize_handler', 'php_serialize');
-
         $this->settings = SettingsIndexer::getSetting('security');
     }
 

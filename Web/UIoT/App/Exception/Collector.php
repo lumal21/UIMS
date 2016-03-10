@@ -32,7 +32,7 @@ use Whoops\Run;
  *
  * @package UIoT\App\Exception
  */
-final class Collector extends Run
+final class Collector
 {
     /**
      * Create a Message for Whoops
@@ -54,6 +54,6 @@ final class Collector extends Run
         Register::addDataTable($message_title, $message);
 
         /* handle exception - need to be $this to don't make a infinite recursive loop */
-        $this->handleException(new Exception($title, $code));
+        Register::getRunner()->handleException(new Exception($title, $code));
     }
 }

@@ -26,6 +26,7 @@ use Exception;
 use Whoops\Handler\HandlerInterface;
 use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
 use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 /**
  * Class Register
@@ -45,7 +46,7 @@ final class Register
     /**
      * static variable to store exception page runner
      *
-     * @var Collector
+     * @var Run
      */
     private static $runner;
 
@@ -100,7 +101,7 @@ final class Register
     /**
      * Get Runner
      *
-     * @return Collector
+     * @return Run
      */
     public static function getRunner()
     {
@@ -110,9 +111,9 @@ final class Register
     /**
      * Set Page Runner
      *
-     * @param Collector $runner
+     * @param Run $runner
      */
-    public static function setRunner(Collector $runner)
+    public static function setRunner(Run $runner)
     {
         self::$runner = new $runner;
     }
