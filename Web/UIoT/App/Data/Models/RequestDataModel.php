@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UIoT CMS
+ * UIoTuims
  * @version dev-alpha
  *                          88
  *                          ""              ,d
@@ -13,7 +13,7 @@
  *               `"YbbdP'Y8 88  `"YbbdP"'   "Y888
  *
  * @project Uniform Internet of Things
- * @app UIoT Content Management System
+ * @app UIoT User-Friendly Management System
  * @author UIoT
  * @developer Claudio Santoro
  * @developer Igor Moraes

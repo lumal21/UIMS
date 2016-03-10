@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UIoT CMS
+ * UIoTuims
  * @version dev-alpha
  *                          88
  *                          ""              ,d
@@ -13,11 +13,26 @@
  *               `"YbbdP'Y8 88  `"YbbdP"'   "Y888
  *
  * @project Uniform Internet of Things
- * @app UIoT Content Management System
+ * @app UIoT User-Friendly Management System
  * @author UIoT
  * @developer Claudio Santoro
  * @developer Igor Moraes
  * @copyright University of Brasília
+ */
+
+/*
+ *
+ *              (C) 2016 UIoT
+ *
+ *                oo
+ *
+ *       dP    dP dP 88d8b.d8b. .d8888b.
+ *       88    88 88 88'`88'`88 Y8ooooo.
+ *       88.  .88 88 88  88  88       88
+ *       `88888P' dP dP  dP  dP `88888P'
+ *
+ *     Smart IoT Network Management System
+ *
  */
 
 namespace UIoT\App\Core\Communication\Methods;
