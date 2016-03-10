@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Helpers\Manipulation;
 
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Security\Helpers\VariableFilters;
 
 /**
@@ -34,7 +34,7 @@ class Strings
     /**
      * Convert string to a NameSpace String
      *
-     * @param string|LayoutModel $class
+     * @param string|LayoutSingleton $class
      * @param string $namespace
      *
      * @return string|false
@@ -47,7 +47,7 @@ class Strings
     /**
      * Convert string to Controller String
      *
-     * @param string|LayoutModel $string
+     * @param string|LayoutSingleton $string
      * @return string
      */
     public static function toControllerName($string = '')

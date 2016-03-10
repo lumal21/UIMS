@@ -29,31 +29,39 @@ use UIoT\App\Data\Interfaces\SettingsInterface;
  *
  * @package UIoT\App\Data\Models\Settings
  */
-class SecuritySettingsModel implements SettingsInterface
+final class SecuritySettingsModel implements SettingsInterface
 {
-    const settingsBlockName = 'security';
-
     /**
      *
      * Max length = 24 characters
      *
      * @var string
      */
-    var $sessionHandlerSalt;
-
+    public $sessionHandlerSalt = 'uniform-internetofthings';
     /**
      *
      * Session expire time interval
      *
      * @var integer
      */
-    var $sessionTimeOut;
-
+    public $sessionTimeOut = 960;
     /**
      *
      * Developer access allowed ip addresses
      *
      * @var array
      */
-    var $whiteIpList;
+    public $whiteIpList = [];
+
+    /**
+     *
+     * Return Block Name
+     *
+     * @return string
+     */
+    public final function getBlockName()
+    {
+        return 'security';
+    }
 }
+

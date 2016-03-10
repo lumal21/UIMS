@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Helpers\System\Settings;
 
 use UIoT\App\Data\Interfaces\SettingsInterface;
+use UnexpectedValueException;
 
 /**
  * Class SettingsManager
@@ -58,6 +59,9 @@ class SettingsManager
      */
     public function setVariable($variableName, $variableValue)
     {
+        if (!property_exists($this->settingModel, $variableName))
+            throw new UnexpectedValueException("Setting property $variableName doesn't exists in class " . get_class($this->settingModel));
+
         $this->settingModel->$variableName = $variableValue;
     }
 

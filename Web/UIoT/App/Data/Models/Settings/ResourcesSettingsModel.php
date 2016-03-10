@@ -29,15 +29,25 @@ use UIoT\App\Data\Interfaces\SettingsInterface;
  *
  * @package UIoT\App\Data\Models\Settings
  */
-class ResourcesSettingsModel implements SettingsInterface
+final class ResourcesSettingsModel implements SettingsInterface
 {
-    const settingsBlockName = 'resources';
-
     /**
      *
      * Enable caching
      *
      * @var boolean
      */
-    var $enableCaching;
+    public $enableCaching = false;
+
+    /**
+     *
+     * Return Block Name
+     *
+     * @return string
+     */
+    public final function getBlockName()
+    {
+        return 'resources';
+    }
 }
+

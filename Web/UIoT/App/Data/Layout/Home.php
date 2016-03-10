@@ -28,19 +28,22 @@ use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 
 /**
  * Class Home
+ *
  * @package UIoT\App\Data\Layout
  */
 class Home extends Main
 {
     /**
+     *
      * Set Configuration
      */
     public function __configuration()
     {
-        Pages::setTitle('PIKAA');
+        Pages::setTitle('Welcome to UIoT');
     }
 
     /**
+     *
      * Set Templates
      */
     public function __templates()
@@ -51,6 +54,7 @@ class Home extends Main
     }
 
     /**
+     *
      * Return Template Code
      *
      * @return null|mixed|string

@@ -29,5 +29,10 @@ namespace UIoT\App\Data\Interfaces;
  */
 interface SettingsInterface
 {
-
+    /**
+     * Return Setting Block Name
+     *
+     * @return string
+     */
+    function getBlockName();
 }

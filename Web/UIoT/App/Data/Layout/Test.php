@@ -28,11 +28,13 @@ use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 
 /**
  * Class Test
+ *
  * @package UIoT\App\Data\Layout
  */
 class Test extends Main
 {
     /**
+     *
      * Set Configuration
      */
     public function __configuration()
@@ -41,6 +43,7 @@ class Test extends Main
     }
 
     /**
+     *
      * Set Templates
      */
     public function __templates()
@@ -51,6 +54,7 @@ class Test extends Main
     }
 
     /**
+     *
      * Return Template
      *
      * @return null|mixed|string

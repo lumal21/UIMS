@@ -26,19 +26,20 @@ use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Singletons\LayoutSingleton;
 
 /**
  * Class Main
+ *
  * @package UIoT\App\Data\Layout
  */
-class Main extends LayoutModel
+class Main extends LayoutSingleton
 {
     /**
+     *
      * Set Resources
-     * (Main)
      */
-    public static function __resources()
+    public function __resources()
     {
         ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
         ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
@@ -57,14 +58,16 @@ class Main extends LayoutModel
     }
 
     /**
+     *
      * Set Configuration
      */
     public function __configuration()
     {
-        Pages::setTitle('PIKAA');
+        Pages::setTitle('Welcome to UIoT');
     }
 
     /**
+     *
      * Set Templates
      */
     public function __templates()
@@ -75,6 +78,7 @@ class Main extends LayoutModel
     }
 
     /**
+     *
      * Return Template Code
      *
      * @return null|mixed|string

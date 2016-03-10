@@ -24,8 +24,8 @@ namespace UIoT\App\Core\Helpers\Manipulation;
 
 use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Data\Models\MethodModel;
+use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
-use UIoT\App\Security\Helpers\VariableFilters;
 
 /**
  * Class Arrays
@@ -34,6 +34,7 @@ use UIoT\App\Security\Helpers\VariableFilters;
 class Arrays
 {
     /**
+     *
      * Convert String to ActionName
      * (Used on Array_Map)
      *
@@ -46,18 +47,7 @@ class Arrays
     }
 
     /**
-     * Add Value in Array
      *
-     * @param $key
-     * @param string $value
-     * @param array $array
-     */
-    public static function addOnArray($key, $value, &$array = [])
-    {
-        $array[$key] = $value;
-    }
-
-    /**
      * Add value in Method
      *
      * @param $key
@@ -72,18 +62,7 @@ class Arrays
     }
 
     /**
-     * Check if is Instance of Closure
-     * (Used on ArrayMap)
      *
-     * @param string $a
-     * @return mixed
-     */
-    public static function isInstanceOfClosure($a)
-    {
-        return self::checkIsInstanceOf($a, 'Closure');
-    }
-
-    /**
      * Check if is InstanceOf
      * (Used on ArrayMap)
      *
@@ -97,6 +76,7 @@ class Arrays
     }
 
     /**
+     *
      * Convert to Controller Name
      * (Used on ArrayMap)
      *
@@ -109,6 +89,7 @@ class Arrays
     }
 
     /**
+     *
      * Convert to Controller Name an entire Array
      *
      * @param array $a
@@ -120,10 +101,12 @@ class Arrays
     }
 
     /**
+     *
      * Get Entire Methods (Actions) of User Defined Controller
      * (Only for Public - non-static - methods)
      *
      * @param string $controller_name
+     *
      * @return array
      */
     public static function getStaticControllerActions($controller_name = '')
@@ -132,21 +115,12 @@ class Arrays
     }
 
     /**
-     * Return to Resource Valid File Name
      *
-     * @param array $array
-     * @return array
-     */
-    public static function toResourceName(array $array)
-    {
-        return array_map('self::toActionName', $array);
-    }
-
-    /**
      * Get Entire Methods (Actions) of UIoT Abstract Controller
      * (Only for Public - non-static - methods)
      *
      * @param array $a
+     *
      * @return array
      */
     public static function getAbstractControllerActions($a = [])
@@ -155,34 +129,33 @@ class Arrays
     }
 
     /**
-     * Sanitize the Array
      *
-     * @param array $input_array
-     * @return array|mixed|string
-     */
-    public static function sanitizeArray(array $input_array = [])
-    {
-        return VariableFilters::sanitizeVariable((array)$input_array);
-    }
-
-    /**
      * Return Search by Parameter
      *
      * @param array $array
      * @param string $parameter_name
      * @param mixed $parameter_value
      * @param string $expression
+     *
      * @return array
      */
     public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==')
     {
-        return array_filter($array,
+        return array_filter(
+        /**
+         *
+         * @param NodeHandlerModel|NodeModel|object|array|mixed $var
+         *
+         * @return bool
+         */
+            $array,
 
-            /**
-             * @param NodeHandlerModel|NodeModel|object|array|mixed $var
-             */
             function ($var) use ($parameter_name, $parameter_value, $expression) {
 
+                /**
+                 *
+                 * @var NodeHandlerModel|NodeModel|object $var
+                 */
                 $variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 
                 switch ($expression):
@@ -195,11 +168,13 @@ class Arrays
     }
 
     /**
+     *
      * Return Object by Search for Property
      *
      * @param $array
      * @param $index
      * @param $value
+     *
      * @return null|NodeModel
      */
     public static function objArraySearch($array, $index, $value)
@@ -211,17 +186,19 @@ class Arrays
     }
 
     /**
+     *
      * Get Array Object Parameter Value
      *
      * @param $getNodes
      * @param $parameter_name
+     *
      * @return array
      */
     public static function getArrayObjectProperty($getNodes, $parameter_name)
     {
-        return array_map
-        (
+        return array_map(
         /**
+         *
          * @param NodeModel|object|array|mixed $node
          */
             function ($node) use ($parameter_name) {
@@ -231,22 +208,12 @@ class Arrays
     }
 
     /**
-     * Check if Any Occurrence Exists
      *
-     * @param array $needles
-     * @param array $haystack
-     * @return bool
-     */
-    public static function inArrayAny($needles, $haystack)
-    {
-        return !!array_intersect($needles, $haystack);
-    }
-
-    /**
      * Case Insensitive in Array
      *
      * @param mixed $needle
      * @param mixed $haystack
+     *
      * @return bool
      */
     public static function inArray($needle, $haystack)

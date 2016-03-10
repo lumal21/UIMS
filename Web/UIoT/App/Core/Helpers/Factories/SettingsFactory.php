@@ -60,10 +60,7 @@ class SettingsFactory
      */
     protected static function addModel(SettingsInterface $settingsInterface)
     {
-        /** @var SettingsInterface $className */
-        $className = get_class($settingsInterface);
-
-        self::$settingsModels[$className::settingsBlockName] = new SettingsManager($settingsInterface);
+        self::$settingsModels[$settingsInterface->getBlockName()] = new SettingsManager($settingsInterface);
     }
 
     /**

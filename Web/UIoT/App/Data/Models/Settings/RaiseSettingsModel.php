@@ -29,39 +29,46 @@ use UIoT\App\Data\Interfaces\SettingsInterface;
  *
  * @package UIoT\App\Data\Models\Settings
  */
-class RaiseSettingsModel implements SettingsInterface
+final class RaiseSettingsModel implements SettingsInterface
 {
-    const settingsBlockName = 'raise';
-
     /**
      *
      * Host of raise server
      *
      * @var string
      */
-    var $raiseHost;
-
+    public $raiseHost = '';
     /**
      *
      * Raise root path
      *
      * @var string
      */
-    var $raiseBasePath;
-
+    public $raiseBasePath = '';
     /**
      *
      * Raise server port
      *
      * @var integer
      */
-    var $raisePort;
-
+    public $raisePort = 80;
     /**
      *
      * Raise server is using ssl connection
      *
      * @var boolean
      */
-    var $raiseSsl;
+    public $raiseSsl = false;
+
+    /**
+     *
+     * Return Block Name
+     *
+     * @return string
+     */
+    public final function getBlockName()
+    {
+        return 'raise';
+    }
 }
+

@@ -29,18 +29,15 @@ use UIoT\App\Data\Interfaces\SettingsInterface;
  *
  * @package UIoT\App\Data\Models\Settings
  */
-class ExceptionSettingsModel implements SettingsInterface
+final class ExceptionSettingsModel implements SettingsInterface
 {
-    const settingsBlockName = 'exceptions';
-
     /**
      *
      * Error page title
      *
      * @var string
      */
-    var $errorPageTitle;
-
+    public $errorPageTitle = 'Houston, we have a problem!';
     /**
      *
      * php error reporting level
@@ -49,8 +46,7 @@ class ExceptionSettingsModel implements SettingsInterface
      *
      * @var integer
      */
-    var $errorReportingLevels;
-
+    public $errorReportingLevels = (E_ALL ^ E_WARNING);
     /**
      *
      * URI query string to access error details
@@ -61,13 +57,24 @@ class ExceptionSettingsModel implements SettingsInterface
      *
      * @var string
      */
-    var $errorDeveloperCode;
-
+    public $errorDeveloperCode = 'de';
     /**
      *
      * Error page resource folder
      *
      * @var string
      */
-    var $errorResourceFolder;
+    public $errorResourceFolder = 'Whoops';
+
+    /**
+     *
+     * Return Block Name
+     *
+     * @return string
+     */
+    public final function getBlockName()
+    {
+        return 'exceptions';
+    }
 }
+

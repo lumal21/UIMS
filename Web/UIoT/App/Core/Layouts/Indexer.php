@@ -22,21 +22,25 @@
 
 namespace UIoT\App\Core\Layouts;
 
-use UIoT\App\Core\Helpers\Manipulation\Strings;
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Singletons\LayoutSingleton;
 
 /**
  * Class Indexer
+ *
  * @package UIoT\App\Data\Layouts
  */
 final class Indexer
 {
     /**
+     *
+     * Layout Array
+     *
      * @var array
      */
     private static $layout = [];
 
     /**
+     *
      * Add a Layout
      *
      * @param string $layout_name
@@ -47,9 +51,11 @@ final class Indexer
     }
 
     /**
+     *
      * Check if Layout Exists
      *
-     * @param string|LayoutModel $layout_name
+     * @param string|LayoutSingleton $layout_name
+     *
      * @return bool
      */
     public static function layoutExists($layout_name)
@@ -58,72 +64,40 @@ final class Indexer
     }
 
     /**
-     * Return View Name Space
+     *
+     * Return Instance of Layout
      *
      * @param string $layout_name
+     *
      * @return string
      */
     public static function getLayout($layout_name)
     {
-        return self::openLayout($layout_name);
+        return self::layoutExists($layout_name) ? self::callLayoutStaticMethod($layout_name, '__run') : '';
     }
 
     /**
-     * Return Instance of Layout
+     *
+     * Call Layout static method.
      *
      * @param string $layout_name
-     * @return string
-     */
-    public static function openLayout($layout_name)
-    {
-        return self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) ? (new $layout_name)->__show() : '';
-    }
-
-    /**
-     * Really Crazy but Works
-     * (Is for return a reverse namespace)
+     * @param string $layout_method
      *
-     * @param string|LayoutModel $layout_name_space
-     * @return string|LayoutModel
+     * @return mixed
      */
-    public static function getLayoutReverseNameSpace(&$layout_name_space)
+    public static function callLayoutStaticMethod($layout_name, $layout_method)
     {
-        /* get layout name space and returns */
-        $layout_name_space = self::getLayoutNameSpace($layout_name = $layout_name_space);
-
-        /* return normal layout name */
-        return $layout_name;
+        return forward_static_call(["UIoT\\App\\Data\\Layout\\$layout_name", $layout_method]);
     }
 
     /**
-     * Return the Namespace form the Layout
      *
-     * @param string|LayoutModel $layout_name
-     * @return LayoutModel|string
-     */
-    public static function getLayoutNameSpace($layout_name)
-    {
-        return Strings::toNameSpace($layout_name, 'UIoT\App\Data\Layout\\');
-    }
-
-    /**
      * Get the Layout Resources
      *
      * @param string $layout_name
      */
     public static function getLayoutResources($layout_name)
     {
-        self::openLayoutResources($layout_name);
-    }
-
-    /**
-     * Return Layout Resources
-     *
-     * @param string $layout_name
-     * @return mixed
-     */
-    public static function openLayoutResources($layout_name = '')
-    {
-        !self::layoutExists(self::getLayoutReverseNameSpace($layout_name)) || $layout_name::__resources();
+        self::callLayoutStaticMethod($layout_name, '__res');
     }
 }

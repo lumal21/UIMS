@@ -26,18 +26,20 @@ use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Singletons\LayoutSingleton;
 
 /**
  * Class Login
+ *
  * @package UIoT\App\Data\Layout
  */
-class Login extends LayoutModel
+class Login extends LayoutSingleton
 {
     /**
+     *
      * Set Resources
      */
-    public static function __resources()
+    public function __resources()
     {
         ResourceIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
         ResourceIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
@@ -48,14 +50,16 @@ class Login extends LayoutModel
     }
 
     /**
+     *
      * Set Configuration
      */
     public function __configuration()
     {
-        Pages::setTitle('Hello World');
+        Pages::setTitle('Login at UIoT');
     }
 
     /**
+     *
      * Set Templates
      */
     public function __templates()
@@ -66,6 +70,7 @@ class Login extends LayoutModel
     }
 
     /**
+     *
      * Return Template
      *
      * @return null|mixed|string

@@ -68,7 +68,7 @@ final class Json
      */
     public static function isInstanceOfClosure($x)
     {
-        return Arrays::isInstanceOfClosure($x);
+        return Arrays::checkIsInstanceOf($x, 'Closure');
     }
 
     /**

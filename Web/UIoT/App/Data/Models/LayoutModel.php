@@ -26,31 +26,22 @@ use UIoT\App\Data\Interfaces\LayoutInterface;
 
 /**
  * Class LayoutModel
- * @package UIoT\App\Data\Models\Types
+ *
+ * @package UIoT\App\Data\Models
  */
 class LayoutModel implements LayoutInterface
 {
     /**
-     * Start Layout
      *
-     * LayoutModel constructor.
-     */
-    public function __construct()
-    {
-        $this->__resources();
-        $this->__configuration();
-        $this->__templates();
-    }
-
-    /**
      * Define Resources
      */
-    public static function __resources()
+    public function __resources()
     {
         /* not implemented */
     }
 
     /**
+     *
      * Define Settings
      */
     public function __configuration()
@@ -59,6 +50,7 @@ class LayoutModel implements LayoutInterface
     }
 
     /**
+     *
      * Define Templates
      */
     public function __templates()
@@ -67,6 +59,7 @@ class LayoutModel implements LayoutInterface
     }
 
     /**
+     *
      * Return Layout Code
      */
     public function __show()
@@ -74,3 +67,4 @@ class LayoutModel implements LayoutInterface
         /* not implemented */
     }
 }
+
