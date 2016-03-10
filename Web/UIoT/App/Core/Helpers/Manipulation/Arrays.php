@@ -142,20 +142,10 @@ class Arrays
     public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==')
     {
         return array_filter(
-        /**
-         *
-         * @param NodeHandlerModel|NodeModel|object|array|mixed $var
-         *
-         * @return bool
-         */
+        /** @param NodeHandlerModel|NodeModel|object|array|mixed $var @return bool */
             $array,
-
             function ($var) use ($parameter_name, $parameter_value, $expression) {
-
-                /**
-                 *
-                 * @var NodeHandlerModel|NodeModel|object $var
-                 */
+                /** @var NodeHandlerModel|NodeModel|object $var */
                 $variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
 
                 switch ($expression):
