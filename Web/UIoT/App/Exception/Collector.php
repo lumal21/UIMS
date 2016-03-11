@@ -44,7 +44,7 @@ final class Collector
      * @param bool $security_error
      * @throws Exception
      */
-    public function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
+    public static function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
     {
         /* check if you have valid access */
         !$security_error || SHandler::checkIpAddressAuthority();

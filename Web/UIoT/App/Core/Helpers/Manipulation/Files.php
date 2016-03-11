@@ -23,11 +23,13 @@
 namespace UIoT\App\Core\Helpers\Manipulation;
 
 use SplFileInfo;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class Files
+ *
  * @package UIoT\App\Core\Helpers\Manipulation
+ *
  * @observation this is a singleton
  */
 class Files
@@ -54,7 +56,7 @@ class Files
     final private function __construct()
     {
         if (NULL === self::$files_instance)
-            Register::getRunner()->errorMessage(908,
+            Collector::errorMessage(908,
                 'Stop!',
                 'You cannot instantiate a singleton!',
                 ['What happened?' => 'Singletons are not instantiated by the user!']);

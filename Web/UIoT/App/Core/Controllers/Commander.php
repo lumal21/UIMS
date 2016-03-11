@@ -25,7 +25,7 @@ use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Models\ControllerModel;
 use UIoT\App\Data\Models\IControllerModel;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class Commander
@@ -166,7 +166,7 @@ final class Commander
      */
     public static function showNonExistentActionError($controller_name, $action_name)
     {
-        Register::getRunner()->errorMessage(902,
+        Collector::errorMessage(902,
             "Stop! That Action Doesn't Exists!",
             'Details: ',
             [

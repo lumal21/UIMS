@@ -20,21 +20,6 @@
  * @copyright University of Brasília
  */
 
-/*
- *
- *              (C) 2016 UIoT
- *
- *                oo
- *
- *       dP    dP dP 88d8b.d8b. .d8888b.
- *       88    88 88 88'`88'`88 Y8ooooo.
- *       88.  .88 88 88  88  88       88
- *       `88888P' dP dP  dP  dP `88888P'
- *
- *     Smart IoT Network Management System
- *
- */
-
 namespace UIoT\App\Core\Communication\Methods;
 
 use UIoT\App\Data\Models\MethodModel;

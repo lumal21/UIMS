@@ -26,7 +26,7 @@ use UIoT\App\Core\Helpers\Data\ClientData;
 use UIoT\App\Core\Helpers\System\Settings;
 use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 use Whitelist\Check;
 
 /**
@@ -129,7 +129,7 @@ final class Manager
      */
     public static function securityProblem($title = '', $message = '')
     {
-        Register::getRunner()->errorMessage(904,
+        Collector::errorMessage(904,
             "Stop! {$title}!",
             'Details: ',
             ['What Happened?' => $message],

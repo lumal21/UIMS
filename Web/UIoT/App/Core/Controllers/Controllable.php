@@ -27,7 +27,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class Controllable
@@ -82,7 +82,7 @@ final class Controllable extends IControllable
         !$this->checkData() || $this->enableController($this->controller_actions);
 
         /* if not valid finish */
-        $this->checkData() || Register::getRunner()->errorMessage(901,
+        $this->checkData() || Collector::errorMessage(901,
             "Stop! That Controller Doesn't Exists!",
             'Details: ',
             [

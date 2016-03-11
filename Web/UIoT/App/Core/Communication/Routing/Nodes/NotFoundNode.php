@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class NotFoundNode
@@ -47,7 +47,7 @@ class NotFoundNode extends NodeHandlerModel
      */
     public function call()
     {
-        Register::getRunner()->errorMessage(906,
+        Collector::errorMessage(906,
             "404!",
             'Details: ',
             [

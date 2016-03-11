@@ -27,7 +27,7 @@ use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Indexer as LIndexer;
-use UIoT\App\Exception\Register;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class Indexer
@@ -186,7 +186,7 @@ final class Indexer
      */
     private static function checkAssetExistence($asset_name)
     {
-        !Manager::getAssetManager()->has($asset_name) || Register::getRunner()->errorMessage(907,
+        !Manager::getAssetManager()->has($asset_name) || Collector::errorMessage(907,
             "404!",
             'Details: ',
             [
@@ -203,7 +203,7 @@ final class Indexer
     private static function showHotLinkErrorMessage()
     {
         /* show hot link error message */
-        Register::getRunner()->errorMessage(903,
+        Collector::errorMessage(903,
             'Stop! D\'not Hotlinks!',
             'Details: ',
             [

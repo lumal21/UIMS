@@ -20,10 +20,25 @@
  * @copyright University of Brasília
  */
 
+/*
+ *
+ *              (C) 2016 UIoT
+ *
+ *                oo
+ *
+ *       dP    dP dP 88d8b.d8b. .d8888b.
+ *       88    88 88 88'`88'`88 Y8ooooo.
+ *       88.  .88 88 88  88  88       88
+ *       `88888P' dP dP  dP  dP `88888P'
+ *
+ *     Smart IoT Network Management System
+ *
+ */
+
 /*  License
     <UIoT CMS is the default content management system of uiot's
     architecture and environment of the client-side.>
-    Copyright (C) <2015>  <University of Brasília>
+    Copyright (C) <2016>  <University of Brasília>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
