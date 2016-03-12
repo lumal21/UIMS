@@ -45,6 +45,7 @@ namespace UIoT\App\Security\Helpers;
 final class ExecutionTime
 {
     /**
+     *
      * Execution Time
      *
      * @var int|float
@@ -52,6 +53,7 @@ final class ExecutionTime
     private static $execution_time = 0;
 
     /**
+     *
      * Execution Time Loops
      *
      * @var array
@@ -59,6 +61,7 @@ final class ExecutionTime
     private static $execution_loops = [];
 
     /**
+     *
      * Set UIoT Execution
      *
      * ExecutionTime constructor.
@@ -70,10 +73,11 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Add Execution Loop
      *
      * @param double $execution_loops
-     * @return int
+     * @return integer|null
      */
     public static function addExecutionLoop($execution_loops)
     {
@@ -90,6 +94,7 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Check loop Interval Average
      *
      * @return bool
@@ -101,9 +106,10 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Get Execution Time
      *
-     * @return float|init
+     * @return integer|double
      */
     public static function getExecutionTime()
     {
@@ -111,6 +117,7 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Set Execution Time
      *
      * @param double $execution_time
@@ -122,6 +129,7 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Get Execution Loops
      *
      * @return array
@@ -132,6 +140,7 @@ final class ExecutionTime
     }
 
     /**
+     *
      * Set Execution Loops
      *
      * @param array $execution_loops

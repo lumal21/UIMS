@@ -33,6 +33,7 @@ use Whoops\Util\TemplateHelper;
 class Helper extends TemplateHelper
 {
     /**
+     *
      * Global Variables
      *
      * @var array
@@ -40,6 +41,7 @@ class Helper extends TemplateHelper
     private $helper_variables = [];
 
     /**
+     *
      * Gets a single template variable, by its name, or
      * $defaultValue if the variable does not exist
      *
@@ -53,6 +55,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Unset a single template variable, by its name
      *
      * @param string $variableName
@@ -63,6 +66,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Get File Content
      *
      * @param string $template
@@ -75,6 +79,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Executes the Render
      *
      * @param Handler $handler
@@ -92,6 +97,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Given a template path, render it within its own scope. This
      * method also accepts an array of additional variables to be
      * passed to the template.
@@ -109,6 +115,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Sets a single template variable, by its name:
      *
      * @param string $variableName
@@ -120,6 +127,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Get A Rendered File Content
      *
      * @param string $template
@@ -135,6 +143,7 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Returns all variables for this helper
      *
      * @return array
@@ -145,11 +154,12 @@ class Helper extends TemplateHelper
     }
 
     /**
+     *
      * Sets the variables to be passed to all templates rendered
      * by this template helper.
      *
      * @param array $helper_variables
-     * @return Helper
+     * @return Helper|null
      */
     public function setHelperVariables(array $helper_variables = [])
     {

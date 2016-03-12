@@ -31,6 +31,7 @@ use SessionHandler;
 final class Handler extends SessionHandler
 {
     /**
+     *
      * Session Key (ID)
      *
      * @var string
@@ -38,6 +39,7 @@ final class Handler extends SessionHandler
     private $key;
 
     /**
+     *
      * Session Time Out
      *
      * @var int
@@ -45,6 +47,7 @@ final class Handler extends SessionHandler
     private $time_out;
 
     /**
+     *
      * Initialize Session Handler
      *
      * @param string $key (24 letters)
@@ -57,6 +60,7 @@ final class Handler extends SessionHandler
     }
 
     /**
+     *
      * Read Session
      *
      * @param string $id
@@ -76,11 +80,12 @@ final class Handler extends SessionHandler
     }
 
     /**
+     *
      * Check if Time out is Gotta
      *
      * @param string $id
      *
-     * @return bool
+     * @return boolean
      */
     private function checkTimeOut($id)
     {
@@ -88,12 +93,13 @@ final class Handler extends SessionHandler
     }
 
     /**
+     *
      * Write Session
      *
      * @param string $id
      * @param string $data
      *
-     * @return bool
+     * @return boolean
      */
     public function write($id, $data)
     {
@@ -108,6 +114,7 @@ final class Handler extends SessionHandler
     }
 
     /**
+     *
      * Put a Time Out
      *
      * @param string $id

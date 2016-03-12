@@ -25,6 +25,7 @@ namespace UIoT\App\Core\Communication\Parsers;
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
+use UIoT\App\Data\Models\CollectorModel;
 
 /**
  * Class DataManager
@@ -69,10 +70,12 @@ final class DataManager
     }
 
     /**
+     *
      * Return DataHandler and DataCollector Instance
      *
      * @param $method
-     * @return \UIoT\App\Data\Models\CollectorModel
+     *
+     * @return CollectorModel|boolean
      */
     public static function getInstance($method)
     {

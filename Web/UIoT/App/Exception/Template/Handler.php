@@ -41,6 +41,7 @@ use Whoops\Handler\PrettyPageHandler;
 class Handler extends PrettyPageHandler
 {
     /**
+     *
      * Template Helper
      *
      * @var Helper
@@ -58,11 +59,12 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * This Function Override PrettyPageHandler Handler
      * Override @parent handle();
      * This void makes a good Pretty Handling ;)
      *
-     * @return int
+     * @return integer|null
      */
     public function handle()
     {
@@ -70,6 +72,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Get Resource
      *
      * @param string $resource
@@ -81,6 +84,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Get Helper
      *
      * @return Helper
@@ -91,6 +95,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Set Helper
      *
      * @param Helper $helper
@@ -101,6 +106,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Return Resources for Handler
      *
      * @return array
@@ -119,6 +125,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Return Settings
      *
      * @return array
@@ -133,6 +140,7 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     *
      * Return Other Variables
      *
      * @return array

@@ -139,7 +139,7 @@ class NodeHandlerModel implements NodeHandlerInterface
     /**
      * Get Path Value
      *
-     * @return \string[]
+     * @return string[]
      */
     public function getPathValue()
     {
@@ -149,7 +149,7 @@ class NodeHandlerModel implements NodeHandlerInterface
     /**
      * Get Node Model
      *
-     * @return NodeModel
+     * @return NodeModel|null
      */
     public function getNodeModel()
     {

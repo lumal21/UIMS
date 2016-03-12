@@ -36,6 +36,7 @@ use UIoT\App\Data\Models\HandlerModel;
 class DataCollector
 {
     /**
+     *
      * Array of Collectors
      *
      * @var array
@@ -43,6 +44,7 @@ class DataCollector
     private static $collectors;
 
     /**
+     *
      * Start the Handler
      *
      * DataCollector constructor.
@@ -77,6 +79,7 @@ class DataCollector
     }
 
     /**
+     *
      * Do the REST request
      *
      * @return array|mixed|null|object|string
@@ -87,11 +90,13 @@ class DataCollector
     }
 
     /**
+     *
      * Return Collector and Handler
      *
      * @param CollectorModel|null $collector
      * @param string|HandlerModel $handler
-     * @return CollectorModel
+     *
+     * @return CollectorModel|boolean
      */
     public static function initCollector(CollectorModel $collector = null, $handler = '')
     {
@@ -99,6 +104,7 @@ class DataCollector
     }
 
     /**
+     *
      * Return all Collectors
      *
      * @return array

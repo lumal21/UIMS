@@ -33,6 +33,7 @@ use UIoT\App\Data\Models\NodeModel;
 final class NodeIndexer
 {
     /**
+     *
      * Array of Nodes
      *
      * @var NodeModel[]
@@ -40,11 +41,12 @@ final class NodeIndexer
     public $nodes = [];
 
     /**
-     * Add a Node
+     *
+     * Add a Node and return int Node Id
      *
      * @param NodeModel[] $node_item_array
      *
-     * @return int Node Id
+     * @return integer|null
      */
     public function addNode(array $node_item_array)
     {
@@ -52,9 +54,10 @@ final class NodeIndexer
     }
 
     /**
-     * Return Node Array Size
      *
-     * @return int Return the count of NodeModel in $node
+     * Return Node Array Size - The count of NodeModel in $node
+     *
+     * @return integer|double
      */
     private function getNodeSize()
     {
@@ -62,6 +65,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return All Nodes
      *
      * @return NodeModel[]
@@ -72,6 +76,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Override Nodes
      *
      * @param NodeModel[] $nodes
@@ -86,6 +91,7 @@ final class NodeIndexer
      *
      * @param NodeModel $node_a
      * @param NodeModel $node_b
+     *
      * @return int
      */
     public function sortNodes(NodeModel $node_a, NodeModel $node_b)
@@ -94,10 +100,12 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Update NodeModel Node Ids
      *
      * @param int $node_id
-     * @param NodeModel $node ˙
+     * @param NodeModel $node
+     *
      * @return NodeModel
      */
     public function updateNodeIds($node_id, NodeModel $node)
@@ -122,10 +130,12 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return a Node by Path
      *
      * @param $path
-     * @return NodeModel
+     *
+     * @return NodeModel|null
      */
     public function getNodeByPath($path)
     {
@@ -133,10 +143,12 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return Node by Id
      *
      * @param int $node_id
-     * @return NodeModel
+     *
+     * @return NodeModel|null
      */
     public function getNodeById($node_id)
     {
@@ -144,9 +156,11 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return all Nodes from a Specific Priority
      *
      * @param int $priority_id
+     *
      * @return NodeModel[]
      */
     public function getNodesByPriorityId($priority_id)
@@ -155,6 +169,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return Search by Parameter
      *
      * @param string $parameter_name
@@ -169,6 +184,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return All Nodes that Matched
      *
      * @return NodeModel[]
@@ -179,6 +195,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return Search by Parameter
      *
      * @param string $parameter_name
@@ -193,6 +210,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Get Nodes Callback Array
      *
      * @return NodeModel[]
@@ -205,6 +223,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return All Nodes that was tested with Path
      *
      * @return NodeModel[]
@@ -237,9 +256,11 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Check if Node Exists
      *
      * @param int $node_id
+     *
      * @return bool
      */
     public function nodeExistsById($node_id)
@@ -248,6 +269,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Remove Nodes from NodeIndexer
      *
      * @param NodeModel $edge
@@ -258,6 +280,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Remove each instance of an object within an array (matched on a given property, $prop)
      *
      * @param NodeModel[] $array
@@ -273,6 +296,7 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Perform NodeIndexer Changes List
      *
      * @param NodeHandlerModel $node
@@ -283,9 +307,11 @@ final class NodeIndexer
     }
 
     /**
+     *
      * Return all Nodes from a Specific Group
      *
      * @param string $node_group
+     *
      * @return NodeModel[]
      */
     public function getNodesByGroup($node_group)

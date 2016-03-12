@@ -29,12 +29,14 @@ namespace UIoT\App\Core\Helpers\Manipulation;
 final class Constants
 {
     /**
+     *
      * Define a Constant with jSON
      *
      * @param string $constant_name Name
      * @param mixed $constant_value Value
      * @param int $constant_options jSON Options
-     * @return string
+     *
+     * @return string|null
      */
     public static function addJsonConstant($constant_name, $constant_value = '', $constant_options = 0)
     {
@@ -42,6 +44,7 @@ final class Constants
     }
 
     /**
+     *
      * Define a Constant
      *
      * @param string $constant_name Name
@@ -53,6 +56,7 @@ final class Constants
     }
 
     /**
+     *
      * Add Serialized Constant
      *
      * @param $constant_name
@@ -64,9 +68,11 @@ final class Constants
     }
 
     /**
+     *
      * Return Unserialized Constant
      *
      * @param string $constant_name
+     *
      * @return mixed
      */
     public static function returnSerializedConstant($constant_name = '')
@@ -75,9 +81,11 @@ final class Constants
     }
 
     /**
+     *
      * Return Constant
      *
      * @param string $constant_name
+     *
      * @return string
      */
     public static function returnConstant($constant_name = '')
@@ -86,9 +94,11 @@ final class Constants
     }
 
     /**
+     *
      * Return Json Constant
      *
      * @param string $constant_name
+     *
      * @return mixed
      */
     public static function returnJsonConstant($constant_name = '')

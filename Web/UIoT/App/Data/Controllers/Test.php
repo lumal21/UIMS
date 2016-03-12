@@ -34,7 +34,7 @@ final class Test extends ControllerSingleton
      *
      * This is an Example and Beta Code!
      *
-     * @return string
+     * @return string|null
      */
     public function __actionMain()
     {
