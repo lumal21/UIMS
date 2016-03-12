@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Routing\Path;
 
-use UIoT\App\Core\Helpers\Manipulation\Arrays;
+use UIoT\App\Core\Helpers\Manipulation\NodesArray;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
 
@@ -129,7 +129,7 @@ final class NodeIndexer
      */
     public function getNodeByPath($path)
     {
-        return Arrays::objArraySearch($this->getNodes(), 'Path', $path);
+        return NodesArray::nodeArrayPropertySearch($this->getNodes(), 'Path', $path);
     }
 
     /**
@@ -140,7 +140,7 @@ final class NodeIndexer
      */
     public function getNodeById($node_id)
     {
-        return Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
+        return NodesArray::nodeArrayPropertySearch($this->getNodes(), 'NodeId', $node_id);
     }
 
     /**
@@ -165,7 +165,7 @@ final class NodeIndexer
      */
     private function getNodesByParameter($parameter_name, $parameter_value, $expression = '==')
     {
-        return Arrays::getArrayByLogicComparsion($this->getNodes(), $parameter_name, $parameter_value, $expression);
+        return NodesArray::getArrayByLogicComparsion($this->getNodes(), $parameter_name, $parameter_value, $expression);
     }
 
     /**
@@ -189,7 +189,7 @@ final class NodeIndexer
      */
     private function getNodesByCallBackParameter($parameter_name, $parameter_value, $expression = '==')
     {
-        return Arrays::getArrayByLogicComparsion($this->getNodesCallBack(), $parameter_name, $parameter_value, $expression);
+        return NodesArray::getArrayByLogicComparsion($this->getNodesCallBack(), $parameter_name, $parameter_value, $expression);
     }
 
     /**
@@ -233,7 +233,7 @@ final class NodeIndexer
      */
     private function getNodesParameterByParameter($parameter_name)
     {
-        return Arrays::getArrayObjectProperty($this->getNodes(), $parameter_name);
+        return NodesArray::getArrayObjectProperty($this->getNodes(), $parameter_name);
     }
 
     /**
@@ -244,7 +244,7 @@ final class NodeIndexer
      */
     public function nodeExistsById($node_id)
     {
-        return (bool)Arrays::objArraySearch($this->getNodes(), 'NodeId', $node_id);
+        return (bool)NodesArray::nodeArrayPropertySearch($this->getNodes(), 'NodeId', $node_id);
     }
 
     /**

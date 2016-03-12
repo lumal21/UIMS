@@ -24,8 +24,6 @@ namespace UIoT\App\Core\Helpers\Manipulation;
 
 use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Data\Models\MethodModel;
-use UIoT\App\Data\Models\NodeHandlerModel;
-use UIoT\App\Data\Models\NodeModel;
 
 /**
  * Class Arrays
@@ -126,75 +124,6 @@ class Arrays
     public static function getAbstractControllerActions($a = [])
     {
         return is_array($a) ? (array_map('self::toActionName', array_keys((array)$a))) : [];
-    }
-
-    /**
-     *
-     * Return Search by Parameter
-     *
-     * @param array $array
-     * @param string $parameter_name
-     * @param mixed $parameter_value
-     * @param string $expression
-     *
-     * @return array
-     */
-    public static function getArrayByLogicComparsion(array $array, $parameter_name = '', $parameter_value, $expression = '==')
-    {
-        return array_filter(
-        /** @param NodeHandlerModel|NodeModel|object|array|mixed $var @return bool */
-            $array,
-            function ($var) use ($parameter_name, $parameter_value, $expression) {
-                /** @var NodeHandlerModel|NodeModel|object $var */
-                $variable = empty($parameter_name) ? get_class($var->getCallback()) : $var->{'get' . $parameter_name}();
-
-                switch ($expression):
-                    default:
-                        return $variable == $parameter_value;
-                    case '!=':
-                        return $variable != $parameter_value;
-                endswitch;
-            });
-    }
-
-    /**
-     *
-     * Return Object by Search for Property
-     *
-     * @param $array
-     * @param $index
-     * @param $value
-     *
-     * @return null|NodeModel
-     */
-    public static function objArraySearch($array, $index, $value)
-    {
-        foreach ($array as $arrayInf)
-            if ($arrayInf->{'get' . $index}() == $value)
-                return $arrayInf;
-        return null;
-    }
-
-    /**
-     *
-     * Get Array Object Parameter Value
-     *
-     * @param $getNodes
-     * @param $parameter_name
-     *
-     * @return array
-     */
-    public static function getArrayObjectProperty($getNodes, $parameter_name)
-    {
-        return array_map(
-        /**
-         *
-         * @param NodeModel|object|array|mixed $node
-         */
-            function ($node) use ($parameter_name) {
-                return $node->{'get' . $parameter_name}();
-            }, $getNodes
-        );
     }
 
     /**
