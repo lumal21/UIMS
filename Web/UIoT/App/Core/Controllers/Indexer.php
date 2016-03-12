@@ -26,14 +26,17 @@ use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Templates\Render;
 use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
  * Class Indexer
+ *
  * @package UIoT\App\Data\Controllers
  */
 final class Indexer
 {
     /**
+     *
      * Controllers
      *
      * @var array
@@ -41,6 +44,7 @@ final class Indexer
     private static $controllers = [];
 
     /**
+     *
      * Add a Controller
      *
      * @param string $controller_name
@@ -51,9 +55,11 @@ final class Indexer
     }
 
     /**
+     *
      * Check if Controller Exists
      *
      * @param string $controller_name
+     *
      * @return bool
      */
     public static function controllerExists($controller_name)
@@ -62,48 +68,39 @@ final class Indexer
     }
 
     /**
+     *
      * Get Controller Instance
      *
      * @param string $controller_name
-     * @return null
+     *
+     * @return ControllerModel|ControllerSingleton|null
      */
     public static function instantiateController($controller_name)
     {
-        return self::controllerExists($controller_name) ? self::activeController($controller_name) : null;
+        return self::controllerExists($controller_name) ? self::callControllerStaticMethod($controller_name, 'getInstance') : null;
     }
 
     /**
-     * Activate Controller
+     *
+     * Call Controller static method.
      *
      * @param string $controller_name
-     * @return ControllerModel
-     */
-    public static function activeController($controller_name)
-    {
-        return self::controllerExists(self::getControllerReverseNameSpace($controller_name)) ? new $controller_name : new ControllerModel;
-    }
-
-    /**
-     * Really Crazy but Works
-     * (Is for return a reverse namespace)
+     * @param string $controller_method
      *
-     * @param string $controller_name_space
-     * @return string
+     * @return mixed
      */
-    public static function getControllerReverseNameSpace(&$controller_name_space)
+    public static function callControllerStaticMethod($controller_name, $controller_method)
     {
-        /* get layout name space and returns */
-        $controller_name_space = self::getControllerNameSpace($controller_name = $controller_name_space);
-
-        /* return normal layout name */
-        return $controller_name;
+        return forward_static_call(["UIoT\\App\\Data\\Controllers\\$controller_name", $controller_method]);
     }
 
     /**
+     *
      * Get Controller Namespace
      *
      * @param string $controller_name
-     * @return string
+     *
+     * @return string|false
      */
     public static function getControllerNameSpace($controller_name)
     {
@@ -111,11 +108,13 @@ final class Indexer
     }
 
     /**
+     *
      * Redirect to Another Controller
      *
      * @param string $controller
      * @param string $controller_action
-     * @return string
+     *
+     * @return string|null
      */
     public static function redirectToController($controller, $controller_action = DEFAULT_CONTROLLER_ACTION)
     {

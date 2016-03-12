@@ -29,11 +29,6 @@ namespace UIoT\App\Data\Interfaces;
 interface ControllerInterface
 {
     /**
-     * ControllerInterface constructor.
-     */
-    public function __construct();
-
-    /**
      * @return mixed
      */
     public function __actionMain();

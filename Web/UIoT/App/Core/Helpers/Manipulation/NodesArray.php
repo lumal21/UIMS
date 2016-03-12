@@ -119,7 +119,7 @@ class NodesArray extends Arrays
      *
      * Filter node array elements by matching logic comparsion check
      *
-     * @param NodeModel|NodeHandlerModel $nodeElement
+     * @param NodeModel $nodeElement
      *
      * @return bool
      */

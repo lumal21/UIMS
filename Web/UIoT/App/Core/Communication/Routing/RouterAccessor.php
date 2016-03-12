@@ -68,7 +68,7 @@ class RouterAccessor
     /**
      * Return Node List Array Size
      *
-     * @return int
+     * @return integer|double
      */
     private static function getNodeListSize()
     {

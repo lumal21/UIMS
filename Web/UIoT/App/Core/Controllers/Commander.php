@@ -183,7 +183,7 @@ final class Commander
     /**
      * Get Controllable
      *
-     * @return Controllable
+     * @return Controllable|null
      */
     public function getAbstractControllerManager()
     {

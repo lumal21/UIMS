@@ -34,7 +34,7 @@ class Strings
     /**
      * Convert string to a NameSpace String
      *
-     * @param string|LayoutSingleton $class
+     * @param string $class
      * @param string $namespace
      *
      * @return string|false

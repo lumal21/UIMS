@@ -39,7 +39,7 @@ final class Register
     /**
      * static variable to store exception page handler
      *
-     * @var WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
+     * @var WhoopsHandler|PrettyPageHandler|HandlerInterface
      */
     private static $handler;
 
@@ -63,7 +63,7 @@ final class Register
     /**
      * Get Handler
      *
-     * @return WhoopsHandler|Callable|PrettyPageHandler|HandlerInterface
+     * @return WhoopsHandler|PrettyPageHandler|HandlerInterface
      */
     public static function getHandler()
     {

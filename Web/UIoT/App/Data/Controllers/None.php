@@ -23,13 +23,13 @@
 namespace UIoT\App\Data\Controllers;
 
 use UIoT\App\Core\Controllers\Indexer;
-use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
  * Class None
  * @package UIoT\App\Data\Controllers
  */
-final class None extends ControllerModel
+final class None extends ControllerSingleton
 {
     public function __actionMain()
     {

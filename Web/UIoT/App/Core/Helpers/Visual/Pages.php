@@ -51,6 +51,6 @@ final class Pages
         Indexer::addAsset($script_name, 'script/javascript');
 
         /* so echo the script */
-        Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name, false)));
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name)));
     }
 }

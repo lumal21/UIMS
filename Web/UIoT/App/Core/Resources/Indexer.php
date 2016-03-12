@@ -26,7 +26,7 @@ use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
-use UIoT\App\Core\Layouts\Indexer as LIndexer;
+use UIoT\App\Core\Layouts\Factory as LIndexer;
 use UIoT\App\Exception\Collector;
 
 /**
@@ -55,7 +55,7 @@ final class Indexer
      * @param string $asset_folder
      * @param string $asset_file_name
      */
-    public static function addAsset($asset_name, $asset_folder, $asset_file_name)
+    public static function addAsset($asset_name, $asset_folder, $asset_file_name = '')
     {
         Manager::addAsset($asset_name, self::convertToFileName($asset_folder, $asset_file_name));
     }

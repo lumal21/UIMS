@@ -22,13 +22,13 @@
 
 namespace UIoT\App\Data\Controllers;
 
-use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
  * Class Test
  * @package UIoT\App\Data\Controllers
  */
-final class Test extends ControllerModel
+final class Test extends ControllerSingleton
 {
     /**
      *

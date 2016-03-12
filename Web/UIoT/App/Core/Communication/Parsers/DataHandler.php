@@ -25,7 +25,7 @@ namespace UIoT\App\Core\Communication\Parsers;
 use Httpful\Http;
 use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
-use UIoT\App\Core\Layouts\Indexer;
+use UIoT\App\Core\Layouts\Factory;
 
 /**
  * Class DataHandler
@@ -110,10 +110,10 @@ class DataHandler
     private static function registerLayouts()
     {
         self::$layouts = [
-            Http::GET => Indexer::addLayout(Strings::toActionName(self::$names[Http::GET])),
-            Http::POST => Indexer::addLayout(Strings::toActionName(self::$names[Http::POST])),
-            Http::PUT => Indexer::addLayout(Strings::toActionName(self::$names[Http::PUT])),
-            Http::DELETE => Indexer::addLayout(Strings::toActionName(self::$names[Http::DELETE])),
+            Http::GET => Factory::addLayout(Strings::toActionName(self::$names[Http::GET])),
+            Http::POST => Factory::addLayout(Strings::toActionName(self::$names[Http::POST])),
+            Http::PUT => Factory::addLayout(Strings::toActionName(self::$names[Http::PUT])),
+            Http::DELETE => Factory::addLayout(Strings::toActionName(self::$names[Http::DELETE])),
         ];
     }
 
@@ -223,7 +223,7 @@ class DataHandler
      * Get Parser Collector
      *
      * @param $name
-     * @return \UIoT\App\Data\Models\CollectorModel
+     * @return \UIoT\App\Data\Models\CollectorModel|null
      */
     public static function getParserCollector($name)
     {
@@ -273,7 +273,7 @@ class DataHandler
      */
     public static function openParserLayout($name)
     {
-        return self::parserExists($name) ? Indexer::getLayout(Strings::toControllerName($name)) : null;
+        return self::parserExists($name) ? Factory::getLayout(Strings::toControllerName($name)) : null;
     }
 
     /**

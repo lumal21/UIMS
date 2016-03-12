@@ -22,22 +22,22 @@
 
 namespace UIoT\App\Data\Singletons;
 
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Models\ControllerModel;
 
 /**
- * Class LayoutSingleton
+ * Class ControllerSingleton
  *
  * @package UIoT\App\Data\Singletons
  */
-class LayoutSingleton extends LayoutModel
+class ControllerSingleton extends ControllerModel
 {
     /**
      *
-     * Layout Model Instance
+     * Controller Model Instance
      *
-     * @var LayoutModel
+     * @var ControllerModel
      */
-    protected static $layoutInstance = null;
+    protected static $controllerInstance = null;
 
     /**
      *
@@ -50,43 +50,16 @@ class LayoutSingleton extends LayoutModel
 
     /**
      *
-     * Execute Layout and Return Rendered Layout
+     * Return Instance of Controller
      *
-     * @return mixed|void
-     */
-    public static function __run()
-    {
-        static::getInstance()->__resources();
-
-        static::getInstance()->__configuration();
-
-        static::getInstance()->__templates();
-
-        return static::getInstance()->__show();
-    }
-
-    /**
-     *
-     * Return Instance of Layout
-     *
-     * @return LayoutModel|mixed
+     * @return ControllerModel|mixed
      */
     public static function getInstance()
     {
-        if (null === self::$layoutInstance)
-            self::$layoutInstance = new static;
+        if (null === self::$controllerInstance)
+            self::$controllerInstance = new static;
 
-        return self::$layoutInstance;
-    }
-
-    /**
-     * Execute Layout and Register Resources
-     *
-     * @return mixed|void
-     */
-    public static function __res()
-    {
-        return static::getInstance()->__resources();
+        return self::$controllerInstance;
     }
 
     /**

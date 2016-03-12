@@ -26,6 +26,7 @@ use UIoT\App\Data\Interfaces\ControllerInterface;
 
 /**
  * Class ControllerModel
+ *
  * @package UIoT\App\Data\Models
  */
 class ControllerModel implements ControllerInterface
@@ -35,7 +36,7 @@ class ControllerModel implements ControllerInterface
      *
      * ControllerModel constructor.
      */
-    public function __construct()
+    protected function __construct()
     {
         /* nothing to do */
     }

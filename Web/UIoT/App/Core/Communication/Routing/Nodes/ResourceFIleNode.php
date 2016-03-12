@@ -25,7 +25,7 @@ namespace UIoT\App\Core\Communication\Routing\Nodes;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
 use UIoT\App\Core\Helpers\Manipulation\Strings;
-use UIoT\App\Core\Layouts\Indexer;
+use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
@@ -51,7 +51,7 @@ class ResourceFileNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Indexer::layoutExists($this->getPathValue()[0]));
+        $this->setResult(Factory::layoutExists($this->getPathValue()[0]));
 
         $this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
 

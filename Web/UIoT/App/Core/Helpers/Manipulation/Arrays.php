@@ -52,7 +52,7 @@ class Arrays
      * @param $value
      * @param MethodModel $class
      * @param array $array
-     * @return bool
+     * @return boolean
      */
     public static function addOnHttpMethod($key, $value, MethodModel $class, &$array = [])
     {

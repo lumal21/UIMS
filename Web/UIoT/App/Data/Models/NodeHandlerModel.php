@@ -33,7 +33,7 @@ class NodeHandlerModel implements NodeHandlerInterface
     /**
      * Node Model
      *
-     * @var NodeModel
+     * @var NodeModel|null
      */
     protected $node_model;
 
@@ -159,9 +159,9 @@ class NodeHandlerModel implements NodeHandlerInterface
     /**
      * Set Node Model
      *
-     * @param NodeModel $node_model
+     * @param NodeModel|null $node_model
      */
-    public function setNodeModel($node_model)
+    public function setNodeModel($node_model = null)
     {
         $this->node_model = $node_model;
     }

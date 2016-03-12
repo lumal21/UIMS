@@ -48,7 +48,7 @@ final class ControllerNode extends NodeHandlerModel
     /**
      * Callback Function
      *
-     * @return bool
+     * @return boolean|null
      */
     public function call()
     {

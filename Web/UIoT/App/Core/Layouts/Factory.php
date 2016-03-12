@@ -29,7 +29,7 @@ use UIoT\App\Data\Singletons\LayoutSingleton;
  *
  * @package UIoT\App\Data\Layouts
  */
-final class Indexer
+final class Factory
 {
     /**
      *

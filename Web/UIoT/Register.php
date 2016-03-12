@@ -49,7 +49,7 @@ use UIoT\App\Core\Communication\Routing\Nodes\LayoutNode;
 use UIoT\App\Core\Communication\Routing\Nodes\ResourceFileNode;
 use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
-use UIoT\App\Core\Layouts\Indexer as LayoutIndexer;
+use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 
 /*
  * this file is necessary to register public and static controllers and views.

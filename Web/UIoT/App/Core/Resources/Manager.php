@@ -35,11 +35,13 @@ use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
 
 /**
  * Class Manager
+ *
  * @package UIoT\App\Core\Resources
  */
 final class Manager
 {
     /**
+     *
      * Asset Manager Instance
      *
      * @var AssetManager
@@ -47,11 +49,13 @@ final class Manager
     private static $asset_manager;
 
     /**
+     *
      * @var AssetFactory
      */
     private static $asset_factory;
 
     /**
+     *
      * Enable/Disable File System Cache
      *
      * @var bool
@@ -59,13 +63,15 @@ final class Manager
     private static $enable_caching = false;
 
     /**
+     *
      * Cache Manager
      *
-     * @var FileSystemCache
+     * @var FilesystemCache
      */
     private static $cache_manager;
 
     /**
+     *
      * Settings variable
      *
      * @var ResourcesSettingsModel
@@ -73,6 +79,7 @@ final class Manager
     private $settings;
 
     /**
+     *
      * Manager constructor.
      */
     public function __construct()
@@ -85,6 +92,7 @@ final class Manager
     }
 
     /**
+     *
      * Add an Asset
      *
      * @param string $asset_name
@@ -99,6 +107,7 @@ final class Manager
     }
 
     /**
+     *
      * Return Asset Name
      *
      * @param string $asset_name
@@ -111,6 +120,7 @@ final class Manager
     }
 
     /**
+     *
      * Get Asset Manager
      *
      * @return AssetManager
@@ -121,6 +131,7 @@ final class Manager
     }
 
     /**
+     *
      * Set Asset Manager
      *
      * @param AssetManager $asset_manager
@@ -131,6 +142,7 @@ final class Manager
     }
 
     /**
+     *
      * Get Asset Factory
      *
      * @return AssetFactory
@@ -141,6 +153,7 @@ final class Manager
     }
 
     /**
+     *
      * Set Asset Factory
      *
      * @param AssetFactory $asset_factory
@@ -151,6 +164,7 @@ final class Manager
     }
 
     /**
+     *
      * Return if is Enabled Cache System
      *
      * @return boolean
@@ -161,6 +175,7 @@ final class Manager
     }
 
     /**
+     *
      * Enable/Disable Cache System
      *
      * @param boolean $enable_caching
@@ -173,6 +188,7 @@ final class Manager
     }
 
     /**
+     *
      * Return Cache Manager
      *
      * @return FilesystemCache
@@ -183,6 +199,7 @@ final class Manager
     }
 
     /**
+     *
      * Set Cache Manager
      *
      * @param FilesystemCache $cache_manager

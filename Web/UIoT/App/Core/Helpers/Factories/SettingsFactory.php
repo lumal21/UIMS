@@ -98,7 +98,7 @@ class SettingsFactory
      *
      * Get all settings models
      *
-     * @return SettingsManager[]
+     * @return SettingsManager[]|SettingsInterface[]
      */
     public static function getAllModels()
     {
