@@ -84,6 +84,7 @@ class SettingsFactory
      * Return settings model
      *
      * @param string $modelName
+     *
      * @return SettingsInterface
      */
     public static function getModel($modelName)

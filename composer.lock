@@ -55,16 +55,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "788eaba2f83e7b7445c7a83a50c81c0704423874"
+                "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/788eaba2f83e7b7445c7a83a50c81c0704423874",
-                "reference": "788eaba2f83e7b7445c7a83a50c81c0704423874",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
+                "reference": "086d381cd2f3b4b8b0af85ecb2c9593a61e5b4bd",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -263,7 +263,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "1de56025c4251e33ee88ea138b11081edb697e2a"
+                "reference": "a9d17d13aca43d9b39aa5073d64ff4086b955946"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -308,7 +308,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2016-03-06 13:11:36"
+            "time": "2016-03-13 13:00:54"
         },
         {
             "name": "fxp/composer-asset-plugin",
@@ -611,12 +611,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49"
+                "reference": "47d2d8cade9b1c3987573d2943bb9352536cdb87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
-                "reference": "9116263e778f720dcdecffb8e66c4d6b8b1cfc49",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/47d2d8cade9b1c3987573d2943bb9352536cdb87",
+                "reference": "47d2d8cade9b1c3987573d2943bb9352536cdb87",
                 "shasum": ""
             },
             "require": {
@@ -663,7 +663,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-03-07 14:04:32"
         },
         {
             "name": "symfony/process",
@@ -671,12 +671,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "101c171199fd40c555e60998c63de59f83661e9c"
+                "reference": "15d73518538b048dbb2e57be22b28390e1aaa4d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/101c171199fd40c555e60998c63de59f83661e9c",
-                "reference": "101c171199fd40c555e60998c63de59f83661e9c",
+                "url": "https://api.github.com/repos/symfony/process/zipball/15d73518538b048dbb2e57be22b28390e1aaa4d6",
+                "reference": "15d73518538b048dbb2e57be22b28390e1aaa4d6",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-10 11:16:56"
+            "time": "2016-03-16 16:22:05"
         },
         {
             "name": "symfony/property-access",

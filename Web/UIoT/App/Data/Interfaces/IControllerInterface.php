@@ -29,13 +29,17 @@ namespace UIoT\App\Data\Interfaces;
 interface IControllerInterface
 {
     /**
+     *
      * IControllerInterface constructor.
+     *
+     * @return void
      */
     public function __construct();
 
     /**
      * @param $a
      * @param $b
+     *
      * @return mixed
      */
     public function __call($a, $b);

@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Helpers\System\Settings;
 
 use UIoT\App\Core\Helpers\Factories\SettingsFactory;
 use UIoT\App\Core\Helpers\Manipulation\Constants;
+use UIoT\App\Data\Interfaces\SettingsInterface;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
@@ -79,9 +80,10 @@ final class SettingsIndexer
     }
 
     /**
+     *
      * Store Settings Constant
      *
-     * @param SettingsManager[] $settingVariable
+     * @param SettingsManager[]|SettingsInterface[] $settingVariable
      */
     public static function storeSettings($settingVariable)
     {
@@ -94,6 +96,7 @@ final class SettingsIndexer
     }
 
     /**
+     *
      * Return Specific Setting Variable
      *
      * @param string $settingVariableName
@@ -106,6 +109,7 @@ final class SettingsIndexer
     }
 
     /**
+     *
      * Return Settings Constants
      *
      * @return object

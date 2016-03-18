@@ -29,8 +29,12 @@ namespace UIoT\App\Data\Interfaces;
 interface HandlerInterface
 {
     /**
+     *
      * HandlerInterface constructor.
+     *
      * @param $a
+     *
+     * @return void
      */
     public function __construct($a);
 

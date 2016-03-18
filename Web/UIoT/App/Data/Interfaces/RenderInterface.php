@@ -29,13 +29,18 @@ namespace UIoT\App\Data\Interfaces;
 interface RenderInterface
 {
     /**
+     *
      * RenderInterface constructor.
+     *
      * @param $arguments
+     *
+     * @return void
      */
     function __construct($arguments);
 
     /**
      * @param $arguments
+     *
      * @return mixed
      */
     function setArguments($arguments);

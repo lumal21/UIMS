@@ -24,8 +24,8 @@ namespace UIoT\App\Exception;
 
 use Exception;
 use Whoops\Handler\HandlerInterface;
-use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
 use Whoops\Handler\PrettyPageHandler;
+use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
 use Whoops\Run;
 
 /**

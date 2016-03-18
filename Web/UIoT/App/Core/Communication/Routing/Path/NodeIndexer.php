@@ -44,7 +44,7 @@ final class NodeIndexer
      *
      * Add a Node and return int Node Id
      *
-     * @param NodeModel[] $node_item_array
+     * @param array $node_item_array
      *
      * @return integer|null
      */

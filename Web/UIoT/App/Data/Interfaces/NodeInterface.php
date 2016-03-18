@@ -29,13 +29,17 @@ namespace UIoT\App\Data\Interfaces;
 interface NodeInterface
 {
     /**
+     *
      * NodeInterface constructor.
+     *
      * @param $node_id
      * @param $path
      * @param $callback
      * @param $priority
      * @param $method
      * @param $group
+     *
+     * @return void
      */
     public function __construct($node_id, $path, $callback, $priority, $method, $group);
 

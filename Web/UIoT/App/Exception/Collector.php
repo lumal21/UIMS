@@ -34,6 +34,7 @@ use UIoT\App\Security\Manager as SHandler;
 final class Collector
 {
     /**
+     *
      * Create a Message for Whoops
      * Is a function to create a custom message, without stack trace.
      *
@@ -42,6 +43,7 @@ final class Collector
      * @param string $message_title
      * @param array $message
      * @param bool $security_error
+     *
      * @throws Exception
      */
     public static function errorMessage($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)

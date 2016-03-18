@@ -31,13 +31,18 @@ use stdClass;
 interface RequestDataInterface
 {
     /**
+     *
      * RequestDataInterface constructor.
+     *
      * @param stdClass $a
+     *
+     * @return void
      */
     public function __construct(stdClass $a);
 
     /**
      * @param $a
+     *
      * @return mixed
      */
     public function __get($a);
@@ -45,6 +50,7 @@ interface RequestDataInterface
     /**
      * @param $a
      * @param $b
+     *
      * @return mixed
      */
     public function __set($a, $b);
