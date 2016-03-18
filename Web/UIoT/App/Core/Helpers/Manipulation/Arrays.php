@@ -90,7 +90,8 @@ class Arrays
      *
      * Convert to Controller Name an entire Array
      *
-     * @param array $a
+     * @param mixed $a
+     *
      * @return array
      */
     public static function toControllerArray($a = [])

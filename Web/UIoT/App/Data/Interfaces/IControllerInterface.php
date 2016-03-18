@@ -32,7 +32,7 @@ interface IControllerInterface
      *
      * IControllerInterface constructor.
      *
-     * @return void
+     * @return null
      */
     public function __construct();
 

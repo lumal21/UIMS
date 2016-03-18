@@ -34,7 +34,7 @@ interface HandlerInterface
      *
      * @param $a
      *
-     * @return void
+     * @return null
      */
     public function __construct($a);
 

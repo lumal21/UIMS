@@ -66,7 +66,7 @@ final class RaiseSettingsModel implements SettingsInterface
      *
      * @return string
      */
-    public final function getBlockName()
+    public function getBlockName()
     {
         return 'raise';
     }

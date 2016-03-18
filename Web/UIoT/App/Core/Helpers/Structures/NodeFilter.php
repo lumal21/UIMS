@@ -61,7 +61,7 @@ final class NodeFilter
      * @param string $parameterValue
      * @param string $comparsionExpression
      */
-    public final function __construct($parameterName, $parameterValue, $comparsionExpression)
+    public function __construct($parameterName, $parameterValue, $comparsionExpression)
     {
         $this->parameterName = $parameterName;
         $this->parameterValue = $parameterValue;

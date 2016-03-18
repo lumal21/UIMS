@@ -36,7 +36,7 @@ interface RequestDataInterface
      *
      * @param stdClass $a
      *
-     * @return void
+     * @return null
      */
     public function __construct(stdClass $a);
 

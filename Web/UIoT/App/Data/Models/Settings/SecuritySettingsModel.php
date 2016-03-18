@@ -59,7 +59,7 @@ final class SecuritySettingsModel implements SettingsInterface
      *
      * @return string
      */
-    public final function getBlockName()
+    public function getBlockName()
     {
         return 'security';
     }

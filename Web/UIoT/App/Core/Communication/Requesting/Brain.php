@@ -37,6 +37,7 @@ class Brain
     private static $template;
 
     /**
+     *
      * Get Possible UIoT Abstract Controllers
      *
      * @return mixed
@@ -47,6 +48,7 @@ class Brain
     }
 
     /**
+     *
      * Set and Store Initial Template
      *
      * @param Http ::string $method_name
@@ -69,6 +71,7 @@ class Brain
     }
 
     /**
+     *
      * Set Request Expected Data Type
      * (Only for Adjust)
      *
@@ -80,6 +83,7 @@ class Brain
     }
 
     /**
+     *
      * Get Httpful Template
      *
      * @return Request
@@ -90,6 +94,7 @@ class Brain
     }
 
     /**
+     *
      * Set Request Mime Type Header
      * (Only for Adjust)
      *
@@ -101,6 +106,7 @@ class Brain
     }
 
     /**
+     *
      * Set Request Method
      * (Only for Adjust)
      *

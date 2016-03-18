@@ -39,7 +39,7 @@ interface NodeInterface
      * @param $method
      * @param $group
      *
-     * @return void
+     * @return null
      */
     public function __construct($node_id, $path, $callback, $priority, $method, $group);
 

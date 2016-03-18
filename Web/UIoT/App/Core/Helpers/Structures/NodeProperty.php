@@ -43,7 +43,7 @@ final class NodeProperty
      *
      * @param string $parameterName
      */
-    public final function __construct($parameterName)
+    public function __construct($parameterName)
     {
         $this->parameterName = $parameterName;
     }

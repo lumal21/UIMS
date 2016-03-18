@@ -34,7 +34,7 @@ interface RenderInterface
      *
      * @param $arguments
      *
-     * @return void
+     * @return null
      */
     function __construct($arguments);
 

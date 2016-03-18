@@ -24,7 +24,6 @@ namespace UIoT\App\Exception;
 
 use Exception;
 use Whoops\Handler\PrettyPageHandler;
-use Whoops\Handler\PrettyPageHandler as WhoopsHandler;
 use Whoops\Run;
 
 /**
@@ -38,7 +37,7 @@ final class Register
     /**
      * static variable to store exception page handler
      *
-     * @var WhoopsHandler|PrettyPageHandler
+     * @var PrettyPageHandler
      */
     private static $handler;
 
@@ -62,7 +61,7 @@ final class Register
     /**
      * Get Handler
      *
-     * @return WhoopsHandler|PrettyPageHandler
+     * @return PrettyPageHandler
      */
     public static function getHandler()
     {
@@ -72,9 +71,9 @@ final class Register
     /**
      * Set Page Handler
      *
-     * @param WhoopsHandler $handler
+     * @param PrettyPageHandler $handler
      */
-    public static function setHandler(WhoopsHandler $handler)
+    public static function setHandler(PrettyPageHandler $handler)
     {
         self::$handler = new $handler;
     }

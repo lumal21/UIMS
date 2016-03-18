@@ -45,7 +45,7 @@ final class ResourcesSettingsModel implements SettingsInterface
      *
      * @return string
      */
-    public final function getBlockName()
+    public function getBlockName()
     {
         return 'resources';
     }

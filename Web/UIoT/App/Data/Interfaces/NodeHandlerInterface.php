@@ -36,7 +36,7 @@ interface NodeHandlerInterface
      *
      * @param NodeModel $node
      *
-     * @return void
+     * @return null
      */
     public function __construct(NodeModel $node);
 
