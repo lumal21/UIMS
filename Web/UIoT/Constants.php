@@ -141,7 +141,7 @@ C::addJsonConstant('SERVER_WEB', $_SERVER);
  * Global MVC Constants
  * Default View
  */
-C::addConstant('DEFAULT_CONTROLLER', 'None');
+C::addConstant('DEFAULT_CONTROLLER', 'Login');
 
 /*
  * Global MVC Constants

@@ -159,7 +159,7 @@ final class NodeIndexer
      *
      * Return all Nodes from a Specific Priority
      *
-     * @param int $priority_id
+     * @param integer $priority_id
      *
      * @return NodeModel[]
      */
@@ -236,7 +236,7 @@ final class NodeIndexer
     /**
      * Return Lowest Priority Id
      *
-     * @return mixed
+     * @return integer
      */
     public function getLowestNodePriorityId()
     {
