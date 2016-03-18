@@ -35,8 +35,6 @@ interface NodeHandlerInterface
      * NodeHandlerInterface constructor.
      *
      * @param NodeModel $node
-     *
-     * @return null
      */
     public function __construct(NodeModel $node);
 

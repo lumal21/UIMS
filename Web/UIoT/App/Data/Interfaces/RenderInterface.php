@@ -33,8 +33,6 @@ interface RenderInterface
      * RenderInterface constructor.
      *
      * @param $arguments
-     *
-     * @return null
      */
     function __construct($arguments);
 

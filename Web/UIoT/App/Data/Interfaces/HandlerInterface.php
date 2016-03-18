@@ -33,8 +33,6 @@ interface HandlerInterface
      * HandlerInterface constructor.
      *
      * @param $a
-     *
-     * @return null
      */
     public function __construct($a);
 

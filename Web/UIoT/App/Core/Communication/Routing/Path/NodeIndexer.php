@@ -236,7 +236,7 @@ final class NodeIndexer
     /**
      * Return Lowest Priority Id
      *
-     * @return integer
+     * @return NodeModel|integer
      */
     public function getLowestNodePriorityId()
     {

@@ -31,8 +31,6 @@ interface IControllerInterface
     /**
      *
      * IControllerInterface constructor.
-     *
-     * @return null
      */
     public function __construct();
 
