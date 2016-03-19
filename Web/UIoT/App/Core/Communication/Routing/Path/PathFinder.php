@@ -120,32 +120,9 @@ final class PathFinder
     {
         /* mount the node edges */
         $router->mount($node->getPath(), function () use ($router, $node) {
-            $this->mountRouterEdges($router, $node);
+
+            $this->mountRouterCoreNode($router, $node);
         });
-    }
-
-    /**
-     * Mount Router Edges
-     *
-     * @param IRouter|null $router
-     * @param NodeModel|null $node
-     */
-    public function mountRouterEdges(IRouter $router, NodeModel $node)
-    {
-        /** @var NodeModel $edge */
-        foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge):
-
-            /* serialize edge data to the callback */
-            $edge->getCallback()->setNodeModel($edge);
-
-            /* don't repeat same items */
-            if ($edge->getPriority() <= $node->getPriority())
-                continue;
-
-            /* serialize router edge */
-            $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
-
-        endforeach;
     }
 
     /**

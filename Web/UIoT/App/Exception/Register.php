@@ -61,7 +61,7 @@ final class Register
     /**
      * Get Handler
      *
-     * @return PrettyPageHandler
+     * @return Callable|PrettyPageHandler
      */
     public static function getHandler()
     {
