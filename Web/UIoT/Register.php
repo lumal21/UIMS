@@ -114,9 +114,6 @@ LayoutIndexer::addLayout('Test');
 /* login page */
 ControllerIndexer::addController('Login');
 
-/* default page */
-ControllerIndexer::addController('None');
-
 /* test page */
 ControllerIndexer::addController('Test');
 
