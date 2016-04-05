@@ -20,13 +20,13 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Routing;
 
 use UIoT\App\Data\Models\Routing\NodeModel;
 
 /**
  * Interface NodeHandlerInterface
- * @package UIoT\App\Data\Interfaces
+ * @package UIoT\App\Data\Interfaces\Routing
  */
 interface NodeHandlerInterface
 {

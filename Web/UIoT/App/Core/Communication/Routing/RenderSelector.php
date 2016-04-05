@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Routing;
 
 use UIoT\App\Core\Resources\Render as ResourceRender;
 use UIoT\App\Core\Templates\Render as TemplateRender;
-use UIoT\App\Data\Interfaces\RenderInterface;
+use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
  * Class Selector

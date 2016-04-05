@@ -27,7 +27,7 @@ use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer as ControllerIndexer;
 use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
-use UIoT\App\Data\Interfaces\RenderInterface;
+use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**

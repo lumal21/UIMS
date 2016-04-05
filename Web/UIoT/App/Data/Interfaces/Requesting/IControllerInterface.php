@@ -20,19 +20,25 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Requesting;
 
 /**
- * Interface SettingsInterface
- *
- * @package UIoT\App\Data\Interfaces
+ * Interface IControllerInterface
+ * @package UIoT\App\Data\Interfaces\Requesting
  */
-interface SettingsInterface
+interface IControllerInterface
 {
     /**
-     * Return Setting Block Name
      *
-     * @return string
+     * IControllerInterface constructor.
      */
-    function getBlockName();
+    public function __construct();
+
+    /**
+     * @param $a
+     * @param $b
+     *
+     * @return mixed
+     */
+    public function __call($a, $b);
 }

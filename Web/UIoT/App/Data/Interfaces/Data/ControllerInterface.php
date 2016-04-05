@@ -20,25 +20,16 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Data;
 
 /**
- * Interface IControllerInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface ControllerInterface
+ * @package UIoT\App\Data\Interfaces\Data
  */
-interface IControllerInterface
+interface ControllerInterface
 {
     /**
-     *
-     * IControllerInterface constructor.
-     */
-    public function __construct();
-
-    /**
-     * @param $a
-     * @param $b
-     *
      * @return mixed
      */
-    public function __call($a, $b);
+    public function __actionMain();
 }

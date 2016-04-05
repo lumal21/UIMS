@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\CollectorInterface;
+use UIoT\App\Data\Interfaces\Parsers\CollectorInterface;
 
 /**
  * Class CollectorModel

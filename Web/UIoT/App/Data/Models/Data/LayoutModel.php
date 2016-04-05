@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Data;
 
-use UIoT\App\Data\Interfaces\LayoutInterface;
+use UIoT\App\Data\Interfaces\Data\LayoutInterface;
 
 /**
  * Class LayoutModel

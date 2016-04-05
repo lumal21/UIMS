@@ -20,24 +20,31 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Data;
 
 /**
- * Interface HandlerInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface LayoutInterface
+ * @package UIoT\App\Data\Interfaces\Data
  */
-interface HandlerInterface
+interface LayoutInterface
 {
     /**
-     *
-     * HandlerInterface constructor.
-     *
-     * @param $a
+     * @return mixed
      */
-    public function __construct($a);
+    function __resources();
 
     /**
      * @return mixed
      */
-    public function __toString();
+    function __configuration();
+
+    /**
+     * @return mixed
+     */
+    function __templates();
+
+    /**
+     * @return mixed
+     */
+    function __show();
 }

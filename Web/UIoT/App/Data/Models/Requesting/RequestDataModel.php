@@ -23,7 +23,7 @@
 namespace UIoT\App\Data\Models\Requesting;
 
 use stdClass;
-use UIoT\App\Data\Interfaces\RequestDataInterface;
+use UIoT\App\Data\Interfaces\Requesting\RequestDataInterface;
 
 /**
  * Class RequestDataModel

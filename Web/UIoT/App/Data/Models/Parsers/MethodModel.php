@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\MethodInterface;
+use UIoT\App\Data\Interfaces\Parsers\MethodInterface;
 
 /**
  * Class MethodModel

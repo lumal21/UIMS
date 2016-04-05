@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Routing;
 
-use UIoT\App\Data\Interfaces\NodeHandlerInterface;
+use UIoT\App\Data\Interfaces\Routing\NodeHandlerInterface;
 
 /**
  * Class NodeHandlerModel

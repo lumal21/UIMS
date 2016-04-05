@@ -20,36 +20,19 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
-
-use stdClass;
+namespace UIoT\App\Data\Interfaces\Settings;
 
 /**
- * Interface RequestDataInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface SettingsInterface
+ *
+ * @package UIoT\App\Data\Interfaces\Settings
  */
-interface RequestDataInterface
+interface SettingsInterface
 {
     /**
+     * Return Setting Block Name
      *
-     * RequestDataInterface constructor.
-     *
-     * @param stdClass $a
+     * @return string
      */
-    public function __construct(stdClass $a);
-
-    /**
-     * @param $a
-     *
-     * @return mixed
-     */
-    public function __get($a);
-
-    /**
-     * @param $a
-     * @param $b
-     *
-     * @return mixed
-     */
-    public function __set($a, $b);
+    function getBlockName();
 }

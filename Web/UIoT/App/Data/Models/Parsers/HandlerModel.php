@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\HandlerInterface;
+use UIoT\App\Data\Interfaces\Parsers\HandlerInterface;
 
 /**
  * Class HandlerModel

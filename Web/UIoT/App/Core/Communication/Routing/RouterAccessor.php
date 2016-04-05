@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Routing;
 
 use Bramus\Router\Router as IRouter;
 use UIoT\App\Core\Communication\Routing\Path\PathFinder;
-use UIoT\App\Data\Interfaces\NodeHandlerInterface;
+use UIoT\App\Data\Interfaces\Routing\NodeHandlerInterface;
 
 /**
  * Class RouterAccessor

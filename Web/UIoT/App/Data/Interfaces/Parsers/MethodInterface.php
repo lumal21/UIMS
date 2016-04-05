@@ -20,16 +20,22 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
- * Interface ControllerInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface MethodInterface
+ * @package UIoT\App\Data\Interfaces\Parsers
  */
-interface ControllerInterface
+interface MethodInterface
 {
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function setData($data);
+
     /**
      * @return mixed
      */
-    public function __actionMain();
+    public function getData();
 }

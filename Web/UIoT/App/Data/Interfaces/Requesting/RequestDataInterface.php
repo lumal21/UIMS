@@ -20,22 +20,36 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Requesting;
+
+use stdClass;
 
 /**
- * Interface MethodInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface RequestDataInterface
+ * @package UIoT\App\Data\Interfaces\Requesting
  */
-interface MethodInterface
+interface RequestDataInterface
 {
     /**
-     * @param $data
-     * @return mixed
+     *
+     * RequestDataInterface constructor.
+     *
+     * @param stdClass $a
      */
-    public function setData($data);
+    public function __construct(stdClass $a);
 
     /**
+     * @param $a
+     *
      * @return mixed
      */
-    public function getData();
+    public function __get($a);
+
+    /**
+     * @param $a
+     * @param $b
+     *
+     * @return mixed
+     */
+    public function __set($a, $b);
 }

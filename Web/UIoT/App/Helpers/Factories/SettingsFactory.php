@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Helpers\Factories;
 
-use UIoT\App\Data\Interfaces\SettingsInterface;
+use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 use UIoT\App\Helpers\System\Settings\SettingsManager;
 use UnexpectedValueException;
 

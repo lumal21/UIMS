@@ -20,31 +20,23 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
- * Interface RenderInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface CollectorInterface
+ * @package UIoT\App\Data\Interfaces\Parsers
  */
-interface RenderInterface
+interface CollectorInterface
 {
     /**
-     *
-     * RenderInterface constructor.
-     *
-     * @param $arguments
-     */
-    function __construct($arguments);
-
-    /**
-     * @param $arguments
-     *
+     * @param $a
      * @return mixed
      */
-    function setArguments($arguments);
+    public function passRequest($a);
 
     /**
+     * @param $a
      * @return mixed
      */
-    function show();
+    public function passHandler($a);
 }

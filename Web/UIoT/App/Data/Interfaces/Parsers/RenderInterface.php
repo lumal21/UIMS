@@ -20,31 +20,31 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
- * Interface LayoutInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface RenderInterface
+ * @package UIoT\App\Data\Interfaces\Parsers
  */
-interface LayoutInterface
+interface RenderInterface
 {
     /**
+     *
+     * RenderInterface constructor.
+     *
+     * @param $arguments
+     */
+    function __construct($arguments);
+
+    /**
+     * @param $arguments
+     *
      * @return mixed
      */
-    function __resources();
+    function setArguments($arguments);
 
     /**
      * @return mixed
      */
-    function __configuration();
-
-    /**
-     * @return mixed
-     */
-    function __templates();
-
-    /**
-     * @return mixed
-     */
-    function __show();
+    function show();
 }

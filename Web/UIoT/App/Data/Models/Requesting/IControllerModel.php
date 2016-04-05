@@ -24,7 +24,7 @@ namespace UIoT\App\Data\Models\Requesting;
 
 use stdClass;
 use UIoT\App\Core\Templates\Render;
-use UIoT\App\Data\Interfaces\IControllerInterface;
+use UIoT\App\Data\Interfaces\Requesting\IControllerInterface;
 
 /**
  * Class IController

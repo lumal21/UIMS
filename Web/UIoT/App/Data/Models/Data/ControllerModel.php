@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Data;
 
-use UIoT\App\Data\Interfaces\ControllerInterface;
+use UIoT\App\Data\Interfaces\Data\ControllerInterface;
 
 /**
  * Class ControllerModel

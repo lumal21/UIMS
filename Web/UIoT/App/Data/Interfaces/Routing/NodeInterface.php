@@ -20,11 +20,11 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Routing;
 
 /**
  * Interface NodeInterface
- * @package UIoT\App\Data\Interfaces
+ * @package UIoT\App\Data\Interfaces\Routing
  */
 interface NodeInterface
 {

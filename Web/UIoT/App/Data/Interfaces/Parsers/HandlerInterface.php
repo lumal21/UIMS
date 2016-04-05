@@ -20,23 +20,24 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces;
+namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
- * Interface CollectorInterface
- * @package UIoT\App\Data\Interfaces
+ * Interface HandlerInterface
+ * @package UIoT\App\Data\Interfaces\Parsers
  */
-interface CollectorInterface
+interface HandlerInterface
 {
     /**
+     *
+     * HandlerInterface constructor.
+     *
      * @param $a
-     * @return mixed
      */
-    public function passRequest($a);
+    public function __construct($a);
 
     /**
-     * @param $a
      * @return mixed
      */
-    public function passHandler($a);
+    public function __toString();
 }

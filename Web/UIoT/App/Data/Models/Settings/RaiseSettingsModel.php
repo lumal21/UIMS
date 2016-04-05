@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Settings;
 
-use UIoT\App\Data\Interfaces\SettingsInterface;
+use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
  * Class RaiseSettingsModel
