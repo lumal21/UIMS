@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Routing\Path;
 
-use UIoT\App\Core\Helpers\Manipulation\NodesArray;
 use UIoT\App\Data\Models\NodeHandlerModel;
 use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Helpers\Manipulation\NodesArray;
 
 /**
  * Class NodeIndexer

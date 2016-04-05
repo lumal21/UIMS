@@ -150,7 +150,7 @@ class Handler extends PrettyPageHandler
         return ['page_title' => $this->getPageTitle(),
             'title' => $this->getPageTitle(),
             'nothing' => ((!Manager::checkDeveloperMode() && SHandler::checkWhiteListIp() && ($frames = $this->getInspector()->getFrames())) || ($frames = [])),
-            'tables' => array_map('UIoT\App\Core\Helpers\Manipulation\Json::isInstanceOfClosure', $this->getDataTables()),
+            'tables' => array_map('UIoT\App\Helpers\Manipulation\Json::isInstanceOfClosure', $this->getDataTables()),
             'frames' => $frames,
             'has_frames' => !!count($frames),
             'handler' => $this];

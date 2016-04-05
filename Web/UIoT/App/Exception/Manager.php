@@ -22,11 +22,11 @@
 
 namespace UIoT\App\Exception;
 
-use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\System\Settings;
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Exception\Template\Handler;
+use UIoT\App\Helpers\Manipulation\Constants;
+use UIoT\App\Helpers\System\Settings;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 use Whoops\Run;
 
 /**

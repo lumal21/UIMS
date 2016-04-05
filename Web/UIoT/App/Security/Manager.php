@@ -22,11 +22,11 @@
 
 namespace UIoT\App\Security;
 
-use UIoT\App\Core\Helpers\Data\ClientData;
-use UIoT\App\Core\Helpers\System\Settings;
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 use UIoT\App\Exception\Collector;
+use UIoT\App\Helpers\Data\ClientData;
+use UIoT\App\Helpers\System\Settings;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 use Whitelist\Check;
 
 /**

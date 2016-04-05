@@ -23,9 +23,9 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use UIoT\App\Core\Helpers\Manipulation\Arrays;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Core\Layouts\Factory;
+use UIoT\App\Helpers\Manipulation\Arrays;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class DataHandler

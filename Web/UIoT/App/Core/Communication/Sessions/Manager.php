@@ -21,9 +21,9 @@
 
 namespace UIoT\App\Core\Communication\Sessions;
 
-use UIoT\App\Core\Helpers\System\Settings;
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
+use UIoT\App\Helpers\System\Settings;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 
 /**
  * Class Manager

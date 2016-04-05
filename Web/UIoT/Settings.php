@@ -41,7 +41,7 @@
 
 namespace UIoT;
 
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 
 /**
  * UIoTcms Settings

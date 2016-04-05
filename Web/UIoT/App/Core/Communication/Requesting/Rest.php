@@ -23,9 +23,9 @@
 namespace UIoT\App\Core\Communication\Requesting;
 
 use Httpful\Request;
-use UIoT\App\Core\Helpers\System\Settings;
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
+use UIoT\App\Helpers\System\Settings;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 
 /**
  * Class Rest

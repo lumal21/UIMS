@@ -20,28 +20,13 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Collectors;
-
-use UIoT\App\Data\Models\CollectorModel;
-use UIoT\App\Helpers\Manipulation\Json;
+namespace UIoT\App\Helpers\Visual;
 
 /**
- * Class GetCollector
- * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * Class DataTable
+ * @package UIoT\App\Helpers\Visual
  */
-class GetCollector extends CollectorModel
+class DataTable
 {
-    /**
-     * Pass Request for Gettable
-     * @param $a
-     * @return $this
-     */
-    public function passRequest($a)
-    {
-        /* save request data */
-        $this->request = Json::valueArrayObjectToClosure($a);
 
-        /* return class instance */
-        return $this;
-    }
 }

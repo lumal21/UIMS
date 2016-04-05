@@ -28,10 +28,10 @@ use Assetic\Asset\FileAsset;
 use Assetic\AssetManager;
 use Assetic\Cache\FilesystemCache;
 use Assetic\Factory\AssetFactory;
-use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\System\Settings;
-use UIoT\App\Core\Helpers\System\Settings\SettingsIndexer;
 use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
+use UIoT\App\Helpers\Manipulation\Constants;
+use UIoT\App\Helpers\System\Settings;
+use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 
 /**
  * Class Manager

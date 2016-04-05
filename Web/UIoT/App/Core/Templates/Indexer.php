@@ -22,8 +22,8 @@
 
 namespace UIoT\App\Core\Templates;
 
-use UIoT\App\Core\Helpers\Manipulation\Constants;
-use UIoT\App\Core\Helpers\Visual\Html;
+use UIoT\App\Helpers\Manipulation\Constants;
+use UIoT\App\Helpers\Visual\Html;
 
 /**
  * Class Indexer

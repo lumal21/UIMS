@@ -22,8 +22,8 @@
 
 namespace UIoT\App\Core\Resources;
 
-use UIoT\App\Core\Helpers\Manipulation\Files;
 use UIoT\App\Data\Interfaces\RenderInterface;
+use UIoT\App\Helpers\Manipulation\Files;
 
 
 /**

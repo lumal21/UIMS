@@ -23,8 +23,8 @@
 namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Communication\Parsers\DataManager;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Models\IControllerModel;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class IControllable

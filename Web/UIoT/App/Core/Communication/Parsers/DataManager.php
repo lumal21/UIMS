@@ -24,8 +24,8 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Core\Helpers\Manipulation\Strings;
 use UIoT\App\Data\Models\CollectorModel;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class DataManager

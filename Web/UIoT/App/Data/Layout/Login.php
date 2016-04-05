@@ -23,10 +23,10 @@
 namespace UIoT\App\Data\Layout;
 
 use UIoT\App\Core\Controllers\Commander;
-use UIoT\App\Core\Helpers\Visual\Pages;
 use UIoT\App\Core\Resources\Indexer as ResourceIndexer;
 use UIoT\App\Core\Templates\Indexer as TemplateIndexer;
 use UIoT\App\Data\Singletons\LayoutSingleton;
+use UIoT\App\Helpers\Visual\Pages;
 
 /**
  * Class Login

@@ -20,28 +20,31 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Collectors;
-
-use UIoT\App\Data\Models\CollectorModel;
-use UIoT\App\Helpers\Manipulation\Json;
+namespace UIoT\App\Helpers\Manipulation\Structures;
 
 /**
- * Class GetCollector
- * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * Class NodeProperty
+ *
+ * @package UIoT\App\Helpers\Manipulation\Structures
  */
-class GetCollector extends CollectorModel
+final class NodeProperty
 {
     /**
-     * Pass Request for Gettable
-     * @param $a
-     * @return $this
+     *
+     * Parameter name
+     *
+     * @var string
      */
-    public function passRequest($a)
-    {
-        /* save request data */
-        $this->request = Json::valueArrayObjectToClosure($a);
+    public $parameterName;
 
-        /* return class instance */
-        return $this;
+    /**
+     *
+     * NodeProperty constructor.
+     *
+     * @param string $parameterName
+     */
+    public function __construct($parameterName)
+    {
+        $this->parameterName = $parameterName;
     }
 }

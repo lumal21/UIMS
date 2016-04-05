@@ -26,8 +26,8 @@ use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Core\Helpers\Manipulation\Arrays;
 use UIoT\App\Exception\Collector;
+use UIoT\App\Helpers\Manipulation\Arrays;
 
 /**
  * Class Controllable
