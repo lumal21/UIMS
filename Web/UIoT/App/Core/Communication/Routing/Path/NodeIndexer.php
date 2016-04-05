@@ -159,7 +159,7 @@ final class NodeIndexer
      *
      * Return all Nodes from a Specific Priority
      *
-     * @param integer $priority_id
+     * @param integer|NodeModel $priority_id
      *
      * @return NodeModel[]
      */
