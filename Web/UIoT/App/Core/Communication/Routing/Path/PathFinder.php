@@ -63,17 +63,18 @@ final class PathFinder
     {
         /* get all primary nodes (Nodes with the Lowest Priority Identification, Default: 0 */
         array_map(function ($node) use ($router) {
-            $this->mountRouterCoreNode($router, $node);
+            $this->mountRouterEdges($router, $node, false);
         }, $this->getNodeIndexer()->getNodesByPriorityId($this->getNodeIndexer()->getLowestNodePriorityId()));
     }
 
     /**
-     * Mount Router Core Node
+     * Mount Router Edges
      *
      * @param IRouter|null $router
      * @param NodeModel|null $node
+     * @param bool $recursively
      */
-    public function mountRouterCoreNode(IRouter $router, NodeModel $node)
+    public function mountRouterEdges(IRouter $router, NodeModel $node, $recursively = true)
     {
         /** @var NodeModel $edge */
         foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge):
@@ -81,10 +82,14 @@ final class PathFinder
             /* serialize edge data to the callback */
             $edge->getCallback()->setNodeModel($edge);
 
-            /* serialize all nodes from that group starting by the first node from the group (the lowest priority node */
+            /* don't repeat same items if is recursively */
+            if (($edge->getPriority() <= $node->getPriority()) && $recursively)
+                continue;
+
+            /* serialize all nodes from that group starting by the first node from the group (the lowest priority node) */
             $this->mountRouterNode($router, $edge);
 
-            /* serialize router node */
+            /* serialize data callback */
             $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
 
         endforeach;
@@ -122,30 +127,6 @@ final class PathFinder
         $router->mount($node->getPath(), function () use ($router, $node) {
             $this->mountRouterEdges($router, $node);
         });
-    }
-
-    /**
-     * Mount Router Edges
-     *
-     * @param IRouter|null $router
-     * @param NodeModel|null $node
-     */
-    public function mountRouterEdges(IRouter $router, NodeModel $node)
-    {
-        /** @var NodeModel $edge */
-        foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge):
-
-            /* serialize edge data to the callback */
-            $edge->getCallback()->setNodeModel($edge);
-
-            /* don't repeat same items */
-            if ($edge->getPriority() <= $node->getPriority())
-                continue;
-
-            /* serialize router edge */
-            $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
-
-        endforeach;
     }
 
     /**
