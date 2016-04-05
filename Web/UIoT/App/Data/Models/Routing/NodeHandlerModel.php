@@ -20,7 +20,7 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Routing;
 
 use UIoT\App\Data\Interfaces\NodeHandlerInterface;
 

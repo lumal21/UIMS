@@ -20,51 +20,50 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Requesting;
 
-use UIoT\App\Data\Interfaces\LayoutInterface;
+use stdClass;
+use UIoT\App\Data\Interfaces\RequestDataInterface;
 
 /**
- * Class LayoutModel
- *
+ * Class RequestDataModel
  * @package UIoT\App\Data\Models
  */
-class LayoutModel implements LayoutInterface
+class RequestDataModel extends stdClass implements RequestDataInterface
 {
     /**
+     * Constructs and Set all Abstract Data
      *
-     * Define Resources
+     * RequestDataModel constructor
+     *
+     * @param stdClass $k
      */
-    public function __resources()
+    public function __construct(stdClass $k)
     {
-        /* not implemented */
+        /* set object vars */
+        foreach (get_object_vars($k) as $name => $value)
+            $this->{$name} = $value;
     }
 
     /**
+     * Get Something
      *
-     * Define Settings
+     * @param mixed $a
+     * @return mixed
      */
-    public function __configuration()
+    public function __get($a)
     {
-        /* not implemented */
+        return $a;
     }
 
     /**
+     * Set Something
      *
-     * Define Templates
+     * @param mixed $a
+     * @param mixed $b
      */
-    public function __templates()
+    public function __set($a, $b)
     {
-        /* not implemented */
-    }
-
-    /**
-     *
-     * Return Layout Code
-     */
-    public function __show()
-    {
-        /* not implemented */
+        $this->{$a} = $b;
     }
 }
-

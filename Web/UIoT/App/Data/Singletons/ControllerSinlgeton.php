@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
-use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Models\Data\ControllerModel;
 
 /**
  * Class ControllerSingleton

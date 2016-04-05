@@ -20,42 +20,39 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\CollectorInterface;
+use UIoT\App\Data\Interfaces\MethodInterface;
 
 /**
- * Class CollectorModel
- *
+ * Class MethodModel
  * @package UIoT\App\Data\Models
  */
-class CollectorModel implements CollectorInterface
+class MethodModel implements MethodInterface
 {
-    protected $request;
+    /** @var object|array */
+    private $data;
 
     /**
-     * @param $a
-     * @return $this
+     * Get Data
+     *
+     * @return array|object
      */
-    public function passRequest($a)
+    public function getData()
     {
-        /* save request data */
-        $this->request = $a;
-
-        /* return class instance */
-        return $this;
+        return $this->data;
     }
 
     /**
-     * @param $a
-     * @return mixed
+     * Set Data
+     *
+     * @param array $data
+     * @return $this
      */
-    public function passHandler($a)
+    public function setData($data = [])
     {
-        /* store request data */
-        $b = new $a($this->request);
+        $this->data = $data;
 
-        /* return handler */
-        return $b;
+        return $this;
     }
 }

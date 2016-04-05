@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Data\Models\HandlerModel;
+use UIoT\App\Data\Models\Parsers\HandlerModel;
 
 /**
  * Class Postable

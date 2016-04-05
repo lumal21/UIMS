@@ -24,8 +24,8 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Requesting\Raise;
-use UIoT\App\Data\Models\CollectorModel;
-use UIoT\App\Data\Models\HandlerModel;
+use UIoT\App\Data\Models\Parsers\CollectorModel;
+use UIoT\App\Data\Models\Parsers\HandlerModel;
 
 /**
  * Class DataCollector

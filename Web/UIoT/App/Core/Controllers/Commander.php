@@ -21,8 +21,8 @@
 
 namespace UIoT\App\Core\Controllers;
 
-use UIoT\App\Data\Models\ControllerModel;
-use UIoT\App\Data\Models\IControllerModel;
+use UIoT\App\Data\Models\Data\ControllerModel;
+use UIoT\App\Data\Models\Requesting\IControllerModel;
 use UIoT\App\Exception\Collector;
 use UIoT\App\Helpers\Manipulation\Arrays;
 use UIoT\App\Helpers\Manipulation\Strings;

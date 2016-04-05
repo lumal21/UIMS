@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
-use UIoT\App\Data\Models\MethodModel;
+use UIoT\App\Data\Models\Parsers\MethodModel;
 
 /*
  * Warning:

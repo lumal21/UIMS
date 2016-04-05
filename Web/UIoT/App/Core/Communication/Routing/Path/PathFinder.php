@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Communication\Routing\Path;
 
 use Bramus\Router\Router as IRouter;
-use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Data\Models\Routing\NodeModel;
 
 /**
  * Class PathFinder

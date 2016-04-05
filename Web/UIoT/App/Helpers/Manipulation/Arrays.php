@@ -23,7 +23,7 @@
 namespace UIoT\App\Helpers\Manipulation;
 
 use UIoT\App\Core\Controllers\Indexer;
-use UIoT\App\Data\Models\MethodModel;
+use UIoT\App\Data\Models\Parsers\MethodModel;
 
 /**
  * Class Arrays

@@ -25,8 +25,8 @@ namespace UIoT\App\Core\Communication\Routing\Nodes;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Core\Templates\Render;
-use UIoT\App\Data\Models\NodeHandlerModel;
-use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Data\Models\Routing\NodeHandlerModel;
+use UIoT\App\Data\Models\Routing\NodeModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 use UIoT\App\Helpers\Manipulation\Strings;
 

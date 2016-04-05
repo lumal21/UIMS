@@ -26,8 +26,8 @@ use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Controllers\Commander;
 use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Core\Templates\Render;
-use UIoT\App\Data\Models\NodeHandlerModel;
-use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Data\Models\Routing\NodeHandlerModel;
+use UIoT\App\Data\Models\Routing\NodeModel;
 
 /**
  * Class ModelNode

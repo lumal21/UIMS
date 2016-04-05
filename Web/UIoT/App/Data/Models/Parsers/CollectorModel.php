@@ -20,32 +20,42 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\ControllerInterface;
+use UIoT\App\Data\Interfaces\CollectorInterface;
 
 /**
- * Class ControllerModel
+ * Class CollectorModel
  *
  * @package UIoT\App\Data\Models
  */
-class ControllerModel implements ControllerInterface
+class CollectorModel implements CollectorInterface
 {
+    protected $request;
+
     /**
-     * Init Controller
-     *
-     * ControllerModel constructor.
+     * @param $a
+     * @return $this
      */
-    protected function __construct()
+    public function passRequest($a)
     {
-        /* nothing to do */
+        /* save request data */
+        $this->request = $a;
+
+        /* return class instance */
+        return $this;
     }
 
     /**
-     * Default Action
+     * @param $a
+     * @return mixed
      */
-    public function __actionMain()
+    public function passHandler($a)
     {
-        /* nothing to do */
+        /* store request data */
+        $b = new $a($this->request);
+
+        /* return handler */
+        return $b;
     }
 }

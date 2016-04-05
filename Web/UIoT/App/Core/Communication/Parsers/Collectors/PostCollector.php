@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\CollectorModel;
+use UIoT\App\Data\Models\Parsers\CollectorModel;
 
 /**
  * Class PostCollector

@@ -20,39 +20,34 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Parsers;
 
-use UIoT\App\Data\Interfaces\MethodInterface;
+use UIoT\App\Data\Interfaces\HandlerInterface;
 
 /**
- * Class MethodModel
+ * Class HandlerModel
  * @package UIoT\App\Data\Models
  */
-class MethodModel implements MethodInterface
+class HandlerModel implements HandlerInterface
 {
-    /** @var object|array */
-    private $data;
+    protected $content;
 
     /**
-     * Get Data
-     *
-     * @return array|object
+     * HandlerModel constructor.
+     * @param $request_content
      */
-    public function getData()
+    public function __construct($request_content)
     {
-        return $this->data;
+        $this->content .= '<pre>';
+        $this->content .= print_r($request_content, true);
+        $this->content .= '</pre>';
     }
 
     /**
-     * Set Data
-     *
-     * @param array $data
-     * @return $this
+     * @return string
      */
-    public function setData($data = [])
+    public function __toString()
     {
-        $this->data = $data;
-
-        return $this;
+        return $this->content;
     }
 }

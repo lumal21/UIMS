@@ -20,34 +20,32 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models;
+namespace UIoT\App\Data\Models\Data;
 
-use UIoT\App\Data\Interfaces\HandlerInterface;
+use UIoT\App\Data\Interfaces\ControllerInterface;
 
 /**
- * Class HandlerModel
+ * Class ControllerModel
+ *
  * @package UIoT\App\Data\Models
  */
-class HandlerModel implements HandlerInterface
+class ControllerModel implements ControllerInterface
 {
-    protected $content;
-
     /**
-     * HandlerModel constructor.
-     * @param $request_content
+     * Init Controller
+     *
+     * ControllerModel constructor.
      */
-    public function __construct($request_content)
+    protected function __construct()
     {
-        $this->content .= '<pre>';
-        $this->content .= print_r($request_content, true);
-        $this->content .= '</pre>';
+        /* nothing to do */
     }
 
     /**
-     * @return string
+     * Default Action
      */
-    public function __toString()
+    public function __actionMain()
     {
-        return $this->content;
+        /* nothing to do */
     }
 }

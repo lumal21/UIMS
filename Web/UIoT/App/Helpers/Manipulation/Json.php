@@ -23,7 +23,7 @@
 namespace UIoT\App\Helpers\Manipulation;
 
 use stdClass;
-use UIoT\App\Data\Models\RequestDataModel;
+use UIoT\App\Data\Models\Requesting\RequestDataModel;
 
 /**
  * Class Json

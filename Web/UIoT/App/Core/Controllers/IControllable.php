@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Communication\Parsers\DataManager;
-use UIoT\App\Data\Models\IControllerModel;
+use UIoT\App\Data\Models\Requesting\IControllerModel;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**

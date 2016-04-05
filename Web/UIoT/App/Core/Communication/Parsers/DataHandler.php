@@ -223,7 +223,7 @@ class DataHandler
      * Get Parser Collector
      *
      * @param $name
-     * @return \UIoT\App\Data\Models\CollectorModel|null
+     * @return \UIoT\App\Data\Models\Parsers\CollectorModel|null
      */
     public static function getParserCollector($name)
     {

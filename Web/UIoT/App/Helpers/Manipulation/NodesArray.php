@@ -22,8 +22,8 @@
 
 namespace UIoT\App\Helpers\Manipulation;
 
-use UIoT\App\Data\Models\NodeHandlerModel;
-use UIoT\App\Data\Models\NodeModel;
+use UIoT\App\Data\Models\Routing\NodeHandlerModel;
+use UIoT\App\Data\Models\Routing\NodeModel;
 use UIoT\App\Helpers\Manipulation\Structures\NodeFilter;
 use UIoT\App\Helpers\Manipulation\Structures\NodeProperty;
 

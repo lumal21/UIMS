@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
-use UIoT\App\Data\Models\LayoutModel;
+use UIoT\App\Data\Models\Data\LayoutModel;
 
 /**
  * Class LayoutSingleton

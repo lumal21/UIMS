@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Templates\Render;
-use UIoT\App\Data\Models\ControllerModel;
+use UIoT\App\Data\Models\Data\ControllerModel;
 use UIoT\App\Data\Singletons\ControllerSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 
