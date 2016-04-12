@@ -41,23 +41,23 @@
 
 namespace UIoT;
 
-use UIoT\App\Helpers\System\Settings\SettingsIndexer;
+use UIoT\App\Core\Settings\Register;
 
 /**
  * UIoTcms Settings
  * Please be Careful at configuring the settings
  */
 
-SettingsIndexer::prepareSettings();
+Register::prepareSettings();
 
-SettingsIndexer::addSettingsBlock('raise', [
+Register::addSettingsBlock('raise', [
     'raiseHost' => 'rest_uiot',
     'raiseBasePath' => '',
     'raisePort' => 82,
     'raiseSsl' => false
 ]);
 
-SettingsIndexer::addSettingsBlock('security', [
+Register::addSettingsBlock('security', [
     // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
     'sessionHandlerSalt' => 'uniform-internetofthings',
     // session expire (seconds)
@@ -70,7 +70,7 @@ SettingsIndexer::addSettingsBlock('security', [
         ]
 ]);
 
-SettingsIndexer::addSettingsBlock('exceptions', [
+Register::addSettingsBlock('exceptions', [
     // set error page title
     'errorPageTitle' => 'Houston, we have a problem!',
     // set reporting php error level
@@ -81,8 +81,8 @@ SettingsIndexer::addSettingsBlock('exceptions', [
     'errorResourceFolder' => 'Whoops'
 ]);
 
-SettingsIndexer::addSettingsBlock('resources', [
+Register::addSettingsBlock('resources', [
     'enableCaching' => true
 ]);
 
-SettingsIndexer::runSettings();
+Register::runSettings();

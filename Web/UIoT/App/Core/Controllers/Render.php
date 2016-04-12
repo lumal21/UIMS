@@ -20,14 +20,13 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Resources;
+namespace UIoT\App\Core\Controllers;
 
-use UIoT\App\Core\Assets\Register;
-use UIoT\App\Core\Layouts\Factory;
+use UIoT\App\Core\Assets\Register as AssetIndexer;
+use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 use UIoT\App\Exception\Collector;
 use UIoT\App\Helpers\Manipulation\Strings;
-
 
 /**
  * Class Render
@@ -77,7 +76,7 @@ final class Render implements RenderInterface
      */
     public function setArguments($arguments = [])
     {
-        $this->controllerName = Strings::toControllerName($arguments['resource']);
+        $this->controllerName = Strings::toControllerName($arguments['controller']);
 
         $this->controllerAction = Strings::toActionName($arguments['action']);
     }
@@ -87,7 +86,11 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        self::$controllerData = 'Hello Testing Me Against You;';
+        if (!Factory::controllerActionExists($this->controllerName, $this->controllerAction))
+            $this->throwNonExistentActionError();
+
+        // Set Controller Data
+        self::$controllerData = Factory::executeControllerAction($this->controllerName, $this->controllerAction);
     }
 
     /**
@@ -106,7 +109,7 @@ final class Render implements RenderInterface
      */
     public function show()
     {
-        return Factory::getLayout($this->controllerAction);
+        return LayoutIndexer::getLayout($this->controllerName);
     }
 
     /**
@@ -133,6 +136,6 @@ final class Render implements RenderInterface
      */
     private function setResources()
     {
-        Register::registerResources($this->controllerAction, true);
+        AssetIndexer::registerResources($this->controllerName, true);
     }
 }

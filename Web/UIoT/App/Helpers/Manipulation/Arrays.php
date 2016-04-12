@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Helpers\Manipulation;
 
-use UIoT\App\Core\Controllers\Indexer;
 use UIoT\App\Data\Models\Parsers\MethodModel;
 
 /**
@@ -97,34 +96,6 @@ class Arrays
     public static function toControllerArray($a = [])
     {
         return array_map('self::toControllerName', (array)$a);
-    }
-
-    /**
-     *
-     * Get Entire Methods (Actions) of User Defined Controller
-     * (Only for Public - non-static - methods)
-     *
-     * @param string $controller_name
-     *
-     * @return array
-     */
-    public static function getStaticControllerActions($controller_name = '')
-    {
-        return array_map('self::toActionName', get_class_methods(Indexer::getControllerNameSpace($controller_name)));
-    }
-
-    /**
-     *
-     * Get Entire Methods (Actions) of UIoT Abstract Controller
-     * (Only for Public - non-static - methods)
-     *
-     * @param array $a
-     *
-     * @return array
-     */
-    public static function getAbstractControllerActions($a = [])
-    {
-        return is_array($a) ? (array_map('self::toActionName', array_keys((array)$a))) : [];
     }
 
     /**

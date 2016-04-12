@@ -87,7 +87,7 @@ final class Factory
      */
     public static function callLayoutStaticMethod($layout_name, $layout_method)
     {
-        return forward_static_call(["UIoT\\App\\Data\\Layout\\$layout_name", $layout_method]);
+        return forward_static_call(["UIoT\\App\\Data\\Layouts\\$layout_name", $layout_method]);
     }
 
     /**

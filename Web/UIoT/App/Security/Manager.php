@@ -22,11 +22,10 @@
 
 namespace UIoT\App\Security;
 
+use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 use UIoT\App\Exception\Collector;
 use UIoT\App\Helpers\Data\ClientData;
-use UIoT\App\Helpers\System\Settings;
-use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 use Whitelist\Check;
 
 /**
@@ -68,7 +67,7 @@ final class Manager
     public function __construct()
     {
         /* set settings */
-        $this->setSettings(SettingsIndexer::getSetting('security'));
+        $this->setSettings(SettingsRegister::getSetting('security'));
 
         /* start white list checker */
         $this->startWhiteList();

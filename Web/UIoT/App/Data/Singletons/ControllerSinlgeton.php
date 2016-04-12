@@ -35,7 +35,7 @@ class ControllerSingleton extends ControllerModel
      *
      * Controller Model Instance
      *
-     * @var ControllerModel
+     * @var ControllerModel|ControllerSingleton
      */
     protected static $controllerInstance = null;
 
@@ -52,7 +52,7 @@ class ControllerSingleton extends ControllerModel
      *
      * Return Instance of Controller
      *
-     * @return ControllerModel|mixed
+     * @return ControllerModel|ControllerSingleton|mixed
      */
     public static function getInstance()
     {
@@ -60,6 +60,16 @@ class ControllerSingleton extends ControllerModel
             self::$controllerInstance = new static;
 
         return self::$controllerInstance;
+    }
+
+    /**
+     * Get Controller Actions
+     *
+     * @return mixed
+     */
+    public static function getActions()
+    {
+        return array_map('self::toActionName', get_class_methods(self::$controllerInstance));
     }
 
     /**

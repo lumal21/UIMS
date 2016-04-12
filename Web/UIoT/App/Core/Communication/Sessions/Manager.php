@@ -21,9 +21,8 @@
 
 namespace UIoT\App\Core\Communication\Sessions;
 
+use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
-use UIoT\App\Helpers\System\Settings;
-use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 
 /**
  * Class Manager
@@ -58,19 +57,19 @@ final class Manager
     }
 
     /**
+     * Set System Settings
+     */
+    private function setSettings()
+    {
+        $this->settings = SettingsRegister::getSetting('security');
+    }
+
+    /**
      * Save the Session Handler as PhP Session Handler
      */
     private function setHandler()
     {
         session_set_save_handler(new Handler($this->settings->sessionHandlerSalt, $this->settings->sessionTimeOut), true);
-    }
-
-    /**
-     * Set System Settings
-     */
-    private function setSettings()
-    {
-        $this->settings = SettingsIndexer::getSetting('security');
     }
 
     /**

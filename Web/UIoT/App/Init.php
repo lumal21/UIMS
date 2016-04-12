@@ -69,7 +69,7 @@ final class Init
         (new Core\Communication\Sessions\Manager);
 
         /* start resource manager */
-        (new Core\Resources\Manager);
+        (new Core\Assets\Manager);
 
         /* start raise */
         (new Core\Communication\Requesting\Raise);

@@ -36,6 +36,10 @@
   ],
   "repositories": [
     {
+      "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+      "type": "git"
+    },
+    {
       "url": "https://github.com/filp/whoops.git",
       "type": "git"
     },
@@ -60,17 +64,16 @@
       "type": "git"
     },
     {
-      "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+      "url": "https://github.com/italolelis/datatables.git",
       "type": "git"
     }
   ],
   "require": {
     "nategood/httpful": "master",
     "jalle19/php-whitelist-check": "master",
-    "italolelis/datatables": ">=1.0",
+    "italolelis/datatables": "master",
     "mihaeu/html-formatter": "master",
     "bramus/router": "master",
-    "bower-asset/foundation-sites": ">=6.0",
     "kriswallsmith/assetic": "master",
     "fxp/composer-asset-plugin": "master",
     "filp/whoops": "master"
@@ -84,6 +87,13 @@
     ]
   },
   "extra": {
+    "asset-repositories": [
+      {
+        "type": "bower-vcs",
+        "url": "https://github.com/zurb/foundation-sites.git",
+        "name": "bower-asset/foundation-sites"
+      }
+    ],
     "asset-installer-paths": {
       "bower-asset-library": "Web/UIoT/Resources/Vendor/Bower",
       "npm-asset-library": "Web/UIoT/Resources/Vendor/Npm"

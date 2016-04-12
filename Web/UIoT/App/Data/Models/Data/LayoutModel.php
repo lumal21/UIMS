@@ -27,7 +27,7 @@ use UIoT\App\Data\Interfaces\Data\LayoutInterface;
 /**
  * Class LayoutModel
  *
- * @package UIoT\App\Data\Models
+ * @package UIoT\App\Data\Models\Data
  */
 class LayoutModel implements LayoutInterface
 {

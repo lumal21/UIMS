@@ -22,11 +22,10 @@
 
 namespace UIoT\App\Exception;
 
+use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Exception\Template\Handler;
 use UIoT\App\Helpers\Manipulation\Constants;
-use UIoT\App\Helpers\System\Settings;
-use UIoT\App\Helpers\System\Settings\SettingsIndexer;
 use Whoops\Run;
 
 /**
@@ -81,7 +80,7 @@ final class Manager
      */
     private function setSettings()
     {
-        self::$settings = SettingsIndexer::getSetting('exceptions');
+        self::$settings = SettingsRegister::getSetting('exceptions');
 
         Register::setErrorLevels(self::$settings->errorReportingLevels);
         Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . self::$settings->errorResourceFolder . '/');

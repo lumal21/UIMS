@@ -22,8 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
+use UIoT\App\Core\Assets\AssetRender as AssetRender;
+use UIoT\App\Core\Controllers\Render as ControllerRender;
 use UIoT\App\Core\Resources\Render as ResourceRender;
-use UIoT\App\Core\Templates\Render as TemplateRender;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
@@ -53,9 +54,11 @@ final class RenderSelector
      */
     private static function select(RenderInterface $instance)
     {
-        if ($instance instanceof ResourceRender)
+        if ($instance instanceof AssetRender)
             return $instance->show();
-        else if ($instance instanceof TemplateRender)
+        else if ($instance instanceof ControllerRender)
+            return $instance->show();
+        else if ($instance instanceof ResourceRender)
             return $instance->show();
         return null;
     }

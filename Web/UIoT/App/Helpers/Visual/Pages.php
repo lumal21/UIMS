@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Helpers\Visual;
 
-use UIoT\App\Core\Resources\Indexer;
+use UIoT\App\Core\Assets\Register;
 
 /**
  * Class Pages
@@ -48,9 +48,9 @@ final class Pages
     public static function addEmbedScript($script_name)
     {
         /* first add resource */
-        Indexer::addAsset($script_name, 'script/javascript');
+        Register::addAsset($script_name, 'script/javascript');
 
         /* so echo the script */
-        Html::add(sprintf('<script type="text/javascript">%s</script>', Indexer::returnResource($script_name)));
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnResource($script_name)));
     }
 }

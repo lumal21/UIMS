@@ -20,32 +20,31 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces\Data;
+namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 /**
- * Interface LayoutInterface
+ * Class NodeProperty
  *
- * @package UIoT\App\Data\Interfaces\Data
+ * @package UIoT\App\Core\Communication\Routing\Nodes
  */
-interface LayoutInterface
+final class NodeProperty
 {
     /**
-     * @return mixed
+     *
+     * Parameter name
+     *
+     * @var string
      */
-    function __resources();
+    public $parameterName;
 
     /**
-     * @return mixed
+     *
+     * NodeProperty constructor.
+     *
+     * @param string $parameterName
      */
-    function __configuration();
-
-    /**
-     * @return mixed
-     */
-    function __templates();
-
-    /**
-     * @return mixed
-     */
-    function __show();
+    public function __construct($parameterName)
+    {
+        $this->parameterName = $parameterName;
+    }
 }
