@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Routing;
 
 use Bramus\Router\Router as IRouter;
 use UIoT\App\Core\Communication\Routing\Path\PathFinder;
-use UIoT\App\Data\Models\Nodes\NotFoundNode;
+use UIoT\App\Exception\Collector;
 
 /**
  * Class Router
@@ -64,7 +64,20 @@ final class Router extends RouterAccessor
         $this->getPathFinder()->mountRouter($this->getRouter());
 
         /* set 404 Callback Node */
-        $this->getRouter()->set404(new NotFoundNode);
+        $this->getRouter()->set404(function () {
+            header('HTTP/1.1 404 Not Found');
+
+            Collector::errorMessage(906,
+                "404!",
+                'Details: ',
+                [
+                    'What Happened?' => "Sorry but this Page was not encountered.",
+                    'Solution:' => "Go Back to Home Page.",
+                    'What can be?' => 'Maybe you typed a wrong action or an non existent solution.',
+                    'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
+                ]
+            );
+        });
     }
 
     /**

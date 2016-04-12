@@ -25,10 +25,11 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 use UIoT\App\Data\Models\Parsers\HandlerModel;
 
 /**
- * Class Puttable
+ * Class PutHandler
+ *
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class Puttable extends HandlerModel
+class PutHandler extends HandlerModel
 {
 
 }

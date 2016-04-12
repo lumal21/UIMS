@@ -25,10 +25,11 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 use UIoT\App\Data\Models\Parsers\HandlerModel;
 
 /**
- * Class Postable
+ * Class PostHandler
+ *
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class Postable extends HandlerModel
+class PostHandler extends HandlerModel
 {
 
 }

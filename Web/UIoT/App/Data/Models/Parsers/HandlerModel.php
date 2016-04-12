@@ -26,27 +26,34 @@ use UIoT\App\Data\Interfaces\Parsers\HandlerInterface;
 
 /**
  * Class HandlerModel
+ *
  * @package UIoT\App\Data\Models
  */
 class HandlerModel implements HandlerInterface
 {
+    /**
+     * Handled Content
+     *
+     * @var mixed
+     */
     protected $content;
 
     /**
-     * HandlerModel constructor.
+     * Handle Request
+     *
      * @param $request_content
      */
-    public function __construct($request_content)
+    public function handleRequest($request_content)
     {
-        $this->content .= '<pre>';
-        $this->content .= print_r($request_content, true);
-        $this->content .= '</pre>';
+        $this->content = $request_content;
     }
 
     /**
+     * Return Content
+     *
      * @return string
      */
-    public function __toString()
+    public function returnResponse()
     {
         return $this->content;
     }

@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use UIoT\App\Core\Layouts\Factory;
+use UIoT\App\Data\Models\Parsers\CollectorModel;
 use UIoT\App\Helpers\Manipulation\Arrays;
 use UIoT\App\Helpers\Manipulation\Strings;
 
@@ -66,27 +67,6 @@ class DataHandler
     }
 
     /**
-     * Return NameSpace String
-     *
-     * @param string $string
-     * @return string
-     */
-    private static function getNameSpace($string = '')
-    {
-        return (__NAMESPACE__ . '\\' . $string);
-    }
-
-    /**
-     * Return Handlers NameSpace String
-     * @param string $string
-     * @return string
-     */
-    private static function getHandlerNameSpace($string = '')
-    {
-        return (self::getNameSpace('Handlers\\' . $string));
-    }
-
-    /**
      * Register Httpful UIoT Handlers
      * Methods: GET, POST, PUT, DELETE
      * Default Handlers: Gettable, Postable, Puttable, Deletable
@@ -94,10 +74,10 @@ class DataHandler
     private static function registerHandlers()
     {
         self::$handlers = [
-            Http::GET => self::getHandlerNameSpace('Gettable'),
-            Http::POST => self::getHandlerNameSpace('Postable'),
-            Http::PUT => self::getHandlerNameSpace('Puttable'),
-            Http::DELETE => self::getHandlerNameSpace('Deletable'),
+            Http::GET => new Handlers\GetHandler(),
+            Http::POST => new Handlers\PostHandler(),
+            Http::PUT => new Handlers\PutHandler(),
+            Http::DELETE => new Handlers\DeleteHandler(),
         ];
     }
 
@@ -110,10 +90,10 @@ class DataHandler
     private static function registerLayouts()
     {
         self::$layouts = [
-            Http::GET => Factory::addLayout(Strings::toActionName(self::$names[Http::GET])),
-            Http::POST => Factory::addLayout(Strings::toActionName(self::$names[Http::POST])),
-            Http::PUT => Factory::addLayout(Strings::toActionName(self::$names[Http::PUT])),
-            Http::DELETE => Factory::addLayout(Strings::toActionName(self::$names[Http::DELETE])),
+            Http::GET => Factory::addLayout(self::$names[Http::GET]),
+            Http::POST => Factory::addLayout(self::$names[Http::POST]),
+            Http::PUT => Factory::addLayout(self::$names[Http::PUT]),
+            Http::DELETE => Factory::addLayout(self::$names[Http::DELETE]),
         ];
     }
 
@@ -125,10 +105,10 @@ class DataHandler
     private static function registerNames()
     {
         self::$names = [
-            Http::GET => 'home',
-            Http::POST => 'add',
-            Http::PUT => 'edit',
-            Http::DELETE => 'remove',
+            Http::GET => 'Main',
+            Http::POST => 'Add',
+            Http::PUT => 'Edit',
+            Http::DELETE => 'Remove',
         ];
     }
 
@@ -223,7 +203,7 @@ class DataHandler
      * Get Parser Collector
      *
      * @param $name
-     * @return \UIoT\App\Data\Models\Parsers\CollectorModel|null
+     * @return CollectorModel|null
      */
     public static function getParserCollector($name)
     {
@@ -262,18 +242,6 @@ class DataHandler
     public static function getParserLayout($name)
     {
         return self::getParserVariable($name, 'layout');
-    }
-
-    /**
-     * Open Parser Layout
-     * Return Layout Instance
-     *
-     * @param string $name Parser Name
-     * @return string|null (Layout Instance)
-     */
-    public static function openParserLayout($name)
-    {
-        return self::parserExists($name) ? Factory::getLayout(Strings::toControllerName($name)) : null;
     }
 
     /**

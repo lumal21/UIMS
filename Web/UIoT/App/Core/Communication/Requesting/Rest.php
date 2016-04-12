@@ -28,6 +28,7 @@ use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 
 /**
  * Class Rest
+ *
  * @package UIoT\App\Core\Communication\Requesting
  */
 class Rest

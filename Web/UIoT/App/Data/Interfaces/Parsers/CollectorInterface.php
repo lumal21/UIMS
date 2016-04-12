@@ -29,14 +29,14 @@ namespace UIoT\App\Data\Interfaces\Parsers;
 interface CollectorInterface
 {
     /**
-     * @param $a
+     * @param $collectorModel
      * @return mixed
      */
-    public function passRequest($a);
+    public function passRequest($collectorModel);
 
     /**
-     * @param $a
+     * @param $handlerModel
      * @return mixed
      */
-    public function passHandler($a);
+    public function passHandler($handlerModel);
 }

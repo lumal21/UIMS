@@ -38,17 +38,6 @@ class Brain
 
     /**
      *
-     * Get Possible UIoT Abstract Controllers
-     *
-     * @return mixed
-     */
-    public static function getItems()
-    {
-        return Raise::doRequest('resource');
-    }
-
-    /**
-     *
      * Set and Store Initial Template
      *
      * @param Http ::string $method_name

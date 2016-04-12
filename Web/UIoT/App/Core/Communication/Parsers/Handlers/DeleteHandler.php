@@ -25,10 +25,11 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 use UIoT\App\Data\Models\Parsers\HandlerModel;
 
 /**
- * Class Gettable
+ * Class DeleteHandler
+ *
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class Gettable extends HandlerModel
+class DeleteHandler extends HandlerModel
 {
 
 }

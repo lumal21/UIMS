@@ -31,31 +31,42 @@ use UIoT\App\Data\Interfaces\Parsers\CollectorInterface;
  */
 class CollectorModel implements CollectorInterface
 {
+    /**
+     * Requested Data
+     *
+     * @var mixed
+     */
     protected $request;
 
     /**
-     * @param $a
+     * Parse Request Collecting Data
+     *
+     * @param $collectorModel mixed
+     *
      * @return $this
      */
-    public function passRequest($a)
+    public function passRequest($collectorModel)
     {
         /* save request data */
-        $this->request = $a;
+        $this->request = $collectorModel;
 
         /* return class instance */
         return $this;
     }
 
     /**
-     * @param $a
+     * Call Handler to Handle Request
+     *
+     * @param $handlerModel HandlerModel
+     *
      * @return mixed
      */
-    public function passHandler($a)
+    public function passHandler($handlerModel)
     {
-        /* store request data */
-        $b = new $a($this->request);
+        /* handle request */
+        $handlerModel->handleRequest($this->request);
 
-        /* return handler */
-        return $b;
+        /* return response */
+        return $handlerModel->returnResponse();
     }
 }

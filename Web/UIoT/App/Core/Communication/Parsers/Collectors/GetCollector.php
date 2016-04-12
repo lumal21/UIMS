@@ -27,19 +27,20 @@ use UIoT\App\Helpers\Manipulation\Json;
 
 /**
  * Class GetCollector
+ *
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
 class GetCollector extends CollectorModel
 {
     /**
      * Pass Request for Gettable
-     * @param $a
+     * @param $collectorModel
      * @return $this
      */
-    public function passRequest($a)
+    public function passRequest($collectorModel)
     {
         /* save request data */
-        $this->request = Json::valueArrayObjectToClosure($a);
+        $this->request = Json::jsonEncode($collectorModel);
 
         /* return class instance */
         return $this;

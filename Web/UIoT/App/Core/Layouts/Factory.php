@@ -44,10 +44,15 @@ final class Factory
      * Add a Layout
      *
      * @param string $layout_name
+     *
+     * @return string
      */
     public static function addLayout($layout_name)
     {
         self::layoutExists($layout_name) || array_push(self::$layout, $layout_name);
+
+        // return added layout
+        return $layout_name;
     }
 
     /**

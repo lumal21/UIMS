@@ -41,6 +41,7 @@ final class DataManager
      * @var string
      */
     private static $controller;
+
     /**
      * Action Name
      *

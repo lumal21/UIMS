@@ -22,11 +22,14 @@
 
 namespace UIoT\App\Core\Resources;
 
+use Httpful\Mime;
 use UIoT\App\Core\Assets\Register;
+use UIoT\App\Core\Communication\Parsers\DataHandler;
+use UIoT\App\Core\Communication\Parsers\DataManager;
+use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 use UIoT\App\Exception\Collector;
-use UIoT\App\Helpers\Manipulation\Strings;
 
 
 /**
@@ -65,6 +68,8 @@ final class Render implements RenderInterface
     {
         $this->setArguments($arguments);
         $this->setResources();
+        $this->prepareRaise();
+        $this->startResource();
         $this->setControllerData();
     }
 
@@ -77,9 +82,9 @@ final class Render implements RenderInterface
      */
     public function setArguments($arguments = [])
     {
-        $this->controllerName = Strings::toControllerName($arguments['resource']);
+        $this->controllerName = DataManager::setController($arguments['resource']);
 
-        $this->controllerAction = Strings::toActionName($arguments['action']);
+        $this->controllerAction = DataManager::setAction($arguments['action']);
     }
 
     /**
@@ -87,7 +92,7 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        self::$controllerData = 'Hello Testing Me Against You;';
+        self::$controllerData = DataManager::getInstance($this->controllerAction);
     }
 
     /**
@@ -134,5 +139,27 @@ final class Render implements RenderInterface
     private function setResources()
     {
         Register::registerResources($this->controllerAction, true);
+    }
+
+    /**
+     * Prepare Raise
+     */
+    private function prepareRaise()
+    {
+        /* prepare template */
+        DataManager::prepareTemplate();
+
+        /* prepare brain */
+        Brain::setTemplate(DataHandler::getParserMethod($this->controllerAction), Mime::JSON);
+    }
+
+    /**
+     * Start Resource Manipulation
+     */
+    private function startResource()
+    {
+        Manager::setRelatedResource($this->controllerName);
+
+        Manager::getResource();
     }
 }

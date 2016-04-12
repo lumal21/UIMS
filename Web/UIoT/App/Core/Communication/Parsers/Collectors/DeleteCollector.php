@@ -31,13 +31,13 @@ use UIoT\App\Data\Models\Parsers\CollectorModel;
 class DeleteCollector extends CollectorModel
 {
     /**
-     * @param mixed $a
+     * @param mixed $collectorModel
      * @return $this
      */
-    public function passRequest($a)
+    public function passRequest($collectorModel)
     {
         /* save request data */
-        $this->request = $a;
+        $this->request = $collectorModel;
 
         /* return class instance */
         return $this;

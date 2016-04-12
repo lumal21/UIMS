@@ -29,15 +29,16 @@ namespace UIoT\App\Data\Interfaces\Parsers;
 interface HandlerInterface
 {
     /**
-     *
-     * HandlerInterface constructor.
+     * Handle Request
      *
      * @param $a
      */
-    public function __construct($a);
+    public function handleRequest($a);
 
     /**
+     * Return Handled Data
+     *
      * @return mixed
      */
-    public function __toString();
+    public function returnResponse();
 }
