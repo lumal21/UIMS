@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Helpers\Manipulation;
 
-use UIoT\App\Data\Models\Parsers\MethodModel;
-
 /**
  * Class Arrays
  * @package UIoT\App\Helpers\Manipulation
@@ -41,21 +39,6 @@ class Arrays
     public static function toActionName($x)
     {
         return Strings::toActionName(stripos($x, '__action') !== false ? (str_ireplace('__action', '', $x)) : $x);
-    }
-
-    /**
-     *
-     * Add value in Method
-     *
-     * @param $key
-     * @param $value
-     * @param MethodModel $class
-     * @param array $array
-     * @return boolean|null
-     */
-    public static function addOnHttpMethod($key, $value, MethodModel $class, &$array = [])
-    {
-        $array[$key] = $class->setData($value);
     }
 
     /**

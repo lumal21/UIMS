@@ -69,7 +69,7 @@ class DataHandler
     /**
      * Register Httpful UIoT Handlers
      * Methods: GET, POST, PUT, DELETE
-     * Default Handlers: Gettable, Postable, Puttable, Deletable
+     * Default Handlers: GetHandler, PostHandler, PutHandler, DeleteHandler
      */
     private static function registerHandlers()
     {

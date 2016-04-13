@@ -26,7 +26,6 @@ use UIoT\App\Core\Assets\AssetRender;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
-use UIoT\App\Data\Models\Routing\NodeModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 use UIoT\App\Helpers\Manipulation\Strings;
 
@@ -37,16 +36,6 @@ use UIoT\App\Helpers\Manipulation\Strings;
  */
 class AssetFileNode extends NodeHandlerModel
 {
-    /**
-     * ControllerNode constructor.
-     *
-     * @param NodeModel $node
-     */
-    public function __construct(NodeModel $node = null)
-    {
-        parent::__construct($node);
-    }
-
     /**
      * Callback Function
      */

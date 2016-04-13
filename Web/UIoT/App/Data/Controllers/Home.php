@@ -25,10 +25,11 @@ namespace UIoT\App\Data\Controllers;
 use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
- * Class Test
+ * Class Home
+ *
  * @package UIoT\App\Data\Controllers
  */
-final class Test extends ControllerSingleton
+final class Home extends ControllerSingleton
 {
     /**
      *
@@ -38,7 +39,7 @@ final class Test extends ControllerSingleton
      */
     public function __actionMain()
     {
-
+        return '';
     }
 
     /**

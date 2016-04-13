@@ -26,7 +26,6 @@ use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Controllers\Factory;
 use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
-use UIoT\App\Data\Models\Routing\NodeModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
@@ -36,16 +35,6 @@ use UIoT\App\Helpers\Manipulation\Constants;
  */
 final class ControllerNode extends NodeHandlerModel
 {
-    /**
-     * ControllerNode constructor.
-     *
-     * @param NodeModel $node
-     */
-    public function __construct(NodeModel $node = null)
-    {
-        parent::__construct($node);
-    }
-
     /**
      * Callback Function
      *

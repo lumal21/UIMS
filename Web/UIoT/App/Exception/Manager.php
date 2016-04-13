@@ -72,7 +72,7 @@ final class Manager
      */
     public static function checkDeveloperMode()
     {
-        return Constants::returnConstant('QUERY_STRING') != self::$settings->errorDeveloperCode;
+        return Constants::returnConstant('QUERY_STRING') == self::$settings->errorDeveloperCode;
     }
 
     /**
@@ -83,8 +83,18 @@ final class Manager
         self::$settings = SettingsRegister::getSetting('exceptions');
 
         Register::setErrorLevels(self::$settings->errorReportingLevels);
-        Register::addResourcePath(Constants::returnConstant('RESOURCE_FOLDER') . self::$settings->errorResourceFolder . '/');
+        Register::addResourcePath(self::getResourcePath());
         Register::setPageTitle(self::$settings->errorPageTitle);
+    }
+
+    /**
+     * Get Resource Path
+     *
+     * @return string
+     */
+    public static function getResourcePath()
+    {
+        return Constants::returnConstant('RESOURCE_FOLDER') . self::$settings->errorResourceFolder . '/';
     }
 
     /**

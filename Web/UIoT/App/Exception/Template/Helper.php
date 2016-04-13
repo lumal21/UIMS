@@ -22,6 +22,8 @@
 
 namespace UIoT\App\Exception\Template;
 
+use UIoT\App\Exception\Manager;
+use UIoT\App\Security\Manager as SecurityManager;
 use Whoops\Util\TemplateHelper;
 
 /**
@@ -32,39 +34,6 @@ use Whoops\Util\TemplateHelper;
  */
 class Helper extends TemplateHelper
 {
-    /**
-     *
-     * Global Variables
-     *
-     * @var array
-     */
-    private $helper_variables = [];
-
-    /**
-     *
-     * Gets a single template variable, by its name, or
-     * $defaultValue if the variable does not exist
-     *
-     * @param  string $variableName
-     * @param  mixed $defaultValue
-     * @return mixed
-     */
-    public function getVariable($variableName, $defaultValue = '')
-    {
-        return isset($this->helper_variables[$variableName]) ? $this->helper_variables[$variableName] : $defaultValue;
-    }
-
-    /**
-     *
-     * Unset a single template variable, by its name
-     *
-     * @param string $variableName
-     */
-    public function delVariable($variableName)
-    {
-        unset($this->helper_variables[$variableName]);
-    }
-
     /**
      *
      * Get File Content
@@ -87,7 +56,11 @@ class Helper extends TemplateHelper
      */
     public function execute(Handler $handler)
     {
-        $this->setHelperVariables(array_merge($handler->hResources(), $handler->hSettings(), $handler->hVariables()));
+        /* set frames */
+        $handler->setFrameList(Manager::checkDeveloperMode() && SecurityManager::checkWhiteListIp());
+
+        /* set variables */
+        $this->setVariables($handler->setSettings());
 
         /* render main layout */
         $this->render($handler->getResource('Layouts/layout.html.php'));
@@ -107,62 +80,10 @@ class Helper extends TemplateHelper
      */
     public function render($template, array $additionalVariables = null)
     {
-        /* set tpl variable */
-        $this->setVariable('tpl', $this);
+        /* extract variables */
+        extract($this->getVariables());
 
-        /* render file */
-        $this->getRenderFile($template, $this->getHelperVariables());
-    }
-
-    /**
-     *
-     * Sets a single template variable, by its name:
-     *
-     * @param string $variableName
-     * @param mixed $variableValue
-     */
-    public function setVariable($variableName, $variableValue)
-    {
-        $this->helper_variables[$variableName] = $variableValue;
-    }
-
-    /**
-     *
-     * Get A Rendered File Content
-     *
-     * @param string $template
-     * @param array|null $variables
-     */
-    protected function getRenderFile($template = '', array $variables = null)
-    {
-        /* get variables from array and set in this function */
-        extract($variables);
-
-        /* sadly sensiolabs insight is dummy */
+        /* require file */
         require_once($template);
-    }
-
-    /**
-     *
-     * Returns all variables for this helper
-     *
-     * @return array
-     */
-    public function getHelperVariables()
-    {
-        return $this->helper_variables;
-    }
-
-    /**
-     *
-     * Sets the variables to be passed to all templates rendered
-     * by this template helper.
-     *
-     * @param array $helper_variables
-     * @return Helper|null
-     */
-    public function setHelperVariables(array $helper_variables = [])
-    {
-        $this->helper_variables = $helper_variables;
     }
 }

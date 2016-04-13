@@ -114,7 +114,7 @@ LayoutIndexer::addLayout('Home');
 ControllerIndexer::addController('Login');
 
 /* test page */
-ControllerIndexer::addController('Test');
+ControllerIndexer::addController('Home');
 
 /**
  * Register Nodes
@@ -133,7 +133,7 @@ Router::addRoute('/(\w+)', new ActionNode, 2, 'get', 'controller_page');
 Router::addRoute('/(\w+)', new ActionNode, 2, 'post', 'controller_page');
 
 /* set arguments routing parameters yoururl/CONTROLLER/ACTION/QUERY/STRING/REST/PARAMETER - For Controller Web Pages */
-Router::addRoute('/(\w+)/(.*)', new ArgumentsNode, 3, 'get', 'controller_page');
+Router::addRoute('/(\w+)/(.*)', new ActionNode, 3, 'get', 'controller_page');
 
 /* ##### */
 

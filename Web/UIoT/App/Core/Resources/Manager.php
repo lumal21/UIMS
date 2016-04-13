@@ -39,13 +39,6 @@ final class Manager
     private static $resourceName;
 
     /**
-     * Actual Response Data
-     *
-     * @var mixed
-     */
-    private static $actualResponseData;
-
-    /**
      * Set Related Resource
      *
      * @param string $resource_name
@@ -60,7 +53,9 @@ final class Manager
      */
     public static function getResourceProperties()
     {
-        return Raise::doRequest('properties?rsrc_id=' . self::getResource()[0]->ID);
+        $rawResponse = self::getResource();
+
+        return Raise::doRequest('properties?rsrc_id=' . is_object($rawResponse) ? $rawResponse : $rawResponse[0]->ID);
     }
 
     /**
@@ -68,26 +63,8 @@ final class Manager
      */
     public static function getResource()
     {
-        return Raise::doRequest('resources?name=' . self::$resourceName);
-    }
+        $rawResponse = Raise::doRequest('resources?name=' . self::$resourceName);
 
-    /**
-     * Get Actual Response
-     *
-     * @return mixed
-     */
-    public static function getResponse()
-    {
-        return self::$actualResponseData;
-    }
-
-    /**
-     * Set Response
-     *
-     * @param mixed $actualResponseData
-     */
-    private static function setResponse($actualResponseData)
-    {
-        self::$actualResponseData = $actualResponseData;
+        return is_object($rawResponse) ? self::$resourceName : $rawResponse;
     }
 }

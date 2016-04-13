@@ -57,7 +57,7 @@ class DataCollector
     /**
      * Register Httpful UIoT Data Collectors
      * Methods: GET, POST, PUT, DELETE
-     * Default Handlers: Gettable, Postable, Puttable, Deletable
+     * Default Collectors: GetCollector, PostCollector, PutCollector, DeleteCollector
      */
     private static function registerCollectors()
     {

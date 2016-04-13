@@ -29,7 +29,6 @@ use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Communication\Requesting\Brain;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Exception\Collector;
 
 
 /**
@@ -112,25 +111,6 @@ final class Render implements RenderInterface
     public function show()
     {
         return Factory::getLayout($this->controllerAction);
-    }
-
-    /**
-     * Throw non Existent Action Exception
-     */
-    private function throwNonExistentActionError()
-    {
-        Collector::errorMessage(902,
-            "Stop! That Action Doesn't Exists!",
-            'Details: ',
-            [
-                'What Happened?' => "You're trying to call an nonexistent Action",
-                'What Action?' => "Action with name: $this->controllerAction",
-                'From the Controller:' => $this->controllerName,
-                'Resolution:' => "Stop trying to call nonexistent actions.",
-                'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
     }
 
     /**

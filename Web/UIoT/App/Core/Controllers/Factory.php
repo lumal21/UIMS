@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Data\Models\Data\ControllerModel;
 use UIoT\App\Data\Singletons\ControllerSingleton;
+use UIoT\App\Helpers\Manipulation\Arrays;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -49,7 +50,7 @@ final class Factory
      */
     public static function addController($controller_name)
     {
-        self::controllerExists($controller_name) || array_push(self::$controllers, $controller_name);
+        self::controllerExists(Strings::toControllerName($controller_name)) || array_push(self::$controllers, Strings::toControllerName($controller_name));
     }
 
     /**
@@ -115,7 +116,9 @@ final class Factory
      */
     public static function getControllerActions($controller_name)
     {
-        return array_map('UIoT\App\Helpers\Manipulation\Arrays::toActionName', get_class_methods(self::getController($controller_name)));
+        return array_map(function ($controllerAction) {
+            return Arrays::toActionName($controllerAction);
+        }, get_class_methods(self::getController(Strings::toControllerName($controller_name))));
     }
 
     /**

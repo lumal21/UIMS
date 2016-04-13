@@ -114,6 +114,6 @@ final class Register
      */
     public static function returnTemplates()
     {
-        return Html::getf();
+        return Html::getFormat();
     }
 }

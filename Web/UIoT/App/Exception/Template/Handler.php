@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Exception\Template;
 
-use UIoT\App\Exception\Manager;
-use UIoT\App\Security\Manager as SHandler;
 use Whoops\Exception\Formatter;
 use Whoops\Handler\PrettyPageHandler;
 
@@ -47,6 +45,20 @@ class Handler extends PrettyPageHandler
      * @var Helper
      */
     private $helper;
+
+    /**
+     * Settings
+     *
+     * @var array
+     */
+    private $settings = [];
+
+    /**
+     * Error Frame List
+     *
+     * @var array
+     */
+    private $frameList = [];
 
     /**
      * Handler constructor.
@@ -73,18 +85,6 @@ class Handler extends PrettyPageHandler
 
     /**
      *
-     * Get Resource
-     *
-     * @param string $resource
-     * @return string
-     */
-    public function getResource($resource = '')
-    {
-        return parent::getResource($resource);
-    }
-
-    /**
-     *
      * Get Helper
      *
      * @return Helper
@@ -106,53 +106,88 @@ class Handler extends PrettyPageHandler
     }
 
     /**
+     * Set Frame List
      *
-     * Return Resources for Handler
+     * @param bool $frameArray
+     */
+    public function setFrameList($frameArray = false)
+    {
+        $this->frameList = $frameArray ? $this->getInspector()->getFrames() : [];
+    }
+
+    /**
+     * Get Handler Settings
      *
      * @return array
      */
-    public function hResources()
+    public function getSettings()
     {
-        return ['header' => $this->getResource('Layouts/header.html.php'),
-            'stylesheet' => $this->getResource('Stylesheet/Whoops.css'),
-            'clipboard' => $this->getResource('Scripts/Clipboard.js'),
-            'prettify' => $this->getResource('Scripts/Prettify.js'),
-            'zepto' => $this->getResource('Scripts/Zepto.js'),
-            'javascript' => $this->getResource('Scripts/Whoops.js'),
-            'frame_list' => $this->getResource('Layouts/frame_list.html.php'),
-            'frame_code' => $this->getResource('Layouts/frame_code.html.php'),
-            'env_details' => $this->getResource('Layouts/env_details.html.php')];
+        return $this->settings;
+    }
+
+    /**
+     * Set Error Handler Settings
+     */
+    public function setSettings()
+    {
+        $this->addSetting('header', $this->getResource('Layouts/header.html.php'));
+        $this->addSetting('stylesheet', $this->getResource('Stylesheet/Whoops.css'));
+        $this->addSetting('clipboard', $this->getResource('Scripts/Clipboard.js'));
+        $this->addSetting('prettify', $this->getResource('Scripts/Prettify.js'));
+        $this->addSetting('zepto', $this->getResource('Scripts/Zepto.js'));
+        $this->addSetting('javascript', $this->getResource('Scripts/Whoops.js'));
+        $this->addSetting('frame_list', $this->getResource('Layouts/frame_list.html.php'));
+        $this->addSetting('frame_code', $this->getResource('Layouts/frame_code.html.php'));
+        $this->addSetting('env_details', $this->getResource('Layouts/env_details.html.php'));
+
+        $this->addSetting('handlers', $this->getRun()->getHandlers());
+        $this->addSetting('name', explode('\\', $this->getInspector()->getExceptionName()));
+        $this->addSetting('message', $this->getInspector()->getException()->getMessage());
+        $this->addSetting('code', $this->getInspector()->getException()->getCode());
+        $this->addSetting('plain_exception', Formatter::formatExceptionPlain($this->getInspector()));
+
+        $this->addSetting('page_title', $this->getPageTitle());
+        $this->addSetting('title', $this->getPageTitle());
+        $this->addSetting('tables', $this->getDataTables());
+        $this->addSetting('frames', $this->getFrames());
+        $this->addSetting('has_frames', !!count($this->getFrames()));
+        $this->addSetting('handler', $this);
+
+        $this->addSetting('tpl', $this->getHelper());
+
+        return $this->getSettings();
+    }
+
+    /**
+     * Add a Setting to Handler
+     *
+     * @param string $settingName
+     * @param mixed $settingValue
+     */
+    public function addSetting($settingName, $settingValue)
+    {
+        $this->settings[$settingName] = $settingValue;
     }
 
     /**
      *
-     * Return Settings
+     * Get Resource
      *
-     * @return array
+     * @param string $resource
+     * @return string
      */
-    public function hSettings()
+    public function getResource($resource = '')
     {
-        return ['handlers' => $this->getRun()->getHandlers(),
-            'name' => explode('\\', $this->getInspector()->getExceptionName()),
-            'message' => $this->getInspector()->getException()->getMessage(),
-            'code' => $this->getInspector()->getException()->getCode(),
-            'plain_exception' => Formatter::formatExceptionPlain($this->getInspector())];
+        return parent::getResource($resource);
     }
 
     /**
-     *
-     * Return Other Variables
+     * Get Frame List
      *
      * @return array
      */
-    public function hVariables()
+    public function getFrames()
     {
-        return ['page_title' => $this->getPageTitle(),
-            'title' => $this->getPageTitle(),
-            'nothing' => ((!Manager::checkDeveloperMode() && SHandler::checkWhiteListIp() && ($frames = $this->getInspector()->getFrames())) || ($frames = [])),
-            'tables' => array_map('UIoT\App\Helpers\Manipulation\Json::isInstanceOfClosure', $this->getDataTables()),
-            'frames' => $frames,
-            'has_frames' => !!count($frames),
-            'handler' => $this];
+        return $this->frameList;
     }
 }

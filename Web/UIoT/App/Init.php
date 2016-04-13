@@ -41,7 +41,7 @@
 
 /**
  * This is the main file
- * Here uiot is started (uiotcms)
+ * Here uiot is started (UIoTuims)
  */
 
 namespace UIoT\App;

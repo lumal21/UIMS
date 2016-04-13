@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+
     <title><?php echo $tpl->escape($page_title) ?></title>
 
     <style><?= $tpl->display($stylesheet); ?></style>

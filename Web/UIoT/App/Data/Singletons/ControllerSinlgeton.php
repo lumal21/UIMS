@@ -63,16 +63,6 @@ class ControllerSingleton extends ControllerModel
     }
 
     /**
-     * Get Controller Actions
-     *
-     * @return mixed
-     */
-    public static function getActions()
-    {
-        return array_map('self::toActionName', get_class_methods(self::$controllerInstance));
-    }
-
-    /**
      *
      * Abstract and Singleton Protection
      */

@@ -41,7 +41,7 @@ final class Html
      *
      * @param string $code
      */
-    public static function addf($code = '')
+    public static function addFormat($code = '')
     {
         self::add(self::format($code));
     }
@@ -82,7 +82,7 @@ final class Html
      *
      * @return string
      */
-    public static function getf()
+    public static function getFormat()
     {
         return self::format(self::$internal_formatted_code);
     }

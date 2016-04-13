@@ -31,19 +31,6 @@ use UIoT\App\Security\Helpers\VariableFilters;
 class Strings
 {
     /**
-     * Convert string to a NameSpace String
-     *
-     * @param string $class
-     * @param string $namespace
-     *
-     * @return string|false
-     */
-    public static function toNameSpace($class = '', $namespace = '')
-    {
-        return class_exists($namespace . ($class = self::toControllerName($class))) ? ($namespace . $class) : false;
-    }
-
-    /**
      * Convert string to Controller String
      *
      * @param string $string
@@ -90,18 +77,6 @@ class Strings
     }
 
     /**
-     * Get Class Name
-     *
-     * @param  $class
-     * @param string $namespace
-     * @return string|false
-     */
-    public static function getNamespace($class, $namespace = '')
-    {
-        return $namespace . get_class($class);
-    }
-
-    /**
      * Convert string to Actions Methods Names
      *
      * @param $string
@@ -110,17 +85,6 @@ class Strings
     public static function toActionMethodName($string = '')
     {
         return ('__action' . self::toActionName($string));
-    }
-
-    /**
-     * Remove Method String from Action String
-     *
-     * @param string $string
-     * @return string
-     */
-    public static function removeMethodName($string = '')
-    {
-        return (stripos($string, '__action') !== false ? self::toActionName(str_ireplace('__action', '', $string)) : self::toActionName($string));
     }
 
     /**

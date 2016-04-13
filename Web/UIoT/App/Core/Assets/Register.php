@@ -226,8 +226,9 @@ final class Register
             'Stop! D\'not Hotlinks!',
             'Details: ',
             [
-                'What Happened?' => 'You\'re a bitch, and trying to get resources...',
-                'Resolution:' => 'Stop giving 555xxxx requests!',
+                'What Happened?' => 'Please don\'t try opening Resources manually or do Hotlink.',
+                'Resolution:' => 'This is a business iot management system and not a place for sharing assets. 
+                If you want to access each asset, download it. This can help to reduce the amount of request to this server.',
                 'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
             ]
         );

@@ -82,7 +82,7 @@ final class Register
      *
      * Store Settings Constant
      *
-     * @param SettingsManager[]|SettingsInterface[] $settingVariable
+     * @param Manager[]|SettingsInterface[] $settingVariable
      */
     public static function storeSettings($settingVariable)
     {

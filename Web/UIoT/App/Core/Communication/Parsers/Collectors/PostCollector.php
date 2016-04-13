@@ -30,16 +30,5 @@ use UIoT\App\Data\Models\Parsers\CollectorModel;
  */
 class PostCollector extends CollectorModel
 {
-    /**
-     * @param $collectorModel
-     * @return $this
-     */
-    public function passRequest($collectorModel)
-    {
-        /* save request data */
-        $this->request = $collectorModel;
 
-        /* return class instance */
-        return $this;
-    }
 }
