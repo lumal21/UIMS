@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Core\Settings;
 
-use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
