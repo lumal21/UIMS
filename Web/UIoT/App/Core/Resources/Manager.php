@@ -55,7 +55,7 @@ final class Manager
     {
         $rawResponse = self::getResource();
 
-        return Raise::doRequest('properties?rsrc_id=' . is_object($rawResponse) ? $rawResponse : $rawResponse[0]->ID);
+        return Raise::doRequest('properties?rsrc_id=' . (is_object($rawResponse) ? $rawResponse : $rawResponse[0]->ID));
     }
 
     /**
