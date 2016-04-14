@@ -22,34 +22,51 @@
 
 namespace UIoT\App\Data\Interfaces\Requesting;
 
-use stdClass;
-
 /**
- * Interface RequestDataInterface
+ * Interface RequestInterface
+ *
  * @package UIoT\App\Data\Interfaces\Requesting
  */
-interface RequestDataInterface
+interface RequestInterface
 {
     /**
+     * Parse Request Data or Do Request
      *
-     * RequestDataInterface constructor.
+     * @param mixed $requestContent
      *
-     * @param stdClass $a
+     * @return void
      */
-    public function __construct(stdClass $a);
+    function parse($requestContent);
 
     /**
-     * @param $a
+     * Check if Job is Done
+     *
+     * @return boolean
+     */
+    function getDone();
+
+    /**
+     * Set Job Status
+     *
+     * @param boolean $jobStatus
+     *
+     * @return void
+     */
+    function setDone($jobStatus);
+
+    /**
+     * Set Response Content
+     *
+     * @param mixed $responseContent
+     *
+     * @return void
+     */
+    function setResponse($responseContent);
+
+    /**
+     * Get Response Content
      *
      * @return mixed
      */
-    public function __get($a);
-
-    /**
-     * @param $a
-     * @param $b
-     *
-     * @return mixed
-     */
-    public function __set($a, $b);
+    function getResponse();
 }

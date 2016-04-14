@@ -22,55 +22,12 @@
 
 namespace UIoT\App\Helpers\Manipulation;
 
-use stdClass;
-use UIoT\App\Data\Models\Requesting\RequestDataModel;
-
 /**
  * Class Json
  * @package UIoT\App\Helpers\Manipulation
  */
 final class Json
 {
-    /**
-     * Convert an Array of Standard Objects in an Array of Closure Objects
-     *
-     * @param array $k
-     * @return array
-     */
-    public static function valueArrayObjectToClosure(array $k = [])
-    {
-        /* create the garbage array */
-        $v = [];
-
-        /* foreach every item */
-        foreach ($k as $index => $object)
-            $v[] = self::createClosure($object);
-
-        return $v;
-    }
-
-    /**
-     * Create Closure
-     *
-     * @param stdClass $object
-     * @return RequestDataModel
-     */
-    public static function createClosure(stdClass $object)
-    {
-        return new RequestDataModel($object);
-    }
-
-    /**
-     * Is a Reference to Arrays::isInstanceOfClosure()
-     *
-     * @param string $x
-     * @return mixed
-     */
-    public static function isInstanceOfClosure($x)
-    {
-        return Arrays::checkIsInstanceOf($x, 'Closure');
-    }
-
     /**
      * Encode as jSON
      *

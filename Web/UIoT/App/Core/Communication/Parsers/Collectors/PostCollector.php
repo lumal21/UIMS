@@ -22,13 +22,14 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\Parsers\CollectorModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class PostCollector
+ * 
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class PostCollector extends CollectorModel
+class PostCollector extends RequestSingleton
 {
 
 }

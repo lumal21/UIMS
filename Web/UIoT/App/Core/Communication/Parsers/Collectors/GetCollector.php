@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\Parsers\CollectorModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Json;
 
 /**
@@ -30,19 +30,19 @@ use UIoT\App\Helpers\Manipulation\Json;
  *
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class GetCollector extends CollectorModel
+class GetCollector extends RequestSingleton
 {
     /**
-     * Pass Request for Gettable
-     * @param $collectorModel
-     * @return $this
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
      */
-    public function passRequest($collectorModel)
+    function parse($requestContent)
     {
-        /* save request data */
-        $this->request = Json::jsonEncode($collectorModel);
+        $this->setDone(true);
 
-        /* return class instance */
-        return $this;
+        $this->setResponse(Json::jsonEncode($requestContent));
     }
 }

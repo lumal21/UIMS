@@ -22,13 +22,14 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Data\Models\Parsers\CollectorModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DeleteCollector
+ *
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
-class DeleteCollector extends CollectorModel
+class DeleteCollector extends RequestSingleton
 {
 
 }

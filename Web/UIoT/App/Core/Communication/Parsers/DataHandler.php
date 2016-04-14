@@ -36,23 +36,21 @@ use UIoT\App\Helpers\Manipulation\Strings;
  */
 class DataHandler
 {
-
-    /**
-     * @var array
-     */
-    private static $handlers = [];
     /**
      * @var array
      */
     private static $layouts = [];
+    
     /**
      * @var array
      */
     private static $parsers = [];
+    
     /**
      * @var array
      */
     private static $names = [];
+    
     /**
      * @var array
      */
@@ -65,22 +63,7 @@ class DataHandler
     {
         $this->startHandler();
     }
-
-    /**
-     * Register Httpful UIoT Handlers
-     * Methods: GET, POST, PUT, DELETE
-     * Default Handlers: GetHandler, PostHandler, PutHandler, DeleteHandler
-     */
-    private static function registerHandlers()
-    {
-        self::$handlers = [
-            Http::GET => new Handlers\GetHandler(),
-            Http::POST => new Handlers\PostHandler(),
-            Http::PUT => new Handlers\PutHandler(),
-            Http::DELETE => new Handlers\DeleteHandler(),
-        ];
-    }
-
+    
     /**
      * Register Httpful UIoT Layouts
      * Methods: GET, POST, PUT, DELETE
@@ -131,9 +114,6 @@ class DataHandler
         /* register names */
         self::registerNames();
 
-        /* register handlers */
-        self::registerHandlers();
-
         /* register layouts */
         self::registerLayouts();
     }
@@ -146,12 +126,9 @@ class DataHandler
         /* get collectors */
         self::$collectors = DataCollector::getCollectors();
 
-        /* get controller name */
-        $controller = DataManager::getController();
-
         /* index handlers and layouts */
         foreach (self::$names as $method => $name)
-            self::$parsers[Strings::toActionName($name)] = ['handler' => self::$handlers[$method], 'collector' => self::$collectors[$method], 'layout' => self::$layouts[$method], 'method' => $method, 'controller' => $controller, 'name' => Strings::toActionName($name)];
+            self::$parsers[Strings::toActionName($name)] = ['layout' => self::$layouts[$method], 'method' => $method, 'name' => Strings::toActionName($name)];
     }
 
     /**

@@ -24,19 +24,16 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use UIoT\App\Core\Resources\Manager;
-use UIoT\App\Data\Models\Parsers\CollectorModel;
-use UIoT\App\Data\Models\Parsers\HandlerModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DataCollector
- * Manages all Data Collection and Filtering/Rendering from Requests
  *
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataCollector
 {
     /**
-     *
      * Array of Collectors
      *
      * @var array
@@ -44,14 +41,23 @@ class DataCollector
     private static $collectors;
 
     /**
+     * Do the REST request
      *
+     * @return array|mixed|null|object|string
+     */
+    public static function doRequest()
+    {
+        return Manager::getResourceProperties();
+    }
+
+    /**
      * Start the Handler
      *
      * DataCollector constructor.
      */
     public function __construct()
     {
-        $this->startCollectors();
+        $this->registerCollectors();
     }
 
     /**
@@ -70,47 +76,15 @@ class DataCollector
     }
 
     /**
-     * Start Indexing all Collectors
-     * Start the Handler, and register everything
-     */
-    public static function startCollectors()
-    {
-        self::registerCollectors();
-    }
-
-    /**
-     *
-     * Do the REST request
-     *
-     * @return array|mixed|null|object|string
-     */
-    public static function doRequest()
-    {
-        return Manager::getResourceProperties();
-    }
-
-    /**
-     *
-     * Return Collector and Handler
-     *
-     * @param CollectorModel|null $collector
-     * @param string|HandlerModel $handler
-     *
-     * @return mixed|null
-     */
-    public static function initCollector(CollectorModel $collector = null, $handler = '')
-    {
-        return $collector->passRequest(self::doRequest())->passHandler($handler);
-    }
-
-    /**
      *
      * Return all Collectors
      *
-     * @return array
+     * @param RequestSingleton $requestedSingleton
+     *
+     * @return RequestSingleton
      */
-    public static function getCollectors()
+    public static function getCollector(RequestSingleton $requestedSingleton)
     {
-        return self::$collectors;
+        return $requestedSingleton::getInstance();
     }
 }
