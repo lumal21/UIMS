@@ -50,29 +50,17 @@ class ResourceObjectTreater extends RequestSingleton
     public function parse($requestContent)
     {
         if (is_object($requestContent)):
-
             if (!property_exists($requestContent, 'code') || !property_exists($requestContent, 'message')):
-
                 $requestContent = new stdClass();
                 $requestContent->code = '503';
                 $requestContent->message = 'Raise answered an unknown message.';
-
             endif;
 
             $raiseCodeHandler = RaiseCodeMessageHandler::getInstance();
-
             $raiseCodeHandler->parse($requestContent);
-
             $this->setResponse($raiseCodeHandler->getResponse());
-
             $this->setDone($raiseCodeHandler->getDone());
-
             return;
-
         endif;
-
-        $this->setResponse($requestContent);
-
-        $this->setDone(true);
     }
 }
