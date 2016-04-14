@@ -23,6 +23,10 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
+use UIoT\App\Core\Communication\Parsers\Collectors\DeleteCollector;
+use UIoT\App\Core\Communication\Parsers\Collectors\GetCollector;
+use UIoT\App\Core\Communication\Parsers\Collectors\PostCollector;
+use UIoT\App\Core\Communication\Parsers\Collectors\PutCollector;
 use UIoT\App\Core\Resources\Manager;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
@@ -51,40 +55,49 @@ class DataCollector
     }
 
     /**
-     * Start the Handler
-     *
-     * DataCollector constructor.
+     * Set Base Data Collectors
      */
     public function __construct()
     {
-        $this->registerCollectors();
-    }
-
-    /**
-     * Register Httpful UIoT Data Collectors
-     * Methods: GET, POST, PUT, DELETE
-     * Default Collectors: GetCollector, PostCollector, PutCollector, DeleteCollector
-     */
-    private static function registerCollectors()
-    {
         self::$collectors = [
-            Http::GET => new Collectors\GetCollector(),
-            Http::POST => new Collectors\PostCollector(),
-            Http::PUT => new Collectors\PutCollector(),
-            Http::DELETE => new Collectors\DeleteCollector(),
+            Http::GET => GetCollector::getInstance(),
+            Http::POST => PostCollector::getInstance(),
+            Http::PUT => PutCollector::getInstance(),
+            Http::DELETE => DeleteCollector::getInstance(),
         ];
     }
 
     /**
+     * Return a specific data collector
      *
-     * Return all Collectors
-     *
-     * @param RequestSingleton $requestedSingleton
+     * @param RequestSingleton $requestedCollector
      *
      * @return RequestSingleton
      */
-    public static function getCollector(RequestSingleton $requestedSingleton)
+    public static function getCollector(RequestSingleton $requestedCollector)
     {
-        return $requestedSingleton::getInstance();
+        return $requestedCollector;
+    }
+
+    /**
+     * Get a Base Collector
+     *
+     * @param string $collectorMethod
+     *
+     * @return RequestSingleton
+     */
+    public static function getBaseCollector($collectorMethod)
+    {
+        return self::$collectors[$collectorMethod];
+    }
+
+    /**
+     * Get Collectors
+     *
+     * @return array
+     */
+    public static function getCollectors()
+    {
+        return self::$collectors;
     }
 }

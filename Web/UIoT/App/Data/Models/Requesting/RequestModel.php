@@ -48,25 +48,15 @@ class RequestModel implements RequestInterface
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed|null $requestContent
      *
      * @return void
      */
-    function parse($requestContent)
+    function parse($requestContent = null)
     {
         $this->setDone(true);
 
         $this->setResponse(null);
-    }
-
-    /**
-     * Check if Job is Done
-     *
-     * @return boolean
-     */
-    function getDone()
-    {
-        return $this->jobStatus;
     }
 
     /**
@@ -91,6 +81,16 @@ class RequestModel implements RequestInterface
     function setResponse($responseContent)
     {
         $this->responseContent = $responseContent;
+    }
+
+    /**
+     * Check if Job is Done
+     *
+     * @return boolean
+     */
+    function getDone()
+    {
+        return $this->jobStatus;
     }
 
     /**

@@ -22,14 +22,24 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Data\Models\Parsers\HandlerModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class GetHandler
+ * Class DataTableHandler
  *
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class GetHandler extends HandlerModel
+class DataTableHandler extends RequestSingleton
 {
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
+     */
+    function parse($requestContent)
+    {
 
+    }
 }

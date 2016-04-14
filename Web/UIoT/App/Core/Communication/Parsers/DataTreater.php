@@ -20,41 +20,26 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Models\Parsers;
+namespace UIoT\App\Core\Communication\Parsers;
 
-use UIoT\App\Data\Interfaces\Parsers\HandlerInterface;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class HandlerModel
+ * Class DataTreater
  *
- * @package UIoT\App\Data\Models
+ * @package UIoT\App\Core\Communication\Parsers
  */
-class HandlerModel implements HandlerInterface
+class DataTreater
 {
     /**
-     * Handled Content
+     * Return a specific data treater
      *
-     * @var mixed
-     */
-    protected $content;
-
-    /**
-     * Handle Request
+     * @param RequestSingleton $requestedTreater
      *
-     * @param $request_content
+     * @return RequestSingleton
      */
-    public function handleRequest($request_content)
+    public static function getTreater(RequestSingleton $requestedTreater)
     {
-        $this->content = $request_content;
-    }
-
-    /**
-     * Return Content
-     *
-     * @return string
-     */
-    public function returnResponse()
-    {
-        return $this->content;
+        return $requestedTreater;
     }
 }

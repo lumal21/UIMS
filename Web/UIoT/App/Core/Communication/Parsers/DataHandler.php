@@ -24,9 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use UIoT\App\Core\Layouts\Factory;
-use UIoT\App\Data\Models\Parsers\CollectorModel;
-use UIoT\App\Helpers\Manipulation\Arrays;
-use UIoT\App\Helpers\Manipulation\Strings;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DataHandler
@@ -37,55 +35,23 @@ use UIoT\App\Helpers\Manipulation\Strings;
 class DataHandler
 {
     /**
-     * @var array
-     */
-    private static $layouts = [];
-    
-    /**
-     * @var array
-     */
-    private static $parsers = [];
-    
-    /**
+     * Data Names
+     *
      * @var array
      */
     private static $names = [];
-    
+
     /**
+     * Data Layouts
+     *
      * @var array
      */
-    private static $collectors = [];
+    private static $layouts = [];
 
     /**
-     * Start the Handler
+     * Set Layouts and Names
      */
     public function __construct()
-    {
-        $this->startHandler();
-    }
-    
-    /**
-     * Register Httpful UIoT Layouts
-     * Methods: GET, POST, PUT, DELETE
-     * Default Layouts: By Layout Names ->registerNames();
-     * You can put other names ;)
-     */
-    private static function registerLayouts()
-    {
-        self::$layouts = [
-            Http::GET => Factory::addLayout(self::$names[Http::GET]),
-            Http::POST => Factory::addLayout(self::$names[Http::POST]),
-            Http::PUT => Factory::addLayout(self::$names[Http::PUT]),
-            Http::DELETE => Factory::addLayout(self::$names[Http::DELETE]),
-        ];
-    }
-
-    /**
-     * Register Layout Names
-     * Methods: GET, POST, PUT, DELETE
-     * Default Names: GET: main, POST: add, PUT: edit, DELETE: remove;
-     */
-    private static function registerNames()
     {
         self::$names = [
             Http::GET => 'Main',
@@ -93,132 +59,13 @@ class DataHandler
             Http::PUT => 'Edit',
             Http::DELETE => 'Remove',
         ];
-    }
 
-    /**
-     * Return Parser Names
-     *
-     * @return array
-     */
-    public static function getParserArray()
-    {
-        return Arrays::toControllerArray(array_flip(Arrays::toControllerArray(self::$names)));
-    }
-
-    /**
-     * Start Indexing all Handlers and Layouts
-     * Start the Handler, and register everything
-     */
-    public static function startHandler()
-    {
-        /* register names */
-        self::registerNames();
-
-        /* register layouts */
-        self::registerLayouts();
-    }
-
-    /**
-     * Store Handler Information
-     */
-    public static function storeHandler()
-    {
-        /* get collectors */
-        self::$collectors = DataCollector::getCollectors();
-
-        /* index handlers and layouts */
-        foreach (self::$names as $method => $name)
-            self::$parsers[Strings::toActionName($name)] = ['layout' => self::$layouts[$method], 'method' => $method, 'name' => Strings::toActionName($name)];
-    }
-
-    /**
-     * Check if Parser Exists
-     *
-     * @param string $name Parser Name
-     * @return bool
-     */
-    public static function parserExists($name)
-    {
-        return (array_key_exists($name, self::$parsers));
-    }
-
-    /**
-     * Get the Parser Array
-     *
-     * @param string $name Parser Name
-     * @return mixed
-     */
-    public static function getParser($name)
-    {
-        return self::parserExists($name) ? self::$parsers[$name] : null;
-    }
-
-    /**
-     * Get Parser Variable
-     *
-     * @param $name
-     * @param $variable
-     * @return null
-     */
-    protected static function getParserVariable($name, $variable)
-    {
-        return self::parserExists($name) ? self::$parsers[$name][$variable] : null;
-    }
-
-    /**
-     * Get Parser Method (GET, PUT, POST, DELETE)
-     *
-     * @param string $name Parser Name
-     * @return mixed
-     */
-    public static function getParserMethod($name)
-    {
-        return self::getParserVariable($name, 'method');
-    }
-
-    /**
-     * Get Parser Collector
-     *
-     * @param $name
-     * @return CollectorModel|null
-     */
-    public static function getParserCollector($name)
-    {
-        return self::getParserVariable($name, 'collector');
-    }
-
-    /**
-     * Get Parser Controller Name
-     *
-     * @param $name
-     * @return null
-     */
-    public static function getParserController($name)
-    {
-        return self::getParserVariable($name, 'controller');
-    }
-
-    /**
-     * Get Parser Handler
-     *
-     * @param string $name Parser Name
-     * @return mixed
-     */
-    public static function getParserHandler($name)
-    {
-        return self::getParserVariable($name, 'handler');
-    }
-
-    /**
-     * Get Parser Layout (Only call the Add Layout, because we don't want add all layout's in execution time
-     * Only need add the called layout.
-     *
-     * @param string $name Parser Name
-     * @return mixed
-     */
-    public static function getParserLayout($name)
-    {
-        return self::getParserVariable($name, 'layout');
+        self::$layouts = [
+            Http::GET => Factory::addLayout(self::$names[Http::GET]),
+            Http::POST => Factory::addLayout(self::$names[Http::POST]),
+            Http::PUT => Factory::addLayout(self::$names[Http::PUT]),
+            Http::DELETE => Factory::addLayout(self::$names[Http::DELETE]),
+        ];
     }
 
     /**
@@ -229,5 +76,27 @@ class DataHandler
     public static function getNames()
     {
         return self::$names;
+    }
+
+    /**
+     * Return a specific data handler
+     *
+     * @param RequestSingleton $requestedHandler
+     *
+     * @return RequestSingleton
+     */
+    public static function getHandler(RequestSingleton $requestedHandler)
+    {
+        return $requestedHandler;
+    }
+
+    /**
+     * Get Layouts
+     *
+     * @return array
+     */
+    public static function getLayouts()
+    {
+        return self::$layouts;
     }
 }

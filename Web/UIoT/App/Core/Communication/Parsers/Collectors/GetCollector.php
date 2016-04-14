@@ -22,8 +22,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
+use UIoT\App\Core\Communication\Parsers\DataHandler;
+use UIoT\App\Core\Communication\Parsers\DataTreater;
+use UIoT\App\Core\Communication\Parsers\Handlers\DataTableHandler;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
+use UIoT\App\Core\Communication\Requesting\Raise;
 use UIoT\App\Data\Singletons\RequestSingleton;
-use UIoT\App\Helpers\Manipulation\Json;
 
 /**
  * Class GetCollector
@@ -35,14 +40,44 @@ class GetCollector extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $resourceName
      *
      * @return void
      */
-    function parse($requestContent)
+    function parse($resourceName)
     {
-        $this->setDone(true);
+        $requestData = Raise::doRequest('resources?name=' . $resourceName);
 
-        $this->setResponse(Json::jsonEncode($requestContent));
+        $resourceIdTreater = DataTreater::getTreater(ResourceIdTreater::getInstance());
+
+        $resourceIdTreater->parse($requestData);
+
+        if ($resourceIdTreater->getDone()) {
+
+            $this->setResponse($resourceIdTreater->getResponse());
+
+            return;
+        }
+
+        $requestData = Raise::doRequest('properties?rsrc_id=' . $requestData[0]->ID);
+
+        $resourcePropertiesTreater = DataTreater::getTreater(ResourcePropertiesTreater::getInstance());
+
+        if ($resourcePropertiesTreater->getDone()) {
+
+            $this->setResponse($resourceIdTreater->getResponse());
+
+            return;
+        }
+
+        $propertiesData = $requestData;
+
+        $resourceData = Raise::doRequest($resourceName);
+
+        $dataTableHandler = DataHandler::getHandler(DataTableHandler::getInstance());
+
+        $dataTableHandler->parse(['keys' => $propertiesData, 'values' => $resourceData]);
+
+        $this->setResponse($dataTableHandler->getResponse());
     }
 }

@@ -24,19 +24,21 @@ namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
  * Interface RenderInterface
+ *
  * @package UIoT\App\Data\Interfaces\Parsers
  */
 interface RenderInterface
 {
     /**
-     *
-     * RenderInterface constructor.
+     * Create Render
      *
      * @param $arguments
      */
     function __construct($arguments);
 
     /**
+     * Set Arguments
+     *
      * @param $arguments
      *
      * @return mixed
@@ -44,6 +46,8 @@ interface RenderInterface
     function setArguments($arguments);
 
     /**
+     * Show Content
+     *
      * @return mixed
      */
     function show();

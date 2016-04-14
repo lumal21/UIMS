@@ -20,16 +20,26 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Collectors;
+namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class PostCollector
+ * Class EmptyHtmlFormHandler
  *
- * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class PostCollector extends RequestSingleton
+class EmptyHtmlFormHandler extends RequestSingleton
 {
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
+     */
+    function parse($requestContent)
+    {
 
+    }
 }

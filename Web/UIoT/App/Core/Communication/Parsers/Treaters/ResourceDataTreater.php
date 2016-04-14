@@ -20,16 +20,26 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Collectors;
+namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class PostCollector
+ * Class ResourceDataTreater
  *
- * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class PostCollector extends RequestSingleton
+class ResourceDataTreater extends RequestSingleton
 {
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
+     */
+    function parse($requestContent)
+    {
 
+    }
 }

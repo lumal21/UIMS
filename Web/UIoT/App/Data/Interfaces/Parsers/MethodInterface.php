@@ -24,17 +24,23 @@ namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
  * Interface MethodInterface
+ *
  * @package UIoT\App\Data\Interfaces\Parsers
  */
 interface MethodInterface
 {
     /**
-     * @param $data
+     * Set Method Data
+     *
+     * @param mixed $data
+     *
      * @return mixed
      */
     public function setData($data);
 
     /**
+     * Get Method Data
+     *
      * @return mixed
      */
     public function getData();

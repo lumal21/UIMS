@@ -20,16 +20,26 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Handlers;
+namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use UIoT\App\Data\Models\Parsers\HandlerModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class PutHandler
+ * Class ResourcePropertiesTreater
  *
- * @package UIoT\App\Core\Communication\Parsers\Handlers
+ * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class PutHandler extends HandlerModel
+class ResourcePropertiesTreater extends RequestSingleton
 {
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
+     */
+    function parse($requestContent)
+    {
 
+    }
 }

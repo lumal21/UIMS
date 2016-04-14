@@ -20,23 +20,26 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Data\Interfaces\Parsers;
+namespace UIoT\App\Core\Communication\Parsers\Treaters;
+
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Interface CollectorInterface
- * @package UIoT\App\Data\Interfaces\Parsers
+ * Class ResourceIdTreater
+ *
+ * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-interface CollectorInterface
+class ResourceIdTreater extends RequestSingleton
 {
     /**
-     * @param $collectorModel
-     * @return mixed
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
      */
-    public function passRequest($collectorModel);
+    function parse($requestContent)
+    {
 
-    /**
-     * @param $handlerModel
-     * @return mixed
-     */
-    public function passHandler($handlerModel);
+    }
 }

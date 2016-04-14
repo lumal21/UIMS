@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Data\Models\Parsers\CollectorModel;
+use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -36,18 +36,11 @@ use UIoT\App\Helpers\Manipulation\Strings;
 final class DataManager
 {
     /**
-     * Controller Name
+     * Data Parsers
      *
-     * @var string
+     * @var array
      */
-    private static $controller;
-
-    /**
-     * Action Name
-     *
-     * @var string
-     */
-    private static $action;
+    private static $parsers = [];
 
     /**
      * Create the DataManager Instance
@@ -57,69 +50,89 @@ final class DataManager
         /* start collectors and handlers */
         new DataCollector;
         new DataHandler;
+        new DataTreater;
 
         /* store final handler */
-        DataHandler::storeHandler();
+        self::configureManager();
+    }
+
+    /**
+     * Store Handler Information
+     */
+    private static function configureManager()
+    {
+        /* index handlers and layouts */
+        foreach (DataHandler::getNames() as $method => $name)
+            self::$parsers[Strings::toActionName($name)] = ['name' => Strings::toActionName($name), 'method' => $method];
+    }
+
+    /**
+     * Check if Parser Exists
+     *
+     * @param string $name Parser Name
+     *
+     * @return bool
+     */
+    public static function parserExists($name)
+    {
+        return (array_key_exists($name, self::getParsers()));
+    }
+
+    /**
+     * Get Parser Variable
+     *
+     * @param string $name
+     * @param mixed $variable
+     *
+     * @return mixed|null
+     */
+    private static function getParserVariable($name, $variable)
+    {
+        return self::parserExists($name) ? self::getParsers()[$name][$variable] : null;
+    }
+
+    /**
+     * Get Parser Method (GET, PUT, POST, DELETE)
+     *
+     * @param string $name Parser Name
+     *
+     * @return mixed
+     */
+    public static function getParserMethod($name)
+    {
+        return self::getParserVariable($name, 'method');
     }
 
     /**
      * Prepare Brain Template
+     *
+     * @param string $method
      */
-    public static function prepareTemplate()
+    public static function setTemplate($method)
     {
-        Brain::setTemplate(DataHandler::getParserMethod(self::getAction()), Mime::JSON);
+        Brain::setTemplate(self::getParserMethod($method), Mime::JSON);
     }
 
     /**
      *
      * Return DataHandler and DataCollector Instance
      *
-     * @param $method
+     * @param string $method
      *
-     * @return CollectorModel|boolean
+     * @return RequestSingleton
      */
     public static function getInstance($method)
     {
-        return DataCollector::initCollector(DataHandler::getParserCollector($method), DataHandler::getParserHandler($method));
+        return DataCollector::getBaseCollector(self::getParserMethod($method));
     }
 
     /**
-     * This must only be called for REST Purposes!
-     * Because the controller NAME will be lowercase, and the Engine need in Ucfirst!
-     * Only for REST need be lowercase.
+     * Get Parsers
      *
-     * @return string
+     * @return array
      */
-    public static function getController()
+    public static function getParsers()
     {
-        return Strings::toRestUrlName(self::$controller);
-    }
-
-    /**
-     * Set controller name only for REST purposes
-     *
-     * @param mixed $controller
-     * @return string
-     */
-    public static function setController($controller = '')
-    {
-        return self::$controller = Strings::toControllerName($controller);
-    }
-
-    /**
-     * @return string
-     */
-    public static function getAction()
-    {
-        return Strings::toRestUrlName(self::$action);
-    }
-
-    /**
-     * @param string $action
-     * @return string
-     */
-    public static function setAction($action)
-    {
-        return self::$action = Strings::toActionName($action);
+        return self::$parsers;
     }
 }
