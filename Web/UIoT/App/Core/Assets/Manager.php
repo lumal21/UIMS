@@ -23,11 +23,10 @@
 namespace UIoT\App\Core\Assets;
 
 use Assetic\Asset\AssetCache;
-use Assetic\Asset\AssetCollection;
+use Assetic\Asset\AssetInterface;
 use Assetic\Asset\FileAsset;
 use Assetic\AssetManager;
 use Assetic\Cache\FilesystemCache;
-use Assetic\Factory\AssetFactory;
 use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
 use UIoT\App\Helpers\Manipulation\Constants;
@@ -46,12 +45,6 @@ final class Manager
      * @var AssetManager
      */
     private static $asset_manager;
-
-    /**
-     *
-     * @var AssetFactory
-     */
-    private static $asset_factory;
 
     /**
      *
@@ -85,8 +78,6 @@ final class Manager
     {
         self::setSettings(SettingsRegister::getSetting('resources'));
         self::setAssetManager(new AssetManager);
-        self::setAssetFactory(new AssetFactory(Constants::returnConstant('RESOURCE_FOLDER')));
-        self::getAssetFactory()->setAssetManager($this->getAssetManager());
         self::setEnableCaching($this->settings->enableCaching);
     }
 
@@ -106,16 +97,27 @@ final class Manager
     }
 
     /**
-     *
-     * Return Asset Name
+     * Create Asset and Return it Contents
      *
      * @param string $asset_name
      *
-     * @return AssetCollection
+     * @return AssetInterface
      */
-    public static function returnAsset($asset_name)
+    public static function getAsset($asset_name)
     {
-        return self::getAssetFactory()->createAsset("@{$asset_name}");
+        return self::getAssetManager()->get($asset_name);
+    }
+
+    /**
+     * Get Asset File Path
+     *
+     * @param string $asset_name
+     *
+     * @return null|string
+     */
+    public static function getAssetPath($asset_name)
+    {
+        return self::getAsset($asset_name)->getSourceRoot() . '/' . self::getAsset($asset_name)->getSourcePath();
     }
 
     /**
@@ -138,28 +140,6 @@ final class Manager
     public static function setAssetManager(AssetManager $asset_manager)
     {
         self::$asset_manager = $asset_manager;
-    }
-
-    /**
-     *
-     * Get Asset Factory
-     *
-     * @return AssetFactory
-     */
-    public static function getAssetFactory()
-    {
-        return self::$asset_factory;
-    }
-
-    /**
-     *
-     * Set Asset Factory
-     *
-     * @param AssetFactory $asset_factory
-     */
-    public static function setAssetFactory($asset_factory)
-    {
-        self::$asset_factory = $asset_factory;
     }
 
     /**

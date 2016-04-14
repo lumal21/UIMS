@@ -31,5 +31,22 @@ use UIoT\App\Data\Singletons\RequestSingleton;
  */
 class PutCollector extends RequestSingleton
 {
+    /**
+     * Controller Model Instance
+     *
+     * @var RequestSingleton
+     */
+    protected static $requestInstance = null;
 
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     *
+     * @return void
+     */
+    function parse($requestContent)
+    {
+
+    }
 }

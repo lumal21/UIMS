@@ -32,14 +32,29 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class RaiseCodeMessageHandler extends RequestSingleton
 {
     /**
+     * Controller Model Instance
+     *
+     * @var RequestSingleton
+     */
+    protected static $requestInstance = null;
+
+    /**
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
      *
      * @return void
      */
-    function parse($requestContent)
+    public function parse($requestContent)
     {
+        $responseContentRaw =
+            '<div class="callout">' .
+            '<h5>Raise (#' . $requestContent->code . ')</h5>' .
+            '<p>' . $requestContent->message . '</p>' .
+            '</div>';
 
+        $this->setResponse($responseContentRaw);
+
+        $this->setDone(true);
     }
 }

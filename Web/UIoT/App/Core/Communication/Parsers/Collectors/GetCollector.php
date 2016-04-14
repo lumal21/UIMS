@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Core\Communication\Parsers\DataHandler;
-use UIoT\App\Core\Communication\Parsers\DataTreater;
 use UIoT\App\Core\Communication\Parsers\Handlers\DataTableHandler;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
@@ -38,46 +36,61 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class GetCollector extends RequestSingleton
 {
     /**
+     * Controller Model Instance
+     *
+     * @var RequestSingleton
+     */
+    protected static $requestInstance = null;
+
+    /**
      * Parse Request Data or Do Request
      *
      * @param mixed $resourceName
      *
      * @return void
      */
-    function parse($resourceName)
+    public function parse($resourceName)
     {
         $requestData = Raise::doRequest('resources?name=' . $resourceName);
 
-        $resourceIdTreater = DataTreater::getTreater(ResourceIdTreater::getInstance());
+        $resourceIdTreater = ResourceIdTreater::getInstance();
 
         $resourceIdTreater->parse($requestData);
 
-        if ($resourceIdTreater->getDone()) {
+        if ($resourceIdTreater->getDone()):
 
             $this->setResponse($resourceIdTreater->getResponse());
 
+            $this->setDone(true);
+
             return;
-        }
+        endif;
 
-        $requestData = Raise::doRequest('properties?rsrc_id=' . $requestData[0]->ID);
+        $requestData = Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse());
 
-        $resourcePropertiesTreater = DataTreater::getTreater(ResourcePropertiesTreater::getInstance());
+        $resourcePropertiesTreater = ResourcePropertiesTreater::getInstance();
 
-        if ($resourcePropertiesTreater->getDone()) {
+        $resourcePropertiesTreater->parse($requestData);
+
+        if ($resourcePropertiesTreater->getDone()):
 
             $this->setResponse($resourceIdTreater->getResponse());
 
+            $this->setDone(true);
+
             return;
-        }
+        endif;
 
-        $propertiesData = $requestData;
+        $resourcePropertiesData = $resourcePropertiesTreater->getResponse();
 
-        $resourceData = Raise::doRequest($resourceName);
+        $resourceContentData = Raise::doRequest($resourceName);
 
-        $dataTableHandler = DataHandler::getHandler(DataTableHandler::getInstance());
+        $dataTableHandler = DataTableHandler::getInstance();
 
-        $dataTableHandler->parse(['keys' => $propertiesData, 'values' => $resourceData]);
+        $dataTableHandler->parse(['keys' => $resourcePropertiesData, 'values' => $resourceContentData]);
 
         $this->setResponse($dataTableHandler->getResponse());
+
+        $this->setDone($dataTableHandler->getDone());
     }
 }

@@ -36,14 +36,14 @@ class RequestModel implements RequestInterface
      *
      * @var boolean
      */
-    protected $jobStatus;
+    private $jobStatus;
 
     /**
      * Response Content
      *
      * @var mixed
      */
-    protected $responseContent;
+    private $responseContent;
 
     /**
      * Parse Request Data or Do Request
@@ -52,7 +52,7 @@ class RequestModel implements RequestInterface
      *
      * @return void
      */
-    function parse($requestContent = null)
+    public function parse($requestContent = null)
     {
         $this->setDone(true);
 
@@ -66,7 +66,7 @@ class RequestModel implements RequestInterface
      *
      * @return void
      */
-    function setDone($jobStatus)
+    public function setDone($jobStatus)
     {
         $this->jobStatus = $jobStatus;
     }
@@ -78,7 +78,7 @@ class RequestModel implements RequestInterface
      *
      * @return void
      */
-    function setResponse($responseContent)
+    public function setResponse($responseContent)
     {
         $this->responseContent = $responseContent;
     }
@@ -88,7 +88,7 @@ class RequestModel implements RequestInterface
      *
      * @return boolean
      */
-    function getDone()
+    public function getDone()
     {
         return $this->jobStatus;
     }
@@ -98,7 +98,7 @@ class RequestModel implements RequestInterface
      *
      * @return mixed
      */
-    function getResponse()
+    public function getResponse()
     {
         return $this->responseContent;
     }

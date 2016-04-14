@@ -23,11 +23,11 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
+use InvalidArgumentException;
 use UIoT\App\Core\Communication\Parsers\Collectors\DeleteCollector;
 use UIoT\App\Core\Communication\Parsers\Collectors\GetCollector;
 use UIoT\App\Core\Communication\Parsers\Collectors\PostCollector;
 use UIoT\App\Core\Communication\Parsers\Collectors\PutCollector;
-use UIoT\App\Core\Resources\Manager;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -43,16 +43,6 @@ class DataCollector
      * @var array
      */
     private static $collectors;
-
-    /**
-     * Do the REST request
-     *
-     * @return array|mixed|null|object|string
-     */
-    public static function doRequest()
-    {
-        return Manager::getResourceProperties();
-    }
 
     /**
      * Set Base Data Collectors
@@ -88,6 +78,9 @@ class DataCollector
      */
     public static function getBaseCollector($collectorMethod)
     {
+        if (!array_key_exists($collectorMethod, self::$collectors))
+            throw new InvalidArgumentException('Invalid Raise Method', '404');
+
         return self::$collectors[$collectorMethod];
     }
 

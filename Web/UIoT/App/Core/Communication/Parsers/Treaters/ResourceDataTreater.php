@@ -32,6 +32,13 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class ResourceDataTreater extends RequestSingleton
 {
     /**
+     * Controller Model Instance
+     *
+     * @var RequestSingleton
+     */
+    protected static $requestInstance = null;
+
+    /**
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent

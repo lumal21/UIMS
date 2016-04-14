@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Assets;
 
+use Exception;
 use UIoT\App\Core\Communication\Sessions\Indexer as SIndexer;
 use UIoT\App\Core\Layouts\Factory as LIndexer;
-use UIoT\App\Exception\Collector;
 use UIoT\App\Helpers\Manipulation\Arrays;
 use UIoT\App\Helpers\Manipulation\Constants;
 use UIoT\App\Helpers\Manipulation\Files;
@@ -145,7 +145,7 @@ final class Register
      */
     public static function setMimeType($asset_name)
     {
-        header('Content-Type: ' . mime_content_type($asset_name));
+        header('Content-Type: ' . mime_content_type(Manager::getAssetPath($asset_name)));
     }
 
     /**
@@ -154,26 +154,25 @@ final class Register
      * @param string $asset_file_name
      *
      * @return string
+     *
+     * @throws Exception
      */
     public static function returnResource($asset_file_name)
     {
         /* set asset name */
         $asset_name = Files::getBaseName($asset_file_name);
 
-        /* if resource doesn't exists, or resource is hot linked we must show error */
-        self::checkIfAssetIsValid($asset_name) || self::showHotLinkErrorMessage();
-
-        /* check for file existence */
-        self::checkIfAssetIsValid($asset_name) || self::checkAssetExistence($asset_name);
+        if (!self::checkIfAssetIsValid($asset_name))
+            throw new Exception('The requested Resource wasn\'t Found on this Server', '404');
 
         /* update the resource change */
         self::updateAssetsChanges($asset_name);
 
         /* set file mime type */
-        self::setMimeType($asset_file_name);
+        self::setMimeType($asset_name);
 
         /* return asset */
-        return Manager::returnAsset($asset_name)->dump();
+        return Manager::getAsset($asset_name)->dump();
     }
 
     /**
@@ -195,42 +194,6 @@ final class Register
      */
     public static function checkIfAssetIsValid($asset_name)
     {
-        return Arrays::inArray($asset_name, self::getAvailableAssets());
-    }
-
-    /**
-     * Check if Asset exists
-     *
-     * @param string $asset_name
-     */
-    private static function checkAssetExistence($asset_name)
-    {
-        !Manager::getAssetManager()->has($asset_name) || Collector::errorMessage(907,
-            "404!",
-            'Details: ',
-            [
-                'What Happened?' => "Sorry but this file doesn't exists.",
-                'Solution:' => "Go Back to Home Page.",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
-    }
-
-    /**
-     * Show Hot Link Error Message
-     */
-    private static function showHotLinkErrorMessage()
-    {
-        /* show hot link error message */
-        Collector::errorMessage(903,
-            'Stop! D\'not Hotlinks!',
-            'Details: ',
-            [
-                'What Happened?' => 'Please don\'t try opening Resources manually or do Hotlink.',
-                'Resolution:' => 'This is a business iot management system and not a place for sharing assets. 
-                If you want to access each asset, download it. This can help to reduce the amount of request to this server.',
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
+        return Arrays::inArray($asset_name, self::getAvailableAssets()) && Manager::getAssetManager()->has($asset_name);
     }
 }

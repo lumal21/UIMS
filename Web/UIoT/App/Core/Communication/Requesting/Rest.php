@@ -84,7 +84,8 @@ class Rest
      * Do the request, and get Request Body.
      *
      * @param string $url
-     * @return string
+     *
+     * @return mixed
      */
     public static function doRequest($url)
     {

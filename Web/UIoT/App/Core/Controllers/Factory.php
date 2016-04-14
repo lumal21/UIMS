@@ -118,7 +118,7 @@ final class Factory
     {
         return array_map(function ($controllerAction) {
             return Arrays::toActionName($controllerAction);
-        }, get_class_methods(self::getController(Strings::toControllerName($controller_name))));
+        }, (array)get_class_methods(self::getController(Strings::toControllerName($controller_name))));
     }
 
     /**

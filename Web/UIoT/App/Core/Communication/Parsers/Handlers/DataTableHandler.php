@@ -32,14 +32,37 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class DataTableHandler extends RequestSingleton
 {
     /**
+     * Controller Model Instance
+     *
+     * @var RequestSingleton
+     */
+    protected static $requestInstance = null;
+
+    /**
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
      *
      * @return void
      */
-    function parse($requestContent)
+    public function parse($requestContent)
     {
+        $responseRawData =
+            '<h2>Keys</h2>' .
+            '<div class="callout secondary">' .
+            '<pre>' .
+            print_r($requestContent['keys'], true) .
+            '</pre>' .
+            '</div>' .
+            '<h2>Values</h2>' .
+            '<div class="callout secondary">' .
+            '<pre>' .
+            print_r($requestContent['values'], true) .
+            '</pre>' .
+            '</div>';
 
+        $this->setResponse($responseRawData);
+
+        $this->setDone(true);
     }
 }

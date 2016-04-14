@@ -23,8 +23,8 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Mime;
+use InvalidArgumentException;
 use UIoT\App\Core\Communication\Requesting\Brain;
-use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -61,21 +61,8 @@ final class DataManager
      */
     private static function configureManager()
     {
-        /* index handlers and layouts */
         foreach (DataHandler::getNames() as $method => $name)
             self::$parsers[Strings::toActionName($name)] = ['name' => Strings::toActionName($name), 'method' => $method];
-    }
-
-    /**
-     * Check if Parser Exists
-     *
-     * @param string $name Parser Name
-     *
-     * @return bool
-     */
-    public static function parserExists($name)
-    {
-        return (array_key_exists($name, self::getParsers()));
     }
 
     /**
@@ -88,7 +75,10 @@ final class DataManager
      */
     private static function getParserVariable($name, $variable)
     {
-        return self::parserExists($name) ? self::getParsers()[$name][$variable] : null;
+        if (!array_key_exists($name, self::getParsers()))
+            throw new InvalidArgumentException('Invalid Requested Raise Method', '501');
+
+        return self::getParsers()[$name][$variable];
     }
 
     /**
@@ -111,19 +101,6 @@ final class DataManager
     public static function setTemplate($method)
     {
         Brain::setTemplate(self::getParserMethod($method), Mime::JSON);
-    }
-
-    /**
-     *
-     * Return DataHandler and DataCollector Instance
-     *
-     * @param string $method
-     *
-     * @return RequestSingleton
-     */
-    public static function getInstance($method)
-    {
-        return DataCollector::getBaseCollector(self::getParserMethod($method));
     }
 
     /**

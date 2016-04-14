@@ -32,38 +32,26 @@ use UIoT\App\Data\Models\Requesting\RequestModel;
 class RequestSingleton extends RequestModel
 {
     /**
-     *
      * Controller Model Instance
      *
-     * @var RequestModel|RequestSingleton
+     * @var RequestSingleton
      */
-    protected static $requestInstance = null;
+    private static $requestInstance = null;
 
     /**
-     *
-     * Abstract and Singleton Protection
-     */
-    protected function __construct()
-    {
-        /* not implemented */
-    }
-
-    /**
-     *
      * Return Instance of Controller
      *
-     * @return RequestModel|RequestSingleton|mixed
+     * @return RequestSingleton
      */
     public static function getInstance()
     {
-        if (null === self::$requestInstance)
-            self::$requestInstance = new static;
+        if (null === static::$requestInstance)
+            static::$requestInstance = new static;
 
-        return self::$requestInstance;
+        return static::$requestInstance;
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __clone()
@@ -72,7 +60,6 @@ class RequestSingleton extends RequestModel
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __wakeup()

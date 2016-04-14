@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Resources;
 
 use UIoT\App\Core\Assets\Register;
+use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Communication\Parsers\DataManager;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
@@ -87,9 +88,9 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        $baseCollector = DataManager::getInstance($this->controllerAction);
+        $baseCollector = DataCollector::getBaseCollector(DataManager::getParserMethod($this->controllerAction));
 
-        $baseCollector->parse($this->controllerAction);
+        $baseCollector->parse(strtolower($this->controllerName));
 
         self::$controllerData = $baseCollector->getResponse();
     }

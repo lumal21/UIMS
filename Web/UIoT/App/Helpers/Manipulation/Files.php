@@ -65,7 +65,7 @@ class Files
     /**
      * Get File Base Name
      *
-     * @param $file_path
+     * @param string $file_path
      *
      * @return string
      */
@@ -105,6 +105,20 @@ class Files
     private static function getSplFileInfoInstance()
     {
         return self::$spl_file_info_instance;
+    }
+
+    /**
+     * Get File Extension
+     *
+     * @param string $file_path
+     *
+     * @return string
+     */
+    public static function getExtension($file_path)
+    {
+        self::checkInstance($file_path);
+
+        return self::getSplFileInfoInstance()->getExtension();
     }
 
     /**
