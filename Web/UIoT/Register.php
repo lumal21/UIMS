@@ -45,7 +45,6 @@ use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Factory as ControllerIndexer;
 use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 use UIoT\App\Data\Models\Nodes\ActionNode;
-use UIoT\App\Data\Models\Nodes\ArgumentsNode;
 use UIoT\App\Data\Models\Nodes\AssetFileNode;
 use UIoT\App\Data\Models\Nodes\BasePathNode;
 use UIoT\App\Data\Models\Nodes\ControllerNode;

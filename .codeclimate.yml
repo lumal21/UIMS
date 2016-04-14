@@ -1,0 +1,22 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - php
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+  - "Web/UIoT/App/**"
+  - "Web/UIoT/Constants.php"
+  - "Web/UIoT/Register.php"
+  - "Web/UIoT/Settings.php"
+exclude_paths:
+- Web/UIoT/Vendor/**
+- Web/UIoT/Resources/**
