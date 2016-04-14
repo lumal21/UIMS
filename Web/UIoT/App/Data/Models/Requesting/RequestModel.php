@@ -36,14 +36,14 @@ class RequestModel implements RequestInterface
      *
      * @var boolean
      */
-    private $jobStatus;
+    private $jobStatus = false;
 
     /**
      * Response Content
      *
      * @var mixed
      */
-    private $responseContent;
+    private $responseContent = '';
 
     /**
      * Parse Request Data or Do Request
