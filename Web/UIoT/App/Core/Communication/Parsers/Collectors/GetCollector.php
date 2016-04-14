@@ -51,46 +51,24 @@ class GetCollector extends RequestSingleton
      */
     public function parse($resourceName)
     {
-        $requestData = Raise::doRequest('resources?name=' . $resourceName);
-
         $resourceIdTreater = ResourceIdTreater::getInstance();
-
-        $resourceIdTreater->parse($requestData);
+        $resourceIdTreater->parse(Raise::doRequest('resources?name=' . $resourceName));
 
         if ($resourceIdTreater->getDone()):
-
             $this->setResponse($resourceIdTreater->getResponse());
-
-            $this->setDone(true);
-
             return;
         endif;
-
-        $requestData = Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse());
 
         $resourcePropertiesTreater = ResourcePropertiesTreater::getInstance();
-
-        $resourcePropertiesTreater->parse($requestData);
-
+        $resourcePropertiesTreater->parse(Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
+        
         if ($resourcePropertiesTreater->getDone()):
-
             $this->setResponse($resourceIdTreater->getResponse());
-
-            $this->setDone(true);
-
             return;
         endif;
 
-        $resourcePropertiesData = $resourcePropertiesTreater->getResponse();
-
-        $resourceContentData = Raise::doRequest($resourceName);
-
         $dataTableHandler = DataTableHandler::getInstance();
-
-        $dataTableHandler->parse(['keys' => $resourcePropertiesData, 'values' => $resourceContentData]);
-
+        $dataTableHandler->parse(['keys' => $resourcePropertiesTreater->getResponse(), 'values' => Raise::doRequest($resourceName)]);
         $this->setResponse($dataTableHandler->getResponse());
-
-        $this->setDone($dataTableHandler->getDone());
     }
 }
