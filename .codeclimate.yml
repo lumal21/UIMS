@@ -1,14 +1,9 @@
 ---
 engines:
-  csslint:
-    enabled: true
   duplication:
     enabled: true
     config:
       languages:
-      - ruby
-      - javascript
-      - python
       - php
   eslint:
     enabled: true
@@ -18,12 +13,10 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
-exclude_paths: []
+  - "Web/UIoT/App/**"
+  - "Web/UIoT/Constants.php"
+  - "Web/UIoT/Register.php"
+  - "Web/UIoT/Settings.php"
+exclude_paths:
+- Web/UIoT/Vendor/**
+- Web/UIoT/Resources/**
