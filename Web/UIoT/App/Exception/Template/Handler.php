@@ -139,22 +139,18 @@ class Handler extends PrettyPageHandler
         $this->addSetting('frame_list', $this->getResource('Layouts/frame_list.html.php'));
         $this->addSetting('frame_code', $this->getResource('Layouts/frame_code.html.php'));
         $this->addSetting('env_details', $this->getResource('Layouts/env_details.html.php'));
-
         $this->addSetting('handlers', $this->getRun()->getHandlers());
         $this->addSetting('name', explode('\\', $this->getInspector()->getExceptionName()));
         $this->addSetting('message', $this->getInspector()->getException()->getMessage());
         $this->addSetting('code', $this->getInspector()->getException()->getCode());
         $this->addSetting('plain_exception', Formatter::formatExceptionPlain($this->getInspector()));
-
         $this->addSetting('page_title', $this->getPageTitle());
         $this->addSetting('title', $this->getPageTitle());
         $this->addSetting('tables', $this->getDataTables());
         $this->addSetting('frames', $this->getFrames());
         $this->addSetting('has_frames', !!count($this->getFrames()));
         $this->addSetting('handler', $this);
-
         $this->addSetting('tpl', $this->getHelper());
-
         return $this->getSettings();
     }
 
