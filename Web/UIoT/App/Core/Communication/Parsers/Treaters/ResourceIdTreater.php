@@ -56,7 +56,7 @@ class ResourceIdTreater extends RequestSingleton
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
             endif;
-        elseif (is_array($requestContent) && array_key_exists(0, $requestContent) && property_exists($requestContent[0], 'ID')):
+        elseif (is_array($requestContent) && property_exists($requestContent[0], 'ID')):
             $this->setResponse($requestContent[0]->ID);
             $this->setDone(false);
             return;
