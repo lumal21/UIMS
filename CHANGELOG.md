@@ -1,12 +1,53 @@
 # Change Log
 
-## [1.0.alpha](https://github.com/uiot/middleware_mc_srvcl_cms/tree/1.0.alpha) (2015-10-14)
+## [Unreleased](https://github.com/uiot/middleware_mc_appl_cms/tree/HEAD)
+
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.5beta...HEAD)
+
+**Implemented enhancements:**
+
+- Iniciar CRUD [\#10](https://github.com/UIoT/middleware_mc_appl_cms/issues/10)
+
+**Closed issues:**
+
+- Core: Helpers Refactorement [\#27](https://github.com/UIoT/middleware_mc_appl_cms/issues/27)
+- Mensagens de Erros do Sistema [\#24](https://github.com/UIoT/middleware_mc_appl_cms/issues/24)
+- Sistema de Busca de Contexto [\#12](https://github.com/UIoT/middleware_mc_appl_cms/issues/12)
+- Geração de Código com PhPDocumentor [\#8](https://github.com/UIoT/middleware_mc_appl_cms/issues/8)
+
+## [1.0.5beta](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.5beta) (2016-04-15)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.5alpha...1.0.5beta)
+
+## [1.0.5alpha](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.5alpha) (2016-04-05)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.4alpha...1.0.5alpha)
+
+## [1.0.4alpha](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.4alpha) (2016-03-10)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.3beta...1.0.4alpha)
+
+**Closed issues:**
+
+- Getting more done in GitHub with ZenHub [\#26](https://github.com/UIoT/middleware_mc_appl_cms/issues/26)
+
 **Merged pull requests:**
 
-- Scrutinizer Auto-Fixes [\#5](https://github.com/UIoT/middleware_mc_srvcl_cms/pull/5) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
-- Scrutinizer Auto-Fixes [\#4](https://github.com/UIoT/middleware_mc_srvcl_cms/pull/4) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
-- Scrutinizer Auto-Fixes [\#3](https://github.com/UIoT/middleware_mc_srvcl_cms/pull/3) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
-- Scrutinizer Auto-Fixes [\#1](https://github.com/UIoT/middleware_mc_srvcl_cms/pull/1) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
+- Scrutinizer Auto-Fixes [\#29](https://github.com/UIoT/middleware_mc_appl_cms/pull/29) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
+
+## [1.0.3beta](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.3beta) (2015-12-08)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.1beta...1.0.3beta)
+
+## [1.0.1beta](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.1beta) (2015-12-03)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.beta...1.0.1beta)
+
+## [1.0.beta](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.beta) (2015-11-30)
+[Full Changelog](https://github.com/uiot/middleware_mc_appl_cms/compare/1.0.alpha...1.0.beta)
+
+## [1.0.alpha](https://github.com/uiot/middleware_mc_appl_cms/tree/1.0.alpha) (2015-10-14)
+**Merged pull requests:**
+
+- Scrutinizer Auto-Fixes [\#5](https://github.com/UIoT/middleware_mc_appl_cms/pull/5) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
+- Scrutinizer Auto-Fixes [\#4](https://github.com/UIoT/middleware_mc_appl_cms/pull/4) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
+- Scrutinizer Auto-Fixes [\#3](https://github.com/UIoT/middleware_mc_appl_cms/pull/3) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
+- Scrutinizer Auto-Fixes [\#1](https://github.com/UIoT/middleware_mc_appl_cms/pull/1) ([scrutinizer-auto-fixer](https://github.com/scrutinizer-auto-fixer))
 
 
 

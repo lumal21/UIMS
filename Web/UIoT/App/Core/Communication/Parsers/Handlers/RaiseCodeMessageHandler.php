@@ -49,7 +49,7 @@ class RaiseCodeMessageHandler extends RequestSingleton
     {
         $responseContentRaw =
             '<div class="callout">' .
-            '<h5>Raise (#' . $requestContent->code . ')</h5>' .
+            '<h5>Code Lyoko (#' . $requestContent->code . ')</h5>' .
             '<p>' . $requestContent->message . '</p>' .
             '</div>';
 
