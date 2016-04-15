@@ -24,6 +24,7 @@ namespace UIoT\App\Exception\Template;
 
 use Whoops\Exception\Formatter;
 use Whoops\Handler\PrettyPageHandler;
+use Whoops\Exception\FrameCollection;
 
 /*
  * Create A PrettyPageHandler Instance
@@ -56,7 +57,7 @@ class Handler extends PrettyPageHandler
     /**
      * Error Frame List
      *
-     * @var array
+     * @var array|FrameCollection
      */
     private $frameList = [];
 
@@ -180,7 +181,7 @@ class Handler extends PrettyPageHandler
     /**
      * Get Frame List
      *
-     * @return array
+     * @return array|FrameCollection
      */
     public function getFrames()
     {
