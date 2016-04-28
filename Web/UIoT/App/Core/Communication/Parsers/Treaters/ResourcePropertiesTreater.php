@@ -51,10 +51,10 @@ class ResourcePropertiesTreater extends RequestSingleton
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
-            } elseif (is_array($requestContent)) {
-                $this->setResponse($requestContent);
-                return;
             }
+        } elseif (is_array($requestContent)) {
+            $this->setResponse($requestContent);
+            return;
         }
     }
 }

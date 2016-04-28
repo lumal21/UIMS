@@ -51,11 +51,11 @@ class ResourceIdTreater extends RequestSingleton
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
-            } elseif (is_array($requestContent) && property_exists($requestContent[0], 'ID')) {
-                $this->setResponse($requestContent[0]->ID);
-                $this->setDone(false);
-                return;
             }
+        } elseif (is_array($requestContent) && property_exists($requestContent[0], 'ID')) {
+            $this->setResponse($requestContent[0]->ID);
+            $this->setDone(false);
+            return;
         }
     }
 }
