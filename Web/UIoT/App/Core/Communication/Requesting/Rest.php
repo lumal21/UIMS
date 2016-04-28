@@ -28,38 +28,31 @@ use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 
 /**
  * Class Rest
- *
  * @package UIoT\App\Core\Communication\Requesting
  */
 class Rest
 {
     /**
-     * Rest Settings
-     *
      * @var RaiseSettingsModel
      */
-    public static $rest_data;
+    public static $restData;
 
     /**
-     * Rest Handler
-     *
      * @var Request
      */
     public static $handler;
 
     /**
-     * Default Url
-     *
      * @var string
      */
-    public static $raise_base_uri = 'http://localhost:80/';
+    public static $raiseBaseUri = 'http://localhost:80/';
 
     /**
      * Set Raise Settings
      */
     public static function setSettings()
     {
-        self::$rest_data = SettingsRegister::getSetting('raise');
+        self::$restData = SettingsRegister::getSetting('raise');
     }
 
     /**
@@ -77,18 +70,20 @@ class Rest
      */
     public static function setHost()
     {
-        self::$raise_base_uri = (self::$rest_data->raiseSsl === true ? 'https' : 'http') . '://' . self::$rest_data->raiseHost . ':' . self::$rest_data->raisePort . '/' . (!empty(self::$rest_data->raiseBasePath) ? (self::$rest_data->raiseBasePath . '/') : '');
+        self::$raiseBaseUri =
+            (self::$restData->raiseSsl === true ? 'https' : 'http')
+            . '://' . self::$restData->raiseHost . ':' . self::$restData->raisePort . '/' .
+            (!empty(self::$restData->raiseBasePath) ? (self::$restData->raiseBasePath . '/') : '');
     }
 
     /**
      * Do the request, and get Request Body.
      *
      * @param string $url
-     *
      * @return mixed
      */
     public static function doRequest($url)
     {
-        return (new Data(self::$raise_base_uri . $url))->get_data('body');
+        return (new Data(self::$raiseBaseUri . $url))->get_data('body');
     }
 }

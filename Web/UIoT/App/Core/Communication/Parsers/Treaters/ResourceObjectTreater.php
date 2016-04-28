@@ -28,14 +28,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class ResourceObjectTreater
- *
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
 class ResourceObjectTreater extends RequestSingleton
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
@@ -44,23 +41,22 @@ class ResourceObjectTreater extends RequestSingleton
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
-     *
      * @return void
      */
     public function parse($requestContent)
     {
-        if (is_object($requestContent)):
-            if (!property_exists($requestContent, 'code') || !property_exists($requestContent, 'message')):
+        if (is_object($requestContent)) {
+            if (!property_exists($requestContent, 'code') || !property_exists($requestContent, 'message')) {
                 $requestContent = new stdClass();
                 $requestContent->code = '503';
                 $requestContent->message = 'Raise answered an unknown message.';
-            endif;
+            }
 
             $raiseCodeHandler = RaiseCodeMessageHandler::getInstance();
             $raiseCodeHandler->parse($requestContent);
             $this->setResponse($raiseCodeHandler->getResponse());
             $this->setDone($raiseCodeHandler->getDone());
             return;
-        endif;
+        }
     }
 }

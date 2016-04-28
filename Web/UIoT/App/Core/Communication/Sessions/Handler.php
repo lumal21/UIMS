@@ -31,40 +31,31 @@ use SessionHandler;
 final class Handler extends SessionHandler
 {
     /**
-     *
-     * Session Key (ID)
-     *
      * @var string
      */
     private $key;
 
     /**
-     *
-     * Session Time Out
-     *
      * @var int
      */
-    private $time_out;
+    private $timeOut;
 
     /**
-     *
      * Initialize Session Handler
      *
      * @param string $key (24 letters)
-     * @param int $time_out
+     * @param int $timeOut
      */
-    public function __construct($key, $time_out)
+    public function __construct($key, $timeOut)
     {
         $this->key = $key;
-        $this->time_out = $time_out;
+        $this->timeOut = $timeOut;
     }
 
     /**
-     *
      * Read Session
      *
      * @param string $id
-     *
      * @return string
      */
     public function read($id)
@@ -80,7 +71,6 @@ final class Handler extends SessionHandler
     }
 
     /**
-     *
      * Check if Time out is Gotta
      *
      * @param string $id
@@ -93,12 +83,10 @@ final class Handler extends SessionHandler
     }
 
     /**
-     *
      * Write Session
      *
      * @param string $id
      * @param string $data
-     *
      * @return boolean
      */
     public function write($id, $data)
@@ -114,7 +102,6 @@ final class Handler extends SessionHandler
     }
 
     /**
-     *
      * Put a Time Out
      *
      * @param string $id
@@ -122,7 +109,7 @@ final class Handler extends SessionHandler
     private function timeOut($id)
     {
         /* create time string */
-        $time = time() + $this->time_out;
+        $time = time() + $this->timeOut;
 
         /* write the time */
         parent::write("time-{$id}", $time);

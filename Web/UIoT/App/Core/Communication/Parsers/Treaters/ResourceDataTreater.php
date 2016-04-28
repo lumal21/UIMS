@@ -26,14 +26,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class ResourceDataTreater
- *
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
 class ResourceDataTreater extends RequestSingleton
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
@@ -42,7 +39,6 @@ class ResourceDataTreater extends RequestSingleton
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
-     *
      * @return void
      */
     function parse($requestContent)

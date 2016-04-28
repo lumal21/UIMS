@@ -33,11 +33,9 @@ use UIoT\App\Data\Models\Routing\NodeModel;
 final class PathFinder
 {
     /**
-     * Node Indexer Instance
-     *
      * @var NodeIndexer
      */
-    private $node_indexer = null;
+    private $nodeIndexer = null;
 
     /**
      * PathFinder constructor.
@@ -78,22 +76,18 @@ final class PathFinder
     public function mountRouterEdges(IRouter $router, NodeModel $node, $recursively = true)
     {
         /** @var NodeModel $edge */
-        foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge):
-
-            /* serialize edge data to the callback */
+        foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge) {
             $edge->getCallBack()->setNodeModel($edge);
 
             /* don't repeat same items if is recursively */
-            if (($edge->getPriority() <= $node->getPriority()) && $recursively)
+            if (($edge->getPriority() <= $node->getPriority()) && $recursively) {
                 continue;
+            }
 
-            /* serialize all nodes from that group starting by the first node from the group (the lowest priority node) */
             $this->mountRouterNode($router, $edge);
 
-            /* serialize data callback */
             $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallBack(), 'callValue']);
-
-        endforeach;
+        }
     }
 
     /**
@@ -103,17 +97,17 @@ final class PathFinder
      */
     public function getNodeIndexer()
     {
-        return $this->node_indexer;
+        return $this->nodeIndexer;
     }
 
     /**
      * Set Node Indexer Instance
      *
-     * @param NodeIndexer $node_indexer
+     * @param NodeIndexer $nodeIndexer
      */
-    public function setNodeIndexer(NodeIndexer $node_indexer)
+    public function setNodeIndexer(NodeIndexer $nodeIndexer)
     {
-        $this->node_indexer = $node_indexer;
+        $this->nodeIndexer = $nodeIndexer;
     }
 
     /**

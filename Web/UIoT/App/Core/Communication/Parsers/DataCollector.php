@@ -32,14 +32,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DataCollector
- *
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataCollector
 {
     /**
-     * Array of Collectors
-     *
      * @var array
      */
     private static $collectors;
@@ -61,7 +58,6 @@ class DataCollector
      * Return a specific data collector
      *
      * @param RequestSingleton $requestedCollector
-     *
      * @return RequestSingleton
      */
     public static function getCollector(RequestSingleton $requestedCollector)
@@ -73,13 +69,13 @@ class DataCollector
      * Get a Base Collector
      *
      * @param string $collectorMethod
-     *
      * @return RequestSingleton
      */
     public static function getBaseCollector($collectorMethod)
     {
-        if (!array_key_exists($collectorMethod, self::$collectors))
+        if (!array_key_exists($collectorMethod, self::$collectors)) {
             throw new InvalidArgumentException('Invalid Raise Method', '404');
+        }
 
         return self::$collectors[$collectorMethod];
     }

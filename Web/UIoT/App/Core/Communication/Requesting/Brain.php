@@ -37,15 +37,14 @@ class Brain
     private static $template;
 
     /**
-     *
      * Set and Store Initial Template
      *
      * @param Http ::string $method_name
      * @param Mime ::string $mime_type
      */
-    public static function setTemplate($method_name, $mime_type)
+    public static function setTemplate($methodName, $mimeType)
     {
-        self::adjustTemplate(self::$template = Request::init($method_name)->method($method_name)->expects($mime_type)->mime($mime_type));
+        self::adjustTemplate(self::$template = Request::init($methodName)->method($methodName)->expects($mimeType)->mime($mimeType));
     }
 
     /**
@@ -60,19 +59,17 @@ class Brain
     }
 
     /**
-     *
      * Set Request Expected Data Type
      * (Only for Adjust)
      *
-     * @param string $mime_type
+     * @param string $mimeType
      */
-    public static function setExpectedMimeType($mime_type)
+    public static function setExpectedMimeType($mimeType)
     {
-        self::adjustTemplate(self::getTemplate()->expects($mime_type));
+        self::adjustTemplate(self::getTemplate()->expects($mimeType));
     }
 
     /**
-     *
      * Get Httpful Template
      *
      * @return Request
@@ -83,27 +80,25 @@ class Brain
     }
 
     /**
-     *
      * Set Request Mime Type Header
      * (Only for Adjust)
      *
-     * @param string $mime_type
+     * @param string $mimeType
      */
-    public static function setMimeType($mime_type)
+    public static function setMimeType($mimeType)
     {
-        self::adjustTemplate(self::getTemplate()->mime($mime_type));
+        self::adjustTemplate(self::getTemplate()->mime($mimeType));
     }
 
     /**
-     *
      * Set Request Method
      * (Only for Adjust)
      *
-     * @param string $method_name
+     * @param string $methodName
      */
-    public static function setRequestMethod($method_name)
+    public static function setRequestMethod($methodName)
     {
-        self::adjustTemplate(self::getTemplate()->method($method_name));
+        self::adjustTemplate(self::getTemplate()->method($methodName));
     }
 
     /**

@@ -30,33 +30,33 @@ final class Storage
     /**
      * Get Session Array Key
      *
-     * @param string $session_key
+     * @param string $sessionKey
      * @return array
      */
-    public function getSessionArrayKey($session_key = '')
+    public function getSessionArrayKey($sessionKey = '')
     {
-        return $_SESSION[$session_key];
+        return $_SESSION[$sessionKey];
     }
 
     /**
      * Remove Session Array Key
      *
-     * @param string $session_array_key
+     * @param string $sessionArrayKey
      */
-    public function removeSessionArrayKey($session_array_key = '')
+    public function removeSessionArrayKey($sessionArrayKey = '')
     {
-        unset($_SESSION[$session_array_key]);
+        unset($_SESSION[$sessionArrayKey]);
     }
 
     /**
      * Set Session Array Key
      *
-     * @param $session_array_key
-     * @param $session_array_value
+     * @param $sessionArrayKey
+     * @param $sessionArrayValue
      */
-    public function setSessionArrayKey($session_array_key, $session_array_value)
+    public function setSessionArrayKey($sessionArrayKey, $sessionArrayValue)
     {
-        $_SESSION[$session_array_key] = $session_array_value;
+        $_SESSION[$sessionArrayKey] = $sessionArrayValue;
     }
 
     /**

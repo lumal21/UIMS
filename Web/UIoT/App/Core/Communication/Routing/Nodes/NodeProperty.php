@@ -30,15 +30,11 @@ namespace UIoT\App\Core\Communication\Routing\Nodes;
 final class NodeProperty
 {
     /**
-     *
-     * Parameter name
-     *
      * @var string
      */
     public $parameterName;
 
     /**
-     *
      * NodeProperty constructor.
      *
      * @param string $parameterName

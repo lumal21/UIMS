@@ -26,24 +26,19 @@ use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
  * Class Render
- *
  * @package UIoT\App\Core\Assets
  */
 final class AssetRender implements RenderInterface
 {
     /**
-     * Layout Name
-     *
      * @var string
      */
-    private $layout_name;
+    private $layoutName;
 
     /**
-     * Asset Name
-     *
      * @var string
      */
-    private $asset_name;
+    private $assetName;
 
     /**
      * Init Resource Handler
@@ -59,13 +54,12 @@ final class AssetRender implements RenderInterface
      * Set Arguments
      *
      * @param array $arguments
-     *
      * @return void
      */
     public function setArguments($arguments = [])
     {
-        $this->layout_name = $arguments['layout'];
-        $this->asset_name = $arguments['asset'];
+        $this->layoutName = $arguments['layout'];
+        $this->assetName = $arguments['asset'];
     }
 
     /**
@@ -76,9 +70,9 @@ final class AssetRender implements RenderInterface
     public function show()
     {
         /* register resources */
-        Register::registerResources($this->layout_name);
+        Register::registerResources($this->layoutName);
 
         /* return resource */
-        return Register::returnResource($this->asset_name);
+        return Register::returnResource($this->assetName);
     }
 }

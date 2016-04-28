@@ -27,23 +27,17 @@ use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class DataHandler
- * Manages the Handling of the Specific Data of Each Type
- *
+ * Class DataHandler - Manages the Handling of the Specific Data of Each Type
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataHandler
 {
     /**
-     * Data Names
-     *
      * @var array
      */
     private static $names = [];
 
     /**
-     * Data Layouts
-     *
      * @var array
      */
     private static $layouts = [];
@@ -82,7 +76,6 @@ class DataHandler
      * Return a specific data handler
      *
      * @param RequestSingleton $requestedHandler
-     *
      * @return RequestSingleton
      */
     public static function getHandler(RequestSingleton $requestedHandler)

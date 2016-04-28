@@ -26,7 +26,6 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DataTreater
- *
  * @package UIoT\App\Core\Communication\Parsers
  */
 class DataTreater
@@ -35,7 +34,6 @@ class DataTreater
      * Return a specific data treater
      *
      * @param RequestSingleton $requestedTreater
-     *
      * @return RequestSingleton
      */
     public static function getTreater(RequestSingleton $requestedTreater)

@@ -24,37 +24,26 @@ namespace UIoT\App\Core\Communication\Routing\Nodes\Filters;
 
 /**
  * Class NodeFilter
- *
  * @package UIoT\App\Core\Communication\Routing\Nodes\Filters
  */
 final class NodeFilter
 {
     /**
-     *
-     * Parameter name
-     *
      * @var string
      */
     public $parameterName;
 
     /**
-     *
-     * Parameter value
-     *
      * @var string
      */
     public $parameterValue;
 
     /**
-     *
-     * Comparsion expression
-     *
      * @var string
      */
     public $comparsionExpression;
 
     /**
-     *
      * NodeFilterStructure constructor.
      *
      * @param string $parameterName

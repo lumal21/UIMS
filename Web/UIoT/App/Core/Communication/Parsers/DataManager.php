@@ -29,15 +29,11 @@ use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class DataManager
- * Manage the Data from Requests
- *
  * @package UIoT\App\Core\Communication\Parsers
  */
 final class DataManager
 {
     /**
-     * Data Parsers
-     *
      * @var array
      */
     private static $parsers = [];
@@ -70,13 +66,13 @@ final class DataManager
      *
      * @param string $name
      * @param mixed $variable
-     *
      * @return mixed|null
      */
     private static function getParserVariable($name, $variable)
     {
-        if (!array_key_exists($name, self::getParsers()))
+        if (!array_key_exists($name, self::getParsers())) {
             throw new InvalidArgumentException('Invalid Requested Raise Method', '501');
+        }
 
         return self::getParsers()[$name][$variable];
     }
@@ -85,7 +81,6 @@ final class DataManager
      * Get Parser Method (GET, PUT, POST, DELETE)
      *
      * @param string $name Parser Name
-     *
      * @return mixed
      */
     public static function getParserMethod($name)

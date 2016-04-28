@@ -37,7 +37,6 @@ final class RenderSelector
      * Abbreviation for the CallBacks
      *
      * @param $render
-     *
      * @return mixed|null|string
      */
     public static function go($render)
@@ -49,17 +48,17 @@ final class RenderSelector
      * Show the Render
      *
      * @param $instance
-     *
      * @return mixed|null|string
      */
     private static function select(RenderInterface $instance)
     {
-        if ($instance instanceof AssetRender)
+        if ($instance instanceof AssetRender) {
             return $instance->show();
-        else if ($instance instanceof ControllerRender)
+        } elseif ($instance instanceof ControllerRender) {
             return $instance->show();
-        else if ($instance instanceof ResourceRender)
+        } elseif ($instance instanceof ResourceRender) {
             return $instance->show();
+        }
         return null;
     }
 }

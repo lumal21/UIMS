@@ -69,7 +69,9 @@ final class Manager
      */
     private function setHandler()
     {
-        session_set_save_handler(new Handler($this->settings->sessionHandlerSalt, $this->settings->sessionTimeOut), true);
+        session_set_save_handler(
+            new Handler($this->settings->sessionHandlerSalt, $this->settings->sessionTimeOut), true
+        );
     }
 
     /**

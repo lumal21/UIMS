@@ -29,39 +29,31 @@ use UIoT\App\Helpers\Manipulation\Arrays;
 
 /**
  * Class NodeManipulation
- *
  * @package UIoT\App\Core\Communication\Routing\Nodes
  */
 class NodeManipulation extends Arrays
 {
     /**
-     *
-     * Node filter structure
-     *
      * @var NodeFilter
      */
     protected static $nodeFilter;
 
     /**
-     *
-     * Node parameter structure
-     *
      * @var NodeProperty
      */
     protected static $nodeParameter;
 
     /**
-     *
      * Return Search by Parameter
      *
      * @param NodeHandlerModel[]|NodeModel[] $nodeArray
      * @param string $parameterName
      * @param mixed $parameterValue
      * @param string $expression
-     *
      * @return array
      */
-    public static function getArrayByLogicComparsion(array $nodeArray, $parameterName = '', $parameterValue, $expression = '==')
+    public static function getArrayByLogicComparsion(array $nodeArray, $parameterName = '',
+                                                     $parameterValue, $expression = '==')
     {
         self::$nodeFilter = new NodeFilter($parameterName, $parameterValue, $expression);
 
@@ -69,30 +61,29 @@ class NodeManipulation extends Arrays
     }
 
     /**
-     *
      * Return Object by Search for Property
      *
      * @param array $nodeArray
      * @param integer $index
      * @param mixed $value
-     *
      * @return null|NodeModel
      */
     public static function nodeArrayPropertySearch($nodeArray, $index, $value)
     {
-        foreach ($nodeArray as $arrayInf)
-            if ($arrayInf->{'get' . $index}() == $value)
+        foreach ($nodeArray as $arrayInf) {
+            if ($arrayInf->{'get' . $index}() == $value) {
                 return $arrayInf;
+            }
+        }
+
         return null;
     }
 
     /**
-     *
      * Return node model array properties
      *
      * @param NodeHandlerModel[]|NodeModel[] $nodeArray
      * @param string $parameterName
-     *
      * @return array
      */
     public static function getArrayObjectProperty($nodeArray, $parameterName)
@@ -103,35 +94,33 @@ class NodeManipulation extends Arrays
     }
 
     /**
-     *
      * Return node model property
      *
      * @param NodeHandlerModel|NodeModel $nodeElement
-     *
      * @return mixed
      */
-    protected final static function getNodeModelProperty($nodeElement)
+    final protected static function getNodeModelProperty($nodeElement)
     {
         return $nodeElement->{'get' . self::$nodeParameter->parameterName}();
     }
 
     /**
-     *
      * Filter node array elements by matching logic comparsion check
      *
      * @param NodeModel $nodeElement
-     *
      * @return bool
      */
-    protected final static function nodeFilterByLogicComparsion($nodeElement)
+    final protected static function nodeFilterByLogicComparsion($nodeElement)
     {
-        $variable = empty(self::$nodeFilter->parameterName) ? get_class($nodeElement->getCallBack()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
+        $variable = empty(self::$nodeFilter->parameterName) ?
+            get_class($nodeElement->getCallBack()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
 
-        switch (self::$nodeFilter->comparsionExpression):
-            default:
-                return $variable == self::$nodeFilter->parameterValue;
+        switch (self::$nodeFilter->comparsionExpression) {
             case '!=':
                 return $variable != self::$nodeFilter->parameterValue;
-        endswitch;
+            default:
+                return $variable == self::$nodeFilter->parameterValue;
+        }
+
     }
 }

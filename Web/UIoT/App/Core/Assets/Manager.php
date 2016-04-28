@@ -33,45 +33,31 @@ use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class Manager
- *
  * @package UIoT\App\Core\Assets
  */
 final class Manager
 {
     /**
-     *
-     * Asset Manager Instance
-     *
      * @var AssetManager
      */
-    private static $asset_manager;
+    private static $assetManager;
 
     /**
-     *
-     * Enable/Disable File System Cache
-     *
      * @var bool
      */
-    private static $enable_caching = false;
+    private static $enableCaching = false;
 
     /**
-     *
-     * Cache Manager
-     *
      * @var FilesystemCache
      */
-    private static $cache_manager;
+    private static $cacheManager;
 
     /**
-     *
-     * Settings variable
-     *
      * @var ResourcesSettingsModel
      */
     private $settings;
 
     /**
-     *
      * Manager constructor.
      */
     public function __construct()
@@ -82,114 +68,104 @@ final class Manager
     }
 
     /**
-     *
      * Add an Asset
      *
-     * @param string $asset_name
-     * @param string $asset_path
+     * @param string $assetName
+     * @param string $assetPath
      */
-    public static function addAsset($asset_name, $asset_path)
+    public static function addAsset($assetName, $assetPath)
     {
         if (self::isCachingEnabled())
-            self::getAssetManager()->set($asset_name, new AssetCache(new FileAsset($asset_path), self::getCacheManager()));
+            self::getAssetManager()->set($assetName, new AssetCache(new FileAsset($assetPath), self::getCacheManager()));
         else
-            self::getAssetManager()->set($asset_name, new FileAsset($asset_path));
+            self::getAssetManager()->set($assetName, new FileAsset($assetPath));
     }
 
     /**
      * Create Asset and Return it Contents
      *
-     * @param string $asset_name
-     *
+     * @param string $assetName
      * @return AssetInterface
      */
-    public static function getAsset($asset_name)
+    public static function getAsset($assetName)
     {
-        return self::getAssetManager()->get($asset_name);
+        return self::getAssetManager()->get($assetName);
     }
 
     /**
      * Get Asset File Path
      *
-     * @param string $asset_name
-     *
+     * @param string $assetName
      * @return null|string
      */
-    public static function getAssetPath($asset_name)
+    public static function getAssetPath($assetName)
     {
-        return self::getAsset($asset_name)->getSourceRoot() . '/' . self::getAsset($asset_name)->getSourcePath();
+        return self::getAsset($assetName)->getSourceRoot() . '/' . self::getAsset($assetName)->getSourcePath();
     }
 
     /**
-     *
      * Get Asset Manager
      *
      * @return AssetManager
      */
     public static function getAssetManager()
     {
-        return self::$asset_manager;
+        return self::$assetManager;
     }
 
     /**
-     *
      * Set Asset Manager
      *
-     * @param AssetManager $asset_manager
+     * @param AssetManager $assetManager
      */
-    public static function setAssetManager(AssetManager $asset_manager)
+    public static function setAssetManager(AssetManager $assetManager)
     {
-        self::$asset_manager = $asset_manager;
+        self::$assetManager = $assetManager;
     }
 
     /**
-     *
      * Return if is Enabled Cache System
      *
      * @return boolean
      */
     public static function isCachingEnabled()
     {
-        return self::$enable_caching;
+        return self::$enableCaching;
     }
 
     /**
-     *
      * Enable/Disable Cache System
      *
-     * @param boolean $enable_caching
+     * @param boolean $enableCaching
      */
-    public static function setEnableCaching($enable_caching)
+    public static function setEnableCaching($enableCaching)
     {
-        self::$enable_caching = $enable_caching;
+        self::$enableCaching = $enableCaching;
 
-        !$enable_caching || self::setCacheManager(new FilesystemCache(Constants::returnConstant('RESOURCE_CACHE_FOLDER')));
+        !$enableCaching || self::setCacheManager(new FilesystemCache(Constants::returnConstant('RESOURCE_CACHE_FOLDER')));
     }
 
     /**
-     *
      * Return Cache Manager
      *
      * @return FilesystemCache
      */
     public static function getCacheManager()
     {
-        return self::$cache_manager;
+        return self::$cacheManager;
     }
 
     /**
-     *
      * Set Cache Manager
      *
-     * @param FilesystemCache $cache_manager
+     * @param FilesystemCache $cacheManager
      */
-    public static function setCacheManager($cache_manager)
+    public static function setCacheManager($cacheManager)
     {
-        self::$cache_manager = $cache_manager;
+        self::$cacheManager = $cacheManager;
     }
 
     /**
-     *
      * Set settings
      *
      * @param ResourcesSettingsModel $settings

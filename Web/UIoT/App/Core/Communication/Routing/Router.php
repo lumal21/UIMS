@@ -28,9 +28,11 @@ use UIoT\App\Exception\Manager;
 
 /**
  * Class Router
+ *
  * @property mixed resource_url
  * @property mixed controller
  * @property mixed action
+ *
  * @package UIoT\App\Core\Communication\Routing
  */
 final class Router extends RouterAccessor
@@ -113,26 +115,25 @@ final class Router extends RouterAccessor
     public function performRouterUpdate()
     {
         /* check if need perform router update */
-        if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) || empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue()))
+        if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) ||
+            empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue())
+        ) {
             return;
+        }
 
-        /* if yes perform core update */
         $this->performCoreUpdate();
 
-        /* reset router instance to reassign data */
         $this->setRouter(new IRouter);
 
-        /* execute router procedures */
         $this->exec();
     }
 
     /**
      * Perform NodeIndexer Core Update
-     *
-     * Update Data of what need be removed
      */
     protected function performCoreUpdate()
     {
-        array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
+        array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], 
+            $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
     }
 }

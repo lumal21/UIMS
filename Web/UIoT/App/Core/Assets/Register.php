@@ -32,7 +32,6 @@ use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Register
- *
  * @package UIoT\App\Core\Assets
  */
 final class Register
@@ -40,45 +39,44 @@ final class Register
     /**
      * Set Resource Folder
      *
-     * @param string $asset_folder
-     * @param string $asset_file_name
-     *
+     * @param string $assetFolder
+     * @param string $assetFileName
      * @return string
      */
-    public static function convertToFileName($asset_folder, $asset_file_name)
+    public static function convertToFileName($assetFolder, $assetFileName)
     {
-        return Strings::toRestUrlName(Constants::returnConstant('RESOURCE_FOLDER') . $asset_folder . '/' . $asset_file_name);
+        return Strings::toRestUrlName(Constants::returnConstant('RESOURCE_FOLDER') . $assetFolder . '/' . $assetFileName);
     }
 
     /**
      * Add Resource
      *
-     * @param string $asset_name
-     * @param string $asset_folder
-     * @param string $asset_file_name
+     * @param string $assetName
+     * @param string $assetFolder
+     * @param string $assetFileName
      */
-    public static function addAsset($asset_name, $asset_folder, $asset_file_name = '')
+    public static function addAsset($assetName, $assetFolder, $assetFileName = '')
     {
-        Manager::addAsset($asset_name, self::convertToFileName($asset_folder, $asset_file_name));
+        Manager::addAsset($assetName, self::convertToFileName($assetFolder, $assetFileName));
     }
 
     /**
      * Return Layout Resources
      *
-     * @param string $layout_name
-     * @param bool $reset_session
+     * @param string $layoutName
+     * @param bool $resetSession
      * @return mixed
      */
-    public static function registerResources($layout_name, $reset_session = false)
+    public static function registerResources($layoutName, $resetSession = false)
     {
         /* remove if is needed */
-        !$reset_session || SIndexer::removeKey('layout');
+        !$resetSession || SIndexer::removeKey('layout');
 
         /* register the layout */
-        LIndexer::addLayout($layout_name);
+        LIndexer::addLayout($layoutName);
 
         /* get layout resources */
-        LIndexer::getLayoutResources($layout_name);
+        LIndexer::getLayoutResources($layoutName);
 
         /* resource must change */
         self::calculateResourceChanges();
@@ -130,70 +128,65 @@ final class Register
     /**
      * Update Resource Change
      *
-     * @param string $asset_name
+     * @param string $assetName
      */
-    public static function updateAssetsChanges($asset_name)
+    public static function updateAssetsChanges($assetName)
     {
-        SIndexer::updateKey('layout', self::removeAsset($asset_name));
+        SIndexer::updateKey('layout', self::removeAsset($assetName));
     }
 
     /**
-     *
      * Set Mime Type
      *
-     * @param $asset_name
+     * @param $assetName
      */
-    public static function setMimeType($asset_name)
+    public static function setMimeType($assetName)
     {
-        header('Content-Type: ' . mime_content_type(Manager::getAssetPath($asset_name)));
+        header('Content-Type: ' . mime_content_type(Manager::getAssetPath($assetName)));
     }
 
     /**
      * Return Asset
      *
-     * @param string $asset_file_name
-     *
+     * @param string $assetFileName
      * @return string
-     *
      * @throws Exception
      */
-    public static function returnResource($asset_file_name)
+    public static function returnResource($assetFileName)
     {
         /* set asset name */
-        $asset_name = Files::getBaseName($asset_file_name);
+        $assetName = Files::getBaseName($assetFileName);
 
-        if (!self::checkIfAssetIsValid($asset_name))
+        if (!self::checkIfAssetIsValid($assetName)) {
             throw new Exception('The requested Resource wasn\'t Found on this Server', '404');
+        }
 
-        /* update the resource change */
-        self::updateAssetsChanges($asset_name);
+        self::updateAssetsChanges($assetName);
 
-        /* set file mime type */
-        self::setMimeType($asset_name);
+        self::setMimeType($assetName);
 
-        /* return asset */
-        return Manager::getAsset($asset_name)->dump();
+        return Manager::getAsset($assetName)->dump();
     }
 
     /**
      * Remove Asset From Session
      *
-     * @param string $asset_name
+     * @param string $assetName
      * @return array
      */
-    public static function removeAsset($asset_name)
+    public static function removeAsset($assetName)
     {
-        return array_diff(Manager::getAssetManager()->getNames(), [$asset_name]);
+        return array_diff(Manager::getAssetManager()->getNames(), [$assetName]);
     }
 
     /**
      * Check if Asset Is Valid in Session
      *
-     * @param string $asset_name
+     * @param string $assetName
      * @return bool
      */
-    public static function checkIfAssetIsValid($asset_name)
+    public static function checkIfAssetIsValid($assetName)
     {
-        return Arrays::inArray($asset_name, self::getAvailableAssets()) && Manager::getAssetManager()->has($asset_name);
+        return Arrays::inArray($assetName, self::getAvailableAssets()) && Manager::getAssetManager()->has($assetName);
     }
 }

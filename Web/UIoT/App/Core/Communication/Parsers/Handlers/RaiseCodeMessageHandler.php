@@ -26,14 +26,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class RaiseCodeMessageHandler
- *
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
 class RaiseCodeMessageHandler extends RequestSingleton
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
@@ -42,7 +39,6 @@ class RaiseCodeMessageHandler extends RequestSingleton
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
-     *
      * @return void
      */
     public function parse($requestContent)

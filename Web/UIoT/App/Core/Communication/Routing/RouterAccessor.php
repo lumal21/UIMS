@@ -33,20 +33,16 @@ use UIoT\App\Data\Interfaces\Routing\NodeHandlerInterface;
 class RouterAccessor
 {
     /**
-     * Node List
-     *
      * @var array
      */
-    private static $node_list = [];
+    private static $nodeList = [];
+    
     /**
-     * Router Instance
-     *
      * @var IRouter
      */
     private $router = null;
+
     /**
-     * PathFinder Instance
-     *
      * @var PathFinder
      */
     private $pathFinder = null;
@@ -62,7 +58,8 @@ class RouterAccessor
      */
     public static function addRoute($path, $callback, $priority, $method, $group)
     {
-        self::$node_list[self::getNodeListSize() + 1] = ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
+        self::$nodeList[self::getNodeListSize() + 1] = 
+            ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
     }
 
     /**
@@ -82,7 +79,7 @@ class RouterAccessor
      */
     public static function getNodeList()
     {
-        return self::$node_list;
+        return self::$nodeList;
     }
 
     /**

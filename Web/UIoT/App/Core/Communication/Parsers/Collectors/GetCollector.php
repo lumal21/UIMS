@@ -30,14 +30,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class GetCollector
- *
  * @package UIoT\App\Core\Communication\Parsers\Collectors
  */
 class GetCollector extends RequestSingleton
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
@@ -46,7 +43,6 @@ class GetCollector extends RequestSingleton
      * Parse Request Data or Do Request
      *
      * @param mixed $resourceName
-     *
      * @return void
      */
     public function parse($resourceName)
@@ -54,18 +50,18 @@ class GetCollector extends RequestSingleton
         $resourceIdTreater = ResourceIdTreater::getInstance();
         $resourceIdTreater->parse(Raise::doRequest('resources?name=' . $resourceName));
 
-        if ($resourceIdTreater->getDone()):
+        if ($resourceIdTreater->getDone()) {
             $this->setResponse($resourceIdTreater->getResponse());
             return;
-        endif;
+        }
 
         $resourcePropertiesTreater = ResourcePropertiesTreater::getInstance();
         $resourcePropertiesTreater->parse(Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
 
-        if ($resourcePropertiesTreater->getDone()):
+        if ($resourcePropertiesTreater->getDone()) {
             $this->setResponse($resourceIdTreater->getResponse());
             return;
-        endif;
+        }
 
         $dataTableHandler = DataTableHandler::getInstance();
         $dataTableHandler->parse(['keys' => $resourcePropertiesTreater->getResponse(), 'values' => Raise::doRequest($resourceName)]);

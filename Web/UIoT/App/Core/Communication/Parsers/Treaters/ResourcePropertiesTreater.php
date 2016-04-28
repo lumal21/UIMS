@@ -26,14 +26,11 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class ResourcePropertiesTreater
- *
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
 class ResourcePropertiesTreater extends RequestSingleton
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
@@ -42,23 +39,22 @@ class ResourcePropertiesTreater extends RequestSingleton
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
-     *
      * @return void
      */
     public function parse($requestContent)
     {
-        if (is_object($requestContent)):
+        if (is_object($requestContent)) {
             $raiseObjectTreater = ResourceObjectTreater::getInstance();
             $raiseObjectTreater->parse($requestContent);
 
-            if ($raiseObjectTreater->getDone()):
+            if ($raiseObjectTreater->getDone()) {
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
-            endif;
-        elseif (is_array($requestContent)):
-            $this->setResponse($requestContent);
-            return;
-        endif;
+            } elseif (is_array($requestContent)) {
+                $this->setResponse($requestContent);
+                return;
+            }
+        }
     }
 }
