@@ -86,7 +86,7 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        if (!Factory::controllerActionExists($this->controllerName, $this->controllerAction))
+        if(!Factory::controllerActionExists($this->controllerName, $this->controllerAction))
             $this->throwNonExistentActionError();
 
         // Set Controller Data

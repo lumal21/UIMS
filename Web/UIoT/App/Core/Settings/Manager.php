@@ -59,7 +59,7 @@ class Manager
      */
     public function setVariable($variableName, $variableValue)
     {
-        if (!property_exists($this->settingModel, $variableName))
+        if(!property_exists($this->settingModel, $variableName))
             throw new UnexpectedValueException("Setting property $variableName doesn't exists in class " . get_class($this->settingModel));
 
         $this->settingModel->$variableName = $variableValue;

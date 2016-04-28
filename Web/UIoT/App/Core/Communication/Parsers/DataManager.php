@@ -57,7 +57,7 @@ final class DataManager
      */
     private static function configureManager()
     {
-        foreach (DataHandler::getNames() as $method => $name)
+        foreach(DataHandler::getNames() as $method => $name)
             self::$parsers[Strings::toActionName($name)] = ['name' => Strings::toActionName($name), 'method' => $method];
     }
 
@@ -70,7 +70,7 @@ final class DataManager
      */
     private static function getParserVariable($name, $variable)
     {
-        if (!array_key_exists($name, self::getParsers())) {
+        if(!array_key_exists($name, self::getParsers())) {
             throw new InvalidArgumentException('Invalid Requested Raise Method', '501');
         }
 

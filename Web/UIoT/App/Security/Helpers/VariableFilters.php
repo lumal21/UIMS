@@ -36,9 +36,9 @@ final class VariableFilters
      */
     public static function sanitizeVariable($inputVariable = '')
     {
-        if (is_array($inputVariable) || is_object($inputVariable))
+        if(is_array($inputVariable) || is_object($inputVariable))
             return array_map(__METHOD__, (array)$inputVariable);
-        if (is_string($inputVariable))
+        if(is_string($inputVariable))
             return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $inputVariable);
         return $inputVariable;
     }

@@ -101,7 +101,7 @@ final class Register
      */
     public static function extractVariables($template = '', $variables)
     {
-        foreach ($variables as $word => $content)
+        foreach($variables as $word => $content)
             $template = str_replace($word, $content, $template);
 
         return $template;
