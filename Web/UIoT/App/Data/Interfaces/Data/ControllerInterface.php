@@ -31,5 +31,5 @@ interface ControllerInterface
     /**
      * @return mixed
      */
-    public function __actionMain();
+    public function actionMain();
 }

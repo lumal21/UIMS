@@ -35,7 +35,7 @@ final class Login extends ControllerSingleton
      *
      * @return string
      */
-    public function __actionMain()
+    public function actionMain()
     {
         $c = '<div class="row"><div class="large-10 columns"><label>Username:<input type="text" name="user" /></label></div></div>';
         $c .= '<div class="row"><div class="large-10 columns"><label>Password:<input type="password" name="password" /></label></div></div>';
@@ -47,7 +47,7 @@ final class Login extends ControllerSingleton
      *
      * @return string
      */
-    public function __actionPost()
+    public function actionPost()
     {
         $message = ['text' => 'Hello! testing message system ;)'];
         $c = '<div class="row"><div class="large-10 columns"><label class="error">Username:<input type="text" name="user" class="error"/></label><small class="error">' . $message['text'] . "</small></div></div>";

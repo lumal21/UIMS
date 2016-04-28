@@ -36,7 +36,7 @@ class Arrays
      */
     public static function toActionName($x)
     {
-        return Strings::toActionName(stripos($x, '__action') !== false ? (str_ireplace('__action', '', $x)) : $x);
+        return Strings::toActionName(stripos($x, 'action') !== false ? (str_ireplace('action', '', $x)) : $x);
     }
 
     /**

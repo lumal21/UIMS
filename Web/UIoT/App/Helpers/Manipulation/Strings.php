@@ -83,7 +83,7 @@ class Strings
      */
     public static function toActionMethodName($string = '')
     {
-        return ('__action' . self::toActionName($string));
+        return ('action' . self::toActionName($string));
     }
 
     /**

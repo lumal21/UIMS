@@ -35,17 +35,7 @@ final class Home extends ControllerSingleton
      *
      * @return string|null
      */
-    public function __actionMain()
-    {
-        return '';
-    }
-
-    /**
-     * This is an Example and Beta Code!
-     *
-     * @return string
-     */
-    public function __actionPost()
+    public function actionMain()
     {
         return '';
     }

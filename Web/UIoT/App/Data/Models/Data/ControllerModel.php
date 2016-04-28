@@ -41,7 +41,7 @@ abstract class ControllerModel implements ControllerInterface
     /**
      * Default Action
      */
-    public function __actionMain()
+    public function actionMain()
     {
         /* nothing to do */
     }
