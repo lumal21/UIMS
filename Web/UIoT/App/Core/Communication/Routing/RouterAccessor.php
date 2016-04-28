@@ -36,7 +36,7 @@ class RouterAccessor
      * @var array
      */
     private static $nodeList = [];
-    
+
     /**
      * @var IRouter
      */
@@ -58,7 +58,7 @@ class RouterAccessor
      */
     public static function addRoute($path, $callback, $priority, $method, $group)
     {
-        self::$nodeList[self::getNodeListSize() + 1] = 
+        self::$nodeList[self::getNodeListSize() + 1] =
             ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
     }
 

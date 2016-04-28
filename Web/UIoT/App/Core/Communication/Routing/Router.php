@@ -133,7 +133,7 @@ final class Router extends RouterAccessor
      */
     protected function performCoreUpdate()
     {
-        array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'], 
+        array_map([$this->getPathFinder()->getNodeIndexer(), 'performCoreUpdate'],
             $this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue());
     }
 }

@@ -67,7 +67,7 @@ final class Data
                 return $this->data->headers;
             case 'body':
             default:
-            return $this->data->body;
+                return $this->data->body;
         }
     }
 
