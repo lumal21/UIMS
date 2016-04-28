@@ -31,7 +31,6 @@ use UIoT\App\Data\Models\Routing\NodeModel;
 interface NodeHandlerInterface
 {
     /**
-     *
      * NodeHandlerInterface constructor.
      *
      * @param NodeModel $node
@@ -40,7 +39,6 @@ interface NodeHandlerInterface
 
     /**
      * @param array ...$arguments
-     *
      * @return mixed
      */
     public function callValue(...$arguments);
@@ -57,7 +55,6 @@ interface NodeHandlerInterface
 
     /**
      * @param $result
-     *
      * @return mixed
      */
     public function setResult($result);
@@ -73,18 +70,16 @@ interface NodeHandlerInterface
     public function getNodeModel();
 
     /**
-     * @param $node_model
-     *
+     * @param $nodeModel
      * @return mixed
      */
-    public function setNodeModel($node_model);
+    public function setNodeModel($nodeModel);
 
     /**
-     * @param $result_content
-     *
+     * @param $resultContent
      * @return mixed
      */
-    public function setResultContent($result_content);
+    public function setResultContent($resultContent);
 
     /**
      * @return mixed

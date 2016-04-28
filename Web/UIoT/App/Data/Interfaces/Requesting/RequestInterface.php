@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Interfaces\Requesting;
 
 /**
  * Interface RequestInterface
- *
  * @package UIoT\App\Data\Interfaces\Requesting
  */
 interface RequestInterface
@@ -33,7 +32,6 @@ interface RequestInterface
      * Parse Request Data or Do Request
      *
      * @param mixed $requestContent
-     *
      * @return void
      */
     function parse($requestContent);
@@ -49,7 +47,6 @@ interface RequestInterface
      * Set Job Status
      *
      * @param boolean $jobStatus
-     *
      * @return void
      */
     function setDone($jobStatus);
@@ -58,7 +55,6 @@ interface RequestInterface
      * Set Response Content
      *
      * @param mixed $responseContent
-     *
      * @return void
      */
     function setResponse($responseContent);

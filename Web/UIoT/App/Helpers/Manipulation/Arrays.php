@@ -29,9 +29,7 @@ namespace UIoT\App\Helpers\Manipulation;
 class Arrays
 {
     /**
-     *
      * Convert String to ActionName
-     * (Used on Array_Map)
      *
      * @param $x
      * @return string
@@ -42,23 +40,7 @@ class Arrays
     }
 
     /**
-     *
-     * Check if is InstanceOf
-     * (Used on ArrayMap)
-     *
-     * @param $a
-     * @param string $b
-     * @return mixed
-     */
-    public static function checkIsInstanceOf($a, $b)
-    {
-        return $a instanceof $b ? $a() : $a;
-    }
-
-    /**
-     *
      * Convert to Controller Name
-     * (Used on ArrayMap)
      *
      * @param $x
      * @return string
@@ -69,11 +51,9 @@ class Arrays
     }
 
     /**
-     *
      * Convert to Controller Name an entire Array
      *
      * @param mixed $a
-     *
      * @return array
      */
     public static function toControllerArray($a = [])
@@ -82,12 +62,10 @@ class Arrays
     }
 
     /**
-     *
      * Case Insensitive in Array
      *
      * @param mixed $needle
      * @param mixed $haystack
-     *
      * @return bool
      */
     public static function inArray($needle, $haystack)

@@ -29,17 +29,16 @@ namespace UIoT\App\Data\Interfaces\Routing;
 interface NodeInterface
 {
     /**
-     *
      * NodeInterface constructor.
      *
-     * @param $node_id
+     * @param $nodeId
      * @param $path
-     * @param $callback
+     * @param $callBack
      * @param $priority
      * @param $method
      * @param $group
      */
-    public function __construct($node_id, $path, $callback, $priority, $method, $group);
+    public function __construct($nodeId, $path, $callBack, $priority, $method, $group);
 
     /**
      * @return mixed
@@ -60,13 +59,13 @@ interface NodeInterface
     /**
      * @return mixed
      */
-    public function getCallback();
+    public function getCallBack();
 
     /**
-     * @param $callback
+     * @param $callBack
      * @return mixed
      */
-    public function setCallback($callback);
+    public function setCallBack($callBack);
 
     /**
      * @return mixed
@@ -96,8 +95,8 @@ interface NodeInterface
     public function getNodeGroup();
 
     /**
-     * @param $node_group
+     * @param $nodeGroup
      * @return mixed
      */
-    public function setNodeGroup($node_group);
+    public function setNodeGroup($nodeGroup);
 }

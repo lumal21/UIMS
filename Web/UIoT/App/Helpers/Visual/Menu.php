@@ -29,9 +29,7 @@ namespace UIoT\App\Helpers\Visual;
 final class Menu
 {
     /**
-     * Final Menu
-     *
-     * @var string
+     * @var string internal content
      */
     private $content = '';
 
@@ -39,14 +37,14 @@ final class Menu
      * Add Menu Item
      *
      * @param string $url
-     * @param string $div_class
-     * @param string $div_id
+     * @param string $divClass
+     * @param string $divId
      * @param string $text
-     * @param string $ref_label
+     * @param string $refLabel
      */
-    public function __addItem($url = '', $div_class = '', $div_id = '', $text = '', $ref_label = '')
+    public function addItem($url = '', $divClass = '', $divId = '', $text = '', $refLabel = '')
     {
-        $this->content .= '<li class="' . $ref_label . '"><a href="' . $url . '" ><i class="' . $div_class . '" id="' . $div_id . '"></i > ' . $text . '</a ></li >';
+        $this->content .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass . '" id="' . $divId . '"></i > ' . $text . '</a ></li >';
     }
 
     /**
@@ -55,7 +53,7 @@ final class Menu
      * @param string $text
      * @param string $icon
      */
-    public function __addLabel($text = '', $icon = '')
+    public function addLabel($text = '', $icon = '')
     {
         $this->content .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
     }
@@ -63,7 +61,7 @@ final class Menu
     /**
      * Return Content
      */
-    public function __returnItems()
+    public function returnContent()
     {
         echo $this->content;
     }

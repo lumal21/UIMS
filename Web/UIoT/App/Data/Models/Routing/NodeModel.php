@@ -31,47 +31,31 @@ use UIoT\App\Data\Interfaces\Routing\NodeInterface;
 class NodeModel implements NodeInterface
 {
     /**
-     * Node Path
-     *
      * @var string
      */
     protected $path = null;
 
     /**
-     * Node Group
-     *
      * @var string
      */
-    protected $node_group = 'default';
+    protected $nodeGroup = 'default';
 
     /**
-     * Node Id
-     *
      * @var int
      */
-    protected $node_id = null;
+    protected $nodeId = null;
 
     /**
-     * Node Callback
-     *
      * @var NodeHandlerModel
      */
-    protected $callback = null;
+    protected $callBack = null;
 
     /**
-     * Item Priority
-     *  Can be:
-     *  1,2,3.....N
-     *
      * @var int
      */
     protected $priority = 0;
 
     /**
-     * Item Router Call Function
-     *  Can be:
-     *  get,post,put,delete,set404,mount,before,options,patch
-     *
      * @var string
      */
     protected $method = 'get';
@@ -79,20 +63,20 @@ class NodeModel implements NodeInterface
     /**
      * Node constructor.
      *
-     * @param int $node_id
+     * @param int $nodeId
      * @param string $path
-     * @param $callback
+     * @param $callBack
      * @param int $priority
      * @param string $method
      * @param string $group
      */
-    public function __construct($node_id, $path, $callback, $priority, $method, $group)
+    public function __construct($nodeId, $path, $callBack, $priority, $method, $group)
     {
-        $this->setNodeId($node_id);
+        $this->setNodeId($nodeId);
 
         $this->setPath($path);
 
-        $this->setCallback($callback);
+        $this->setCallBack($callBack);
 
         $this->setPriority($priority);
 
@@ -136,9 +120,9 @@ class NodeModel implements NodeInterface
      *
      * @return NodeHandlerModel
      */
-    public function getCallback()
+    public function getCallBack()
     {
-        return $this->callback;
+        return $this->callBack;
     }
 
     /**
@@ -146,9 +130,9 @@ class NodeModel implements NodeInterface
      *
      * @param NodeHandlerModel
      */
-    public function setCallback($callback)
+    public function setCallBack($callBack)
     {
-        $this->callback = $callback;
+        $this->callBack = $callBack;
     }
 
     /**
@@ -198,17 +182,17 @@ class NodeModel implements NodeInterface
      */
     public function getNodeId()
     {
-        return $this->node_id;
+        return $this->nodeId;
     }
 
     /**
      * Set Node Id
      *
-     * @param int $node_id
+     * @param int $nodeId
      */
-    public function setNodeId($node_id)
+    public function setNodeId($nodeId)
     {
-        $this->node_id = $node_id;
+        $this->nodeId = $nodeId;
     }
 
     /**
@@ -218,16 +202,16 @@ class NodeModel implements NodeInterface
      */
     public function getNodeGroup()
     {
-        return $this->node_group;
+        return $this->nodeGroup;
     }
 
     /**
      * Set Node Group
      *
-     * @param string $node_group
+     * @param string $nodeGroup
      */
-    public function setNodeGroup($node_group)
+    public function setNodeGroup($nodeGroup)
     {
-        $this->node_group = $node_group;
+        $this->nodeGroup = $nodeGroup;
     }
 }

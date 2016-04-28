@@ -26,21 +26,16 @@ use UIoT\App\Data\Models\Data\LayoutModel;
 
 /**
  * Class LayoutSingleton
- *
  * @package UIoT\App\Data\Singletons
  */
 class LayoutSingleton extends LayoutModel
 {
     /**
-     *
-     * Layout Model Instance
-     *
      * @var LayoutModel
      */
     protected static $layoutInstance = null;
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __construct()
@@ -49,24 +44,22 @@ class LayoutSingleton extends LayoutModel
     }
 
     /**
-     *
      * Execute Layout and Return Rendered Layout
      *
      * @return mixed|void
      */
-    public static function __run()
+    public static function executeLayout()
     {
-        static::getInstance()->__resources();
+        static::getInstance()->getResources();
 
-        static::getInstance()->__configuration();
+        static::getInstance()->configureLayout();
 
-        static::getInstance()->__templates();
+        static::getInstance()->setTemplates();
 
-        return static::getInstance()->__show();
+        return static::getInstance()->showLayout();
     }
 
     /**
-     *
      * Return Instance of Layout
      *
      * @return LayoutModel|mixed
@@ -84,13 +77,12 @@ class LayoutSingleton extends LayoutModel
      *
      * @return mixed|void
      */
-    public static function __res()
+    public static function callResource()
     {
-        return static::getInstance()->__resources();
+        return static::getInstance()->getResources();
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __clone()
@@ -99,7 +91,6 @@ class LayoutSingleton extends LayoutModel
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __wakeup()

@@ -27,26 +27,20 @@ use UIoT\App\Exception\Manager;
 
 /**
  * Class Files
- *
  * @package UIoT\App\Helpers\Manipulation
- *
  * @observation this is a singleton
  */
 class Files
 {
     /**
-     * File Instance
-     *
-     * @var SplFileInfo|null
+     * @var SplFileInfo|null File Info Instance
      */
-    protected static $spl_file_info_instance;
+    protected static $fileInfoInstance;
 
     /**
-     * File Instance
-     *
-     * @var Files
+     * @var Files File Instance
      */
-    protected static $files_instance;
+    protected static $fileInstance;
 
     /**
      * Instantiate SplFileInfo Class
@@ -55,23 +49,21 @@ class Files
      */
     final private function __construct()
     {
-        if (NULL !== self::$files_instance)
+        if (null !== self::$fileInstance)
             return;
 
-        Manager::throwError(908, 'Stop!', 'You cannot instantiate a singleton!', [
-            'What happened?' => 'Singletons are not instantiated by the user!']);
+        Manager::throwError(908, 'Stop!', 'You cannot instantiate a singleton!', ['What happened?' => 'Singletons are not instantiated by the user!']);
     }
 
     /**
      * Get File Base Name
      *
-     * @param string $file_path
-     *
+     * @param string $filePath
      * @return string
      */
-    public static function getBaseName($file_path)
+    public static function getBaseName($filePath)
     {
-        self::checkInstance($file_path);
+        self::checkInstance($filePath);
 
         return self::getSplFileInfoInstance()->getBasename('.' . self::getSplFileInfoInstance()->getExtension());
     }
@@ -79,22 +71,22 @@ class Files
     /**
      * Check Instance
      *
-     * @param $file_name
+     * @param $fileName
      */
-    final private static function checkInstance($file_name)
+    final private static function checkInstance($fileName)
     {
-        if (self::$spl_file_info_instance === null)
-            self::create($file_name);
+        if (self::$fileInfoInstance === null)
+            self::create($fileName);
     }
 
     /**
      * Instantiate SplFileInfo Class
      *
-     * @param $file_name
+     * @param $fileName
      */
-    final private static function create($file_name)
+    final private static function create($fileName)
     {
-        empty($file_name) || self::$spl_file_info_instance = new SplFileInfo($file_name);
+        empty($fileName) || self::$fileInfoInstance = new SplFileInfo($fileName);
     }
 
     /**
@@ -104,19 +96,18 @@ class Files
      */
     private static function getSplFileInfoInstance()
     {
-        return self::$spl_file_info_instance;
+        return self::$fileInfoInstance;
     }
 
     /**
      * Get File Extension
      *
-     * @param string $file_path
-     *
+     * @param string $filePath
      * @return string
      */
-    public static function getExtension($file_path)
+    public static function getExtension($filePath)
     {
-        self::checkInstance($file_path);
+        self::checkInstance($filePath);
 
         return self::getSplFileInfoInstance()->getExtension();
     }
@@ -124,13 +115,12 @@ class Files
     /**
      * Get Only File Name
      *
-     * @param $file_path
-     *
+     * @param $filePath
      * @return string
      */
-    public static function getFileName($file_path)
+    public static function getFileName($filePath)
     {
-        self::checkInstance($file_path);
+        self::checkInstance($filePath);
 
         return self::getSplFileInfoInstance()->getFilename();
     }
@@ -150,7 +140,7 @@ class Files
      */
     final public function __destruct()
     {
-        self::$files_instance = null;
+        self::$fileInstance = null;
     }
 
     /**
@@ -160,10 +150,10 @@ class Files
      */
     public static function getLastInstance()
     {
-        if (NULL === self::$files_instance)
-            self::$files_instance = new self;
+        if (NULL === self::$fileInstance)
+            self::$fileInstance = new self;
 
-        return self::$files_instance;
+        return self::$fileInstance;
     }
 
     /**
@@ -171,6 +161,6 @@ class Files
      */
     final private function __clone()
     {
-        self::$spl_file_info_instance = clone self::$spl_file_info_instance;
+        self::$fileInfoInstance = clone self::$fileInfoInstance;
     }
 }

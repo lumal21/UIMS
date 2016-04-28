@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Interfaces\Data;
 
 /**
  * Interface ControllerInterface
- *
  * @package UIoT\App\Data\Interfaces\Data
  */
 interface ControllerInterface

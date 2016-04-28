@@ -30,46 +30,27 @@ use Whitelist\Check;
 
 /**
  * Class Manager
- * Security Manager
- *
  * @package UIoT\App\Security
  */
 final class Manager
 {
     /**
-     * this class will use security helpers
-     * like:
-     *  - string cleaning
-     *  - ip verification
-     *  - xss verification
-     *  - filter all $_REQUESTS
-     *  - handle white list-ip system
-     *  - and more
-     * @param array $arguments
-     */
-
-    /**
-     *
-     * Settings variable
-     *
      * @var SecuritySettingsModel
      */
     private $settings;
 
     /**
-     * @var Check
+     * @var Check White List Checker
      */
-    private static $white_list;
+    private static $whiteList;
 
     /**
      * Start Security Handler
      */
     public function __construct()
     {
-        /* set settings */
         $this->setSettings(SettingsRegister::getSetting('security'));
 
-        /* start white list checker */
         $this->startWhiteList();
     }
 
@@ -78,10 +59,8 @@ final class Manager
      */
     private function startWhiteList()
     {
-        /* start white list checker */
-        self::$white_list = new Check;
+        self::$whiteList = new Check;
 
-        /* load white list ip */
         self::loadIpWhiteList($this->settings->whiteIpList);
     }
 
@@ -92,7 +71,7 @@ final class Manager
      */
     public static function loadIpWhiteList($arguments = [])
     {
-        self::$white_list->whitelist((array)$arguments);
+        self::$whiteList->whitelist((array)$arguments);
     }
 
     /**
@@ -102,7 +81,7 @@ final class Manager
      */
     public static function checkWhiteListIp()
     {
-        return self::$white_list->check(ClientData::getRealClientIpAddress());
+        return self::$whiteList->check(ClientData::getRealClientIpAddress());
     }
 
     /**
@@ -137,7 +116,6 @@ final class Manager
     }
 
     /**
-     *
      * Set settings
      *
      * @param SecuritySettingsModel $settings

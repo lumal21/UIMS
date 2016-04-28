@@ -81,7 +81,7 @@ final class PathFinder
         foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge):
 
             /* serialize edge data to the callback */
-            $edge->getCallback()->setNodeModel($edge);
+            $edge->getCallBack()->setNodeModel($edge);
 
             /* don't repeat same items if is recursively */
             if (($edge->getPriority() <= $node->getPriority()) && $recursively)
@@ -91,7 +91,7 @@ final class PathFinder
             $this->mountRouterNode($router, $edge);
 
             /* serialize data callback */
-            $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallback(), 'callValue']);
+            $router->{$edge->getMethod()}($edge->getPath(), [$edge->getCallBack(), 'callValue']);
 
         endforeach;
     }
@@ -139,7 +139,7 @@ final class PathFinder
     {
         /* serialize all call backs data */
         array_walk_recursive($nodes, function (NodeModel $edge) {
-            $edge->getCallback()->setNodeModel($edge);
+            $edge->getCallBack()->setNodeModel($edge);
         });
     }
 }

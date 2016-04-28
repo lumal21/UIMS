@@ -78,7 +78,7 @@ final class Factory
      */
     public static function getLayout($layout_name)
     {
-        return self::layoutExists($layout_name) ? self::callLayoutStaticMethod($layout_name, '__run') : '';
+        return self::layoutExists($layout_name) ? self::callLayoutStaticMethod($layout_name, 'executeLayout') : '';
     }
 
     /**
@@ -103,6 +103,6 @@ final class Factory
      */
     public static function getLayoutResources($layout_name)
     {
-        self::callLayoutStaticMethod($layout_name, '__res');
+        self::callLayoutStaticMethod($layout_name, 'callResource');
     }
 }

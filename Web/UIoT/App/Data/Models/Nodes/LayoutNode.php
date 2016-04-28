@@ -31,7 +31,6 @@ use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class LayoutNode
- *
  * @package UIoT\App\Data\Models\Nodes
  */
 class LayoutNode extends NodeHandlerModel

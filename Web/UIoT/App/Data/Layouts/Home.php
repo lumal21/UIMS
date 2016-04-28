@@ -30,16 +30,14 @@ use UIoT\App\Helpers\Visual\Pages;
 
 /**
  * Class Home
- *
  * @package UIoT\App\Data\Layouts
  */
 class Home extends LayoutSingleton
 {
     /**
-     *
      * Set Resources
      */
-    public function __resources()
+    public function getResources()
     {
         AssetIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
         AssetIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
@@ -58,19 +56,17 @@ class Home extends LayoutSingleton
     }
 
     /**
-     *
      * Set Configuration
      */
-    public function __configuration()
+    public function configureLayout()
     {
         Pages::setTitle('Welcome to UIoT');
     }
 
     /**
-     *
      * Set Templates
      */
-    public function __templates()
+    public function setTemplates()
     {
         TemplateIndexer::setTemplateFolder('Home');
         TemplateIndexer::addVariable('{{resource_content}}', Render::getControllerData());
@@ -78,12 +74,11 @@ class Home extends LayoutSingleton
     }
 
     /**
-     *
      * Return Template Code
      *
      * @return null|mixed|string
      */
-    public function __show()
+    public function showLayout()
     {
         return TemplateIndexer::returnTemplates();
     }

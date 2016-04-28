@@ -26,43 +26,38 @@ use UIoT\App\Data\Interfaces\Data\LayoutInterface;
 
 /**
  * Class LayoutModel
- *
  * @package UIoT\App\Data\Models\Data
  */
 class LayoutModel implements LayoutInterface
 {
     /**
-     *
      * Define Resources
      */
-    public function __resources()
+    public function getResources()
     {
         /* not implemented */
     }
 
     /**
-     *
      * Define Settings
      */
-    public function __configuration()
+    public function configureLayout()
     {
         /* not implemented */
     }
 
     /**
-     *
      * Define Templates
      */
-    public function __templates()
+    public function setTemplates()
     {
         /* not implemented */
     }
 
     /**
-     *
      * Return Layout Code
      */
-    public function __show()
+    public function showLayout()
     {
         /* not implemented */
     }

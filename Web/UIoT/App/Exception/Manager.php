@@ -27,8 +27,6 @@ use UIoT\App\Security\Manager as SecurityHandler;
 
 /**
  * Class Manager
- * Exception Manager
- *
  * @package UIoT\App\Exception
  */
 final class Manager
@@ -48,25 +46,22 @@ final class Manager
     }
 
     /**
-     *
      * Create a Message for Whoops
-     * Is a function to create a custom message, without stack trace.
      *
      * @param int $code
      * @param string $title
-     * @param string $message_title
+     * @param string $messageTitle
      * @param array $message
-     * @param bool $security_error
-     *
+     * @param bool $securityError
      * @throws Exception
      */
-    public static function throwError($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
+    public static function throwError($code = 1, $title = '', $messageTitle = '', $message = [], $securityError = false)
     {
         /* check if you have valid access */
-        !$security_error || SecurityHandler::checkIpAddressAuthority();
+        !$securityError || SecurityHandler::checkIpAddressAuthority();
 
         /* add data table */
-        Register::getHandler()->addDataTable($message_title, $message);
+        Register::getHandler()->addDataTable($messageTitle, $message);
 
         /* handle exception - need to be $this to don't make a infinite recursive loop */
         Register::getRunner()->handleException(new Exception($title, $code));

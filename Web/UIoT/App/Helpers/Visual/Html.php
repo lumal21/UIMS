@@ -34,7 +34,7 @@ final class Html
     /**
      * @var string
      */
-    private static $internal_formatted_code = '';
+    private static $internalCode = '';
 
     /**
      * Add Code, Format and Store
@@ -53,7 +53,7 @@ final class Html
      */
     public static function add($code = '')
     {
-        self::$internal_formatted_code .= $code;
+        self::$internalCode .= $code;
     }
 
     /**
@@ -74,7 +74,7 @@ final class Html
      */
     public static function get()
     {
-        return self::$internal_formatted_code;
+        return self::$internalCode;
     }
 
     /**
@@ -84,6 +84,6 @@ final class Html
      */
     public static function getFormat()
     {
-        return self::format(self::$internal_formatted_code);
+        return self::format(self::$internalCode);
     }
 }

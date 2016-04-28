@@ -31,32 +31,24 @@ use UIoT\App\Data\Interfaces\Routing\NodeHandlerInterface;
 class NodeHandlerModel implements NodeHandlerInterface
 {
     /**
-     * Node Model
-     *
      * @var NodeModel|null
      */
-    protected $node_model;
+    protected $nodeModel;
 
     /**
-     * Result of Callback
-     *
      * @var bool
      */
     protected $result = false;
 
     /**
-     * Path Value
-     *
      * @var string[]
      */
-    protected $path_value = [];
+    protected $pathValue = [];
 
     /**
-     * CallBack Content Result
-     *
      * @var string
      */
-    protected $result_content = '';
+    protected $resultContent = '';
 
     /**
      * NodeHandlerModel constructor.
@@ -65,7 +57,6 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function __construct(NodeModel $node = null)
     {
-        /* optional set node model */
         $this->setNodeModel($node);
     }
 
@@ -77,14 +68,11 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function callValue(...$arguments)
     {
-        /* foreach arguments */
         foreach ($arguments as $argument)
-            $this->path_value[] = $argument;
+            $this->pathValue[] = $argument;
 
-        /* call callback function */
         $this->call();
 
-        /* return rendered content */
         echo $this->getResultContent();
     }
 
@@ -103,17 +91,17 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function getResultContent()
     {
-        return $this->result_content;
+        return $this->resultContent;
     }
 
     /**
      * Set Result Content
      *
-     * @param null|string $result_content
+     * @param null|string $resultContent
      */
-    public function setResultContent($result_content)
+    public function setResultContent($resultContent)
     {
-        $this->result_content = $result_content;
+        $this->resultContent = $resultContent;
     }
 
     /**
@@ -143,7 +131,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function getPathValue()
     {
-        return $this->path_value;
+        return $this->pathValue;
     }
 
     /**
@@ -153,16 +141,16 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function getNodeModel()
     {
-        return $this->node_model;
+        return $this->nodeModel;
     }
 
     /**
      * Set Node Model
      *
-     * @param NodeModel|null $node_model
+     * @param NodeModel|null $nodeModel
      */
-    public function setNodeModel($node_model = null)
+    public function setNodeModel($nodeModel = null)
     {
-        $this->node_model = $node_model;
+        $this->nodeModel = $nodeModel;
     }
 }

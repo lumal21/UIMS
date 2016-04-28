@@ -48,6 +48,7 @@ final class ClientData
      * Check Specific IP Combination
      *
      * @param string $key
+     *
      * @return string|false
      */
     private static function checkIpCombination($key = '')

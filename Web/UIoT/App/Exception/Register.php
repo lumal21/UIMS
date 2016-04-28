@@ -28,8 +28,6 @@ use Whoops\Run;
 
 /**
  * Class Register
- * Exception Template Data/Configuration Register
- *
  * @package UIoT\App\Exception
  */
 final class Register

@@ -26,42 +26,31 @@ use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
  * Class RaiseSettingsModel
- *
  * @package UIoT\App\Data\Models\Settings
  */
 final class RaiseSettingsModel implements SettingsInterface
 {
     /**
-     *
-     * Host of raise server
-     *
      * @var string
      */
     public $raiseHost = '';
+
     /**
-     *
-     * Raise root path
-     *
      * @var string
      */
     public $raiseBasePath = '';
+
     /**
-     *
-     * Raise server port
-     *
      * @var integer
      */
     public $raisePort = 80;
+
     /**
-     *
-     * Raise server is using ssl connection
-     *
      * @var boolean
      */
     public $raiseSsl = false;
 
     /**
-     *
      * Return Block Name
      *
      * @return string
@@ -71,4 +60,3 @@ final class RaiseSettingsModel implements SettingsInterface
         return 'raise';
     }
 }
-

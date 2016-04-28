@@ -66,14 +66,13 @@ class Strings
     /**
      * Check if is Equal
      *
-     * @param string $string_one
-     * @param string $string_two
-     *
+     * @param string $firstString
+     * @param string $secondString
      * @return bool
      */
-    public static function isEqual($string_one, $string_two)
+    public static function isEqual($firstString, $secondString)
     {
-        return self::toRestUrlName($string_one) == self::toRestUrlName($string_two);
+        return self::toRestUrlName($firstString) == self::toRestUrlName($secondString);
     }
 
     /**
@@ -101,22 +100,22 @@ class Strings
     /**
      * Sanitize the String
      *
-     * @param string $input_string
+     * @param string $inputString
      * @return array|mixed|string
      */
-    public static function sanitizeString($input_string = '')
+    public static function sanitizeString($inputString = '')
     {
-        return VariableFilters::sanitizeVariable((string)$input_string);
+        return VariableFilters::sanitizeVariable((string)$inputString);
     }
 
     /**
      * Check if is Regex
      *
-     * @param string $str0
+     * @param string $string
      * @return bool
      */
-    public static function isRegex($str0)
+    public static function isRegex($string)
     {
-        return (bool)preg_match("/^\/[\s\S]+\/$/", $str0);
+        return (bool)preg_match("/^\/[\s\S]+\/$/", $string);
     }
 }

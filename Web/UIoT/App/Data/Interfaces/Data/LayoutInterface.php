@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Interfaces\Data;
 
 /**
  * Interface LayoutInterface
- *
  * @package UIoT\App\Data\Interfaces\Data
  */
 interface LayoutInterface
@@ -32,20 +31,20 @@ interface LayoutInterface
     /**
      * @return mixed
      */
-    function __resources();
+    function getResources();
 
     /**
      * @return mixed
      */
-    function __configuration();
+    function configureLayout();
 
     /**
      * @return mixed
      */
-    function __templates();
+    function setTemplates();
 
     /**
      * @return mixed
      */
-    function __show();
+    function showLayout();
 }

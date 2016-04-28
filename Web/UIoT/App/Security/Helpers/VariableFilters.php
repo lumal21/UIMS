@@ -31,15 +31,15 @@ final class VariableFilters
     /**
      * Sanitize a Variable
      *
-     * @param mixed $input_variable
+     * @param mixed $inputVariable
      * @return array|mixed|string
      */
-    public static function sanitizeVariable($input_variable = '')
+    public static function sanitizeVariable($inputVariable = '')
     {
-        if (is_array($input_variable) || is_object($input_variable))
-            return array_map(__METHOD__, (array)$input_variable);
-        if (is_string($input_variable))
-            return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $input_variable);
-        return $input_variable;
+        if (is_array($inputVariable) || is_object($inputVariable))
+            return array_map(__METHOD__, (array)$inputVariable);
+        if (is_string($inputVariable))
+            return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"], ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $inputVariable);
+        return $inputVariable;
     }
 }

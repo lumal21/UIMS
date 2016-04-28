@@ -26,13 +26,11 @@ use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
  * Class Login
- *
  * @package UIoT\App\Data\Controllers
  */
 final class Login extends ControllerSingleton
 {
     /**
-     *
      * This is an Example and Beta Code!
      *
      * @return string
@@ -45,7 +43,6 @@ final class Login extends ControllerSingleton
     }
 
     /**
-     *
      * This is an Example and Beta Code!
      *
      * @return string

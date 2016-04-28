@@ -217,7 +217,7 @@ final class NodeIndexer
     public function getNodesCallBack()
     {
         return array_map(function (NodeModel $node) {
-            return $node->getCallback();
+            return $node->getCallBack();
         }, $this->getNodes());
     }
 
@@ -275,7 +275,7 @@ final class NodeIndexer
      */
     public function removeNodesFromArray(NodeModel $edge)
     {
-        $this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallback()));
+        $this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallBack()));
     }
 
     /**
@@ -290,7 +290,7 @@ final class NodeIndexer
     public function getNodesByCallBack(array $array, $value)
     {
         return array_filter($array, function (NodeModel $a) use ($value) {
-            return get_class($a->getCallback()) != get_class($value);
+            return get_class($a->getCallBack()) != get_class($value);
         });
     }
 

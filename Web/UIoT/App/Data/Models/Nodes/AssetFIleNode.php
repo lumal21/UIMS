@@ -31,7 +31,6 @@ use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class AssetFileNode
- *
  * @package UIoT\App\Data\Models\Nodes
  */
 class AssetFileNode extends NodeHandlerModel

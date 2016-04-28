@@ -26,15 +26,12 @@ use UIoT\App\Data\Interfaces\Data\ControllerInterface;
 
 /**
  * Class ControllerModel
- *
  * @package UIoT\App\Data\Models\Data
  */
 abstract class ControllerModel implements ControllerInterface
 {
     /**
      * Init Controller
-     *
-     * ControllerModel constructor.
      */
     protected function __construct()
     {

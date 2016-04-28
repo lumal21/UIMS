@@ -30,7 +30,6 @@ use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class ResourceNode
- *
  * @package UIoT\App\Data\Models\Nodes
  */
 final class ResourceNode extends NodeHandlerModel

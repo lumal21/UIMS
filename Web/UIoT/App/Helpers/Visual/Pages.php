@@ -33,24 +33,24 @@ final class Pages
     /**
      * Set Page Title
      *
-     * @param string $page_title
+     * @param string $pageTitle
      */
-    public static function setTitle($page_title)
+    public static function setTitle($pageTitle)
     {
-        Html::add("<title>{$page_title}</title>");
+        Html::add("<title>{$pageTitle}</title>");
     }
 
     /**
      * Add Embed Script
      *
-     * @param $script_name
+     * @param $scriptName
      */
-    public static function addEmbedScript($script_name)
+    public static function addEmbedScript($scriptName)
     {
         /* first add resource */
-        Register::addAsset($script_name, 'script/javascript');
+        Register::addAsset($scriptName, 'script/javascript');
 
         /* so echo the script */
-        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnResource($script_name)));
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnResource($scriptName)));
     }
 }

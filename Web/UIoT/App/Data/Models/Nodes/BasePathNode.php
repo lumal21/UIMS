@@ -29,7 +29,6 @@ use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class BasePathNode
- *
  * @package UIoT\App\Data\Models\Nodes
  */
 final class BasePathNode extends NodeHandlerModel

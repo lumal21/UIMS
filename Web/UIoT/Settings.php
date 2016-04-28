@@ -51,9 +51,9 @@ use UIoT\App\Core\Settings\Register;
 Register::prepareSettings();
 
 Register::addSettingsBlock('raise', [
-    'raiseHost' => 'localhost',
+    'raiseHost' => 'uiot_raise',
     'raiseBasePath' => '',
-    'raisePort' => 8080,
+    'raisePort' => 80,
     'raiseSsl' => false
 ]);
 

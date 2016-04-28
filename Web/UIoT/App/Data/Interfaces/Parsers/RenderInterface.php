@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Interfaces\Parsers;
 
 /**
  * Interface RenderInterface
- *
  * @package UIoT\App\Data\Interfaces\Parsers
  */
 interface RenderInterface
@@ -40,7 +39,6 @@ interface RenderInterface
      * Set Arguments
      *
      * @param $arguments
-     *
      * @return mixed
      */
     function setArguments($arguments);

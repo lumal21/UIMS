@@ -26,21 +26,16 @@ use UIoT\App\Data\Models\Data\ControllerModel;
 
 /**
  * Class ControllerSingleton
- *
  * @package UIoT\App\Data\Singletons
  */
 class ControllerSingleton extends ControllerModel
 {
     /**
-     *
-     * Controller Model Instance
-     *
      * @var ControllerModel|ControllerSingleton
      */
     protected static $controllerInstance = null;
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __construct()
@@ -49,7 +44,6 @@ class ControllerSingleton extends ControllerModel
     }
 
     /**
-     *
      * Return Instance of Controller
      *
      * @return ControllerModel|ControllerSingleton|mixed
@@ -63,7 +57,6 @@ class ControllerSingleton extends ControllerModel
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __clone()
@@ -72,7 +65,6 @@ class ControllerSingleton extends ControllerModel
     }
 
     /**
-     *
      * Abstract and Singleton Protection
      */
     protected function __wakeup()

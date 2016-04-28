@@ -26,16 +26,13 @@ use UIoT\App\Data\Interfaces\Parsers\MethodInterface;
 
 /**
  * Class MethodModel
- *
  * @package UIoT\App\Data\Models
  */
 class MethodModel implements MethodInterface
 {
     /**
-     * Method Data
-     *
      * @var object|array
-     * */
+     */
     private $data;
 
     /**
@@ -52,7 +49,6 @@ class MethodModel implements MethodInterface
      * Set Data
      *
      * @param array $data
-     *
      * @return $this
      */
     public function setData($data = [])

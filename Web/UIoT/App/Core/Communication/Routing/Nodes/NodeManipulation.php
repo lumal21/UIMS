@@ -125,7 +125,7 @@ class NodeManipulation extends Arrays
      */
     protected final static function nodeFilterByLogicComparsion($nodeElement)
     {
-        $variable = empty(self::$nodeFilter->parameterName) ? get_class($nodeElement->getCallback()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
+        $variable = empty(self::$nodeFilter->parameterName) ? get_class($nodeElement->getCallBack()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
 
         switch (self::$nodeFilter->comparsionExpression):
             default:

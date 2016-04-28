@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Interfaces\Settings;
 
 /**
  * Interface SettingsInterface
- *
  * @package UIoT\App\Data\Interfaces\Settings
  */
 interface SettingsInterface

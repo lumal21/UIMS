@@ -26,14 +26,11 @@ use UIoT\App\Data\Models\Requesting\RequestModel;
 
 /**
  * Class RequestSingleton
- *
  * @package UIoT\App\Data\Singletons
  */
 class RequestSingleton extends RequestModel
 {
     /**
-     * Controller Model Instance
-     *
      * @var RequestSingleton
      */
     private static $requestInstance = null;

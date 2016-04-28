@@ -26,35 +26,26 @@ use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
  * Class SecuritySettingsModel
- *
  * @package UIoT\App\Data\Models\Settings
  */
 final class SecuritySettingsModel implements SettingsInterface
 {
     /**
-     *
-     * Max length = 24 characters
-     *
      * @var string
      */
     public $sessionHandlerSalt = 'uniform-internetofthings';
+
     /**
-     *
-     * Session expire time interval
-     *
      * @var integer
      */
     public $sessionTimeOut = 960;
+
     /**
-     *
-     * Developer access allowed ip addresses
-     *
      * @var array
      */
     public $whiteIpList = [];
 
     /**
-     *
      * Return Block Name
      *
      * @return string
@@ -64,4 +55,3 @@ final class SecuritySettingsModel implements SettingsInterface
         return 'security';
     }
 }
-

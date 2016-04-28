@@ -26,23 +26,16 @@ use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
  * Class ResourcesSettingsModel
- *
  * @package UIoT\App\Data\Models\Settings
  */
 final class ResourcesSettingsModel implements SettingsInterface
 {
     /**
-     *
-     * Enable caching
-     *
      * @var boolean
      */
     public $enableCaching = false;
 
     /**
-     *
-     * Return Block Name
-     *
      * @return string
      */
     public function getBlockName()
@@ -50,4 +43,3 @@ final class ResourcesSettingsModel implements SettingsInterface
         return 'resources';
     }
 }
-

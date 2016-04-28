@@ -26,48 +26,35 @@ use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
  * Class ExceptionSettingsModel
- *
  * @package UIoT\App\Data\Models\Settings
  */
 final class ExceptionSettingsModel implements SettingsInterface
 {
     /**
-     *
-     * Error page title
-     *
      * @var string
      */
     public $errorPageTitle = 'Houston, we have a problem!';
+
     /**
-     *
-     * php error reporting level
-     *
      * @see http://php.net/manual/pt_BR/function.error-reporting.php
      *
-     * @var integer
+     * @var integer php error reporting level
      */
     public $errorReportingLevels = (E_ALL ^ E_WARNING);
+
     /**
-     *
-     * URI query string to access error details
-     *
-     * IP must be in white list
-     *
      * @see SecuritySettingsModel::$whiteIpList
      *
      * @var string
      */
     public $errorDeveloperCode = 'de';
+
     /**
-     *
-     * Error page resource folder
-     *
      * @var string
      */
     public $errorResourceFolder = 'Whoops';
 
     /**
-     *
      * Return Block Name
      *
      * @return string
@@ -77,4 +64,3 @@ final class ExceptionSettingsModel implements SettingsInterface
         return 'exceptions';
     }
 }
-

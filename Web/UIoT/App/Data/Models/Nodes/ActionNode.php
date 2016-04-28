@@ -29,7 +29,6 @@ use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 
 /**
  * Class ModelNode
- *
  * @package UIoT\App\Data\Models\Nodes
  */
 final class ActionNode extends NodeHandlerModel
