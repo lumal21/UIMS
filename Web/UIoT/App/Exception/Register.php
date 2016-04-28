@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Exception;
 
-use Exception;
+use UIoT\App\Core\Settings\Register as SettingsRegister;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -49,19 +49,39 @@ final class Register
     private static $runner;
 
     /**
-     * Add Resource Path
-     *
-     * @param string $resource_path
+     * Instantiate Page Handler and Whoops Runner
      */
-    public static function addResourcePath($resource_path = '')
+    public static function instantiateMembers()
     {
-        self::getHandler()->addResourcePath($resource_path);
+        self::$runner = new Run;
+
+        self::$handler = new PrettyPageHandler;
     }
 
     /**
-     * Get Handler
+     * Configure Settings
+     */
+    public static function configureMembers()
+    {
+        self::$handler->setPageTitle(SettingsRegister::getSetting('exceptions')->errorPageTitle);
+
+        error_reporting(SettingsRegister::getSetting('exceptions')->errorReportingLevels);
+    }
+
+    /**
+     * Register the Page Handler and Invoke the Runner
+     */
+    public static function invokeMembers()
+    {
+        self::$runner->register();
+
+        self::$runner->pushHandler(self::getHandler());
+    }
+
+    /**
+     * Get Template Handler
      *
-     * @return Callable|PrettyPageHandler
+     * @return PrettyPageHandler
      */
     public static function getHandler()
     {
@@ -69,89 +89,12 @@ final class Register
     }
 
     /**
-     * Set Page Handler
-     *
-     * @param PrettyPageHandler $handler
-     */
-    public static function setHandler(PrettyPageHandler $handler)
-    {
-        self::$handler = new $handler;
-    }
-
-    /**
-     * Set Page Title
-     *
-     * @param string $page_title
-     */
-    public static function setPageTitle($page_title = '')
-    {
-        self::getHandler()->setPageTitle($page_title);
-    }
-
-    /**
-     * Push the Page Handler
-     */
-    public static function pushHandler()
-    {
-        self::getRunner()->pushHandler(self::getHandler());
-    }
-
-    /**
-     * Get Runner
+     * Get Whoops Runner
      *
      * @return Run
      */
     public static function getRunner()
     {
         return self::$runner;
-    }
-
-    /**
-     * Set Page Runner
-     *
-     * @param Run $runner
-     */
-    public static function setRunner(Run $runner)
-    {
-        self::$runner = new $runner;
-    }
-
-    /**
-     * Register the Page Handler
-     */
-    public static function registerHandler()
-    {
-        self::getRunner()->register();
-    }
-
-    /**
-     * Add Data Table on Page Handler
-     *
-     * @param string $message_title
-     * @param array $message
-     */
-    public static function addDataTable($message_title = '', $message = [])
-    {
-        self::getHandler()->addDataTable($message_title, $message);
-    }
-
-    /**
-     * Handle a PhP Exception
-     *
-     * @param Exception $exception
-     */
-    public static function handleException(Exception $exception)
-    {
-        self::getRunner()->handleException($exception);
-    }
-
-    /**
-     * Set Error Reporting Levels
-     *
-     * @param string $error_levels
-     */
-    public static function setErrorLevels($error_levels = '')
-    {
-        error_reporting($error_levels);
     }
 }

@@ -22,11 +22,8 @@
 
 namespace UIoT\App\Exception;
 
-use UIoT\App\Core\Settings\Register as SettingsRegister;
-use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
-use UIoT\App\Exception\Template\Handler;
-use UIoT\App\Helpers\Manipulation\Constants;
-use Whoops\Run;
+use Exception;
+use UIoT\App\Security\Manager as SecurityHandler;
 
 /**
  * Class Manager
@@ -37,72 +34,41 @@ use Whoops\Run;
 final class Manager
 {
     /**
-     *
-     * Settings variable
-     *
-     * @var ExceptionSettingsModel
-     */
-    private static $settings;
-
-    /**
      * Create Instance of Everything
      *
      * Manager constructor.
      */
     public function __construct()
     {
-        $this->setClasses();
-        $this->setSettings();
-        $this->registerHandler();
+        Register::instantiateMembers();
+
+        Register::configureMembers();
+
+        Register::invokeMembers();
     }
 
     /**
-     * Set Classes
-     */
-    private function setClasses()
-    {
-        Register::setHandler(new Handler);
-        Register::setRunner(new Run);
-    }
-
-    /**
-     * Check if Trying to Access Developer Mode
      *
-     * @return bool
-     */
-    public static function checkDeveloperMode()
-    {
-        return Constants::returnConstant('QUERY_STRING') == self::$settings->errorDeveloperCode;
-    }
-
-    /**
-     * Set Page Handler Settings
-     */
-    private function setSettings()
-    {
-        self::$settings = SettingsRegister::getSetting('exceptions');
-
-        Register::setErrorLevels(self::$settings->errorReportingLevels);
-        Register::addResourcePath(self::getResourcePath());
-        Register::setPageTitle(self::$settings->errorPageTitle);
-    }
-
-    /**
-     * Get Resource Path
+     * Create a Message for Whoops
+     * Is a function to create a custom message, without stack trace.
      *
-     * @return string
+     * @param int $code
+     * @param string $title
+     * @param string $message_title
+     * @param array $message
+     * @param bool $security_error
+     *
+     * @throws Exception
      */
-    public static function getResourcePath()
+    public static function throwError($code = 1, $title = '', $message_title = '', $message = [], $security_error = false)
     {
-        return Constants::returnConstant('RESOURCE_FOLDER') . self::$settings->errorResourceFolder . '/';
-    }
+        /* check if you have valid access */
+        !$security_error || SecurityHandler::checkIpAddressAuthority();
 
-    /**
-     * Register Page Handler
-     */
-    private function registerHandler()
-    {
-        Register::pushHandler();
-        Register::registerHandler();
+        /* add data table */
+        Register::getHandler()->addDataTable($message_title, $message);
+
+        /* handle exception - need to be $this to don't make a infinite recursive loop */
+        Register::getRunner()->handleException(new Exception($title, $code));
     }
 }

@@ -25,7 +25,7 @@ namespace UIoT\App\Core\Controllers;
 use UIoT\App\Core\Assets\Register as AssetIndexer;
 use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Exception\Collector;
+use UIoT\App\Exception\Manager;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -117,7 +117,7 @@ final class Render implements RenderInterface
      */
     private function throwNonExistentActionError()
     {
-        Collector::errorMessage(902,
+        Manager::throwError(902,
             "Stop! That Action Doesn't Exists!",
             'Details: ',
             [

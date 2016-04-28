@@ -24,7 +24,7 @@ namespace UIoT\App\Security;
 
 use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
-use UIoT\App\Exception\Collector;
+use UIoT\App\Exception\Manager as ExceptionManager;
 use UIoT\App\Helpers\Data\ClientData;
 use Whitelist\Check;
 
@@ -128,7 +128,7 @@ final class Manager
      */
     public static function securityProblem($title = '', $message = '')
     {
-        Collector::errorMessage(904,
+        ExceptionManager::throwError(904,
             "Stop! {$title}!",
             'Details: ',
             ['What Happened?' => $message],

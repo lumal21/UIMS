@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Routing;
 
 use Bramus\Router\Router as IRouter;
 use UIoT\App\Core\Communication\Routing\Path\PathFinder;
-use UIoT\App\Exception\Collector;
+use UIoT\App\Exception\Manager;
 
 /**
  * Class Router
@@ -65,10 +65,10 @@ final class Router extends RouterAccessor
 
         /* set 404 Callback Node */
         $this->getRouter()->set404(function () {
-            Collector::errorMessage(906, "404!", 'Details: ', [
+            Manager::throwError(906, "404!", 'Details: ', [
                 'What Happened?' => "Sorry but this Page was not encountered.",
                 'Solution:' => "Go Back to Home Page."
-                ]);
+            ]);
         });
     }
 

@@ -203,14 +203,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "62d2cdc302de2534f3985a1a2f5d4a783de4a5eb"
+                "reference": "c3d803cc890fad5a7fb61a4036c5d973faae34af"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "composer/composer": "~1.0@dev"
+                "composer/composer": "^1.0.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -254,7 +254,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2016-04-01 15:27:16"
+            "time": "2016-04-22 08:48:58"
         },
         {
             "name": "italolelis/datatables",
@@ -414,7 +414,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mihaeu/html-formatter.git",
-                "reference": "9fd72547984643be9233580ac577625e74d33134"
+                "reference": "79bddcdf0ac9f547af3bc6d033bf7446cc4170ba"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*"
@@ -445,7 +445,7 @@
                 "html",
                 "pretty"
             ],
-            "time": "2015-04-02 16:41:13"
+            "time": "2016-04-24 06:16:04"
         },
         {
             "name": "nategood/httpful",
@@ -556,12 +556,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "aa3a53dcf26e97de6ce5080dd4908a9f800edf55"
+                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/aa3a53dcf26e97de6ce5080dd4908a9f800edf55",
-                "reference": "aa3a53dcf26e97de6ce5080dd4908a9f800edf55",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1574f3451b40fa9bbae518ef71d19a56f409cac0",
+                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0",
                 "shasum": ""
             },
             "require": {
@@ -597,7 +597,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-04 10:18:36"
+            "time": "2016-04-12 19:11:33"
         },
         {
             "name": "symfony/property-access",
@@ -605,12 +605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "79393f926015975f3350212c72bc2f5e38360dba"
+                "reference": "1d6f0181fbddda4bb2e2a41f7a5928d590f06b34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/79393f926015975f3350212c72bc2f5e38360dba",
-                "reference": "79393f926015975f3350212c72bc2f5e38360dba",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/1d6f0181fbddda4bb2e2a41f7a5928d590f06b34",
+                "reference": "1d6f0181fbddda4bb2e2a41f7a5928d590f06b34",
                 "shasum": ""
             },
             "require": {
@@ -657,7 +657,7 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2016-03-23 13:11:46"
+            "time": "2016-04-20 18:52:26"
         },
         {
             "name": "xrstf/ip-utils",

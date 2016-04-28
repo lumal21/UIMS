@@ -50,7 +50,7 @@ class ResourcePropertiesTreater extends RequestSingleton
         if (is_object($requestContent)):
             $raiseObjectTreater = ResourceObjectTreater::getInstance();
             $raiseObjectTreater->parse($requestContent);
-            
+
             if ($raiseObjectTreater->getDone()):
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());

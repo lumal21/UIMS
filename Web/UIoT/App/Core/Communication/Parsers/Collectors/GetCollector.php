@@ -61,7 +61,7 @@ class GetCollector extends RequestSingleton
 
         $resourcePropertiesTreater = ResourcePropertiesTreater::getInstance();
         $resourcePropertiesTreater->parse(Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
-        
+
         if ($resourcePropertiesTreater->getDone()):
             $this->setResponse($resourceIdTreater->getResponse());
             return;
