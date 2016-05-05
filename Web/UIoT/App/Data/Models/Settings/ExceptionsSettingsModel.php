@@ -37,22 +37,9 @@ final class ExceptionSettingsModel implements SettingsInterface
 
     /**
      * @see http://php.net/manual/pt_BR/function.error-reporting.php
-     *
      * @var integer php error reporting level
      */
     public $errorReportingLevels = (E_ALL ^ E_WARNING);
-
-    /**
-     * @see SecuritySettingsModel::$whiteIpList
-     *
-     * @var string
-     */
-    public $errorDeveloperCode = 'de';
-
-    /**
-     * @var string
-     */
-    public $errorResourceFolder = 'Whoops';
 
     /**
      * Return Block Name
