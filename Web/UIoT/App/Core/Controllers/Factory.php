@@ -105,7 +105,7 @@ final class Factory
      */
     public static function getControllerActions($controllerName)
     {
-        return array_map(function ($controllerAction) {
+        return array_map(function($controllerAction) {
             return Arrays::toActionName($controllerAction);
         }, (array)get_class_methods(self::getController(Strings::toControllerName($controllerName))));
     }

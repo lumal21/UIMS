@@ -110,8 +110,7 @@ final class Manager
         ExceptionManager::throwError(904,
             "Stop! {$title}!",
             'Details: ',
-            ['What Happened?' => $message],
-            true
+            ['What Happened?' => $message]
         );
     }
 

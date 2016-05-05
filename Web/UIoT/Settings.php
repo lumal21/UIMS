@@ -74,11 +74,7 @@ Register::addSettingsBlock('exceptions', [
     // set error page title
     'errorPageTitle' => 'Houston, we have a problem!',
     // set reporting php error level
-    'errorReportingLevels' => (E_ALL ^ E_WARNING),
-    // set query_string developer access mode
-    'errorDeveloperCode' => 'de',
-    // set whoops resource folder
-    'errorResourceFolder' => 'Whoops'
+    'errorReportingLevels' => (E_ALL ^ E_WARNING)
 ]);
 
 Register::addSettingsBlock('resources', [

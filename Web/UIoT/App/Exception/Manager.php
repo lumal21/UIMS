@@ -52,14 +52,10 @@ final class Manager
      * @param string $title
      * @param string $messageTitle
      * @param array $message
-     * @param bool $securityError
      * @throws Exception
      */
-    public static function throwError($code = 1, $title = '', $messageTitle = '', $message = [], $securityError = false)
+    public static function throwError($code = 1, $title = '', $messageTitle = '', $message = [])
     {
-        /* check if you have valid access */
-        !$securityError || SecurityHandler::checkIpAddressAuthority();
-
         /* add data table */
         Register::getHandler()->addDataTable($messageTitle, $message);
 

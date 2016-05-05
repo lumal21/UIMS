@@ -50,7 +50,7 @@ class GetCollector extends RequestSingleton
         $resourceIdTreater = ResourceIdTreater::getInstance();
         $resourceIdTreater->parse(Raise::doRequest('resources?name=' . $resourceName));
 
-        if ($resourceIdTreater->getDone()) {
+        if($resourceIdTreater->getDone()) {
             $this->setResponse($resourceIdTreater->getResponse());
             return;
         }
@@ -58,7 +58,7 @@ class GetCollector extends RequestSingleton
         $resourcePropertiesTreater = ResourcePropertiesTreater::getInstance();
         $resourcePropertiesTreater->parse(Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
 
-        if ($resourcePropertiesTreater->getDone()) {
+        if($resourcePropertiesTreater->getDone()) {
             $this->setResponse($resourceIdTreater->getResponse());
             return;
         }

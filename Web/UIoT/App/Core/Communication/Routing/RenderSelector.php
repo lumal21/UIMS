@@ -52,11 +52,11 @@ final class RenderSelector
      */
     private static function select(RenderInterface $instance)
     {
-        if ($instance instanceof AssetRender) {
+        if($instance instanceof AssetRender) {
             return $instance->show();
-        } elseif ($instance instanceof ControllerRender) {
+        } elseif($instance instanceof ControllerRender) {
             return $instance->show();
-        } elseif ($instance instanceof ResourceRender) {
+        } elseif($instance instanceof ResourceRender) {
             return $instance->show();
         }
         return null;
