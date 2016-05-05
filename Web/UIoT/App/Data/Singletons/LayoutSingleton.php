@@ -66,8 +66,9 @@ class LayoutSingleton extends LayoutModel
      */
     public static function getInstance()
     {
-        if(null === self::$layoutInstance)
+        if (null === self::$layoutInstance) {
             self::$layoutInstance = new static;
+        }
 
         return self::$layoutInstance;
     }

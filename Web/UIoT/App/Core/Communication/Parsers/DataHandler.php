@@ -63,6 +63,21 @@ class DataHandler
     }
 
     /**
+     * Set Collector Handler response
+     *
+     * @param RequestSingleton $handler Response Handler
+     * @param RequestSingleton $collector Response Collector
+     * @param mixed $arguments Handler Arguments
+     */
+    public static function setHandlerResponse(RequestSingleton $handler, RequestSingleton $collector, $arguments)
+    {
+        $localHandler = $handler::getInstance();
+        $localHandler->parse($arguments);
+
+        $collector->setResponse($handler->getResponse());
+    }
+
+    /**
      * Get Names
      *
      * @return array

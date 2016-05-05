@@ -157,7 +157,7 @@ final class Register
         /* set asset name */
         $assetName = Files::getBaseName($assetFileName);
 
-        if(!self::checkIfAssetIsValid($assetName)) {
+        if (!self::checkIfAssetIsValid($assetName)) {
             throw new Exception('The requested Resource wasn\'t Found on this Server', '404');
         }
 

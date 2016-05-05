@@ -36,29 +36,18 @@ final class RenderSelector
     /**
      * Abbreviation for the CallBacks
      *
-     * @param $render
-     * @return mixed|null|string
+     * @param RenderInterface $render selected Render
+     * @return mixed|null|string Render response
      */
-    public static function go($render)
+    public static function go(RenderInterface $render)
     {
-        return self::select($render);
-    }
-
-    /**
-     * Show the Render
-     *
-     * @param $instance
-     * @return mixed|null|string
-     */
-    private static function select(RenderInterface $instance)
-    {
-        if($instance instanceof AssetRender) {
-            return $instance->show();
-        } elseif($instance instanceof ControllerRender) {
-            return $instance->show();
-        } elseif($instance instanceof ResourceRender) {
-            return $instance->show();
+        if ($render instanceof AssetRender ||
+            $render instanceof ControllerRender ||
+            $render instanceof ResourceRender
+        ) {
+            return $render->show();
         }
+
         return null;
     }
 }

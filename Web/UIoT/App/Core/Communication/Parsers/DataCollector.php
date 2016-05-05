@@ -73,7 +73,7 @@ class DataCollector
      */
     public static function getBaseCollector($collectorMethod)
     {
-        if(!array_key_exists($collectorMethod, self::$collectors)) {
+        if (!array_key_exists($collectorMethod, self::$collectors)) {
             throw new InvalidArgumentException('Invalid Raise Method', '404');
         }
 

@@ -23,7 +23,6 @@
 namespace UIoT\App\Exception;
 
 use Exception;
-use UIoT\App\Security\Manager as SecurityHandler;
 
 /**
  * Class Manager

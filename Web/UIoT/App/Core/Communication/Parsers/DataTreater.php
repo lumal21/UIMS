@@ -40,4 +40,36 @@ class DataTreater
     {
         return $requestedTreater;
     }
+
+    /**
+     * Check a treater status and set his response
+     *
+     * @param RequestSingleton $checkedTreater selected Treater
+     * @param RequestSingleton $responseCollector response Collector
+     * @return bool if need stop the execution
+     */
+    public static function getTreaterStatus(RequestSingleton $checkedTreater, RequestSingleton $responseCollector)
+    {
+        if ($checkedTreater->getDone()) {
+            $responseCollector->setResponse($checkedTreater->getResponse());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Parse Treater and return it
+     *
+     * @param RequestSingleton $treater selected Treater
+     * @param mixed $arguments Treater arguments
+     * @return RequestSingleton the same Treater
+     */
+    public static function parseTreater(RequestSingleton $treater, $arguments)
+    {
+        $treater->parse($arguments);
+
+        return $treater;
+    }
 }

@@ -43,16 +43,16 @@ class ResourceIdTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if(!is_array($requestContent)) {
+        if (!is_array($requestContent)) {
             $raiseObjectTreater = ResourceObjectTreater::getInstance();
             $raiseObjectTreater->parse($requestContent);
 
-            if($raiseObjectTreater->getDone()) {
+            if ($raiseObjectTreater->getDone()) {
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
             }
-        } elseif(property_exists($requestContent[0], 'ID')) {
+        } elseif (property_exists($requestContent[0], 'ID')) {
             $this->setResponse($requestContent[0]->ID);
             $this->setDone(false);
             return;

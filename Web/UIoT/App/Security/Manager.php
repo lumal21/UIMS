@@ -24,8 +24,6 @@ namespace UIoT\App\Security;
 
 use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
-use UIoT\App\Exception\Manager as ExceptionManager;
-use UIoT\App\Helpers\Data\ClientData;
 use Whitelist\Check;
 
 /**
@@ -72,46 +70,6 @@ final class Manager
     public static function loadIpWhiteList($arguments = [])
     {
         self::$whiteList->whitelist((array)$arguments);
-    }
-
-    /**
-     * Check white list Ip Address
-     *
-     * @return boolean
-     */
-    public static function checkWhiteListIp()
-    {
-        return self::$whiteList->check(ClientData::getRealClientIpAddress());
-    }
-
-    /**
-     * Check if Ip Address is valid to Security Access
-     *
-     * @return null|void
-     */
-    public static function checkIpAddressAuthority()
-    {
-        self::checkWhiteListIp() || self::securityProblem(
-            'You Don\'t have Permissions',
-            'You Don\'t have authorization to get Exception Stack from the Server.
-            That Happens because your IP address isn\'t in the white list.'
-        );
-    }
-
-    /**
-     * Security Problem
-     *
-     * @param string $title
-     * @param string $message
-     * @throws \Exception
-     */
-    public static function securityProblem($title = '', $message = '')
-    {
-        ExceptionManager::throwError(904,
-            "Stop! {$title}!",
-            'Details: ',
-            ['What Happened?' => $message]
-        );
     }
 
     /**

@@ -43,16 +43,16 @@ class ResourcePropertiesTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if(is_object($requestContent)) {
+        if (is_object($requestContent)) {
             $raiseObjectTreater = ResourceObjectTreater::getInstance();
             $raiseObjectTreater->parse($requestContent);
 
-            if($raiseObjectTreater->getDone()) {
+            if ($raiseObjectTreater->getDone()) {
                 $this->setResponse($raiseObjectTreater->getResponse());
                 $this->setDone($raiseObjectTreater->getDone());
                 return;
             }
-        } elseif(is_array($requestContent)) {
+        } elseif (is_array($requestContent)) {
             $this->setResponse($requestContent);
             return;
         }

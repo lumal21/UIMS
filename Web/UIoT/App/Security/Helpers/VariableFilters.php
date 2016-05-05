@@ -37,12 +37,41 @@ final class VariableFilters
     public static function sanitizeVariable($inputVariable = '')
     {
         if (is_array($inputVariable) || is_object($inputVariable)) {
-            return array_map(__METHOD__, (array)$inputVariable);
+            self::sanitizeArray($inputVariable);
         }
+
         if (is_string($inputVariable)) {
-            return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"],
-                ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $inputVariable);
+            return self::sanitizeString($inputVariable);
         }
+
         return $inputVariable;
+    }
+
+    /**
+     * Sanitize an Array
+     *
+     * @param array|object $inputArray
+     * @return mixed
+     */
+    protected static function sanitizeArray($inputArray)
+    {
+        /* $inputArray can be a multidimensional array */
+        if (is_array($inputArray) || is_object($inputArray)) {
+            return array_map(self::sanitizeVariable($inputArray), (array)$inputArray);
+        }
+
+        return $inputArray;
+    }
+
+    /**
+     * Sanitize a String
+     *
+     * @param String $inputString
+     * @return mixed
+     */
+    protected static function sanitizeString($inputString)
+    {
+        return str_replace(['\\', "\0", "\n", "\r", "'", '"', "\x1a"],
+            ['\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'], $inputString);
     }
 }

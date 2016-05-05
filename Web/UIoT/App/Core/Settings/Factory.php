@@ -43,7 +43,7 @@ class Factory
      */
     public static function create(array $settingsInterfaceList)
     {
-        foreach($settingsInterfaceList as $settingInterface)
+        foreach ($settingsInterfaceList as $settingInterface)
             self::addModel($settingInterface);
     }
 
@@ -65,10 +65,10 @@ class Factory
      */
     public static function populateModel($modelName, array $modelValues)
     {
-        if(!array_key_exists($modelName, self::$settingsModels))
+        if (!array_key_exists($modelName, self::$settingsModels))
             throw new UnexpectedValueException('This settings model does not exists.');
 
-        foreach($modelValues as $variableKey => $variableValue)
+        foreach ($modelValues as $variableKey => $variableValue)
             self::$settingsModels[$modelName]->setVariable($variableKey, $variableValue);
     }
 
@@ -80,7 +80,7 @@ class Factory
      */
     public static function getModel($modelName)
     {
-        if(!array_key_exists($modelName, self::$settingsModels))
+        if (!array_key_exists($modelName, self::$settingsModels))
             throw new UnexpectedValueException('This settings model does not exists.');
 
         return self::$settingsModels[$modelName]->getInstance();
@@ -99,7 +99,7 @@ class Factory
          */
         $settingsModelArray = [];
 
-        foreach(self::$settingsModels as $settingsModelName => $settingsManager)
+        foreach (self::$settingsModels as $settingsModelName => $settingsManager)
             $settingsModelArray[$settingsModelName] = $settingsManager->getInstance();
 
         return $settingsModelArray;
