@@ -27,21 +27,16 @@ use UnexpectedValueException;
 
 /**
  * Class Factory
- *
  * @package UIoT\App\Core\Settings
  */
 class Factory
 {
     /**
-     *
-     * Array of settings manager
-     *
      * @var Manager[]
      */
     private static $settingsModels;
 
     /**
-     *
      * Create settings factory
      *
      * @param array $settingsInterfaceList
@@ -53,7 +48,6 @@ class Factory
     }
 
     /**
-     *
      * Add settings manager
      *
      * @param SettingsInterface $settingsInterface
@@ -64,7 +58,6 @@ class Factory
     }
 
     /**
-     *
      * Populate settings model
      *
      * @param string $modelName
@@ -80,11 +73,9 @@ class Factory
     }
 
     /**
-     *
      * Return settings model
      *
      * @param string $modelName
-     *
      * @return SettingsInterface
      */
     public static function getModel($modelName)

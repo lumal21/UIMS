@@ -32,7 +32,6 @@ use UIoT\App\Exception\Manager;
  * @property mixed resource_url
  * @property mixed controller
  * @property mixed action
- *
  * @package UIoT\App\Core\Communication\Routing
  */
 final class Router extends RouterAccessor

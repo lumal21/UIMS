@@ -36,15 +36,17 @@ class Brain
      */
     private static $template;
 
+
     /**
      * Set and Store Initial Template
      *
-     * @param Http ::string $method_name
-     * @param Mime ::string $mime_type
+     * @param Http ::string $methodName
+     * @param Mime ::string $mimeType
      */
     public static function setTemplate($methodName, $mimeType)
     {
-        self::adjustTemplate(self::$template = Request::init($methodName)->method($methodName)->expects($mimeType)->mime($mimeType));
+        self::adjustTemplate(self::$template =
+            Request::init($methodName)->method($methodName)->expects($mimeType)->mime($mimeType));
     }
 
     /**

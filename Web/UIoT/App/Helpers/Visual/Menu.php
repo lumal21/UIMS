@@ -44,7 +44,8 @@ final class Menu
      */
     public function addItem($url = '', $divClass = '', $divId = '', $text = '', $refLabel = '')
     {
-        $this->content .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass . '" id="' . $divId . '"></i > ' . $text . '</a ></li >';
+        $this->content .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass .
+            '" id="' . $divId . '"></i > ' . $text . '</a ></li >';
     }
 
     /**

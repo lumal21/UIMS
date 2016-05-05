@@ -47,10 +47,10 @@ final class Pages
      */
     public static function addEmbedScript($scriptName)
     {
-        /* first add resource */
+        /* First add resource */
         Register::addAsset($scriptName, 'script/javascript');
 
-        /* so echo the script */
+        /* So echo the script */
         Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnResource($scriptName)));
     }
 }

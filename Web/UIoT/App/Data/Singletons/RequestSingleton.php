@@ -42,8 +42,9 @@ class RequestSingleton extends RequestModel
      */
     public static function getInstance()
     {
-        if (null === static::$requestInstance)
+        if (null === static::$requestInstance) {
             static::$requestInstance = new static;
+        }
 
         return static::$requestInstance;
     }

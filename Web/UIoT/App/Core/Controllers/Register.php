@@ -27,14 +27,11 @@ use UIoT\App\Helpers\Visual\Html;
 
 /**
  * Class Register
- *
  * @package UIoT\App\Core\Templates
  */
 final class Register
 {
     /**
-     * Folder Name
-     *
      * @var string
      */
     public static $folder = '';
@@ -65,24 +62,24 @@ final class Register
     /**
      * Add Template
      *
-     * @param string $file_name
+     * @param string $fileName
      */
-    public static function addTemplate($file_name)
+    public static function addTemplate($fileName)
     {
-        Html::add(self::parseTemplateFile(self::$folder . $file_name));
+        Html::add(self::parseTemplateFile(self::$folder . $fileName));
     }
 
     /**
      * Parse Template File
      *
-     * @param string $file_name
+     * @param string $fileName
      * @return string
      */
-    public static function parseTemplateFile($file_name = '')
+    public static function parseTemplateFile($fileName = '')
     {
         ob_start();
 
-        echo file_get_contents($file_name);
+        echo file_get_contents($fileName);
 
         $template = ob_get_contents();
 
@@ -96,13 +93,13 @@ final class Register
      *
      * @param mixed $template
      * @param array $variables
-     *
      * @return mixed|string
      */
     public static function extractVariables($template = '', $variables)
     {
-        foreach ($variables as $word => $content)
+        foreach ($variables as $word => $content) {
             $template = str_replace($word, $content, $template);
+        }
 
         return $template;
     }

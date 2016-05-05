@@ -49,10 +49,12 @@ class Files
      */
     final private function __construct()
     {
-        if (null !== self::$fileInstance)
+        if (null !== self::$fileInstance) {
             return;
+        }
 
-        Manager::throwError(908, 'Stop!', 'You cannot instantiate a singleton!', ['What happened?' => 'Singletons are not instantiated by the user!']);
+        Manager::throwError(908, 'Stop!', 'You cannot instantiate a singleton!',
+            ['What happened?' => 'Singletons are not instantiated by the user!']);
     }
 
     /**
@@ -75,8 +77,9 @@ class Files
      */
     final private static function checkInstance($fileName)
     {
-        if (self::$fileInfoInstance === null)
+        if (self::$fileInfoInstance === null) {
             self::create($fileName);
+        }
     }
 
     /**

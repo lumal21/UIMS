@@ -31,7 +31,6 @@ use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class SettingsIndexer
- *
  * @package UIoT\App\Core\Settings
  */
 final class Register
@@ -57,7 +56,6 @@ final class Register
     }
 
     /**
-     *
      * Add setting block
      *
      * @param string $settingBlockName
@@ -79,7 +77,6 @@ final class Register
     }
 
     /**
-     *
      * Store Settings Constant
      *
      * @param Manager[]|SettingsInterface[] $settingVariable
@@ -95,11 +92,9 @@ final class Register
     }
 
     /**
-     *
      * Return Specific Setting Variable
      *
      * @param string $settingVariableName
-     *
      * @return mixed
      */
     public static function getSetting($settingVariableName = '')
@@ -108,7 +103,6 @@ final class Register
     }
 
     /**
-     *
      * Return Settings Constants
      *
      * @return object

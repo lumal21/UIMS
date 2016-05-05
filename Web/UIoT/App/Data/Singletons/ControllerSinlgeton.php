@@ -50,8 +50,9 @@ class ControllerSingleton extends ControllerModel
      */
     public static function getInstance()
     {
-        if (null === self::$controllerInstance)
+        if (null === self::$controllerInstance) {
             self::$controllerInstance = new static;
+        }
 
         return self::$controllerInstance;
     }

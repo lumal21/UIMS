@@ -29,109 +29,96 @@ use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Factory
- *
  * @package UIoT\App\Data\Controllers
  */
 final class Factory
 {
     /**
-     *
-     * Controllers
-     *
      * @var array
      */
     private static $controllers = [];
 
     /**
-     *
      * Add a Controller
      *
-     * @param string $controller_name
+     * @param string $controllerName
      */
-    public static function addController($controller_name)
+    public static function addController($controllerName)
     {
-        self::controllerExists(Strings::toControllerName($controller_name)) || array_push(self::$controllers, Strings::toControllerName($controller_name));
+        self::controllerExists(Strings::toControllerName($controllerName)) ||
+        array_push(self::$controllers, Strings::toControllerName($controllerName));
     }
 
     /**
-     *
      * Check if Controller Exists
      *
-     * @param string $controller_name
-     *
+     * @param string $controllerName
      * @return bool
      */
-    public static function controllerExists($controller_name)
+    public static function controllerExists($controllerName)
     {
-        return in_array(Strings::toControllerName($controller_name), self::$controllers);
+        return in_array(Strings::toControllerName($controllerName), self::$controllers);
     }
 
     /**
-     *
      * Get Controller Instance
      *
-     * @param string $controller_name
-     *
+     * @param string $controllerName
      * @return ControllerModel|ControllerSingleton|null
      */
-    public static function getController($controller_name)
+    public static function getController($controllerName)
     {
-        return self::controllerExists($controller_name) ? self::callControllerStaticMethod($controller_name, 'getInstance') : null;
+        return self::controllerExists($controllerName) ?
+            self::callControllerStaticMethod($controllerName, 'getInstance') : null;
     }
 
     /**
-     *
      * Call Controller Action and Execute It Returning its Contents
      *
-     * @param string $controller_name
-     * @param string $action_name
+     * @param string $controllerName
+     * @param string $actionName
      * @return string
      */
-    public static function executeControllerAction($controller_name, $action_name)
+    public static function executeControllerAction($controllerName, $actionName)
     {
-        return self::controllerActionExists($controller_name, $action_name) ? self::getController($controller_name)->{Strings::toActionMethodName($action_name)}() : '';
+        return self::controllerActionExists($controllerName, $actionName) ?
+            self::getController($controllerName)->{Strings::toActionMethodName($actionName)}() : '';
     }
 
     /**
-     *
      * Check if Controller Action Exists
      *
-     * @param string $controller_name
-     * @param string $action_name
-     *
+     * @param string $controllerName
+     * @param string $actionName
      * @return mixed
      */
-    public static function controllerActionExists($controller_name, $action_name)
+    public static function controllerActionExists($controllerName, $actionName)
     {
-        return in_array(Strings::toActionName($action_name), self::getControllerActions($controller_name));
+        return in_array(Strings::toActionName($actionName), self::getControllerActions($controllerName));
     }
 
     /**
-     *
      * Get Controller Actions
      *
-     * @param string $controller_name
-     *
+     * @param string $controllerName
      * @return mixed
      */
-    public static function getControllerActions($controller_name)
+    public static function getControllerActions($controllerName)
     {
         return array_map(function ($controllerAction) {
             return Arrays::toActionName($controllerAction);
-        }, (array)get_class_methods(self::getController(Strings::toControllerName($controller_name))));
+        }, (array)get_class_methods(self::getController(Strings::toControllerName($controllerName))));
     }
 
     /**
-     *
      * Call Controller static method.
      *
-     * @param string $controller_name
-     * @param string $controller_method
-     *
+     * @param string $controllerName
+     * @param string $controllerMethod
      * @return mixed
      */
-    public static function callControllerStaticMethod($controller_name, $controller_method)
+    public static function callControllerStaticMethod($controllerName, $controllerMethod)
     {
-        return forward_static_call(["UIoT\\App\\Data\\Controllers\\$controller_name", $controller_method]);
+        return forward_static_call(["UIoT\\App\\Data\\Controllers\\$controllerName", $controllerMethod]);
     }
 }

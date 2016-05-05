@@ -36,22 +36,16 @@ use UIoT\App\Helpers\Manipulation\Strings;
 final class Render implements RenderInterface
 {
     /**
-     * Controller Name
-     *
      * @var string
      */
     private $controllerName;
 
     /**
-     * Action Name
-     *
      * @var string
      */
     private $controllerAction;
 
     /**
-     * Controller Content
-     *
      * @var string
      */
     private static $controllerData;
@@ -73,7 +67,6 @@ final class Render implements RenderInterface
      * Set Arguments
      *
      * @param array $arguments
-     *
      * @return void
      */
     public function setArguments($arguments = [])
