@@ -55,7 +55,7 @@
  */
 
 if (!file_exists(__DIR__ . '/UIoT/Vendor/autoload.php')) {
-    die('UIoTuims need Composers to Work. Please install Composer by clicking <a href="http://getcomposer.org">here</a>.');
+    throw new RuntimeException('UIoTuims needs Composer to Work. Please install Composer by clicking <a href="http://getcomposer.org">here</a>.');
 }
 
 (require_once __DIR__ . '/UIoT/Vendor/autoload.php');
