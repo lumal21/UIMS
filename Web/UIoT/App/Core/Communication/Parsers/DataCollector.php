@@ -23,11 +23,6 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use InvalidArgumentException;
-use UIoT\App\Core\Communication\Parsers\Collectors\DeleteCollector;
-use UIoT\App\Core\Communication\Parsers\Collectors\GetCollector;
-use UIoT\App\Core\Communication\Parsers\Collectors\PostCollector;
-use UIoT\App\Core\Communication\Parsers\Collectors\PutCollector;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -37,56 +32,78 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class DataCollector
 {
     /**
-     * @var array
+     * @var array Base Collectors
      */
-    private static $collectors;
+    private static $methodCollectors = [
+        Http::GET => 'GetCollector',
+        Http::POST => 'PostCollector',
+        Http::PUT => 'PutCollector',
+        Http::DELETE => 'DeleteCollector',
+    ];
 
     /**
-     * Set Base Data Collectors
-     */
-    public function __construct()
-    {
-        self::$collectors = [
-            Http::GET => GetCollector::getInstance(),
-            Http::POST => PostCollector::getInstance(),
-            Http::PUT => PutCollector::getInstance(),
-            Http::DELETE => DeleteCollector::getInstance(),
-        ];
-    }
-
-    /**
-     * Return a specific data collector
+     * Run Base Collector
      *
-     * @param RequestSingleton $requestedCollector
-     * @return RequestSingleton
+     * @param string $resourceMethod Raise HTTP Method
+     * @param string $resourceName Raise Resource Name
+     * @return string Response Data
      */
-    public static function getCollector(RequestSingleton $requestedCollector)
+    public static function runMethodCollector($resourceName, $resourceMethod)
     {
-        return $requestedCollector;
+        $baseCollector = self::getMethodCollector($resourceMethod);
+
+        $baseCollector->parse($resourceName);
+
+        return $baseCollector->getResponse();
     }
 
     /**
      * Get a Base Collector
      *
-     * @param string $collectorMethod
-     * @return RequestSingleton
+     * @param string $collectorMethod Collector Method
+     * @return RequestSingleton Base Collector
      */
-    public static function getBaseCollector($collectorMethod)
+    public static function getMethodCollector($collectorMethod)
     {
-        if (!array_key_exists($collectorMethod, self::$collectors)) {
-            throw new InvalidArgumentException('Invalid Raise Method', '404');
-        }
+        $collectorName = DataHandler::getMethodName($collectorMethod);
 
-        return self::$collectors[$collectorMethod];
+        $collectorVariable = self::getMethodCollectors()[$collectorName];
+
+        return self::callCollectorStaticMethod($collectorVariable, 'getInstance');
     }
 
     /**
-     * Get Collectors
+     * Get Method Collectors
      *
      * @return array
      */
-    public static function getCollectors()
+    public static function getMethodCollectors()
     {
-        return self::$collectors;
+        return self::$methodCollectors;
+    }
+
+    /**
+     * Call Collector static method.
+     *
+     * @param string $collectorName
+     * @param string $collectorMethod
+     * @return mixed
+     */
+    public static function callCollectorStaticMethod($collectorName, $collectorMethod)
+    {
+        return forward_static_call(["UIoT\\App\\Core\\Communication\\Parsers\\Collectors\\" . $collectorName, $collectorMethod]);
+    }
+
+    /**
+     * Check a treater status and set his response
+     *
+     * @param RequestSingleton $checkedTreater selected Treater
+     * @param RequestSingleton $responseCollector response Collector
+     * @return bool if need stop the execution
+     */
+    public static function getCollectorStatus(RequestSingleton $checkedTreater, RequestSingleton $responseCollector)
+    {
+        $responseCollector->setResponse($checkedTreater->getResponse());
+        return $checkedTreater->getDone();
     }
 }

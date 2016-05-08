@@ -25,32 +25,29 @@ namespace UIoT\App\Core\Communication\Requesting;
 use Httpful\Response;
 
 /**
- * Class Data
+ * Class RequestDataManager
  * @package UIoT\App\Core\Communication\Requesting
  *
  * @method mixed from_json($string)
  * @method mixed to_json($string)
  * @method mixed get_data($string)
  */
-final class Data
+final class RequestDataManager
 {
-    /**
-     * @var Response
-     */
+    /** @var Response */
     private $data;
 
     /**
      * Data constructor.
-     * Do a Request
      *
      * @param string $url
      * @throws \Httpful\Exception\ConnectionErrorException
      */
     public function __construct($url)
     {
-        Brain::setRequestUrl($url);
+        RequestTemplateManager::setRequestUrl($url);
 
-        $this->data = Brain::sendRequest();
+        $this->data = RequestTemplateManager::sendRequest();
     }
 
     /**

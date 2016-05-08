@@ -23,8 +23,9 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use UIoT\App\Core\Layouts\Factory;
+use InvalidArgumentException;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class DataHandler - Manages the Handling of the Specific Data of Each Type
@@ -33,34 +34,14 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class DataHandler
 {
     /**
-     * @var array
+     * @var array Method Handlers aka Layouts
      */
-    private static $names = [];
-
-    /**
-     * @var array
-     */
-    private static $layouts = [];
-
-    /**
-     * Set Layouts and Names
-     */
-    public function __construct()
-    {
-        self::$names = [
-            Http::GET => 'Main',
-            Http::POST => 'Add',
-            Http::PUT => 'Edit',
-            Http::DELETE => 'Remove',
-        ];
-
-        self::$layouts = [
-            Http::GET => Factory::addLayout(self::$names[Http::GET]),
-            Http::POST => Factory::addLayout(self::$names[Http::POST]),
-            Http::PUT => Factory::addLayout(self::$names[Http::PUT]),
-            Http::DELETE => Factory::addLayout(self::$names[Http::DELETE]),
-        ];
-    }
+    private static $methodHandlers = [
+        'Main' => Http::GET,
+        'Add' => Http::POST,
+        'Edit' => Http::PUT,
+        'Delete' => Http::DELETE,
+    ];
 
     /**
      * Set Collector Handler response
@@ -69,42 +50,48 @@ class DataHandler
      * @param RequestSingleton $collector Response Collector
      * @param mixed $arguments Handler Arguments
      */
-    public static function setHandlerResponse(RequestSingleton $handler, RequestSingleton $collector, $arguments)
+    public static function setHandlerResponseStatus(RequestSingleton $handler, RequestSingleton $collector, $arguments)
     {
-        $localHandler = $handler::getInstance();
-        $localHandler->parse($arguments);
-
+        $handler->parse($arguments);
         $collector->setResponse($handler->getResponse());
+        $collector->setDone($handler->getDone());
     }
 
     /**
-     * Get Names
+     * Set Handler Data
+     *
+     * @param RequestSingleton $handler
+     * @param mixed $response
+     * @param bool $status
+     */
+    public static function setHandlerData(RequestSingleton $handler, $response, $status)
+    {
+        $handler->setResponse($response);
+        $handler->setDone($status);
+    }
+
+    /**
+     * Get Method Handler
+     *
+     * @param string $methodHandler
+     * @return mixed
+     */
+    public static function getMethodName($methodHandler)
+    {
+        if (!array_key_exists(Strings::toCamel($methodHandler), self::getMethodHandlers())) {
+            throw new InvalidArgumentException('Invalid Raise Method', '404');
+        }
+
+        return self::getMethodHandlers()[Strings::toCamel($methodHandler)];
+    }
+
+    /**
+     * Get Method Layouts
      *
      * @return array
      */
-    public static function getNames()
+    public static function getMethodHandlers()
     {
-        return self::$names;
-    }
-
-    /**
-     * Return a specific data handler
-     *
-     * @param RequestSingleton $requestedHandler
-     * @return RequestSingleton
-     */
-    public static function getHandler(RequestSingleton $requestedHandler)
-    {
-        return $requestedHandler;
-    }
-
-    /**
-     * Get Layouts
-     *
-     * @return array
-     */
-    public static function getLayouts()
-    {
-        return self::$layouts;
+        return self::$methodHandlers;
     }
 }

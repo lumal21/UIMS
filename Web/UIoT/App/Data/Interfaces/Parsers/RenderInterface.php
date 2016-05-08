@@ -48,5 +48,5 @@ interface RenderInterface
      *
      * @return mixed
      */
-    function show();
+    function showContent();
 }

@@ -75,12 +75,10 @@ class LayoutSingleton extends LayoutModel
 
     /**
      * Execute Layout and Register Resources
-     *
-     * @return mixed|void
      */
     public static function callResource()
     {
-        return static::getInstance()->getResources();
+        static::getInstance()->getResources();
     }
 
     /**

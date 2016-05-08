@@ -81,4 +81,4 @@ Register::addSettingsBlock('resources', [
     'enableCaching' => true
 ]);
 
-Register::runSettings();
+Register::storeSettings();

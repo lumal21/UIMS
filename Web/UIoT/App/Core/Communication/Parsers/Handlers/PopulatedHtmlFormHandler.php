@@ -34,15 +34,4 @@ class PopulatedHtmlFormHandler extends RequestSingleton
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
-     *
-     * @param mixed $requestContent
-     * @return void
-     */
-    function parse($requestContent)
-    {
-
-    }
 }

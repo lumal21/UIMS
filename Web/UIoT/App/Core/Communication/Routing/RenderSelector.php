@@ -37,7 +37,7 @@ final class RenderSelector
      * Abbreviation for the CallBacks
      *
      * @param RenderInterface $render selected Render
-     * @return mixed|null|string Render response
+     * @return string Render response
      */
     public static function go(RenderInterface $render)
     {
@@ -45,9 +45,9 @@ final class RenderSelector
             $render instanceof ControllerRender ||
             $render instanceof ResourceRender
         ) {
-            return $render->show();
+            return $render->showContent();
         }
 
-        return null;
+        return '';
     }
 }

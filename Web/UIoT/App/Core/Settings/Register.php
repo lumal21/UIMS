@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Core\Settings;
 
-use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
@@ -35,11 +34,6 @@ use UIoT\App\Helpers\Manipulation\Constants;
  */
 final class Register
 {
-    /**
-     * @var object
-     */
-    private static $settings;
-
     /**
      * Prepare settings factory
      */
@@ -67,26 +61,14 @@ final class Register
     }
 
     /**
-     * Register settings
-     */
-    public static function runSettings()
-    {
-        self::storeSettings(Factory::getAllModels());
-
-        self::setSettings();
-    }
-
-    /**
      * Store Settings Constant
-     *
-     * @param Manager[]|SettingsInterface[] $settingVariable
      */
-    public static function storeSettings($settingVariable)
+    public static function storeSettings()
     {
         Constants::addJsonConstant
         (
             'SETTINGS',
-            $settingVariable,
+            Factory::getAllModels(),
             JSON_FORCE_OBJECT
         );
     }
@@ -109,14 +91,6 @@ final class Register
      */
     public static function getSettings()
     {
-        return self::$settings;
-    }
-
-    /**
-     * Set Settings
-     */
-    public static function setSettings()
-    {
-        self::$settings = Constants::returnJsonConstant('SETTINGS');
+        return Constants::returnJsonConstant('SETTINGS');
     }
 }

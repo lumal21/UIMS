@@ -22,12 +22,13 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
+use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataTreater;
 use UIoT\App\Core\Communication\Parsers\Handlers\DataTableHandler;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
-use UIoT\App\Core\Communication\Requesting\Raise;
+use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -50,20 +51,20 @@ class GetCollector extends RequestSingleton
     public function parse($resourceName)
     {
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
-            Raise::doRequest('resources?name=' . $resourceName));
+            RaiseRequestManager::doRequest('resources?name=' . $resourceName));
 
-        if (DataTreater::getTreaterStatus($resourceIdTreater, $this)) {
+        if (DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
             return;
         }
 
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
-            Raise::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
+            RaiseRequestManager::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
 
-        if (DataTreater::getTreaterStatus($resourcePropertiesTreater, $this)) {
+        if (DataCollector::getCollectorStatus($resourcePropertiesTreater, $this)) {
             return;
         }
 
-        DataHandler::setHandlerResponse(DataTableHandler::getInstance(), $this,
-            ['keys' => $resourcePropertiesTreater->getResponse(), 'values' => Raise::doRequest($resourceName)]);
+        DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this,
+            ['keys' => $resourcePropertiesTreater->getResponse(), 'values' => RaiseRequestManager::doRequest($resourceName)]);
     }
 }

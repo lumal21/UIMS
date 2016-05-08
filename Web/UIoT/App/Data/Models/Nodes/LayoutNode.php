@@ -27,7 +27,6 @@ use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 use UIoT\App\Helpers\Manipulation\Constants;
-use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class LayoutNode
@@ -43,7 +42,7 @@ class LayoutNode extends NodeHandlerModel
         $this->setResult(Factory::layoutExists($this->getPathValue()[0]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
-            'controller' => Strings::toControllerName($this->getPathValue()[0]),
+            'controller' => $this->getPathValue()[0],
             'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))
         );
     }

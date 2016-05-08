@@ -57,11 +57,11 @@ class RequestModel implements RequestInterface
      * Set Job Status
      *
      * @param boolean $jobStatus
-     * @return void
+     * @return bool
      */
     public function setDone($jobStatus)
     {
-        $this->jobStatus = $jobStatus;
+        return $this->jobStatus = $jobStatus;
     }
 
     /**

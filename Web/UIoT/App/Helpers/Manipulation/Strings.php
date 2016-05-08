@@ -31,39 +31,6 @@ use UIoT\App\Security\Helpers\VariableFilters;
 class Strings
 {
     /**
-     * Convert string to Controller String
-     *
-     * @param string $string
-     * @return string
-     */
-    public static function toControllerName($string = '')
-    {
-        return self::toActionName($string);
-    }
-
-    /**
-     * Convert string to Action String
-     *
-     * @param $string
-     * @return string
-     */
-    public static function toActionName($string = '')
-    {
-        return ucfirst(self::toRestUrlName($string));
-    }
-
-    /**
-     * Convert to valid REST(Raise) url
-     *
-     * @param string $string
-     * @return string
-     */
-    public static function toRestUrlName($string = '')
-    {
-        return strtolower($string);
-    }
-
-    /**
      * Check if is Equal
      *
      * @param string $firstString
@@ -72,7 +39,18 @@ class Strings
      */
     public static function isEqual($firstString, $secondString)
     {
-        return self::toRestUrlName($firstString) == self::toRestUrlName($secondString);
+        return self::toLower($firstString) == self::toLower($secondString);
+    }
+
+    /**
+     * Convert to valid REST(Raise) url
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function toLower($string = '')
+    {
+        return strtolower($string);
     }
 
     /**
@@ -81,9 +59,20 @@ class Strings
      * @param $string
      * @return string
      */
-    public static function toActionMethodName($string = '')
+    public static function toAction($string = '')
     {
-        return ('action' . self::toActionName($string));
+        return ('action' . self::toCamel($string));
+    }
+
+    /**
+     * Convert string to Controller String
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function toCamel($string = '')
+    {
+        return ucfirst(self::toLower($string));
     }
 
     /**

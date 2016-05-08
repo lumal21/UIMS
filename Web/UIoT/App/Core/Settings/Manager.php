@@ -26,14 +26,12 @@ use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 use UnexpectedValueException;
 
 /**
- * Class SettingsManager
+ * Class Manager
  * @package UIoT\App\Core\Settings
  */
 class Manager
 {
     /**
-     * Settings model instance
-     *
      * @var SettingsInterface
      */
     private $settingModel;
@@ -56,19 +54,20 @@ class Manager
      */
     public function setVariable($variableName, $variableValue)
     {
-        if (!property_exists($this->settingModel, $variableName))
+        if (!property_exists($this->settingModel, $variableName)) {
             throw new UnexpectedValueException("Setting property $variableName doesn't exists in class " .
                 get_class($this->settingModel));
+        }
 
         $this->settingModel->$variableName = $variableValue;
     }
 
     /**
-     * Get settings model instance
+     * Get SettingsModel instance
      *
      * @return SettingsInterface
      */
-    public function getInstance()
+    public function getModel()
     {
         return $this->settingModel;
     }

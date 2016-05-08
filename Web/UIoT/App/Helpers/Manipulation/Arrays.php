@@ -34,31 +34,9 @@ class Arrays
      * @param $x
      * @return string
      */
-    public static function toActionName($x)
+    public static function toCamel($x)
     {
-        return Strings::toActionName(stripos($x, 'action') !== false ? (str_ireplace('action', '', $x)) : $x);
-    }
-
-    /**
-     * Convert to Controller Name
-     *
-     * @param $x
-     * @return string
-     */
-    public static function toControllerName($x)
-    {
-        return Strings::toControllerName($x);
-    }
-
-    /**
-     * Convert to Controller Name an entire Array
-     *
-     * @param mixed $a
-     * @return array
-     */
-    public static function toControllerArray($a = [])
-    {
-        return array_map('self::toControllerName', (array)$a);
+        return Strings::toCamel(stripos($x, 'action') !== false ? (str_ireplace('action', '', $x)) : $x);
     }
 
     /**

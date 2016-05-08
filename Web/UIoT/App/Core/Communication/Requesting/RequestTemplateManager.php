@@ -26,10 +26,10 @@ use Httpful\Request;
 use Httpful\Response;
 
 /**
- * Class Brain
+ * Class RequestTemplateManager
  * @package UIoT\App\Core\Communication\Requesting
  */
-class Brain
+class RequestTemplateManager
 {
     /**
      * @var Request
@@ -57,7 +57,7 @@ class Brain
      */
     private static function adjustTemplate(Request $r)
     {
-        Raise::setTemplate($r);
+        RaiseRequestManager::setTemplate($r);
     }
 
     /**

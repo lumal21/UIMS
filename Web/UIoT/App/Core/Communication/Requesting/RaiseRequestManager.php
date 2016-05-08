@@ -27,10 +27,10 @@ use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
 
 /**
- * Class Rest
+ * Class RaiseRequestManager
  * @package UIoT\App\Core\Communication\Requesting
  */
-class Rest
+class RaiseRequestManager
 {
     /**
      * @var RaiseSettingsModel
@@ -56,16 +56,6 @@ class Rest
     }
 
     /**
-     * Set Options
-     *
-     * @param Request $options
-     */
-    public static function setTemplate($options)
-    {
-        Request::ini($options);
-    }
-
-    /**
      * Set Raise Host (Base Url)
      */
     public static function setHost()
@@ -77,6 +67,16 @@ class Rest
     }
 
     /**
+     * Set Options
+     *
+     * @param Request $options
+     */
+    public static function setTemplate($options)
+    {
+        Request::ini($options);
+    }
+
+    /**
      * Do the request, and get Request Body.
      *
      * @param string $url
@@ -84,6 +84,6 @@ class Rest
      */
     public static function doRequest($url)
     {
-        return (new Data(self::$raiseBaseUri . $url))->get_data('body');
+        return (new RequestDataManager(self::$raiseBaseUri . $url))->get_data('body');
     }
 }

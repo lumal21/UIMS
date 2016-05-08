@@ -4,9 +4,122 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7b73e483957db92a6e0459e876210fc1",
-    "content-hash": "c47f1d978128160896ff3b0a7db6a85d",
+    "hash": "4cab96a9de30ee6eb9d2494968a194ea",
+    "content-hash": "c5368fd8e53ca342f2e87f908ee018b6",
     "packages": [
+        {
+            "name": "bower-asset/foundation-sites",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zurb/foundation-sites.git",
+                "reference": "f9c81a640804f6700b9ca091de6f32ba65760fa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/f9c81a640804f6700b9ca091de6f32ba65760fa8",
+                "reference": "f9c81a640804f6700b9ca091de6f32ba65760fa8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": "~2.2.0",
+                "bower-asset/what-input": "~2.0.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "scss/foundation.scss",
+                    "dist/foundation.js"
+                ],
+                "bower-asset-ignore": [
+                    "config",
+                    "docs",
+                    "gulp",
+                    "lib",
+                    "test",
+                    "composer.json",
+                    "CONTRIBUTING.md",
+                    "gulpfile.js",
+                    "meteor-README.md",
+                    "package.js",
+                    "package.json",
+                    "sache.json",
+                    ".editorconfig",
+                    ".npm",
+                    ".gitignore",
+                    ".npmignore",
+                    ".versions"
+                ]
+            },
+            "time": "2016-05-05 15:45:27"
+        },
+        {
+            "name": "bower-asset/jquery",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jquery/jquery-dist.git",
+                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/jquery.js",
+                "bower-asset-ignore": [
+                    "package.json"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "browser",
+                "javascript",
+                "jquery",
+                "library"
+            ]
+        },
+        {
+            "name": "bower-asset/what-input",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ten1seven/what-input.git",
+                "reference": "8c9e6828d08a2605139a68cb7e54d495310ef823"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/8c9e6828d08a2605139a68cb7e54d495310ef823",
+                "reference": "8c9e6828d08a2605139a68cb7e54d495310ef823",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "what-input.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A global utility for tracking the current input method (mouse, keyboard or touch).",
+            "keywords": [
+                "a11y",
+                "accessibility",
+                "input",
+                "javascript"
+            ]
+        },
         {
             "name": "bramus/router",
             "version": "dev-master",
@@ -47,110 +160,12 @@
             "time": "2016-05-04 10:40:10"
         },
         {
-            "name": "easyframework/collections",
-            "version": "v4.1.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/italolelis/collections.git",
-                "reference": "cddb1790b3540c369d0c897c9ad314effc7b3f07"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/italolelis/collections/zipball/cddb1790b3540c369d0c897c9ad314effc7b3f07",
-                "reference": "cddb1790b3540c369d0c897c9ad314effc7b3f07",
-                "shasum": ""
-            },
-            "require": {
-                "easyframework/generics": "~2.0",
-                "symfony/property-access": "~2.6"
-            },
-            "require-dev": {
-                "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.5",
-                "symfony/var-dumper": "~2.6."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Collections\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ítalo Lelis de Vietro",
-                    "email": "italolelis@lellysinformatica.com"
-                }
-            ],
-            "description": "Easy Framework Collection Component",
-            "homepage": "https://github.com/LellysInformatica/collections",
-            "keywords": [
-                "collection",
-                "easy",
-                "framework",
-                "generics"
-            ],
-            "time": "2015-12-14 11:20:28"
-        },
-        {
-            "name": "easyframework/generics",
-            "version": "v2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/italolelis/generics.git",
-                "reference": "aa473480dc68b0daf9de4387a22a32cf254489e8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/italolelis/generics/zipball/aa473480dc68b0daf9de4387a22a32cf254489e8",
-                "reference": "aa473480dc68b0daf9de4387a22a32cf254489e8",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ítalo Lelis de Vietro",
-                    "email": "italolelis@lellysinformatica.com"
-                }
-            ],
-            "description": "Easy Framework Generics Component",
-            "homepage": "http://easyframework.net/",
-            "keywords": [
-                "easy",
-                "framework",
-                "generics"
-            ],
-            "time": "2015-12-17 15:36:11"
-        },
-        {
             "name": "filp/whoops",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d13505b240a6f580bc75ba591da30299d6cb0eec"
+                "reference": "8828aaa2178e0a19325522e2a45282ff0a14649b"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -195,7 +210,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2016-04-07 06:16:25"
+            "time": "2016-05-06 18:25:35"
         },
         {
             "name": "fxp/composer-asset-plugin",
@@ -255,53 +270,6 @@
                 "package"
             ],
             "time": "2016-05-04 08:21:07"
-        },
-        {
-            "name": "italolelis/datatables",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/italolelis/datatables.git",
-                "reference": "c16caea6e0c11536a7c3440d9d288999cd95d0c2"
-            },
-            "require": {
-                "easyframework/collections": "~4.1",
-                "symfony/event-dispatcher": "~2.6",
-                "symfony/property-access": "~2.6"
-            },
-            "require-dev": {
-                "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.5",
-                "symfony/var-dumper": "~2.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Datatable\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\Datatable\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ítalo Lelis de Vietro",
-                    "email": "italolelis@gmail.com"
-                }
-            ],
-            "description": "A PHP wrapper for DataTables (http://www.datatables.net) plugin for jQuery.",
-            "homepage": "https://github.com/italolelis/datatables",
-            "keywords": [
-                "datatables",
-                "grid",
-                "wrapper"
-            ],
-            "time": "2015-08-26 18:19:53"
         },
         {
             "name": "jalle19/php-whitelist-check",
@@ -491,66 +459,6 @@
             "time": "2015-10-26 16:11:30"
         },
         {
-            "name": "symfony/event-dispatcher",
-            "version": "2.8.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "a158f13992a3147d466af7a23b564ac719a4ddd8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/a158f13992a3147d466af7a23b564ac719a4ddd8",
-                "reference": "a158f13992a3147d466af7a23b564ac719a4ddd8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "psr/log": "~1.0",
-                "symfony/config": "~2.0,>=2.0.5|~3.0.0",
-                "symfony/dependency-injection": "~2.6|~3.0.0",
-                "symfony/expression-language": "~2.6|~3.0.0",
-                "symfony/stopwatch": "~2.3|~3.0.0"
-            },
-            "suggest": {
-                "symfony/dependency-injection": "",
-                "symfony/http-kernel": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\EventDispatcher\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony EventDispatcher Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-05-03 18:59:18"
-        },
-        {
             "name": "symfony/process",
             "version": "dev-master",
             "source": {
@@ -600,66 +508,6 @@
             "time": "2016-04-12 19:11:33"
         },
         {
-            "name": "symfony/property-access",
-            "version": "2.8.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/property-access.git",
-                "reference": "1d6f0181fbddda4bb2e2a41f7a5928d590f06b34"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/1d6f0181fbddda4bb2e2a41f7a5928d590f06b34",
-                "reference": "1d6f0181fbddda4bb2e2a41f7a5928d590f06b34",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\PropertyAccess\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony PropertyAccess Component",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "access",
-                "array",
-                "extraction",
-                "index",
-                "injection",
-                "object",
-                "property",
-                "property path",
-                "reflection"
-            ],
-            "time": "2016-04-20 18:52:26"
-        },
-        {
             "name": "xrstf/ip-utils",
             "version": "dev-default",
             "source": {
@@ -705,7 +553,7 @@
                 "matching",
                 "subnet"
             ],
-            "time": "2013-12-04 00:59:28"
+            "time": "2013-12-04 01:59:28"
         }
     ],
     "packages-dev": [],

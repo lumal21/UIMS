@@ -161,7 +161,7 @@ final class NodeIndexer
      */
     private function getNodesByParameter($parameterName, $parameterValue, $expression = '==')
     {
-        return NodeManipulation::getArrayByLogicComparsion($this->getNodes(),
+        return NodeManipulation::getArrayByLogicComparison($this->getNodes(),
             $parameterName, $parameterValue, $expression);
     }
 
@@ -185,7 +185,7 @@ final class NodeIndexer
      */
     private function getNodesByCallBackParameter($parameterName, $parameterValue, $expression = '==')
     {
-        return NodeManipulation::getArrayByLogicComparsion($this->getNodesCallBack(),
+        return NodeManipulation::getArrayByLogicComparison($this->getNodesCallBack(),
             $parameterName, $parameterValue, $expression);
     }
 

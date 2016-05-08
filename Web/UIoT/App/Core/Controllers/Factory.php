@@ -45,8 +45,9 @@ final class Factory
      */
     public static function addController($controllerName)
     {
-        self::controllerExists(Strings::toControllerName($controllerName)) ||
-        array_push(self::$controllers, Strings::toControllerName($controllerName));
+        if (!self::controllerExists($controllerName)) {
+            array_push(self::$controllers, $controllerName);
+        }
     }
 
     /**
@@ -57,7 +58,7 @@ final class Factory
      */
     public static function controllerExists($controllerName)
     {
-        return in_array(Strings::toControllerName($controllerName), self::$controllers);
+        return Arrays::inArray($controllerName, self::$controllers);
     }
 
     /**
@@ -68,8 +69,7 @@ final class Factory
      */
     public static function getController($controllerName)
     {
-        return self::controllerExists($controllerName) ?
-            self::callControllerStaticMethod($controllerName, 'getInstance') : null;
+        return self::controllerExists($controllerName) ? self::callControllerStaticMethod($controllerName, 'getInstance') : null;
     }
 
     /**
@@ -82,7 +82,7 @@ final class Factory
     public static function executeControllerAction($controllerName, $actionName)
     {
         return self::controllerActionExists($controllerName, $actionName) ?
-            self::getController($controllerName)->{Strings::toActionMethodName($actionName)}() : '';
+            self::getController($controllerName)->{Strings::toAction($actionName)}() : '';
     }
 
     /**
@@ -94,7 +94,7 @@ final class Factory
      */
     public static function controllerActionExists($controllerName, $actionName)
     {
-        return in_array(Strings::toActionName($actionName), self::getControllerActions($controllerName));
+        return Arrays::inArray(Strings::toAction($actionName), self::getControllerActions($controllerName));
     }
 
     /**
@@ -106,8 +106,8 @@ final class Factory
     public static function getControllerActions($controllerName)
     {
         return array_map(function ($controllerAction) {
-            return Arrays::toActionName($controllerAction);
-        }, (array)get_class_methods(self::getController(Strings::toControllerName($controllerName))));
+            return $controllerAction;
+        }, (array)get_class_methods(self::getController($controllerName)));
     }
 
     /**
@@ -119,6 +119,6 @@ final class Factory
      */
     public static function callControllerStaticMethod($controllerName, $controllerMethod)
     {
-        return forward_static_call(["UIoT\\App\\Data\\Controllers\\$controllerName", $controllerMethod]);
+        return forward_static_call(["UIoT\\App\\Data\\Controllers\\" . Strings::toCamel($controllerName), $controllerMethod]);
     }
 }

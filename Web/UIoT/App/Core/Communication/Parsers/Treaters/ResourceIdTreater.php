@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
+use UIoT\App\Core\Communication\Parsers\DataTreater;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -44,18 +45,10 @@ class ResourceIdTreater extends RequestSingleton
     public function parse($requestContent)
     {
         if (!is_array($requestContent)) {
-            $raiseObjectTreater = ResourceObjectTreater::getInstance();
-            $raiseObjectTreater->parse($requestContent);
-
-            if ($raiseObjectTreater->getDone()) {
-                $this->setResponse($raiseObjectTreater->getResponse());
-                $this->setDone($raiseObjectTreater->getDone());
-                return;
-            }
+            $raiseObjectTreater = DataTreater::parseTreater(ResourceObjectTreater::getInstance(), $requestContent);
+            DataTreater::setTreaterStatus($raiseObjectTreater, $this);
         } elseif (property_exists($requestContent[0], 'ID')) {
             $this->setResponse($requestContent[0]->ID);
-            $this->setDone(false);
-            return;
         }
     }
 }

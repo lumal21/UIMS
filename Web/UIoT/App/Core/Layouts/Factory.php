@@ -22,7 +22,8 @@
 
 namespace UIoT\App\Core\Layouts;
 
-use UIoT\App\Data\Singletons\LayoutSingleton;
+use UIoT\App\Helpers\Manipulation\Arrays;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Indexer
@@ -43,7 +44,9 @@ final class Factory
      */
     public static function addLayout($layoutName)
     {
-        self::layoutExists($layoutName) || array_push(self::$layout, $layoutName);
+        if (!self::layoutExists($layoutName)) {
+            array_push(self::$layout, $layoutName);
+        }
 
         return $layoutName;
     }
@@ -51,44 +54,49 @@ final class Factory
     /**
      * Check if Layout Exists
      *
-     * @param string|LayoutSingleton $layoutName
+     * @param string $layoutName
      * @return bool
      */
     public static function layoutExists($layoutName)
     {
-        return in_array($layoutName, self::$layout);
+        return Arrays::inArray($layoutName, self::$layout);
     }
 
     /**
      * Return Instance of Layout
      *
-     * @param string $layoutName
-     * @return string
+     * @param string $layoutName Layout Name
+     * @param bool $needRegisterResource If need Register Resource
+     * @return mixed Layout Content
      */
-    public static function getLayout($layoutName)
+    public static function getLayout($layoutName, $needRegisterResource = false)
     {
-        return self::layoutExists($layoutName) ? self::callLayoutStaticMethod($layoutName, 'executeLayout') : '';
-    }
+        if ($needRegisterResource) {
+            self::getLayoutAssets($layoutName);
+        }
 
-    /**
-     * Call Layout static method.
-     *
-     * @param string $layoutName
-     * @param string $layoutMethod
-     * @return mixed
-     */
-    public static function callLayoutStaticMethod($layoutName, $layoutMethod)
-    {
-        return forward_static_call(["UIoT\\App\\Data\\Layouts\\$layoutName", $layoutMethod]);
+        return self::layoutExists($layoutName) ? self::callLayoutStaticMethod($layoutName, 'executeLayout') : '';
     }
 
     /**
      * Get the Layout Resources
      *
-     * @param string $layoutName
+     * @param string $layoutName Layout Name
      */
-    public static function getLayoutResources($layoutName)
+    public static function getLayoutAssets($layoutName)
     {
         self::callLayoutStaticMethod($layoutName, 'callResource');
+    }
+
+    /**
+     * Call Layout static method.
+     *
+     * @param string $layoutName Layout Name
+     * @param string $layoutMethod Layout Method
+     * @return mixed Layout Method Return
+     */
+    public static function callLayoutStaticMethod($layoutName, $layoutMethod)
+    {
+        return forward_static_call(["UIoT\\App\\Data\\Layouts\\" . Strings::toCamel($layoutName), $layoutMethod]);
     }
 }

@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -57,8 +58,6 @@ class DataTableHandler extends RequestSingleton
             '</pre>' .
             '</div>';
 
-        $this->setResponse($responseRawData);
-
-        $this->setDone(true);
+        DataHandler::setHandlerData($this, $responseRawData, true);
     }
 }

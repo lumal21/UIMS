@@ -52,12 +52,11 @@ class NodeManipulation extends Arrays
      * @param string $expression
      * @return array
      */
-    public static function getArrayByLogicComparsion(array $nodeArray, $parameterName = '',
-                                                     $parameterValue, $expression = '==')
+    public static function getArrayByLogicComparison(array $nodeArray, $parameterName = '', $parameterValue, $expression = '==')
     {
         self::$nodeFilter = new NodeFilter($parameterName, $parameterValue, $expression);
 
-        return array_filter($nodeArray, [__CLASS__, 'nodeFilterByLogicComparsion']);
+        return array_filter($nodeArray, [__CLASS__, 'nodeFilterByLogicComparison']);
     }
 
     /**
@@ -105,22 +104,20 @@ class NodeManipulation extends Arrays
     }
 
     /**
-     * Filter node array elements by matching logic comparsion check
+     * Filter node array elements by matching logic comparison check
      *
      * @param NodeModel $nodeElement
      * @return bool
      */
-    final protected static function nodeFilterByLogicComparsion($nodeElement)
+    final protected static function nodeFilterByLogicComparison($nodeElement)
     {
         $variable = empty(self::$nodeFilter->parameterName) ?
             get_class($nodeElement->getCallBack()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
 
-        switch (self::$nodeFilter->comparsionExpression) {
-            case '!=':
-                return $variable != self::$nodeFilter->parameterValue;
-            default:
-                return $variable == self::$nodeFilter->parameterValue;
+        if (self::$nodeFilter->comparsionExpression == '!=') {
+            return $variable != self::$nodeFilter->parameterValue;
+        } else {
+            return $variable == self::$nodeFilter->parameterValue;
         }
-
     }
 }

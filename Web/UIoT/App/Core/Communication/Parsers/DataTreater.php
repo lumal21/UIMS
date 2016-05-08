@@ -31,32 +31,16 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class DataTreater
 {
     /**
-     * Return a specific data treater
-     *
-     * @param RequestSingleton $requestedTreater
-     * @return RequestSingleton
-     */
-    public static function getTreater(RequestSingleton $requestedTreater)
-    {
-        return $requestedTreater;
-    }
-
-    /**
      * Check a treater status and set his response
      *
-     * @param RequestSingleton $checkedTreater selected Treater
-     * @param RequestSingleton $responseCollector response Collector
+     * @param RequestSingleton $requestedTreater selected Treater
+     * @param RequestSingleton $responseTreater response Collector
      * @return bool if need stop the execution
      */
-    public static function getTreaterStatus(RequestSingleton $checkedTreater, RequestSingleton $responseCollector)
+    public static function setTreaterStatus(RequestSingleton $requestedTreater, RequestSingleton $responseTreater)
     {
-        if ($checkedTreater->getDone()) {
-            $responseCollector->setResponse($checkedTreater->getResponse());
-
-            return true;
-        }
-
-        return false;
+        $responseTreater->setResponse($requestedTreater->getResponse());
+        return $responseTreater->setDone($requestedTreater->getDone());
     }
 
     /**
@@ -69,7 +53,6 @@ class DataTreater
     public static function parseTreater(RequestSingleton $treater, $arguments)
     {
         $treater->parse($arguments);
-
         return $treater;
     }
 }

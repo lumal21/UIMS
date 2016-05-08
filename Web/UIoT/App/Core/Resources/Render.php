@@ -22,12 +22,11 @@
 
 namespace UIoT\App\Core\Resources;
 
-use UIoT\App\Core\Assets\Register;
+use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
-use UIoT\App\Core\Communication\Parsers\DataManager;
+use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Render
@@ -38,17 +37,17 @@ final class Render implements RenderInterface
     /**
      * @var string
      */
-    private $controllerName;
+    private $resourceName;
 
     /**
      * @var string
      */
-    private $controllerAction;
+    private $resourceMethod;
 
     /**
      * @var string
      */
-    private static $controllerData;
+    private static $resourceData;
 
     /**
      * Init Template (Layout/Controller/View) Handler
@@ -58,8 +57,6 @@ final class Render implements RenderInterface
     public function __construct($arguments = [])
     {
         $this->setArguments($arguments);
-        $this->setResources();
-        $this->prepareRaise();
         $this->setControllerData();
     }
 
@@ -71,21 +68,18 @@ final class Render implements RenderInterface
      */
     public function setArguments($arguments = [])
     {
-        $this->controllerName = Strings::toControllerName($arguments['resource']);
-
-        $this->controllerAction = Strings::toActionName($arguments['action']);
+        $this->resourceName = $arguments['resource'];
+        $this->resourceMethod = $arguments['method'];
     }
 
     /**
-     * Start the Controller Commander
+     * Set Controller Data
      */
     private function setControllerData()
     {
-        $baseCollector = DataCollector::getBaseCollector(DataManager::getParserMethod($this->controllerAction));
+        RequestTemplateManager::setTemplate($this->resourceMethod, Mime::JSON);
 
-        $baseCollector->parse(strtolower($this->controllerName));
-
-        self::$controllerData = $baseCollector->getResponse();
+        self::$resourceData = DataCollector::runMethodCollector($this->resourceName, $this->resourceMethod);
     }
 
     /**
@@ -95,32 +89,15 @@ final class Render implements RenderInterface
      */
     public static function getControllerData()
     {
-        return self::$controllerData;
+        return self::$resourceData;
     }
 
     /**
      * Show Template Content
      * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
      */
-    public function show()
+    public function showContent()
     {
-        return Factory::getLayout($this->controllerAction);
-    }
-
-    /**
-     * Register Controller's Layout Assets
-     */
-    private function setResources()
-    {
-        Register::registerResources($this->controllerAction, true);
-    }
-
-    /**
-     * Prepare Raise
-     */
-    private function prepareRaise()
-    {
-        /* prepare template */
-        DataManager::setTemplate($this->controllerAction);
+        return Factory::getLayout($this->resourceMethod);
     }
 }

@@ -62,21 +62,17 @@
     {
       "url": "https://github.com/nategood/httpful.git",
       "type": "git"
-    },
-    {
-      "url": "https://github.com/italolelis/datatables.git",
-      "type": "git"
     }
   ],
   "require": {
+    "fxp/composer-asset-plugin": "master",
     "nategood/httpful": "master",
     "jalle19/php-whitelist-check": "master",
-    "italolelis/datatables": "master",
     "mihaeu/html-formatter": "master",
     "bramus/router": "master",
     "kriswallsmith/assetic": "master",
-    "fxp/composer-asset-plugin": "master",
-    "filp/whoops": "master"
+    "filp/whoops": "master",
+    "bower-asset/foundation-sites": "master"
   },
   "scripts": {
     "post-package-install": [
@@ -87,13 +83,6 @@
     ]
   },
   "extra": {
-    "asset-repositories": [
-      {
-        "type": "bower-vcs",
-        "url": "https://github.com/zurb/foundation-sites.git",
-        "name": "bower-asset/foundation-sites"
-      }
-    ],
     "asset-installer-paths": {
       "bower-asset-library": "Web/UIoT/Resources/Vendor/Bower",
       "npm-asset-library": "Web/UIoT/Resources/Vendor/Npm"

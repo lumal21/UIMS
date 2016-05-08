@@ -22,11 +22,9 @@
 
 namespace UIoT\App\Core\Controllers;
 
-use UIoT\App\Core\Assets\Register as AssetIndexer;
-use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
+use Exception;
+use UIoT\App\Core\Layouts\Factory as LayoutFactory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Exception\Manager;
-use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Render
@@ -57,7 +55,6 @@ final class Render implements RenderInterface
     public function __construct($arguments = [])
     {
         $this->setArguments($arguments);
-        $this->setResources();
         $this->setControllerData();
     }
 
@@ -69,9 +66,8 @@ final class Render implements RenderInterface
      */
     public function setArguments($arguments = [])
     {
-        $this->controllerName = Strings::toControllerName($arguments['controller']);
-
-        $this->controllerAction = Strings::toActionName($arguments['action']);
+        $this->controllerName = $arguments['controller'];
+        $this->controllerAction = $arguments['action'];
     }
 
     /**
@@ -80,10 +76,9 @@ final class Render implements RenderInterface
     private function setControllerData()
     {
         if (!Factory::controllerActionExists($this->controllerName, $this->controllerAction)) {
-            $this->throwNonExistentActionError();
+            throw new Exception("The requested Action doesn't exists.", '404');
         }
 
-        // Set Controller Data
         self::$controllerData = Factory::executeControllerAction($this->controllerName, $this->controllerAction);
     }
 
@@ -101,35 +96,8 @@ final class Render implements RenderInterface
      * Show Template Content
      * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
      */
-    public function show()
+    public function showContent()
     {
-        return LayoutIndexer::getLayout($this->controllerName);
-    }
-
-    /**
-     * Throw non Existent Action Exception
-     */
-    private function throwNonExistentActionError()
-    {
-        Manager::throwError(902,
-            "Stop! That Action Doesn't Exists!",
-            'Details: ',
-            [
-                'What Happened?' => "You're trying to call an nonexistent Action",
-                'What Action?' => "Action with name: $this->controllerAction",
-                'From the Controller:' => $this->controllerName,
-                'Resolution:' => "Stop trying to call nonexistent actions.",
-                'What Actions can i Call?' => "You can Call UIoT's Abstract Actions (Handlers), and the Built-In Controllers Actions",
-                'Are you the developer?' => 'You can open this same error Page with Developer Code, only need put ?de on the Url'
-            ]
-        );
-    }
-
-    /**
-     * Register Controller's Layout Assets
-     */
-    private function setResources()
-    {
-        AssetIndexer::registerResources($this->controllerName, true);
+        return LayoutFactory::getLayout($this->controllerName);
     }
 }

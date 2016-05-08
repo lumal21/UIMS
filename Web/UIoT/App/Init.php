@@ -72,10 +72,7 @@ final class Init
         (new Core\Assets\Manager);
 
         /* start raise */
-        (new Core\Communication\Requesting\Raise);
-
-        /* register handlers,methods of rest */
-        (new Core\Communication\Parsers\DataManager);
+        (new Core\Communication\Requesting\RaiseRequestManager);
 
         /* start router */
         (new Core\Communication\Routing\Router);

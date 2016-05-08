@@ -69,8 +69,7 @@ final class Indexer
     public static function updateKeyIfNeeded($keyName, $keyValue)
     {
         /* first check if exists, and if exists, check if value is different, if is, update value, else, do nothing */
-        (!self::keyExists($keyName) && self::getKeyValue($keyName) == $keyValue) ||
-        self::updateKey($keyName, $keyValue);
+        (!self::keyExists($keyName) && self::getKeyValue($keyName) == $keyValue) || self::updateKey($keyName, $keyValue);
 
         /* return value if exists, if not return only key value */
         return self::keyExists($keyName) ? self::getKeyValue($keyName) : $keyValue;

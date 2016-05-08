@@ -51,6 +51,6 @@ final class Pages
         Register::addAsset($scriptName, 'script/javascript');
 
         /* So echo the script */
-        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnResource($scriptName)));
+        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnAsset($scriptName)));
     }
 }

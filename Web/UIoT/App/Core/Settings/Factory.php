@@ -39,12 +39,13 @@ class Factory
     /**
      * Create settings factory
      *
-     * @param array $settingsInterfaceList
+     * @param array $settingsModels
      */
-    public static function create(array $settingsInterfaceList)
+    public static function create(array $settingsModels)
     {
-        foreach ($settingsInterfaceList as $settingInterface)
-            self::addModel($settingInterface);
+        foreach ($settingsModels as $settingModel) {
+            self::addModel($settingModel);
+        }
     }
 
     /**
@@ -61,15 +62,17 @@ class Factory
      * Populate settings model
      *
      * @param string $modelName
-     * @param array $modelValues
+     * @param array $modelVariables
      */
-    public static function populateModel($modelName, array $modelValues)
+    public static function populateModel($modelName, array $modelVariables)
     {
-        if (!array_key_exists($modelName, self::$settingsModels))
+        if (!array_key_exists($modelName, self::$settingsModels)) {
             throw new UnexpectedValueException('This settings model does not exists.');
+        }
 
-        foreach ($modelValues as $variableKey => $variableValue)
-            self::$settingsModels[$modelName]->setVariable($variableKey, $variableValue);
+        foreach ($modelVariables as $variableName => $variableValue) {
+            self::$settingsModels[$modelName]->setVariable($variableName, $variableValue);
+        }
     }
 
     /**
@@ -80,10 +83,11 @@ class Factory
      */
     public static function getModel($modelName)
     {
-        if (!array_key_exists($modelName, self::$settingsModels))
+        if (!array_key_exists($modelName, self::$settingsModels)) {
             throw new UnexpectedValueException('This settings model does not exists.');
+        }
 
-        return self::$settingsModels[$modelName]->getInstance();
+        return self::$settingsModels[$modelName]->getModel();
     }
 
     /**
@@ -99,8 +103,9 @@ class Factory
          */
         $settingsModelArray = [];
 
-        foreach (self::$settingsModels as $settingsModelName => $settingsManager)
-            $settingsModelArray[$settingsModelName] = $settingsManager->getInstance();
+        foreach (self::$settingsModels as $settingsModelName => $settingsManager) {
+            $settingsModelArray[$settingsModelName] = $settingsManager->getModel();
+        }
 
         return $settingsModelArray;
     }

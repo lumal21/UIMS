@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use stdClass;
+use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCodeMessageHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
@@ -52,11 +53,7 @@ class ResourceObjectTreater extends RequestSingleton
                 $requestContent->message = 'Raise answered an unknown message.';
             }
 
-            $raiseCodeHandler = RaiseCodeMessageHandler::getInstance();
-            $raiseCodeHandler->parse($requestContent);
-            $this->setResponse($raiseCodeHandler->getResponse());
-            $this->setDone($raiseCodeHandler->getDone());
-            return;
+            DataHandler::setHandlerResponseStatus(RaiseCodeMessageHandler::getInstance(), $this, $requestContent);
         }
     }
 }

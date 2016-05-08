@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -45,12 +46,10 @@ class RaiseCodeMessageHandler extends RequestSingleton
     {
         $responseContentRaw =
             '<div class="callout">' .
-            '<h5>Code Lyoko (#' . $requestContent->code . ')</h5>' .
+            '<h5>Response Code (#' . $requestContent->code . ')</h5>' .
             '<p>' . $requestContent->message . '</p>' .
             '</div>';
 
-        $this->setResponse($responseContentRaw);
-
-        $this->setDone(true);
+        DataHandler::setHandlerData($this, $responseContentRaw, true);
     }
 }
