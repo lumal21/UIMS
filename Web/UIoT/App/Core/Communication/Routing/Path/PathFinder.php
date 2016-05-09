@@ -61,7 +61,7 @@ final class PathFinder
     public function mountRouter(IRouter $router)
     {
         /* get all primary nodes (Nodes with the Lowest Priority Identification, Default: 0 */
-        array_map(function ($node) use ($router) {
+        array_map(function($node) use ($router) {
             $this->mountRouterEdges($router, $node, false);
         }, $this->getNodeIndexer()->getNodesByPriorityId($this->getNodeIndexer()->getLowestNodePriorityId()));
     }
@@ -76,11 +76,11 @@ final class PathFinder
     public function mountRouterEdges(IRouter $router, NodeModel $node, $recursively = true)
     {
         /** @var NodeModel $edge */
-        foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge) {
+        foreach($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge) {
             $edge->getCallBack()->setNodeModel($edge);
 
             /* don't repeat same items if is recursively */
-            if (($edge->getPriority() <= $node->getPriority()) && $recursively) {
+            if(($edge->getPriority() <= $node->getPriority()) && $recursively) {
                 continue;
             }
 
@@ -119,7 +119,7 @@ final class PathFinder
     public function mountRouterNode(IRouter $router, NodeModel $node)
     {
         /* mount the node edges */
-        $router->mount($node->getPath(), function () use ($router, $node) {
+        $router->mount($node->getPath(), function() use ($router, $node) {
             $this->mountRouterEdges($router, $node);
         });
     }
@@ -132,7 +132,7 @@ final class PathFinder
     public function serializeCallBacks(array $nodes)
     {
         /* serialize all call backs data */
-        array_walk_recursive($nodes, function (NodeModel $edge) {
+        array_walk_recursive($nodes, function(NodeModel $edge) {
             $edge->getCallBack()->setNodeModel($edge);
         });
     }

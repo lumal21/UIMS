@@ -75,7 +75,7 @@ final class Manager
      */
     public static function addAsset($assetName, $assetPath)
     {
-        if (self::isCachingEnabled())
+        if(self::isCachingEnabled())
             self::getAssetManager()->set($assetName, new AssetCache(new FileAsset($assetPath), self::getCacheManager()));
         else
             self::getAssetManager()->set($assetName, new FileAsset($assetPath));

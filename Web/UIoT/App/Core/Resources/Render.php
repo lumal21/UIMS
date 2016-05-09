@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Resources;
 
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
+use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
@@ -77,7 +78,7 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        RequestTemplateManager::setTemplate($this->resourceMethod, Mime::JSON);
+        RequestTemplateManager::setTemplate(DataHandler::getMethodName($this->resourceMethod), Mime::JSON);
 
         self::$resourceData = DataCollector::runMethodCollector($this->resourceName, $this->resourceMethod);
     }
@@ -93,11 +94,14 @@ final class Render implements RenderInterface
     }
 
     /**
-     * Show Template Content
-     * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
+     * Show Rendered Content
+     *
+     * @return mixed
      */
     public function showContent()
     {
+        Factory::addLayout($this->resourceMethod);
+
         return Factory::getLayout($this->resourceMethod);
     }
 }

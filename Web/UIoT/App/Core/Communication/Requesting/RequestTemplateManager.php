@@ -45,8 +45,7 @@ class RequestTemplateManager
      */
     public static function setTemplate($methodName, $mimeType)
     {
-        self::adjustTemplate(self::$template =
-            Request::init($methodName)->method($methodName)->expects($mimeType)->mime($mimeType));
+        self::adjustTemplate(self::$template = Request::init($methodName)->method($methodName)->expects($mimeType)->mime($mimeType));
     }
 
     /**

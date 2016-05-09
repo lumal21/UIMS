@@ -77,7 +77,7 @@ final class Register
     {
         $assetName = Strings::toLower($assetName);
 
-        if (!Manager::getAssetManager()->has($assetName)) {
+        if(!Manager::getAssetManager()->has($assetName)) {
             throw new Exception("The requested Resource wasn't Found on this Server", '404');
         }
 

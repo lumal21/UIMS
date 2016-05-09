@@ -75,7 +75,7 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        if (!Factory::controllerActionExists($this->controllerName, $this->controllerAction)) {
+        if(!Factory::controllerActionExists($this->controllerName, $this->controllerAction)) {
             throw new Exception("The requested Action doesn't exists.", '404');
         }
 

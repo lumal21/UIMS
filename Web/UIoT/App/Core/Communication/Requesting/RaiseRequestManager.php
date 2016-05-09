@@ -48,6 +48,17 @@ class RaiseRequestManager
     public static $raiseBaseUri = 'http://localhost:80/';
 
     /**
+     * Start Raise
+     *
+     * Raise constructor.
+     */
+    public function __construct()
+    {
+        self::setSettings();
+        self::setHost();
+    }
+
+    /**
      * Set Raise Settings
      */
     public static function setSettings()
