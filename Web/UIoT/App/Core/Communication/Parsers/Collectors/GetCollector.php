@@ -65,6 +65,6 @@ class GetCollector extends RequestSingleton
         }
 
         DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this,
-            ['keys' => $resourcePropertiesTreater->getResponse(), 'values' => RaiseRequestManager::doRequest($resourceName)]);
+            ['resource' => $resourceName, 'keys' => $resourcePropertiesTreater->getResponse(), 'values' => RaiseRequestManager::doRequest($resourceName)]);
     }
 }

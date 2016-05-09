@@ -24,6 +24,8 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Strings;
+use UIoT\App\Helpers\Visual\DataTable;
 
 /**
  * Class DataTableHandler
@@ -44,20 +46,16 @@ class DataTableHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $responseRawData =
-            '<h2>Keys</h2>' .
-            '<div class="callout secondary">' .
-            '<pre>' .
-            print_r($requestContent['keys'], true) .
-            '</pre>' .
-            '</div>' .
-            '<h2>Values</h2>' .
-            '<div class="callout secondary">' .
-            '<pre>' .
-            print_r($requestContent['values'], true) .
-            '</pre>' .
-            '</div>';
+        $dataTable = new DataTable(Strings::toCamel($requestContent['resource']));
 
-        DataHandler::setHandlerData($this, $responseRawData, true);
+        foreach($requestContent['keys'] as $value) {
+            $dataTable->addHeader($value->PROP_FRIENDLY_NAME);
+        }
+
+        foreach($requestContent['values'] as $value) {
+            $dataTable->addBody($value);
+        }
+
+        DataHandler::setHandlerData($this, $dataTable->showContent(), true);
     }
 }
