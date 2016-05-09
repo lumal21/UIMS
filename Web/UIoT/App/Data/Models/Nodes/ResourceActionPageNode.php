@@ -26,26 +26,25 @@ use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Controllers\Factory;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
-use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
- * Class ResourceNode
+ * Class ResourceActionPageNode
  * @package UIoT\App\Data\Models\Nodes
  */
-final class ResourceNode extends NodeHandlerModel
+final class ResourceActionPageNode extends NodeHandlerModel
 {
     /**
      * Callback Function
-     *
-     * @return boolean|null
      */
     public function call()
     {
         $this->setResult(!Factory::controllerExists($this->getPathValue()[0]));
 
+        $this->setResult(!Factory::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
+
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'resource' => $this->getPathValue()[0],
-            'method' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION'),
+            'method' => $this->getPathValue()[1],
             'arguments' => $this->getPathValue()]))
         );
     }

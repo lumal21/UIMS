@@ -37,7 +37,7 @@ final class Pages
      */
     public static function setTitle($pageTitle)
     {
-        Html::add("<title>{$pageTitle}</title>");
+        Format::add("<title>{$pageTitle}</title>");
     }
 
     /**
@@ -51,6 +51,6 @@ final class Pages
         Register::addAsset($scriptName, 'script/javascript');
 
         /* So echo the script */
-        Html::add(sprintf('<script type="text/javascript">%s</script>', Register::returnAsset($scriptName)));
+        Format::add(sprintf('<script type="text/javascript">%s</script>', Register::returnAsset($scriptName)));
     }
 }

@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Helpers\Manipulation\Constants;
-use UIoT\App\Helpers\Visual\Html;
+use UIoT\App\Helpers\Visual\Format;
 
 /**
  * Class Register
@@ -66,7 +66,7 @@ final class Register
      */
     public static function addTemplate($fileName)
     {
-        Html::add(self::parseTemplateFile(self::$folder . $fileName));
+        Format::add(self::parseTemplateFile(self::$folder . $fileName));
     }
 
     /**
@@ -111,6 +111,6 @@ final class Register
      */
     public static function returnTemplates()
     {
-        return Html::getFormat();
+        return Format::getFormat();
     }
 }

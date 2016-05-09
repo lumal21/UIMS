@@ -34,7 +34,7 @@ use UIoT\App\Exception\Manager;
  * @property mixed action
  * @package UIoT\App\Core\Communication\Routing
  */
-final class Router extends RouterAccessor
+final class Router extends RouterHelper
 {
     /**
      * Start's Router Procedure

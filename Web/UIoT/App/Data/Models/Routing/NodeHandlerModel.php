@@ -98,6 +98,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      * Set Result Content
      *
      * @param null|string $resultContent
+     * @return mixed|void
      */
     public function setResultContent($resultContent)
     {
@@ -118,6 +119,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      * Set Result
      *
      * @param bool $result
+     * @return mixed|void
      */
     public function setResult($result)
     {
@@ -148,6 +150,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      * Set Node Model
      *
      * @param NodeModel|null $nodeModel
+     * @return mixed|void
      */
     public function setNodeModel($nodeModel = null)
     {

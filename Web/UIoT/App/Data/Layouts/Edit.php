@@ -29,10 +29,10 @@ use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
 /**
- * Class Main
+ * Class Edit
  * @package UIoT\App\Data\Layouts
  */
-class Main extends LayoutSingleton
+class Edit extends LayoutSingleton
 {
     /**
      * Set Resources
@@ -60,7 +60,7 @@ class Main extends LayoutSingleton
      */
     public function configureLayout()
     {
-        Pages::setTitle('UIoT - View Resource');
+        Pages::setTitle('UIoT - Edit Resource');
     }
 
     /**

@@ -22,9 +22,6 @@
 
 namespace UIoT\App\Data\Models\Nodes;
 
-use UIoT\App\Core\Communication\Routing\RenderSelector;
-use UIoT\App\Core\Controllers\Factory;
-use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 
 /**
@@ -38,13 +35,8 @@ final class ResourceActionNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(!Factory::controllerExists($this->getPathValue()[0]));
+        die('a');
 
-        $this->setResult(!Factory::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
-
-        !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
-            'resource' => $this->getPathValue()[0],
-            'method' => $this->getPathValue()[1]]))
-        );
+        $this->setResult(false);
     }
 }

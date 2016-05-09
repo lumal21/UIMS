@@ -97,4 +97,26 @@ class RaiseRequestManager
     {
         return (new RequestDataManager(self::$raiseBaseUri . $url))->get_data('body');
     }
+
+    /**
+     * Get Query String
+     *
+     * @param string $inputPath
+     * @param mixed $inputArray
+     * @return string
+     */
+    public static function getQueryStringUri($inputPath, $inputArray)
+    {
+        $requiredArray = array_slice($inputArray, 2);
+
+        $queryArray = [];
+
+        foreach(array_flip($requiredArray) as $key => $value) {
+            if(array_key_exists($value + 1, $requiredArray)) {
+                $queryArray[$key] = rawurldecode($requiredArray[$value + 1]);
+            }
+        }
+
+        return "{$inputPath}?" . http_build_query($queryArray);
+    }
 }

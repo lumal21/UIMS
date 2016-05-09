@@ -68,10 +68,15 @@ class Strings
      * Convert string to Controller String
      *
      * @param string $string
+     * @param bool $forceCamel
      * @return string
      */
-    public static function toCamel($string = '')
+    public static function toCamel($string = '', $forceCamel = false)
     {
+        if($forceCamel) {
+            $string = str_replace('_', ' ', $string);
+        }
+
         return ucfirst(self::toLower($string));
     }
 

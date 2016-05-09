@@ -25,12 +25,13 @@ namespace UIoT\App\Core\Communication\Routing;
 use Bramus\Router\Router as IRouter;
 use UIoT\App\Core\Communication\Routing\Path\PathFinder;
 use UIoT\App\Data\Interfaces\Routing\NodeHandlerInterface;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
- * Class RouterAccessor
+ * Class RouterHelper
  * @package UIoT\App\Core\Communication\Routing
  */
-class RouterAccessor
+class RouterHelper
 {
     /**
      * @var array
@@ -59,7 +60,7 @@ class RouterAccessor
     public static function addRoute($path, $callback, $priority, $method, $group)
     {
         self::$nodeList[self::getNodeListSize() + 1] =
-            ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => $method, 'group' => $group];
+            ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => Strings::toLower($method), 'group' => $group];
     }
 
     /**

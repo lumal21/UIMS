@@ -22,7 +22,10 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Strings;
+use UIoT\App\Helpers\Visual\Forms;
 
 /**
  * Class EmptyHtmlFormHandler
@@ -34,4 +37,29 @@ class EmptyHtmlFormHandler extends RequestSingleton
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
+
+    /**
+     * Parse Request Data or Do Request
+     *
+     * @param mixed $requestContent
+     * @return void
+     */
+    public function parse($requestContent)
+    {
+        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true));
+
+        foreach($requestContent['values'] as $itemObject) {
+            $itemDetails = array_slice($requestContent['keys'], 0, 2);
+
+            $formHandler->addHeader("ID: {$itemObject->{$itemDetails[0]->PROP_NAME}}", "Name: {$itemObject->{$itemDetails[1]->PROP_NAME}}");
+
+            foreach($requestContent['keys'] as $propertyObject) {
+                $formHandler->addTextInput($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true));
+            }
+        }
+
+        $formHandler->addButton('Add', 'submit', 'Add New Item');
+
+        DataHandler::setHandlerData($this, $formHandler->showContent(), true);
+    }
 }

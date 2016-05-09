@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Resources;
 
+use Httpful\Http;
 use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
-use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
@@ -36,17 +36,22 @@ use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 final class Render implements RenderInterface
 {
     /**
-     * @var string
+     * @var string Resource Name
      */
     private $resourceName;
 
     /**
-     * @var string
+     * @var string Requested Method
      */
     private $resourceMethod;
 
     /**
-     * @var string
+     * @var array Path Arguments
+     */
+    private $resourceArguments = [];
+
+    /**
+     * @var string Other Data
      */
     private static $resourceData;
 
@@ -71,6 +76,7 @@ final class Render implements RenderInterface
     {
         $this->resourceName = $arguments['resource'];
         $this->resourceMethod = $arguments['method'];
+        $this->resourceArguments = $arguments['arguments'];
     }
 
     /**
@@ -78,9 +84,12 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        RequestTemplateManager::setTemplate(DataHandler::getMethodName($this->resourceMethod), Mime::JSON);
+        RequestTemplateManager::setTemplate(Http::GET, Mime::JSON);
 
-        self::$resourceData = DataCollector::runMethodCollector($this->resourceName, $this->resourceMethod);
+        self::$resourceData = DataCollector::runMethodCollector([
+            'name' => $this->resourceName,
+            'method' => $this->resourceMethod,
+            'arguments' => $this->resourceArguments]);
     }
 
     /**

@@ -45,13 +45,13 @@ class GetCollector extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $resourceName
+     * @param array $resourceData
      * @return void
      */
-    public function parse($resourceName)
+    public function parse($resourceData)
     {
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
-            RaiseRequestManager::doRequest('resources?name=' . $resourceName));
+            RaiseRequestManager::doRequest('resources?name=' . $resourceData['name']));
 
         if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
             return;
@@ -64,7 +64,9 @@ class GetCollector extends RequestSingleton
             return;
         }
 
-        DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this,
-            ['resource' => $resourceName, 'keys' => $resourcePropertiesTreater->getResponse(), 'values' => RaiseRequestManager::doRequest($resourceName)]);
+        DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this, [
+            'resource' => $resourceData['name'],
+            'keys' => $resourcePropertiesTreater->getResponse(),
+            'values' => RaiseRequestManager::doRequest($resourceData['name'])]);
     }
 }

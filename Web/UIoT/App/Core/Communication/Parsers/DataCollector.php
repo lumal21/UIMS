@@ -44,15 +44,14 @@ class DataCollector
     /**
      * Run Base Collector
      *
-     * @param string $resourceMethod Raise HTTP Method
-     * @param string $resourceName Raise Resource Name
+     * @param array $resourceData
      * @return string Response Data
      */
-    public static function runMethodCollector($resourceName, $resourceMethod)
+    public static function runMethodCollector($resourceData = ['name' => '', 'method' => '', 'arguments' => []])
     {
-        $baseCollector = self::getMethodCollector($resourceMethod);
+        $baseCollector = self::getMethodCollector($resourceData['method']);
 
-        $baseCollector->parse($resourceName);
+        $baseCollector->parse($resourceData);
 
         return $baseCollector->getResponse();
     }

@@ -41,6 +41,7 @@
 
 namespace UIoT;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Routing\Router;
 use UIoT\App\Core\Controllers\Factory as ControllerIndexer;
 use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
@@ -50,6 +51,7 @@ use UIoT\App\Data\Models\Nodes\BasePathNode;
 use UIoT\App\Data\Models\Nodes\ControllerNode;
 use UIoT\App\Data\Models\Nodes\LayoutNode;
 use UIoT\App\Data\Models\Nodes\ResourceActionNode;
+use UIoT\App\Data\Models\Nodes\ResourceActionPageNode;
 use UIoT\App\Data\Models\Nodes\ResourceNode;
 
 /*
@@ -120,36 +122,45 @@ ControllerIndexer::addController('Home');
  */
 
 /* set controller routing parameters yoururl/CONTROLLER - For Controller Web Pages */
-Router::addRoute('/', new BasePathNode, 0, 'get', 'controller_page');
+Router::addRoute('/', new BasePathNode, 0, Http::GET, 'controller_page');
 
 /* set controller routing parameters yoururl/CONTROLLER - For Controller Web Pages */
-Router::addRoute('/(\w+)', new ControllerNode, 1, 'get', 'controller_page');
+Router::addRoute('/(\w+)', new ControllerNode, 1, Http::GET, 'controller_page');
 
 /* set action routing parameters yoururl/CONTROLLER/ACTION - For Controller Web Pages */
-Router::addRoute('/(\w+)', new ActionNode, 2, 'get', 'controller_page');
+Router::addRoute('/(\w+)', new ActionNode, 2, Http::GET, 'controller_page');
 
 /* set action routing parameters yoururl/CONTROLLER/ACTION - For Controller Web Pages */
-Router::addRoute('/(\w+)', new ActionNode, 2, 'post', 'controller_page');
+Router::addRoute('/(\w+)', new ActionNode, 2, Http::POST, 'controller_page');
 
 /* set arguments routing parameters yoururl/CONTROLLER/ACTION/QUERY/STRING/REST/PARAMETER - For Controller Web Pages */
-Router::addRoute('/(\w+)/(.*)', new ActionNode, 3, 'get', 'controller_page');
+Router::addRoute('/(\w+)/(.*)', new ActionNode, 3, Http::GET, 'controller_page');
 
 /* ##### */
 
 /* set layout routing parameters yoururl/LAYOUT - For Opening Asset Files */
-Router::addRoute('/(\w+)', new LayoutNode, 1, 'get', 'asset_file');
+Router::addRoute('/(\w+)', new LayoutNode, 1, Http::GET, 'asset_file');
 
 /* set resource type folder routing parameters yoururl/LAYOUT/ASSET-TYPE-FOLDER - For Opening Asset Files */
-Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 2, 'get', 'asset_file');
+Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 2, Http::GET, 'asset_file');
+
+/* set resource type folder routing parameters yoururl/LAYOUT/ASSET-TYPE-FOLDER - For Opening Asset Files */
+Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 3, Http::GET, 'asset_file');
 
 /* ##### */
 
 /* set uiot resource routing parameters yoururl/RESOURCE - For UIoT Resources Web Pages */
-Router::addRoute('/(\w+)', new ResourceNode, 1, 'get', 'resource_page');
+Router::addRoute('/(\w+)', new ResourceNode, 1, Http::GET, 'resource_page');
 
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 2, 'get', 'resource_page');
+Router::addRoute('/(\w+)', new ResourceActionPageNode, 2, Http::GET, 'resource_page');
 
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 2, 'post', 'resource_page');
+Router::addRoute('/(\w+)/(.*)', new ResourceActionPageNode, 3, Http::GET, 'resource_page');
+
+/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
+Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::POST, 'resource_action');
+
+/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
+Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::PUT, 'resource_action');
 

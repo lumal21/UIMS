@@ -26,13 +26,8 @@ namespace UIoT\App\Helpers\Visual;
  * Class DataTable
  * @package UIoT\App\Helpers\Visual
  */
-class DataTable
+class DataTable extends Html
 {
-    /**
-     * @var string Data Table Data
-     */
-    private $tableData = '';
-
     /**
      * @var array Header Content
      */
@@ -50,7 +45,7 @@ class DataTable
      */
     public function __construct($tableName = 'Default Table')
     {
-        $this->tableData = "<h3>$tableName</h3><br>";
+        $this->htmlBuffer = "<h3>$tableName</h3><br>";
     }
 
     /**
@@ -73,11 +68,16 @@ class DataTable
         array_push($this->bodyArray, $bodyArray);
     }
 
+    /**
+     * Show Content
+     *
+     * @return string
+     */
     public function showContent()
     {
         $this->createTable();
 
-        return $this->tableData;
+        return Format::format($this->htmlBuffer);
     }
 
     /**
@@ -85,15 +85,15 @@ class DataTable
      */
     private function createTable()
     {
-        $this->tableData .= '<table><thead><tr>';
+        $this->htmlBuffer .= '<table><thead><tr>';
 
         $this->createHeader();
 
-        $this->tableData .= '</tr></thead><tbody>';
+        $this->htmlBuffer .= '</tr></thead><tbody>';
 
         $this->createBody();
 
-        $this->tableData .= '</tbody></table>';
+        $this->htmlBuffer .= '</tbody></table>';
     }
 
     /**
@@ -102,7 +102,7 @@ class DataTable
     private function createHeader()
     {
         foreach($this->headersArray as $header) {
-            $this->tableData .= "<th>{$header}</th>";
+            $this->htmlBuffer .= "<th>{$header}</th>";
         }
     }
 
@@ -112,7 +112,7 @@ class DataTable
     private function createBody()
     {
         foreach($this->bodyArray as $body) {
-            $this->tableData .= "<tr>{$this->createBodyValue($body)}</tr>";
+            $this->htmlBuffer .= "<tr>{$this->createBodyValue($body)}</tr>";
         }
     }
 

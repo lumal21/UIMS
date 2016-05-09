@@ -22,68 +22,48 @@
 
 namespace UIoT\App\Helpers\Visual;
 
-use Mihaeu\HtmlFormatter;
-use UIoT\App\Helpers\Manipulation\Strings;
-
 /**
  * Class Html
  * @package UIoT\App\Helpers\Visual
  */
-final class Html
+class Html
 {
     /**
-     * @var string
+     * @var string Html Buffer
      */
-    private static $internalCode = '';
+    protected $htmlBuffer = '';
 
     /**
-     * Add Code, Format and Store
+     * Add Text Callout
      *
-     * @param string $code
+     * @param string $calloutName
+     * @param string $calloutContent
+     * @param array $calloutClasses
      */
-    public static function addFormat($code = '')
+    public function addTextCallout($calloutName, $calloutContent, $calloutClasses = ['id' => '', 'class' => ''])
     {
-        self::add(self::format($code));
+        $this->addCallout($calloutName, "<p>$calloutContent</p>", $calloutClasses);
     }
 
     /**
-     * Add Code and Store
+     * Add Callout
      *
-     * @param string $code
+     * @param string $calloutName
+     * @param string $calloutContent
+     * @param array $calloutClasses
      */
-    public static function add($code = '')
+    public function addCallout($calloutName, $calloutContent, $calloutClasses = ['id' => '', 'class' => ''])
     {
-        self::$internalCode .= $code;
+        $this->htmlBuffer .= "<div class='callout {$calloutClasses['classes']}' id='{$calloutClasses['id']}'><h5>$calloutName</h5>$calloutContent</div>";
     }
 
     /**
-     * Format Html Code
-     *
-     * @param string $code
-     * @return string
-     */
-    public static function format($code = '')
-    {
-        return Strings::removeEmptyLines(HtmlFormatter::format($code));
-    }
-
-    /**
-     * Return Internal Code
+     * Show Content
      *
      * @return string
      */
-    public static function get()
+    public function showContent()
     {
-        return self::$internalCode;
-    }
-
-    /**
-     * Return Internal Code Formatted
-     *
-     * @return string
-     */
-    public static function getFormat()
-    {
-        return self::format(self::$internalCode);
+        return Format::format($this->htmlBuffer);
     }
 }

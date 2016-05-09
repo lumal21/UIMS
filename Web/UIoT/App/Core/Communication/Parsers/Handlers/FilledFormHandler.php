@@ -22,16 +22,17 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
-use UIoT\App\Helpers\Visual\DataTable;
+use UIoT\App\Helpers\Visual\Forms;
 
 /**
- * Class DataTableHandler
+ * Class FilledFormHandler
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class DataTableHandler extends RequestSingleton
+class FilledFormHandler extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -46,16 +47,22 @@ class DataTableHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $dataTable = new DataTable(Strings::toCamel($requestContent['resource'], true));
+        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), '/' . implode('/', $requestContent['arguments']), Http::PUT);
 
-        foreach($requestContent['keys'] as $value) {
-            $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
+        foreach($requestContent['values'] as $itemObject) {
+            $itemDetails = array_slice($requestContent['keys'], 0, 2);
+
+            $formHandler->addHeader("ID: {$itemObject->{$itemDetails[0]->PROP_NAME}}", "Name: {$itemObject->{$itemDetails[1]->PROP_NAME}}");
+
+            foreach($requestContent['keys'] as $propertyObject) {
+                $formHandler->addTextInputWithValue($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true),
+                    ['id' => '', 'class' => ''],
+                    ['value' => $itemObject->{$propertyObject->PROP_NAME}, 'placeholder' => '']);
+            }
         }
 
-        foreach($requestContent['values'] as $value) {
-            $dataTable->addBody($value);
-        }
+        $formHandler->addButton('Save', 'submit', 'Save Edited Data');
 
-        DataHandler::setHandlerData($this, $dataTable->showContent(), true);
+        DataHandler::setHandlerData($this, $formHandler->showContent(), true);
     }
 }

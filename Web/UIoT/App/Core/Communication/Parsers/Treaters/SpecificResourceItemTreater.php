@@ -28,10 +28,10 @@ use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCodeMessageHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class ResourceObjectTreater
+ * Class SpecificResourceItemTreater
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResourceObjectTreater extends RequestSingleton
+class SpecificResourceItemTreater extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -41,7 +41,7 @@ class ResourceObjectTreater extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param array $requestContent
      * @return void
      */
     public function parse($requestContent)
@@ -49,8 +49,10 @@ class ResourceObjectTreater extends RequestSingleton
         if(is_object($requestContent)) {
             DataTreater::setResponseCode($this, $requestContent, [
                 'code' => '404',
-                'message' => 'The requested resource isn\'t a valid RAISE resource.']);
+                'message' => 'The requested resource item isn\'t a registered RAISE resource item.']);
             DataHandler::setHandlerResponseStatus(RaiseCodeMessageHandler::getInstance(), $this, $this->getResponse());
+        } else {
+            $this->setResponse($requestContent);
         }
     }
 }

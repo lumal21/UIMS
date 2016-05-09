@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers;
 
+use stdClass;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -54,5 +55,23 @@ class DataTreater
     {
         $treater->parse($arguments);
         return $treater;
+    }
+
+    /**
+     * Set Response Code for Treaters
+     *
+     * @param RequestSingleton $treater
+     * @param mixed $requestedContent
+     * @param array $arguments
+     */
+    public static function setResponseCode(RequestSingleton $treater, $requestedContent, $arguments = [])
+    {
+        if(!property_exists($requestedContent, 'code') || !property_exists($requestedContent, 'message')) {
+            $requestedContent = new stdClass();
+            $requestedContent->code = $arguments['code'];
+            $requestedContent->message = $arguments['message'];
+        }
+
+        $treater->setResponse($requestedContent);
     }
 }
