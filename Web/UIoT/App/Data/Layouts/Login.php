@@ -40,7 +40,7 @@ class Login extends LayoutSingleton
     public function getResources()
     {
         AssetIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
-        AssetIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+        AssetIndexer::addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
 
         AssetIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
         AssetIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
