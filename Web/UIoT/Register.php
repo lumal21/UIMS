@@ -149,6 +149,14 @@ Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 3, Http::GET, 'asset_file');
 
 /* ##### */
 
+/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
+Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::POST, 'resource_action');
+
+/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
+Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::PUT, 'resource_action');
+
+/* ##### */
+
 /* set uiot resource routing parameters yoururl/RESOURCE - For UIoT Resources Web Pages */
 Router::addRoute('/(\w+)', new ResourceNode, 1, Http::GET, 'resource_page');
 
@@ -157,10 +165,4 @@ Router::addRoute('/(\w+)', new ResourceActionPageNode, 2, Http::GET, 'resource_p
 
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
 Router::addRoute('/(\w+)/(.*)', new ResourceActionPageNode, 3, Http::GET, 'resource_page');
-
-/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::POST, 'resource_action');
-
-/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::PUT, 'resource_action');
 

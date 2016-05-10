@@ -54,7 +54,7 @@ class Html
      */
     public function addCallout($calloutName, $calloutContent, $calloutClasses = ['id' => '', 'class' => ''])
     {
-        $this->htmlBuffer .= "<div class='callout {$calloutClasses['classes']}' id='{$calloutClasses['id']}'><h5>$calloutName</h5>$calloutContent</div>";
+        $this->htmlBuffer .= "<div class='callout {$calloutClasses['class']}' id='{$calloutClasses['id']}'><h5>$calloutName</h5>$calloutContent</div>";
     }
 
     /**

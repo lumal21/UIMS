@@ -35,8 +35,6 @@ final class ResourceActionNode extends NodeHandlerModel
      */
     public function call()
     {
-        die('a');
-
-        $this->setResult(false);
+        $this->setResult(true);
     }
 }

@@ -59,9 +59,11 @@ class FilledFormHandler extends RequestSingleton
                     ['id' => '', 'class' => ''],
                     ['value' => $itemObject->{$propertyObject->PROP_NAME}, 'placeholder' => '']);
             }
+
+            $formHandler->addButton('Save', 'submit', 'Save Edited Data');
         }
 
-        $formHandler->addButton('Save', 'submit', 'Save Edited Data');
+
 
         DataHandler::setHandlerData($this, $formHandler->showContent(), true);
     }
