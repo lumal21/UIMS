@@ -58,8 +58,10 @@ class EmptyHtmlFormHandler extends RequestSingleton
             }
         }
 
-        $formHandler->addButton('Add', 'submit', 'Add New Item');
+        $formHandler->addButton('Save', 'submit', 'Save Edited Data');
 
-        DataHandler::setHandlerData($this, $formHandler->showContent(), true);
+        $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
+
+        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
     }
 }

@@ -65,6 +65,6 @@ class FilledFormHandler extends RequestSingleton
             $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
         }
 
-        DataHandler::setHandlerData($this, $formHandler->showContent(), true);
+        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
     }
 }

@@ -30,7 +30,9 @@ pre {
 }
 
 .footer .callout {
-    height: 120px
+    height: 120px;
+    border-left: 0;
+    border-right: 0;
 }
 
 .footer b {
