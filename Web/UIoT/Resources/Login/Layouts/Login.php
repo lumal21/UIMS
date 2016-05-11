@@ -23,21 +23,8 @@
         position: absolute;
     }
 
-    .cdd {
-        position: absolute;
-        opacity: 0.9;
-        width: 100%;
-        background-color: white;
-        padding: 1.25rem;
-        border-radius: 3px;
-        height: 100%;
-        border: 1px solid white;
-        top: 0;
-        left: 0;
-    }
-
     .kkk {
-        border: 0px solid transparent;
+        border: 0 solid transparent;
         border-radius: 2px;
         opacity: 0.975;
         padding: 30px;

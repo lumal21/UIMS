@@ -39,6 +39,11 @@ class DataTable extends Html
     private $bodyArray = [];
 
     /**
+     * @var array Item Interactions
+     */
+    private $bodyInteractions = [];
+
+    /**
      * Instantiate new DataTable
      *
      * @param $tableName
@@ -46,6 +51,29 @@ class DataTable extends Html
     public function __construct($tableName = 'Default Table')
     {
         $this->htmlBuffer = "<h3>$tableName</h3><br>";
+    }
+
+    /**
+     * Add Interaction
+     *
+     * @param int $tablePosition
+     * @param mixed $interactionContent
+     */
+    public function addInteraction($tablePosition, $interactionContent)
+    {
+        $this->bodyInteractions[$tablePosition] = $interactionContent;
+    }
+
+    /**
+     * Add Interactions
+     *
+     * @param array $interactionArray
+     */
+    public function addInteractions(array $interactionArray)
+    {
+        foreach($interactionArray as $tablePosition => $interactionContent) {
+            $this->bodyInteractions[$tablePosition] = $interactionContent;
+        }
     }
 
     /**
@@ -85,7 +113,7 @@ class DataTable extends Html
      */
     private function createTable()
     {
-        $this->htmlBuffer .= '<table><thead><tr>';
+        $this->htmlBuffer .= '<table class="hover"><thead><tr>';
 
         $this->createHeader();
 
@@ -126,10 +154,34 @@ class DataTable extends Html
     {
         $returnString = '';
 
-        foreach($bodyValue as $value) {
-            $returnString .= "<td>$value</td>";
+        foreach($bodyValue as $index => $value) {
+
+            $interactionContent = $this->getInteraction($index);
+
+            if(!empty($interactionContent)) {
+                $interactionContent = "<a href='{$interactionContent}$value'>$value</a>";
+            } else {
+                $interactionContent = $value;
+            }
+
+            $returnString .= "<td>$interactionContent</td>";
         }
 
         return $returnString;
+    }
+
+    /**
+     * Get Interaction
+     *
+     * @param int $tablePosition
+     * @return mixed|string
+     */
+    public function getInteraction($tablePosition)
+    {
+        if(array_key_exists($tablePosition, $this->bodyInteractions)) {
+            return $this->bodyInteractions[$tablePosition];
+        }
+
+        return '';
     }
 }

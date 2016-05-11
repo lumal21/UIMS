@@ -61,9 +61,9 @@ class FilledFormHandler extends RequestSingleton
             }
 
             $formHandler->addButton('Save', 'submit', 'Save Edited Data');
+
+            $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
         }
-
-
 
         DataHandler::setHandlerData($this, $formHandler->showContent(), true);
     }

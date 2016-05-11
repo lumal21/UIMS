@@ -49,6 +49,8 @@ class DataTableHandler extends RequestSingleton
         $dataTable = new DataTable(Strings::toCamel($requestContent['resource'], true));
 
         foreach($requestContent['keys'] as $value) {
+            $dataTable->addInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit/{$value->PROP_FRIENDLY_NAME}/");
+
             $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
         }
 
@@ -56,6 +58,6 @@ class DataTableHandler extends RequestSingleton
             $dataTable->addBody($value);
         }
 
-        DataHandler::setHandlerData($this, $dataTable->showContent(), true);
+        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$dataTable->showContent()}</div>", true);
     }
 }
