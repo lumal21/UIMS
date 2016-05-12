@@ -56,8 +56,9 @@
                             <li class="accordion-item is-active" data-accordion-item>
                                 <a href="#" class="accordion-title">Options</a>
                                 <div class="accordion-content" data-tab-content>
-                                    Welcome to <b>UIoT uims</b>. We are currently under construction stage. Return here
-                                    in the future.
+                                    Welcome to <b>UIoT uims</b>. We are currently under construction stage.
+                                    <br>
+                                    Return here in the future.
                                 </div>
                             </li>
                             <li class="accordion-item" data-accordion-item>

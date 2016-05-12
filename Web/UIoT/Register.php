@@ -157,3 +157,5 @@ Router::addRoute('/(\w+)', new ResourceActionNode, 2, Http::GET, 'resource_page'
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
 Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::GET, 'resource_page');
 
+/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
+Router::addRoute('/(\w+)', new ResourceActionNode, 2, Http::POST, 'resource_page');

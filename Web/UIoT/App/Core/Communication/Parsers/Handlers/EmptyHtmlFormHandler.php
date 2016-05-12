@@ -46,10 +46,14 @@ class EmptyHtmlFormHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true));
+        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), '/' . $requestContent['resource'] . '/add/', 'POST');
+
+        if(isset($requestContent['arguments']['received_post_constructor'])) {
+            $formHandler->addTextCallout('Received Post', 'The CMS received a POST requested. As we at BETA stage, you cannot get the 
+            content of the POST. Futurely you will be able to see directly the POST content.', ['class' => 'warning', 'id' => '']);
+        }
 
         foreach($requestContent['keys'] as $propertyObject) {
-
             $formHandler->addTextInput($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true));
         }
 

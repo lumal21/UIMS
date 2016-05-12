@@ -129,6 +129,12 @@ C::addConstant('PHP_SELF', $_SERVER['PHP_SELF']);
 
 /*
  * Global Variable (Server Variable)
+ * Requested Method
+ */
+C::addConstant('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
+
+/*
+ * Global Variable (Server Variable)
  * Server
  */
 C::addJsonConstant('SERVER_WEB', $_SERVER);

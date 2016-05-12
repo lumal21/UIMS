@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataTreater;
@@ -30,6 +31,7 @@ use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class PostCollector
@@ -55,6 +57,10 @@ class PostCollector extends RequestSingleton
 
         if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
             return;
+        }
+
+        if(Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
+            $resourceData['arguments']['received_post_constructor'] = true;
         }
 
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
