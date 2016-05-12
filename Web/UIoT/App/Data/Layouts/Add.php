@@ -24,15 +24,15 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Assets\Register as AssetIndexer;
 use UIoT\App\Core\Controllers\Register as TemplateIndexer;
-use UIoT\App\Core\Controllers\Render;
+use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
 /**
- * Class Home
+ * Class Add
  * @package UIoT\App\Data\Layouts
  */
-class Home extends LayoutSingleton
+class Add extends LayoutSingleton
 {
     /**
      * Set Resources
@@ -51,7 +51,6 @@ class Home extends LayoutSingleton
         AssetIndexer::addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
         AssetIndexer::addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
         AssetIndexer::addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        AssetIndexer::addAsset('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
         AssetIndexer::addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
         AssetIndexer::addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }
@@ -61,7 +60,7 @@ class Home extends LayoutSingleton
      */
     public function configureLayout()
     {
-        Pages::setTitle('Welcome to UIoT');
+        Pages::setTitle('UIoT - Add Resource');
     }
 
     /**
@@ -69,9 +68,9 @@ class Home extends LayoutSingleton
      */
     public function setTemplates()
     {
-        TemplateIndexer::setTemplateFolder('Home');
+        TemplateIndexer::setTemplateFolder('Main');
         TemplateIndexer::addVariable('{{resource_content}}', Render::getControllerData());
-        TemplateIndexer::addTemplate('Layouts/Home.php');
+        TemplateIndexer::addTemplate('Layouts/Main.php');
     }
 
     /**

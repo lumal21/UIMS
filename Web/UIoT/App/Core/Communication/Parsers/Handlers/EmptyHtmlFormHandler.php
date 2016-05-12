@@ -48,17 +48,12 @@ class EmptyHtmlFormHandler extends RequestSingleton
     {
         $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true));
 
-        foreach($requestContent['values'] as $itemObject) {
-            $itemDetails = array_slice($requestContent['keys'], 0, 2);
+        foreach($requestContent['keys'] as $propertyObject) {
 
-            $formHandler->addHeader("ID: {$itemObject->{$itemDetails[0]->PROP_NAME}}", "Name: {$itemObject->{$itemDetails[1]->PROP_NAME}}");
-
-            foreach($requestContent['keys'] as $propertyObject) {
-                $formHandler->addTextInput($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true));
-            }
+            $formHandler->addTextInput($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true));
         }
 
-        $formHandler->addButton('Save', 'submit', 'Save Edited Data');
+        $formHandler->addButton('Add', 'submit', 'Add Resource Item');
 
         $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
 

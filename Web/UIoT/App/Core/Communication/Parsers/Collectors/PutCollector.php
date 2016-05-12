@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataTreater;
@@ -31,7 +30,6 @@ use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\SpecificResourceItemTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Constants;
 
@@ -55,25 +53,23 @@ class PutCollector extends RequestSingleton
     public function parse($resourceData)
     {
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
-            RaiseRequestManager::doRequest('resources?name=' . $resourceData['name']));
+            RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
         if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
             return;
         }
 
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
-            RaiseRequestManager::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
-
-        RequestTemplateManager::setRequestMethod(Http::PUT);
+            RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
         $queryString = Constants::returnConstant('QUERY_STRING');
 
-        RaiseRequestManager::doRequest("{$resourceData['name']}{$queryString}");
+        RaiseRequestManager::doPutRequest($queryString);
 
-        RequestTemplateManager::setRequestMethod(Http::GET);
+        RaiseRequestManager::doGetRequest("{$resourceData['name']}{$queryString}");
 
         $specificItemTreater = DataTreater::parseTreater(SpecificResourceItemTreater::getInstance(),
-            RaiseRequestManager::doRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
+            RaiseRequestManager::doGetRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
 
         if(DataCollector::getCollectorStatus($specificItemTreater, $this)) {
             return;

@@ -51,14 +51,14 @@ class GetCollector extends RequestSingleton
     public function parse($resourceData)
     {
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
-            RaiseRequestManager::doRequest('resources?name=' . $resourceData['name']));
+            RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
         if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
             return;
         }
 
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
-            RaiseRequestManager::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
+            RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
         if(DataCollector::getCollectorStatus($resourcePropertiesTreater, $this)) {
             return;
@@ -67,6 +67,6 @@ class GetCollector extends RequestSingleton
         DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this, [
             'resource' => $resourceData['name'],
             'keys' => $resourcePropertiesTreater->getResponse(),
-            'values' => RaiseRequestManager::doRequest($resourceData['name'])]);
+            'values' => RaiseRequestManager::doGetRequest($resourceData['name'])]);
     }
 }

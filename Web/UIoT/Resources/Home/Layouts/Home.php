@@ -4,80 +4,105 @@
     @import url('/Home/Resources/Foundation.css');
     @import url('/Home/Resources/MainMainStyle.css');
 </style>
-<body class="jj">
-
+<body>
 <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+        <div class="off-canvas position-left" id="uiotCanvas" data-off-canvas>
             <ul class="mobile-ofc vertical menu">
                 <li>
-                    <a href="http://foundation.zurb.com/learn/about.html">Learn</a>
-                    <ul class="submenu menu vertical" data-submenu="">
-                        <li><a href="http://foundation.zurb.com/learn/about.html">About Foundation</a></li>
-                        <li><a href="http://foundation.zurb.com/learn/tutorials.html">Tutorials</a></li>
-                        <li><a href="http://foundation.zurb.com/learn/classes.html">Classes</a></li>
-                        <li><a href="http://foundation.zurb.com/learn/case-studies.html">Case Studies</a></li>
-                        <li><a href="http://foundation.zurb.com/learn/brands.html">Brands</a></li>
+                    <a href="http://foundation.zurb.com/learn/about.html">
+                        Welcome, Test User (cccl_network)
+                    </a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li>
+                            <a>Home</a>
+                        </li>
+                        <li>
+                            <a>Status</a>
+                        </li>
                     </ul>
                 </li>
-
                 <li>
-                    <a href="http://foundation.zurb.com/develop/getting-started.html">Develop</a>
-                    <ul class="submenu menu vertical" data-submenu="">
-                        <li class="title">Frameworks</li>
-                        <li><a href="http://foundation.zurb.com/sites.html">Foundation for Sites</a></li>
-                        <li><a href="http://foundation.zurb.com/emails.html">Foundation for Email</a></li>
-                        <li><a href="http://foundation.zurb.com/apps.html">Foundation for Apps</a></li>
-                        <li class="divider"></li>
-                        <li class="title">Develop</li>
-                        <li><a href="http://foundation.zurb.com/templates.html">HTML Templates</a></li>
-                        <li><a href="http://foundation.zurb.com/sites/resources.html">Resources</a></li>
-                        <li><a href="http://foundation.zurb.com/develop/building-blocks.html">Building Blocks</a></li>
-                        <li><a href="http://foundation.zurb.com/develop/yeti-launch.html">Yeti Launch</a></li>
-                        <li><a href="http://foundation.zurb.com/develop/contribute.html">Contribute</a></li>
-                    </ul>
+                    <a class="button">
+                        Check Status
+                    </a>
                 </li>
-
-                <li><a href="http://foundation.zurb.com/upload.html">Upload</a></li>
-
-                <li>
-                    <a href="http://foundation.zurb.com/support/support.html">Support</a>
-                    <ul class="submenu menu vertical" data-submenu="">
-                        <li><a href="http://foundation.zurb.com/support/support.html">Support Channels</a></li>
-                        <li><a href="http://foundation.zurb.com/support/premium-support.html">Premium Support</a></li>
-                        <li><a href="http://foundation.zurb.com/forum/sort/unanswered">Foundation Forum</a></li>
-                        <li><a href="http://foundation.zurb.com/support/faq.html">FAQs</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="http://foundation.zurb.com/frameworks-docs.html">Docs</a>
-                    <ul class="submenu menu vertical" data-submenu="">
-                        <li><a href="http://foundation.zurb.com/docs/" target="_blank">Sites Docs</a></li>
-                        <li><a href="http://foundation.zurb.com/apps/docs/#!/" target="_blank">Apps Docs</a></li>
-                        <li><a href="http://zurb.com/ink/docs.php" target="_blank">Email Docs</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="http://foundation.zurb.com/develop/getting-started.html" class="button">Getting Started</a>
-                </li>
-
             </ul>
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
             <div class="title-bar">
                 <div class="title-bar-left">
-                    <button class="menu-icon" type="button" data-open="offCanvas"></button>
-                <span class="title-bar-title jjk" onclick="window.location.href=''"
-                      onMouseOver="this.style.cursor='pointer'">
-                <h1 class="title mll"><b>UIoT</b> cms <span class="label regular tbl">alpha</span></h1></span>
+                    <button class="menu-icon" type="button" data-open="uiotCanvas"></button>
+                    <span class="title-bar-title">
+                        <b class="mll">UIoT</b> cms <span class="label regular">alpha</span>
+                    </span>
                 </div>
             </div>
 
             <section class="main-section">
-                <div class="nope obese" id="Closing"></div>
-                <div class="row" id="Section1">
+                <div class="nope obese"></div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="callout alert">
+                            <b>Warning!</b> This CMS is under development phase and is far to be near of the final
+                            result content.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-6 columns">
+                        <ul class="accordion" data-accordion>
+                            <li class="accordion-item is-active" data-accordion-item>
+                                <a href="#" class="accordion-title">Options</a>
+                                <div class="accordion-content" data-tab-content>
+                                    Welcome to <b>UIoT uims</b>. We are currently under construction stage. Return here
+                                    in the future.
+                                </div>
+                            </li>
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Menu</a>
+                                <div class="accordion-content" data-tab-content>
+                                    Blabla Testing Zurb's Accordion
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="large-6 columns">
+                        <div class="callout primary">
+                            <h5>Server Status</h5>
+                            <p>
+                                Coverage of Server Status: <span class="secondary label">not configured</span>
+                                <br>
+                                The `not configured` status, may happen when no data about the <i>UIoT</i> layers are
+                                found in the configuration tables.
+                            </p>
+                            <a class="button small">
+                                Click here to went to Server Solution Center
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     {{resource_content}}
+                </div>
+            </section>
+
+            <section class="footer">
+                <div class="callout secondary" style="margin-bottom:0">
+                    <div class="row">
+                        <div class="large-6 columns">
+                            <p>
+                                <b>
+                                    UIoT CMS - Build 1.0.6
+                                </b>
+                            </p>
+                            <p>
+                                This CMS uses ZURB's Foundation. © 2016 ZURB, Inc.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -93,6 +118,4 @@
 <script src="/Home/Resources/FoundationTriggers.js"></script>
 <script src="/Home/Resources/FoundationMotion.js"></script>
 <script src="/Home/Resources/FoundationCanvas.js"></script>
-
-
-
+<script src="/Home/Resources/FoundationAccordion.js"></script>

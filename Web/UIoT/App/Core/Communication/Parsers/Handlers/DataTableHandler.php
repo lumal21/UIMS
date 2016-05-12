@@ -26,6 +26,7 @@ use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\DataTable;
+use UIoT\App\Helpers\Visual\Html;
 
 /**
  * Class DataTableHandler
@@ -58,6 +59,11 @@ class DataTableHandler extends RequestSingleton
             $dataTable->addBody($value);
         }
 
-        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$dataTable->showContent()}</div>", true);
+        $htmlContent = new Html();
+
+        $htmlContent->addOnClickButton('Add', 'button', "Add New {$requestContent['resource']}", "window.location.href=\"/{$requestContent['resource']}/add/\"",
+            ['class' => 'success', 'id' => '']);
+
+        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
     }
 }

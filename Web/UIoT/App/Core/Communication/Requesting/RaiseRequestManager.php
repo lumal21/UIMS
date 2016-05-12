@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Requesting;
 
+use Httpful\Http;
 use Httpful\Request;
 use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
@@ -88,13 +89,40 @@ class RaiseRequestManager
     }
 
     /**
+     * Do a GET Request, and get Request Body
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public static function doGetRequest($url)
+    {
+        RequestTemplateManager::setRequestMethod(Http::GET);
+
+        return self::doUnknownRequest($url);
+    }
+
+    /**
      * Do the request, and get Request Body.
      *
      * @param string $url
      * @return mixed
      */
-    public static function doRequest($url)
+    public static function doUnknownRequest($url)
     {
         return (new RequestDataManager(self::$raiseBaseUri . $url))->get_data('body');
+    }
+
+
+    /**
+     * Do a PUT Request, and get Request Body
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public static function doPutRequest($url)
+    {
+        RequestTemplateManager::setRequestMethod(Http::PUT);
+
+        return self::doUnknownRequest($url);
     }
 }

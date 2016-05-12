@@ -63,7 +63,7 @@
                                 </b>
                             </p>
                             <p>
-                                This web page uses ZURB's Foundation. © 2016 ZURB, Inc.
+                                This CMS uses ZURB's Foundation. © 2016 ZURB, Inc.
                             </p>
                         </div>
                     </div>
