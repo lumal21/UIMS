@@ -51,7 +51,6 @@ use UIoT\App\Data\Models\Nodes\BasePathNode;
 use UIoT\App\Data\Models\Nodes\ControllerNode;
 use UIoT\App\Data\Models\Nodes\LayoutNode;
 use UIoT\App\Data\Models\Nodes\ResourceActionNode;
-use UIoT\App\Data\Models\Nodes\ResourceActionPageNode;
 use UIoT\App\Data\Models\Nodes\ResourceNode;
 
 /*
@@ -142,18 +141,10 @@ Router::addRoute('/(\w+)/(.*)', new ActionNode, 3, Http::GET, 'controller_page')
 Router::addRoute('/(\w+)', new LayoutNode, 1, Http::GET, 'asset_file');
 
 /* set resource type folder routing parameters yoururl/LAYOUT/ASSET-TYPE-FOLDER - For Opening Asset Files */
-Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 2, Http::GET, 'asset_file');
+Router::addRoute('/(\w+)', new AssetFileNode, 2, Http::GET, 'asset_file');
 
 /* set resource type folder routing parameters yoururl/LAYOUT/ASSET-TYPE-FOLDER - For Opening Asset Files */
 Router::addRoute('/(\w+)/(.*)', new AssetFileNode, 3, Http::GET, 'asset_file');
-
-/* ##### */
-
-/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::POST, 'resource_action');
-
-/* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::PUT, 'resource_action');
 
 /* ##### */
 
@@ -161,8 +152,8 @@ Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::PUT, 'resource_
 Router::addRoute('/(\w+)', new ResourceNode, 1, Http::GET, 'resource_page');
 
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)', new ResourceActionPageNode, 2, Http::GET, 'resource_page');
+Router::addRoute('/(\w+)', new ResourceActionNode, 2, Http::GET, 'resource_page');
 
 /* set uiot resource routing parameters yoururl/RESOURCE/ACTION - For Opening Resource Files */
-Router::addRoute('/(\w+)/(.*)', new ResourceActionPageNode, 3, Http::GET, 'resource_page');
+Router::addRoute('/(\w+)/(.*)', new ResourceActionNode, 3, Http::GET, 'resource_page');
 

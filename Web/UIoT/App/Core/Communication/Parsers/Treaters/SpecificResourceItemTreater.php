@@ -50,6 +50,7 @@ class SpecificResourceItemTreater extends RequestSingleton
             DataTreater::setResponseCode($this, $requestContent, [
                 'code' => '404',
                 'message' => 'The requested resource item isn\'t a registered RAISE resource item.']);
+
             DataHandler::setHandlerResponseStatus(RaiseCodeMessageHandler::getInstance(), $this, $this->getResponse());
         } else {
             $this->setResponse($requestContent);

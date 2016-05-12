@@ -176,33 +176,6 @@ class Forms extends Html
     }
 
     /**
-     * Add Button
-     *
-     * @param string $buttonName
-     * @param string $buttonType
-     * @param string $buttonValue
-     * @param array $buttonClasses
-     */
-    public function addButton($buttonName, $buttonType, $buttonValue, $buttonClasses = ['id' => '', 'class' => ''])
-    {
-        $this->htmlBuffer .= "<button type='$buttonType' name='$buttonName' id='{$buttonClasses['id']}' class='{$buttonClasses['class']} button'>$buttonValue</button>";
-    }
-
-    /**
-     * Add Button with OnClick Tag
-     *
-     * @param string $buttonName
-     * @param string $buttonType
-     * @param string $buttonValue
-     * @param string $onClick
-     * @param array $buttonClasses
-     */
-    public function addOnClickButton($buttonName, $buttonType, $buttonValue, $onClick, $buttonClasses = ['id' => '', 'class' => ''])
-    {
-        $this->htmlBuffer .= "<button onclick='$onClick' type='$buttonType' name='$buttonName' id='{$buttonClasses['id']}' class='{$buttonClasses['class']} button'>$buttonValue</button>";
-    }
-
-    /**
      * Show Content
      *
      * @return string

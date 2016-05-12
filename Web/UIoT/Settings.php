@@ -51,7 +51,7 @@ use UIoT\App\Core\Settings\Register;
 Register::prepareSettings();
 
 Register::addSettingsBlock('raise', [
-    'raiseHost' => 'uiot_raise',
+    'raiseHost' => '172.16.6.159',
     'raiseBasePath' => '',
     'raisePort' => 80,
     'raiseSsl' => false
@@ -74,7 +74,7 @@ Register::addSettingsBlock('exceptions', [
     // set error page title
     'errorPageTitle' => 'Houston, we have a problem!',
     // set reporting php error level
-    'errorReportingLevels' => (E_ALL ^ E_WARNING)
+    'errorReportingLevels' => (E_ALL ^ (E_WARNING | E_NOTICE))
 ]);
 
 Register::addSettingsBlock('resources', [

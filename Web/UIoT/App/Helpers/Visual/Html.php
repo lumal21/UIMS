@@ -34,6 +34,11 @@ class Html
     protected $htmlBuffer = '';
 
     /**
+     * @var array Item Interactions
+     */
+    protected $bodyInteractions = [];
+
+    /**
      * Add Text Callout
      *
      * @param string $calloutName
@@ -55,6 +60,72 @@ class Html
     public function addCallout($calloutName, $calloutContent, $calloutClasses = ['id' => '', 'class' => ''])
     {
         $this->htmlBuffer .= "<div class='callout {$calloutClasses['class']}' id='{$calloutClasses['id']}'><h5>$calloutName</h5>$calloutContent</div>";
+    }
+
+    /**
+     * Add Button with OnClick Tag
+     *
+     * @param string $buttonName
+     * @param string $buttonType
+     * @param string $buttonValue
+     * @param string $onClick
+     * @param array $buttonClasses
+     */
+    public function addOnClickButton($buttonName, $buttonType, $buttonValue, $onClick, $buttonClasses = ['id' => '', 'class' => ''])
+    {
+        $this->addButton($buttonName, $buttonType, $buttonValue, $buttonClasses, "onclick='{$onClick}'");
+    }
+
+    /**
+     * Add Button
+     *
+     * @param string $buttonName
+     * @param string $buttonType
+     * @param string $buttonValue
+     * @param array $buttonClasses
+     * @param string $properties
+     */
+    public function addButton($buttonName, $buttonType, $buttonValue, $buttonClasses = ['id' => '', 'class' => ''], $properties = '')
+    {
+        $this->htmlBuffer .= "<button type='$buttonType' name='$buttonName' id='{$buttonClasses['id']}' class='{$buttonClasses['class']} button' $properties>$buttonValue</button>";
+    }
+
+    /**
+     * Add Interaction
+     *
+     * @param int $tablePosition
+     * @param mixed $interactionContent
+     */
+    public function addInteraction($tablePosition, $interactionContent)
+    {
+        $this->bodyInteractions[$tablePosition] = $interactionContent;
+    }
+
+    /**
+     * Add Interactions
+     *
+     * @param array $interactionArray
+     */
+    public function addInteractions(array $interactionArray)
+    {
+        foreach($interactionArray as $tablePosition => $interactionContent) {
+            $this->bodyInteractions[$tablePosition] = $interactionContent;
+        }
+    }
+
+    /**
+     * Get Interaction
+     *
+     * @param int $tablePosition
+     * @return mixed|string
+     */
+    public function getInteraction($tablePosition)
+    {
+        if(array_key_exists($tablePosition, $this->bodyInteractions)) {
+            return $this->bodyInteractions[$tablePosition];
+        }
+
+        return '';
     }
 
     /**

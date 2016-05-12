@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataTreater;
@@ -30,7 +31,9 @@ use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\SpecificResourceItemTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
+use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class PutCollector
@@ -54,11 +57,23 @@ class PutCollector extends RequestSingleton
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doRequest('resources?name=' . $resourceData['name']));
 
+        if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
+            return;
+        }
+
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
             RaiseRequestManager::doRequest('properties?rsrc_id=' . $resourceIdTreater->getResponse()));
 
+        RequestTemplateManager::setRequestMethod(Http::PUT);
+
+        $queryString = Constants::returnConstant('QUERY_STRING');
+
+        RaiseRequestManager::doRequest("{$resourceData['name']}{$queryString}");
+
+        RequestTemplateManager::setRequestMethod(Http::GET);
+
         $specificItemTreater = DataTreater::parseTreater(SpecificResourceItemTreater::getInstance(),
-            RaiseRequestManager::doRequest(RaiseRequestManager::getQueryStringUri($resourceData['name'], $resourceData['arguments'])));
+            RaiseRequestManager::doRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
 
         if(DataCollector::getCollectorStatus($specificItemTreater, $this)) {
             return;

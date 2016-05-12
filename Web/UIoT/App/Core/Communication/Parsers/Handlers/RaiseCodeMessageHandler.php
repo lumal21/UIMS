@@ -49,6 +49,6 @@ class RaiseCodeMessageHandler extends RequestSingleton
 
         $htmlContext->addTextCallout("Response Code (#{$requestContent->code})", $requestContent->message);
 
-        DataHandler::setHandlerData($this, $htmlContext->showContent(), true);
+        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
     }
 }
