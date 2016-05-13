@@ -62,11 +62,8 @@ class PutCollector extends RequestSingleton
         $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
             RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
-        $queryString = Constants::returnConstant('QUERY_STRING');
-
-        RaiseRequestManager::doPutRequest($queryString);
-
-        RaiseRequestManager::doGetRequest("{$resourceData['name']}{$queryString}");
+        RaiseRequestManager::doPutRequest(Constants::returnConstant('QUERY_STRING'));
+        RaiseRequestManager::doGetRequest("{$resourceData['name']}" . Constants::returnConstant('QUERY_STRING'));
 
         $specificItemTreater = DataTreater::parseTreater(SpecificResourceItemTreater::getInstance(),
             RaiseRequestManager::doGetRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
@@ -76,9 +73,7 @@ class PutCollector extends RequestSingleton
         }
 
         DataHandler::setHandlerResponseStatus(FilledFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'],
-            'keys' => $resourcePropertiesTreater->getResponse(),
-            'values' => $specificItemTreater->getResponse(),
-            'arguments' => $resourceData['arguments']]);
+            'resource' => $resourceData['name'], 'keys' => $resourcePropertiesTreater->getResponse(),
+            'values' => $specificItemTreater->getResponse(), 'arguments' => $resourceData['arguments']]);
     }
 }
