@@ -93,17 +93,6 @@ final class Manager
     }
 
     /**
-     * Get Asset File Path
-     *
-     * @param string $assetName
-     * @return null|string
-     */
-    public static function getAssetPath($assetName)
-    {
-        return self::getAsset($assetName)->getSourceRoot() . '/' . self::getAsset($assetName)->getSourcePath();
-    }
-
-    /**
      * Get Asset Manager
      *
      * @return AssetManager

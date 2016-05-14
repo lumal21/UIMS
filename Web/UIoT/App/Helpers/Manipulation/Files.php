@@ -49,7 +49,7 @@ class Files
      */
     final private function __construct()
     {
-        if(null !== self::$fileInstance) {
+        if (null !== self::$fileInstance) {
             return;
         }
 
@@ -77,7 +77,7 @@ class Files
      */
     final private static function checkInstance($fileName)
     {
-        if(self::$fileInfoInstance === null) {
+        if (self::$fileInfoInstance === null) {
             self::create($fileName);
         }
     }
@@ -153,7 +153,7 @@ class Files
      */
     public static function getLastInstance()
     {
-        if(NULL === self::$fileInstance)
+        if (NULL === self::$fileInstance)
             self::$fileInstance = new self;
 
         return self::$fileInstance;

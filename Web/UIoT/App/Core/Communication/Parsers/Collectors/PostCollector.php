@@ -55,9 +55,8 @@ class PostCollector extends RequestSingleton
         $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if(DataCollector::getCollectorStatus($resourceIdTreater, $this)) {
+        if(DataCollector::getCollectorStatus($resourceIdTreater, $this))
             return;
-        }
 
         if(Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
             $resourceData['arguments']['received_post_constructor'] = true;

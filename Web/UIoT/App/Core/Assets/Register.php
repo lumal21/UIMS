@@ -57,16 +57,6 @@ final class Register
     }
 
     /**
-     * Set Mime Type
-     *
-     * @param $assetName
-     */
-    private static function setMimeType($assetName)
-    {
-        header('Content-Type: ' . mime_content_type(Manager::getAssetPath($assetName)));
-    }
-
-    /**
      * Return Asset
      *
      * @param string $assetName
@@ -80,8 +70,6 @@ final class Register
         if(!Manager::getAssetManager()->has($assetName)) {
             throw new Exception("The requested Resource wasn't Found on this Server", '404');
         }
-
-        self::setMimeType($assetName);
 
         return Manager::getAsset($assetName)->dump();
     }
