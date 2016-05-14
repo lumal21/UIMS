@@ -43,7 +43,7 @@ class Factory
      */
     public static function create(array $settingsModels)
     {
-        foreach($settingsModels as $settingModel) {
+        foreach ($settingsModels as $settingModel) {
             self::addModel($settingModel);
         }
     }
@@ -66,11 +66,11 @@ class Factory
      */
     public static function populateModel($modelName, array $modelVariables)
     {
-        if(!array_key_exists($modelName, self::$settingsModels)) {
+        if (!array_key_exists($modelName, self::$settingsModels)) {
             throw new UnexpectedValueException('This settings model does not exists.');
         }
 
-        foreach($modelVariables as $variableName => $variableValue) {
+        foreach ($modelVariables as $variableName => $variableValue) {
             self::$settingsModels[$modelName]->setVariable($variableName, $variableValue);
         }
     }
@@ -83,7 +83,7 @@ class Factory
      */
     public static function getModel($modelName)
     {
-        if(!array_key_exists($modelName, self::$settingsModels)) {
+        if (!array_key_exists($modelName, self::$settingsModels)) {
             throw new UnexpectedValueException('This settings model does not exists.');
         }
 
@@ -103,7 +103,7 @@ class Factory
          */
         $settingsModelArray = [];
 
-        foreach(self::$settingsModels as $settingsModelName => $settingsManager) {
+        foreach (self::$settingsModels as $settingsModelName => $settingsManager) {
             $settingsModelArray[$settingsModelName] = $settingsManager->getModel();
         }
 

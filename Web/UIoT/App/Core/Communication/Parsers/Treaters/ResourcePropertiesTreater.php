@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use UIoT\App\Core\Communication\Parsers\DataTreater;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -44,11 +44,10 @@ class ResourcePropertiesTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if(is_object($requestContent)) {
-            $raiseObjectTreater = DataTreater::parseTreater(ResourceObjectTreater::getInstance(), $requestContent);
-            DataTreater::setTreaterStatus($raiseObjectTreater, $this);
-        } elseif(is_array($requestContent)) {
-            $this->setResponse($requestContent);
+        if (is_object($requestContent)) {
+            RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
+        } elseif (is_array($requestContent)) {
+            RequestParserMethods::setResponseData($this, $requestContent);
         }
     }
 }

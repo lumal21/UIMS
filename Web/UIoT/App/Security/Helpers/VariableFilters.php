@@ -36,11 +36,11 @@ final class VariableFilters
      */
     public static function sanitizeVariable($inputVariable = '')
     {
-        if(is_array($inputVariable) || is_object($inputVariable)) {
+        if (is_array($inputVariable) || is_object($inputVariable)) {
             self::sanitizeArray($inputVariable);
         }
 
-        if(is_string($inputVariable)) {
+        if (is_string($inputVariable)) {
             return self::sanitizeString($inputVariable);
         }
 
@@ -56,7 +56,7 @@ final class VariableFilters
     protected static function sanitizeArray($inputArray)
     {
         /* $inputArray can be a multidimensional array */
-        if(is_array($inputArray) || is_object($inputArray)) {
+        if (is_array($inputArray) || is_object($inputArray)) {
             return array_map(self::sanitizeVariable($inputArray), (array)$inputArray);
         }
 

@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Core\Communication\Parsers\DataHandler;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\Forms;
@@ -48,19 +48,19 @@ class EmptyHtmlFormHandler extends RequestSingleton
     {
         $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), '/' . $requestContent['resource'] . '/add/', 'POST');
 
-        if(isset($requestContent['arguments']['received_post_constructor'])) {
+        if (isset($requestContent['arguments']['received_post_constructor'])) {
             $formHandler->addTextCallout('Received Post', 'The CMS received a POST requested. As we at BETA stage, you cannot get the 
             content of the POST. Futurely you will be able to see directly the POST content.', ['class' => 'warning', 'id' => '']);
         }
 
-        foreach($requestContent['keys'] as $propertyObject) {
+        foreach ($requestContent['keys'] as $propertyObject) {
             $formHandler->addTextInput($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true));
         }
 
         $formHandler->addButton('Add', 'submit', 'Add Resource Item');
-
         $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
 
-        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this,
+            "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
     }
 }

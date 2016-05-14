@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -47,13 +48,9 @@ class DataCollector
      * @param array $resourceData
      * @return string Response Data
      */
-    public static function runMethodCollector($resourceData = ['name' => '', 'method' => '', 'arguments' => []])
+    public static function runCollector($resourceData = ['name' => '', 'method' => '', 'arguments' => []])
     {
-        $baseCollector = self::getMethodCollector($resourceData['method']);
-
-        $baseCollector->parse($resourceData);
-
-        return $baseCollector->getResponse();
+        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceData['method']), $resourceData)->getDone();
     }
 
     /**
@@ -64,11 +61,7 @@ class DataCollector
      */
     public static function getMethodCollector($collectorMethod)
     {
-        $collectorName = DataHandler::getMethodName($collectorMethod);
-
-        $collectorVariable = self::getMethodCollectors()[$collectorName];
-
-        return self::callCollectorStaticMethod($collectorVariable, 'getInstance');
+        return self::callCollectorStaticMethod(self::getMethodCollectors()[DataHandler::getMethodName($collectorMethod)], 'getInstance');
     }
 
     /**
@@ -91,18 +84,5 @@ class DataCollector
     public static function callCollectorStaticMethod($collectorName, $collectorMethod)
     {
         return forward_static_call(["UIoT\\App\\Core\\Communication\\Parsers\\Collectors\\" . $collectorName, $collectorMethod]);
-    }
-
-    /**
-     * Check a treater status and set his response
-     *
-     * @param RequestSingleton $checkedTreater selected Treater
-     * @param RequestSingleton $responseCollector response Collector
-     * @return bool if need stop the execution
-     */
-    public static function getCollectorStatus(RequestSingleton $checkedTreater, RequestSingleton $responseCollector)
-    {
-        $responseCollector->setResponse($checkedTreater->getResponse());
-        return $checkedTreater->getDone();
     }
 }

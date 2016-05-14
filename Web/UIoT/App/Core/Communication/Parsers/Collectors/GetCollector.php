@@ -22,13 +22,11 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use UIoT\App\Core\Communication\Parsers\DataCollector;
-use UIoT\App\Core\Communication\Parsers\DataHandler;
-use UIoT\App\Core\Communication\Parsers\DataTreater;
 use UIoT\App\Core\Communication\Parsers\Handlers\DataTableHandler;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -50,21 +48,20 @@ class GetCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $resourceIdTreater = DataTreater::parseTreater(ResourceIdTreater::getInstance(),
+        $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if (DataCollector::getCollectorStatus($resourceIdTreater, $this))
+        if (RequestParserMethods::getJobStatus($resourceIdTreater))
             return;
 
-        $resourcePropertiesTreater = DataTreater::parseTreater(ResourcePropertiesTreater::getInstance(),
+        $resourcePropertiesTreater = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(),
             RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
-        if (DataCollector::getCollectorStatus($resourcePropertiesTreater, $this))
+        if (RequestParserMethods::getJobStatus($resourcePropertiesTreater))
             return;
 
-        DataHandler::setHandlerResponseStatus(DataTableHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'],
-            'keys' => $resourcePropertiesTreater->getResponse(),
+        RequestParserMethods::parseResponseWithRequestStatus(DataTableHandler::getInstance(), $this, [
+            'resource' => $resourceData['name'], 'keys' => $resourcePropertiesTreater->getResponse(),
             'values' => RaiseRequestManager::doGetRequest($resourceData['name'])]);
     }
 }

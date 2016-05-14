@@ -73,7 +73,7 @@ class Strings
      */
     public static function toCamel($string = '', $forceCamel = false)
     {
-        if($forceCamel) {
+        if ($forceCamel) {
             $string = str_replace('_', ' ', $string);
         }
 

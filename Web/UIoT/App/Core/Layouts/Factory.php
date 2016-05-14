@@ -44,7 +44,7 @@ final class Factory
      */
     public static function addLayout($layoutName)
     {
-        if(!self::layoutExists($layoutName)) {
+        if (!self::layoutExists($layoutName)) {
             array_push(self::$layout, $layoutName);
         }
 
@@ -71,7 +71,7 @@ final class Factory
      */
     public static function getLayout($layoutName, $needRegisterResource = false)
     {
-        if($needRegisterResource) {
+        if ($needRegisterResource) {
             self::getLayoutAssets($layoutName);
         }
 

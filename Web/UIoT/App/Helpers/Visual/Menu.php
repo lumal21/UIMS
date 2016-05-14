@@ -26,12 +26,15 @@ namespace UIoT\App\Helpers\Visual;
  * Class Menu
  * @package UIoT\App\Helpers\Visual
  */
-final class Menu
+final class Menu extends Html
 {
     /**
-     * @var string internal content
+     * Menu constructor.
      */
-    private $content = '';
+    public function __construct()
+    {
+        $this->htmlBuffer = '';
+    }
 
     /**
      * Add Menu Item
@@ -44,7 +47,7 @@ final class Menu
      */
     public function addItem($url = '', $divClass = '', $divId = '', $text = '', $refLabel = '')
     {
-        $this->content .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass .
+        $this->htmlBuffer .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass .
             '" id="' . $divId . '"></i > ' . $text . '</a ></li >';
     }
 
@@ -56,14 +59,6 @@ final class Menu
      */
     public function addLabel($text = '', $icon = '')
     {
-        $this->content .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
-    }
-
-    /**
-     * Return Content
-     */
-    public function returnContent()
-    {
-        echo $this->content;
+        $this->htmlBuffer .= '<li class="heading"><i class="' . $icon . '"></i>  ' . $text . '</li>';
     }
 }

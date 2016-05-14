@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
 use InvalidArgumentException;
-use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -44,33 +43,6 @@ class DataHandler
     ];
 
     /**
-     * Set Collector Handler response
-     *
-     * @param RequestSingleton $handler Response Handler
-     * @param RequestSingleton $collector Response Collector
-     * @param mixed $arguments Handler Arguments
-     */
-    public static function setHandlerResponseStatus(RequestSingleton $handler, RequestSingleton $collector, $arguments)
-    {
-        $handler->parse($arguments);
-        $collector->setResponse($handler->getResponse());
-        $collector->setDone($handler->getDone());
-    }
-
-    /**
-     * Set Handler Data
-     *
-     * @param RequestSingleton $handler
-     * @param mixed $response
-     * @param bool $status
-     */
-    public static function setHandlerData(RequestSingleton $handler, $response, $status)
-    {
-        $handler->setResponse($response);
-        $handler->setDone($status);
-    }
-
-    /**
      * Get Method Handler
      *
      * @param string $methodHandler
@@ -78,7 +50,7 @@ class DataHandler
      */
     public static function getMethodName($methodHandler)
     {
-        if(!array_key_exists(Strings::toCamel($methodHandler), self::getMethodHandlers())) {
+        if (!array_key_exists(Strings::toCamel($methodHandler), self::getMethodHandlers())) {
             throw new InvalidArgumentException('Invalid Raise Method', '404');
         }
 

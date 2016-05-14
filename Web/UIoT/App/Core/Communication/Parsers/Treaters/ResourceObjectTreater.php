@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use UIoT\App\Core\Communication\Parsers\DataHandler;
 use UIoT\App\Core\Communication\Parsers\DataTreater;
 use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCodeMessageHandler;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -46,11 +46,10 @@ class ResourceObjectTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if(is_object($requestContent)) {
-            DataTreater::setResponseCode($this, $requestContent, [
-                'code' => '404',
-                'message' => 'The requested resource isn\'t a valid RAISE resource.']);
-            DataHandler::setHandlerResponseStatus(RaiseCodeMessageHandler::getInstance(), $this, $this->getResponse());
+        if (is_object($requestContent)) {
+            RequestParserMethods::parseResponseWithRequestStatus(RaiseCodeMessageHandler::getInstance(), $this,
+                DataTreater::generateResponseCode($requestContent, ['code' => '404',
+                    'message' => 'The requested resource isn\'t a valid RAISE resource.']));
         }
     }
 }

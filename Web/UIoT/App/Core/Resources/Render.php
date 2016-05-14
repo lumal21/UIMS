@@ -22,12 +22,10 @@
 
 namespace UIoT\App\Core\Resources;
 
-use Httpful\Http;
-use Httpful\Mime;
 use UIoT\App\Core\Communication\Parsers\DataCollector;
-use UIoT\App\Core\Communication\Requesting\RequestTemplateManager;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
+use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Render
@@ -84,11 +82,9 @@ final class Render implements RenderInterface
      */
     private function setControllerData()
     {
-        RequestTemplateManager::setTemplate(Http::GET, Mime::JSON);
-
-        self::$resourceData = DataCollector::runMethodCollector([
-            'name' => $this->resourceName,
-            'method' => $this->resourceMethod,
+        self::$resourceData = DataCollector::runCollector([
+            'name' => Strings::toLower($this->resourceName),
+            'method' => Strings::toLower($this->resourceMethod),
             'arguments' => $this->resourceArguments]);
     }
 

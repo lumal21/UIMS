@@ -23,7 +23,6 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use stdClass;
-use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class DataTreater
@@ -32,46 +31,20 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class DataTreater
 {
     /**
-     * Check a treater status and set his response
-     *
-     * @param RequestSingleton $requestedTreater selected Treater
-     * @param RequestSingleton $responseTreater response Collector
-     * @return bool if need stop the execution
-     */
-    public static function setTreaterStatus(RequestSingleton $requestedTreater, RequestSingleton $responseTreater)
-    {
-        $responseTreater->setResponse($requestedTreater->getResponse());
-        return $responseTreater->setDone($requestedTreater->getDone());
-    }
-
-    /**
-     * Parse Treater and return it
-     *
-     * @param RequestSingleton $treater selected Treater
-     * @param mixed $arguments Treater arguments
-     * @return RequestSingleton the same Treater
-     */
-    public static function parseTreater(RequestSingleton $treater, $arguments)
-    {
-        $treater->parse($arguments);
-        return $treater;
-    }
-
-    /**
      * Set Response Code for Treaters
      *
-     * @param RequestSingleton $treater
      * @param mixed $requestedContent
      * @param array $arguments
+     * @return mixed|stdClass
      */
-    public static function setResponseCode(RequestSingleton $treater, $requestedContent, $arguments = [])
+    public static function generateResponseCode($requestedContent, $arguments = [])
     {
-        if(!property_exists($requestedContent, 'code') || !property_exists($requestedContent, 'message')) {
+        if (!property_exists($requestedContent, 'code') || !property_exists($requestedContent, 'message')) {
             $requestedContent = new stdClass();
             $requestedContent->code = $arguments['code'];
             $requestedContent->message = $arguments['message'];
         }
 
-        $treater->setResponse($requestedContent);
+        return $requestedContent;
     }
 }

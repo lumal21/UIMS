@@ -108,7 +108,7 @@ class Html
      */
     public function addInteractions(array $interactionArray)
     {
-        foreach($interactionArray as $tablePosition => $interactionContent) {
+        foreach ($interactionArray as $tablePosition => $interactionContent) {
             $this->bodyInteractions[$tablePosition] = $interactionContent;
         }
     }
@@ -121,7 +121,7 @@ class Html
      */
     public function getInteraction($tablePosition)
     {
-        if(array_key_exists($tablePosition, $this->bodyInteractions)) {
+        if (array_key_exists($tablePosition, $this->bodyInteractions)) {
             return $this->bodyInteractions[$tablePosition];
         }
 

@@ -41,7 +41,7 @@ final class RenderSelector
      */
     public static function go(RenderInterface $render)
     {
-        if($render instanceof AssetRender ||
+        if ($render instanceof AssetRender ||
             $render instanceof ControllerRender ||
             $render instanceof ResourceRender
         ) {

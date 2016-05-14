@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Core\Communication\Parsers\DataHandler;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Visual\Html;
 
@@ -46,9 +46,8 @@ class RaiseCodeMessageHandler extends RequestSingleton
     public function parse($requestContent)
     {
         $htmlContext = new Html();
-
         $htmlContext->addTextCallout("Response Code (#{$requestContent->code})", $requestContent->message);
-
-        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this,
+            "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
     }
 }

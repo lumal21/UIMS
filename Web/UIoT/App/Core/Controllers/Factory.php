@@ -45,7 +45,7 @@ final class Factory
      */
     public static function addController($controllerName)
     {
-        if(!self::controllerExists($controllerName)) {
+        if (!self::controllerExists($controllerName)) {
             array_push(self::$controllers, $controllerName);
         }
     }
@@ -105,7 +105,7 @@ final class Factory
      */
     public static function getControllerActions($controllerName)
     {
-        return array_map(function($controllerAction) {
+        return array_map(function ($controllerAction) {
             return $controllerAction;
         }, (array)get_class_methods(self::getController($controllerName)));
     }

@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -34,4 +35,19 @@ class ResourceDataTreater extends RequestSingleton
      * @var RequestSingleton
      */
     protected static $requestInstance = null;
+
+    /**
+     * Check if Response is a Valid Array Data
+     *
+     * @param mixed $requestContent
+     * @return void
+     */
+    public function parse($requestContent)
+    {
+        if (is_array($requestContent)) {
+            RequestParserMethods::setCustomResponseData($this, $requestContent);
+        } else {
+            RequestParserMethods::setCustomJobStatus($this, true);
+        }
+    }
 }

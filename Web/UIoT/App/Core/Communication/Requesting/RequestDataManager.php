@@ -59,7 +59,7 @@ final class RequestDataManager
     public function __get($var = '')
     {
         /* this switch is for closure calls (get abstract variables) */
-        switch($var) {
+        switch ($var) {
             case 'header':
                 return $this->data->headers;
             case 'body':
@@ -78,7 +78,7 @@ final class RequestDataManager
     public function __call($name = '', $arguments = ['', ''])
     {
         /* this switch is for closure calls (get abstract methods) */
-        switch($name) {
+        switch ($name) {
             case 'from_json':
                 return json_decode($this->$arguments[0], $arguments[1]);
             case 'to_json':

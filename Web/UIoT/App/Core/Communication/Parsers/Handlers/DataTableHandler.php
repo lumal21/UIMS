@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Core\Communication\Parsers\DataHandler;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\DataTable;
@@ -49,21 +49,20 @@ class DataTableHandler extends RequestSingleton
     {
         $dataTable = new DataTable(Strings::toCamel($requestContent['resource'], true));
 
-        foreach($requestContent['keys'] as $value) {
+        foreach ($requestContent['keys'] as $value) {
             $dataTable->addLinkInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit/{$value->PROP_FRIENDLY_NAME}");
-
             $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
         }
 
-        foreach($requestContent['values'] as $value) {
+        foreach ($requestContent['values'] as $value) {
             $dataTable->addBody($value);
         }
 
         $htmlContent = new Html();
+        $htmlContent->addOnClickButton('Add', 'button', "Add New {$requestContent['resource']}",
+            "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
 
-        $htmlContent->addOnClickButton('Add', 'button', "Add New {$requestContent['resource']}", "window.location.href=\"/{$requestContent['resource']}/add/\"",
-            ['class' => 'success', 'id' => '']);
-
-        DataHandler::setHandlerData($this, "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this,
+            "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
     }
 }
