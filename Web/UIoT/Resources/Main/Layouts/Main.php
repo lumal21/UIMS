@@ -8,25 +8,37 @@
 <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
         <div class="off-canvas position-left" id="uiotCanvas" data-off-canvas>
+
+            <!-- Close button -->
+            <button class="close-button" aria-label="Close menu" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+
             <ul class="mobile-ofc vertical menu">
+
                 <li>
-                    <a href="http://foundation.zurb.com/learn/about.html">
-                        Welcome, Test User (cccl_network)
-                    </a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li>
-                            <a>Home</a>
-                        </li>
-                        <li>
-                            <a>Status</a>
-                        </li>
+                    <a>Welcome, Guest User.</a>
+                    <ul class="submenu menu vertical" data-submenu="">
+                        <li><a href="/home">Home</a></li>
+                        <li><a>Docs</a></li>
                     </ul>
-                </li>
                 <li>
-                    <a class="button">
-                        Check Status
-                    </a>
-                </li>
+
+                <li><a class="button">Logout</a></li>
+
+            </ul>
+
+        </div>
+        <div class="off-canvas position-right" id="resourceCanvas" data-off-canvas data-position="right">
+
+            <ul class="mobile-ofc vertical menu">
+
+                <li>
+                    <a><b>UIoT</b> Resources</a>
+                    <ul class="submenu menu vertical" data-submenu="">
+                        {{menu_content}}
+                    </ul>
+                <li>
             </ul>
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
@@ -37,6 +49,11 @@
                         <b class="mll">UIoT</b> cms <span class="label regular">alpha</span>
                     </span>
                 </div>
+                <div class="title-bar-right">
+                    <button class="supa-button button primary tiny" type="button" data-open="resourceCanvas">See
+                        Resources
+                    </button>
+                </div>
             </div>
 
             <section class="main-section">
@@ -44,7 +61,8 @@
                 <div class="row">
                     <div class="large-12 columns">
                         <div class="callout alert">
-                            <b>Warning!</b> This CMS is under development phase and is far to be near of the final result content.
+                            <b>Warning!</b> This CMS is under development phase and is far to be near of the final
+                            result content.
                         </div>
                     </div>
                 </div>

@@ -85,6 +85,34 @@ abstract class RequestParserMethods
     }
 
     /**
+     * Get Job Status and Apend Response Data if exists
+     *
+     * @param RequestSingleton $request
+     * @param RequestSingleton $response
+     * @return bool
+     */
+    public static function getJobStatusWithResponse(RequestSingleton $request, RequestSingleton $response)
+    {
+        self::setResponseData($request, $response);
+
+        return $request->getDone();
+    }
+
+    /**
+     * Set Response data by Request Response Data and return Request
+     *
+     * @param RequestSingleton $request
+     * @param RequestSingleton $response
+     * @return RequestSingleton
+     */
+    public static function setResponseData(RequestSingleton $request, RequestSingleton $response)
+    {
+        $response->setResponse($request->getResponse());
+
+        return $request;
+    }
+
+    /**
      * Parse Request and set Response Data by Request Response, Set Job Status and return Request
      *
      * @param RequestSingleton $request
@@ -94,21 +122,9 @@ abstract class RequestParserMethods
      */
     public static function parseResponseWithRequestStatus(RequestSingleton $request, RequestSingleton $response, $arguments)
     {
-        self::setJobStatus(self::parseResponse($request, $response, $arguments), $response);
+        self::setResponseData(self::parseResponse($request, $response, $arguments), $response);
 
-        return $request;
-    }
-
-    /**
-     * Set Response Job Status and return Request
-     *
-     * @param RequestSingleton $request
-     * @param RequestSingleton $response
-     * @return RequestSingleton
-     */
-    public static function setJobStatus(RequestSingleton $request, RequestSingleton $response)
-    {
-        $response->setDone($request->getDone());
+        self::setJobStatus($request, $response);
 
         return $request;
     }
@@ -129,29 +145,29 @@ abstract class RequestParserMethods
     }
 
     /**
-     * Set Response data by Request Response Data and return Request
-     *
-     * @param RequestSingleton $request
-     * @param RequestSingleton $response
-     * @return RequestSingleton
-     */
-    public static function setResponseData(RequestSingleton $request, RequestSingleton $response)
-    {
-        $response->setResponse($request->getResponse());
-
-        return $request;
-    }
-
-    /**
      * Parse Request and return Request Instance
      *
      * @param RequestSingleton $request
      * @param mixed $arguments
      * @return RequestSingleton
      */
-    public static function parseRequest(RequestSingleton $request, $arguments)
+    public static function parseRequest(RequestSingleton $request, $arguments = null)
     {
         $request->parse($arguments);
+
+        return $request;
+    }
+
+    /**
+     * Set Response Job Status and return Request
+     *
+     * @param RequestSingleton $request
+     * @param RequestSingleton $response
+     * @return RequestSingleton
+     */
+    public static function setJobStatus(RequestSingleton $request, RequestSingleton $response)
+    {
+        $response->setDone($request->getDone());
 
         return $request;
     }

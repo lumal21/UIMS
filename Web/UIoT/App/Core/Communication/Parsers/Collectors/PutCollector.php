@@ -53,7 +53,7 @@ class PutCollector extends RequestSingleton
         $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if (RequestParserMethods::getJobStatus($resourceIdTreater))
+        if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this))
             return;
 
         $resourcePropertiesTreater = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(),
@@ -65,7 +65,7 @@ class PutCollector extends RequestSingleton
         $specificItemTreater = RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(),
             RaiseRequestManager::doGetRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
 
-        if (RequestParserMethods::getJobStatus($specificItemTreater))
+        if (RequestParserMethods::getJobStatusWithResponse($specificItemTreater, $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(FilledFormHandler::getInstance(), $this, [

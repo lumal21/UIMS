@@ -22,12 +22,7 @@
 
 namespace UIoT\App\Data\Controllers;
 
-use UIoT\App\Core\Communication\Parsers\Treaters\ResourceDataTreater;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
-use UIoT\App\Core\Controllers\Register;
 use UIoT\App\Data\Singletons\ControllerSingleton;
-use UIoT\App\Helpers\Visual\Menu;
 
 /**
  * Class Home
@@ -42,19 +37,6 @@ final class Home extends ControllerSingleton
      */
     public function actionMain()
     {
-        $menuContent = new Menu();
-
-        $requestDataTreater = RequestParserMethods::parseRequestWithResponse(ResourceDataTreater::getInstance(),
-            RaiseRequestManager::doGetRequest('/resources'));
-
-        if (RequestParserMethods::getJobStatus($requestDataTreater))
-            return '';
-
-        foreach ($requestDataTreater->getResponse() as $resourceItem) {
-            $menuContent->addItem($resourceItem->NAME);
-        }
-
-        Register::addVariable('{{menu_content}}', $menuContent->showContent());
         return '';
     }
 }

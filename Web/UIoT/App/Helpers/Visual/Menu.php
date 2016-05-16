@@ -40,15 +40,12 @@ final class Menu extends Html
      * Add Menu Item
      *
      * @param string $url
-     * @param string $divClass
-     * @param string $divId
      * @param string $text
-     * @param string $refLabel
+     * @param string $divClass
      */
-    public function addItem($url = '', $divClass = '', $divId = '', $text = '', $refLabel = '')
+    public function addItem($url = '', $text = '', $divClass = '')
     {
-        $this->htmlBuffer .= '<li class="' . $refLabel . '"><a href="' . $url . '" ><i class="' . $divClass .
-            '" id="' . $divId . '"></i > ' . $text . '</a ></li >';
+        $this->htmlBuffer .= "<li class='$divClass'><a href='$url'>$text</a ></li >";
     }
 
     /**

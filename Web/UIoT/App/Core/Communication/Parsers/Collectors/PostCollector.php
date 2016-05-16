@@ -53,7 +53,7 @@ class PostCollector extends RequestSingleton
         $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if (RequestParserMethods::getJobStatus($resourceIdTreater))
+        if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this))
             return;
 
         if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
@@ -64,8 +64,7 @@ class PostCollector extends RequestSingleton
             RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
         RequestParserMethods::parseResponseWithRequestStatus(EmptyHtmlFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'],
-            'keys' => $resourcePropertiesTreater->getResponse(),
+            'resource' => $resourceData['name'], 'keys' => $resourcePropertiesTreater->getResponse(),
             'arguments' => $resourceData['arguments']]);
     }
 }

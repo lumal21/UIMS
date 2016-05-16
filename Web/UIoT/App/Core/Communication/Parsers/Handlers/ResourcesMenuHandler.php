@@ -22,17 +22,18 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceDataTreater;
+use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
-use UIoT\App\Helpers\Visual\DataTable;
-use UIoT\App\Helpers\Visual\Html;
+use UIoT\App\Helpers\Visual\Menu;
 
 /**
- * Class DataTableHandler
+ * Class ResourcesMenuHandler
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class DataTableHandler extends RequestSingleton
+class ResourcesMenuHandler extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -47,22 +48,15 @@ class DataTableHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $dataTable = new DataTable($resourcePrettyName = Strings::toCamel($requestContent['resource'], true));
+        $menuContent = new Menu();
 
-        foreach ($requestContent['keys'] as $value) {
-            $dataTable->addLinkInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit/{$value->PROP_FRIENDLY_NAME}");
-            $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
+        $requestDataTreater = RequestParserMethods::parseRequestWithResponse(ResourceDataTreater::getInstance(),
+            RaiseRequestManager::doGetRequest('resources'));
+
+        foreach ($requestDataTreater->getResponse() as $resourceItem) {
+            $menuContent->addItem('/' . Strings::toLower($resourceItem->RSRC_NAME), Strings::toCamel($resourceItem->RSRC_FRIENDLY_NAME, true));
         }
 
-        foreach ($requestContent['values'] as $value) {
-            $dataTable->addBody($value);
-        }
-
-        $htmlContent = new Html();
-        $htmlContent->addOnClickButton('Add', 'button', "Add New $resourcePrettyName",
-            "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
-
-        RequestParserMethods::setCustomResponseDataWithStatus($this,
-            "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this, $menuContent->showContent(), true);
     }
 }

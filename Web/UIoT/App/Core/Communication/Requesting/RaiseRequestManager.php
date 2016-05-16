@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Communication\Requesting;
 
 use Httpful\Http;
+use Httpful\Mime;
 use Httpful\Request;
 use UIoT\App\Core\Settings\Register as SettingsRegister;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
@@ -57,6 +58,8 @@ class RaiseRequestManager
     {
         self::setSettings();
         self::setHost();
+
+        RequestTemplateManager::setTemplate(Http::GET, Mime::JSON);
     }
 
     /**

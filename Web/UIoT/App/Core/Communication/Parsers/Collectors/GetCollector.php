@@ -51,13 +51,13 @@ class GetCollector extends RequestSingleton
         $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if (RequestParserMethods::getJobStatus($resourceIdTreater))
+        if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this))
             return;
 
         $resourcePropertiesTreater = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(),
             RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
 
-        if (RequestParserMethods::getJobStatus($resourcePropertiesTreater))
+        if (RequestParserMethods::getJobStatusWithResponse($resourcePropertiesTreater, $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(DataTableHandler::getInstance(), $this, [
