@@ -44,11 +44,6 @@ final class Render implements RenderInterface
     private $resourceMethod;
 
     /**
-     * @var array Path Arguments
-     */
-    private $resourceArguments = [];
-
-    /**
      * @var string Other Data
      */
     private static $resourceData;
@@ -74,7 +69,6 @@ final class Render implements RenderInterface
     {
         $this->resourceName = $arguments['resource'];
         $this->resourceMethod = $arguments['method'];
-        $this->resourceArguments = $arguments['arguments'];
     }
 
     /**
@@ -84,8 +78,7 @@ final class Render implements RenderInterface
     {
         self::$resourceData = DataCollector::runCollector([
             'name' => Strings::toLower($this->resourceName),
-            'method' => Strings::toLower($this->resourceMethod),
-            'arguments' => $this->resourceArguments]);
+            'method' => Strings::toLower($this->resourceMethod)]);
     }
 
     /**

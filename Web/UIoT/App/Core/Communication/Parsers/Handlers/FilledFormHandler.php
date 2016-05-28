@@ -48,22 +48,16 @@ class FilledFormHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), '/' . implode('/', $requestContent['arguments']), Http::PUT);
+        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), "/{$requestContent['resource']}/edit?ID={$requestContent['values'][0]->ID}", Http::POST);
+        $formHandler->addHeader("ID: {$requestContent['values'][0]->ID}");
 
-        foreach ($requestContent['values'] as $itemObject) {
-            $itemDetails = array_slice($requestContent['keys'], 0, 2);
-            $formHandler->addHeader("ID: {$itemObject->{$itemDetails[0]->PROP_NAME}}", "Name: {$itemObject->{$itemDetails[1]->PROP_NAME}}");
-
-            foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $propertyObject) {
-                $formHandler->addTextInputWithValue($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true),
-                    ['id' => '', 'class' => ''], ['value' => $itemObject->{$propertyObject->PROP_NAME}, 'placeholder' => '']);
-            }
-
-            $formHandler->addButton('submit', 'Save Edited Data');
-            $formHandler->addOnClickButton('button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
+        foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $property) {
+            $formHandler->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true), [], ['value' => $requestContent['values'][0]->{$property->PROP_NAME}]);
         }
 
-        RequestParserMethods::setCustomResponseDataWithStatus($this,
-            "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
+        $formHandler->addButton('submit', 'Save Edited Data');
+        $formHandler->addOnClickButton('button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
+
+        RequestParserMethods::setCustomResponseDataWithStatus($this, "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
     }
 }

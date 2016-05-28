@@ -22,13 +22,11 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-use Httpful\Http;
 use UIoT\App\Core\Communication\Methods\Get;
 use UIoT\App\Core\Communication\Methods\Post;
 use UIoT\App\Core\Communication\Parsers\Handlers\EmptyHtmlFormHandler;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
-use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
  * Class PostCollector
@@ -50,16 +48,12 @@ class PostCollector extends RequestSingleton
     public function parse($resourceData)
     {
         $getMethod = (new Get)->setReceivedCollector($this)->setResponseCollector($resourceData);
+        $postMethod = (new Post)->setReceivedCollector($this)->setResponseCollector($resourceData);
 
-        if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
-            $postMethod = (new Post)->setReceivedCollector($this)->setResponseCollector($resourceData);
-
-            if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponseCollector(), $this))
-                return;
-        }
+        if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponseCollector(), $this))
+            return;
 
         RequestParserMethods::parseResponseWithRequestStatus(EmptyHtmlFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse(),
-            'arguments' => $resourceData['arguments']]);
+            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse()]);
     }
 }

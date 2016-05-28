@@ -48,7 +48,7 @@ class DataCollector
      * @param array $resourceData
      * @return string Response Data
      */
-    public static function runCollector($resourceData = ['name' => '', 'method' => '', 'arguments' => []])
+    public static function runCollector($resourceData = ['name' => '', 'method' => ''])
     {
         return RequestParserMethods::parseRequest(self::getMethodCollector($resourceData['method']), $resourceData)->getResponse();
     }

@@ -44,9 +44,6 @@ final class ResourceActionNode extends NodeHandlerModel
             && !Factory::controllerExists($this->getPathValue()[0]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
-            'resource' => $this->getPathValue()[0],
-            'method' => $this->getPathValue()[1],
-            'arguments' => $this->getPathValue()]))
-        );
+            'resource' => $this->getPathValue()[0], 'method' => $this->getPathValue()[1]])));
     }
 }

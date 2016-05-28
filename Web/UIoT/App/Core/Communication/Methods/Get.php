@@ -40,17 +40,13 @@ class Get extends MethodModel
      * @param array $resourceData
      * @return $this|void
      */
-    public function setResponseCollector(array $resourceData)
+    public function setResponseCollector($resourceData)
     {
-        $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
-            RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
+        $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(), RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
         if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this->getReceivedCollector()))
             return $this;
 
-        $this->responseCollector = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(),
-            RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
-
-        return $this;
+        return parent::setResponseCollector(RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(), RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse())));
     }
 }

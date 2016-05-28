@@ -49,7 +49,7 @@ class Forms extends Html
      * @param string $headerText
      * @param string $headerSubText
      */
-    public function addHeader($headerText, $headerSubText)
+    public function addHeader($headerText, $headerSubText = '')
     {
         $this->htmlBuffer .= "<h4>$headerText</h4>";
 

@@ -47,7 +47,6 @@ class RaiseCodeMessageHandler extends RequestSingleton
     {
         $htmlContext = new Html();
         $htmlContext->addTextCallout("Response Code (#{$requestContent->code})", $requestContent->message);
-        RequestParserMethods::setCustomResponseDataWithStatus($this,
-            "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this, "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
     }
 }

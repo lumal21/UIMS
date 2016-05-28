@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\Treaters\SpecificResourceItemTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
@@ -40,13 +41,12 @@ class Put extends MethodModel
      * @param array $resourceData
      * @return $this|void
      */
-    public function setResponseCollector(array $resourceData)
+    public function setResponseCollector($resourceData)
     {
-        RaiseRequestManager::doPutRequest("{$resourceData['name']}" . Constants::returnConstant('QUERY_STRING'));
+        if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
+            RaiseRequestManager::doPutRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING') . '&' . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
+        }
 
-        $this->responseCollector = RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(),
-            RaiseRequestManager::doGetRequest("{$resourceData['name']}?{$resourceData['arguments'][2]}={$resourceData['arguments'][3]}"));
-
-        return $this;
+        return parent::setResponseCollector(RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(), RaiseRequestManager::doGetRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING'))));
     }
 }

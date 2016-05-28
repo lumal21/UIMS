@@ -76,7 +76,7 @@ class DataTable extends Html
      */
     public function addLinkInteraction($tablePosition, $interactionContent)
     {
-        $this->bodyInteractions[$tablePosition] = "<a href='$interactionContent/{{value}}'>{{value}}</a>";
+        $this->bodyInteractions[$tablePosition] = "<a href='$interactionContent={{value}}'>{{value}}</a>";
     }
 
     /**

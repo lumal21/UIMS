@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
+use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResponseAcknowledgeTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
@@ -40,12 +41,12 @@ class Post extends MethodModel
      * @param array $resourceData
      * @return $this|void
      */
-    public function setResponseCollector(array $resourceData)
+    public function setResponseCollector($resourceData)
     {
-        $this->responseCollector = RequestParserMethods::parseRequest(ResponseAcknowledgeTreater::getInstance(),
-            RaiseRequestManager::doPostRequest($resourceData['name'] . '?' .
-                http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST'))));
+        if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
+            $resourceData = RaiseRequestManager::doPostRequest("{$resourceData['name']}?" . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
+        }
 
-        return $this;
+        return parent::setResponseCollector(RequestParserMethods::parseRequest(ResponseAcknowledgeTreater::getInstance(), $resourceData));
     }
 }

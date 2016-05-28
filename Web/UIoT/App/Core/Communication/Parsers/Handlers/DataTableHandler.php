@@ -50,7 +50,7 @@ class DataTableHandler extends RequestSingleton
         $dataTable = new DataTable($resourcePrettyName = Strings::toCamel($requestContent['resource'], true));
 
         foreach ($requestContent['keys'] as $value) {
-            $dataTable->addLinkInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit/{$value->PROP_FRIENDLY_NAME}");
+            $dataTable->addLinkInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit?{$value->PROP_FRIENDLY_NAME}");
             $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
         }
 
@@ -59,10 +59,8 @@ class DataTableHandler extends RequestSingleton
         }
 
         $htmlContent = new Html();
-        $htmlContent->addOnClickButton('button', "Add New $resourcePrettyName",
-            "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
+        $htmlContent->addOnClickButton('button', "Add New $resourcePrettyName", "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
 
-        RequestParserMethods::setCustomResponseDataWithStatus($this,
-            "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
+        RequestParserMethods::setCustomResponseDataWithStatus($this, "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
     }
 }

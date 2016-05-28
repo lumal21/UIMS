@@ -56,6 +56,6 @@ class PutCollector extends RequestSingleton
 
         RequestParserMethods::parseResponseWithRequestStatus(FilledFormHandler::getInstance(), $this, [
             'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse(),
-            'values' => $putMethod->getResponseCollector()->getResponse(), 'arguments' => $resourceData['arguments']]);
+            'values' => $putMethod->getResponseCollector()->getResponse()]);
     }
 }

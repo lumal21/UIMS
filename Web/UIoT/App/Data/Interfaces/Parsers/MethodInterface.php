@@ -32,15 +32,15 @@ interface MethodInterface
     /**
      * Set Method Data
      *
-     * @param mixed $data
+     * @param mixed|RequestSingleton $data
      * @return mixed
      */
-    public function setResponseCollector(array $data);
+    public function setResponseCollector($data);
 
     /**
      * Get Method Data
      *
-     * @return mixed
+     * @return mixed|RequestSingleton
      */
     public function getResponseCollector();
 

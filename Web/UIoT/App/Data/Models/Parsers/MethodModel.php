@@ -54,13 +54,13 @@ class MethodModel implements MethodInterface
     /**
      * Set Data
      *
-     * @param array $responseCollector
+     * @param mixed|RequestSingleton $responseCollector
      *
      * @return $this
      */
-    public function setResponseCollector(array $responseCollector)
+    public function setResponseCollector($responseCollector)
     {
-        $this->responseCollector = RequestSingleton::getInstance();
+        $this->responseCollector = $responseCollector;
 
         return $this;
     }
