@@ -48,7 +48,7 @@ class FilledFormHandler extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), "/{$requestContent['resource']}/edit?ID={$requestContent['values'][0]->ID}", Http::POST);
+        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), "/{$requestContent['resource']}/edit?id={$requestContent['values'][0]->ID}", Http::POST);
         $formHandler->addHeader("ID: {$requestContent['values'][0]->ID}");
 
         foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $property) {
