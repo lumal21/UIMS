@@ -24,6 +24,14 @@ pre {
     left: 0
 }
 
+.off-canvas-content {
+    background: rgb(235, 235, 235);
+}
+
+.main-section {
+    background: white;
+}
+
 .footer .callout {
     height: 120px;
     border-left: 0;
