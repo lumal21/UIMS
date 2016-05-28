@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "961e97a48fd909effdf281109803b798",
+    "hash": "4cab96a9de30ee6eb9d2494968a194ea",
     "content-hash": "c5368fd8e53ca342f2e87f908ee018b6",
     "packages": [
         {
@@ -55,16 +55,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/c0185ab7c75aab88762c5aae780b9d83b80eda72",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -126,14 +126,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bramus/router.git",
-                "reference": "a92e2b21dd8cadf84140ed62aafd7df357482478"
+                "reference": "132b42f831108643cd50c0c7b8cce12bd621b0bf"
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "phpunit/php-code-coverage": "1.3.*@dev",
-                "phpunit/phpunit": "3.7.x"
+                "phpunit/php-code-coverage": "~1.2",
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "autoload": {
@@ -157,7 +157,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2016-05-04 10:40:10"
+            "time": "2016-05-26 19:46:58"
         },
         {
             "name": "filp/whoops",
@@ -218,7 +218,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
-                "reference": "97a9a94a8b1f6add76a427daf06270d47e0c1b6b"
+                "reference": "7f3338b433ca21ae8e8f56d4b5a82f0146242dce"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -269,7 +269,7 @@
                 "npm",
                 "package"
             ],
-            "time": "2016-05-04 08:21:07"
+            "time": "2016-05-28 15:47:37"
         },
         {
             "name": "jalle19/php-whitelist-check",
@@ -464,12 +464,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0"
+                "reference": "ecc0bf53bb0f681271e2318a596e81d109e3f527"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/1574f3451b40fa9bbae518ef71d19a56f409cac0",
-                "reference": "1574f3451b40fa9bbae518ef71d19a56f409cac0",
+                "url": "https://api.github.com/repos/symfony/process/zipball/ecc0bf53bb0f681271e2318a596e81d109e3f527",
+                "reference": "ecc0bf53bb0f681271e2318a596e81d109e3f527",
                 "shasum": ""
             },
             "require": {
@@ -478,7 +478,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -505,7 +505,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-12 19:11:33"
+            "time": "2016-05-13 18:13:23"
         },
         {
             "name": "xrstf/ip-utils",

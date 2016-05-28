@@ -59,7 +59,7 @@ class DataTableHandler extends RequestSingleton
         }
 
         $htmlContent = new Html();
-        $htmlContent->addOnClickButton('Add', 'button', "Add New $resourcePrettyName",
+        $htmlContent->addOnClickButton('button', "Add New $resourcePrettyName",
             "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
 
         RequestParserMethods::setCustomResponseDataWithStatus($this,

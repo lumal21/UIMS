@@ -115,6 +115,18 @@ class RaiseRequestManager
         return (new RequestDataManager(self::$raiseBaseUri . $url))->get_data('body');
     }
 
+    /**
+     * Do a POST Request, and get Request Body
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public static function doPostRequest($url)
+    {
+        RequestTemplateManager::setRequestMethod(Http::POST);
+
+        return self::doUnknownRequest($url);
+    }
 
     /**
      * Do a PUT Request, and get Request Body

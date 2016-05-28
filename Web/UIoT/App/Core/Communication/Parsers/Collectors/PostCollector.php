@@ -23,10 +23,9 @@
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
 use Httpful\Http;
+use UIoT\App\Core\Communication\Methods\Get;
+use UIoT\App\Core\Communication\Methods\Post;
 use UIoT\App\Core\Communication\Parsers\Handlers\EmptyHtmlFormHandler;
-use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
-use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Constants;
@@ -50,21 +49,17 @@ class PostCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(),
-            RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
-
-        if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this))
-            return;
+        $getMethod = (new Get)->setReceivedCollector($this)->setResponseCollector($resourceData);
 
         if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
-            $resourceData['arguments']['received_post_constructor'] = true;
+            $postMethod = (new Post)->setReceivedCollector($this)->setResponseCollector($resourceData);
+
+            if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponseCollector(), $this))
+                return;
         }
 
-        $resourcePropertiesTreater = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(),
-            RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getResponse()));
-
         RequestParserMethods::parseResponseWithRequestStatus(EmptyHtmlFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $resourcePropertiesTreater->getResponse(),
+            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse(),
             'arguments' => $resourceData['arguments']]);
     }
 }

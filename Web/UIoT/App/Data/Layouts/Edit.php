@@ -24,6 +24,7 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Assets\Register as AssetIndexer;
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
+use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Core\Controllers\Register as TemplateIndexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;

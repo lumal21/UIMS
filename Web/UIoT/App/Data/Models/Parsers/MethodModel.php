@@ -23,6 +23,7 @@
 namespace UIoT\App\Data\Models\Parsers;
 
 use UIoT\App\Data\Interfaces\Parsers\MethodInterface;
+use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
  * Class MethodModel
@@ -31,29 +32,59 @@ use UIoT\App\Data\Interfaces\Parsers\MethodInterface;
 class MethodModel implements MethodInterface
 {
     /**
-     * @var object|array
+     * @var RequestSingleton Response Collector
      */
-    private $data;
+    protected $responseCollector;
+
+    /**
+     * @var RequestSingleton Input Collector
+     */
+    protected $receivedCollector;
 
     /**
      * Get Data
      *
-     * @return array|object
+     * @return RequestSingleton
      */
-    public function getData()
+    public function getResponseCollector()
     {
-        return $this->data;
+        return $this->responseCollector;
     }
 
     /**
      * Set Data
      *
-     * @param array $data
+     * @param array $responseCollector
+     *
      * @return $this
      */
-    public function setData($data = [])
+    public function setResponseCollector(array $responseCollector)
     {
-        $this->data = $data;
+        $this->responseCollector = RequestSingleton::getInstance();
+
+        return $this;
+    }
+
+    /**
+     * Get Collector
+     *
+     * @return RequestSingleton
+     */
+    public function getReceivedCollector()
+    {
+        return $this->receivedCollector;
+    }
+
+    /**
+     * Set Collector
+     *
+     * @param RequestSingleton $receivedCollector
+     *
+     * @return $this
+     */
+    public function setReceivedCollector(RequestSingleton $receivedCollector)
+    {
+        $this->receivedCollector = $receivedCollector;
 
         return $this;
     }

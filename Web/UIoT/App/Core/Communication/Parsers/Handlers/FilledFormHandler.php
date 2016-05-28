@@ -25,6 +25,7 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 use Httpful\Http;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\DataTypes;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\Forms;
 
@@ -53,13 +54,13 @@ class FilledFormHandler extends RequestSingleton
             $itemDetails = array_slice($requestContent['keys'], 0, 2);
             $formHandler->addHeader("ID: {$itemObject->{$itemDetails[0]->PROP_NAME}}", "Name: {$itemObject->{$itemDetails[1]->PROP_NAME}}");
 
-            foreach ($requestContent['keys'] as $propertyObject) {
+            foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $propertyObject) {
                 $formHandler->addTextInputWithValue($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true),
                     ['id' => '', 'class' => ''], ['value' => $itemObject->{$propertyObject->PROP_NAME}, 'placeholder' => '']);
             }
 
-            $formHandler->addButton('Save', 'submit', 'Save Edited Data');
-            $formHandler->addOnClickButton('Cancel', 'button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
+            $formHandler->addButton('submit', 'Save Edited Data');
+            $formHandler->addOnClickButton('button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
         }
 
         RequestParserMethods::setCustomResponseDataWithStatus($this,

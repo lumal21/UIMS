@@ -65,29 +65,27 @@ class Html
     /**
      * Add Button with OnClick Tag
      *
-     * @param string $buttonName
      * @param string $buttonType
      * @param string $buttonValue
      * @param string $onClick
      * @param array $buttonClasses
      */
-    public function addOnClickButton($buttonName, $buttonType, $buttonValue, $onClick, $buttonClasses = ['id' => '', 'class' => ''])
+    public function addOnClickButton($buttonType, $buttonValue, $onClick, $buttonClasses = ['id' => '', 'class' => ''])
     {
-        $this->addButton($buttonName, $buttonType, $buttonValue, $buttonClasses, "onclick='{$onClick}'");
+        $this->addButton($buttonType, $buttonValue, $buttonClasses, "onclick='{$onClick}'");
     }
 
     /**
      * Add Button
      *
-     * @param string $buttonName
      * @param string $buttonType
      * @param string $buttonValue
      * @param array $buttonClasses
      * @param string $properties
      */
-    public function addButton($buttonName, $buttonType, $buttonValue, $buttonClasses = ['id' => '', 'class' => ''], $properties = '')
+    public function addButton($buttonType, $buttonValue, $buttonClasses = ['id' => '', 'class' => ''], $properties = '')
     {
-        $this->htmlBuffer .= "<button type='$buttonType' name='$buttonName' id='{$buttonClasses['id']}' class='{$buttonClasses['class']} button' $properties>$buttonValue</button>";
+        $this->htmlBuffer .= "<button type='$buttonType' id='{$buttonClasses['id']}' class='{$buttonClasses['class']} button' $properties>$buttonValue</button>";
     }
 
     /**

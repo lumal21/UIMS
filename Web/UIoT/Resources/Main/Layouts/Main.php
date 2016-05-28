@@ -71,7 +71,7 @@
                 </div>
             </section>
 
-            <section class="footer">
+            <section>
                 <div class="callout secondary" style="margin-bottom:0">
                     <div class="row">
                         <div class="large-6 columns">
