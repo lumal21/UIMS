@@ -20,62 +20,66 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Controllers;
+namespace UIoT\App\Core\Templates;
 
 use UIoT\App\Helpers\Manipulation\Constants;
 use UIoT\App\Helpers\Visual\Format;
 
 /**
- * Class Register
+ * Class Factory
  * @package UIoT\App\Core\Templates
  */
-final class Register
+final class Factory
 {
     /**
-     * @var string
+     * @var string Template Folder
      */
-    public static $folder = '';
+    private $templateFolder = '';
 
-    private static $variables = [];
+    /**
+     * @var array Custom Parsed Variables
+     */
+    private $customVariables = [];
 
     /**
      * Set Template Folder
      *
-     * @param string $f
+     * @param string $templateFolder
      */
-    public static function setTemplateFolder($f)
+    public function setTemplateFolder($templateFolder)
     {
-        self::$folder = (Constants::returnConstant('RESOURCE_FOLDER') . $f . '/');
+        $this->templateFolder = (Constants::returnConstant('RESOURCE_FOLDER') . $templateFolder . '/');
     }
 
     /**
      * Add Variable
      *
-     * @param string $key
-     * @param string $value
+     * @param string $variableKey
+     * @param string $variableValue
      */
-    public static function addVariable($key, $value)
+    public function addVariable($variableKey, $variableValue)
     {
-        self::$variables[$key] = $value;
+        $this->customVariables[$variableKey] = $variableValue;
     }
 
     /**
      * Add Template
      *
-     * @param string $fileName
+     * @param string $templateName
      */
-    public static function addTemplate($fileName)
+    public function addTemplate($templateName)
     {
-        Format::add(self::parseTemplateFile(self::$folder . $fileName));
+        Format::add($this->parseTemplateFile($this->templateFolder . $templateName));
     }
 
     /**
      * Parse Template File
      *
      * @param string $fileName
+     *
      * @return string
      */
-    public static function parseTemplateFile($fileName = '')
+    public function parseTemplateFile($fileName = '')
     {
         ob_start();
 
@@ -85,7 +89,7 @@ final class Register
 
         ob_end_clean();
 
-        return self::extractVariables($template, self::$variables);
+        return $this->extractVariables($template, $this->customVariables);
     }
 
     /**
@@ -93,9 +97,10 @@ final class Register
      *
      * @param mixed $template
      * @param array $variables
-     * @return mixed|string
+     *
+     * @return mixed
      */
-    public static function extractVariables($template = '', $variables)
+    public function extractVariables($template = '', $variables)
     {
         foreach ($variables as $word => $content) {
             $template = str_replace($word, $content, $template);
@@ -109,7 +114,7 @@ final class Register
      *
      * @return string
      */
-    public static function returnTemplates()
+    public function returnTemplates()
     {
         return Format::getFormat();
     }

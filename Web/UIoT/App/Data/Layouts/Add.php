@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
-use UIoT\App\Core\Controllers\Register as TemplateIndexer;
 use UIoT\App\Core\Resources\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
@@ -40,20 +39,20 @@ class Add extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetManager()->addAsset('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetManager()->addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+        $this->getAssetFactory()->addAsset('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetFactory()->addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
 
-        $this->getAssetManager()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetManager()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetManager()->addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        $this->getAssetManager()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetFactory()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetFactory()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetFactory()->addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
+        $this->getAssetFactory()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
 
-        $this->getAssetManager()->addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAssetManager()->addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAssetManager()->addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAssetManager()->addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        $this->getAssetManager()->addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        $this->getAssetManager()->addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
+        $this->getAssetFactory()->addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
+        $this->getAssetFactory()->addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
+        $this->getAssetFactory()->addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
+        $this->getAssetFactory()->addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+        $this->getAssetFactory()->addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
+        $this->getAssetFactory()->addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }
 
     /**
@@ -69,10 +68,11 @@ class Add extends LayoutSingleton
      */
     public function setTemplates()
     {
-        TemplateIndexer::setTemplateFolder('Main');
-        TemplateIndexer::addVariable('{{resource_content}}', Render::getControllerData());
-        TemplateIndexer::addVariable('{{menu_content}}', RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
-        TemplateIndexer::addTemplate('Layouts/Main.php');
+        $this->getTemplateFactory()->setTemplateFolder('Main');
+        $this->getTemplateFactory()->addVariable('{{resource_content}}', Render::getControllerData());
+        $this->getTemplateFactory()->addVariable('{{menu_content}}',
+            RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
+        $this->getTemplateFactory()->addTemplate('Layouts/Main.php');
     }
 
     /**
@@ -82,6 +82,6 @@ class Add extends LayoutSingleton
      */
     public function showLayout()
     {
-        return TemplateIndexer::returnTemplates();
+        return $this->getTemplateFactory()->returnTemplates();
     }
 }

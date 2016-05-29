@@ -22,7 +22,8 @@
 
 namespace UIoT\App\Data\Singletons;
 
-use UIoT\App\Core\Assets\Factory;
+use UIoT\App\Core\Assets\Factory as AssetFactory;
+use UIoT\App\Core\Templates\Factory as TemplateFactory;
 use UIoT\App\Data\Models\Data\LayoutModel;
 
 /**
@@ -37,9 +38,14 @@ class LayoutSingleton extends LayoutModel
     protected static $layoutInstance = null;
 
     /**
-     * @var Factory Asset Manager
+     * @var AssetFactory Instance
      */
-    protected $assetManager;
+    protected $assetFactory;
+
+    /**
+     * @var TemplateFactory Instance
+     */
+    protected $templateFactory;
 
     /**
      * Abstract and Singleton Protection
@@ -90,15 +96,29 @@ class LayoutSingleton extends LayoutModel
     /**
      * Get Asset Manager
      *
-     * @return Factory
+     * @return AssetFactory
      */
-    public function getAssetManager()
+    public function getAssetFactory()
     {
-        if (null === $this->assetManager) {
-            $this->assetManager = new Factory;
+        if (null === $this->assetFactory) {
+            $this->assetFactory = new AssetFactory;
         }
 
-        return $this->assetManager;
+        return $this->assetFactory;
+    }
+
+    /**
+     * Get Template Factory
+     *
+     * @return TemplateFactory
+     */
+    public function getTemplateFactory()
+    {
+        if (null === $this->templateFactory) {
+            $this->templateFactory = new TemplateFactory;
+        }
+
+        return $this->templateFactory;
     }
 
     /**

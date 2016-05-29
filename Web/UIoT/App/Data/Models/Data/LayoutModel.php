@@ -75,7 +75,17 @@ abstract class LayoutModel implements LayoutInterface
      *
      * @SuppressWarnings("unused")
      */
-    public function getAssetManager()
+    public function getAssetFactory()
+    {
+        /* not implemented */
+    }
+
+    /**
+     * Get Template Factory
+     *
+     * @SuppressWarnings("unused")
+     */
+    public function getTemplateFactory()
     {
         /* not implemented */
     }

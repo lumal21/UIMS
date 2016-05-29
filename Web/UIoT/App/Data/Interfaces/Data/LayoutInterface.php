@@ -51,5 +51,10 @@ interface LayoutInterface
     /**
      * @return mixed
      */
-    function getAssetManager();
+    function getAssetFactory();
+
+    /**
+     * @return mixed
+     */
+    function getTemplateFactory();
 }

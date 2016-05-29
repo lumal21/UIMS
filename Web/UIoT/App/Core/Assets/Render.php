@@ -22,7 +22,8 @@
 
 namespace UIoT\App\Core\Assets;
 
-use UIoT\App\Core\Layouts\Factory;
+use UIoT\App\Core\Assets\Factory as AssetFactory;
+use UIoT\App\Core\Layouts\Factory as LayoutFactory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
@@ -71,8 +72,8 @@ final class AssetRender implements RenderInterface
      */
     public function showContent()
     {
-        Factory::getLayoutAssets($this->layoutName);
+        LayoutFactory::getLayoutAssets($this->layoutName);
 
-        return Factory::returnAsset($this->assetName);
+        return AssetFactory::returnAsset($this->assetName);
     }
 }

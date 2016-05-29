@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Controllers\Register as TemplateIndexer;
 use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
@@ -38,12 +37,12 @@ class Login extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetManager()->addAsset('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetManager()->addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
+        $this->getAssetFactory()->addAsset('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetFactory()->addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
 
-        $this->getAssetManager()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetManager()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetManager()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetFactory()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetFactory()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetFactory()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
     }
 
     /**
@@ -59,9 +58,9 @@ class Login extends LayoutSingleton
      */
     public function setTemplates()
     {
-        TemplateIndexer::setTemplateFolder('Login');
-        TemplateIndexer::addVariable('{{resource_content}}', Render::getControllerData());
-        TemplateIndexer::addTemplate('Layouts/Login.php');
+        $this->getTemplateFactory()->setTemplateFolder('Login');
+        $this->getTemplateFactory()->addVariable('{{resource_content}}', Render::getControllerData());
+        $this->getTemplateFactory()->addTemplate('Layouts/Login.php');
     }
 
     /**
@@ -71,6 +70,6 @@ class Login extends LayoutSingleton
      */
     public function showLayout()
     {
-        return TemplateIndexer::returnTemplates();
+        return $this->getTemplateFactory()->returnTemplates();
     }
 }
