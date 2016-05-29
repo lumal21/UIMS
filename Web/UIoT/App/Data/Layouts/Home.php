@@ -31,6 +31,8 @@ use UIoT\App\Helpers\Visual\Pages;
 /**
  * Class Home
  * @package UIoT\App\Data\Layouts
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class Home extends LayoutSingleton
 {

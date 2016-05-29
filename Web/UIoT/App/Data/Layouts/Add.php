@@ -30,6 +30,8 @@ use UIoT\App\Helpers\Visual\Pages;
 /**
  * Class Add
  * @package UIoT\App\Data\Layouts
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class Add extends Main
 {

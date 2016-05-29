@@ -42,6 +42,8 @@ class GetCollector extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @param array $resourceData
      * @return void
      */

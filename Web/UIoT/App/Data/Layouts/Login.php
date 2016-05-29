@@ -29,6 +29,8 @@ use UIoT\App\Helpers\Visual\Pages;
 /**
  * Class Login
  * @package UIoT\App\Data\Layouts
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 class Login extends LayoutSingleton
 {

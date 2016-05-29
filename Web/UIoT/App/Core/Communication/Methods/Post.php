@@ -38,6 +38,8 @@ class Post extends MethodModel
     /**
      * Set Post Method
      *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @param array $resourceData
      * @return $this|void
      */

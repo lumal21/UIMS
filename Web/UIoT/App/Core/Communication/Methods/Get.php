@@ -37,6 +37,8 @@ class Get extends MethodModel
     /**
      * Set Get Method
      *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @param array $resourceData
      * @return $this|void
      */
@@ -47,8 +49,8 @@ class Get extends MethodModel
         if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this->getInput()))
             return $this;
 
-        $resourcePropertiesTreater = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(), RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getData()));
+        $resourcePropertyTr = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(), RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getData()));
 
-        return parent::setResponse($resourcePropertiesTreater);
+        return parent::setResponse($resourcePropertyTr);
     }
 }

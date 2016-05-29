@@ -37,6 +37,8 @@ class Put extends MethodModel
 {
     /**
      * Set Put Method
+     * 
+     * @SuppressWarnings(PHPMD.StaticAccess)
      *
      * @param array $resourceData
      * @return $this|void
