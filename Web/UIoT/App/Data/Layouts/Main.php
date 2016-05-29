@@ -25,36 +25,14 @@ namespace UIoT\App\Data\Layouts;
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Core\Resources\Render;
-use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
 /**
  * Class Main
  * @package UIoT\App\Data\Layouts
  */
-class Main extends LayoutSingleton
+class Main extends Home
 {
-    /**
-     * Set Resources
-     */
-    public function getResources()
-    {
-        $this->getAssetFactory()->addAsset('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetFactory()->addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
-
-        $this->getAssetFactory()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetFactory()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetFactory()->addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        $this->getAssetFactory()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
-
-        $this->getAssetFactory()->addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAssetFactory()->addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAssetFactory()->addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAssetFactory()->addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        $this->getAssetFactory()->addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        $this->getAssetFactory()->addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
-    }
-
     /**
      * Set Configuration
      */
