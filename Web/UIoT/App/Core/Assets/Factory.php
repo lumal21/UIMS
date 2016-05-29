@@ -28,22 +28,22 @@ use UIoT\App\Helpers\Manipulation\Files;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
- * Class Register
+ * Class Factory
  * @package UIoT\App\Core\Assets
  */
-final class Register
+final class Factory
 {
     /**
      * Set Resource Folder
      *
      * @param string $assetFolder
-     * @param string $assetFileName
+     * @param string $assetName
      *
      * @return string
      */
-    public function convertToFileName($assetFolder, $assetFileName)
+    public function getFileName($assetFolder, $assetName)
     {
-        return Strings::toLower(Constants::returnConstant('RESOURCE_FOLDER') . $assetFolder . '/' . $assetFileName);
+        return Strings::toLower(Constants::returnConstant('RESOURCE_FOLDER') . $assetFolder . '/' . $assetName);
     }
 
     /**
@@ -55,7 +55,7 @@ final class Register
      */
     public function addAsset($assetName, $assetFolder, $assetFileName = '')
     {
-        Manager::addAsset(Strings::toLower($assetName), $this->convertToFileName($assetFolder, $assetFileName));
+        Manager::addAsset(Strings::toLower($assetName), $this->getFileName($assetFolder, $assetFileName));
     }
 
     /**

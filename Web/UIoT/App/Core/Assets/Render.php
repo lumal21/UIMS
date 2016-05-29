@@ -73,6 +73,6 @@ final class AssetRender implements RenderInterface
     {
         Factory::getLayoutAssets($this->layoutName);
 
-        return Register::returnAsset($this->assetName);
+        return Factory::returnAsset($this->assetName);
     }
 }

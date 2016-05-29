@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
-use UIoT\App\Core\Assets\Register;
+use UIoT\App\Core\Assets\Factory;
 use UIoT\App\Data\Models\Data\LayoutModel;
 
 /**
@@ -37,7 +37,7 @@ class LayoutSingleton extends LayoutModel
     protected static $layoutInstance = null;
 
     /**
-     * @var Register Asset Manager
+     * @var Factory Asset Manager
      */
     protected $assetManager;
 
@@ -90,12 +90,12 @@ class LayoutSingleton extends LayoutModel
     /**
      * Get Asset Manager
      *
-     * @return Register
+     * @return Factory
      */
     public function getAssetManager()
     {
         if (null === $this->assetManager) {
-            $this->assetManager = new Register;
+            $this->assetManager = new Factory;
         }
 
         return $this->assetManager;
