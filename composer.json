@@ -48,6 +48,10 @@
       "type": "git"
     },
     {
+      "url": "https://github.com/cweiske/jsonmapper.git",
+      "type": "git"
+    },
+    {
       "url": "https://github.com/kriswallsmith/assetic.git",
       "type": "git"
     },
@@ -76,7 +80,8 @@
     "bramus/router": "master",
     "kriswallsmith/assetic": "master",
     "filp/whoops": "master",
-    "bower-asset/foundation-sites": "master"
+    "bower-asset/foundation-sites": "master",
+    "netresearch/jsonmapper": "master"
   },
   "scripts": {
     "post-package-install": [

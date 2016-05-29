@@ -21,6 +21,7 @@
  */
 
 namespace UIoT\App\Helpers\Manipulation;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 
 /**
  * Class DataTypes
@@ -47,7 +48,7 @@ class DataTypes
      */
     public static function removeDisabledTypes($propertiesArray)
     {
-        return array_filter($propertiesArray, function ($propertyObject) {
+        return array_filter($propertiesArray, function (PropertyObject $propertyObject) {
             return Arrays::inArray($propertyObject->PROP_FRIENDLY_NAME, self::$disabledEvents) !== true;
         });
     }

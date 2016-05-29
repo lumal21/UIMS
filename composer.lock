@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4cab96a9de30ee6eb9d2494968a194ea",
-    "content-hash": "c5368fd8e53ca342f2e87f908ee018b6",
+    "hash": "f9e12f7447cd15cc4a0ac508bbd090c7",
+    "content-hash": "33ce4dd7d50da0a247b57e02b8341e2e",
     "packages": [
         {
             "name": "bower-asset/foundation-sites",
@@ -457,6 +457,42 @@
                 "restful"
             ],
             "time": "2015-10-26 16:11:30"
+        },
+        {
+            "name": "netresearch/jsonmapper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweiske/jsonmapper.git",
+                "reference": "979abda4b128415c642b06f07db615e75cfd3173"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.2.*",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonMapper": "src/"
+                }
+            },
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Weiske",
+                    "email": "cweiske@cweiske.de",
+                    "homepage": "http://github.com/cweiske/jsonmapper/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Map nested JSON structures onto PHP classes",
+            "support": {
+                "email": "cweiske@cweiske.de",
+                "issues": "https://github.com/cweiske/jsonmapper/issues"
+            },
+            "time": "2016-04-14 21:59:35"
         },
         {
             "name": "symfony/process",
