@@ -41,12 +41,12 @@ class Put extends MethodModel
      * @param array $resourceData
      * @return $this|void
      */
-    public function setResponseCollector($resourceData)
+    public function setResponse($resourceData)
     {
         if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
             RaiseRequestManager::doPutRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING') . '&' . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
         }
 
-        return parent::setResponseCollector(RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(), RaiseRequestManager::doGetRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING'))));
+        return parent::setResponse(RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(), RaiseRequestManager::doGetRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING'))));
     }
 }

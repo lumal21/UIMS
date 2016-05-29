@@ -53,7 +53,7 @@ class ResourcesMenuHandler extends RequestSingleton
         $requestDataTreater = RequestParserMethods::parseRequestWithResponse(ResourceDataTreater::getInstance(),
             RaiseRequestManager::doGetRequest('resources'));
 
-        foreach ($requestDataTreater->getResponse() as $resourceItem) {
+        foreach ($requestDataTreater->getData() as $resourceItem) {
             $menuContent->addItem('/' . Strings::toLower($resourceItem->RSRC_NAME), Strings::toCamel($resourceItem->RSRC_FRIENDLY_NAME, true));
         }
 

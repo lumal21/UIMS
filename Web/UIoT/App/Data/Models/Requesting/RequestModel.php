@@ -31,14 +31,14 @@ use UIoT\App\Data\Interfaces\Requesting\RequestInterface;
 class RequestModel implements RequestInterface
 {
     /**
-     * @var boolean
+     * @var bool Job Status
      */
     private $jobStatus = false;
 
     /**
-     * @var mixed
+     * @var mixed Response Content
      */
-    private $responseContent = '';
+    private $responseData = '';
 
     /**
      * Parse Request Data or Do Request
@@ -48,9 +48,9 @@ class RequestModel implements RequestInterface
      */
     public function parse($requestContent = null)
     {
-        $this->setDone(true);
+        $this->setStatus(true);
 
-        $this->setResponse(null);
+        $this->setData(null);
     }
 
     /**
@@ -59,7 +59,7 @@ class RequestModel implements RequestInterface
      * @param boolean $jobStatus
      * @return bool
      */
-    public function setDone($jobStatus)
+    public function setStatus($jobStatus)
     {
         return $this->jobStatus = $jobStatus;
     }
@@ -70,9 +70,9 @@ class RequestModel implements RequestInterface
      * @param mixed $responseContent
      * @return void
      */
-    public function setResponse($responseContent)
+    public function setData($responseContent)
     {
-        $this->responseContent = $responseContent;
+        $this->responseData = $responseContent;
     }
 
     /**
@@ -80,7 +80,7 @@ class RequestModel implements RequestInterface
      *
      * @return boolean
      */
-    public function getDone()
+    public function getStatus()
     {
         return $this->jobStatus;
     }
@@ -90,8 +90,8 @@ class RequestModel implements RequestInterface
      *
      * @return mixed
      */
-    public function getResponse()
+    public function getData()
     {
-        return $this->responseContent;
+        return $this->responseData;
     }
 }

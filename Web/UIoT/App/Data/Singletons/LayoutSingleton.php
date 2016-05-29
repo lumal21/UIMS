@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
+use UIoT\App\Core\Assets\Register;
 use UIoT\App\Data\Models\Data\LayoutModel;
 
 /**
@@ -36,11 +37,16 @@ class LayoutSingleton extends LayoutModel
     protected static $layoutInstance = null;
 
     /**
+     * @var Register Asset Manager
+     */
+    protected $assetManager;
+
+    /**
      * Abstract and Singleton Protection
      */
     protected function __construct()
     {
-        /* not implemented */
+        /* singleton */
     }
 
     /**
@@ -82,11 +88,25 @@ class LayoutSingleton extends LayoutModel
     }
 
     /**
+     * Get Asset Manager
+     *
+     * @return Register
+     */
+    public function getAssetManager()
+    {
+        if (null === $this->assetManager) {
+            $this->assetManager = new Register;
+        }
+
+        return $this->assetManager;
+    }
+
+    /**
      * Abstract and Singleton Protection
      */
     protected function __clone()
     {
-        /* not implemented */
+        /* singleton */
     }
 
     /**
@@ -94,6 +114,6 @@ class LayoutSingleton extends LayoutModel
      */
     protected function __wakeup()
     {
-        /* not implemented */
+        /* singleton */
     }
 }

@@ -48,14 +48,14 @@ class PutCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $getMethod = (new Get)->setReceivedCollector($this)->setResponseCollector($resourceData);
-        $putMethod = (new Put)->setReceivedCollector($this)->setResponseCollector($resourceData);
+        $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
+        $putMethod = (new Put)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($putMethod->getResponseCollector(), $this))
+        if (RequestParserMethods::getJobStatusWithResponse($putMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(FilledFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse(),
-            'values' => $putMethod->getResponseCollector()->getResponse()]);
+            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponse()->getData(),
+            'values' => $putMethod->getResponse()->getData()]);
     }
 }

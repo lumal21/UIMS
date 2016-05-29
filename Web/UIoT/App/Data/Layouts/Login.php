@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Assets\Register as AssetIndexer;
 use UIoT\App\Core\Controllers\Register as TemplateIndexer;
 use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
@@ -39,12 +38,12 @@ class Login extends LayoutSingleton
      */
     public function getResources()
     {
-        AssetIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
-        AssetIndexer::addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
+        $this->getAssetManager()->addAsset('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetManager()->addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
 
-        AssetIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        AssetIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        AssetIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetManager()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetManager()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetManager()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
     }
 
     /**

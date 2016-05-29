@@ -47,4 +47,9 @@ interface LayoutInterface
      * @return mixed
      */
     function showLayout();
+
+    /**
+     * @return mixed
+     */
+    function getAssetManager();
 }

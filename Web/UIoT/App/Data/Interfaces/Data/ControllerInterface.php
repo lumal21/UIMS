@@ -29,6 +29,8 @@ namespace UIoT\App\Data\Interfaces\Data;
 interface ControllerInterface
 {
     /**
+     * Default Action
+     *
      * @return mixed
      */
     public function actionMain();

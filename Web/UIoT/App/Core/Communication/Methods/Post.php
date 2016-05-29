@@ -41,12 +41,12 @@ class Post extends MethodModel
      * @param array $resourceData
      * @return $this|void
      */
-    public function setResponseCollector($resourceData)
+    public function setResponse($resourceData)
     {
         if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
             $resourceData = RaiseRequestManager::doPostRequest("{$resourceData['name']}?" . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
         }
 
-        return parent::setResponseCollector(RequestParserMethods::parseRequest(ResponseAcknowledgeTreater::getInstance(), $resourceData));
+        return parent::setResponse(RequestParserMethods::parseRequest(ResponseAcknowledgeTreater::getInstance(), $resourceData));
     }
 }

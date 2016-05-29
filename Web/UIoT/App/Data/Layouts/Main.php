@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Assets\Register as AssetIndexer;
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
 use UIoT\App\Core\Controllers\Register as TemplateIndexer;
@@ -41,20 +40,20 @@ class Main extends LayoutSingleton
      */
     public function getResources()
     {
-        AssetIndexer::addAsset('Background', 'Default', 'Images/6.jpg');
-        AssetIndexer::addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+        $this->getAssetManager()->addAsset('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetManager()->addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
 
-        AssetIndexer::addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        AssetIndexer::addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        AssetIndexer::addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        AssetIndexer::addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetManager()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetManager()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetManager()->addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
+        $this->getAssetManager()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
 
-        AssetIndexer::addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        AssetIndexer::addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        AssetIndexer::addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        AssetIndexer::addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        AssetIndexer::addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        AssetIndexer::addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
+        $this->getAssetManager()->addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
+        $this->getAssetManager()->addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
+        $this->getAssetManager()->addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
+        $this->getAssetManager()->addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+        $this->getAssetManager()->addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
+        $this->getAssetManager()->addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }
 
     /**
@@ -72,8 +71,7 @@ class Main extends LayoutSingleton
     {
         TemplateIndexer::setTemplateFolder('Main');
         TemplateIndexer::addVariable('{{resource_content}}', Render::getControllerData());
-        TemplateIndexer::addVariable('{{menu_content}}',
-            RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getResponse());
+        TemplateIndexer::addVariable('{{menu_content}}', RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
         TemplateIndexer::addTemplate('Layouts/Main.php');
     }
 

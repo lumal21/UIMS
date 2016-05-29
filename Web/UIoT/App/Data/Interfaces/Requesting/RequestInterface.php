@@ -41,7 +41,7 @@ interface RequestInterface
      *
      * @return boolean
      */
-    function getDone();
+    function getStatus();
 
     /**
      * Set Job Status
@@ -49,7 +49,7 @@ interface RequestInterface
      * @param boolean $jobStatus
      * @return void
      */
-    function setDone($jobStatus);
+    function setStatus($jobStatus);
 
     /**
      * Set Response Content
@@ -57,12 +57,12 @@ interface RequestInterface
      * @param mixed $responseContent
      * @return void
      */
-    function setResponse($responseContent);
+    function setData($responseContent);
 
     /**
      * Get Response Content
      *
      * @return mixed
      */
-    function getResponse();
+    function getData();
 }

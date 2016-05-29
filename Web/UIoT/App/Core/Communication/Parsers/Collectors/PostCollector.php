@@ -47,13 +47,13 @@ class PostCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $getMethod = (new Get)->setReceivedCollector($this)->setResponseCollector($resourceData);
-        $postMethod = (new Post)->setReceivedCollector($this)->setResponseCollector($resourceData);
+        $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
+        $postMethod = (new Post)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponseCollector(), $this))
+        if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(EmptyHtmlFormHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse()]);
+            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponse()->getData()]);
     }
 }

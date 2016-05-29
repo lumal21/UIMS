@@ -50,7 +50,7 @@ class DataCollector
      */
     public static function runCollector($resourceData = ['name' => '', 'method' => ''])
     {
-        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceData['method']), $resourceData)->getResponse();
+        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceData['method']), $resourceData)->getData();
     }
 
     /**

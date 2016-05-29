@@ -47,13 +47,13 @@ class GetCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $getMethod = (new Get)->setReceivedCollector($this)->setResponseCollector($resourceData);
+        $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($getMethod->getResponseCollector(), $this))
+        if (RequestParserMethods::getJobStatusWithResponse($getMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(DataTableHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponseCollector()->getResponse(),
+            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponse()->getData(),
             'values' => RaiseRequestManager::doGetRequest($resourceData['name'])]);
     }
 }

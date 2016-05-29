@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Assets;
 
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Helpers\Manipulation\Files;
 
 /**
  * Class Render
@@ -42,10 +41,6 @@ final class AssetRender implements RenderInterface
      */
     private $assetName;
 
-    /**
-     * @var string
-     */
-    private static $assetData;
 
     /**
      * Init Resource Handler
@@ -55,7 +50,6 @@ final class AssetRender implements RenderInterface
     public function __construct($arguments = [])
     {
         $this->setArguments($arguments);
-        $this->setAssetData();
     }
 
     /**
@@ -71,24 +65,6 @@ final class AssetRender implements RenderInterface
     }
 
     /**
-     * Set Asset Base Name
-     */
-    private function setAssetData()
-    {
-        self::$assetData = Files::getBaseName($this->assetName);
-    }
-
-    /**
-     * Return Asset File Name
-     *
-     * @return string
-     */
-    public static function getAssetData()
-    {
-        return self::$assetData;
-    }
-
-    /**
      * Show Asset Content
      *
      * @return string
@@ -97,6 +73,6 @@ final class AssetRender implements RenderInterface
     {
         Factory::getLayoutAssets($this->layoutName);
 
-        return Register::returnAsset(self::getAssetData());
+        return Register::returnAsset($this->assetName);
     }
 }

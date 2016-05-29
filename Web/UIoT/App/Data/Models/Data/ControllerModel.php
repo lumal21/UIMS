@@ -31,18 +31,12 @@ use UIoT\App\Data\Interfaces\Data\ControllerInterface;
 abstract class ControllerModel implements ControllerInterface
 {
     /**
-     * Init Controller
-     */
-    protected function __construct()
-    {
-        /* nothing to do */
-    }
-
-    /**
      * Default Action
+     *
+     * @return string
      */
     public function actionMain()
     {
-        /* nothing to do */
+        return '';
     }
 }

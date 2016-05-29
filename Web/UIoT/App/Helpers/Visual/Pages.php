@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Helpers\Visual;
 
-use UIoT\App\Core\Assets\Register;
-
 /**
  * Class Pages
  * @package UIoT\App\Helpers\Visual
@@ -38,19 +36,5 @@ final class Pages
     public static function setTitle($pageTitle)
     {
         Format::add("<title>{$pageTitle}</title>");
-    }
-
-    /**
-     * Add Embed Script
-     *
-     * @param $scriptName
-     */
-    public static function addEmbedScript($scriptName)
-    {
-        /* First add resource */
-        Register::addAsset($scriptName, 'script/javascript');
-
-        /* So echo the script */
-        Format::add(sprintf('<script type="text/javascript">%s</script>', Register::returnAsset($scriptName)));
     }
 }

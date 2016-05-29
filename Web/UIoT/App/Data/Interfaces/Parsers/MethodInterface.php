@@ -21,6 +21,7 @@
  */
 
 namespace UIoT\App\Data\Interfaces\Parsers;
+
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -35,14 +36,14 @@ interface MethodInterface
      * @param mixed|RequestSingleton $data
      * @return mixed
      */
-    public function setResponseCollector($data);
+    public function setResponse($data);
 
     /**
      * Get Method Data
      *
      * @return mixed|RequestSingleton
      */
-    public function getResponseCollector();
+    public function getResponse();
 
     /**
      * Set Collector
@@ -50,12 +51,12 @@ interface MethodInterface
      * @param RequestSingleton $collector
      * @return mixed
      */
-    public function setReceivedCollector(RequestSingleton $collector);
+    public function setInput(RequestSingleton $collector);
 
     /**
      * Get Collector
      *
      * @return mixed
      */
-    public function getReceivedCollector();
+    public function getInput();
 }

@@ -54,7 +54,7 @@ abstract class RequestParserMethods
      */
     public static function setCustomJobStatus(RequestSingleton $response, $responseStatus)
     {
-        $response->setDone($responseStatus);
+        $response->setStatus($responseStatus);
 
         return $response;
     }
@@ -68,7 +68,7 @@ abstract class RequestParserMethods
      */
     public static function setCustomResponseData(RequestSingleton $request, $responseData)
     {
-        $request->setResponse($responseData);
+        $request->setData($responseData);
 
         return $request;
     }
@@ -81,7 +81,7 @@ abstract class RequestParserMethods
      */
     public static function getJobStatus(RequestSingleton $request)
     {
-        return $request->getDone();
+        return $request->getStatus();
     }
 
     /**
@@ -95,7 +95,7 @@ abstract class RequestParserMethods
     {
         self::setResponseData($request, $response);
 
-        return $request->getDone();
+        return $request->getStatus();
     }
 
     /**
@@ -107,7 +107,7 @@ abstract class RequestParserMethods
      */
     public static function setResponseData(RequestSingleton $request, RequestSingleton $response)
     {
-        $response->setResponse($request->getResponse());
+        $response->setData($request->getData());
 
         return $request;
     }
@@ -167,7 +167,7 @@ abstract class RequestParserMethods
      */
     public static function setJobStatus(RequestSingleton $request, RequestSingleton $response)
     {
-        $response->setDone($request->getDone());
+        $response->setStatus($request->getStatus());
 
         return $request;
     }

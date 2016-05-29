@@ -28,10 +28,12 @@ use UIoT\App\Data\Interfaces\Data\LayoutInterface;
  * Class LayoutModel
  * @package UIoT\App\Data\Models\Data
  */
-class LayoutModel implements LayoutInterface
+abstract class LayoutModel implements LayoutInterface
 {
     /**
      * Define Resources
+     *
+     * @SuppressWarnings("unused")
      */
     public function getResources()
     {
@@ -40,6 +42,8 @@ class LayoutModel implements LayoutInterface
 
     /**
      * Define Settings
+     *
+     * @SuppressWarnings("unused")
      */
     public function configureLayout()
     {
@@ -48,6 +52,8 @@ class LayoutModel implements LayoutInterface
 
     /**
      * Define Templates
+     *
+     * @SuppressWarnings("unused")
      */
     public function setTemplates()
     {
@@ -56,8 +62,20 @@ class LayoutModel implements LayoutInterface
 
     /**
      * Return Layout Code
+     *
+     * @SuppressWarnings("unused")
      */
     public function showLayout()
+    {
+        /* not implemented */
+    }
+
+    /**
+     * Return the Asset Manager
+     *
+     * @SuppressWarnings("unused")
+     */
+    public function getAssetManager()
     {
         /* not implemented */
     }

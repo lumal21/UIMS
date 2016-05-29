@@ -34,57 +34,57 @@ class MethodModel implements MethodInterface
     /**
      * @var RequestSingleton Response Collector
      */
-    protected $responseCollector;
+    protected $response;
 
     /**
      * @var RequestSingleton Input Collector
      */
-    protected $receivedCollector;
+    protected $input;
 
     /**
-     * Get Data
+     * Get Response Collector Rendered Data
      *
      * @return RequestSingleton
      */
-    public function getResponseCollector()
+    public function getResponse()
     {
-        return $this->responseCollector;
+        return $this->response;
     }
 
     /**
-     * Set Data
+     * Set Response Collector and Treat Data
      *
-     * @param mixed|RequestSingleton $responseCollector
+     * @param mixed|RequestSingleton $response
      *
      * @return $this
      */
-    public function setResponseCollector($responseCollector)
+    public function setResponse($response)
     {
-        $this->responseCollector = $responseCollector;
+        $this->response = $response;
 
         return $this;
     }
 
     /**
-     * Get Collector
+     * Get Input Collector
      *
      * @return RequestSingleton
      */
-    public function getReceivedCollector()
+    public function getInput()
     {
-        return $this->receivedCollector;
+        return $this->input;
     }
 
     /**
-     * Set Collector
+     * Set Input Collector
      *
-     * @param RequestSingleton $receivedCollector
+     * @param RequestSingleton $input
      *
      * @return $this
      */
-    public function setReceivedCollector(RequestSingleton $receivedCollector)
+    public function setInput(RequestSingleton $input)
     {
-        $this->receivedCollector = $receivedCollector;
+        $this->input = $input;
 
         return $this;
     }

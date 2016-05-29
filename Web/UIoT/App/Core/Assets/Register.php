@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Assets;
 
 use Exception;
 use UIoT\App\Helpers\Manipulation\Constants;
+use UIoT\App\Helpers\Manipulation\Files;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -37,9 +38,10 @@ final class Register
      *
      * @param string $assetFolder
      * @param string $assetFileName
+     *
      * @return string
      */
-    public static function convertToFileName($assetFolder, $assetFileName)
+    public function convertToFileName($assetFolder, $assetFileName)
     {
         return Strings::toLower(Constants::returnConstant('RESOURCE_FOLDER') . $assetFolder . '/' . $assetFileName);
     }
@@ -51,24 +53,25 @@ final class Register
      * @param string $assetFolder
      * @param string $assetFileName
      */
-    public static function addAsset($assetName, $assetFolder, $assetFileName = '')
+    public function addAsset($assetName, $assetFolder, $assetFileName = '')
     {
-        Manager::addAsset(Strings::toLower($assetName), self::convertToFileName($assetFolder, $assetFileName));
+        Manager::addAsset(Strings::toLower($assetName), $this->convertToFileName($assetFolder, $assetFileName));
     }
 
     /**
      * Return Asset
      *
-     * @param string $assetName
+     * @param string $assetFileName
+     *
      * @return mixed Asset Content
      * @throws Exception
      */
-    public static function returnAsset($assetName)
+    public static function returnAsset($assetFileName)
     {
-        $assetName = Strings::toLower($assetName);
+        $assetName = Files::getBaseName(Strings::toLower($assetFileName));
 
         if (!Manager::getAssetManager()->has($assetName)) {
-            throw new Exception("The requested Resource wasn't Found on this Server", '404');
+            throw new Exception('The requested Resource wasn\'t Found on this Server', '404');
         }
 
         return Manager::getAsset($assetName)->dump();
