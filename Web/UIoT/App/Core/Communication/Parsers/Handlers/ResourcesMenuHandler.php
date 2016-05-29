@@ -25,6 +25,7 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 use UIoT\App\Core\Communication\Parsers\Treaters\ResourceDataTreater;
 use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Data\Models\Parsers\ResourceObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\Menu;
@@ -54,6 +55,7 @@ class ResourcesMenuHandler extends RequestSingleton
             RaiseRequestManager::doGetRequest('resources'));
 
         foreach ($requestDataTreater->getData() as $resourceItem) {
+            /** @var $resourceItem ResourceObject */
             $menuContent->addItem('/' . Strings::toLower($resourceItem->RSRC_NAME), Strings::toCamel($resourceItem->RSRC_FRIENDLY_NAME, true));
         }
 

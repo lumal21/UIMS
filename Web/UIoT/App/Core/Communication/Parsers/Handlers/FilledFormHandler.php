@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\DataTypes;
 use UIoT\App\Helpers\Manipulation\Strings;
@@ -52,6 +53,7 @@ class FilledFormHandler extends RequestSingleton
         $formHandler->addHeader("ID: {$requestContent['values'][0]->ID}");
 
         foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $property) {
+            /** @var $property PropertyObject */
             $formHandler->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true), [], ['value' => $requestContent['values'][0]->{$property->PROP_NAME}]);
         }
 

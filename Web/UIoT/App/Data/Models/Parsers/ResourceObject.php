@@ -23,28 +23,28 @@
 namespace UIoT\App\Data\Models\Parsers;
 
 /**
- * Class PropertyObject
+ * Class ResourceObject
  * @package UIoT\App\Data\Models\Parsers
  */
-class PropertyObject
+class ResourceObject
 {
     /**
-     * @var int Property Id
+     * @var int Resource Id
      */
     public $ID = 0;
 
     /**
-     * @var int Resource Id
+     * @var string Resource Acronym
      */
-    public $RSRC_ID = 0;
+    public $RSRC_ACRONYM = '';
 
     /**
-     * @var string Property Name
+     * @var string Resource Name
      */
-    public $PROP_NAME = '';
+    public $RSRC_NAME = '';
 
     /**
-     * @var string Property Friendly Name
+     * @var string Resource Friendly Name
      */
-    public $PROP_FRIENDLY_NAME = '';
+    public $RSRC_FRIENDLY_NAME = '';
 }

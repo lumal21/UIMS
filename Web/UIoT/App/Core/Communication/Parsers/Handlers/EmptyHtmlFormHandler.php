@@ -24,6 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\DataTypes;
 use UIoT\App\Helpers\Manipulation\Strings;
@@ -50,8 +51,9 @@ class EmptyHtmlFormHandler extends RequestSingleton
     {
         $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), "/{$requestContent['resource']}/add/", Http::POST);
 
-        foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $propertyObject) {
-            $formHandler->addTextInputWithValue($propertyObject->PROP_FRIENDLY_NAME, Strings::toCamel($propertyObject->PROP_FRIENDLY_NAME, true), [], ['value' => DataTypes::getTypeValue($propertyObject->PROP_FRIENDLY_NAME)]);
+        foreach (DataTypes::removeDisabledTypes($requestContent['keys']) as $property) {
+            /** @var $property PropertyObject */
+            $formHandler->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true), [], ['value' => DataTypes::getTypeValue($property->PROP_FRIENDLY_NAME)]);
         }
 
         $formHandler->addButton('submit', 'Add Resource Item');

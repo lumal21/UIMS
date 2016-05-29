@@ -22,7 +22,9 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
+use JsonMapper;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Data\Models\Parsers\ResourceObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -45,7 +47,7 @@ class ResourceDataTreater extends RequestSingleton
     public function parse($requestContent)
     {
         if (is_array($requestContent)) {
-            RequestParserMethods::setCustomResponseData($this, $requestContent);
+            RequestParserMethods::setCustomResponseData($this, (new JsonMapper())->mapArray($requestContent, array(), new ResourceObject));
         } else {
             RequestParserMethods::setCustomJobStatus($this, true);
         }

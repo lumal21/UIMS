@@ -23,6 +23,7 @@
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\DataTable;
@@ -49,13 +50,14 @@ class DataTableHandler extends RequestSingleton
     {
         $dataTable = new DataTable($resourcePrettyName = Strings::toCamel($requestContent['resource'], true));
 
-        foreach ($requestContent['keys'] as $value) {
-            $dataTable->addLinkInteraction($value->PROP_NAME, "/{$requestContent['resource']}/edit?{$value->PROP_FRIENDLY_NAME}");
-            $dataTable->addHeader(Strings::toCamel($value->PROP_FRIENDLY_NAME, true));
+        foreach ($requestContent['keys'] as $property) {
+            /** @var $property PropertyObject */
+            $dataTable->addLinkInteraction($property->PROP_NAME, "/{$requestContent['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
+            $dataTable->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
         }
 
-        foreach ($requestContent['values'] as $value) {
-            $dataTable->addBody($value);
+        foreach ($requestContent['values'] as $property) {
+            $dataTable->addBody($property);
         }
 
         $htmlContent = new Html();

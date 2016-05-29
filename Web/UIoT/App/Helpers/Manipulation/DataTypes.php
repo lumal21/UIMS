@@ -21,6 +21,7 @@
  */
 
 namespace UIoT\App\Helpers\Manipulation;
+
 use UIoT\App\Data\Models\Parsers\PropertyObject;
 
 /**
