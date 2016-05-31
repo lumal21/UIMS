@@ -85,7 +85,7 @@ abstract class RequestParserMethods
     }
 
     /**
-     * Get Job Status and Apend Response Data if exists
+     * Get Job Status and Append Response Data if exists
      *
      * @param RequestSingleton $request
      * @param RequestSingleton $response

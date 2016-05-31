@@ -109,6 +109,7 @@ class NodeModel implements NodeInterface
      * Set Node Path
      *
      * @param string $path
+     * @return mixed|void
      */
     public function setPath($path)
     {
@@ -129,6 +130,7 @@ class NodeModel implements NodeInterface
      * Set Call Back Function
      *
      * @param NodeHandlerModel
+     * @return mixed|void
      */
     public function setCallBack($callBack)
     {
@@ -149,6 +151,7 @@ class NodeModel implements NodeInterface
      * Set Method
      *
      * @param string $method
+     * @return mixed|void
      */
     public function setMethod($method)
     {
@@ -169,6 +172,7 @@ class NodeModel implements NodeInterface
      * Set Priority
      *
      * @param int $priority
+     * @return mixed|void
      */
     public function setPriority($priority)
     {
@@ -209,6 +213,7 @@ class NodeModel implements NodeInterface
      * Set Node Group
      *
      * @param string $nodeGroup
+     * @return mixed|void
      */
     public function setNodeGroup($nodeGroup)
     {

@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Helpers\Manipulation;
 
-use UIoT\App\Security\Helpers\VariableFilters;
-
 /**
  * Class Strings
  * @package UIoT\App\Helpers\Manipulation
