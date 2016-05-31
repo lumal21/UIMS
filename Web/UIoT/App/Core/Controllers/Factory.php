@@ -40,7 +40,7 @@ final class Factory
      */
     public static function exists($controllerName)
     {
-        return self::get($controllerName) != false;
+        return self::get($controllerName) !== null;
     }
 
     /**

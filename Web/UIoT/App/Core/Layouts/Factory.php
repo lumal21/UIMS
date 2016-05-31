@@ -39,7 +39,7 @@ final class Factory
      */
     public static function exists($layoutName)
     {
-        return self::get($layoutName) != false;
+        return self::get($layoutName) !== null;
     }
 
     /**

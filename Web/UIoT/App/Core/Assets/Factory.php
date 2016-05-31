@@ -25,8 +25,6 @@ namespace UIoT\App\Core\Assets;
 use Assetic\Asset\AssetInterface;
 use Assetic\Asset\FileAsset;
 use Assetic\AssetManager;
-use UIoT\App\Core\Settings\Register;
-use UIoT\App\Data\Models\Settings\AssetsSettingsModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 use UIoT\App\Helpers\Manipulation\Files;
 use UIoT\App\Helpers\Manipulation\Strings;
@@ -43,17 +41,11 @@ final class Factory
     private $assetManager;
 
     /**
-     * @var AssetsSettingsModel
-     */
-    private $settingsBlock;
-
-    /**
      * Create a Instance of Asset Factory
      */
     public function __construct()
     {
         $this->assetManager = new AssetManager;
-        $this->settingsBlock = Register::get('resources');
     }
 
     /**
