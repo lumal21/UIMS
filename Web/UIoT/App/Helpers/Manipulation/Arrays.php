@@ -29,14 +29,25 @@ namespace UIoT\App\Helpers\Manipulation;
 class Arrays
 {
     /**
-     * Convert String to ActionName
+     * Convert String Array to CamelCase
      *
-     * @param $x
+     * @param array $stringArray
      * @return string
      */
-    public static function toCamel($x)
+    public static function toCamel($stringArray)
     {
-        return Strings::toCamel(stripos($x, 'action') !== false ? (str_ireplace('action', '', $x)) : $x);
+        return array_map(Strings::toCamel(), $stringArray);
+    }
+
+    /**
+     * Convert String Array to LowerCase
+     *
+     * @param array $stringArray
+     * @return string
+     */
+    public static function toLower($stringArray)
+    {
+        return array_map(Strings::toLower(), $stringArray);
     }
 
     /**

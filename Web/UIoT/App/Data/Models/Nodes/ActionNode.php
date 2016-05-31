@@ -42,6 +42,6 @@ final class ActionNode extends NodeHandlerModel
 
         $this->setStatus(Factory::isAction($this->getPath()[0], $this->getPath()[1]));
 
-        !$this->getStatus() || $this->setData(Handler::go(new Render(['class' => $this->getPath()[0], 'method' => $this->getPath()[1]])));
+        !$this->getStatus() || $this->setData(Handler::go(new Render($this->getPath()[0], $this->getPath()[1])));
     }
 }

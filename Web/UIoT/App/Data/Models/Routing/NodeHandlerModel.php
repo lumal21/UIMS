@@ -77,6 +77,14 @@ class NodeHandlerModel implements NodeHandlerInterface
     }
 
     /**
+     * PHP Magic Methods
+     */
+    public function call()
+    {
+        /* do nothing */
+    }
+
+    /**
      * Get Result Content
      *
      * @return string

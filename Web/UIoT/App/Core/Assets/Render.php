@@ -23,46 +23,25 @@
 namespace UIoT\App\Core\Assets;
 
 use UIoT\App\Core\Layouts\Factory;
-use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
+use UIoT\App\Data\Models\Data\RenderModel;
 
 /**
  * Class Render
  * @package UIoT\App\Core\Assets
  */
-final class Render implements RenderInterface
+final class Render extends RenderModel
 {
-    /**
-     * @var string Layout Name
-     */
-    private $layoutName;
-
-    /**
-     * @var string Asset Name
-     */
-    private $assetName;
-
-    /**
-     * Init Asset Render
-     *
-     * @param array $arguments
-     */
-    public function __construct($arguments = [])
-    {
-        $this->layoutName = $arguments['layout'];
-        $this->assetName = $arguments['asset'];
-    }
-
     /**
      * Show Asset Content
      *
-     * @return string
+     * @return mixed
      */
     public function showContent()
     {
-        $layout = Factory::get($this->layoutName);
+        $layout = Factory::get($this->className);
 
         $layout->getResources();
 
-        return $layout->getAssetFactory()->dump($this->assetName);
+        return $layout->getAssetFactory()->dump($this->classMethod);
     }
 }

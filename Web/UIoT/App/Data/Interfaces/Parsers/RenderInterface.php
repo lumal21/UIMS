@@ -31,9 +31,10 @@ interface RenderInterface
     /**
      * Create Render
      *
-     * @param $arguments
+     * @param string $className
+     * @param string $classMethod
      */
-    function __construct($arguments);
+    function __construct($className, $classMethod);
 
     /**
      * Show Content

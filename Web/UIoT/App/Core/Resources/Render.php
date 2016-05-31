@@ -24,36 +24,14 @@ namespace UIoT\App\Core\Resources;
 
 use UIoT\App\Core\Communication\Parsers\DataCollector;
 use UIoT\App\Core\Layouts\Factory;
-use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
-use UIoT\App\Helpers\Manipulation\Strings;
+use UIoT\App\Data\Models\Data\RenderModel;
 
 /**
  * Class Render
  * @package UIoT\App\Core\Templates
  */
-final class Render implements RenderInterface
+final class Render extends RenderModel
 {
-    /**
-     * @var string Resource Name
-     */
-    private $resourceName;
-
-    /**
-     * @var string Requested Method
-     */
-    private $resourceMethod;
-
-    /**
-     * Init Template (Layout/Controller/View) Handler
-     *
-     * @param array $arguments
-     */
-    public function __construct($arguments = [])
-    {
-        $this->resourceName = Strings::toLower($arguments['class']);
-        $this->resourceMethod = Strings::toLower($arguments['method']);
-    }
-
     /**
      * Show Rendered Content
      *
@@ -61,10 +39,10 @@ final class Render implements RenderInterface
      */
     public function showContent()
     {
-        $layout = Factory::get($this->resourceMethod);
+        $layout = Factory::get($this->classMethod);
 
         $layout->getTemplateFactory()->addVariable('{{resource_content}}',
-            DataCollector::runCollector($this->resourceName, $this->resourceMethod));
+            DataCollector::runCollector($this->className, $this->classMethod));
 
         return $layout->executeLayout();
     }

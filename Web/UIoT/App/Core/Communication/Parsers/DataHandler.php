@@ -50,11 +50,11 @@ class DataHandler
      */
     public static function getMethodName($methodHandler)
     {
-        if(!array_key_exists(Strings::toCamel($methodHandler), self::getMethodHandlers())) {
+        if(!array_key_exists(Strings::toCamel($methodHandler), self::getMethods())) {
             throw new InvalidArgumentException('Invalid Raise Method', '404');
         }
 
-        return self::getMethodHandlers()[Strings::toCamel($methodHandler)];
+        return self::getMethods()[Strings::toCamel($methodHandler)];
     }
 
     /**
@@ -62,7 +62,7 @@ class DataHandler
      *
      * @return array
      */
-    public static function getMethodHandlers()
+    public static function getMethods()
     {
         return self::$methodHandlers;
     }

@@ -36,13 +36,11 @@ final class ControllerNode extends NodeHandlerModel
 {
     /**
      * Callback Function
-     *
-     * @return boolean|null
      */
     public function call()
     {
         $this->setStatus(Factory::exists($this->getPath()[0]));
 
-        !$this->getStatus() || $this->setData(Handler::go(new Render(['class' => $this->getPath()[0], 'method' => Constants::get('DEFAULT_ACTION')])));
+        !$this->getStatus() || $this->setData(Handler::go(new Render($this->getPath()[0], Constants::get('DEFAULT_ACTION'))));
     }
 }

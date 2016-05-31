@@ -23,44 +23,24 @@
 namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Core\Layouts\Factory as LayoutFactory;
-use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
+use UIoT\App\Data\Models\Data\RenderModel;
 
 /**
  * Class Render
  * @package UIoT\App\Core\Templates
  */
-final class Render implements RenderInterface
+final class Render extends RenderModel
 {
     /**
-     * @var string Controller Name
-     */
-    private $controllerName;
-
-    /**
-     * @var string Controller Action
-     */
-    private $controllerAction;
-
-    /**
-     * Init Template (Layout/Controller/View) Handler
+     * Show Rendered Content
      *
-     * @param array $arguments
-     */
-    public function __construct($arguments = [])
-    {
-        $this->controllerName = $arguments['class'];
-        $this->controllerAction = $arguments['method'];
-    }
-
-    /**
-     * Show Template Content
-     * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
+     * @return mixed
      */
     public function showContent()
     {
-        $layout = LayoutFactory::get($this->controllerName);
+        $layout = LayoutFactory::get($this->className);
 
-        $layout->getTemplateFactory()->addVariable('{{resource_content}}', Factory::getAction($this->controllerName, $this->controllerAction));
+        $layout->getTemplateFactory()->addVariable('{{resource_content}}', Factory::getAction($this->className, $this->classMethod));
 
         return $layout->executeLayout();
     }

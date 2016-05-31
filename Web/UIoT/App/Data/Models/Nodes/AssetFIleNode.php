@@ -44,8 +44,6 @@ class AssetFileNode extends NodeHandlerModel
 
         $this->setStatus(Strings::isEqual($this->getPath()[1], Constants::get('RESOURCE_FOLDER_NAME')));
 
-        !$this->getStatus() || $this->setData(
-            Handler::go(new Render(['layout' => $this->getPath()[0], 'asset' => $this->getPath()[2]]))
-        );
+        !$this->getStatus() || $this->setData(Handler::go(new Render($this->getPath()[0], $this->getPath()[2])));
     }
 }
