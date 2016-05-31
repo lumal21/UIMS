@@ -69,8 +69,8 @@ class NodeManipulation extends Arrays
      */
     public static function nodeArrayPropertySearch($nodeArray, $index, $value)
     {
-        foreach ($nodeArray as $arrayInf) {
-            if ($arrayInf->{'get' . $index}() == $value) {
+        foreach($nodeArray as $arrayInf) {
+            if($arrayInf->{'get' . $index}() == $value) {
                 return $arrayInf;
             }
         }
@@ -114,7 +114,7 @@ class NodeManipulation extends Arrays
         $variable = empty(self::$nodeFilter->parameterName) ?
             get_class($nodeElement->getCallBack()) : $nodeElement->{'get' . self::$nodeFilter->parameterName}();
 
-        if (self::$nodeFilter->comparsionExpression == '!=') {
+        if(self::$nodeFilter->comparsionExpression == '!=') {
             return $variable != self::$nodeFilter->parameterValue;
         } else {
             return $variable == self::$nodeFilter->parameterValue;

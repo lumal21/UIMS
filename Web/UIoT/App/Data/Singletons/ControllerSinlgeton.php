@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
+use UIoT\App\Core\Controllers\Factory as ControllerFactory;
 use UIoT\App\Data\Models\Data\ControllerModel;
 
 /**
@@ -31,17 +32,13 @@ use UIoT\App\Data\Models\Data\ControllerModel;
 abstract class ControllerSingleton extends ControllerModel
 {
     /**
-     * @var ControllerModel|ControllerSingleton
+     * @var ControllerSingleton Instance
      */
-    protected static $controllerInstance = null;
-
+    protected static $controllerInstance;
     /**
-     * Abstract and Singleton Protection
+     * @var ControllerFactory Instance
      */
-    protected function __construct()
-    {
-        /* singleton */
-    }
+    protected $controllerFactory;
 
     /**
      * Return Instance of Controller
@@ -50,7 +47,7 @@ abstract class ControllerSingleton extends ControllerModel
      */
     public static function getInstance()
     {
-        if (null === self::$controllerInstance) {
+        if(null === self::$controllerInstance) {
             self::$controllerInstance = new static;
         }
 
@@ -58,22 +55,16 @@ abstract class ControllerSingleton extends ControllerModel
     }
 
     /**
-     * Abstract and Singleton Protection
+     * Get Controller Factory
      *
-     * @SuppressWarnings("unused")
+     * @return ControllerFactory
      */
-    protected function __clone()
+    public function getControllerFactory()
     {
-        /* singleton */
-    }
+        if(null === $this->controllerFactory) {
+            $this->controllerFactory = new ControllerFactory;
+        }
 
-    /**
-     * Abstract and Singleton Protection
-     *
-     * @SuppressWarnings("unused")
-     */
-    protected function __wakeup()
-    {
-        /* singleton */
+        return $this->controllerFactory;
     }
 }

@@ -61,7 +61,7 @@ final class Manager
      */
     private function setSettings()
     {
-        $this->settings = SettingsRegister::getSetting('security');
+        $this->settings = SettingsRegister::get('security');
     }
 
     /**

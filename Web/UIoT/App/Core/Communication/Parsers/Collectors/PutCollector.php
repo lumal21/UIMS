@@ -53,7 +53,7 @@ class PutCollector extends RequestSingleton
         $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
         $putMethod = (new Put)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($putMethod->getResponse(), $this))
+        if(RequestParserMethods::getJobStatusWithResponse($putMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(FilledFormHandler::getInstance(), $this, [

@@ -22,9 +22,9 @@
 
 namespace UIoT\App\Core\Settings;
 
+use UIoT\App\Data\Models\Settings\AssetsSettingsModel;
 use UIoT\App\Data\Models\Settings\ExceptionSettingsModel;
 use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
-use UIoT\App\Data\Models\Settings\ResourcesSettingsModel;
 use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 
@@ -42,7 +42,7 @@ final class Register
         $settingsModels = [
             new ExceptionSettingsModel,
             new RaiseSettingsModel,
-            new ResourcesSettingsModel,
+            new AssetsSettingsModel,
             new SecuritySettingsModel
         ];
 
@@ -79,7 +79,7 @@ final class Register
      * @param string $settingVariableName
      * @return mixed
      */
-    public static function getSetting($settingVariableName = '')
+    public static function get($settingVariableName = '')
     {
         return self::getSettings()->$settingVariableName;
     }

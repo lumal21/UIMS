@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Core\Controllers;
 
-use Exception;
 use UIoT\App\Core\Layouts\Factory as LayoutFactory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
@@ -33,19 +32,14 @@ use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 final class Render implements RenderInterface
 {
     /**
-     * @var string
+     * @var string Controller Name
      */
     private $controllerName;
 
     /**
-     * @var string
+     * @var string Controller Action
      */
     private $controllerAction;
-
-    /**
-     * @var string
-     */
-    private static $controllerData;
 
     /**
      * Init Template (Layout/Controller/View) Handler
@@ -55,7 +49,6 @@ final class Render implements RenderInterface
     public function __construct($arguments = [])
     {
         $this->setArguments($arguments);
-        $this->setControllerData();
     }
 
     /**
@@ -71,33 +64,16 @@ final class Render implements RenderInterface
     }
 
     /**
-     * Start the Controller Commander
-     */
-    private function setControllerData()
-    {
-        if (!Factory::controllerActionExists($this->controllerName, $this->controllerAction)) {
-            throw new Exception("The requested Action doesn't exists.", '404');
-        }
-
-        self::$controllerData = Factory::executeControllerAction($this->controllerName, $this->controllerAction);
-    }
-
-    /**
-     * Return Controller Data
-     *
-     * @return string
-     */
-    public static function getControllerData()
-    {
-        return self::$controllerData;
-    }
-
-    /**
      * Show Template Content
      * If is to show the View, echoes the View Content with Controller Content, if not Only echoes Controller Content
      */
     public function showContent()
     {
-        return LayoutFactory::getLayout($this->controllerName);
+        $layout = LayoutFactory::get($this->controllerName);
+
+        $layout->getTemplateFactory()->addVariable('{{resource_content}}',
+            Factory::getAction($this->controllerName, $this->controllerAction));
+
+        return $layout->executeLayout();
     }
 }

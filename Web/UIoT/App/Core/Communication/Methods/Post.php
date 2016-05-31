@@ -45,7 +45,7 @@ class Post extends MethodModel
      */
     public function setResponse($resourceData)
     {
-        if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
+        if(Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
             $resourceData = RaiseRequestManager::doPostRequest("{$resourceData['name']}?" . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
         }
 

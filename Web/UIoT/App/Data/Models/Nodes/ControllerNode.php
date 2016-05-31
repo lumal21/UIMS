@@ -41,7 +41,7 @@ final class ControllerNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Factory::controllerExists($this->getPathValue()[0]));
+        $this->setResult(Factory::exists($this->getPathValue()[0]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'controller' => $this->getPathValue()[0],

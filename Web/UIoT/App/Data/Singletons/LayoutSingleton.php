@@ -35,7 +35,7 @@ class LayoutSingleton extends LayoutModel
     /**
      * @var LayoutModel
      */
-    protected static $layoutInstance = null;
+    protected static $layoutInstance;
 
     /**
      * @var AssetFactory Instance
@@ -46,14 +46,6 @@ class LayoutSingleton extends LayoutModel
      * @var TemplateFactory Instance
      */
     protected $templateFactory;
-
-    /**
-     * Abstract and Singleton Protection
-     */
-    protected function __construct()
-    {
-        /* singleton */
-    }
 
     /**
      * Execute Layout and Return Rendered Layout
@@ -78,19 +70,11 @@ class LayoutSingleton extends LayoutModel
      */
     public static function getInstance()
     {
-        if (null === self::$layoutInstance) {
+        if(null === self::$layoutInstance) {
             self::$layoutInstance = new static;
         }
 
         return self::$layoutInstance;
-    }
-
-    /**
-     * Execute Layout and Register Resources
-     */
-    public static function callResource()
-    {
-        static::getInstance()->getResources();
     }
 
     /**
@@ -100,7 +84,7 @@ class LayoutSingleton extends LayoutModel
      */
     public function getAssetFactory()
     {
-        if (null === $this->assetFactory) {
+        if(null === $this->assetFactory) {
             $this->assetFactory = new AssetFactory;
         }
 
@@ -114,26 +98,10 @@ class LayoutSingleton extends LayoutModel
      */
     public function getTemplateFactory()
     {
-        if (null === $this->templateFactory) {
+        if(null === $this->templateFactory) {
             $this->templateFactory = new TemplateFactory;
         }
 
         return $this->templateFactory;
-    }
-
-    /**
-     * Abstract and Singleton Protection
-     */
-    protected function __clone()
-    {
-        /* singleton */
-    }
-
-    /**
-     * Abstract and Singleton Protection
-     */
-    protected function __wakeup()
-    {
-        /* singleton */
     }
 }

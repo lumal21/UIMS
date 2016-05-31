@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Controllers;
 
 use UIoT\App\Data\Models\Data\ControllerModel;
 use UIoT\App\Data\Singletons\ControllerSingleton;
-use UIoT\App\Helpers\Manipulation\Arrays;
 use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
@@ -34,31 +33,14 @@ use UIoT\App\Helpers\Manipulation\Strings;
 final class Factory
 {
     /**
-     * @var array
-     */
-    private static $controllers = [];
-
-    /**
-     * Add a Controller
-     *
-     * @param string $controllerName
-     */
-    public static function addController($controllerName)
-    {
-        if (!self::controllerExists($controllerName)) {
-            array_push(self::$controllers, $controllerName);
-        }
-    }
-
-    /**
      * Check if Controller Exists
      *
      * @param string $controllerName
      * @return bool
      */
-    public static function controllerExists($controllerName)
+    public static function exists($controllerName)
     {
-        return Arrays::inArray($controllerName, self::$controllers);
+        return self::get($controllerName) != false;
     }
 
     /**
@@ -67,47 +49,33 @@ final class Factory
      * @param string $controllerName
      * @return ControllerModel|ControllerSingleton|null
      */
-    public static function getController($controllerName)
+    public static function get($controllerName)
     {
-        return self::controllerExists($controllerName) ? self::callControllerStaticMethod($controllerName, 'getInstance') : null;
+        return self::callMethod($controllerName, 'getInstance');
     }
 
     /**
-     * Call Controller Action and Execute It Returning its Contents
+     * Get Controller Action and Execute It
      *
      * @param string $controllerName
      * @param string $actionName
      * @return string
      */
-    public static function executeControllerAction($controllerName, $actionName)
+    public static function getAction($controllerName, $actionName)
     {
-        return self::controllerActionExists($controllerName, $actionName) ?
-            self::getController($controllerName)->{Strings::toAction($actionName)}() : '';
+        return self::get($controllerName)->{Strings::toAction($actionName)}();
     }
 
     /**
-     * Check if Controller Action Exists
+     * Check if desired action Exists
      *
      * @param string $controllerName
      * @param string $actionName
      * @return mixed
      */
-    public static function controllerActionExists($controllerName, $actionName)
+    public static function isAction($controllerName, $actionName)
     {
-        return Arrays::inArray(Strings::toAction($actionName), self::getControllerActions($controllerName));
-    }
-
-    /**
-     * Get Controller Actions
-     *
-     * @param string $controllerName
-     * @return mixed
-     */
-    public static function getControllerActions($controllerName)
-    {
-        return array_map(function ($controllerAction) {
-            return $controllerAction;
-        }, (array)get_class_methods(self::getController($controllerName)));
+        return method_exists(self::get($controllerName), Strings::toAction($actionName));
     }
 
     /**
@@ -117,8 +85,8 @@ final class Factory
      * @param string $controllerMethod
      * @return mixed
      */
-    public static function callControllerStaticMethod($controllerName, $controllerMethod)
+    public static function callMethod($controllerName, $controllerMethod)
     {
-        return forward_static_call(["UIoT\\App\\Data\\Controllers\\" . Strings::toCamel($controllerName), $controllerMethod]);
+        return forward_static_call(['UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName), $controllerMethod]);
     }
 }

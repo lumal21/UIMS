@@ -46,9 +46,9 @@ class ResourcePropertiesTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if (is_object($requestContent)) {
+        if(is_object($requestContent)) {
             RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
-        } elseif (is_array($requestContent)) {
+        } elseif(is_array($requestContent)) {
             RequestParserMethods::setCustomResponseData($this, (new JsonMapper())->mapArray($requestContent, array(), new PropertyObject));
         }
     }

@@ -39,7 +39,7 @@ class LayoutNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Factory::layoutExists($this->getPathValue()[0]));
+        $this->setResult(Factory::exists($this->getPathValue()[0]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'controller' => $this->getPathValue()[0],

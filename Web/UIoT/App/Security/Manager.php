@@ -47,7 +47,7 @@ final class Manager
      */
     public function __construct()
     {
-        $this->setSettings(SettingsRegister::getSetting('security'));
+        $this->setSettings(SettingsRegister::get('security'));
 
         $this->startWhiteList();
     }

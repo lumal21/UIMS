@@ -47,10 +47,10 @@ class ResponseAcknowledgeTreater extends RequestSingleton
      */
     public function parse($requestContent)
     {
-        if (is_bool($requestContent)) {
+        if(is_bool($requestContent)) {
             RequestParserMethods::parseResponseWithRequestStatus(RaiseCodeMessageHandler::getInstance(), $this,
                 DataTreater::generateResponseCode($requestContent, ['code' => '200', 'message' => 'RAISE received the sent data. Operation Method: ' . Constants::returnConstant('REQUEST_METHOD')]));
-        } elseif (is_object($requestContent)) {
+        } elseif(is_object($requestContent)) {
             RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
         }
     }

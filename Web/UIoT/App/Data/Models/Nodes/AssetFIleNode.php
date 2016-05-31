@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Nodes;
 
-use UIoT\App\Core\Assets\AssetRender;
+use UIoT\App\Core\Assets\Render;
 use UIoT\App\Core\Communication\Routing\RenderSelector;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
@@ -40,11 +40,11 @@ class AssetFileNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Factory::layoutExists($this->getPathValue()[0]));
+        $this->setResult(Factory::exists($this->getPathValue()[0]));
 
         $this->setResult(Strings::isEqual($this->getPathValue()[1], Constants::returnConstant('RESOURCE_FOLDER_NAME')));
 
-        !$this->getResult() || $this->setResultContent(RenderSelector::go(new AssetRender([
+        !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'layout' => $this->getPathValue()[0],
             'asset' => $this->getPathValue()[2]]))
         );

@@ -54,13 +54,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!file_exists(__DIR__ . '/UIoT/Vendor/autoload.php')) {
+if(!file_exists(__DIR__ . '/UIoT/Vendor/autoload.php')) {
     throw new RuntimeException('UIoTuims needs Composer to Work. Please install Composer by clicking <a href="http://getcomposer.org">here</a>.');
 }
 
 (require_once __DIR__ . '/UIoT/Vendor/autoload.php');
 (require_once __DIR__ . '/UIoT/Settings.php');
 (require_once __DIR__ . '/UIoT/Constants.php');
+(require_once __DIR__ . '/UIoT/Mime.php');
 (require_once __DIR__ . '/UIoT/Register.php');
 
 /* start environment */

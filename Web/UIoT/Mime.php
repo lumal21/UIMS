@@ -39,50 +39,32 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * This is the main file
- * Here uiot is started (UIoTuims)
+namespace UIoT;
+
+use UIoT\App\Helpers\Manipulation\Constants as C;
+
+/*
+ * Global Variable (Mime Types)
+ * Extension / Content-Type
  */
-
-namespace UIoT\App;
-
-/**
- * Class Init
- * @package UIoT\App
- */
-final class Init
-{
-    /**
-     * Start environment
-     *
-     * Init constructor
-     */
-    public function __construct()
-    {
-        /* start exception manager */
-        (new Exception\Manager);
-
-        /* start security manager */
-        (new Security\Manager);
-
-        /* start session manager */
-        (new Core\Communication\Sessions\Manager);
-
-        /* start raise */
-        (new Core\Communication\Requesting\RaiseRequestManager);
-
-        /* start router */
-        (new Core\Communication\Routing\Router);
-    }
-
-    /**
-     * It's unnecessary but we will do that anyway
-     * Forces all Cycle Collections (\GC)
-     * Reason: The CMS is called async-times, Force all Process terminate is good.
-     */
-    public function __destruct()
-    {
-        /* force gc collect */
-        gc_collect_cycles();
-    }
-}
+C::addJsonConstant('MIME_TYPES', array(
+    'pdf' => 'application/pdf',
+    'zip' => 'application/zip',
+    'gif' => 'image/gif',
+    'png' => 'image/png',
+    'jpeg' => 'image/jpg',
+    'jpg' => 'image/jpg',
+    'mp3' => 'audio/mpeg',
+    'wav' => 'audio/x-wav',
+    'mpeg' => 'video/mpeg',
+    'mpg' => 'video/mpeg',
+    'mpe' => 'video/mpeg',
+    'mov' => 'video/quicktime',
+    'avi' => 'video/x-msvideo',
+    '3gp' => 'video/3gpp',
+    'css' => 'text/css',
+    'jsc' => 'application/javascript',
+    'js' => 'application/javascript',
+    'json' => 'text/json',
+    'svg' => 'image/svg+xml'
+));

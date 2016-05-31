@@ -22,9 +22,6 @@
 
 namespace UIoT\App\Core\Communication\Routing;
 
-use UIoT\App\Core\Assets\AssetRender as AssetRender;
-use UIoT\App\Core\Controllers\Render as ControllerRender;
-use UIoT\App\Core\Resources\Render as ResourceRender;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
@@ -41,13 +38,6 @@ final class RenderSelector
      */
     public static function go(RenderInterface $render)
     {
-        if ($render instanceof AssetRender ||
-            $render instanceof ControllerRender ||
-            $render instanceof ResourceRender
-        ) {
-            return $render->showContent();
-        }
-
-        return '';
+        return $render->showContent();
     }
 }

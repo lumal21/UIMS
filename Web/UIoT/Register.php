@@ -43,8 +43,6 @@ namespace UIoT;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Routing\Router;
-use UIoT\App\Core\Controllers\Factory as ControllerIndexer;
-use UIoT\App\Core\Layouts\Factory as LayoutIndexer;
 use UIoT\App\Data\Models\Nodes\ActionNode;
 use UIoT\App\Data\Models\Nodes\AssetFileNode;
 use UIoT\App\Data\Models\Nodes\BasePathNode;
@@ -95,26 +93,6 @@ use UIoT\App\Data\Models\Nodes\ResourceNode;
  * 13. The default Controller is 'none';
  * 14. You can learn more about the cms, reading the code, good luck.
  */
-
-/**
- * Register Views
- */
-
-/* login page */
-LayoutIndexer::addLayout('Login');
-
-/* home page */
-LayoutIndexer::addLayout('Home');
-
-/**
- * Register Controllers
- */
-
-/* login page */
-ControllerIndexer::addController('Login');
-
-/* test page */
-ControllerIndexer::addController('Home');
 
 /**
  * Register Nodes

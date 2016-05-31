@@ -52,7 +52,7 @@ class PostCollector extends RequestSingleton
         $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
         $postMethod = (new Post)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($postMethod->getResponse(), $this))
+        if(RequestParserMethods::getJobStatusWithResponse($postMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(EmptyHtmlFormHandler::getInstance(), $this, [

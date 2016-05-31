@@ -50,13 +50,13 @@ class DataTableHandler extends RequestSingleton
     {
         $dataTable = new DataTable($resourcePrettyName = Strings::toCamel($requestContent['resource'], true));
 
-        foreach ($requestContent['keys'] as $property) {
+        foreach($requestContent['keys'] as $property) {
             /** @var $property PropertyObject */
             $dataTable->addLinkInteraction($property->PROP_NAME, "/{$requestContent['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
             $dataTable->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
         }
 
-        foreach ($requestContent['values'] as $property) {
+        foreach($requestContent['values'] as $property) {
             $dataTable->addBody($property);
         }
 

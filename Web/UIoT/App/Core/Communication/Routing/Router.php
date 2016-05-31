@@ -65,7 +65,7 @@ final class Router extends RouterHelper
         $this->getPathFinder()->mountRouter($this->getRouter());
 
         /* set 404 Callback Node */
-        $this->getRouter()->set404(function () {
+        $this->getRouter()->set404(function() {
             Manager::throwError(906, "404!", 'Details: ', [
                 'What Happened?' => "Sorry but this Page was not encountered.",
                 'Solution:' => "Go Back to Home Page."
@@ -114,7 +114,7 @@ final class Router extends RouterHelper
     public function performRouterUpdate()
     {
         /* check if need perform router update */
-        if (!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) ||
+        if(!empty($this->getPathFinder()->getNodeIndexer()->getNodesThatMatched()) ||
             empty($this->getPathFinder()->getNodeIndexer()->getNodesWithPathValue())
         ) {
             return;

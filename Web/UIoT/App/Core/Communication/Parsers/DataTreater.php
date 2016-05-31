@@ -39,7 +39,7 @@ class DataTreater
      */
     public static function generateResponseCode($requestedContent, $arguments = [])
     {
-        if (!property_exists($requestedContent, 'code') || !property_exists($requestedContent, 'message')) {
+        if(!property_exists($requestedContent, 'code') || !property_exists($requestedContent, 'message')) {
             $requestedContent = new stdClass();
             $requestedContent->code = $arguments['code'];
             $requestedContent->message = $arguments['message'];

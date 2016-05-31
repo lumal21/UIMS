@@ -46,7 +46,7 @@ class Get extends MethodModel
     {
         $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(), RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
 
-        if (RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this->getInput()))
+        if(RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this->getInput()))
             return $this;
 
         $resourcePropertyTr = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(), RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getData()));

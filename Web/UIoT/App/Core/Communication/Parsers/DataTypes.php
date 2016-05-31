@@ -20,13 +20,14 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Helpers\Manipulation;
+namespace UIoT\App\Core\Communication\Parsers;
 
 use UIoT\App\Data\Models\Parsers\PropertyObject;
+use UIoT\App\Helpers\Manipulation\Arrays;
 
 /**
  * Class DataTypes
- * @package UIoT\App\Helpers\Manipulation
+ * @package UIoT\App\Core\Communication\Parsers
  */
 class DataTypes
 {
@@ -49,7 +50,7 @@ class DataTypes
      */
     public static function removeDisabledTypes($propertiesArray)
     {
-        return array_filter($propertiesArray, function (PropertyObject $propertyObject) {
+        return array_filter($propertiesArray, function(PropertyObject $propertyObject) {
             return Arrays::inArray($propertyObject->PROP_FRIENDLY_NAME, self::$disabledEvents) !== true;
         });
     }
@@ -63,7 +64,7 @@ class DataTypes
      */
     public static function getTypeValue($itemKey)
     {
-        switch (strtolower($itemKey)) {
+        switch(strtolower($itemKey)) {
             case 'time':
                 return date('Y-m-d H:i:s', time());
             default:

@@ -37,7 +37,7 @@ class Put extends MethodModel
 {
     /**
      * Set Put Method
-     * 
+     *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
      * @param array $resourceData
@@ -45,7 +45,7 @@ class Put extends MethodModel
      */
     public function setResponse($resourceData)
     {
-        if (Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
+        if(Constants::returnConstant('REQUEST_METHOD') == Http::POST) {
             RaiseRequestManager::doPutRequest("{$resourceData['name']}?" . Constants::returnConstant('QUERY_STRING') . '&' . http_build_query(Constants::returnJsonConstant('HTTP_PHP_POST')));
         }
 

@@ -67,7 +67,7 @@ class RaiseRequestManager
      */
     public static function setSettings()
     {
-        self::$restData = SettingsRegister::getSetting('raise');
+        self::$restData = SettingsRegister::get('raise');
     }
 
     /**

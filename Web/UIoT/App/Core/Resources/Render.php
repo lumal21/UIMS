@@ -44,11 +44,6 @@ final class Render implements RenderInterface
     private $resourceMethod;
 
     /**
-     * @var string Other Data
-     */
-    private static $resourceData;
-
-    /**
      * Init Template (Layout/Controller/View) Handler
      *
      * @param array $arguments
@@ -56,7 +51,6 @@ final class Render implements RenderInterface
     public function __construct($arguments = [])
     {
         $this->setArguments($arguments);
-        $this->setControllerData();
     }
 
     /**
@@ -72,34 +66,17 @@ final class Render implements RenderInterface
     }
 
     /**
-     * Set Controller Data
-     */
-    private function setControllerData()
-    {
-        self::$resourceData = DataCollector::runCollector([
-            'name' => Strings::toLower($this->resourceName),
-            'method' => Strings::toLower($this->resourceMethod)]);
-    }
-
-    /**
-     * Return Controller Data
-     *
-     * @return string
-     */
-    public static function getControllerData()
-    {
-        return self::$resourceData;
-    }
-
-    /**
      * Show Rendered Content
      *
      * @return mixed
      */
     public function showContent()
     {
-        Factory::addLayout($this->resourceMethod);
+        $layout = Factory::get($this->resourceMethod);
 
-        return Factory::getLayout($this->resourceMethod);
+        $layout->getTemplateFactory()->addVariable('{{resource_content}}',
+            DataCollector::runCollector(['name' => Strings::toLower($this->resourceName), 'method' => Strings::toLower($this->resourceMethod)]));
+
+        return $layout->executeLayout();
     }
 }

@@ -41,7 +41,7 @@ final class ResourceActionNode extends NodeHandlerModel
     public function call()
     {
         $this->setResult(Arrays::inArray($this->getPathValue()[1], array_flip(DataHandler::getMethodHandlers()))
-            && !Factory::controllerExists($this->getPathValue()[0]));
+            && !Factory::exists($this->getPathValue()[0]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'resource' => $this->getPathValue()[0], 'method' => $this->getPathValue()[1]])));

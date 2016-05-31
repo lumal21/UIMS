@@ -73,7 +73,7 @@ class Strings
      */
     public static function toCamel($string = '', $forceCamel = false)
     {
-        if ($forceCamel) {
+        if($forceCamel) {
             $string = str_replace('_', ' ', $string);
         }
 
@@ -89,27 +89,5 @@ class Strings
     public static function removeEmptyLines($string = '')
     {
         return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string);
-    }
-
-    /**
-     * Sanitize the String
-     *
-     * @param string $inputString
-     * @return array|mixed|string
-     */
-    public static function sanitizeString($inputString = '')
-    {
-        return VariableFilters::sanitizeVariable((string)$inputString);
-    }
-
-    /**
-     * Check if is Regex
-     *
-     * @param string $string
-     * @return bool
-     */
-    public static function isRegex($string)
-    {
-        return (bool)preg_match("/^\/[\s\S]+\/$/", $string);
     }
 }

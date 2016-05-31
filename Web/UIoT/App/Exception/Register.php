@@ -61,9 +61,9 @@ final class Register
      */
     public static function configureMembers()
     {
-        self::$handler->setPageTitle(SettingsRegister::getSetting('exceptions')->errorPageTitle);
+        self::$handler->setPageTitle(SettingsRegister::get('exceptions')->errorPageTitle);
 
-        error_reporting(SettingsRegister::getSetting('exceptions')->errorReportingLevels);
+        error_reporting(SettingsRegister::get('exceptions')->errorReportingLevels);
     }
 
     /**

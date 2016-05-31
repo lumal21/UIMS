@@ -38,9 +38,9 @@ final class ActionNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Factory::controllerExists($this->getPathValue()[0]));
+        $this->setResult(Factory::exists($this->getPathValue()[0]));
 
-        $this->setResult(Factory::controllerActionExists($this->getPathValue()[0], $this->getPathValue()[1]));
+        $this->setResult(Factory::isAction($this->getPathValue()[0], $this->getPathValue()[1]));
 
         !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
             'controller' => $this->getPathValue()[0],

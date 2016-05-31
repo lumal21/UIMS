@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
@@ -39,12 +38,11 @@ class Login extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetFactory()->addAsset('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetFactory()->addAsset('Logo', 'Default', 'Images/Uiot_final.svg');
-
-        $this->getAssetFactory()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetFactory()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetFactory()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetFactory()->add('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetFactory()->add('Logo', 'Default', 'Images/Uiot_final.svg');
+        $this->getAssetFactory()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetFactory()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetFactory()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
     }
 
     /**
@@ -60,8 +58,7 @@ class Login extends LayoutSingleton
      */
     public function setTemplates()
     {
-        $this->getTemplateFactory()->setTemplateFolder('Login');
-        $this->getTemplateFactory()->addVariable('{{resource_content}}', Render::getControllerData());
+        $this->getTemplateFactory()->setPath('Login');
         $this->getTemplateFactory()->addTemplate('Layouts/Login.php');
     }
 

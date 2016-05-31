@@ -32,7 +32,7 @@
 </style>
 <body class="bs">
 <div class="bg">
-    <img src="/Login/Resources/Logo.png" class="jk"/>
+    <img src="/Login/Resources/Logo.svg" class="jk"/>
 </div>
 <div class="nope obese"></div>
 <div class="nope obese"></div>

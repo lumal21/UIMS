@@ -34,4 +34,11 @@ interface ControllerInterface
      * @return mixed
      */
     public function actionMain();
+
+    /**
+     * Get Controller Factory
+     *
+     * @return mixed
+     */
+    function getControllerFactory();
 }

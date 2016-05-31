@@ -112,7 +112,7 @@ class DataTable extends Html
      */
     private function createHeader()
     {
-        foreach ($this->headersArray as $header) {
+        foreach($this->headersArray as $header) {
             $this->htmlBuffer .= "<th>{$header}</th>";
         }
     }
@@ -122,7 +122,7 @@ class DataTable extends Html
      */
     private function createBody()
     {
-        foreach ($this->bodyArray as $body) {
+        foreach($this->bodyArray as $body) {
             $this->htmlBuffer .= "<tr>{$this->createBodyValue($body)}</tr>";
         }
     }
@@ -137,11 +137,11 @@ class DataTable extends Html
     {
         $returnString = '';
 
-        foreach ($bodyValue as $index => $value) {
+        foreach($bodyValue as $index => $value) {
 
             $interactionContent = $this->getInteraction($index);
 
-            if (!empty($interactionContent)) {
+            if(!empty($interactionContent)) {
                 $interactionContent = str_ireplace('{{value}}', $value, $interactionContent);
             } else {
                 $interactionContent = $value;

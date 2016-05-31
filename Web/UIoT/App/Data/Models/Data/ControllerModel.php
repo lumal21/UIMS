@@ -39,4 +39,14 @@ abstract class ControllerModel implements ControllerInterface
     {
         return '';
     }
+
+    /**
+     * Get Controller Factory
+     *
+     * @SuppressWarnings("unused")
+     */
+    public function getControllerFactory()
+    {
+        /* not implemented */
+    }
 }

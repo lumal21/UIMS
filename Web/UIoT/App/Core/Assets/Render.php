@@ -22,29 +22,27 @@
 
 namespace UIoT\App\Core\Assets;
 
-use UIoT\App\Core\Assets\Factory as AssetFactory;
-use UIoT\App\Core\Layouts\Factory as LayoutFactory;
+use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
  * Class Render
  * @package UIoT\App\Core\Assets
  */
-final class AssetRender implements RenderInterface
+final class Render implements RenderInterface
 {
     /**
-     * @var string
+     * @var string Layout Name
      */
     private $layoutName;
 
     /**
-     * @var string
+     * @var string Asset Name
      */
     private $assetName;
 
-
     /**
-     * Init Resource Handler
+     * Init Asset Render
      *
      * @param array $arguments
      */
@@ -72,8 +70,10 @@ final class AssetRender implements RenderInterface
      */
     public function showContent()
     {
-        LayoutFactory::getLayoutAssets($this->layoutName);
+        $layout = Factory::get($this->layoutName);
 
-        return AssetFactory::returnAsset($this->assetName);
+        $layout->getResources();
+
+        return $layout->getAssetFactory()->dump($this->assetName);
     }
 }

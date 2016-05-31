@@ -25,10 +25,10 @@ namespace UIoT\App\Data\Models\Settings;
 use UIoT\App\Data\Interfaces\Settings\SettingsInterface;
 
 /**
- * Class ResourcesSettingsModel
+ * Class AssetsSettingsModel
  * @package UIoT\App\Data\Models\Settings
  */
-final class ResourcesSettingsModel implements SettingsInterface
+final class AssetsSettingsModel implements SettingsInterface
 {
     /**
      * @var boolean

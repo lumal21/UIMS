@@ -51,7 +51,7 @@ class GetCollector extends RequestSingleton
     {
         $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
 
-        if (RequestParserMethods::getJobStatusWithResponse($getMethod->getResponse(), $this))
+        if(RequestParserMethods::getJobStatusWithResponse($getMethod->getResponse(), $this))
             return;
 
         RequestParserMethods::parseResponseWithRequestStatus(DataTableHandler::getInstance(), $this, [

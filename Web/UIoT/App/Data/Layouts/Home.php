@@ -24,7 +24,6 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
 use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
-use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
@@ -41,21 +40,21 @@ class Home extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetFactory()->addAsset('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetFactory()->addAsset('Logo', 'Default', 'Images/Logo_small_transparent.png');
+        $this->getAssetFactory()->add('Background', 'Default', 'Images/6.jpg');
+        $this->getAssetFactory()->add('Logo', 'Default', 'Images/Logo_small_transparent.png');
 
-        $this->getAssetFactory()->addAsset('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetFactory()->addAsset('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetFactory()->addAsset('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        $this->getAssetFactory()->addAsset('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAssetFactory()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAssetFactory()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAssetFactory()->add('MainMainStyle', 'Main', 'Stylesheet/Main.css');
+        $this->getAssetFactory()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
 
-        $this->getAssetFactory()->addAsset('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAssetFactory()->addAsset('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAssetFactory()->addAsset('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAssetFactory()->addAsset('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        $this->getAssetFactory()->addAsset('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
-        $this->getAssetFactory()->addAsset('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        $this->getAssetFactory()->addAsset('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
+        $this->getAssetFactory()->add('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
+        $this->getAssetFactory()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
+        $this->getAssetFactory()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
+        $this->getAssetFactory()->add('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+        $this->getAssetFactory()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
+        $this->getAssetFactory()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
+        $this->getAssetFactory()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }
 
     /**
@@ -71,8 +70,7 @@ class Home extends LayoutSingleton
      */
     public function setTemplates()
     {
-        $this->getTemplateFactory()->setTemplateFolder('Home');
-        $this->getTemplateFactory()->addVariable('{{resource_content}}', Render::getControllerData());
+        $this->getTemplateFactory()->setPath('Home');
         $this->getTemplateFactory()->addVariable('{{menu_content}}',
             RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
         $this->getTemplateFactory()->addTemplate('Layouts/Home.php');

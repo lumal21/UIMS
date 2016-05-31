@@ -46,7 +46,7 @@ final class Factory
      *
      * @param string $templateFolder
      */
-    public function setTemplateFolder($templateFolder)
+    public function setPath($templateFolder)
     {
         $this->templateFolder = (Constants::returnConstant('RESOURCE_FOLDER') . $templateFolder . '/');
     }
@@ -69,7 +69,7 @@ final class Factory
      */
     public function addTemplate($templateName)
     {
-        Format::add($this->parseTemplateFile($this->templateFolder . $templateName));
+        Format::add($this->parse($this->templateFolder . $templateName));
     }
 
     /**
@@ -79,7 +79,7 @@ final class Factory
      *
      * @return string
      */
-    public function parseTemplateFile($fileName = '')
+    public function parse($fileName)
     {
         ob_start();
 
@@ -89,7 +89,7 @@ final class Factory
 
         ob_end_clean();
 
-        return $this->extractVariables($template, $this->customVariables);
+        return $this->extract($template, $this->customVariables);
     }
 
     /**
@@ -100,9 +100,9 @@ final class Factory
      *
      * @return mixed
      */
-    public function extractVariables($template = '', $variables)
+    public function extract($template, $variables)
     {
-        foreach ($variables as $word => $content) {
+        foreach($variables as $word => $content) {
             $template = str_replace($word, $content, $template);
         }
 
