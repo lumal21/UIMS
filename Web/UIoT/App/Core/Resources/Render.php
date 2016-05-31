@@ -50,19 +50,8 @@ final class Render implements RenderInterface
      */
     public function __construct($arguments = [])
     {
-        $this->setArguments($arguments);
-    }
-
-    /**
-     * Set Arguments
-     *
-     * @param array $arguments
-     * @return void
-     */
-    public function setArguments($arguments = [])
-    {
-        $this->resourceName = $arguments['resource'];
-        $this->resourceMethod = $arguments['method'];
+        $this->resourceName = Strings::toLower($arguments['class']);
+        $this->resourceMethod = Strings::toLower($arguments['method']);
     }
 
     /**
@@ -75,7 +64,7 @@ final class Render implements RenderInterface
         $layout = Factory::get($this->resourceMethod);
 
         $layout->getTemplateFactory()->addVariable('{{resource_content}}',
-            DataCollector::runCollector(['name' => Strings::toLower($this->resourceName), 'method' => Strings::toLower($this->resourceMethod)]));
+            DataCollector::runCollector($this->resourceName, $this->resourceMethod));
 
         return $layout->executeLayout();
     }

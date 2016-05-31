@@ -47,7 +47,7 @@ use UIoT\App\Helpers\Manipulation\Constants as C;
  * Global Variable (Mime Types)
  * Extension / Content-Type
  */
-C::addJsonConstant('MIME_TYPES', array(
+C::addJson('MIME_TYPES', array(
     'pdf' => 'application/pdf',
     'zip' => 'application/zip',
     'gif' => 'image/gif',

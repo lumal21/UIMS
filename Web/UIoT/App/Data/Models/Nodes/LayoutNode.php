@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Nodes;
 
-use UIoT\App\Core\Communication\Routing\RenderSelector;
+use UIoT\App\Core\Communication\Routing\Handler;
 use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Core\Layouts\Factory;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
@@ -39,11 +39,8 @@ class LayoutNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResult(Factory::exists($this->getPathValue()[0]));
+        $this->setStatus(Factory::exists($this->getPath()[0]));
 
-        !$this->getResult() || $this->setResultContent(RenderSelector::go(new Render([
-            'controller' => $this->getPathValue()[0],
-            'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))
-        );
+        !$this->getStatus() || $this->setData(Handler::go(new Render(['class' => $this->getPath()[0], 'method' => Constants::get('DEFAULT_ACTION')])));
     }
 }

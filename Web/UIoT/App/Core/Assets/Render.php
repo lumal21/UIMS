@@ -48,17 +48,6 @@ final class Render implements RenderInterface
      */
     public function __construct($arguments = [])
     {
-        $this->setArguments($arguments);
-    }
-
-    /**
-     * Set Arguments
-     *
-     * @param array $arguments
-     * @return void
-     */
-    public function setArguments($arguments = [])
-    {
         $this->layoutName = $arguments['layout'];
         $this->assetName = $arguments['asset'];
     }

@@ -22,7 +22,7 @@
 
 namespace UIoT\App\Data\Models\Nodes;
 
-use UIoT\App\Core\Communication\Routing\RenderSelector;
+use UIoT\App\Core\Communication\Routing\Handler;
 use UIoT\App\Core\Controllers\Render;
 use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 use UIoT\App\Helpers\Manipulation\Constants;
@@ -40,9 +40,6 @@ final class BasePathNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setResultContent(RenderSelector::go(new Render([
-            'controller' => Constants::returnConstant('DEFAULT_CONTROLLER'),
-            'action' => Constants::returnConstant('DEFAULT_CONTROLLER_ACTION')]))
-        );
+        $this->setData(Handler::go(new Render(['class' => Constants::get('DEFAULT_CONTROLLER'), 'method' => Constants::get('DEFAULT_ACTION')])));
     }
 }

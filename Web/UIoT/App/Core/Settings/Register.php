@@ -65,7 +65,7 @@ final class Register
      */
     public static function storeSettings()
     {
-        Constants::addJsonConstant
+        Constants::addJson
         (
             'SETTINGS',
             Factory::getAllModels(),
@@ -91,6 +91,6 @@ final class Register
      */
     public static function getSettings()
     {
-        return Constants::returnJsonConstant('SETTINGS');
+        return Constants::getJson('SETTINGS');
     }
 }

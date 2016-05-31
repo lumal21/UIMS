@@ -46,23 +46,18 @@ interface NodeHandlerInterface
     /**
      * @return mixed
      */
-    public function call();
-
-    /**
-     * @return mixed
-     */
-    public function getResult();
+    public function getStatus();
 
     /**
      * @param $result
      * @return mixed
      */
-    public function setResult($result);
+    public function setStatus($result);
 
     /**
      * @return mixed
      */
-    public function getPathValue();
+    public function getPath();
 
     /**
      * @return mixed
@@ -79,7 +74,7 @@ interface NodeHandlerInterface
      * @param $resultContent
      * @return mixed
      */
-    public function setResultContent($resultContent);
+    public function setData($resultContent);
 
     /**
      * @return mixed

@@ -172,7 +172,7 @@ final class NodeIndexer
      */
     public function getNodesThatMatched()
     {
-        return $this->getNodesByCallBackParameter('Result', true, '==');
+        return $this->getNodesByCallBackParameter('Status', true, '==');
     }
 
     /**
@@ -208,7 +208,7 @@ final class NodeIndexer
      */
     public function getNodesWithPathValue()
     {
-        return $this->getNodesByCallBackParameter('PathValue', [], '!=');
+        return $this->getNodesByCallBackParameter('Path', [], '!=');
     }
 
     /**

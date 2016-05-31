@@ -36,14 +36,6 @@ interface RenderInterface
     function __construct($arguments);
 
     /**
-     * Set Arguments
-     *
-     * @param $arguments
-     * @return mixed
-     */
-    function setArguments($arguments);
-
-    /**
      * Show Content
      *
      * @return mixed

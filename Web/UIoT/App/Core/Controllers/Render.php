@@ -48,19 +48,8 @@ final class Render implements RenderInterface
      */
     public function __construct($arguments = [])
     {
-        $this->setArguments($arguments);
-    }
-
-    /**
-     * Set Arguments
-     *
-     * @param array $arguments
-     * @return void
-     */
-    public function setArguments($arguments = [])
-    {
-        $this->controllerName = $arguments['controller'];
-        $this->controllerAction = $arguments['action'];
+        $this->controllerName = $arguments['class'];
+        $this->controllerAction = $arguments['method'];
     }
 
     /**
@@ -71,8 +60,7 @@ final class Render implements RenderInterface
     {
         $layout = LayoutFactory::get($this->controllerName);
 
-        $layout->getTemplateFactory()->addVariable('{{resource_content}}',
-            Factory::getAction($this->controllerName, $this->controllerAction));
+        $layout->getTemplateFactory()->addVariable('{{resource_content}}', Factory::getAction($this->controllerName, $this->controllerAction));
 
         return $layout->executeLayout();
     }

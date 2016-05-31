@@ -36,9 +36,9 @@ final class Constants
      * @param int $constantOptions jSON Options
      * @return string|null
      */
-    public static function addJsonConstant($constantName, $constantValue = '', $constantOptions = 0)
+    public static function addJson($constantName, $constantValue = '', $constantOptions = 0)
     {
-        self::addConstant($constantName, Json::jsonEncode($constantValue, $constantOptions));
+        self::add($constantName, Json::jsonEncode($constantValue, $constantOptions));
     }
 
     /**
@@ -47,7 +47,7 @@ final class Constants
      * @param string $constantName Name
      * @param string $constantValue Value
      */
-    public static function addConstant($constantName, $constantValue = '')
+    public static function add($constantName, $constantValue = '')
     {
         defined($constantName) || define($constantName, $constantValue);
     }
@@ -58,9 +58,9 @@ final class Constants
      * @param $constantName
      * @param string|array|object $constantValue
      */
-    public static function addSerializedConstant($constantName, $constantValue)
+    public static function addObject($constantName, $constantValue)
     {
-        self::addConstant($constantName, serialize($constantValue));
+        self::add($constantName, serialize($constantValue));
     }
 
     /**
@@ -69,9 +69,9 @@ final class Constants
      * @param string $constantName
      * @return mixed
      */
-    public static function returnSerializedConstant($constantName = '')
+    public static function getObject($constantName = '')
     {
-        return unserialize(self::returnConstant($constantName));
+        return unserialize(self::get($constantName));
     }
 
     /**
@@ -80,7 +80,7 @@ final class Constants
      * @param string $constantName
      * @return string
      */
-    public static function returnConstant($constantName = '')
+    public static function get($constantName = '')
     {
         return defined($constantName) ? constant($constantName) : '';
     }
@@ -91,8 +91,8 @@ final class Constants
      * @param string $constantName
      * @return mixed
      */
-    public static function returnJsonConstant($constantName = '')
+    public static function getJson($constantName = '')
     {
-        return Json::jsonDecode(self::returnConstant($constantName));
+        return Json::jsonDecode(self::get($constantName));
     }
 }

@@ -77,14 +77,6 @@ class NodeHandlerModel implements NodeHandlerInterface
     }
 
     /**
-     * CallBack Function
-     */
-    public function call()
-    {
-
-    }
-
-    /**
      * Get Result Content
      *
      * @return string
@@ -100,7 +92,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      * @param null|string $resultContent
      * @return mixed|void
      */
-    public function setResultContent($resultContent)
+    public function setData($resultContent)
     {
         $this->resultContent = $resultContent;
     }
@@ -110,7 +102,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      *
      * @return bool
      */
-    public function getResult()
+    public function getStatus()
     {
         return $this->result;
     }
@@ -121,7 +113,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      * @param bool $result
      * @return mixed|void
      */
-    public function setResult($result)
+    public function setStatus($result)
     {
         $this->result = $result;
     }
@@ -131,7 +123,7 @@ class NodeHandlerModel implements NodeHandlerInterface
      *
      * @return string[]
      */
-    public function getPathValue()
+    public function getPath()
     {
         return $this->pathValue;
     }

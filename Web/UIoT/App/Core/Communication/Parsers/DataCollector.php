@@ -45,12 +45,14 @@ class DataCollector
     /**
      * Run Base Collector
      *
-     * @param array $resourceData
-     * @return string Response Data
+     * @param string $resourceClass
+     * @param string $resourceMethod
+     * @return mixed
      */
-    public static function runCollector($resourceData = ['name' => '', 'method' => ''])
+    public static function runCollector($resourceClass, $resourceMethod)
     {
-        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceData['method']), $resourceData)->getData();
+        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceMethod),
+            ['name' => $resourceClass, 'method' => $resourceMethod])->getData();
     }
 
     /**

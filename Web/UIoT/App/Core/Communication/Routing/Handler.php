@@ -25,10 +25,10 @@ namespace UIoT\App\Core\Communication\Routing;
 use UIoT\App\Data\Interfaces\Parsers\RenderInterface;
 
 /**
- * Class Selector
+ * Class Handler
  * @package UIoT\App\Core\Communication\Routing
  */
-final class RenderSelector
+final class Handler
 {
     /**
      * Abbreviation for the CallBacks

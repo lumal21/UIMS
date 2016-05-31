@@ -66,7 +66,7 @@ final class Factory
      */
     public function getPath($assetFolder, $assetName)
     {
-        return Constants::returnConstant('RESOURCE_FOLDER') . "$assetFolder/$assetName";
+        return Constants::get('RESOURCE_FOLDER') . "$assetFolder/$assetName";
     }
 
     /**
@@ -78,8 +78,7 @@ final class Factory
      */
     public function add($assetName, $assetFolder, $assetFileName)
     {
-        $this->getManager()->set(Strings::toLower($assetName),
-            new FileAsset($this->getPath($assetFolder, $assetFileName)));
+        $this->getManager()->set(Strings::toLower($assetName), new FileAsset($this->getPath($assetFolder, $assetFileName)));
     }
 
     /**
@@ -103,7 +102,7 @@ final class Factory
     {
         $assetName = Files::getBaseName(Strings::toLower($assetFileName));
 
-        header('Content-Type: ' . Constants::returnJsonConstant('MIME_TYPES')->{Files::getExtension($assetName)});
+        header('Content-Type: ' . Constants::getJson('MIME_TYPES')->{Files::getExtension($assetName)});
 
         return $this->get($assetName)->dump();
     }

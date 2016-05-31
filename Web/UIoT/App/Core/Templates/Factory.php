@@ -48,7 +48,7 @@ final class Factory
      */
     public function setPath($templateFolder)
     {
-        $this->templateFolder = (Constants::returnConstant('RESOURCE_FOLDER') . $templateFolder . '/');
+        $this->templateFolder = (Constants::get('RESOURCE_FOLDER') . $templateFolder . '/');
     }
 
     /**

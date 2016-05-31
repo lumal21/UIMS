@@ -56,7 +56,7 @@ use UIoT\App\Helpers\Manipulation\Constants as C;
  * That folder is considered as the folder where is the folder /UIoT
  * Example: C:\my folder\apache\htdocs\some folder\UIoT\ (That is the Application ROOT Folder)
  */
-C::addConstant('ROOT_FOLDER', __DIR__);
+C::add('ROOT_FOLDER', __DIR__);
 
 /*
  * UIoTCMS Base Folder
@@ -64,19 +64,19 @@ C::addConstant('ROOT_FOLDER', __DIR__);
  * Example: C:\my folder\apache\www\some folder\ (That is the Application BASE folder)
  * Observation: Base folder it's the same place where Index.php is
  */
-C::addConstant('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
+C::add('BASE_FOLDER', basename(str_replace('UIoT', '', __DIR__)));
 
 /*
  * Global MVC Constants
  * Resource Folder Name
  */
-C::addConstant('RESOURCE_FOLDER_NAME', 'Resources');
+C::add('RESOURCE_FOLDER_NAME', 'Resources');
 
 /*
  * Global MVC Constants
  * Resource Cache Folder Name
  */
-C::addConstant('RESOURCE_CACHE_FOLDER_NAME', 'Cache');
+C::add('RESOURCE_CACHE_FOLDER_NAME', 'Cache');
 
 /*
  * UIoTCMS Resources Folder
@@ -85,13 +85,13 @@ C::addConstant('RESOURCE_CACHE_FOLDER_NAME', 'Cache');
  * But must set the New Path here.
  *  Warning: Vendor folder location, CAN'T be changed!
  */
-C::addConstant('RESOURCE_FOLDER', (C::returnConstant('ROOT_FOLDER') . '/' . C::returnConstant('RESOURCE_FOLDER_NAME') . '/'));
+C::add('RESOURCE_FOLDER', (C::get('ROOT_FOLDER') . '/' . C::get('RESOURCE_FOLDER_NAME') . '/'));
 
 /*
  * Global MVC Constants
  * Resource Cache Folder
  */
-C::addConstant('RESOURCE_CACHE_FOLDER', C::returnConstant('RESOURCE_FOLDER') . C::returnConstant('RESOURCE_CACHE_FOLDER_NAME') . '/');
+C::add('RESOURCE_CACHE_FOLDER', C::get('RESOURCE_FOLDER') . C::get('RESOURCE_CACHE_FOLDER_NAME') . '/');
 
 /**
  * Server Constants
@@ -101,43 +101,43 @@ C::addConstant('RESOURCE_CACHE_FOLDER', C::returnConstant('RESOURCE_FOLDER') . C
  * Global Variable (Server Variable)
  * Request URL
  */
-C::addConstant('REQUEST_URL', $_SERVER['REQUEST_URI']);
+C::add('REQUEST_URL', $_SERVER['REQUEST_URI']);
 
 /*
  * Global Variable (Server Variable)
  * Script Name
  */
-C::addConstant('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
+C::add('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 
 /*
  * Global Variable (Server Variable)
  * Query String
  */
-C::addConstant('QUERY_STRING', $_SERVER['QUERY_STRING']);
+C::add('QUERY_STRING', $_SERVER['QUERY_STRING']);
 
 /*
  * Global Variable (Request Variable)
  * Post Method
  */
-C::addJsonConstant('HTTP_PHP_POST', $_POST);
+C::addJson('HTTP_PHP_POST', $_POST);
 
 /*
  * Global Variable (Server Variable)
  * PhP Self
  */
-C::addConstant('PHP_SELF', $_SERVER['PHP_SELF']);
+C::add('PHP_SELF', $_SERVER['PHP_SELF']);
 
 /*
  * Global Variable (Server Variable)
  * Requested Method
  */
-C::addConstant('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
+C::add('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
 
 /*
  * Global Variable (Server Variable)
  * Server
  */
-C::addJsonConstant('SERVER_WEB', $_SERVER);
+C::addJson('SERVER_WEB', $_SERVER);
 
 /**
  * MVC Constants
@@ -147,10 +147,10 @@ C::addJsonConstant('SERVER_WEB', $_SERVER);
  * Global MVC Constants
  * Default View
  */
-C::addConstant('DEFAULT_CONTROLLER', 'Login');
+C::add('DEFAULT_CONTROLLER', 'Login');
 
 /*
  * Global MVC Constants
  * Default View Action (Default Layout)
  */
-C::addConstant('DEFAULT_CONTROLLER_ACTION', 'Main');
+C::add('DEFAULT_ACTION', 'Main');
