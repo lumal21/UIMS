@@ -52,9 +52,9 @@ class Manager
      * @param string $variableName
      * @param mixed $variableValue
      */
-    public function setVariable($variableName, $variableValue)
+    public function setVar($variableName, $variableValue)
     {
-        if(!property_exists($this->settingModel, $variableName)) {
+        if (!property_exists($this->settingModel, $variableName)) {
             throw new UnexpectedValueException("Setting property $variableName doesn't exists in class " .
                 get_class($this->settingModel));
         }

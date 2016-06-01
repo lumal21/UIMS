@@ -24,17 +24,17 @@ namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
 use Httpful\Http;
 use UIoT\App\Core\Communication\Parsers\DataTypes;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
 use UIoT\App\Helpers\Visual\Forms;
 
 /**
- * Class EmptyHtmlFormHandler
+ * Class FilledForm
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class EmptyHtmlFormHandler extends RequestSingleton
+class FilledForm extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -44,22 +44,23 @@ class EmptyHtmlFormHandler extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        $formHandler = new Forms(Strings::toCamel($requestContent['resource'], true), "/{$requestContent['resource']}/add/", Http::POST);
+        $form = new Forms(Strings::toCamel($data['resource'], true), "/{$data['resource']}/edit?id={$data['values'][0]->ID}", Http::POST);
+        $form->addHeader("ID: {$data['values'][0]->ID}");
 
-        foreach(DataTypes::removeDisabledTypes($requestContent['keys']) as $property) {
+        foreach (DataTypes::removeTypes($data['keys']) as $property) {
             /** @var $property PropertyObject */
-            $formHandler->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true), [], ['value' => DataTypes::getTypeValue($property->PROP_FRIENDLY_NAME)]);
+            $form->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true),
+                [], ['value' => $data['values'][0]->{$property->PROP_NAME}]);
         }
 
-        $formHandler->addButton('submit', 'Add Resource Item');
-        $formHandler->addOnClickButton('button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
+        $form->addButton('submit', 'Save Edited Data');
+        $form->addOnClickButton('button', 'Cancel', 'history.back()', ['class' => 'secondary', 'id' => '']);
 
-        RequestParserMethods::setCustomResponseDataWithStatus($this,
-            "<div class='large-12 columns'>{$formHandler->showContent()}</div>", true);
+        RequestParser::setCustomResponse($this, "<div class='large-12 columns'>{$form->showContent()}</div>", true);
     }
 }

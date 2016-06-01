@@ -22,8 +22,8 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Handlers\ResourceMenu;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Helpers\Visual\Pages;
 
 /**
@@ -47,10 +47,10 @@ class Edit extends Main
      */
     public function setTemplates()
     {
-        $this->getTemplateFactory()->setPath('Main');
-        $this->getTemplateFactory()->addVariable('{{menu_content}}',
-            RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
-        $this->getTemplateFactory()->addTemplate('Layouts/Main.php');
+        $this->getTemplate()->setPath('Main');
+        $this->getTemplate()->setVar('{{menu_content}}',
+            RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->add('Layouts/Main.php');
     }
 
     /**
@@ -60,6 +60,6 @@ class Edit extends Main
      */
     public function showLayout()
     {
-        return $this->getTemplateFactory()->returnTemplates();
+        return $this->getTemplate()->get();
     }
 }

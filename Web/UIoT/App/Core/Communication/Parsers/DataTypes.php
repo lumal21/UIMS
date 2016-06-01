@@ -45,12 +45,11 @@ class DataTypes
      * Return a filtered array without disabled item
      *
      * @param array $propertiesArray
-     *
      * @return array
      */
-    public static function removeDisabledTypes($propertiesArray)
+    public static function removeTypes($propertiesArray)
     {
-        return array_filter($propertiesArray, function(PropertyObject $propertyObject) {
+        return array_filter($propertiesArray, function (PropertyObject $propertyObject) {
             return Arrays::inArray($propertyObject->PROP_FRIENDLY_NAME, self::$disabledEvents) !== true;
         });
     }
@@ -59,12 +58,11 @@ class DataTypes
      * Return Specific Data Type Value
      *
      * @param string $itemKey
-     *
      * @return mixed
      */
-    public static function getTypeValue($itemKey)
+    public static function getType($itemKey)
     {
-        switch(strtolower($itemKey)) {
+        switch (strtolower($itemKey)) {
             case 'time':
                 return date('Y-m-d H:i:s', time());
             default:

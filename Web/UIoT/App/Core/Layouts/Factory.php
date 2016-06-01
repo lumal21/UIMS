@@ -50,7 +50,7 @@ final class Factory
      */
     public static function get($layoutName)
     {
-        return self::callMethod($layoutName, 'getInstance');
+        return self::call($layoutName, 'getInstance');
     }
 
     /**
@@ -60,7 +60,7 @@ final class Factory
      * @param string $layoutMethod Layout Method
      * @return mixed Layout Method Return
      */
-    public static function callMethod($layoutName, $layoutMethod)
+    public static function call($layoutName, $layoutMethod)
     {
         return forward_static_call(['UIoT\App\Data\Layouts\\' . Strings::toCamel($layoutName), $layoutMethod]);
     }

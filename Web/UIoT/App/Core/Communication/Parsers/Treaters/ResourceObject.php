@@ -23,16 +23,15 @@
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use UIoT\App\Core\Communication\Parsers\DataTreater;
-use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCodeMessageHandler;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCode;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
-use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
- * Class ResponseAcknowledgeTreater
+ * Class ResourceObject
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResponseAcknowledgeTreater extends RequestSingleton
+class ResourceObject extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -42,16 +41,15 @@ class ResponseAcknowledgeTreater extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        if(is_bool($requestContent)) {
-            RequestParserMethods::parseResponseWithRequestStatus(RaiseCodeMessageHandler::getInstance(), $this,
-                DataTreater::generateResponseCode($requestContent, ['code' => '200', 'message' => 'RAISE received the sent data. Operation Method: ' . Constants::get('REQUEST_METHOD')]));
-        } elseif(is_object($requestContent)) {
-            RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
+        if (is_object($data)) {
+            RequestParser::parseRequest(RaiseCode::getInstance(), $this,
+                DataTreater::generateCode($data,
+                    ['code' => '404', 'message' => 'The requested resource isn\'t a valid RAISE resource.']));
         }
     }
 }

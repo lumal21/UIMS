@@ -22,18 +22,18 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 use UIoT\App\Helpers\Manipulation\Strings;
-use UIoT\App\Helpers\Visual\DataTable;
+use UIoT\App\Helpers\Visual\DataTable as DataTableHelper;
 use UIoT\App\Helpers\Visual\Html;
 
 /**
- * Class DataTableHandler
+ * Class DataTable
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class DataTableHandler extends RequestSingleton
+class DataTable extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -43,26 +43,26 @@ class DataTableHandler extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        $dataTable = new DataTable($resourcePrettyName = Strings::toCamel($requestContent['resource'], true));
+        $table = new DataTableHelper($resFriendly = Strings::toCamel($data['resource'], true));
 
-        foreach($requestContent['keys'] as $property) {
+        foreach ($data['keys'] as $property) {
             /** @var $property PropertyObject */
-            $dataTable->addLinkInteraction($property->PROP_NAME, "/{$requestContent['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
-            $dataTable->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
+            $table->addLinkInteraction($property->PROP_FRIENDLY_NAME, "/{$data['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
+            $table->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
         }
 
-        foreach($requestContent['values'] as $property) {
-            $dataTable->addBody($property);
+        foreach ($data['values'] as $property) {
+            $table->addBody($property);
         }
 
-        $htmlContent = new Html();
-        $htmlContent->addOnClickButton('button', "Add New $resourcePrettyName", "window.location.href=\"/{$requestContent['resource']}/add/\"", ['class' => 'success', 'id' => '']);
+        $html = new Html();
+        $html->addOnClickButton('button', "Add New $resFriendly", "window.location.href=\"/{$data['resource']}/add/\"", ['class' => 'success', 'id' => '']);
 
-        RequestParserMethods::setCustomResponseDataWithStatus($this, "<div class='large-12 columns'>{$dataTable->showContent()}{$htmlContent->showContent()}</div>", true);
+        RequestParser::setCustomResponse($this, "<div class='large-12 columns'>{$table->showContent()}{$html->showContent()}</div>", true);
     }
 }

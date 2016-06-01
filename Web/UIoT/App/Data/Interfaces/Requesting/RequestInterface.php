@@ -31,10 +31,10 @@ interface RequestInterface
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    function parse($requestContent);
+    function parse($data);
 
     /**
      * Check if Job is Done

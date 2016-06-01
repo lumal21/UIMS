@@ -22,8 +22,8 @@
 
 namespace UIoT\App\Data\Layouts;
 
-use UIoT\App\Core\Communication\Parsers\Handlers\ResourcesMenuHandler;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Handlers\ResourceMenu;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
@@ -40,21 +40,21 @@ class Home extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetFactory()->add('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetFactory()->add('Logo', 'Default', 'Images/Logo_small_transparent.png');
+        $this->getAsset()->add('Background', 'Default', 'Images/6.jpg');
+        $this->getAsset()->add('Logo', 'Default', 'Images/Logo_small_transparent.png');
 
-        $this->getAssetFactory()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetFactory()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetFactory()->add('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        $this->getAssetFactory()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAsset()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAsset()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAsset()->add('MainMainStyle', 'Main', 'Stylesheet/Main.css');
+        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
 
-        $this->getAssetFactory()->add('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAssetFactory()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAssetFactory()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAssetFactory()->add('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        $this->getAssetFactory()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
-        $this->getAssetFactory()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        $this->getAssetFactory()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
+        $this->getAsset()->add('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
+        $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
+        $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
+        $this->getAsset()->add('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+        $this->getAsset()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
+        $this->getAsset()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
+        $this->getAsset()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }
 
     /**
@@ -70,10 +70,10 @@ class Home extends LayoutSingleton
      */
     public function setTemplates()
     {
-        $this->getTemplateFactory()->setPath('Home');
-        $this->getTemplateFactory()->addVariable('{{menu_content}}',
-            RequestParserMethods::parseRequest(ResourcesMenuHandler::getInstance())->getData());
-        $this->getTemplateFactory()->addTemplate('Layouts/Home.php');
+        $this->getTemplate()->setPath('Home');
+        $this->getTemplate()->setVar('{{menu_content}}',
+            RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->add('Layouts/Home.php');
     }
 
     /**
@@ -83,6 +83,6 @@ class Home extends LayoutSingleton
      */
     public function showLayout()
     {
-        return $this->getTemplateFactory()->returnTemplates();
+        return $this->getTemplate()->get();
     }
 }

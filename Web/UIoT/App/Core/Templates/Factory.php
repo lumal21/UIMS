@@ -34,12 +34,12 @@ final class Factory
     /**
      * @var string Template Folder
      */
-    private $templateFolder = '';
+    private $folder = '';
 
     /**
      * @var array Custom Parsed Variables
      */
-    private $customVariables = [];
+    private $variables = [];
 
     /**
      * Set Template Folder
@@ -48,7 +48,7 @@ final class Factory
      */
     public function setPath($templateFolder)
     {
-        $this->templateFolder = (Constants::get('RESOURCE_FOLDER') . $templateFolder . '/');
+        $this->folder = (Constants::get('RESOURCE_FOLDER') . $templateFolder . '/');
     }
 
     /**
@@ -57,9 +57,9 @@ final class Factory
      * @param string $variableKey
      * @param string $variableValue
      */
-    public function addVariable($variableKey, $variableValue)
+    public function setVar($variableKey, $variableValue)
     {
-        $this->customVariables[$variableKey] = $variableValue;
+        $this->variables[$variableKey] = $variableValue;
     }
 
     /**
@@ -67,9 +67,9 @@ final class Factory
      *
      * @param string $templateName
      */
-    public function addTemplate($templateName)
+    public function add($templateName)
     {
-        Format::add($this->parse($this->templateFolder . $templateName));
+        Format::add($this->parse($this->folder . $templateName));
     }
 
     /**
@@ -89,7 +89,7 @@ final class Factory
 
         ob_end_clean();
 
-        return $this->extract($template, $this->customVariables);
+        return $this->extract($template, $this->variables);
     }
 
     /**
@@ -102,7 +102,7 @@ final class Factory
      */
     public function extract($template, $variables)
     {
-        foreach($variables as $word => $content) {
+        foreach ($variables as $word => $content) {
             $template = str_replace($word, $content, $template);
         }
 
@@ -114,7 +114,7 @@ final class Factory
      *
      * @return string
      */
-    public function returnTemplates()
+    public function get()
     {
         return Format::getFormat();
     }

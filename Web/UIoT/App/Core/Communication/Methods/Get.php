@@ -22,10 +22,10 @@
 
 namespace UIoT\App\Core\Communication\Methods;
 
-use UIoT\App\Core\Communication\Parsers\Treaters\ResourceIdTreater;
-use UIoT\App\Core\Communication\Parsers\Treaters\ResourcePropertiesTreater;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceId;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceProperties;
+use UIoT\App\Core\Communication\Requesting\RaiseRequest;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\MethodModel;
 
 /**
@@ -39,18 +39,18 @@ class Get extends MethodModel
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
-     * @return $this|void
+     * @param array $data
+     * @return $this
      */
-    public function setResponse($resourceData)
+    public function setData($data)
     {
-        $resourceIdTreater = RequestParserMethods::parseRequest(ResourceIdTreater::getInstance(), RaiseRequestManager::doGetRequest('resources?name=' . $resourceData['name']));
+        $resId = RequestParser::parse(ResourceId::getInstance(), RaiseRequest::get('resources?name=' . $data['name']));
 
-        if(RequestParserMethods::getJobStatusWithResponse($resourceIdTreater, $this->getInput()))
+        if (RequestParser::checkResponse($resId, $this->getInput()))
             return $this;
 
-        $resourcePropertyTr = RequestParserMethods::parseRequest(ResourcePropertiesTreater::getInstance(), RaiseRequestManager::doGetRequest('properties?resource_id=' . $resourceIdTreater->getData()));
+        $resProp = RequestParser::parse(ResourceProperties::getInstance(), RaiseRequest::get('properties?resource_id=' . $resId->getData()));
 
-        return parent::setResponse($resourcePropertyTr);
+        return parent::setData($resProp);
     }
 }

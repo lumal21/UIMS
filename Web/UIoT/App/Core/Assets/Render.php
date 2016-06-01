@@ -42,6 +42,6 @@ final class Render extends RenderModel
 
         $layout->getResources();
 
-        return $layout->getAssetFactory()->dump($this->classMethod);
+        return $layout->getAsset()->dump($this->classMethod);
     }
 }

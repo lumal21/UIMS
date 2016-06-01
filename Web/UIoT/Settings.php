@@ -48,16 +48,16 @@ use UIoT\App\Core\Settings\Register;
  * Please be Careful at configuring the settings
  */
 
-Register::prepareSettings();
+Register::prepare();
 
-Register::addSettingsBlock('raise', [
+Register::add('raise', [
     'raiseHost' => '172.16.6.159',
     'raiseBasePath' => '',
     'raisePort' => 80,
     'raiseSsl' => false
 ]);
 
-Register::addSettingsBlock('security', [
+Register::add('security', [
     // session encrypt (mb-encrypt, bcrypt) salt, must be 24 length salt string.
     'sessionHandlerSalt' => 'uniform-internetofthings',
     // session expire (seconds)
@@ -70,15 +70,15 @@ Register::addSettingsBlock('security', [
         ]
 ]);
 
-Register::addSettingsBlock('exceptions', [
+Register::add('exceptions', [
     // set error page title
     'errorPageTitle' => 'Houston, we have a problem!',
     // set reporting php error level
     'errorReportingLevels' => (E_ALL ^ (E_WARNING | E_NOTICE))
 ]);
 
-Register::addSettingsBlock('resources', [
+Register::add('resources', [
     'enableCaching' => true
 ]);
 
-Register::storeSettings();
+Register::store();

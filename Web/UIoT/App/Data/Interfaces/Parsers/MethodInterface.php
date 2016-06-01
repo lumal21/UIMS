@@ -36,7 +36,7 @@ interface MethodInterface
      * @param mixed|RequestSingleton $data
      * @return mixed
      */
-    public function setResponse($data);
+    public function setData($data);
 
     /**
      * Get Method Data

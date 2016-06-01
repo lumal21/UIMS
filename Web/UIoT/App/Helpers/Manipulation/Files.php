@@ -28,14 +28,13 @@ use UIoT\App\Exception\Manager;
 /**
  * Class Files
  * @package UIoT\App\Helpers\Manipulation
- * @observation this is a singleton
  */
-class Files
+final class Files
 {
     /**
      * @var SplFileInfo|null File Info Instance
      */
-    protected static $fileInfoInstance;
+    protected static $fileInfo;
 
     /**
      * @var Files File Instance
@@ -44,12 +43,10 @@ class Files
 
     /**
      * Instantiate SplFileInfo Class
-     *
-     * Files constructor.
      */
     final private function __construct()
     {
-        if(null !== self::$fileInstance) {
+        if (null !== self::$fileInstance) {
             return;
         }
 
@@ -75,9 +72,9 @@ class Files
      *
      * @param $fileName
      */
-    final private static function checkInstance($fileName)
+    private static function checkInstance($fileName)
     {
-        if(self::$fileInfoInstance === null) {
+        if (self::$fileInfo === null) {
             self::create($fileName);
         }
     }
@@ -89,7 +86,7 @@ class Files
      */
     final private static function create($fileName)
     {
-        empty($fileName) || self::$fileInfoInstance = new SplFileInfo($fileName);
+        empty($fileName) || self::$fileInfo = new SplFileInfo($fileName);
     }
 
     /**
@@ -99,7 +96,7 @@ class Files
      */
     private static function getSplFileInfoInstance()
     {
-        return self::$fileInfoInstance;
+        return self::$fileInfo;
     }
 
     /**
@@ -153,7 +150,7 @@ class Files
      */
     public static function getLastInstance()
     {
-        if(NULL === self::$fileInstance)
+        if (NULL === self::$fileInstance)
             self::$fileInstance = new self;
 
         return self::$fileInstance;
@@ -164,6 +161,6 @@ class Files
      */
     final private function __clone()
     {
-        self::$fileInfoInstance = clone self::$fileInfoInstance;
+        self::$fileInfo = clone self::$fileInfo;
     }
 }

@@ -22,16 +22,17 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use JsonMapper;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
-use UIoT\App\Data\Models\Parsers\PropertyObject;
+use UIoT\App\Core\Communication\Parsers\DataTreater;
+use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCode;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
- * Class ResourcePropertiesTreater
+ * Class ResponseAck
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResourcePropertiesTreater extends RequestSingleton
+class ResponseAck extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -41,15 +42,17 @@ class ResourcePropertiesTreater extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        if(is_object($requestContent)) {
-            RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
-        } elseif(is_array($requestContent)) {
-            RequestParserMethods::setCustomResponseData($this, (new JsonMapper())->mapArray($requestContent, array(), new PropertyObject));
+        if (is_bool($data)) {
+            RequestParser::parseRequest(RaiseCode::getInstance(), $this,
+                DataTreater::generateCode($data,
+                    ['code' => '200', 'message' => 'RAISE received the sent data. Operation Method: ' . Constants::get('REQUEST_METHOD')]));
+        } elseif (is_object($data)) {
+            RequestParser::parseRequest(ResourceObject::getInstance(), $this, $data);
         }
     }
 }

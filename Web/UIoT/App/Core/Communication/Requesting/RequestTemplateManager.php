@@ -56,7 +56,7 @@ class RequestTemplateManager
      */
     private static function adjustTemplate(Request $r)
     {
-        RaiseRequestManager::setTemplate($r);
+        RaiseRequest::setTemplate($r);
     }
 
     /**

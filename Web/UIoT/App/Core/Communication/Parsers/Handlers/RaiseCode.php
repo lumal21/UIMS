@@ -20,20 +20,17 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Parsers\Collectors;
+namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-
-use UIoT\App\Core\Communication\Methods\Get;
-use UIoT\App\Core\Communication\Methods\Put;
-use UIoT\App\Core\Communication\Parsers\Handlers\FilledForm;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
+use UIoT\App\Helpers\Visual\Html;
 
 /**
- * Class PutCollector
- * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * Class RaiseCode
+ * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class PutCollector extends RequestSingleton
+class RaiseCode extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -43,21 +40,13 @@ class PutCollector extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     *
-     * @param array $resourceData
+     * @param mixed $data
      * @return void
      */
-    public function parse($resourceData)
+    public function parse($data)
     {
-        $get = (new Get)->setInput($this)->setData($resourceData);
-        $put = (new Put)->setInput($this)->setData($resourceData);
-
-        if (RequestParser::checkResponse($put->getResponse(), $this))
-            return;
-
-        RequestParser::parseRequest(FilledForm::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $get->getResponse()->getData(),
-            'values' => $put->getResponse()->getData()]);
+        $html = new Html();
+        $html->addTextCallout("Response Code (#{$data->code})", $data->message);
+        RequestParser::setCustomResponse($this, "<div class='large-12 columns'>{$html->showContent()}</div>", true);
     }
 }

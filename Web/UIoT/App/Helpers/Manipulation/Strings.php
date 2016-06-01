@@ -71,21 +71,10 @@ class Strings
      */
     public static function toCamel($string = '', $forceCamel = false)
     {
-        if($forceCamel) {
+        if ($forceCamel) {
             $string = str_replace('_', ' ', $string);
         }
 
         return ucfirst(self::toLower($string));
-    }
-
-    /**
-     * Remove Empty HTML Lines
-     *
-     * @param string $string
-     * @return mixed
-     */
-    public static function removeEmptyLines($string = '')
-    {
-        return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string);
     }
 }

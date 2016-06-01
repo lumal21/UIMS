@@ -23,9 +23,9 @@
 namespace UIoT\App\Core\Communication\Methods;
 
 use Httpful\Http;
-use UIoT\App\Core\Communication\Parsers\Treaters\SpecificResourceItemTreater;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Treaters\SpecificItem;
+use UIoT\App\Core\Communication\Requesting\RaiseRequest;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\MethodModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 
@@ -40,15 +40,15 @@ class Put extends MethodModel
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
-     * @return $this|void
+     * @param array $data
+     * @return $this
      */
-    public function setResponse($resourceData)
+    public function setData($data)
     {
-        if(Constants::get('REQUEST_METHOD') == Http::POST) {
-            RaiseRequestManager::doPutRequest("{$resourceData['name']}?" . Constants::get('QUERY_STRING') . '&' . http_build_query(Constants::getJson('HTTP_PHP_POST')));
+        if (Constants::get('REQUEST_METHOD') == Http::POST) {
+            RaiseRequest::put("{$data['name']}?" . Constants::get('QUERY_STRING') . '&' . http_build_query(Constants::getJson('HTTP_PHP_POST')));
         }
 
-        return parent::setResponse(RequestParserMethods::parseRequest(SpecificResourceItemTreater::getInstance(), RaiseRequestManager::doGetRequest("{$resourceData['name']}?" . Constants::get('QUERY_STRING'))));
+        return parent::setData(RequestParser::parse(SpecificItem::getInstance(), RaiseRequest::get("{$data['name']}?" . Constants::get('QUERY_STRING'))));
     }
 }

@@ -23,9 +23,9 @@
 namespace UIoT\App\Core\Communication\Methods;
 
 use Httpful\Http;
-use UIoT\App\Core\Communication\Parsers\Treaters\ResponseAcknowledgeTreater;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResponseAck;
+use UIoT\App\Core\Communication\Requesting\RaiseRequest;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\MethodModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 
@@ -40,15 +40,15 @@ class Post extends MethodModel
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
-     * @return $this|void
+     * @param array $data
+     * @return $this
      */
-    public function setResponse($resourceData)
+    public function setData($data)
     {
-        if(Constants::get('REQUEST_METHOD') == Http::POST) {
-            $resourceData = RaiseRequestManager::doPostRequest("{$resourceData['name']}?" . http_build_query(Constants::getJson('HTTP_PHP_POST')));
+        if (Constants::get('REQUEST_METHOD') == Http::POST) {
+            $data = RaiseRequest::post("{$data['name']}?" . http_build_query(Constants::getJson('HTTP_PHP_POST')));
         }
 
-        return parent::setResponse(RequestParserMethods::parseRequest(ResponseAcknowledgeTreater::getInstance(), $resourceData));
+        return parent::setData(RequestParser::parse(ResponseAck::getInstance(), $data));
     }
 }

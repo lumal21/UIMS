@@ -47,19 +47,19 @@ final class Manager
      */
     public function __construct()
     {
-        $this->setSettings(SettingsRegister::get('security'));
+        $this->settings = SettingsRegister::get('security');
 
-        $this->startWhiteList();
+        $this->start();
     }
 
     /**
      * Start White List Ip
      */
-    private function startWhiteList()
+    private function start()
     {
         self::$whiteList = new Check;
 
-        self::loadIpWhiteList($this->settings->whiteIpList);
+        self::load($this->settings->whiteIpList);
     }
 
     /**
@@ -67,18 +67,8 @@ final class Manager
      *
      * @param array $arguments
      */
-    public static function loadIpWhiteList($arguments = [])
+    public static function load($arguments = [])
     {
         self::$whiteList->whitelist((array)$arguments);
-    }
-
-    /**
-     * Set settings
-     *
-     * @param SecuritySettingsModel $settings
-     */
-    public function setSettings($settings)
-    {
-        $this->settings = $settings;
     }
 }

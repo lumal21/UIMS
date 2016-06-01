@@ -58,7 +58,7 @@ class MethodModel implements MethodInterface
      *
      * @return $this
      */
-    public function setResponse($response)
+    public function setData($response)
     {
         $this->response = $response;
 

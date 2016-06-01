@@ -22,14 +22,16 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\DataTreater;
+use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCode;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class ResourceIdTreater
+ * Class SpecificItem
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResourceIdTreater extends RequestSingleton
+class SpecificItem extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -39,15 +41,17 @@ class ResourceIdTreater extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param array $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        if(!is_array($requestContent)) {
-            RequestParserMethods::parseResponseWithRequestStatus(ResourceObjectTreater::getInstance(), $this, $requestContent);
-        } elseif(property_exists($requestContent[0], 'ID')) {
-            RequestParserMethods::setCustomResponseData($this, $requestContent[0]->ID);
+        if (is_object($data)) {
+            RequestParser::parseRequest(RaiseCode::getInstance(), $this,
+                DataTreater::generateCode($data,
+                    ['code' => '404', 'message' => 'The requested resource item isn\'t a registered RAISE resource item.']));
+        } else {
+            RequestParser::setCustomData($this, $data);
         }
     }
 }

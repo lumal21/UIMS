@@ -33,23 +33,19 @@ use Whoops\Run;
 final class Register
 {
     /**
-     * static variable to store exception page handler
-     *
-     * @var PrettyPageHandler
+     * @var PrettyPageHandler Instance
      */
     private static $handler;
 
     /**
-     * static variable to store exception page runner
-     *
-     * @var Run
+     * @var Run Page Runner
      */
     private static $runner;
 
     /**
      * Instantiate Page Handler and Whoops Runner
      */
-    public static function instantiateMembers()
+    public static function create()
     {
         self::$runner = new Run;
 
@@ -59,7 +55,7 @@ final class Register
     /**
      * Configure Settings
      */
-    public static function configureMembers()
+    public static function configure()
     {
         self::$handler->setPageTitle(SettingsRegister::get('exceptions')->errorPageTitle);
 
@@ -69,7 +65,7 @@ final class Register
     /**
      * Register the Page Handler and Invoke the Runner
      */
-    public static function invokeMembers()
+    public static function invoke()
     {
         self::$runner->register();
 

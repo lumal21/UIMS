@@ -22,15 +22,19 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Handlers;
 
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceData;
+use UIoT\App\Core\Communication\Requesting\RaiseRequest;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Data\Models\Parsers\ResourceObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
-use UIoT\App\Helpers\Visual\Html;
+use UIoT\App\Helpers\Manipulation\Strings;
+use UIoT\App\Helpers\Visual\Menu;
 
 /**
- * Class RaiseCodeMessageHandler
+ * Class ResourceMenu
  * @package UIoT\App\Core\Communication\Parsers\Handlers
  */
-class RaiseCodeMessageHandler extends RequestSingleton
+class ResourceMenu extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -40,13 +44,22 @@ class RaiseCodeMessageHandler extends RequestSingleton
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        $htmlContext = new Html();
-        $htmlContext->addTextCallout("Response Code (#{$requestContent->code})", $requestContent->message);
-        RequestParserMethods::setCustomResponseDataWithStatus($this, "<div class='large-12 columns'>{$htmlContext->showContent()}</div>", true);
+        $menu = new Menu();
+
+        $reqData = RequestParser::parseData(ResourceData::getInstance(),
+            RaiseRequest::get('resources'));
+
+        foreach ($reqData->getData() as $item) {
+            /** @var $item ResourceObject */
+            $menu->addItem('/' . Strings::toLower($item->RSRC_NAME),
+                Strings::toCamel($item->RSRC_FRIENDLY_NAME, true));
+        }
+
+        RequestParser::setCustomResponse($this, $menu->showContent(), true);
     }
 }

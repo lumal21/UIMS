@@ -47,7 +47,7 @@ abstract class ControllerSingleton extends ControllerModel
      */
     public static function getInstance()
     {
-        if(null === self::$controllerInstance) {
+        if (null === self::$controllerInstance) {
             self::$controllerInstance = new static;
         }
 
@@ -61,7 +61,7 @@ abstract class ControllerSingleton extends ControllerModel
      */
     public function getControllerFactory()
     {
-        if(null === $this->controllerFactory) {
+        if (null === $this->controllerFactory) {
             $this->controllerFactory = new ControllerFactory;
         }
 

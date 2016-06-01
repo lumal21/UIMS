@@ -23,15 +23,15 @@
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use JsonMapper;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
-use UIoT\App\Data\Models\Parsers\ResourceObject;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class ResourceDataTreater
+ * Class ResourceProperties
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResourceDataTreater extends RequestSingleton
+class ResourceProperties extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -39,17 +39,17 @@ class ResourceDataTreater extends RequestSingleton
     protected static $requestInstance = null;
 
     /**
-     * Check if Response is a Valid Array Data
+     * Parse Request Data or Do Request
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        if(is_array($requestContent)) {
-            RequestParserMethods::setCustomResponseData($this, (new JsonMapper())->mapArray($requestContent, array(), new ResourceObject));
-        } else {
-            RequestParserMethods::setCustomJobStatus($this, true);
+        if (is_object($data)) {
+            RequestParser::parseRequest(ResourceObject::getInstance(), $this, $data);
+        } elseif (is_array($data)) {
+            RequestParser::setCustomData($this, (new JsonMapper())->mapArray($data, array(), new PropertyObject));
         }
     }
 }

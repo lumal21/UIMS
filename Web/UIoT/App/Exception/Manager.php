@@ -37,11 +37,11 @@ final class Manager
      */
     public function __construct()
     {
-        Register::instantiateMembers();
+        Register::create();
 
-        Register::configureMembers();
+        Register::configure();
 
-        Register::invokeMembers();
+        Register::invoke();
     }
 
     /**

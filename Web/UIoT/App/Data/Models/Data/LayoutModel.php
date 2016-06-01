@@ -75,7 +75,7 @@ abstract class LayoutModel implements LayoutInterface
      *
      * @SuppressWarnings("unused")
      */
-    public function getAssetFactory()
+    public function getAsset()
     {
         /* not implemented */
     }
@@ -85,7 +85,7 @@ abstract class LayoutModel implements LayoutInterface
      *
      * @SuppressWarnings("unused")
      */
-    public function getTemplateFactory()
+    public function getTemplate()
     {
         /* not implemented */
     }

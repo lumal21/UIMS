@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Communication\Parsers;
 
 use Httpful\Http;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -45,25 +45,25 @@ class DataCollector
     /**
      * Run Base Collector
      *
-     * @param string $resourceClass
-     * @param string $resourceMethod
+     * @param string $name
+     * @param string $method
      * @return mixed
      */
-    public static function runCollector($resourceClass, $resourceMethod)
+    public static function run($name, $method)
     {
-        return RequestParserMethods::parseRequest(self::getMethodCollector($resourceMethod),
-            ['name' => $resourceClass, 'method' => $resourceMethod])->getData();
+        return RequestParser::parse(self::get($method),
+            ['name' => $name, 'method' => $method])->getData();
     }
 
     /**
      * Get a Base Collector
      *
-     * @param string $collectorMethod Collector Method
+     * @param string $method Collector Method
      * @return RequestSingleton Base Collector
      */
-    public static function getMethodCollector($collectorMethod)
+    public static function get($method)
     {
-        return self::callCollectorStaticMethod(self::getMethodCollectors()[DataHandler::getMethodName($collectorMethod)], 'getInstance');
+        return self::call(self::getAll()[DataHandler::getName($method)], 'getInstance');
     }
 
     /**
@@ -71,7 +71,7 @@ class DataCollector
      *
      * @return array
      */
-    public static function getMethodCollectors()
+    public static function getAll()
     {
         return self::$methodCollectors;
     }
@@ -79,12 +79,12 @@ class DataCollector
     /**
      * Call Collector static method.
      *
-     * @param string $collectorName
-     * @param string $collectorMethod
+     * @param string $name
+     * @param string $method
      * @return mixed
      */
-    public static function callCollectorStaticMethod($collectorName, $collectorMethod)
+    public static function call($name, $method)
     {
-        return forward_static_call(["UIoT\\App\\Core\\Communication\\Parsers\\Collectors\\" . $collectorName, $collectorMethod]);
+        return forward_static_call(['UIoT\App\Core\Communication\Parsers\Collectors\\' . $name, $method]);
     }
 }

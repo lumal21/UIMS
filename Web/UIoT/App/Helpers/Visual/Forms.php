@@ -53,7 +53,7 @@ class Forms extends Html
     {
         $this->htmlBuffer .= "<h4>$headerText</h4>";
 
-        if(!empty($headerSubText)) {
+        if (!empty($headerSubText)) {
             $this->htmlBuffer .= "<h5>$headerSubText</h5><br>";
         }
     }
@@ -168,7 +168,7 @@ class Forms extends Html
     {
         $selectHtml = '';
 
-        foreach($selectData as $valueText => $friendlyText) {
+        foreach ($selectData as $valueText => $friendlyText) {
             $selectHtml .= "<option value='$valueText'>$friendlyText</option>";
         }
 

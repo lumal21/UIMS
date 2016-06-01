@@ -43,10 +43,10 @@ class RequestModel implements RequestInterface
     /**
      * Parse Request Data or Do Request
      *
-     * @param mixed|null $requestContent
+     * @param mixed|null $data
      * @return void
      */
-    public function parse($requestContent = null)
+    public function parse($data = null)
     {
         $this->setStatus(true);
 

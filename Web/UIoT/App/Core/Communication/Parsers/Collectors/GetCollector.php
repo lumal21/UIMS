@@ -23,9 +23,9 @@
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
 use UIoT\App\Core\Communication\Methods\Get;
-use UIoT\App\Core\Communication\Parsers\Handlers\DataTableHandler;
-use UIoT\App\Core\Communication\Requesting\RaiseRequestManager;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use UIoT\App\Core\Communication\Parsers\Handlers\DataTable;
+use UIoT\App\Core\Communication\Requesting\RaiseRequest;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -49,13 +49,13 @@ class GetCollector extends RequestSingleton
      */
     public function parse($resourceData)
     {
-        $getMethod = (new Get)->setInput($this)->setResponse($resourceData);
+        $get = (new Get)->setInput($this)->setData($resourceData);
 
-        if(RequestParserMethods::getJobStatusWithResponse($getMethod->getResponse(), $this))
+        if (RequestParser::checkResponse($get->getResponse(), $this))
             return;
 
-        RequestParserMethods::parseResponseWithRequestStatus(DataTableHandler::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $getMethod->getResponse()->getData(),
-            'values' => RaiseRequestManager::doGetRequest($resourceData['name'])]);
+        RequestParser::parseRequest(DataTable::getInstance(), $this, [
+            'resource' => $resourceData['name'], 'keys' => $get->getResponse()->getData(),
+            'values' => RaiseRequest::get($resourceData['name'])]);
     }
 }

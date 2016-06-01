@@ -41,9 +41,9 @@ final class Render extends RenderModel
     {
         $layout = Factory::get($this->classMethod);
 
-        $layout->getTemplateFactory()->addVariable('{{resource_content}}',
-            DataCollector::runCollector($this->className, $this->classMethod));
+        $layout->getTemplate()->setVar('{{resource_content}}',
+            DataCollector::run($this->className, $this->classMethod));
 
-        return $layout->executeLayout();
+        return $layout->execute();
     }
 }

@@ -32,9 +32,9 @@ use UnexpectedValueException;
 class Factory
 {
     /**
-     * @var Manager[]
+     * @var Manager[] Instances
      */
-    private static $settingsModels;
+    private static $settings;
 
     /**
      * Create settings factory
@@ -43,8 +43,8 @@ class Factory
      */
     public static function create(array $settingsModels)
     {
-        foreach($settingsModels as $settingModel) {
-            self::addModel($settingModel);
+        foreach ($settingsModels as $settingModel) {
+            self::add($settingModel);
         }
     }
 
@@ -53,9 +53,9 @@ class Factory
      *
      * @param SettingsInterface $settingsInterface
      */
-    protected static function addModel(SettingsInterface $settingsInterface)
+    protected static function add(SettingsInterface $settingsInterface)
     {
-        self::$settingsModels[$settingsInterface->getBlockName()] = new Manager($settingsInterface);
+        self::$settings[$settingsInterface->getBlockName()] = new Manager($settingsInterface);
     }
 
     /**
@@ -64,14 +64,14 @@ class Factory
      * @param string $modelName
      * @param array $modelVariables
      */
-    public static function populateModel($modelName, array $modelVariables)
+    public static function populate($modelName, array $modelVariables)
     {
-        if(!array_key_exists($modelName, self::$settingsModels)) {
+        if (!array_key_exists($modelName, self::$settings)) {
             throw new UnexpectedValueException('This settings model does not exists.');
         }
 
-        foreach($modelVariables as $variableName => $variableValue) {
-            self::$settingsModels[$modelName]->setVariable($variableName, $variableValue);
+        foreach ($modelVariables as $variableName => $variableValue) {
+            self::$settings[$modelName]->setVar($variableName, $variableValue);
         }
     }
 
@@ -81,13 +81,13 @@ class Factory
      * @param string $modelName
      * @return SettingsInterface
      */
-    public static function getModel($modelName)
+    public static function get($modelName)
     {
-        if(!array_key_exists($modelName, self::$settingsModels)) {
+        if (!array_key_exists($modelName, self::$settings)) {
             throw new UnexpectedValueException('This settings model does not exists.');
         }
 
-        return self::$settingsModels[$modelName]->getModel();
+        return self::$settings[$modelName]->getModel();
     }
 
     /**
@@ -96,14 +96,14 @@ class Factory
      *
      * @return Manager[]|SettingsInterface[]
      */
-    public static function getAllModels()
+    public static function getAll()
     {
         /**
          * @var Manager[] $settingsModelArray
          */
         $settingsModelArray = [];
 
-        foreach(self::$settingsModels as $settingsModelName => $settingsManager) {
+        foreach (self::$settings as $settingsModelName => $settingsManager) {
             $settingsModelArray[$settingsModelName] = $settingsManager->getModel();
         }
 

@@ -38,11 +38,11 @@ class Login extends LayoutSingleton
      */
     public function getResources()
     {
-        $this->getAssetFactory()->add('Background', 'Default', 'Images/6.jpg');
-        $this->getAssetFactory()->add('Logo', 'Default', 'Images/Uiot_final.svg');
-        $this->getAssetFactory()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
-        $this->getAssetFactory()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAssetFactory()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAsset()->add('Background', 'Default', 'Images/6.jpg');
+        $this->getAsset()->add('Logo', 'Default', 'Images/Uiot_final.svg');
+        $this->getAsset()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
+        $this->getAsset()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
+        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
     }
 
     /**
@@ -58,8 +58,8 @@ class Login extends LayoutSingleton
      */
     public function setTemplates()
     {
-        $this->getTemplateFactory()->setPath('Login');
-        $this->getTemplateFactory()->addTemplate('Layouts/Login.php');
+        $this->getTemplate()->setPath('Login');
+        $this->getTemplate()->add('Layouts/Login.php');
     }
 
     /**
@@ -69,6 +69,6 @@ class Login extends LayoutSingleton
      */
     public function showLayout()
     {
-        return $this->getTemplateFactory()->returnTemplates();
+        return $this->getTemplate()->get();
     }
 }

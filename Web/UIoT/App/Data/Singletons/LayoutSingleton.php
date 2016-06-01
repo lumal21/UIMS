@@ -52,7 +52,7 @@ class LayoutSingleton extends LayoutModel
      *
      * @return mixed|void
      */
-    public static function executeLayout()
+    public static function execute()
     {
         static::getInstance()->getResources();
 
@@ -70,7 +70,7 @@ class LayoutSingleton extends LayoutModel
      */
     public static function getInstance()
     {
-        if(null === self::$layoutInstance) {
+        if (null === self::$layoutInstance) {
             self::$layoutInstance = new static;
         }
 
@@ -82,9 +82,9 @@ class LayoutSingleton extends LayoutModel
      *
      * @return AssetFactory
      */
-    public function getAssetFactory()
+    public function getAsset()
     {
-        if(null === $this->assetFactory) {
+        if (null === $this->assetFactory) {
             $this->assetFactory = new AssetFactory;
         }
 
@@ -96,9 +96,9 @@ class LayoutSingleton extends LayoutModel
      *
      * @return TemplateFactory
      */
-    public function getTemplateFactory()
+    public function getTemplate()
     {
-        if(null === $this->templateFactory) {
+        if (null === $this->templateFactory) {
             $this->templateFactory = new TemplateFactory;
         }
 

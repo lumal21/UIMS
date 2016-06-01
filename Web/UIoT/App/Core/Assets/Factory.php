@@ -53,7 +53,6 @@ final class Factory
      *
      * @param string $assetFolder
      * @param string $assetName
-     *
      * @return string
      */
     public function getPath($assetFolder, $assetName)
@@ -74,7 +73,7 @@ final class Factory
     }
 
     /**
-     * Create Asset and Return it Contents
+     * Get an Asset by Asset name
      *
      * @param string $assetName
      * @return AssetInterface
@@ -85,7 +84,7 @@ final class Factory
     }
 
     /**
-     * Return Asset
+     * Dump an Asset Content with Content-Type
      *
      * @param string $assetFileName
      * @return mixed Asset Content

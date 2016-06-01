@@ -32,7 +32,7 @@ use UIoT\App\Data\Models\Settings\RaiseSettingsModel;
  * Class RaiseRequestManager
  * @package UIoT\App\Core\Communication\Requesting
  */
-class RaiseRequestManager
+class RaiseRequest
 {
     /**
      * @var RaiseSettingsModel
@@ -97,7 +97,7 @@ class RaiseRequestManager
      * @param string $url
      * @return mixed
      */
-    public static function doGetRequest($url)
+    public static function get($url)
     {
         RequestTemplateManager::setRequestMethod(Http::GET);
 
@@ -121,7 +121,7 @@ class RaiseRequestManager
      * @param string $url
      * @return mixed
      */
-    public static function doPostRequest($url)
+    public static function post($url)
     {
         RequestTemplateManager::setRequestMethod(Http::POST);
 
@@ -134,7 +134,7 @@ class RaiseRequestManager
      * @param string $url
      * @return mixed
      */
-    public static function doPutRequest($url)
+    public static function put($url)
     {
         RequestTemplateManager::setRequestMethod(Http::PUT);
 

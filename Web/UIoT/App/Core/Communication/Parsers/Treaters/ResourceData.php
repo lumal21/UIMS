@@ -22,16 +22,16 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
-use UIoT\App\Core\Communication\Parsers\DataTreater;
-use UIoT\App\Core\Communication\Parsers\Handlers\RaiseCodeMessageHandler;
-use UIoT\App\Core\Communication\Requesting\RequestParserMethods;
+use JsonMapper;
+use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Data\Models\Parsers\ResourceObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class ResourceObjectTreater
+ * Class ResourceData
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class ResourceObjectTreater extends RequestSingleton
+class ResourceData extends RequestSingleton
 {
     /**
      * @var RequestSingleton
@@ -39,17 +39,17 @@ class ResourceObjectTreater extends RequestSingleton
     protected static $requestInstance = null;
 
     /**
-     * Parse Request Data or Do Request
+     * Check if Response is a Valid Array Data
      *
-     * @param mixed $requestContent
+     * @param mixed $data
      * @return void
      */
-    public function parse($requestContent)
+    public function parse($data)
     {
-        if(is_object($requestContent)) {
-            RequestParserMethods::parseResponseWithRequestStatus(RaiseCodeMessageHandler::getInstance(), $this,
-                DataTreater::generateResponseCode($requestContent, ['code' => '404',
-                    'message' => 'The requested resource isn\'t a valid RAISE resource.']));
+        if (is_array($data)) {
+            RequestParser::setCustomData($this, (new JsonMapper())->mapArray($data, array(), new ResourceObject));
+        } else {
+            RequestParser::setCustomStatus($this, true);
         }
     }
 }

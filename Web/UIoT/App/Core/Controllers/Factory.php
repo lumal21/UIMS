@@ -51,7 +51,7 @@ final class Factory
      */
     public static function get($controllerName)
     {
-        return self::callMethod($controllerName, 'getInstance');
+        return self::call($controllerName, 'getInstance');
     }
 
     /**
@@ -85,7 +85,7 @@ final class Factory
      * @param string $controllerMethod
      * @return mixed
      */
-    public static function callMethod($controllerName, $controllerMethod)
+    public static function call($controllerName, $controllerMethod)
     {
         return forward_static_call(['UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName), $controllerMethod]);
     }

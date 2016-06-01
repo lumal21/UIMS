@@ -25,10 +25,10 @@ namespace UIoT\App\Core\Communication\Requesting;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class RequestParserMethods
+ * Class RequestParser
  * @package UIoT\App\Core\Communication\Requesting
  */
-abstract class RequestParserMethods
+abstract class RequestParser
 {
     /**
      * Set Request Response Data ans Set Request Job Status, and return Request
@@ -38,9 +38,9 @@ abstract class RequestParserMethods
      * @param bool $responseStatus
      * @return RequestSingleton
      */
-    public static function setCustomResponseDataWithStatus(RequestSingleton $request, $responseData, $responseStatus)
+    public static function setCustomResponse(RequestSingleton $request, $responseData, $responseStatus)
     {
-        self::setCustomJobStatus(self::setCustomResponseData($request, $responseData), $responseStatus);
+        self::setCustomStatus(self::setCustomData($request, $responseData), $responseStatus);
 
         return $request;
     }
@@ -52,7 +52,7 @@ abstract class RequestParserMethods
      * @param bool $responseStatus
      * @return RequestSingleton
      */
-    public static function setCustomJobStatus(RequestSingleton $response, $responseStatus)
+    public static function setCustomStatus(RequestSingleton $response, $responseStatus)
     {
         $response->setStatus($responseStatus);
 
@@ -66,7 +66,7 @@ abstract class RequestParserMethods
      * @param mixed $responseData
      * @return RequestSingleton
      */
-    public static function setCustomResponseData(RequestSingleton $request, $responseData)
+    public static function setCustomData(RequestSingleton $request, $responseData)
     {
         $request->setData($responseData);
 
@@ -79,7 +79,7 @@ abstract class RequestParserMethods
      * @param RequestSingleton $request
      * @return bool
      */
-    public static function getJobStatus(RequestSingleton $request)
+    public static function getStatus(RequestSingleton $request)
     {
         return $request->getStatus();
     }
@@ -91,9 +91,9 @@ abstract class RequestParserMethods
      * @param RequestSingleton $response
      * @return bool
      */
-    public static function getJobStatusWithResponse(RequestSingleton $request, RequestSingleton $response)
+    public static function checkResponse(RequestSingleton $request, RequestSingleton $response)
     {
-        self::setResponseData($request, $response);
+        self::setData($request, $response);
 
         return $request->getStatus();
     }
@@ -105,7 +105,7 @@ abstract class RequestParserMethods
      * @param RequestSingleton $response
      * @return RequestSingleton
      */
-    public static function setResponseData(RequestSingleton $request, RequestSingleton $response)
+    public static function setData(RequestSingleton $request, RequestSingleton $response)
     {
         $response->setData($request->getData());
 
@@ -120,11 +120,11 @@ abstract class RequestParserMethods
      * @param mixed $arguments
      * @return RequestSingleton
      */
-    public static function parseResponseWithRequestStatus(RequestSingleton $request, RequestSingleton $response, $arguments)
+    public static function parseRequest(RequestSingleton $request, RequestSingleton $response, $arguments)
     {
-        self::setResponseData(self::parseResponse($request, $response, $arguments), $response);
+        self::setData(self::parseResponse($request, $response, $arguments), $response);
 
-        self::setJobStatus($request, $response);
+        self::setStatus($request, $response);
 
         return $request;
     }
@@ -139,7 +139,7 @@ abstract class RequestParserMethods
      */
     public static function parseResponse(RequestSingleton $request, RequestSingleton $response, $arguments)
     {
-        self::setResponseData(self::parseRequest($request, $arguments), $response);
+        self::setData(self::parse($request, $arguments), $response);
 
         return $request;
     }
@@ -151,7 +151,7 @@ abstract class RequestParserMethods
      * @param mixed $arguments
      * @return RequestSingleton
      */
-    public static function parseRequest(RequestSingleton $request, $arguments = null)
+    public static function parse(RequestSingleton $request, $arguments = null)
     {
         $request->parse($arguments);
 
@@ -165,24 +165,9 @@ abstract class RequestParserMethods
      * @param RequestSingleton $response
      * @return RequestSingleton
      */
-    public static function setJobStatus(RequestSingleton $request, RequestSingleton $response)
+    public static function setStatus(RequestSingleton $request, RequestSingleton $response)
     {
         $response->setStatus($request->getStatus());
-
-        return $request;
-    }
-
-    /**
-     * Parse Request and set Response Jobs Status, and return Request
-     *
-     * @param RequestSingleton $request
-     * @param mixed $arguments
-     * @param bool $responseStatus
-     * @return RequestSingleton
-     */
-    public static function parseResponseWithStatus(RequestSingleton $request, $arguments, $responseStatus)
-    {
-        self::setCustomJobStatus(self::parseRequest($request, $arguments), $responseStatus);
 
         return $request;
     }
@@ -194,9 +179,9 @@ abstract class RequestParserMethods
      * @param mixed $arguments
      * @return RequestSingleton
      */
-    public static function parseRequestWithResponse(RequestSingleton $request, $arguments)
+    public static function parseData(RequestSingleton $request, $arguments)
     {
-        self::setResponseData(self::parseRequest($request, $arguments), $request);
+        self::setData(self::parse($request, $arguments), $request);
 
         return $request;
     }

@@ -69,20 +69,9 @@ final class Init
         (new Core\Communication\Sessions\Manager);
 
         /* start raise */
-        (new Core\Communication\Requesting\RaiseRequestManager);
+        (new Core\Communication\Requesting\RaiseRequest);
 
         /* start router */
         (new Core\Communication\Routing\Router);
-    }
-
-    /**
-     * It's unnecessary but we will do that anyway
-     * Forces all Cycle Collections (\GC)
-     * Reason: The CMS is called async-times, Force all Process terminate is good.
-     */
-    public function __destruct()
-    {
-        /* force gc collect */
-        gc_collect_cycles();
     }
 }

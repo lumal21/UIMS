@@ -37,7 +37,7 @@ final class Register
     /**
      * Prepare settings factory
      */
-    public static function prepareSettings()
+    public static function prepare()
     {
         $settingsModels = [
             new ExceptionSettingsModel,
@@ -55,20 +55,20 @@ final class Register
      * @param string $settingBlockName
      * @param array $settingsArray
      */
-    public static function addSettingsBlock($settingBlockName, array $settingsArray)
+    public static function add($settingBlockName, array $settingsArray)
     {
-        Factory::populateModel($settingBlockName, $settingsArray);
+        Factory::populate($settingBlockName, $settingsArray);
     }
 
     /**
      * Store Settings Constant
      */
-    public static function storeSettings()
+    public static function store()
     {
         Constants::addJson
         (
             'SETTINGS',
-            Factory::getAllModels(),
+            Factory::getAll(),
             JSON_FORCE_OBJECT
         );
     }
@@ -81,7 +81,7 @@ final class Register
      */
     public static function get($settingVariableName = '')
     {
-        return self::getSettings()->$settingVariableName;
+        return self::getAll()->{$settingVariableName};
     }
 
     /**
@@ -89,7 +89,7 @@ final class Register
      *
      * @return object
      */
-    public static function getSettings()
+    public static function getAll()
     {
         return Constants::getJson('SETTINGS');
     }
