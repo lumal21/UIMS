@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Communication\Methods;
 
 use Httpful\Http;
-use UIoT\App\Core\Communication\Parsers\Treaters\SpecificItem;
+use UIoT\App\Core\Communication\Parsers\Treaters\ResourceItem;
 use UIoT\App\Core\Communication\Requesting\RaiseRequest;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Models\Parsers\MethodModel;
@@ -49,6 +49,6 @@ class Put extends MethodModel
             RaiseRequest::put("{$data['name']}?" . Constants::get('QUERY_STRING') . '&' . http_build_query(Constants::getJson('HTTP_PHP_POST')));
         }
 
-        return parent::setData(RequestParser::parse(SpecificItem::getInstance(), RaiseRequest::get("{$data['name']}?" . Constants::get('QUERY_STRING'))));
+        return parent::setData(RequestParser::parse(ResourceItem::getInstance(), RaiseRequest::get("{$data['name']}?" . Constants::get('QUERY_STRING'))));
     }
 }

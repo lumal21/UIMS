@@ -23,11 +23,11 @@
 namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 /**
- * Class NodeProperty
+ * Class Properties
  *
  * @package UIoT\App\Core\Communication\Routing\Nodes
  */
-final class NodeProperty
+final class Properties
 {
     /**
      * @var string

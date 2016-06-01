@@ -35,12 +35,7 @@ use UIoT\App\Helpers\Manipulation\Constants;
 class ResponseAck extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a Response Acknowledge
      *
      * @param mixed $data
      * @return void

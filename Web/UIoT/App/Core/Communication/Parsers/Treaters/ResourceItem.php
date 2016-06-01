@@ -28,18 +28,13 @@ use UIoT\App\Core\Communication\Requesting\RequestParser;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
- * Class SpecificItem
+ * Class ResourceItem
  * @package UIoT\App\Core\Communication\Parsers\Treaters
  */
-class SpecificItem extends RequestSingleton
+class ResourceItem extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a Resource Item
      *
      * @param array $data
      * @return void

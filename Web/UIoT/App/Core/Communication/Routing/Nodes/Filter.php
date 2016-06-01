@@ -20,13 +20,13 @@
  * @copyright University of Brasília
  */
 
-namespace UIoT\App\Core\Communication\Routing\Nodes\Filters;
+namespace UIoT\App\Core\Communication\Routing\Nodes;
 
 /**
- * Class NodeFilter
- * @package UIoT\App\Core\Communication\Routing\Nodes\Filters
+ * Class Filter
+ * @package UIoT\App\Core\Communication\Routing\Nodes
  */
-final class NodeFilter
+final class Filter
 {
     /**
      * @var string
@@ -41,19 +41,19 @@ final class NodeFilter
     /**
      * @var string
      */
-    public $comparsionExpression;
+    public $comparisonExpression;
 
     /**
      * NodeFilterStructure constructor.
      *
      * @param string $parameterName
      * @param string $parameterValue
-     * @param string $comparsionExpression
+     * @param string $comparisonExpression
      */
-    public function __construct($parameterName, $parameterValue, $comparsionExpression)
+    public function __construct($parameterName, $parameterValue, $comparisonExpression)
     {
         $this->parameterName = $parameterName;
         $this->parameterValue = $parameterValue;
-        $this->comparsionExpression = $comparsionExpression;
+        $this->comparisonExpression = $comparisonExpression;
     }
 }

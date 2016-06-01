@@ -34,12 +34,7 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class ResourceObject extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a Resource Object
      *
      * @param mixed $data
      * @return void

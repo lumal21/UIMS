@@ -23,7 +23,6 @@
 namespace UIoT\App\Helpers\Visual;
 
 use Mihaeu\HtmlFormatter;
-use UIoT\App\Helpers\Manipulation\Strings;
 
 /**
  * Class Format
@@ -64,7 +63,7 @@ final class Format
      */
     public static function format($code = '')
     {
-        return Strings::removeEmptyLines(HtmlFormatter::format($code));
+        return HtmlFormatter::format($code);
     }
 
     /**

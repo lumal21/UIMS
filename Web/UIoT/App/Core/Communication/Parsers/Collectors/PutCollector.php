@@ -36,28 +36,23 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class PutCollector extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a PUT Request
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
+     * @param array $data
      * @return void
      */
-    public function parse($resourceData)
+    public function parse($data)
     {
-        $get = (new Get)->setInput($this)->setData($resourceData);
-        $put = (new Put)->setInput($this)->setData($resourceData);
+        $get = (new Get)->setInput($this)->setData($data);
+        $put = (new Put)->setInput($this)->setData($data);
 
         if (RequestParser::checkResponse($put->getResponse(), $this))
             return;
 
         RequestParser::parseRequest(FilledForm::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $get->getResponse()->getData(),
+            'resource' => $data['name'], 'keys' => $get->getResponse()->getData(),
             'values' => $put->getResponse()->getData()]);
     }
 }

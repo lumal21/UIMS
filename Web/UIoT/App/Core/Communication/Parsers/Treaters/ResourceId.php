@@ -32,12 +32,7 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class ResourceId extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a Resource Id
      *
      * @param mixed $data
      * @return void

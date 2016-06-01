@@ -35,27 +35,22 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class GetCollector extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a GET Request
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
+     * @param array $data
      * @return void
      */
-    public function parse($resourceData)
+    public function parse($data)
     {
-        $get = (new Get)->setInput($this)->setData($resourceData);
+        $get = (new Get)->setInput($this)->setData($data);
 
         if (RequestParser::checkResponse($get->getResponse(), $this))
             return;
 
         RequestParser::parseRequest(DataTable::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $get->getResponse()->getData(),
-            'values' => RaiseRequest::get($resourceData['name'])]);
+            'resource' => $data['name'], 'keys' => $get->getResponse()->getData(),
+            'values' => RaiseRequest::get($data['name'])]);
     }
 }

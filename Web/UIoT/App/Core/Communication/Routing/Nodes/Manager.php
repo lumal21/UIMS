@@ -26,15 +26,28 @@ use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 use UIoT\App\Data\Models\Routing\NodeModel;
 
 /**
- * Class NodeIndexer
+ * Class Manager
  * @package UIoT\App\Core\Communication\Routing\Path
  */
-final class NodeIndexer
+final class Manager
 {
     /**
      * @var NodeModel[]
      */
-    public $nodes = [];
+    private $nodeList = [];
+
+    /**
+     * @var Manipulation
+     */
+    private $nodeManipulation;
+
+    /**
+     * Create a Node Index and Node Manipulation
+     */
+    public function __construct()
+    {
+        $this->nodeManipulation = new Manipulation();
+    }
 
     /**
      * Add a Node and return int Node Id
@@ -44,7 +57,7 @@ final class NodeIndexer
      */
     public function addNode(array $nodeItemArray)
     {
-        $this->nodes[$this->getNodeSize() + 1] = new NodeModel($this->getNodeSize() + 1, $nodeItemArray['path'],
+        $this->nodeList[$this->getNodeSize() + 1] = new NodeModel($this->getNodeSize() + 1, $nodeItemArray['path'],
             $nodeItemArray['callback'], $nodeItemArray['priority'],
             $nodeItemArray['method'], $nodeItemArray['group']);
     }
@@ -56,7 +69,7 @@ final class NodeIndexer
      */
     private function getNodeSize()
     {
-        return sizeof($this->getNodes()) - 1;
+        return sizeof($this->getNodeList()) - 1;
     }
 
     /**
@@ -64,19 +77,19 @@ final class NodeIndexer
      *
      * @return NodeModel[]
      */
-    public function getNodes()
+    public function getNodeList()
     {
-        return $this->nodes;
+        return $this->nodeList;
     }
 
     /**
      * Override Nodes
      *
-     * @param NodeModel[] $nodes
+     * @param NodeModel[] $nodeList
      */
-    public function setNodes($nodes)
+    public function setNodeList($nodeList)
     {
-        $this->nodes = $nodes;
+        $this->nodeList = $nodeList;
     }
 
     /**
@@ -112,10 +125,10 @@ final class NodeIndexer
     public function sort()
     {
         /* first sort the array by priority */
-        usort($this->nodes, [$this, 'sortNodes']);
+        usort($this->nodeList, [$this, 'sortNodes']);
 
         /* update nodes ids also in the Node object and update the Node array */
-        $this->setNodes(array_map([$this, 'updateNodeIds'], array_keys($this->nodes), $this->nodes));
+        $this->setNodeList(array_map([$this, 'updateNodeIds'], array_keys($this->nodeList), $this->nodeList));
     }
 
     /**
@@ -126,7 +139,7 @@ final class NodeIndexer
      */
     public function getNodeByPath($path)
     {
-        return NodeManipulation::nodeArrayPropertySearch($this->getNodes(), 'Path', $path);
+        return $this->nodeManipulation->nodeArrayPropertySearch($this->getNodeList(), 'Path', $path);
     }
 
     /**
@@ -137,7 +150,7 @@ final class NodeIndexer
      */
     public function getNodeById($nodeId)
     {
-        return NodeManipulation::nodeArrayPropertySearch($this->getNodes(), 'NodeId', $nodeId);
+        return $this->nodeManipulation->nodeArrayPropertySearch($this->getNodeList(), 'NodeId', $nodeId);
     }
 
     /**
@@ -161,7 +174,7 @@ final class NodeIndexer
      */
     private function getNodesByParameter($parameterName, $parameterValue, $expression = '==')
     {
-        return NodeManipulation::getArrayByLogicComparison($this->getNodes(),
+        return $this->nodeManipulation->getArrayByLogicComparison($this->getNodeList(),
             $parameterName, $parameterValue, $expression);
     }
 
@@ -185,7 +198,7 @@ final class NodeIndexer
      */
     private function getNodesByCallBackParameter($parameterName, $parameterValue, $expression = '==')
     {
-        return NodeManipulation::getArrayByLogicComparison($this->getNodesCallBack(),
+        return $this->nodeManipulation->getArrayByLogicComparison($this->getNodesCallBack(),
             $parameterName, $parameterValue, $expression);
     }
 
@@ -198,7 +211,7 @@ final class NodeIndexer
     {
         return array_map(function (NodeModel $node) {
             return $node->getCallBack();
-        }, $this->getNodes());
+        }, $this->getNodeList());
     }
 
     /**
@@ -218,7 +231,7 @@ final class NodeIndexer
      */
     public function getLowestNodePriorityId()
     {
-        return min((!empty($o = $this->getNodesParameterByParameter('Priority')) ? $o : [1]));
+        return min((!empty($node = $this->getNodesParameterByParameter('Priority')) ? $node : [1]));
     }
 
     /**
@@ -229,7 +242,7 @@ final class NodeIndexer
      */
     private function getNodesParameterByParameter($parameterName)
     {
-        return NodeManipulation::getArrayObjectProperty($this->getNodes(), $parameterName);
+        return $this->nodeManipulation->getArrayObjectProperty($this->getNodeList(), $parameterName);
     }
 
     /**
@@ -240,7 +253,7 @@ final class NodeIndexer
      */
     public function nodeExistsById($nodeId)
     {
-        return (bool)NodeManipulation::nodeArrayPropertySearch($this->getNodes(), 'NodeId', $nodeId);
+        return (bool)$this->nodeManipulation->nodeArrayPropertySearch($this->getNodeList(), 'NodeId', $nodeId);
     }
 
     /**
@@ -250,7 +263,7 @@ final class NodeIndexer
      */
     public function removeNodesFromArray(NodeModel $edge)
     {
-        $this->setNodes($this->getNodesByCallBack($this->getNodes(), $edge->getCallBack()));
+        $this->setNodeList($this->getNodesByCallBack($this->getNodeList(), $edge->getCallBack()));
     }
 
     /**
@@ -262,8 +275,8 @@ final class NodeIndexer
      */
     public function getNodesByCallBack(array $array, $value)
     {
-        return array_filter($array, function (NodeModel $a) use ($value) {
-            return get_class($a->getCallBack()) != get_class($value);
+        return array_filter($array, function (NodeModel $node) use ($value) {
+            return get_class($node->getCallBack()) != get_class($value);
         });
     }
 

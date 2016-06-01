@@ -59,7 +59,7 @@ final class Router extends RouterHelper
     private function prepare()
     {
         /* serialize call backs */
-        $this->getPathFinder()->serializeCallBacks($this->getPathFinder()->getNodeIndexer()->getNodes());
+        $this->getPathFinder()->serializeCallBacks($this->getPathFinder()->getNodeIndexer()->getNodeList());
 
         /* mount router */
         $this->getPathFinder()->mountRouter($this->getRouter());

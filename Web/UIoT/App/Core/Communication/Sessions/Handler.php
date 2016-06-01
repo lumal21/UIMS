@@ -36,82 +36,43 @@ final class Handler extends SessionHandler
     private $key;
 
     /**
-     * @var int
-     */
-    private $timeOut;
-
-    /**
      * Initialize Session Handler
      *
      * @param string $key (24 letters)
-     * @param int $timeOut
      */
-    public function __construct($key, $timeOut)
+    public function __construct($key)
     {
         $this->key = $key;
-        $this->timeOut = $timeOut;
     }
 
     /**
      * Read Session
      *
-     * @param string $id
+     * @param string $sessionId
      * @return string
      */
-    public function read($id)
+    public function read($sessionId)
     {
         /* read parent data */
-        $data = parent::read($id);
-
-        /* check if session timed-out, if yes, erase session */
-        !self::checkTimeOut($id) || Indexer::removeKey($id);
+        $data = parent::read($sessionId);
 
         /* return session data */
         return mcrypt_decrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
     }
 
     /**
-     * Check if Time out is Gotta
-     *
-     * @param string $id
-     *
-     * @return boolean
-     */
-    private function checkTimeOut($id)
-    {
-        return parent::read("time-{$id}") > time();
-    }
-
-    /**
      * Write Session
      *
-     * @param string $id
+     * @param string $sessionId
      * @param string $data
      * @return boolean
      */
-    public function write($id, $data)
+    public function write($sessionId, $data)
     {
         /* encrypt data */
         $data = mcrypt_encrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB);
 
-        /* store time out */
-        self::timeOut($id);
-
         /* write session */
-        return parent::write($id, $data);
-    }
-
-    /**
-     * Put a Time Out
-     *
-     * @param string $id
-     */
-    private function timeOut($id)
-    {
-        /* create time string */
-        $time = time() + $this->timeOut;
-
-        /* write the time */
-        parent::write("time-{$id}", $time);
+        return parent::write($sessionId, $data);
     }
 }

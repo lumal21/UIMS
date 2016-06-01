@@ -35,27 +35,22 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 class PostCollector extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Parse a POST Request
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
-     * @param array $resourceData
+     * @param array $data
      * @return void
      */
-    public function parse($resourceData)
+    public function parse($data)
     {
-        $get = (new Get)->setInput($this)->setData($resourceData);
-        $post = (new Post)->setInput($this)->setData($resourceData);
+        $get = (new Get)->setInput($this)->setData($data);
+        $post = (new Post)->setInput($this)->setData($data);
 
         if (RequestParser::checkResponse($post->getResponse(), $this))
             return;
 
         RequestParser::parseRequest(EmptyForm::getInstance(), $this, [
-            'resource' => $resourceData['name'], 'keys' => $get->getResponse()->getData()]);
+            'resource' => $data['name'], 'keys' => $get->getResponse()->getData()]);
     }
 }

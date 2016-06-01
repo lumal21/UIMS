@@ -33,12 +33,7 @@ use UIoT\App\Helpers\Visual\Html;
 class RaiseCode extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Create a RAISE Code
      *
      * @param mixed $data
      * @return void

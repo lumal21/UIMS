@@ -33,7 +33,7 @@ class RequestSingleton extends RequestModel
     /**
      * @var RequestSingleton
      */
-    private static $requestInstance = null;
+    protected static $requestInstance = null;
 
     /**
      * Return Instance of Controller
@@ -47,21 +47,5 @@ class RequestSingleton extends RequestModel
         }
 
         return static::$requestInstance;
-    }
-
-    /**
-     * Abstract and Singleton Protection
-     */
-    protected function __clone()
-    {
-        /* not implemented */
-    }
-
-    /**
-     * Abstract and Singleton Protection
-     */
-    protected function __wakeup()
-    {
-        /* not implemented */
     }
 }

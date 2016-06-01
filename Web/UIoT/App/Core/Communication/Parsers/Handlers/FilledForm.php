@@ -37,12 +37,7 @@ use UIoT\App\Helpers\Visual\Forms;
 class FilledForm extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Create a Filled Form
      *
      * @param mixed $data
      * @return void

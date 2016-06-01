@@ -30,8 +30,5 @@ use UIoT\App\Data\Singletons\RequestSingleton;
  */
 class DeleteCollector extends RequestSingleton
 {
-    /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
+
 }

@@ -36,12 +36,7 @@ use UIoT\App\Helpers\Visual\Html;
 class DataTable extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Create a Data Table
      *
      * @param mixed $data
      * @return void

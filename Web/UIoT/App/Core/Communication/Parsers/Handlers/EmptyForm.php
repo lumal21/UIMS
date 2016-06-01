@@ -37,12 +37,7 @@ use UIoT\App\Helpers\Visual\Forms;
 class EmptyForm extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Create an Empty Form
      *
      * @param mixed $data
      * @return void

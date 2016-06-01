@@ -23,7 +23,7 @@
 namespace UIoT\App\Core\Communication\Routing\Path;
 
 use Bramus\Router\Router as IRouter;
-use UIoT\App\Core\Communication\Routing\Nodes\NodeIndexer;
+use UIoT\App\Core\Communication\Routing\Nodes\Manager;
 use UIoT\App\Data\Models\Routing\NodeModel;
 
 /**
@@ -33,7 +33,7 @@ use UIoT\App\Data\Models\Routing\NodeModel;
 final class PathFinder
 {
     /**
-     * @var NodeIndexer
+     * @var Manager
      */
     private $nodeIndexer = null;
 
@@ -50,7 +50,7 @@ final class PathFinder
      */
     private function mountNodeIndexer()
     {
-        $this->setNodeIndexer(new NodeIndexer);
+        $this->setNodeIndexer(new Manager);
     }
 
     /**
@@ -93,7 +93,7 @@ final class PathFinder
     /**
      * Return Node Indexer Instance
      *
-     * @return NodeIndexer
+     * @return Manager
      */
     public function getNodeIndexer()
     {
@@ -103,9 +103,9 @@ final class PathFinder
     /**
      * Set Node Indexer Instance
      *
-     * @param NodeIndexer $nodeIndexer
+     * @param Manager $nodeIndexer
      */
-    public function setNodeIndexer(NodeIndexer $nodeIndexer)
+    public function setNodeIndexer(Manager $nodeIndexer)
     {
         $this->nodeIndexer = $nodeIndexer;
     }

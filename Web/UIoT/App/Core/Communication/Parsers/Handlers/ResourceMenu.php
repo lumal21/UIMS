@@ -37,12 +37,7 @@ use UIoT\App\Helpers\Visual\Menu;
 class ResourceMenu extends RequestSingleton
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
-     * Parse Request Data or Do Request
+     * Create a Resource Menu
      *
      * @param mixed $data
      * @return void
