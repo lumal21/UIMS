@@ -31,21 +31,18 @@ use UIoT\App\Data\Models\Requesting\RequestModel;
 class RequestSingleton extends RequestModel
 {
     /**
-     * @var RequestSingleton
-     */
-    protected static $requestInstance = null;
-
-    /**
      * Return Instance of Controller
      *
      * @return RequestSingleton
      */
     public static function getInstance()
     {
-        if (null === static::$requestInstance) {
-            static::$requestInstance = new static;
+        static $instance = null;
+
+        if (null === $instance) {
+            $instance = new static;
         }
 
-        return static::$requestInstance;
+        return $instance;
     }
 }
