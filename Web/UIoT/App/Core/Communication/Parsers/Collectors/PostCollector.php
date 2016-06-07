@@ -39,8 +39,6 @@ class PostCollector extends RequestSingleton
     /**
      * Parse a POST Request
      *
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     *
      * @param array $data
      * @return void
      */

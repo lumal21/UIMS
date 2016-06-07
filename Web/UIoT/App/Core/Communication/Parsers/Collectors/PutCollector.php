@@ -31,15 +31,13 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 /**
  * Class PutCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
- * 
+ *
  * @SuppressWarnings(PHPMD)
  */
 class PutCollector extends RequestSingleton
 {
     /**
      * Parse a PUT Request
-     *
-     * @SuppressWarnings(PHPMD.StaticAccess)
      *
      * @param array $data
      * @return void
