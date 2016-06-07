@@ -31,6 +31,8 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 /**
  * Class PostCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class PostCollector extends RequestSingleton
 {

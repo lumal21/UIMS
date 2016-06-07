@@ -31,6 +31,8 @@ use UIoT\App\Helpers\Manipulation\Constants;
 /**
  * Class ControllerNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 final class ControllerNode extends NodeHandlerModel
 {

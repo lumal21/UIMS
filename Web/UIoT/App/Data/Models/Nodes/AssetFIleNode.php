@@ -32,6 +32,8 @@ use UIoT\App\Helpers\Manipulation\Strings;
 /**
  * Class AssetFileNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class AssetFileNode extends NodeHandlerModel
 {

@@ -32,6 +32,8 @@ use UIoT\App\Helpers\Manipulation\Arrays;
 /**
  * Class ResourceActionPageNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 final class ResourceActionNode extends NodeHandlerModel
 {

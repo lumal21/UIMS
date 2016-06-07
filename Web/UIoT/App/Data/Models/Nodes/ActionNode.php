@@ -30,6 +30,8 @@ use UIoT\App\Data\Models\Routing\NodeHandlerModel;
 /**
  * Class ModelNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 final class ActionNode extends NodeHandlerModel
 {

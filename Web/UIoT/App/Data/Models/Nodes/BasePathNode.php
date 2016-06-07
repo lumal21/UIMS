@@ -30,6 +30,8 @@ use UIoT\App\Helpers\Manipulation\Constants;
 /**
  * Class BasePathNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 final class BasePathNode extends NodeHandlerModel
 {

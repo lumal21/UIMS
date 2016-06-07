@@ -31,6 +31,8 @@ use UIoT\App\Helpers\Manipulation\Constants;
 /**
  * Class LayoutNode
  * @package UIoT\App\Data\Models\Nodes
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class LayoutNode extends NodeHandlerModel
 {

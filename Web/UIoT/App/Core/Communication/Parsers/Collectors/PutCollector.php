@@ -22,7 +22,6 @@
 
 namespace UIoT\App\Core\Communication\Parsers\Collectors;
 
-
 use UIoT\App\Core\Communication\Methods\Get;
 use UIoT\App\Core\Communication\Methods\Put;
 use UIoT\App\Core\Communication\Parsers\Handlers\FilledForm;
@@ -32,6 +31,8 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 /**
  * Class PutCollector
  * @package UIoT\App\Core\Communication\Parsers\Collectors
+ * 
+ * @SuppressWarnings(PHPMD)
  */
 class PutCollector extends RequestSingleton
 {
