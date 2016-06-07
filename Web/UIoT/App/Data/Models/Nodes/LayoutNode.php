@@ -43,6 +43,6 @@ class LayoutNode extends NodeHandlerModel
     {
         $this->setStatus(Factory::exists($this->getPath()[0]));
 
-        !$this->getStatus() || $this->setData(Handler::go(new Render($this->getPath()[0], Constants::get('DEFAULT_ACTION'))));
+        !$this->getStatus() || $this->setData(Handler::show(new Render($this->getPath()[0], Constants::get('DEFAULT_ACTION'))));
     }
 }

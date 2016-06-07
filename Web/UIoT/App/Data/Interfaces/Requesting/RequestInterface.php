@@ -39,6 +39,8 @@ interface RequestInterface
     /**
      * Check if Job is Done
      *
+     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
+     *
      * @return boolean
      */
     function getStatus();

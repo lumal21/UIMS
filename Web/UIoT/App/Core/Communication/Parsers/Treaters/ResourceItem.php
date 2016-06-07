@@ -30,6 +30,8 @@ use UIoT\App\Data\Singletons\RequestSingleton;
 /**
  * Class ResourceItem
  * @package UIoT\App\Core\Communication\Parsers\Treaters
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class ResourceItem extends RequestSingleton
 {

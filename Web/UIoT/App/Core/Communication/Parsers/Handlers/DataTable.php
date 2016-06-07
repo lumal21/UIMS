@@ -47,7 +47,7 @@ class DataTable extends RequestSingleton
 
         foreach ($data['keys'] as $property) {
             /** @var $property PropertyObject */
-            $table->addLinkInteraction($property->PROP_FRIENDLY_NAME, "/{$data['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
+            $table->addLinkInteraction($property->PROP_NAME, "/{$data['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
             $table->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
         }
 

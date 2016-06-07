@@ -50,7 +50,7 @@ class RequestModel implements RequestInterface
     {
         $this->setStatus(true);
 
-        $this->setData(null);
+        $this->setData($data);
     }
 
     /**
@@ -77,6 +77,8 @@ class RequestModel implements RequestInterface
 
     /**
      * Check if Job is Done
+     *
+     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
      *
      * @return boolean
      */

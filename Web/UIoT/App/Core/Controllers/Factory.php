@@ -87,6 +87,6 @@ final class Factory
      */
     public static function call($controllerName, $controllerMethod)
     {
-        return forward_static_call(['UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName), $controllerMethod]);
+        return forward_static_call(['UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName, false), $controllerMethod]);
     }
 }

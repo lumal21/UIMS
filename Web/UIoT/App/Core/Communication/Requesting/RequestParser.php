@@ -76,6 +76,8 @@ abstract class RequestParser
     /**
      * Get Request Job Status and return Request
      *
+     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
+     *
      * @param RequestSingleton $request
      * @return bool
      */

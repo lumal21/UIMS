@@ -36,7 +36,7 @@ final class Handler
      * @param RenderInterface $render selected Render
      * @return string Render response
      */
-    public static function go(RenderInterface $render)
+    public static function show(RenderInterface $render)
     {
         return $render->showContent();
     }

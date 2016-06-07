@@ -59,7 +59,7 @@ class Strings
      */
     public static function toAction($string = '')
     {
-        return ('action' . self::toCamel($string));
+        return ('action' . self::toCamel($string, false));
     }
 
     /**
@@ -69,7 +69,7 @@ class Strings
      * @param bool $forceCamel
      * @return string
      */
-    public static function toCamel($string = '', $forceCamel = false)
+    public static function toCamel($string = '', $forceCamel)
     {
         if ($forceCamel) {
             $string = str_replace('_', ' ', $string);

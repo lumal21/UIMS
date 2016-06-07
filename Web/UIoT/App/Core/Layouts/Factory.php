@@ -62,6 +62,6 @@ final class Factory
      */
     public static function call($layoutName, $layoutMethod)
     {
-        return forward_static_call(['UIoT\App\Data\Layouts\\' . Strings::toCamel($layoutName), $layoutMethod]);
+        return forward_static_call(['UIoT\App\Data\Layouts\\' . Strings::toCamel($layoutName, false), $layoutMethod]);
     }
 }

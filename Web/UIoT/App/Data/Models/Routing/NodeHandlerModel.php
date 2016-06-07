@@ -108,6 +108,8 @@ class NodeHandlerModel implements NodeHandlerInterface
     /**
      * Get Result
      *
+     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
+     *
      * @return bool
      */
     public function getStatus()

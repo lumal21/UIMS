@@ -73,7 +73,7 @@ final class PathFinder
      * @param NodeModel|null $node
      * @param bool $recursively
      */
-    public function mountRouterEdges(IRouter $router, NodeModel $node, $recursively = true)
+    public function mountRouterEdges(IRouter $router, NodeModel $node, $recursively)
     {
         /** @var NodeModel $edge */
         foreach ($this->getNodeIndexer()->getNodesByGroup($node->getNodeGroup()) as $edge) {
@@ -120,7 +120,7 @@ final class PathFinder
     {
         /* mount the node edges */
         $router->mount($node->getPath(), function () use ($router, $node) {
-            $this->mountRouterEdges($router, $node);
+            $this->mountRouterEdges($router, $node, true);
         });
     }
 

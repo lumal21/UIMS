@@ -36,7 +36,7 @@ class Arrays
      */
     public static function toCamel($stringArray)
     {
-        return array_map(Strings::toCamel(), $stringArray);
+        return array_map('ucfirst', $stringArray);
     }
 
     /**
@@ -47,7 +47,7 @@ class Arrays
      */
     public static function toLower($stringArray)
     {
-        return array_map(Strings::toLower(), $stringArray);
+        return array_map('strtolower', $stringArray);
     }
 
     /**

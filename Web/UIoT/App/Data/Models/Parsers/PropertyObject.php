@@ -25,34 +25,28 @@ namespace UIoT\App\Data\Models\Parsers;
 /**
  * Class PropertyObject
  * @package UIoT\App\Data\Models\Parsers
+ *
+ * @SuppressWarnings(PHPMD)
  */
 class PropertyObject
 {
     /**
      * @var int Property Id
-     *
-     * @SuppressWarnings(PHPMD.CamelCasePropertyName)
      */
     public $ID = 0;
 
     /**
      * @var int Resource Id
-     *
-     * @SuppressWarnings(PHPMD.CamelCasePropertyName)
      */
     public $RSRC_ID = 0;
 
     /**
      * @var string Property Name
-     *
-     * @SuppressWarnings(PHPMD.CamelCasePropertyName)
      */
     public $PROP_NAME = '';
 
     /**
      * @var string Property Friendly Name
-     *
-     * @SuppressWarnings(PHPMD.CamelCasePropertyName)
      */
     public $PROP_FRIENDLY_NAME = '';
 }

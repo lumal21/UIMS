@@ -47,7 +47,7 @@ class Get extends MethodModel
         $resId = RequestParser::parse(ResourceId::getInstance(), RaiseRequest::get('resources?name=' . $data['name']));
 
         if (RequestParser::checkResponse($resId, $this->getInput()))
-            return $this;
+            return parent::setData($resId);
 
         $resProp = RequestParser::parse(ResourceProperties::getInstance(), RaiseRequest::get('properties?resource_id=' . $resId->getData()));
 

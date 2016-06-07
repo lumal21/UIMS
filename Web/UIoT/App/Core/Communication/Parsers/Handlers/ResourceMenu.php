@@ -39,6 +39,8 @@ class ResourceMenu extends RequestSingleton
     /**
      * Create a Resource Menu
      *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     *
      * @param mixed $data
      * @return void
      */

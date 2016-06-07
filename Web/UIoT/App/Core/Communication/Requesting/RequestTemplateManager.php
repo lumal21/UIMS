@@ -52,11 +52,11 @@ class RequestTemplateManager
      * Adjust Template to Some Options
      * (This will reset Request::$_template)
      *
-     * @param Request $r
+     * @param Request $request
      */
-    private static function adjustTemplate(Request $r)
+    private static function adjustTemplate(Request $request)
     {
-        RaiseRequest::setTemplate($r);
+        RaiseRequest::setTemplate($request);
     }
 
     /**

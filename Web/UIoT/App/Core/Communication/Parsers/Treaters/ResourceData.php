@@ -24,7 +24,7 @@ namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use JsonMapper;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
-use UIoT\App\Data\Models\Parsers\ResourceObject;
+use UIoT\App\Data\Models\Parsers\ResourceObject as ResourceObjectModel;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -41,9 +41,9 @@ class ResourceData extends RequestSingleton
      */
     public function parse($data)
     {
-        if (is_array($data)) {
-            RequestParser::setCustomData($this, (new JsonMapper())->mapArray($data, array(), new ResourceObject));
-        } else {
+        RequestParser::setCustomData($this, (new JsonMapper())->mapArray($data, array(), new ResourceObject));
+
+        if (!is_array($data)) {
             RequestParser::setCustomStatus($this, true);
         }
     }

@@ -24,6 +24,8 @@ namespace UIoT\App\Core\Communication\Sessions;
 /**
  * Class Storage
  * @package UIoT\App\Core\Communication\Sessions
+ *
+ * @SuppressWarnings(PHPMD.Superglobals)
  */
 final class Storage
 {
