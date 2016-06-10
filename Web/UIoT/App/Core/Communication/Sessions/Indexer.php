@@ -30,71 +30,55 @@ final class Indexer
     /**
      * Add SESSION key
      *
-     * @param string $keyName
-     * @param mixed|array|object|int|string|null $keyValue
+     * @param string $key
+     * @param mixed|array|object|int|string|null $value
      */
-    public static function addKey($keyName, $keyValue)
+    public static function add($key, $value)
     {
-        self::keyExists($keyName) || Manager::getStorage()->setSessionArrayKey($keyName, $keyValue);
+        self::exists($key) || Manager::getStorage()->set($key, $value);
     }
 
     /**
      * Check if SESSION key Exists
      *
-     * @param string $keyName
+     * @param string $key
      * @return bool
      */
-    public static function keyExists($keyName)
+    public static function exists($key)
     {
-        return array_key_exists($keyName, Manager::getStorage()->getSessionArray());
+        return array_key_exists($key, Manager::getStorage()->getAll());
     }
 
     /**
      * Remove SESSION key
      *
-     * @param string $keyName
+     * @param string $key
      */
-    public static function removeKey($keyName)
+    public static function remove($key)
     {
-        !self::keyExists($keyName) || Manager::getStorage()->removeSessionArrayKey($keyName);
-    }
-
-    /**
-     * Check if is needed to Update a SESSION key
-     *
-     * @param string $keyName
-     * @param $keyValue
-     * @return mixed
-     */
-    public static function updateKeyIfNeeded($keyName, $keyValue)
-    {
-        /* first check if exists, and if exists, check if value is different, if is, update value, else, do nothing */
-        (!self::keyExists($keyName) && self::getKeyValue($keyName) == $keyValue) || self::updateKey($keyName, $keyValue);
-
-        /* return value if exists, if not return only key value */
-        return self::keyExists($keyName) ? self::getKeyValue($keyName) : $keyValue;
+        !self::exists($key) || Manager::getStorage()->remove($key);
     }
 
     /**
      * Get SESSION key value
      *
      * Return Session Key Value
-     * @param string $keyName
+     * @param string $key
      * @return mixed
      */
-    public static function getKeyValue($keyName)
+    public static function get($key)
     {
-        return self::keyExists($keyName) ? Manager::getStorage()->getSessionArrayKey($keyName) : '';
+        return self::exists($key) ? Manager::getStorage()->get($key) : '';
     }
 
     /**
      * Update SESSION key value
      *
-     * @param $keyName
-     * @param $keyValue
+     * @param $key
+     * @param $value
      */
-    public static function updateKey($keyName, $keyValue)
+    public static function update($key, $value)
     {
-        Manager::getStorage()->setSessionArrayKey($keyName, $keyValue);
+        !self::exists($key) || Manager::getStorage()->set($key, $value);
     }
 }

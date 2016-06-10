@@ -32,33 +32,33 @@ final class Storage
     /**
      * Get Session Array Key
      *
-     * @param string $sessionKey
+     * @param string $key
      * @return array
      */
-    public function getSessionArrayKey($sessionKey = '')
+    public function get($key = '')
     {
-        return $_SESSION[$sessionKey];
+        return $_SESSION[$key];
     }
 
     /**
      * Remove Session Array Key
      *
-     * @param string $sessionArrayKey
+     * @param string $key
      */
-    public function removeSessionArrayKey($sessionArrayKey = '')
+    public function remove($key = '')
     {
-        unset($_SESSION[$sessionArrayKey]);
+        unset($_SESSION[$key]);
     }
 
     /**
      * Set Session Array Key
      *
-     * @param $sessionArrayKey
-     * @param $sessionArrayValue
+     * @param $key
+     * @param $value
      */
-    public function setSessionArrayKey($sessionArrayKey, $sessionArrayValue)
+    public function set($key, $value)
     {
-        $_SESSION[$sessionArrayKey] = $sessionArrayValue;
+        $_SESSION[$key] = $value;
     }
 
     /**
@@ -66,8 +66,32 @@ final class Storage
      *
      * @return array
      */
-    public function getSessionArray()
+    public function getAll()
     {
         return $_SESSION;
+    }
+
+    /**
+     * Unset all Sessions
+     */
+    public function removeAll()
+    {
+        session_unset();
+    }
+
+    /**
+     * Stop Session Handler
+     */
+    public function end()
+    {
+        session_destroy();
+    }
+
+    /**
+     * Start Session
+     */
+    public function start()
+    {
+        session_start();
     }
 }

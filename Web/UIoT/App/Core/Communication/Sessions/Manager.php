@@ -52,8 +52,9 @@ final class Manager
     {
         $this->setSettings();
         $this->setHandler();
-        $this->startSession();
         $this->setStorage();
+
+        $this->getStorage()->start();
     }
 
     /**
@@ -73,35 +74,11 @@ final class Manager
     }
 
     /**
-     * Start Session
-     */
-    public static function startSession()
-    {
-        session_start();
-    }
-
-    /**
      * Instantiate the Session Handler
      */
     private function setStorage()
     {
         self::$storage = new Storage;
-    }
-
-    /**
-     * Unset all Sessions
-     */
-    public static function eraseSession()
-    {
-        session_unset();
-    }
-
-    /**
-     * Stop Session Handler
-     */
-    public static function stopSession()
-    {
-        session_destroy();
     }
 
     /**

@@ -24,7 +24,6 @@ namespace UIoT\App\Core\Communication\Parsers\Treaters;
 
 use JsonMapper;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
-use UIoT\App\Data\Models\Parsers\ResourceObject as ResourceObjectModel;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
