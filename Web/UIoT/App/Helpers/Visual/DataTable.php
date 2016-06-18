@@ -141,9 +141,9 @@ class DataTable extends Html
 
             $interactionContent = $this->getInteraction($index);
 
-            $interactionContent = $value;
-
             if (empty($interactionContent)) {
+                $interactionContent = $value;
+            } else {
                 $interactionContent = str_ireplace('{{value}}', $value, $interactionContent);
             }
 
