@@ -51,10 +51,11 @@ use UIoT\App\Core\Settings\Register;
 Register::prepare();
 
 Register::add('raise', [
-    'raiseHost' => '172.16.6.159',
+    'raiseHost' => 'raise.uiot.org',
     'raiseBasePath' => '',
     'raisePort' => 80,
-    'raiseSsl' => false
+    'raiseSsl' => false,
+    'raiseToken' => 'c493589cce2aea9459998e3e225f4f8287f07dd2'
 ]);
 
 Register::add('security', [

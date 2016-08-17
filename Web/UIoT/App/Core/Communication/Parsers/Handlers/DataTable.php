@@ -47,8 +47,9 @@ class DataTable extends RequestSingleton
 
         foreach ($data['keys'] as $property) {
             /** @var $property PropertyObject */
-            $table->addLinkInteraction($property->PROP_NAME, "/{$data['resource']}/edit?{$property->PROP_FRIENDLY_NAME}");
-            $table->addHeader(Strings::toCamel($property->PROP_FRIENDLY_NAME, true));
+            $table->addLinkInteraction($property->friendly_name,
+                "/{$data['resource']}/edit?{$property->friendly_name}");
+            $table->addHeader(Strings::toCamel($property->friendly_name, true));
         }
 
         foreach ($data['values'] as $property) {
@@ -56,8 +57,10 @@ class DataTable extends RequestSingleton
         }
 
         $html = new Html();
-        $html->addOnClickButton('button', "Add New $resFriendly", "window.location.href=\"/{$data['resource']}/add/\"", ['class' => 'success', 'id' => '']);
+        $html->addOnClickButton('button', "Add New $resFriendly", "window.location.href=\"/{$data['resource']}/add/\"",
+            ['class' => 'success', 'id' => '']);
 
-        RequestParser::setCustomResponse($this, "<div class='large-12 columns'>{$table->showContent()}{$html->showContent()}</div>", true);
+        RequestParser::setCustomResponse($this,
+            "<div class='large-12 columns'>{$table->showContent()}{$html->showContent()}</div>", true);
     }
 }

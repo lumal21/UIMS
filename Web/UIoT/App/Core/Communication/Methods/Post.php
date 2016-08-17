@@ -46,7 +46,7 @@ class Post extends MethodModel
     public function setData($data)
     {
         if (Constants::get('REQUEST_METHOD') == Http::POST) {
-            $data = RaiseRequest::post("{$data['name']}?" . http_build_query(Constants::getJson('HTTP_PHP_POST')));
+            $data = RaiseRequest::post("{$data['name']}?token={$this->getToken()}&" . http_build_query(Constants::getJson('HTTP_PHP_POST')));
         }
 
         return parent::setData(RequestParser::parse(ResponseAck::getInstance(), $data));

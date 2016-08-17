@@ -29,7 +29,7 @@ use UIoT\App\Data\Models\Settings\SecuritySettingsModel;
 use UIoT\App\Helpers\Manipulation\Constants;
 
 /**
- * Class SettingsIndexer
+ * Class Register
  * @package UIoT\App\Core\Settings
  */
 final class Register

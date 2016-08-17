@@ -48,8 +48,9 @@ class EmptyForm extends RequestSingleton
 
         foreach (DataTypes::removeTypes($data['keys']) as $property) {
             /** @var $property PropertyObject */
-            $form->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true),
-                [], ['value' => DataTypes::getType($property->PROP_FRIENDLY_NAME)]);
+            $form->addTextInputWithValue($property->friendly_name,
+                Strings::toCamel($property->friendly_name, true),
+                [], ['value' => DataTypes::getType($property->friendly_name)]);
         }
 
         $form->addButton('submit', 'Add Resource Item');

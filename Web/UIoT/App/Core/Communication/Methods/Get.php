@@ -44,12 +44,15 @@ class Get extends MethodModel
      */
     public function setData($data)
     {
-        $resId = RequestParser::parse(ResourceId::getInstance(), RaiseRequest::get('resources?name=' . $data['name']));
+        $resId = RequestParser::parse(ResourceId::getInstance(),
+            RaiseRequest::get("resources?token={$this->getToken()}&friendly_name={$data['name']}"));
 
-        if (RequestParser::checkResponse($resId, $this->getInput()))
+        if (RequestParser::checkResponse($resId, $this->getInput())) {
             return parent::setData($resId);
+        }
 
-        $resProp = RequestParser::parse(ResourceProperties::getInstance(), RaiseRequest::get('properties?resource_id=' . $resId->getData()));
+        $resProp = RequestParser::parse(ResourceProperties::getInstance(),
+            RaiseRequest::get("properties?token={$this->getToken()}&resource_id={$resId->getData()}"));
 
         return parent::setData($resProp);
     }

@@ -150,8 +150,9 @@ final class Files
      */
     public static function getLastInstance()
     {
-        if (NULL === self::$fileInstance)
+        if (null === self::$fileInstance) {
             self::$fileInstance = new self;
+        }
 
         return self::$fileInstance;
     }

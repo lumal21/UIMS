@@ -60,7 +60,13 @@ class RouterHelper
     public static function addRoute($path, $callback, $priority, $method, $group)
     {
         self::$nodeList[self::getNodeListSize() + 1] =
-            ['path' => $path, 'callback' => $callback, 'priority' => $priority, 'method' => Strings::toLower($method), 'group' => $group];
+            [
+                'path' => $path,
+                'callback' => $callback,
+                'priority' => $priority,
+                'method' => Strings::toLower($method),
+                'group' => $group
+            ];
     }
 
     /**

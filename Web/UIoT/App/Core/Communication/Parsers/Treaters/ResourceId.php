@@ -41,8 +41,8 @@ class ResourceId extends RequestSingleton
     {
         if (!is_array($data)) {
             RequestParser::parseRequest(ResourceObject::getInstance(), $this, $data);
-        } elseif (property_exists($data[0], 'ID')) {
-            RequestParser::setCustomData($this, $data[0]->ID);
+        } elseif (property_exists($data[0], 'id')) {
+            RequestParser::setCustomData($this, $data[0]->id);
         }
     }
 }

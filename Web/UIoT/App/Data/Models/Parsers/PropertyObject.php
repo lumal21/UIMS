@@ -33,20 +33,20 @@ class PropertyObject
     /**
      * @var int Property Id
      */
-    public $ID = 0;
+    public $id = 0;
 
     /**
      * @var int Resource Id
      */
-    public $RSRC_ID = 0;
+    public $resource_id = 0;
 
     /**
      * @var string Property Name
      */
-    public $PROP_NAME = '';
+    public $name = '';
 
     /**
      * @var string Property Friendly Name
      */
-    public $PROP_FRIENDLY_NAME = '';
+    public $friendly_name = '';
 }

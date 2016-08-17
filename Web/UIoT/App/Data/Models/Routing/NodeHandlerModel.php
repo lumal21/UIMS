@@ -68,8 +68,9 @@ class NodeHandlerModel implements NodeHandlerInterface
      */
     public function callValue(...$arguments)
     {
-        foreach ($arguments as $argument)
+        foreach ($arguments as $argument) {
             $this->pathValue[] = $argument;
+        }
 
         $this->call();
 

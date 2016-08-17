@@ -46,11 +46,14 @@ class GetCollector extends RequestSingleton
     {
         $get = (new Get)->setInput($this)->setData($data);
 
-        if (RequestParser::checkResponse($get->getResponse(), $this))
+        if (RequestParser::checkResponse($get->getResponse(), $this)) {
             return;
+        }
 
         RequestParser::parseRequest(DataTable::getInstance(), $this, [
-            'resource' => $data['name'], 'keys' => $get->getResponse()->getData(),
-            'values' => RaiseRequest::get($data['name'])]);
+            'resource' => $data['name'],
+            'keys' => $get->getResponse()->getData(),
+            'values' => RaiseRequest::get("{$data['name']}?token={$this->getToken()}")
+        ]);
     }
 }

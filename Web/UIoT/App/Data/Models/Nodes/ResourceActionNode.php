@@ -42,7 +42,8 @@ final class ResourceActionNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setStatus(Arrays::inArray($this->getPath()[1], array_keys(DataHandler::getMethods())) && !Factory::exists($this->getPath()[0]));
+        $this->setStatus(Arrays::inArray($this->getPath()[1],
+                array_keys(DataHandler::getMethods())) && !Factory::exists($this->getPath()[0]));
 
         !$this->getStatus() || $this->setData(Handler::show(new Render($this->getPath()[0], $this->getPath()[1])));
     }

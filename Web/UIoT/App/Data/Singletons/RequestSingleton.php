@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Data\Singletons;
 
+use UIoT\App\Core\Settings\Register;
 use UIoT\App\Data\Models\Requesting\RequestModel;
 
 /**
@@ -44,5 +45,15 @@ class RequestSingleton extends RequestModel
         }
 
         return $instance;
+    }
+
+    /**
+     * Return RAISe Token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return Register::get('raise')->raiseToken;
     }
 }

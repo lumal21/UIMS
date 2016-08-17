@@ -40,6 +40,7 @@ final class BasePathNode extends NodeHandlerModel
      */
     public function call()
     {
-        $this->setData(Handler::show(new Render(Constants::get('DEFAULT_CONTROLLER'), Constants::get('DEFAULT_ACTION'))));
+        $this->setData(Handler::show(new Render(Constants::get('DEFAULT_CONTROLLER'),
+            Constants::get('DEFAULT_ACTION'))));
     }
 }

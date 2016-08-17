@@ -51,8 +51,12 @@ class Manipulation extends Arrays
      * @param string $expression
      * @return array
      */
-    public function getArrayByLogicComparison(array $nodeArray, $parameterName = '', $parameterValue, $expression = '==')
-    {
+    public function getArrayByLogicComparison(
+        array $nodeArray,
+        $parameterName = '',
+        $parameterValue,
+        $expression = '=='
+    ) {
         $this->nodeFilter = new Filter($parameterName, $parameterValue, $expression);
 
         return array_filter($nodeArray, [__CLASS__, 'nodeFilterByLogicComparison']);

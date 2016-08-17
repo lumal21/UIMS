@@ -46,9 +46,10 @@ class Put extends MethodModel
     public function setData($data)
     {
         if (Constants::get('REQUEST_METHOD') == Http::POST) {
-            RaiseRequest::put("{$data['name']}?" . Constants::get('QUERY_STRING') . '&' . http_build_query(Constants::getJson('HTTP_PHP_POST')));
+            RaiseRequest::put("{$data['name']}?token={$this->getToken()}&" . Constants::get('QUERY_STRING') . '&' . http_build_query(Constants::getJson('HTTP_PHP_POST')));
         }
 
-        return parent::setData(RequestParser::parse(ResourceItem::getInstance(), RaiseRequest::get("{$data['name']}?" . Constants::get('QUERY_STRING'))));
+        return parent::setData(RequestParser::parse(ResourceItem::getInstance(),
+            RaiseRequest::get("{$data['name']}?token={$this->getToken()}&" . Constants::get('QUERY_STRING'))));
     }
 }

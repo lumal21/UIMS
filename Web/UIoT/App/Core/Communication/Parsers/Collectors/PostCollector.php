@@ -47,10 +47,13 @@ class PostCollector extends RequestSingleton
         $get = (new Get)->setInput($this)->setData($data);
         $post = (new Post)->setInput($this)->setData($data);
 
-        if (RequestParser::checkResponse($post->getResponse(), $this))
+        if (RequestParser::checkResponse($post->getResponse(), $this)) {
             return;
+        }
 
         RequestParser::parseRequest(EmptyForm::getInstance(), $this, [
-            'resource' => $data['name'], 'keys' => $get->getResponse()->getData()]);
+            'resource' => $data['name'],
+            'keys' => $get->getResponse()->getData()
+        ]);
     }
 }

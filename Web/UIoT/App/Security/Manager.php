@@ -33,14 +33,13 @@ use Whitelist\Check;
 final class Manager
 {
     /**
-     * @var SecuritySettingsModel
-     */
-    private $settings;
-
-    /**
      * @var Check White List Checker
      */
     private static $whiteList;
+    /**
+     * @var SecuritySettingsModel
+     */
+    private $settings;
 
     /**
      * Start Security Handler

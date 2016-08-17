@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Data\Models\Parsers;
 
+use UIoT\App\Core\Settings\Register;
 use UIoT\App\Data\Interfaces\Parsers\MethodInterface;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
@@ -87,5 +88,15 @@ class MethodModel implements MethodInterface
         $this->input = $input;
 
         return $this;
+    }
+
+    /**
+     * Return RAISe Token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return Register::get('raise')->raiseToken;
     }
 }

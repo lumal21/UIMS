@@ -46,7 +46,10 @@ class ResourceItem extends RequestSingleton
         if (is_object($data)) {
             RequestParser::parseRequest(RaiseCode::getInstance(), $this,
                 DataTreater::generateCode($data,
-                    ['code' => '404', 'message' => 'The requested resource item isn\'t a registered RAISE resource item.']));
+                    [
+                        'code' => '404',
+                        'message' => 'The requested resource item isn\'t a registered RAISE resource item.'
+                    ]));
         } else {
             RequestParser::setCustomData($this, $data);
         }

@@ -45,7 +45,10 @@ class ResponseAck extends RequestSingleton
         if (is_bool($data)) {
             RequestParser::parseRequest(RaiseCode::getInstance(), $this,
                 DataTreater::generateCode($data,
-                    ['code' => '200', 'message' => 'RAISE received the sent data. Operation Method: ' . Constants::get('REQUEST_METHOD')]));
+                    [
+                        'code' => '200',
+                        'message' => 'RAISE received the sent data. Operation Method: ' . Constants::get('REQUEST_METHOD')
+                    ]));
         } elseif (is_object($data)) {
             RequestParser::parseRequest(ResourceObject::getInstance(), $this, $data);
         }

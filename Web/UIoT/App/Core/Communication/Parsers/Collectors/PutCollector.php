@@ -47,11 +47,14 @@ class PutCollector extends RequestSingleton
         $get = (new Get)->setInput($this)->setData($data);
         $put = (new Put)->setInput($this)->setData($data);
 
-        if (RequestParser::checkResponse($put->getResponse(), $this))
+        if (RequestParser::checkResponse($put->getResponse(), $this)) {
             return;
+        }
 
         RequestParser::parseRequest(FilledForm::getInstance(), $this, [
-            'resource' => $data['name'], 'keys' => $get->getResponse()->getData(),
-            'values' => $put->getResponse()->getData()]);
+            'resource' => $data['name'],
+            'keys' => $get->getResponse()->getData(),
+            'values' => $put->getResponse()->getData()
+        ]);
     }
 }

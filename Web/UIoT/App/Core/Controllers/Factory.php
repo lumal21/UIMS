@@ -55,6 +55,21 @@ final class Factory
     }
 
     /**
+     * Call Controller static method.
+     *
+     * @param string $controllerName
+     * @param string $controllerMethod
+     * @return mixed
+     */
+    public static function call($controllerName, $controllerMethod)
+    {
+        return forward_static_call([
+            'UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName, false),
+            $controllerMethod
+        ]);
+    }
+
+    /**
      * Get Controller Action and Execute It
      *
      * @param string $controllerName
@@ -76,17 +91,5 @@ final class Factory
     public static function isAction($controllerName, $actionName)
     {
         return method_exists(self::get($controllerName), Strings::toAction($actionName));
-    }
-
-    /**
-     * Call Controller static method.
-     *
-     * @param string $controllerName
-     * @param string $controllerMethod
-     * @return mixed
-     */
-    public static function call($controllerName, $controllerMethod)
-    {
-        return forward_static_call(['UIoT\App\Data\Controllers\\' . Strings::toCamel($controllerName, false), $controllerMethod]);
     }
 }

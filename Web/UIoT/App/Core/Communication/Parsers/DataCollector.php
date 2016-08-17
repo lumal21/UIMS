@@ -67,16 +67,6 @@ class DataCollector
     }
 
     /**
-     * Get Method Collectors
-     *
-     * @return array
-     */
-    public static function getAll()
-    {
-        return self::$methodCollectors;
-    }
-
-    /**
      * Call Collector static method.
      *
      * @param string $name
@@ -86,5 +76,15 @@ class DataCollector
     public static function call($name, $method)
     {
         return forward_static_call(['UIoT\App\Core\Communication\Parsers\Collectors\\' . $name, $method]);
+    }
+
+    /**
+     * Get Method Collectors
+     *
+     * @return array
+     */
+    public static function getAll()
+    {
+        return self::$methodCollectors;
     }
 }

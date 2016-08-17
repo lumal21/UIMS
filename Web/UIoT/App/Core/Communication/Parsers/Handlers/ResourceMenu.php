@@ -49,12 +49,12 @@ class ResourceMenu extends RequestSingleton
         $menu = new Menu();
 
         $reqData = RequestParser::parseData(ResourceData::getInstance(),
-            RaiseRequest::get('resources'));
+            RaiseRequest::get("resources?token={$this->getToken()}"));
 
         foreach ($reqData->getData() as $item) {
             /** @var $item ResourceObject */
-            $menu->addItem('/' . Strings::toLower($item->RSRC_NAME),
-                Strings::toCamel($item->RSRC_FRIENDLY_NAME, true));
+            $menu->addItem('/' . $item->friendly_name,
+                Strings::toCamel($item->friendly_name, true));
         }
 
         RequestParser::setCustomResponse($this, $menu->showContent(), true);

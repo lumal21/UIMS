@@ -44,13 +44,15 @@ class FilledForm extends RequestSingleton
      */
     public function parse($data)
     {
-        $form = new Forms(Strings::toCamel($data['resource'], true), "/{$data['resource']}/edit?id={$data['values'][0]->ID}", Http::POST);
+        $form = new Forms(Strings::toCamel($data['resource'], true),
+            "/{$data['resource']}/edit?id={$data['values'][0]->ID}", Http::POST);
         $form->addHeader("ID: {$data['values'][0]->ID}");
 
         foreach (DataTypes::removeTypes($data['keys']) as $property) {
             /** @var $property PropertyObject */
-            $form->addTextInputWithValue($property->PROP_FRIENDLY_NAME, Strings::toCamel($property->PROP_FRIENDLY_NAME, true),
-                [], ['value' => $data['values'][0]->{$property->PROP_NAME}]);
+            $form->addTextInputWithValue($property->friendly_name,
+                Strings::toCamel($property->friendly_name, true),
+                [], ['value' => $data['values'][0]->{$property->friendly_name}]);
         }
 
         $form->addButton('submit', 'Save Edited Data');

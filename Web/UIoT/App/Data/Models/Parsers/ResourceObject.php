@@ -33,20 +33,15 @@ class ResourceObject
     /**
      * @var int Resource Id
      */
-    public $ID = 0;
+    public $id = 0;
 
     /**
      * @var string Resource Acronym
      */
-    public $RSRC_ACRONYM = '';
-
-    /**
-     * @var string Resource Name
-     */
-    public $RSRC_NAME = '';
+    public $acronym = '';
 
     /**
      * @var string Resource Friendly Name
      */
-    public $RSRC_FRIENDLY_NAME = '';
+    public $friendly_name = '';
 }

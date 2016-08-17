@@ -40,7 +40,8 @@ final class Render extends RenderModel
     {
         $layout = LayoutFactory::get($this->className);
 
-        $layout->getTemplate()->setVar('{{resource_content}}', Factory::getAction($this->className, $this->classMethod));
+        $layout->getTemplate()->setVar('{{resource_content}}',
+            Factory::getAction($this->className, $this->classMethod));
 
         return $layout->execute();
     }

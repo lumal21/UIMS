@@ -54,6 +54,33 @@ final class Router extends RouterHelper
     }
 
     /**
+     * Mount Router Instance and Path Finder Instance
+     */
+    private function mount()
+    {
+        /* set router */
+        $this->setRouter(new IRouter);
+
+        /* set path finder */
+        $this->setPathFinder(new PathFinder);
+    }
+
+    /**
+     * Execute the Router
+     */
+    protected function exec()
+    {
+        /* sort all nodes */
+        $this->getPathFinder()->getNodeIndexer()->sort();
+
+        /* prepare route */
+        $this->prepare();
+
+        /* run the router */
+        $this->run();
+    }
+
+    /**
      * Prepare Router
      */
     private function prepare()
@@ -74,38 +101,11 @@ final class Router extends RouterHelper
     }
 
     /**
-     * Mount Router Instance and Path Finder Instance
-     */
-    private function mount()
-    {
-        /* set router */
-        $this->setRouter(new IRouter);
-
-        /* set path finder */
-        $this->setPathFinder(new PathFinder);
-    }
-
-    /**
      * Run the Router
      */
     private function run()
     {
         $this->getRouter()->run([$this, 'performRouterUpdate']);
-    }
-
-    /**
-     * Execute the Router
-     */
-    protected function exec()
-    {
-        /* sort all nodes */
-        $this->getPathFinder()->getNodeIndexer()->sort();
-
-        /* prepare route */
-        $this->prepare();
-
-        /* run the router */
-        $this->run();
     }
 
     /**

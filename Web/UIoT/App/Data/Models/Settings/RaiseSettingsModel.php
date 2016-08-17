@@ -51,6 +51,11 @@ final class RaiseSettingsModel implements SettingsInterface
     public $raiseSsl = false;
 
     /**
+     * @var string
+     */
+    public $raiseToken = '';
+
+    /**
      * Return Block Name
      *
      * @return string

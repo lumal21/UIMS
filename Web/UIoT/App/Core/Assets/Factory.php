@@ -49,6 +49,29 @@ final class Factory
     }
 
     /**
+     * Add Asset
+     *
+     * @param string $assetName
+     * @param string $assetFolder
+     * @param string $assetFileName
+     */
+    public function add($assetName, $assetFolder, $assetFileName)
+    {
+        $this->getManager()->set(Strings::toLower($assetName),
+            new FileAsset($this->getPath($assetFolder, $assetFileName)));
+    }
+
+    /**
+     * Get Asset Manager
+     *
+     * @return AssetManager
+     */
+    public function getManager()
+    {
+        return $this->assetManager;
+    }
+
+    /**
      * Set Resource Folder
      *
      * @param string $assetFolder
@@ -58,29 +81,6 @@ final class Factory
     public function getPath($assetFolder, $assetName)
     {
         return Constants::get('RESOURCE_FOLDER') . "$assetFolder/$assetName";
-    }
-
-    /**
-     * Add Asset
-     *
-     * @param string $assetName
-     * @param string $assetFolder
-     * @param string $assetFileName
-     */
-    public function add($assetName, $assetFolder, $assetFileName)
-    {
-        $this->getManager()->set(Strings::toLower($assetName), new FileAsset($this->getPath($assetFolder, $assetFileName)));
-    }
-
-    /**
-     * Get an Asset by Asset name
-     *
-     * @param string $assetName
-     * @return AssetInterface
-     */
-    public function get($assetName)
-    {
-        return $this->getManager()->get(Strings::toLower($assetName));
     }
 
     /**
@@ -99,12 +99,13 @@ final class Factory
     }
 
     /**
-     * Get Asset Manager
+     * Get an Asset by Asset name
      *
-     * @return AssetManager
+     * @param string $assetName
+     * @return AssetInterface
      */
-    public function getManager()
+    public function get($assetName)
     {
-        return $this->assetManager;
+        return $this->getManager()->get(Strings::toLower($assetName));
     }
 }

@@ -38,8 +38,12 @@ class Forms extends Html
      * @param string $formAction
      * @param string $formId
      */
-    public function __construct($formName = 'Default Html Form', $formAction = '/', $formMethod = Http::POST, $formId = 'DefaultForm')
-    {
+    public function __construct(
+        $formName = 'Default Html Form',
+        $formAction = '/',
+        $formMethod = Http::POST,
+        $formId = 'DefaultForm'
+    ) {
         $this->htmlBuffer = "<h3>$formName</h3><form id='$formId' method='$formMethod' action='$formAction'>";
     }
 
@@ -79,8 +83,13 @@ class Forms extends Html
      * @param array $inputClasses
      * @param array $inputValues
      */
-    public function addInput($inputName = 'default_input', $inputType = 'text', $inputLabel = 'Default Input', $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''])
-    {
+    public function addInput(
+        $inputName = 'default_input',
+        $inputType = 'text',
+        $inputLabel = 'Default Input',
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => '']
+    ) {
         $this->addFormInput('input', $inputName, $inputType, $inputLabel, $inputClasses, $inputValues);
     }
 
@@ -95,8 +104,15 @@ class Forms extends Html
      * @param array $inputValues
      * @param string $innerInputData
      */
-    private function addFormInput($inputTag = 'input', $inputName = 'default_input', $inputType = 'text', $inputLabel = 'Default Input', $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''], $innerInputData = '')
-    {
+    private function addFormInput(
+        $inputTag = 'input',
+        $inputName = 'default_input',
+        $inputType = 'text',
+        $inputLabel = 'Default Input',
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => ''],
+        $innerInputData = ''
+    ) {
         $this->htmlBuffer .= '<div class="row"><div class="small-3 columns"><label for="middle-label" class="text-right middle">' . $inputLabel . '</label></div>';
 
         $inputContent = "<$inputTag name='$inputName' type='$inputType' placeholder='{$inputValues['placeholder']}' id='{$inputClasses['id']}' class='{$inputClasses['class']}' value='{$inputValues['value']}'>$innerInputData</$inputTag>";
@@ -112,8 +128,12 @@ class Forms extends Html
      * @param array $inputClasses
      * @param array $inputValues
      */
-    public function addTextInputWithValue($inputName, $inputLabel, $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''])
-    {
+    public function addTextInputWithValue(
+        $inputName,
+        $inputLabel,
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => '']
+    ) {
         $this->addInput($inputName, 'text', $inputLabel, $inputClasses, $inputValues);
     }
 
@@ -137,8 +157,12 @@ class Forms extends Html
      * @param array $inputClasses
      * @param array $inputValues
      */
-    public function addPasswordInputWithValue($inputName, $inputLabel, $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''])
-    {
+    public function addPasswordInputWithValue(
+        $inputName,
+        $inputLabel,
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => '']
+    ) {
         $this->addInput($inputName, 'password', $inputLabel, $inputClasses, $inputValues);
     }
 
@@ -150,8 +174,12 @@ class Forms extends Html
      * @param array $inputClasses
      * @param array $inputValues
      */
-    public function addHiddenInput($inputName, $inputLabel, $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''])
-    {
+    public function addHiddenInput(
+        $inputName,
+        $inputLabel,
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => '']
+    ) {
         $this->addInput($inputName, 'hidden', $inputLabel, $inputClasses, $inputValues);
     }
 
@@ -164,8 +192,13 @@ class Forms extends Html
      * @param array $inputValues
      * @param array $selectData (Value => Text)
      */
-    public function addSelect($inputName, $inputLabel, $inputClasses = ['id' => '', 'class' => ''], $inputValues = ['value' => '', 'placeholder' => ''], $selectData = [])
-    {
+    public function addSelect(
+        $inputName,
+        $inputLabel,
+        $inputClasses = ['id' => '', 'class' => ''],
+        $inputValues = ['value' => '', 'placeholder' => ''],
+        $selectData = []
+    ) {
         $selectHtml = '';
 
         foreach ($selectData as $valueText => $friendlyText) {

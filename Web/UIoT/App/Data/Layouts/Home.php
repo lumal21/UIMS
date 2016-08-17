@@ -52,7 +52,8 @@ class Home extends LayoutSingleton
         $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
         $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
         $this->getAsset()->add('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
-        $this->getAsset()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
+        $this->getAsset()->add('FoundationAccordion', 'Vendor',
+            'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
         $this->getAsset()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
         $this->getAsset()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
     }

@@ -50,7 +50,7 @@ class DataTypes
     public static function removeTypes($propertiesArray)
     {
         return array_filter($propertiesArray, function (PropertyObject $propertyObject) {
-            return Arrays::inArray($propertyObject->PROP_FRIENDLY_NAME, self::$disabledEvents) !== true;
+            return Arrays::inArray($propertyObject->friendly_name, self::$disabledEvents) !== true;
         });
     }
 
