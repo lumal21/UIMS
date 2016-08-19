@@ -31,30 +31,30 @@ interface LayoutInterface
     /**
      * @return mixed
      */
-    function getResources();
+    public function getResources();
 
     /**
      * @return mixed
      */
-    function configureLayout();
+    public function configureLayout();
 
     /**
      * @return mixed
      */
-    function setTemplates();
+    public function setTemplates();
 
     /**
      * @return mixed
      */
-    function showLayout();
+    public function showLayout();
 
     /**
      * @return mixed
      */
-    function getAsset();
+    public function getAsset();
 
     /**
      * @return mixed
      */
-    function getTemplate();
+    public function getTemplate();
 }
