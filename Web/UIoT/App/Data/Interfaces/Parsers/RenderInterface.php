@@ -34,12 +34,12 @@ interface RenderInterface
      * @param string $className
      * @param string $classMethod
      */
-    function __construct($className, $classMethod);
+    public function __construct($className, $classMethod);
 
     /**
      * Show Content
      *
      * @return mixed
      */
-    function showContent();
+    public function showContent();
 }
