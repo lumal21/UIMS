@@ -40,5 +40,5 @@ interface ControllerInterface
      *
      * @return mixed
      */
-    function getControllerFactory();
+    public function getControllerFactory();
 }
