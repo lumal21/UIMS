@@ -49,4 +49,9 @@ class PropertyObject
      * @var string Property Friendly Name
      */
     public $friendly_name = '';
+
+    /**
+     * @var int Property Optionality
+     */
+    public $optionality = 0;
 }

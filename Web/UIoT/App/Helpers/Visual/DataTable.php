@@ -62,9 +62,18 @@ class DataTable extends Html
      * Add a Body segment to Body Array
      *
      * @param array $bodyArray
+     * @param array $properties
      */
-    public function addBody($bodyArray = [])
+    public function addBody($bodyArray = [], array $properties = [])
     {
+        $bodyArray = (array)$bodyArray;
+
+        foreach ($bodyArray as $key => $value) {
+            if (!in_array($key, $properties)) {
+                unset($bodyArray[$key]);
+            }
+        }
+
         array_push($this->bodyArray, $bodyArray);
     }
 

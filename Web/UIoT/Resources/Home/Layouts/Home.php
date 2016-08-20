@@ -59,7 +59,7 @@
             <section class="main-section">
                 <div class="nope obese"></div>
                 <div class="row">
-                    <div class="large-12 columns">
+                    <div class="large-12 small-12 columns">
                         <div class="callout alert">
                             <b>Warning!</b> This CMS is under development phase and is far to be near of the final
                             result content.

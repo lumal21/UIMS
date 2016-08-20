@@ -1,0 +1,83 @@
+{
+  "config": {
+    "vendor-dir": "UIoT/Vendor"
+  },
+  "name": "uiot/uiot_ux",
+  "description": "UIoT's User Experienced Management System",
+  "type": "project",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "keywords": [
+    "iot",
+    "uiot",
+    "internet-of-things"
+  ],
+  "homepage": "https://uiot.org",
+  "authors": [
+    {
+      "name": "Claudio Santoro",
+      "email": "claudio.santoro@redes.unb.br"
+    },
+    {
+      "name": "Igor Moraes",
+      "email": "igor.moraes@redes.unb.br"
+    }
+  ],
+  "require": {
+    "nategood/httpful": "master",
+    "jalle19/php-whitelist-check": "master",
+    "mihaeu/html-formatter": "master",
+    "bramus/router": "master",
+    "kriswallsmith/assetic": "master",
+    "filp/whoops": "master",
+    "netresearch/jsonmapper": "master"
+  },
+  "scripts": {
+    "post-package-install": [
+      "Fxp\\Composer\\AssetPlugin\\Composer\\ScriptHandler::deleteIgnoredFiles"
+    ],
+    "post-package-update": [
+      "Fxp\\Composer\\AssetPlugin\\Composer\\ScriptHandler::deleteIgnoredFiles"
+    ]
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "bower-asset-library": "UIoT/Resources/Vendor/Bower",
+      "npm-asset-library": "UIoT/Resources/Vendor/Npm"
+    },
+    "asset-repositories": [
+      {
+        "type": "bower-git",
+        "url": "https://github.com/zurb/foundation-sites.git",
+        "name": "bower-asset/foundation-sites"
+      }
+    ],
+    "asset-ignore-files": {
+      "bower-asset/foundation-sites": [
+        "*.scss",
+        "*.md",
+        ".npmignore",
+        "*.npmignore",
+        ".versions",
+        "*.versions",
+        "*.gitignore",
+        ".gitignore",
+        "*.editorconfig",
+        ".editorconfig",
+        "gulpfile.js",
+        "package.js",
+        "scss",
+        ".npm",
+        "docs",
+        "config",
+        "test",
+        "lib",
+        "gulp",
+        "LICENSE"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {"UIoT\\": "UIoT/"}
+  }
+}

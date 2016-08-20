@@ -26,6 +26,7 @@ use UIoT\App\Core\Communication\Methods\Get;
 use UIoT\App\Core\Communication\Parsers\Handlers\DataTable;
 use UIoT\App\Core\Communication\Requesting\RaiseRequest;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Data\Models\Parsers\PropertyObject;
 use UIoT\App\Data\Singletons\RequestSingleton;
 
 /**
@@ -52,7 +53,13 @@ class GetCollector extends RequestSingleton
 
         RequestParser::parseRequest(DataTable::getInstance(), $this, [
             'resource' => $data['name'],
-            'keys' => $get->getResponse()->getData(),
+            'keys' => array_map(function ($property) {
+                /** @var $property PropertyObject */
+                return $property->friendly_name;
+            }, array_filter($get->getResponse()->getData(), function ($property) {
+                /** @var $property PropertyObject */
+                return $property->optionality == '0';
+            })),
             'values' => RaiseRequest::get("{$data['name']}?token={$this->getToken()}")
         ]);
     }
