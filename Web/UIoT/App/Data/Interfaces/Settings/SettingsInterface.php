@@ -33,5 +33,5 @@ interface SettingsInterface
      *
      * @return string
      */
-    function getBlockName();
+    public function getBlockName();
 }
