@@ -55,7 +55,7 @@ Register::add('raise', [
     'raiseBasePath' => '',
     'raisePort' => 80,
     'raiseSsl' => false,
-    'raiseToken' => 'c493589cce2aea9459998e3e225f4f8287f07dd2'
+    'raiseToken' => 'f4315a8869bc60575be956b97d2cc4b3b2577c08'
 ]);
 
 Register::add('security', [

@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteCond %{REQUEST_URI} !/Apps
     RewriteRule !(\.(ico))$ index.php [QSA,L,NC]
 </IfModule>
 <IfModule mod_speling.c>
