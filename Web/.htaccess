@@ -1,7 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteCond %{REQUEST_URI} !/Apps
+    
+	RewriteCond %{REQUEST_URI} !/Apps
     RewriteRule !(\.(ico))$ index.php [QSA,L,NC]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([^\.]+)$ $1.php [NC,L]
 </IfModule>
 <IfModule mod_speling.c>
     CheckSpelling on

@@ -25,20 +25,19 @@ error_reporting(0);
 $jSON = Request::get('http://raise.uiot.org/arguments?token=f4315a8869bc60575be956b97d2cc4b3b2577c08',
     Mime::JSON)->send()->body;
 
-$newJON = [];
-
 foreach ($jSON as $itemKey => $itemValue) {
-    if (strpos($itemValue->name, 'latitude_') !== false) {
-        $actualItem = new stdClass();
-        $actualItem->title = 'Device' . strstr($itemValue->name, '_', false);
-        $actualItem->lat = $itemValue->return_value;
-        $actualItem->lng = $jSON[$itemKey + 1]->return_value;
-
-        $newJON[] = $actualItem;
+		
+	if(strpos($itemValue->name, 'latitude_') !== false) {
+		$itemValue->return_value = $itemValue->return_value . ';' . $jSON[$itemKey + 1]->return_value;
+		$itemValue->name = 'Device' . strstr($itemValue->name, '_');
+	}
+	
+    if (strpos($itemValue->name, 'latitude_') === false && strpos($itemValue->name, 'Device_') === false) {
+        unset($jSON[$itemKey]);
     }
 }
 
-echo('<script>var jsonMap = ' . json_encode($newJON) . ';</script>');
+echo('<script>var jsonMap = ' . json_encode($jSON) . ';</script>');
 
 ?>
 
@@ -65,7 +64,7 @@ echo('<script>var jsonMap = ' . json_encode($newJON) . ';</script>');
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript"
-            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDqUnT1apZfZWIfVl9m1FGd54GOl2KtaEQ"></script>
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUnT1apZfZWIfVl9m1FGd54GOl2KtaEQ"></script>
     <script type="text/javascript">
         var map;
         var infowindow = new google.maps.InfoWindow();
@@ -83,16 +82,18 @@ echo('<script>var jsonMap = ' . json_encode($newJON) . ';</script>');
             map.setOptions({minZoom: 3, maxZoom: 30});
 
             $.each(jsonMap, function (key, data) {
+				
+				var mapPosition = data.return_value.split(";");
 
-                var latLng = new google.maps.LatLng(data.lat, data.lng);
+                var latLng = new google.maps.LatLng(mapPosition[0], mapPosition[1]);
 
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    title: data.title
+                    title: data.name
                 });
 
-                var details = data.title + ", using UIoT";
+                var details = data.name + ", using UIoT";
 
                 bindInfoWindow(marker, map, infowindow, details);
             });
