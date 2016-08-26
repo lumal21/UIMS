@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>UIoT - Device Map Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <style type="text/css">
         html {
@@ -25,8 +26,6 @@
     <script type="text/javascript">
         var map;
         var lastId = 0;
-        var loaded = 0;
-        var infowindow = new google.maps.InfoWindow();
 
         function setMarkers() {
             $.getJSON('http://raise.uiot.org/arguments?token=f4315a8869bc60575be956b97d2cc4b3b2577c08', function (jsonMap) {
@@ -96,6 +95,10 @@
     </script>
 </head>
 <body>
+<div class="callout" style="background:#0a0a0a;color:white;margin-bottom:0">
+    <h6><b>Welcome to UIoT Device Map</b> | When you're ready, you can go back to UIMS through <a
+        href="/home">here</a>.</h6>
+</div>
 <div id="map_canvas"></div>
 </body>
 </html>
