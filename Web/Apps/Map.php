@@ -45,7 +45,7 @@
 						  '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
 						  '<div id="bodyContent">'+
 						  '<p>Position collected through <b>UIoT</b> at time ' + data.time + '</p>'+
-						  '<p>See more details at: <a href="https://uims.uiot.org/arguments/edit?id=' + data.id + '">UIMS</a></p>'+
+						  '<p>See more details at: <a target="_blank" href="https://uims.uiot.org/arguments/edit?id=' + data.id + '">UIMS</a></p>'+
 						  '</div>'+
 						  '</div>';
 						  
@@ -62,7 +62,7 @@
 		}
 
         function initialize() {		
-			alert('Bem-Vindo ao UIoT Device Localization Application!');
+			//alert('Bem-Vindo ao UIoT Device Localization Application!');
 
             var mapProp = {
                 center: new google.maps.LatLng(-11.5472704, -63.5385424),
