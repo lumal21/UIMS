@@ -100,7 +100,7 @@ echo('<script>var jsonMap = ' . json_encode($jSON) . ';</script>');
 				  '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
 				  '<div id="bodyContent">'+
 				  '<p>Position collected through <b>UIoT</b> at time ' + data.time + '</p>'+
-				  '<p>See device details at: <a href="http://uims.uiot.org/arguments/edit?id=' + data.id + '">UIMS</a></p>'+
+				  '<p>See more details at: <a href="https://uims.uiot.org/arguments/edit?id=' + data.id + '">UIMS</a></p>'+
 				  '</div>'+
 				  '</div>';
 				  
