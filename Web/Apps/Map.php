@@ -30,6 +30,7 @@ foreach ($jSON as $itemKey => $itemValue) {
 	if(strpos($itemValue->name, 'latitude_') !== false) {
 		$itemValue->return_value = $itemValue->return_value . ';' . $jSON[$itemKey + 1]->return_value;
 		$itemValue->name = 'Device' . strstr($itemValue->name, '_');
+		$itemValue->time = date('H:i:s d-M-Y', strtotime($itemValue->time));
 	}
 	
     if (strpos($itemValue->name, 'latitude_') === false && strpos($itemValue->name, 'Device_') === false) {
@@ -93,16 +94,23 @@ echo('<script>var jsonMap = ' . json_encode($jSON) . ';</script>');
                     title: data.name
                 });
 
-                var details = data.name + ", using UIoT";
+                var contentString = '<div id="content">'+
+				  '<div id="siteNotice">'+
+				  '</div>'+
+				  '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
+				  '<div id="bodyContent">'+
+				  '<p>Position collected through <b>UIoT</b> at time ' + data.time + '</p>'+
+				  '<p>See device details at: <a href="http://uims.uiot.org/arguments/edit?id=' + data.id + '">UIMS</a></p>'+
+				  '</div>'+
+				  '</div>';
+				  
+				var infowindow = new google.maps.InfoWindow({
+					content: contentString
+				});
 
-                bindInfoWindow(marker, map, infowindow, details);
-            });
-        }
-
-        function bindInfoWindow(marker, map, infowindow, strDescription) {
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(strDescription);
-                infowindow.open(map, marker);
+                marker.addListener('click', function() {
+					infowindow.open(map, marker);
+				});
             });
         }
 
