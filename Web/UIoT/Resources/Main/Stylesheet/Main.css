@@ -25,7 +25,8 @@ pre {
 }
 
 .off-canvas-content {
-    background: rgb(235, 235, 235);
+    /*background: rgb(235, 235, 235);*/
+    background: #fff3d9;
 }
 
 .main-section {

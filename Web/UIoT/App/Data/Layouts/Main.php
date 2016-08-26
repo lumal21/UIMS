@@ -24,6 +24,7 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourceMenu;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Helpers\Visual\Pages;
 
 /**
@@ -48,8 +49,8 @@ class Main extends Home
     public function setTemplates()
     {
         $this->getTemplate()->setPath('Main');
-        $this->getTemplate()->setVar('{{menu_content}}',
-            RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->setVar('{{menu_content}}', RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->setVar('{{user_name}}', Indexer::get('user_name'));
         $this->getTemplate()->add('Layouts/Main.php');
     }
 

@@ -24,6 +24,7 @@ namespace UIoT\App\Data\Layouts;
 
 use UIoT\App\Core\Communication\Parsers\Handlers\ResourceMenu;
 use UIoT\App\Core\Communication\Requesting\RequestParser;
+use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Data\Singletons\LayoutSingleton;
 use UIoT\App\Helpers\Visual\Pages;
 
@@ -56,6 +57,8 @@ class Home extends LayoutSingleton
             'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
         $this->getAsset()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
         $this->getAsset()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
+        $this->getAsset()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.accordion.js');
+        $this->getAsset()->add('FoundationKeyboard', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.keyboard.js');
     }
 
     /**
@@ -72,8 +75,8 @@ class Home extends LayoutSingleton
     public function setTemplates()
     {
         $this->getTemplate()->setPath('Home');
-        $this->getTemplate()->setVar('{{menu_content}}',
-            RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->setVar('{{menu_content}}', RequestParser::parse(ResourceMenu::getInstance())->getData());
+        $this->getTemplate()->setVar('{{user_name}}', Indexer::get('user_name'));
         $this->getTemplate()->add('Layouts/Home.php');
     }
 

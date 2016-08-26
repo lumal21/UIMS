@@ -1,3 +1,4 @@
+<html>
 <style>
     @import url('/Login/Resources/MainStyle.css');
     @import url('/Login/Resources/FoundationOld.css');
@@ -42,17 +43,9 @@
     <div class="large-6 columns">
         <div class="callout radius kkk">
             <div class="nope"></div>
-            <form action="/Login/Post" method="POST">
+            <form action="/Login/Post" method="POST" data-abide novalidate>
                 <div class="row">
-                    <div class="large-6 columns">
-                        <h5>Login</h5>
-                        {{resource_content}}
-                    </div>
-                    <div class="large-6 columns">
-                        <p>Welcome to UIoT administration panel.<br/> This section is restricted to registered users.
-                        </p>
-                        <input class="secondary button" type="submit" name="submit" value="Login"/>
-                    </div>
+                    {{resource_content}}
             </form>
         </div>
     </div>
@@ -60,3 +53,11 @@
 <div class="large-3 columns"><br/></div>
 </div>
 </body>
+<script src="/Home/Resources/Jquery.js"></script>
+<script src="/Home/Resources/FoundationJs.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<script src="/Home/Resources/FoundationCore.js"></script>
+<script src="/Home/Resources/FoundationAbide.js"></script>
+</html>

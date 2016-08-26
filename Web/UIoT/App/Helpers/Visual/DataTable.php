@@ -105,7 +105,7 @@ class DataTable extends Html
      */
     private function createTable()
     {
-        $this->htmlBuffer .= '<table class="hover"><thead><tr>';
+        $this->htmlBuffer .= '<table class="hover stack"><thead><tr>';
 
         $this->createHeader();
 

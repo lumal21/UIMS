@@ -22,6 +22,7 @@
 
 namespace UIoT\App\Data\Controllers;
 
+use UIoT\App\Core\Communication\Sessions\Indexer;
 use UIoT\App\Data\Singletons\ControllerSingleton;
 
 /**
@@ -37,11 +38,11 @@ final class Login extends ControllerSingleton
      */
     public function actionMain()
     {
-        $code = '<div class="row"><div class="large-10 columns"><label>Username:<input type="text" name="user" />' .
-            '</label></div></div>';
-        $code .= '<div class="row"><div class="large-10 columns">' .
-            '<label>Password:<input type="password" name="password" /></label></div></div>';
-        return $code;
+        return '<div class="large-6 columns"><h5>Login</h5><div class="row"><div class="small-10 columns"><label>Username<input type="email" id="email"  name="email" aria-describedby="userHelp" required>
+        <span class="form-error">You need enter an E-mail</span></label><p class="help-text" id="userHelp">Enter an e-mail please.</p></div></div>
+        <div class="row"><div class="small-10 columns"><label>Password Required<input type="password" id="password"  name="password" aria-describedby="passHelp" required>
+        <span class="form-error">You need enter an Password</span></label><p class="help-text" id="passHelp">Enter a password please.</p></div></div>
+        </div><div class="large-6 columns"><h5>Message to you.</h5><p>Welcome to UIoT administration panel.<br/> This section is restricted to registered users.</p><input class="secondary button" type="submit" name="submit" value="Login"/></div>';
     }
 
     /**
@@ -51,13 +52,7 @@ final class Login extends ControllerSingleton
      */
     public function actionPost()
     {
-        $message = ['text' => 'Hello! testing message system ;)'];
-        $code = '<div class="row"><div class="large-10 columns">' .
-            '<label class="error">Username:<input type="text" name="user" class="error"/>' .
-            '</label><small class="error">' . $message['text'] . "</small></div></div>";
-        $code .= '<div class="row"><div class="large-10 columns">' .
-            '<label class="error">Password:<input type="password" name="password" class="error"/></label>' .
-            '<small class="error">' . $message['text'] . "</small></div></div>";
-        return $code;
+        Indexer::add('user_name', $_POST['email']);
+        return '<div class="row"><div class="large-12 columns"><h5 class="text-center">Welcome to UIoT!</h5><p class="text-center">We\'re loading the Workspace for you.</p><br/><img class="float-center" src="/Login/Resources/Ring.gif"/></div></div><meta http-equiv="refresh" content="5;URL=/home">';
     }
 }
