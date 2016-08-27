@@ -28,7 +28,7 @@
         var lastId = 0;
 
         function setMarkers() {
-            $.getJSON('https://raise.uiot.org/arguments?token=f4315a8869bc60575be956b97d2cc4b3b2577c08', function (jsonMap) {
+            $.getJSON('http://raise.uiot.org/arguments?token=f4315a8869bc60575be956b97d2cc4b3b2577c08', function (jsonMap) {
                 $.each(jsonMap, function (key, data) {
                     if (data.name.indexOf('latitude_') >= 0 && parseInt(data.id) > lastId) {
                         if (jsonMap[key + 1] != 'undefined' && jsonMap[key + 1] != null) {

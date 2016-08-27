@@ -56,10 +56,10 @@ class GetCollector extends RequestSingleton
             'keys' => array_map(function ($property) {
                 /** @var $property PropertyObject */
                 return $property->friendly_name;
-            }, array_filter($get->getResponse()->getData(), function ($property) {
+            }, $data['name'] == 'devices' ? array_filter($get->getResponse()->getData(), function ($property) {
                 /** @var $property PropertyObject */
                 return $property->optionality == '0' || $property->friendly_name == 'id';
-            })),
+            }) : $get->getResponse()->getData()),
             'values' => RaiseRequest::get("{$data['name']}?token={$this->getToken()}")
         ]);
     }
