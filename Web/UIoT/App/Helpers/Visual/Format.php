@@ -83,6 +83,8 @@ final class Format
      */
     public static function getFormat()
     {
-        return self::format(self::$internalCode);
+        //@TODO giving MemoryAllocation Error if the HTML is too big.
+        //return self::format(self::$internalCode);
+        return self::$internalCode;
     }
 }

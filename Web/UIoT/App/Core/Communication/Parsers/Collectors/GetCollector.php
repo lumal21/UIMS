@@ -58,7 +58,7 @@ class GetCollector extends RequestSingleton
                 return $property->friendly_name;
             }, array_filter($get->getResponse()->getData(), function ($property) {
                 /** @var $property PropertyObject */
-                return $property->optionality == '0';
+                return $property->optionality == '0' || $property->friendly_name == 'id';
             })),
             'values' => RaiseRequest::get("{$data['name']}?token={$this->getToken()}")
         ]);
