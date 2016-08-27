@@ -53,6 +53,6 @@ final class Login extends ControllerSingleton
     public function actionPost()
     {
         Indexer::add('user_name', $_POST['email']);
-        return '<div class="row"><div class="large-12 columns"><h5 class="text-center">Welcome to UIoT!</h5><p class="text-center">We\'re loading the Workspace for you.</p><br/><img class="float-center" src="/Login/Resources/Ring.gif"/></div></div><meta http-equiv="refresh" content="5;URL=/home">';
+        return '<div class="row"><div class="large-12 columns"><h5 class="text-center">Welcome to UIoT!</h5><p class="text-center">We\'re loading the Workspace for you.</p><br/><img class="float-center" src="/Login/Resources/Ring.gif"/></div></div><meta http-equiv="refresh" content="3;URL=/home">';
     }
 }
