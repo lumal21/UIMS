@@ -35,7 +35,7 @@
             </ul>
             <ul class="mobile-ofc vertical menu">
                 <li>
-                    <a class="button">Logout</a>
+                    <a href="/" class="button">Logout</a>
                 </li>
             </ul>
         </div>
