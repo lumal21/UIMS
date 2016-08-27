@@ -1,6 +1,6 @@
 {
   "config": {
-    "vendor-dir": "UIoT/Vendor"
+    "vendor-dir": "Web/UIoT/Vendor"
   },
   "name": "uiot/uiot_ux",
   "description": "UIoT's User Experienced Management System",
