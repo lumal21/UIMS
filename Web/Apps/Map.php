@@ -34,8 +34,6 @@
                         if (jsonMap[key + 1] != 'undefined' && jsonMap[key + 1] != null && jsonMap[key + 1].name.indexOf('longitude_') >= 0) {
                             console.log('Adicionado: ' + data.id);
 							
-							
-
                             var latLng = new google.maps.LatLng(data.return_value, jsonMap[key + 1].return_value);
 
                             data.name = data.name.substring(data.name.indexOf('_') + 1);
