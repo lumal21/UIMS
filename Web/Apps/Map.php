@@ -31,8 +31,10 @@
             $.getJSON('http://raise.uiot.org/arguments?token=f4315a8869bc60575be956b97d2cc4b3b2577c08', function (jsonMap) {
                 $.each(jsonMap, function (key, data) {
                     if (data.name.indexOf('latitude_') >= 0 && parseInt(data.id) > lastId) {
-                        if (jsonMap[key + 1] != 'undefined' && jsonMap[key + 1] != null) {
+                        if (jsonMap[key + 1] != 'undefined' && jsonMap[key + 1] != null && jsonMap[key + 1].name.indexOf('longitude_') >= 0) {
                             console.log('Adicionado: ' + data.id);
+							
+							
 
                             var latLng = new google.maps.LatLng(data.return_value, jsonMap[key + 1].return_value);
 
