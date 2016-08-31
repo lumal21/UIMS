@@ -41,10 +41,10 @@ class ResourceObject extends RequestSingleton
      */
     public function parse($data)
     {
-        if (is_object($data)) {
+        if (is_object($data) || (is_array($data) && sizeof($data) == 0)) {
             RequestParser::parseRequest(RaiseCode::getInstance(), $this,
-                DataTreater::generateCode($data,
-                    ['code' => '404', 'message' => 'The requested resource isn\'t a valid RAISE resource.']));
+                property_exists($data, 'code') ? $data : DataTreater::generateCode($data,
+                    ['code' => '400', 'message' => 'Invalid Resource Requested to RAISe']));
         }
     }
 }

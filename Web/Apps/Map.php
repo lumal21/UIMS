@@ -96,7 +96,7 @@
 </head>
 <body>
 <div class="callout" style="background:#0a0a0a;color:white;margin-bottom:0">
-    <h6><b>Welcome to UIoT Device Map</b> | When you're ready, you can go back to UIMS through <a
+    <h6><b>Welcome to UIoT Device Map</b> <i>(#002)</i> | When you're ready, you can go back to UIMS through <a
         href="/home">here</a>.</h6>
 </div>
 <div id="map_canvas"></div>
