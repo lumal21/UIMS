@@ -29,6 +29,7 @@
                     <div class="accordion-content" data-tab-content>
                         <ul class="submenu vertical menu">
                             <li><a href="/Apps/Map">Device Map</a></li>
+                            <li><a href="/Apps/Cam">HQ Camera</a></li>
                         </ul>
                     </div>
                 </li>
