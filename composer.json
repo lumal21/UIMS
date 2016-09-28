@@ -23,13 +23,49 @@
       "email": "igor.moraes@redes.unb.br"
     }
   ],
+  "repositories": [
+    {
+      "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/filp/whoops.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/cweiske/jsonmapper.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/kriswallsmith/assetic.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/bramus/router.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/mihaeu/html-formatter.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/Jalle19/php-whitelist-check.git",
+      "type": "git"
+    },
+    {
+      "url": "https://github.com/nategood/httpful.git",
+      "type": "git"
+    }
+  ],
   "require": {
+    "fxp/composer-asset-plugin": "master",
     "nategood/httpful": "master",
     "jalle19/php-whitelist-check": "master",
     "mihaeu/html-formatter": "master",
     "bramus/router": "master",
     "kriswallsmith/assetic": "master",
     "filp/whoops": "master",
+    "bower-asset/foundation-sites": "master",
     "netresearch/jsonmapper": "master"
   },
   "scripts": {
@@ -42,16 +78,9 @@
   },
   "extra": {
     "asset-installer-paths": {
-      "bower-asset-library": "UIoT/Resources/Vendor/Bower",
-      "npm-asset-library": "UIoT/Resources/Vendor/Npm"
+      "bower-asset-library": "Web/UIoT/Resources/Vendor/Bower",
+      "npm-asset-library": "Web/UIoT/Resources/Vendor/Npm"
     },
-    "asset-repositories": [
-      {
-        "type": "bower-git",
-        "url": "https://github.com/zurb/foundation-sites.git",
-        "name": "bower-asset/foundation-sites"
-      }
-    ],
     "asset-ignore-files": {
       "bower-asset/foundation-sites": [
         "*.scss",
