@@ -107,6 +107,6 @@
     }
   },
   "autoload": {
-    "psr-4": {"UIoT\\": "UIoT/"}
+    "psr-4": {"UIoT\\": "Web/UIoT/"}
   }
 }
