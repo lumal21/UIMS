@@ -47,18 +47,18 @@ class Home extends LayoutSingleton
         $this->getAsset()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
         $this->getAsset()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
         $this->getAsset()->add('MainMainStyle', 'Main', 'Stylesheet/Main.css');
-        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/foundation-sites/dist/foundation.css');
 
-        $this->getAsset()->add('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAsset()->add('FoundationCanvas', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.offcanvas.js');
+        $this->getAsset()->add('Jquery', 'Vendor', 'Bower/jquery/dist/jquery.js');
+        $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/foundation-sites/dist/foundation.min.js');
+        $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/foundation-sites/js/foundation.core.js');
+        $this->getAsset()->add('FoundationCanvas', 'Vendor', 'Bower/foundation-sites/js/foundation.offcanvas.js');
         $this->getAsset()->add('FoundationAccordion', 'Vendor',
-            'Bower/Foundation-sites/Dist/Js/Foundation.Accordion.js');
-        $this->getAsset()->add('FoundationTriggers', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.triggers.js');
-        $this->getAsset()->add('FoundationMotion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.motion.js');
-        $this->getAsset()->add('FoundationAccordion', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.accordion.js');
-        $this->getAsset()->add('FoundationKeyboard', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.util.keyboard.js');
+            'Bower/foundation-sites/dist/js/foundation.accordion.js');
+        $this->getAsset()->add('FoundationTriggers', 'Vendor', 'Bower/foundation-sites/js/foundation.util.triggers.js');
+        $this->getAsset()->add('FoundationMotion', 'Vendor', 'Bower/foundation-sites/js/foundation.util.motion.js');
+        $this->getAsset()->add('FoundationAccordion', 'Vendor', 'Bower/foundation-sites/js/foundation.accordion.js');
+        $this->getAsset()->add('FoundationKeyboard', 'Vendor', 'Bower/foundation-sites/js/foundation.util.keyboard.js');
     }
 
     /**
