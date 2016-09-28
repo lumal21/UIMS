@@ -42,14 +42,14 @@ class Login extends LayoutSingleton
         $this->getAsset()->add('Logo', 'Default', 'Images/Uiot_final.svg');
         $this->getAsset()->add('FoundationOld', 'Default', 'Stylesheet/Foundation.old.css');
         $this->getAsset()->add('MainStyle', 'Default', 'Stylesheet/Styles.css');
-        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.css');
+        $this->getAsset()->add('Foundation', 'Vendor', 'Bower/foundation-sites/dist/foundation.css');
 
         $this->getAsset()->add('Ring', 'Login', 'Images/Ring.gif');
 
-        $this->getAsset()->add('Jquery', 'Vendor', 'Bower/Jquery/Dist/Jquery.js');
-        $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/Foundation-sites/Dist/Foundation.min.js');
-        $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.core.js');
-        $this->getAsset()->add('FoundationAbide', 'Vendor', 'Bower/Foundation-sites/Js/Foundation.abide.js');
+        $this->getAsset()->add('Jquery', 'Vendor', 'Bower/jquery/dist/jquery.js');
+        $this->getAsset()->add('FoundationJs', 'Vendor', 'Bower/foundation-sites/dist/foundation.min.js');
+        $this->getAsset()->add('FoundationCore', 'Vendor', 'Bower/foundation-sites/js/foundation.core.js');
+        $this->getAsset()->add('FoundationAbide', 'Vendor', 'Bower/foundation-sites/js/foundation.abide.js');
     }
 
     /**
