@@ -22,8 +22,6 @@
 
 namespace UIoT\App\Helpers\Visual;
 
-use Mihaeu\HtmlFormatter;
-
 /**
  * Class Format
  * @package UIoT\App\Helpers\Visual
@@ -42,8 +40,7 @@ final class Format
      */
     public static function addFormat($code = '')
     {
-        //@TODO giving MemoryAllocation Error if the HTML is too big.
-        //self::add(self::format($code));
+        //@TODO giving MemoryAllocation Error if the HTML is too big. self::add(self::format($code));
         self::add($code);
     }
 
@@ -65,8 +62,7 @@ final class Format
      */
     public static function format($code = '')
     {
-        //@TODO giving MemoryAllocation Error if the HTML is too big.
-        //return HtmlFormatter::format($code);
+        //@TODO giving MemoryAllocation Error if the HTML is too big. return HtmlFormatter::format($code);
         return $code;
     }
 
@@ -87,8 +83,7 @@ final class Format
      */
     public static function getFormat()
     {
-        //@TODO giving MemoryAllocation Error if the HTML is too big.
-        //return self::format(self::$internalCode);
+        //@TODO giving MemoryAllocation Error if the HTML is too big. return self::format(self::$internalCode);
         return self::$internalCode;
     }
 }
